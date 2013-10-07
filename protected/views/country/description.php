@@ -45,13 +45,22 @@ $this->widget('addressLineWidget', array(
     <?php if( sizeof($otherCountry)>0 ) : ?>
         <h2>Другие странны</h2>
         <div class="hr">&nbsp;</div>
-        <div class="ITBlock ITBFirms">
-            <?php foreach( $otherCountry as $firm ) : ?>
-
+        <div class="ITBlock ITBFirms ITBOthCountry">
+            <?php foreach( $otherCountry as $CItem ) :
+                $tourCounts = CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array(":country_id"=>$CItem->id) ) );
+                ?>
+                <div class="IBItem">
+                    <div class="IBIImage">
+                        <a href="<?= SiteHelper::createUrl("country/", array( "id"=>$CItem->id )) ?>" title="<?= $CItem->name ?>"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?>" /></a>
+                    </div>
+                    <?php if( $tour->price >0 ) : ?><p><?= $CItem->price ?></p><?php endif; ?>
+                    <br/><a href="<?= SiteHelper::createUrl("country/", array( "id"=>$CItem->id )) ?>" title="<?= $CItem->name ?>"><?= $CItem->name ?></a><br/>
+                    <div class="LParams">
+                        Просмотров: <b><?= $CItem->col>0 ? $CItem->col : 0 ?></b><br/>
+                        Туров: <b><?= $tourCounts ?></b><br/>
+                    </div>
+                </div>
             <?php endforeach; ?>
-            <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("firms/", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
-            </div>
         </div>
     <?php endif; ?>
 

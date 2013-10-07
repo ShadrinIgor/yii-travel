@@ -26,7 +26,7 @@ class CountryController extends Controller
                         "item" => $item,
                         "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
                         "firms" => CatalogFirms::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("rand()")->setLimit(12) ),
-                        "otherCountry" => CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("id!=:id")->setParams(array(":id"=>$item->id))->setOrderBy("col DESC")->setLimit(6) ),
+                        "otherCountry" => CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("id!=:id")->setParams(array(":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
                         "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->id ) ) ),
                         "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->id ) ) ),
                     ));
