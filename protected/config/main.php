@@ -73,10 +73,11 @@ return array(
 			'rules'=>array(
                 ''=>'site/index',
 
-                'country_<id:\d+>.html'=> '<controller>/Description',
+                '<controller:(Country)>-<id:\d+>.html'=> '<controller>/Description',
+                '<controller:(Country)>.html'=> '<controller>',
 
-                '<controller:\w+>_<id:\d+>.html'=> '<controller>/Description',
-                '<controller:\w+>.html'=>'<controller>',
+           //     '<controller:\w+>_<id:\d+>.html'=> '<controller>/Description',
+           //     '<controller:\w+>.html'=>'<controller>',
 
 /*
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',

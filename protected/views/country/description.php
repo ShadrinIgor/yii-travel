@@ -42,6 +42,18 @@ $this->widget('addressLineWidget', array(
             </div>
         </div>
     <?php endif; ?>
+    <?php if( sizeof($otherCountry)>0 ) : ?>
+        <h2>Другие странны</h2>
+        <div class="hr">&nbsp;</div>
+        <div class="ITBlock ITBFirms">
+            <?php foreach( $otherCountry as $firm ) : ?>
+
+            <?php endforeach; ?>
+            <div class="textAlignRight">
+                <a href="<?= SiteHelper::createUrl("firms/", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
+            </div>
+        </div>
+    <?php endif; ?>
 
 </div>
 <?php $this->endCache(); endif;?>

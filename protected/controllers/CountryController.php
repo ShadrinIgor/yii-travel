@@ -2,9 +2,6 @@
 
 class CountryController extends Controller
 {
-    var $slug;
-    var $id;
-
     public function actionIndex()
     {
         $this->render( 'index' );
@@ -12,22 +9,26 @@ class CountryController extends Controller
 
     public function actionDescription()
     {
-        print_r( $_GET );
-        echo $this->id."*";
-        die;
-        if( !empty($this->slug) ||  !empty($this->id) )
+        $id = (int) Yii::app()->request->getParam("id", 0 );
+
+        if( !empty($this->slug) || !empty($id) )
         {
-            if( !empty($this->slug) )$item = CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("slug=:slug")->setParams(array(":slug"=>$this->slug)) );
-            if( !empty($this->id) )$item = CatalogCountry::fetch( $this->id );
-            if( sizeof($item)>0 && $item[0]->id >0 )
+            if( !empty($this->slug) )
+            {
+                $itemModel = CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("slug=:slug")->setParams(array(":slug"=>$this->slug)) );
+                if( sizeof($itemModel)>0 )$item = $itemModel[0];
+            }
+            if( !empty( $id ) && $id>0 )$item = CatalogCountry::fetch( $id );
+            if( !empty( $item ) && $item->id >0 )
             {
                 $this->render('description',
                     array(
-                        "item" => $item[0],
-                        "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item[0]->id))->setOrderBy("col DESC")->setLimit(8) ),
-                        "firms" => CatalogFirms::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item[0]->id))->setOrderBy("rand()")->setLimit(12) ),
-                        "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item[0]->id ) ) ),
-                        "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item[0]->id ) ) ),
+                        "item" => $item,
+                        "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
+                        "firms" => CatalogFirms::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("rand()")->setLimit(12) ),
+                        "otherCountry" => CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("id!=:id")->setParams(array(":id"=>$item->id))->setOrderBy("col DESC")->setLimit(6) ),
+                        "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->id ) ) ),
+                        "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->id ) ) ),
                     ));
             }
                 else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
