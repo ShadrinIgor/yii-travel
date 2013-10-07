@@ -1,0 +1,13 @@
+#tableListItems
+{
+    width: 600px;
+}
+#tableListItems tr:nth-child(2n) {
+    background: #f0f0f0; /* Цвет фона */
+}
+#tableListItems tr:nth-child(1) {
+    background: #666; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+}
+
+.relationListItems{height: 300px;overflow-y: auto;}

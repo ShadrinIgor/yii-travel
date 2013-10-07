@@ -1,0 +1,17 @@
+a{ text-decoration: none;color: #0000af; }
+h1{text-align: center;}
+
+#menu{ overflow: hidden;background: rgb(173, 197, 240);padding: 5px 0px 5px 20px; }
+#menu ul{margin: 0px;}
+#menu li{float:left;list-style: none;margin-right:20px;}
+#centerTable{ width: 100%; }
+#centerTable a {text-decoration: underline;}
+#centerTable th { background: #cfcfcf; }
+.alignCenter{text-align: center;}
+.SCItem2{background: rgb(233, 245, 201);}
+#dopMenu{ float: right;padding:5px 10px;border:1px solid #afafaf; }
+#error{width:400px;text-align:center;color: #ff0000; padding:5px 10px;border: 1px solid #ff0000;font-weight: bold;font-style: italic;}
+#message{text-align:center;color: #0000ff; padding:5px 10px;border: 1px solid #0000ff;font-weight: bold;font-style: italic;}
+#centerTable th { width:400px;text-align: left;padding-left: 10px; }
+#centerTable textarea{width:500px;}
+#centerTable input[type=text]{width: 502px;}
