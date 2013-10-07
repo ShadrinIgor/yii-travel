@@ -1,0 +1,6 @@
+ALTER TABLE catalog_news ADD FOREIGN KEY (cid_id) REFERENCES catalog_cid(id)
+
+Почитать по assetManager
+http://habrahabr.ru/post/139166/
+
+malaysia/langkawi-hotels/name_hotel_id.htm
