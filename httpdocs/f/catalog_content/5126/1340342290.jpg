@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>404  - TURIZM.RU</title>
+
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta content="404 - TURIZM.RU" name="description">
+  <meta content="404 - TURIZM.RU" name="keywords">
+
+	<link rel="SHORTCUT ICON" href="http://www.turizm.ru/favicon.ico?23" type="image/vnd.microsoft.icon">
+
+	<link href="http://www.turizm.ru/css/jquery-ui-1.8.16.custom.css" type="text/css" rel="stylesheet">
+	<link href="http://www.turizm.ru/css/style.css" type="text/css" rel="stylesheet">
+  <link href="http://www.turizm.ru/css/grid.css" type="text/css" rel="stylesheet">
+	<link href="http://www.turizm.ru/css/flags.css" type="text/css" rel="stylesheet">
+  <link href="http://www.turizm.ru/css/basePikachoose.css" type="text/css" rel="stylesheet">
+
+
+
+  <script src="http://www.turizm.ru/js/html5shiv.googlecode.comsvntrunkhtml5.js"></script>
+	<script src="http://www.turizm.ru/js/jquery-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  <script src="http://www.turizm.ru/js/jquery.cycle.all.js"></script>
+	<script src="http://www.turizm.ru/js/ui.datepicker-ru.js"></script>
+	<script src="http://www.turizm.ru/js/jquery.cookie.js"></script>
+
+  <script src="http://www.turizm.ru/js/jquery_validation/jquery.validationEngine-ru.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://www.turizm.ru/js/jquery_validation/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="http://www.turizm.ru/js/jquery_validation/css/validationEngine.jquery.css" type="text/css"/>
+
+
+    <script src="http://www.turizm.ru/js/style.js"></script>
+    <script src="http://www.turizm.ru/js/docready.js"></script>
+	<script src="http://www.turizm.ru/js/jquery.fixedtableheader.min.js"></script>
+	<script src="http://www.turizm.ru/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	
+	<script src="http://www.turizm.ru/js/pikachoose/jquery.pikachoose.full.js"></script>
+    <script src="http://www.turizm.ru/js/initGalleria.js"></script>
+
+
+
+</head>
+<body class=" ">
+
+
+<!--start_counters-->
+
+<!--LiveInternet counter--><script type="text/javascript"><!--
+new Image().src = "//counter.yadro.ru/hit;turizm?r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random();//--></script><!--/LiveInternet-->
+
+<img src="http://counter.rambler.ru/top100.cnt?755644" alt="Rambler's Top100" width=1 height=1 border=0 align=right>
+
+<!--Rating@Mail.ru COUNTER--><script language="JavaScript"><!--
+	d=document;a='';a+=';r='+escape(d.referrer)
+	js=10//--></script><script language="JavaScript1.1"><!--
+	a+=';j='+navigator.javaEnabled()
+	js=11//--></script><script language="JavaScript1.2"><!--
+	s=screen;a+=';s='+s.width+'*'+s.height
+	a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+	js=12//--></script><script language="JavaScript1.3"><!--
+	js=13//--></script><script language="JavaScript"><!--
+	d.write('<img src="http://top.list.ru/counter'+
+	'?id=495896;js='+js+a+';rand='+Math.random()+
+	'" height="1" width=1>')
+	if(js>11)d.write('<'+'!-- ')//--></script><noscript><img src="http://top.list.ru/counter?js=na;id=495896" height="1" width=1></noscript><script language="JavaScript"><!--
+	if(js>11)d.write('--'+'>')//--></script><!--/COUNTER-->
+	
+	
+<!-- Yandex.Metrika counter -->
+<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
+<script type="text/javascript">
+try { var yaCounter1064 = new Ya.Metrika({id:1064,
+          clickmap:true,type:1});}
+catch(e) { }
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/1064?cnt-class=1" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+	
+	
+	
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5436582-1']);
+_gaq.push(['_setDomainName','.turizm.ru']);
+_gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'mail.ru', 'q']);
+_gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
+_gaq.push (['_addOrganic', 'google.com.ua', 'q']);
+_gaq.push (['_addOrganic', 'images.google.ru', 'q']);
+_gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
+_gaq.push (['_addOrganic', 'rambler.ru', 'words']);
+_gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
+_gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
+_gaq.push (['_addOrganic', 'gogo.ru', 'q']);
+_gaq.push (['_addOrganic', 'nigma.ru', 's']);
+_gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
+_gaq.push (['_addOrganic', 'webalta.ru', 'q']);
+_gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
+_gaq.push (['_addOrganic', 'meta.ua', 'q']);
+_gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
+_gaq.push (['_addOrganic', 'search.i.ua', 'q']);
+_gaq.push (['_addOrganic', 'index.online.ua', 'q']);
+_gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
+_gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
+_gaq.push (['_addOrganic', 'search.com.ua', 'q']);
+_gaq.push (['_addOrganic', 'search.ua', 'q']);
+_gaq.push (['_addOrganic', 'poisk.ru', 'text']);
+_gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
+_gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
+_gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
+_gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
+_gaq.push (['_addOrganic', 'akavita.by', 'z']);
+_gaq.push (['_addOrganic', 'search.tut.by', 'query']);
+_gaq.push (['_addOrganic', 'all.by', 'query']);
+//
+var x=location.hostname.split('.');
+if (x.length>=3 && x[0]!='www')
+{
+	var y=x[0];
+	if(location.pathname!=undefined)
+	y+=location.pathname;	
+	if (location.search!=undefined)
+	y+=location.search;
+	_gaq.push(['_trackPageview', '/'+y]);
+}
+else _gaq.push(['_trackPageview']);
+//
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--end ga-->	
+
+
+
+<!--end_counters-->
+
+
+    <div class="container_12 wrapper clearfix ">
+        <header class="top_header grid_12">
+   <noindex><script type="text/javascript" src="http://bs1.turizm.ru/?view=1&amp;p=newtur_unheader&amp;g=newtur_index&amp;sid=65327" encoding="windows-1251" defer="defer"></script></noindex>
+
+   
+   <noindex><!-- start banner -->
+<!-- position: 0 (0) -->
+
+<!-- end banner -->
+<script type="text/javascript" src="http://bs1.turizm.ru/?view=1&amp;p=newtur_brend&amp;g=newtur_&amp;sid=23258" encoding="windows-1251" defer="defer"></script></noindex>
+
+   
+   <h1 class="top_h1">404 - TURIZM.RU</h1>
+            <div class="relative logo_slise">
+                <a href="http://www.turizm.ru" class="logo"><img src="/img/logo.png" alt="Туризм" title="Туризм"> <span class="slogan">Каталог путешествий</span></a>
+
+                <div class="chose_city">
+                    <span class="one_city active_city">
+Москва
+                    </span> 
+                    <span class="separator">|</span>
+                    <span class="one_city ">
+ <a href="http://spb.turizm.ru">Санкт Петербург</a>
+                    </span>
+                    <span class="separator">|</span>
+                    <span class="one_city"><a href="http://www.turizm.ru/english/" class="eng_ver"></a></span>
+                </div>
+
+            </div>
+
+            <div class="search_slice clearfix">
+
+            <form class="jq_form_top_search" action="http://poisk.turizm.ru/" method="GET">
+  <input type="hidden" name="sort" value="relevanse" class="jq_hidden_data_sort">
+  <input type="hidden" name="page" value="1" class="jq_hidden_data_page">
+  <input type="hidden" name="type" value="" class="jq_hidden_data_type">
+  <div class="search_header">
+  <div class="inner_search">
+   <input name="s" type="text" class="search_input_header" value="Поиск по сайту">
+   <div class="choise_search_category"><!--active_search_chouse-->
+   <div class="arrow_down"></div>
+   <div class="fake_bg_list"></div>
+   <div class="list_head_search">
+      <ul class="more_links jq_search_moe">
+       <li><a href="#" data-word="Авиа" data-type="avia_index" >Авиа</a></li>
+       <li><a href="#" data-word="Ж/Д" data-type="railway_index" >Ж/Д</a></li>
+       <li><a href="#" data-word="Новостям" data-type="news_index" >Новости</a></li>
+       <li><a href="#" data-word="Отелям" data-type="hotels_index" >Отели</a></li>
+       <li><a href="#" data-word="Отзывам" data-type="otziv_index" >Отзывы</a></li>
+       <li><a href="#" data-word="Турфирмам" data-type="firms_index" >Турфирмы</a></li>
+       <li><a href="#" data-word="Форуму" data-type="forum_index" >Форум</a></li>
+       <li><a href="#" data-word="Статьям" data-type="article_index" >Статьи</a></li>
+       <li><a href="#" data-word="Турам" data-type="tours_index" >Туры</a></li>
+      </ul>
+   </div>
+   </div>
+   </div>
+   <input type="submit" value="" class="search_button">
+  </div>
+</form>
+
+
+
+                <nav class="partition_nav rounded">
+                    <ul>
+                        <li><a href="http://www.turizm.ru/hot">Горящие туры</a></li>
+                        <li><a href="http://www.turizm.ru/countries.htm">Страны</a></li>
+                        <li><a href="http://hotels.turizm.ru">Отели</a></li>
+                        <li><a href="http://avia.turizm.ru">Авиабилеты</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <nav class="main_navigation rounded">
+                <ul class="top_menu">
+                    <li><a href="http://railway.turizm.ru" class="rounded">Расписание поездов</a></li>
+                    <li><a href="http://www.turizm.ru/search/">Поиск тура</a></li>
+                    <li><a href="http://firms.turizm.ru/">Турфирмы</a></li>
+
+                    <li><a href="http://www.turizm.ru/visas/">Визы</a></li>
+                    <li><a href="http://hotels.turizm.ru/pricelist/">Бронирование отелей</a></li>
+                    <!--li><a href="http://www.turizm.ru/may/">Майский отдых</a></li-->
+                </ul>
+				
+				<div class="wrapp_top_more top_more_partition">
+                     <div class="more_country"><!--active_more-->
+                         <div class="more_button">Виды отдыха <span class="more_arrow"></span></div>
+                         <div class="more_content" >
+                             <ul class="more_links">
+                                 <li><a href="http://www.turizm.ru/hot">Горящие туры</a></li>
+								 <li><a href="http://www.turizm.ru/summer/">Летний отдых</a></li>
+                                 <li><a href="http://www.turizm.ru/bustours">Автобусные туры</a></li>
+                                 <li><a href="http://www.turizm.ru/railtours">Ж/д туры</a></li>
+                                 <li><a href="http://www.turizm.ru/cruises">Круизы</a></li>
+                                 <li><a href="http://www.turizm.ru/ski">Горные лыжи</a></li>
+                                 <li><a href="http://www.turizm.ru/study">Обучение за рубежом</a></li>
+                                 <li><a href="http://www.turizm.ru/shoptours">Шоп-туры</a></li>
+                                 <li><a href="http://www.turizm.ru/students">Студенческий туризм</a></li>
+                                 <li><a href="http://www.turizm.ru/childrest">Детский отдых</a></li>
+								 <li><a href="http://www.turizm.ru/wed">Свадебные туры</a></li>
+                                 <li><a href="http://www.turizm.ru/business">Деловой туризм</a></li>
+                                 <li><a href="http://www.turizm.ru/realty">Недвижимость за рубежом</a></li>
+                                 <li><a href="http://www.turizm.ru/ohota">Охота и рыбалка</a></li>
+                                 <li><a href="http://www.turizm.ru/palom">Паломнические туры</a></li>
+                             </ul>
+                         </div>
+                     </div>
+                </div>
+				
+                <div class="wrapp_top_more top_more_more">
+                     <div class="more_country"><!--active_more-->
+                         <div class="more_button">Еще...<span class="more_arrow"></span></div>
+                         <div class="more_content" >
+                             <ul class="more_links">
+                                 <li><a href="http://news.turizm.ru">Новости</a></li>
+                                 <li><a href="http://www.turizm.ru/currency/">Валюты</a></li>
+                                 <li><a href="http://www.turizm.ru/book/">Путеводители</a></li>
+                                 <li><a href="http://www.turizm.ru/humor.html">Юмор</a></li>
+                                 <li><a href="http://pogoda.turizm.ru/">Погода</a></li>
+                                 <li><a href="http://maps.turizm.ru/">Карты</a></li>
+                                 <li><a href="http://www.turizm.ru/job/">Работа в туризме</a></li>
+                             </ul>
+                         </div>
+                     </div>
+                </div>
+                <ul class="top_menu top_menu_aside">
+                    <li><a href="http://forum.turizm.ru">Форум</a></li>
+                    <li><a href="http://album.turizm.ru">Туральбом</a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+
+
+
+ <div class="grid_12 clearfix">
+  <div class="grid_9 alpha content_collum">
+            
+<div class="cmn_header main_head_line">Страница не найдена</div>
+
+	<div class="editor_content onesection">
+		<h3>Уважаемый пользователь!</h3>
+		<p>Запрашиваемая Вами страница не существует на сайте.</p>
+		<p>Возможно, это случилось по одной из следующих причин:</p>
+		<ul class="list list_wo_mar">
+			<li>вы перешли по неправильной ссылке</li>
+			<li>вы ошиблись при наборе адреса страницы (URL)</li>
+			<li>запрашиваемой страницы никогда не было на сайте или она была удалена</li>
+		</ul>
+		<p>Для того чтобы найти необходимую информацию, пожалуйста, перейдите на <a href="/">главную страницу</a> или посетите основные разделы сайта: </p>
+		<ul class="list list_wo_mar">
+			<li><a href="/hot">горящие туры</a></li>
+			<li><a href="http://hotels.turizm.ru">отели</a></li>
+			<li><a href="http://avia.turizm.ru">авиабилеты</a></li>
+			<li><a href="http://railway.turizm.ru">расписание поездов</a></li>
+			<li><a href="http://forum.turizm.ru">форум</a></li>
+			<li><a href="/countries.htm">страны</a></li>
+			<li><a href="http://album.turizm.ru">туральбом</a></li>
+		</ul>
+		<p>
+			С Уважением,<br> Служба технической поддержки ТУРИЗМ.РУ
+		</p>
+	</div>
+
+     </div>
+  <aside class="grid_3 omega advertising_collum">
+  
+  
+       <noindex><div class="onesection"><!-- position: 0 (0) --> 	<div class="banner">				<div class="banner_title"><span>www.1001tur.ru</span></div>				<div class="banner_content">			<p><a target=_blank href="http://banners.turizm.ru/cgi-bin/bindex?click=1&bid=7060"><img border="0" src="http://banners.turizm.ru/banners2/bObschij.jpg" /></a></p>		</div>	</div><script type="text/javascript" src="http://bs1.turizm.ru/?view=1&amp;bid=7060&amp;sid=25441" encoding="windows-1251" defer="defer"></script></div></noindex>
+
+    
+
+
+
+     <section class="onesection aside_multi_blue ">
+
+         <div class="blue_common_form">
+             <figure class="pic_rating_hotel_aside">
+                 <img src="/img/train.gif">
+                 <figcaption class="caption_rating_hotel_aside">
+                     <a href="http://www.turizm.ru/railtours/">Лучшие Ж/Д туры в 2012 году</a>
+                 </figcaption>
+             </figure>
+
+             <figure class="pic_rating_hotel_aside">
+                 <img src="/img/bus.gif">
+                 <figcaption class="caption_rating_hotel_aside">
+                     <a href="http://www.turizm.ru/bustours/">Автобусные туры в Европу в 2012 году</a>
+                 </figcaption>
+             </figure>
+         </div>
+     </section>     
+				
+           
+    
+      
+
+
+
+
+
+
+  
+     
+          
+    
+				
+				
+			
+</aside>
+
+
+
+
+
+
+          
+</div>
+
+
+
+<nav class="onsection clearfix grid_12 footernav">
+
+
+			<div class="footerlink">
+	
+ <a href="http://www.turizm.ru/search/">Поиск тура</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/hot/">Горящие туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/summer/">Летний отдых</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/bustours/">Автобусные туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/railtours/">Ж/д туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cruises/">Круизы</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/wed/">Свадебные туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ski/">Горные лыжи</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/study/">Обучение за рубежом</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cure/">Оздоровительные туры</a><div class="cmn_pipe"></div>
+	
+			<span id="fl_invis2">Все туры</span>
+			</div>
+			<div class="footerlink" id="hfl_invis2">
+	
+ <a href="http://www.turizm.ru/shoptours/">Шоп-туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/students/">Студенческий туризм</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/childrest/">Детский отдых</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/business/">Деловой туризм</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/realty/">Недвижимость за рубежом</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ohota/">Охота и рыбалка</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/credit/">Туры в кредит</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/palom/">Паломнические туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/may/">Майский отдых</a><div class="cmn_pipe"></div>		
+		
+			</div>
+
+
+
+
+
+
+<div class="footerlink">
+				<a href="http://avia.turizm.ru/">Авиабилеты</a><div class="cmn_pipe"></div>
+				<a href="http://railway.turizm.ru/">Ж/д билеты</a><div class="cmn_pipe"></div>
+				<a href="http://hotels.turizm.ru/pricelist/">Бронирование отелей</a><div class="cmn_pipe"></div>
+				<a href="http://railway.turizm.ru/">Расписание поездов</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/countries.htm">Страны</a><div class="cmn_pipe"></div>
+				<a href="http://maps.turizm.ru/">Туристические карты</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/realty/">Недвижимость за рубежом</a><div class="cmn_pipe"></div>
+				<a href="http://gorod.turizm.ru/">Города мира</a><div class="cmn_pipe"></div>
+				<a href="http://avia.turizm.ru/airline2/">Авиакомпании</a><div class="cmn_pipe"></div>
+				<a href="http://hotels.turizm.ru/">Каталог отелей</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/insurance/">Страхование</a><div class="cmn_pipe"></div>
+				<a href="http://firms.turizm.ru/">Рейтинг турфирм</a><div class="cmn_pipe"></div>
+				<span id="fl_invis1">Еще</span>
+			</div>
+			<div class="footerlink" id="hfl_invis1">
+				<a href="http://www.turizm.ru/tourism_low/">Единый федеральный реестр</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/visas/">Визы, загранпаспорта</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/simcards/">Связь на отдыхе</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/currency/">Курсы валют</a><div class="cmn_pipe"></div>
+				<a href="http://pogoda.turizm.ru/">Погода в мире</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/advice/">Полезные советы</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/stars/">Звезды на отдыхе</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/book/">Путеводители</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/job/">Работа в туризме</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/expo/">Выставки</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/ratings/">Рейтинги</a><div class="cmn_pipe"></div>
+				<a href="http://forum.turizm.ru/">Форум</a><div class="cmn_pipe"></div>
+				<a href="http://album.turizm.ru/">Рассказы туристов</a><div class="cmn_pipe"></div>
+				<a href="http://forum.turizm.ru/common/traveller/">Поиск попутчика</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/photoreports/">Фоторепортажи</a><div class="cmn_pipe"></div>
+				<a href="http://album.turizm.ru/photoconcurs/">Конкурс фотографий</a><div class="cmn_pipe"></div>
+				<a href="http://firms.turizm.ru/">Отзывы о турфирмах</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/humor/">Анекдоты</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/directory/">Каталог ссылок</a><div class="cmn_pipe"></div>
+			</div>
+
+
+
+
+
+
+
+		
+			<div class="footerlink">
+	
+ <a href="http://www.turizm.ru/turkey/">Турция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/greece/">Греция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/egypt/">Египет</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/spain/">Испания</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/bulgaria/">Болгария</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/tailand/">Таиланд</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cyprus/">Кипр</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/italy/">Италия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/tunis/">Тунис</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/russia/">Россия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/dominican_rep/">Доминикана</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/chehia/">Чехия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/china/">Китай</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/montenegro/">Черногория</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cuba/">Куба</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/maldives/">Мальдивы</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/abkhazia/">Абхазия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/croatia/">Хорватия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/france/">Франция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/usa/">США</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/finland/">Финляндия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ukraine/">Украина</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/morocco/">Марокко</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/germany/">Германия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/israel/">Израиль</a><div class="cmn_pipe"></div>
+	
+			<span id="fl_invis3">Все страны</span>
+			</div>
+			<div class="footerlink" id="hfl_invis3">
+	
+ <a href="http://www.turizm.ru/india/">Индия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/portugal/">Португалия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/oae/">ОАЭ</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/vietnam/">Вьетнам</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/belarus/">Беларусь</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/australia/">Австралия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/jamaica/">Ямайка</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/hawaii/">Соединенные Штаты Америки: Гавайи</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/mexica/">Мексика</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/uk/">Великобритания</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/indonezia/">Индонезия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/brazil/">Бразилия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/malta/">Мальта</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/japan/">Япония</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/norway/">Норвегия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/south_korea/">Корея Южная</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/kanada/">Канада</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/romania/">Румыния</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ireland/">Ирландия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/macedonia/">Македония</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/azerbaijan/">Азербайджан</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/philippines/">Филиппины</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/sweden/">Швеция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/poland/">Польша</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/austria/">Австрия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/srilanka/">Шри-Ланка</a><div class="cmn_pipe"></div>
+		
+			</div>
+
+
+
+
+
+
+</nav>
+
+
+		<footer class="footer_content grid_12">
+			<div class="footer_top">
+				<section class="footer_section">
+					<h3>Помощь</h3>
+					<nav>
+					<noindex>
+						<ul>
+							<li><a href="http://www.turizm.ru/price/reklama_example.htm">Реклама на сайте</a></li>
+							<li><a href="http://www.turizm.ru/feedback/">Служба поддержки</a></li>
+							<li><a href="http://forum.turizm.ru/faq.php">FAQ</a></li>
+							<li><a href="http://album.turizm.ru/help/">Зачем регистрироваться?</a></li>
+							<li><a href="http://forum.turizm.ru/common/all/009633.html">Правила форума</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+				
+				<section class="footer_section">
+					<h3>О Нас</h3>
+					<noindex>
+					<nav>
+						<ul>
+							<li><a href="http://www.turizm.ru/about/">О проекте</a></li>
+							<li><a href="http://www.turizm.ru/pay/">Способы оплаты</a></li>
+							<li><a href="http://www.turizm.ru/turizm_stat.html">Статистика сайта</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+				
+				<section class="footer_section">
+					<h3>Службы</h3>
+					<noindex>
+					<nav>
+						<ul>
+							<li><a href="http://news.turizm.ru/">Новости</a></li>
+							<li><a href="http://news.turizm.ru/news.rss">RSS</a></li>
+					    <li><a href="http://www.turizm.ru/reklamtours/">Рекламные туры</a></li>
+					    <li><a href="http://www.turizm.ru/search/">Поиск тура</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+				
+				<section class="footer_section">
+					<h3>Мы в соцсетях</h3>
+					<noindex>
+					<nav>
+						<ul>
+						<li><a href="http://vk.com/club16847736" rel="nofollow">Вконтакте</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+			</div>
+			
+			<div class="footer_bottom">
+				<div class="footer_info">
+					<div>© Turizm.Ru 1998—2012.</div>
+					<div>Портал о туризме. Информация о странах, путешествиях, отелях. Предложения по турам от туроператоров и турагентств.</div>
+				</div>
+				<div class="counters">
+					<!--LiveInternet logo--><a href="http://www.liveinternet.ru/click;turizm"
+					target="_blank"><img src="//counter.yadro.ru/logo;turizm?18.6"
+					title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня"
+					alt="" border="0" width="88" height="31"/></a>
+					<!--/LiveInternet-->
+
+					<!--Rating@Mail.ru LOGO--><a target=_top
+					href="http://top.mail.ru/jump?from=495896"><img
+					src="http://top.list.ru/counter?id=495896;t=224;l=1"
+					border=0 height=31 width=88 alt="Рейтинг@Mail.ru"></a>
+					<!--/LOGO-->
+
+
+					<!--Rambler LOGO-->
+						<a href="http://top100.rambler.ru/navi/?theme=504"><img src="http://www.turizm.ru/imgs/ram3.gif" border="0"></a>
+					<!--/Rambler LOGO-->
+
+				</div>
+			</div>
+
+
+        </footer>
+    </div>
+	<div class="cmn_some_modal_window jq_some_modal_window" style="display: none">
+		<div class="opacity_fake"></div>
+		<div class="some_insert_modal jq_some_insert_modal">
+			
+			
+		</div>
+		
+	</div>
+	
+</body>
+</html>
+
+
+
+
+

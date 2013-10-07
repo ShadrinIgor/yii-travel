@@ -1,0 +1,864 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>404  - TURIZM.RU</title>
+
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta content="404 - TURIZM.RU" name="description">
+  <meta content="404 - TURIZM.RU" name="keywords">
+
+	<link rel="SHORTCUT ICON" href="http://www.turizm.ru/favicon.ico?23" type="image/vnd.microsoft.icon">
+
+	<link href="/css/jquery-ui-1.8.16.custom.css" type="text/css" rel="stylesheet">
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+  <link href="/css/grid.css" type="text/css" rel="stylesheet">
+	<link href="/css/flags.css" type="text/css" rel="stylesheet">
+  <link href="/css/basePikachoose.css" type="text/css" rel="stylesheet">
+
+
+
+  <script src="/js/html5shiv.googlecode.comsvntrunkhtml5.js"></script>
+	<script src="/js/jquery-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+  <script src="/js/jquery.cycle.all.js"></script>
+	<script src="/js/ui.datepicker-ru.js"></script>
+	<script src="/js/jquery.cookie.js"></script>
+
+  <script src="/js/jquery_validation/jquery.validationEngine-ru.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/jquery_validation/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="/js/jquery_validation/css/validationEngine.jquery.css" type="text/css"/>
+
+
+    <script src="/js/style.js"></script>
+    <script src="/js/docready.js"></script>
+	<script src="/js/jquery.fixedtableheader.min.js"></script>
+	<script src="/js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	
+	<script src="/js/pikachoose/jquery.pikachoose.full.js"></script>
+    <script src="/js/initGalleria.js"></script>
+	
+
+
+
+
+
+
+
+<script src="http://adminhotel.turizm.ru/design/js/lib/jquery-form.js" type="text/javascript"></script>
+
+<script src="http://adminhotel.turizm.ru/design/js/turizm/c.js" type="text/javascript"></script>
+<script src="http://adminhotel.turizm.ru/design/js/turizm/common.js" type="text/javascript"></script>
+
+
+<!--<script src="/js/jquery-form.js" type="text/javascript"></script>-->
+<script src="/js/exportLib.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var BxRedirectUrl = window.location.href.replace(window.location.search,"").replace(/(\/)$/,"");
+    var BxRegisterPath = "http://www.turizm.ru/register/?sent=1";
+    var BxLostPath = "http://www.turizm.ru/lostpassword/";
+</script>
+
+</head>
+<body class=" ">
+
+
+<!--start_counters-->
+
+<!--LiveInternet counter--><script type="text/javascript"><!--
+new Image().src = "//counter.yadro.ru/hit;turizm?r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random();//--></script><!--/LiveInternet-->
+
+<img src="http://counter.rambler.ru/top100.cnt?755644" alt="Rambler's Top100" width=1 height=1 border=0 align=right>
+
+<!--Rating@Mail.ru COUNTER--><script language="JavaScript"><!--
+	d=document;a='';a+=';r='+escape(d.referrer)
+	js=10//--></script><script language="JavaScript1.1"><!--
+	a+=';j='+navigator.javaEnabled()
+	js=11//--></script><script language="JavaScript1.2"><!--
+	s=screen;a+=';s='+s.width+'*'+s.height
+	a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+	js=12//--></script><script language="JavaScript1.3"><!--
+	js=13//--></script><script language="JavaScript"><!--
+	d.write('<img src="http://top.list.ru/counter'+
+	'?id=495896;js='+js+a+';rand='+Math.random()+
+	'" height="1" width=1>')
+	if(js>11)d.write('<'+'!-- ')//--></script><noscript><img src="http://top.list.ru/counter?js=na;id=495896" height="1" width=1></noscript><script language="JavaScript"><!--
+	if(js>11)d.write('--'+'>')//--></script><!--/COUNTER-->
+	
+	
+<!-- Yandex.Metrika counter -->
+<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
+<script type="text/javascript">
+try { var yaCounter1064 = new Ya.Metrika({id:1064,
+          clickmap:true,type:1});}
+catch(e) { }
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/1064?cnt-class=1" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+	
+	
+	
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5436582-1']);
+_gaq.push(['_setDomainName','.turizm.ru']);
+_gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
+_gaq.push (['_addOrganic', 'mail.ru', 'q']);
+_gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
+_gaq.push (['_addOrganic', 'google.com.ua', 'q']);
+_gaq.push (['_addOrganic', 'images.google.ru', 'q']);
+_gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
+_gaq.push (['_addOrganic', 'rambler.ru', 'words']);
+_gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
+_gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
+_gaq.push (['_addOrganic', 'gogo.ru', 'q']);
+_gaq.push (['_addOrganic', 'nigma.ru', 's']);
+_gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
+_gaq.push (['_addOrganic', 'webalta.ru', 'q']);
+_gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
+_gaq.push (['_addOrganic', 'meta.ua', 'q']);
+_gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
+_gaq.push (['_addOrganic', 'search.i.ua', 'q']);
+_gaq.push (['_addOrganic', 'index.online.ua', 'q']);
+_gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
+_gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
+_gaq.push (['_addOrganic', 'search.com.ua', 'q']);
+_gaq.push (['_addOrganic', 'search.ua', 'q']);
+_gaq.push (['_addOrganic', 'poisk.ru', 'text']);
+_gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
+_gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
+_gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
+_gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
+_gaq.push (['_addOrganic', 'akavita.by', 'z']);
+_gaq.push (['_addOrganic', 'search.tut.by', 'query']);
+_gaq.push (['_addOrganic', 'all.by', 'query']);
+//
+var x=location.hostname.split('.');
+if (x.length>=3 && x[0]!='www')
+{
+	var y=x[0];
+	if(location.pathname!=undefined)
+	y+=location.pathname;	
+	if (location.search!=undefined)
+	y+=location.search;
+	_gaq.push(['_trackPageview', '/'+y]);
+}
+else _gaq.push(['_trackPageview']);
+//
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--end ga-->	
+
+
+
+<!--end_counters-->
+
+
+    <div class="container_12 wrapper clearfix ">
+        <header class="top_header grid_12">
+   <noindex><script type="text/javascript" src="http://bs1.turizm.ru/?view=1&amp;p=newtur_unheader&amp;g=newtur_index&amp;sid=10882" encoding="windows-1251" defer="defer"></script></noindex>
+
+   
+   <noindex><!-- start banner -->
+<!-- position: 0 (0) -->
+
+<!-- end banner -->
+<script type="text/javascript" src="http://bs1.turizm.ru/?view=1&amp;p=newtur_brend&amp;g=newtur_&amp;sid=6619" encoding="windows-1251" defer="defer"></script></noindex>
+
+   
+   <h1 class="top_h1">404 - TURIZM.RU</h1>
+            <div class="relative logo_slise">
+                <a href="http://www.turizm.ru" class="logo"><img src="/img/logo.png" alt="Туризм" title="Туризм"> <span class="slogan">Каталог путешествий</span></a>
+
+                <div class="chose_city">
+                    <span class="one_city active_city">
+Москва
+                    </span> 
+                    <span class="separator">|</span>
+                    <span class="one_city ">
+ <a href="http://spb.turizm.ru">Санкт Петербург</a>
+                    </span>
+                    <span class="separator">|</span>
+                    <span class="one_city"><a href="http://www.turizm.ru/english/" class="eng_ver"></a></span>
+                </div>
+                
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="http://adminhotel.turizm.ru/bitrix/js/main/core/css/core.css?1333352193" type="text/css" rel="stylesheet" />
+<link href="http://adminhotel.turizm.ru/bitrix/js/socialservices/css/ss.css?1333352194" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="http://adminhotel.turizm.ru/bitrix/js/main/core/core.js?1333352193"></script>
+<script type="text/javascript">BX.message({'LANGUAGE_ID':'ru','FORMAT_DATE':'DD.MM.YYYY','FORMAT_DATETIME':'DD.MM.YYYY HH:MI:SS','COOKIE_PREFIX':'BHC','bitrix_sessid':'975ff78e691e514b1caef9cc1d408300','SITE_ID':'s1','JS_CORE_LOADING':'Загрузка...','JS_CORE_WINDOW_CLOSE':'Закрыть','JS_CORE_WINDOW_EXPAND':'Развернуть','JS_CORE_WINDOW_NARROW':'Свернуть в окно','JS_CORE_WINDOW_SAVE':'Сохранить','JS_CORE_WINDOW_CANCEL':'Отменить','JS_CORE_H':'ч','JS_CORE_M':'м','JS_CORE_S':'с'})</script>
+<script type="text/javascript" src="http://adminhotel.turizm.ru/bitrix/js/main/core/core_ajax.js?1333352193"></script>
+<script type="text/javascript" src="http://adminhotel.turizm.ru/bitrix/js/main/session.js?1335690160"></script>
+<script type="text/javascript">
+bxSession.Expand(1440, '975ff78e691e514b1caef9cc1d408300', false, '7533828c57462fac8523add16128041c');
+</script>
+
+<script type="text/javascript" src="http://vkontakte.ru/js/api/openapi.js"></script>
+<script type="text/javascript">
+BX.ready(function(){VK.init({apiId: '2790893'});});
+var redirectUrl = window.location.href.replace(window.location.search,"").replace(/(\/)$/,"");
+function BxVKAuthInfo(response) 
+{
+	
+	var url_err = redirectUrl + '/?auth_service_id=VKontakte&auth_service_error=1';	
+	if(response.session) 
+	{
+		var url_post = '/bitrixajax/?login=yes';
+		var url_ok = redirectUrl;
+		var data = {
+			"auth_service_id": "VKontakte",
+			"vk_session": response.session
+		};
+		BX.ajax.post(url_post, data, function(res){ window.location = (res == "OK"? url_ok : url_err);});
+	} 
+	else 
+	{
+		window.location = url_err;
+	}
+}
+</script>
+
+<script type="text/javascript" src="http://adminhotel.turizm.ru/bitrix/js/socialservices/ss.js?1333352194"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form[name=bx_auth_services]').attr("action", $('form[name=bx_auth_services]').attr("action") + '&redirectUrl=' + escape(BxRedirectUrl));
+    });
+</script>
+
+
+
+<div class="authorization_header">
+    
+    <a id="do_authorization" href="#">Войти</a>
+    <span class="separator">|</span>
+    <a id="do_registration" href="#">Зарегистрироваться</a>
+</div>
+
+<div id="login_block">
+    <div class="cmn_closer"></div>
+
+    <form id="lb_reg_form" action="/bitrixajax/register/" method="POST">
+        <div class="lb_title">Регистрация</div>
+        <div class="lb_name">
+            <label for="login_reg_email">E-mail:</label>
+        </div>
+        <div class="lb_val">
+            <input class="lb_txtinput validate[required,custom[email],ajax[registrationEmailCheck]]"
+                   id="login_reg_email" value=""
+                   type="text" name="email">
+            <input type="hidden" name="formSubmit" value="0"/>
+        </div>
+        <div class="lb_subm_wrap">
+            <div class="cmn_submit"><span class="rounded">Зарегистрироваться</span></div>
+        </div>
+    </form>
+    <form id="lb_auth_form" method="POST"
+          action="http://adminhotel.turizm.ru//register/auth.php?q=1">
+        <div class="lb_title">Вход на сайт</div>
+
+        <div class="lb_chooser">
+            <span id="lb_chooser_active" class="lb_checker_item" rel="tourist">Турист</span> |
+            <span class="lb_checker_item" rel="firm">Турфирма</span> |
+            <span class="lb_checker_item" rel="hotellier">Отельер</span>
+        </div>
+
+        <div class="lb_name">
+            <label for="login_auth_email">E-mail:</label>
+        </div>
+        <div class="lb_val">
+            <input class="lb_txtinput validate[required]" id="login_auth_email" value=""
+                   type="text" name="USER_LOGIN">
+        </div>
+
+        <div class="lb_name">
+            <label for="login_pwd">Пароль:</label>
+        </div>
+        <div class="lb_val">
+            <input class="lb_txtinput validate[required]" id="login_pwd" name="USER_PASSWORD" value="" type="password">
+        </div>
+
+        <div class="lb_subm_wrap">
+            <div class="cmn_submit"><span class="rounded">Войти</span></div>
+            <div class="lb_aside">
+                <div class="lb_rmmbr_wrap"><input id="lb_remember_me_checkbox" class="lb_checkbox" type="checkbox"
+                                                  value="Y" name="USER_REMEMBER"><span
+                    id="lb_remember_me"><label for="lb_remember_me_checkbox">Запомнить меня</label></span></div>
+                <div class="lb_forgetter_wrap"><a href="#" class="lostPassword">Забыли пароль?</a></div>
+            </div>
+        </div>
+        <input type="hidden" name="USER_TYPE" id="user_type_input" value="tourist"/>
+    </form>
+    
+
+<div class="bx-auth">
+	<form method="post" name="bx_auth_services" target="_top" action="http://adminhotel.turizm.ru/?login=yes&auth=1">
+		<!--div class="bx-auth-title"></div-->
+		<div class="clearfix">
+		<div class="bx-auth-note">Войти через:</div>
+		<div class="bx-auth-services">
+			<div>
+									<span style="display: inline-block; " class="jq_anotherButton_soc">
+<a href="javascript:void(0)" onclick="VK.Auth.login(BxVKAuthInfo);" id="bx_auth_href_VKontakte"><i class="bx-ss-icon vkontakte"></i></a></span>
+						</div>
+			<div>
+									<span style="display: inline-block; " class="jq_anotherButton_soc"><a href="javascript:void(0)" onclick="BX.util.popup('http://adminhotel.turizm.ru/?auth_service_id=Twitter&redirectUrl='+BxRedirectUrl, 800, 450)"id="bx_auth_href_Twitter"><i class="bx-ss-icon twitter"></i></a></span>
+						</div>
+			<div>
+									<span style="display: inline-block; " class="jq_anotherButton_soc"><a href="javascript:void(0)" onclick="BX.util.popup('https://www.facebook.com/dialog/oauth?client_id=102394236553882&amp;redirect_uri=http%3A%2F%2Fadminhotel.turizm.ru%2F%3Fauth_service_id%3DFacebook%26redirectUrl%3D'+BxRedirectUrl+'&amp;scope=email&amp;display=popup', 580, 400)" id="bx_auth_href_Facebook"><i class="bx-ss-icon facebook"></i></a></span>
+						</div>
+			<div>
+			<a href="javascript:void(0)" onclick="BxShowAuthService('Livejournal', '')" id="bx_auth_href_Livejournal"><i class="bx-ss-icon livejournal"></i></a>
+						</div>
+		</div>
+		</div>
+		<div class="bx-auth-line"></div>
+		<div class="bx-auth-service-form clearfix" id="bx_auth_serv" style="display:none">
+			<div id="bx_auth_serv_VKontakte" style="display:none">
+<a href="javascript:void(0)" onclick="VK.Auth.login(BxVKAuthInfo);" id="bx_auth_href_VKontakte"><i class="bx-ss-icon vkontakte"></i></a></div>
+			<div id="bx_auth_serv_Twitter" style="display:none"><a href="javascript:void(0)" onclick="BX.util.popup('http://adminhotel.turizm.ru/?auth_service_id=Twitter&redirectUrl='+BxRedirectUrl, 800, 450)"id="bx_auth_href_Twitter"><i class="bx-ss-icon twitter"></i></a></div>
+			<div id="bx_auth_serv_Facebook" style="display:none"><a href="javascript:void(0)" onclick="BX.util.popup('https://www.facebook.com/dialog/oauth?client_id=102394236553882&amp;redirect_uri=http%3A%2F%2Fadminhotel.turizm.ru%2F%3Fauth_service_id%3DFacebook%26redirectUrl%3D'+BxRedirectUrl+'&amp;scope=email&amp;display=popup', 580, 400)" id="bx_auth_href_Facebook"><i class="bx-ss-icon facebook"></i></a></div>
+			<div id="bx_auth_serv_Livejournal" style="display:none">
+<!--span class="bx-ss-icon openid"></span-->
+<div>
+<input type="text" name="OPENID_IDENTITY_LIVEJOURNAL" value="" class="input_openIDField" />
+<span>.livejournal.com</span>
+</div>
+<div class="text-c"><span class="cmn_submit_small hsr_button jq_submit_me"><span class="rounded">Войти</span></span></div>
+
+</div>
+
+		</div>
+		<input type="hidden" name="auth_service_id" value="" />
+	</form>
+</div>
+
+</div>
+
+
+
+
+
+            </div>
+
+            <div class="search_slice clearfix">
+
+            <form class="jq_form_top_search" action="http://poisk.turizm.ru/" method="GET">
+  <input type="hidden" name="sort" value="relevanse" class="jq_hidden_data_sort">
+  <input type="hidden" name="page" value="1" class="jq_hidden_data_page">
+  <input type="hidden" name="type" value="" class="jq_hidden_data_type">
+  <div class="search_header">
+  <div class="inner_search">
+   <input name="s" type="text" class="search_input_header" value="Поиск по сайту">
+   <div class="choise_search_category"><!--active_search_chouse-->
+   <div class="arrow_down"></div>
+   <div class="fake_bg_list"></div>
+   <div class="list_head_search">
+      <ul class="more_links jq_search_moe">
+       <li><a href="#" data-word="Авиа" data-type="avia_index" >Авиа</a></li>
+       <li><a href="#" data-word="Ж/Д" data-type="railway_index" >Ж/Д</a></li>
+       <li><a href="#" data-word="Новостям" data-type="news_index" >Новости</a></li>
+       <li><a href="#" data-word="Отелям" data-type="hotels_index" >Отели</a></li>
+       <li><a href="#" data-word="Отзывам" data-type="otziv_index" >Отзывы</a></li>
+       <li><a href="#" data-word="Турфирмам" data-type="firms_index" >Турфирмы</a></li>
+       <li><a href="#" data-word="Форуму" data-type="forum_index" >Форум</a></li>
+       <li><a href="#" data-word="Статьям" data-type="article_index" >Статьи</a></li>
+       <li><a href="#" data-word="Турам" data-type="tours_index" >Туры</a></li>
+      </ul>
+   </div>
+   </div>
+   </div>
+   <input type="submit" value="" class="search_button">
+  </div>
+</form>
+
+
+
+                <nav class="partition_nav rounded">
+                    <ul>
+                        <li><a href="http://www.turizm.ru/hot">Горящие туры</a></li>
+                        <li><a href="http://www.turizm.ru/countries.htm">Страны</a></li>
+                        <li><a href="http://hotels.turizm.ru">Отели</a></li>
+                        <li><a href="http://avia.turizm.ru">Авиабилеты</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <nav class="main_navigation rounded">
+                <ul class="top_menu">
+                    <li><a href="http://railway.turizm.ru" class="rounded">Расписание поездов</a></li>
+                    <li><a href="http://www.turizm.ru/search/">Поиск тура</a></li>
+                    <li><a href="http://firms.turizm.ru/">Турфирмы</a></li>
+
+                    <li><a href="http://www.turizm.ru/visas/">Визы</a></li>
+                    <li><a href="http://hotels.turizm.ru/pricelist/">Бронирование отелей</a></li>
+                    <!--li><a href="http://www.turizm.ru/may/">Майский отдых</a></li-->
+                </ul>
+				
+				<div class="wrapp_top_more top_more_partition">
+                     <div class="more_country"><!--active_more-->
+                         <div class="more_button">Виды отдыха <span class="more_arrow"></span></div>
+                         <div class="more_content" >
+                             <ul class="more_links">
+                                 <li><a href="http://www.turizm.ru/hot">Горящие туры</a></li>
+								 <li><a href="http://www.turizm.ru/summer/">Летний отдых</a></li>
+                                 <li><a href="http://www.turizm.ru/bustours">Автобусные туры</a></li>
+                                 <li><a href="http://www.turizm.ru/railtours">Ж/д туры</a></li>
+                                 <li><a href="http://www.turizm.ru/cruises">Круизы</a></li>
+                                 <li><a href="http://www.turizm.ru/ski">Горные лыжи</a></li>
+                                 <li><a href="http://www.turizm.ru/study">Обучение за рубежом</a></li>
+                                 <li><a href="http://www.turizm.ru/shoptours">Шоп-туры</a></li>
+                                 <li><a href="http://www.turizm.ru/students">Студенческий туризм</a></li>
+                                 <li><a href="http://www.turizm.ru/childrest">Детский отдых</a></li>
+								 <li><a href="http://www.turizm.ru/wed">Свадебные туры</a></li>
+                                 <li><a href="http://www.turizm.ru/business">Деловой туризм</a></li>
+                                 <li><a href="http://www.turizm.ru/realty">Недвижимость за рубежом</a></li>
+                                 <li><a href="http://www.turizm.ru/ohota">Охота и рыбалка</a></li>
+                                 <li><a href="http://www.turizm.ru/palom">Паломнические туры</a></li>
+                             </ul>
+                         </div>
+                     </div>
+                </div>
+				
+                <div class="wrapp_top_more top_more_more">
+                     <div class="more_country"><!--active_more-->
+                         <div class="more_button">Еще...<span class="more_arrow"></span></div>
+                         <div class="more_content" >
+                             <ul class="more_links">
+                                 <li><a href="http://news.turizm.ru">Новости</a></li>
+                                 <li><a href="http://www.turizm.ru/currency/">Валюты</a></li>
+                                 <li><a href="http://www.turizm.ru/book/">Путеводители</a></li>
+                                 <li><a href="http://www.turizm.ru/humor.html">Юмор</a></li>
+                                 <li><a href="http://pogoda.turizm.ru/">Погода</a></li>
+                                 <li><a href="http://maps.turizm.ru/">Карты</a></li>
+                                 <li><a href="http://www.turizm.ru/job/">Работа в туризме</a></li>
+                             </ul>
+                         </div>
+                     </div>
+                </div>
+                <ul class="top_menu top_menu_aside">
+                    <li><a href="http://forum.turizm.ru">Форум</a></li>
+                    <li><a href="http://album.turizm.ru">Туральбом</a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+
+
+
+ <div class="grid_12 clearfix">
+  <div class="grid_9 alpha content_collum">
+            
+<div class="cmn_header main_head_line">Страница не найдена</div>
+
+	<div class="editor_content onesection">
+		<h3>Уважаемый пользователь!</h3>
+		<p>Запрашиваемая Вами страница не существует на сайте.</p>
+		<p>Возможно, это случилось по одной из следующих причин:</p>
+		<ul class="list list_wo_mar">
+			<li>вы перешли по неправильной ссылке</li>
+			<li>вы ошиблись при наборе адреса страницы (URL)</li>
+			<li>запрашиваемой страницы никогда не было на сайте или она была удалена</li>
+		</ul>
+		<p>Для того чтобы найти необходимую информацию, пожалуйста, перейдите на <a href="/">главную страницу</a> или посетите основные разделы сайта: </p>
+		<ul class="list list_wo_mar">
+			<li><a href="/hot">горящие туры</a></li>
+			<li><a href="http://hotels.turizm.ru">отели</a></li>
+			<li><a href="http://avia.turizm.ru">авиабилеты</a></li>
+			<li><a href="http://railway.turizm.ru">расписание поездов</a></li>
+			<li><a href="http://forum.turizm.ru">форум</a></li>
+			<li><a href="/countries.htm">страны</a></li>
+			<li><a href="http://album.turizm.ru">туральбом</a></li>
+		</ul>
+		<p>
+			С Уважением,<br> Служба технической поддержки ТУРИЗМ.РУ
+		</p>
+	</div>
+
+     </div>
+  <aside class="grid_3 omega advertising_collum">
+  
+  
+       <noindex><div class="onesection"><!-- position: 0 (0) --> 	<div class="banner">				<div class="banner_title"><span>www.1001tur.ru</span></div>				<div class="banner_content">			<p><a target=_blank href="http://banners.turizm.ru/cgi-bin/bindex?click=1&bid=7060"><img border="0" src="http://banners.turizm.ru/banners2/bObschij.jpg" /></a></p>		</div>	</div><script type="text/javascript" src="http://bs1.turizm.ru/?view=1&amp;bid=7060&amp;sid=76912" encoding="windows-1251" defer="defer"></script></div></noindex>
+
+    
+     
+     <!--Опрос-->
+     <section class="voting onesection" id="voting_form_20_section">
+    <h2>Опрос</h2>
+    <div class="best_topics voting_wrap">
+        <form action="/bitrixajax/ssi/dinamic/blocks/question.php" method="post" id="voting_form_20">
+            <input type="hidden" name="vote" value="Y">
+            <input type="hidden" name="PUBLIC_VOTE_ID" value="20">
+            <input type="hidden" name="VOTE_ID" value="20">
+            <input type="hidden" name="sessid" id="sessid" value="bfce513a7fe2e314613a9b2fcda888d8" />
+                            <h3>С какого  возраста можно брать ребенка в турпоездку?</h3>
+                <input type="hidden" name="vote_radio_21" id="vote_radio_21">
+                                                            <div class="bt_item">
+                            <div class="vp_filler" id="answer_21_74">
+                                <a class="bt_txt_link" href="#" onclick="$('#vote_radio_21').val(74);$('#voting_form_20').submit();return false;">
+                                    <span class="vp_txt">С рождения</span>
+                                </a>
+                            </div>
+                        </div>
+                                                                                <div class="bt_item">
+                            <div class="vp_filler" id="answer_21_75">
+                                <a class="bt_txt_link" href="#" onclick="$('#vote_radio_21').val(75);$('#voting_form_20').submit();return false;">
+                                    <span class="vp_txt">от 1 года и старше</span>
+                                </a>
+                            </div>
+                        </div>
+                                                                                <div class="bt_item">
+                            <div class="vp_filler" id="answer_21_76">
+                                <a class="bt_txt_link" href="#" onclick="$('#vote_radio_21').val(76);$('#voting_form_20').submit();return false;">
+                                    <span class="vp_txt">от 3-х лет и старше</span>
+                                </a>
+                            </div>
+                        </div>
+                                                                                <div class="bt_item">
+                            <div class="vp_filler" id="answer_21_77">
+                                <a class="bt_txt_link" href="#" onclick="$('#vote_radio_21').val(77);$('#voting_form_20').submit();return false;">
+                                    <span class="vp_txt">не ранее 6 лет</span>
+                                </a>
+                            </div>
+                        </div>
+                                                                                <div class="bt_item">
+                            <div class="vp_filler" id="answer_21_78">
+                                <a class="bt_txt_link" href="#" onclick="$('#vote_radio_21').val(78);$('#voting_form_20').submit();return false;">
+                                    <span class="vp_txt">Лучше ездить без детей</span>
+                                </a>
+                            </div>
+                        </div>
+                                                        </form>
+        <div class="cmn_show_all bt_show_all"><a href="http://www.turizm.ru/votes/2012" class="cmn_more">Другие опросы</a></div>
+    </div>
+</section>
+<script type="text/javascript">
+$(document).ready(function() {
+    var params = {
+        dataType : 'json',
+        data     : {
+            AJAX : true
+        },
+        success  : function(data) {
+            for (var id in data.result) {
+                $('#' + id + ' a').attr('onclick', 'return false');
+                $('#voting_form_20_section').addClass('voting_done');
+                $('#' + id).prepend('<span class="vp_digit">' + data.result[id] + '%</span>').animate({width : data.result[id] + "%"}, 700);
+            }
+        }
+    };
+    $('#voting_form_20').ajaxForm(params);
+});
+</script>
+
+
+     <section class="onesection aside_multi_blue ">
+
+         <div class="blue_common_form">
+             <figure class="pic_rating_hotel_aside">
+                 <img src="/img/train.gif">
+                 <figcaption class="caption_rating_hotel_aside">
+                     <a href="http://www.turizm.ru/railtours/">Лучшие Ж/Д туры в 2012 году</a>
+                 </figcaption>
+             </figure>
+
+             <figure class="pic_rating_hotel_aside">
+                 <img src="/img/bus.gif">
+                 <figcaption class="caption_rating_hotel_aside">
+                     <a href="http://www.turizm.ru/bustours/">Автобусные туры в Европу в 2012 году</a>
+                 </figcaption>
+             </figure>
+         </div>
+     </section>     
+				
+           
+    
+      
+
+
+
+
+
+
+  
+     
+          
+    
+				
+				
+			
+</aside>
+
+
+
+
+
+
+          
+</div>
+
+
+
+<nav class="onsection clearfix grid_12 footernav">
+
+
+			<div class="footerlink">
+	
+ <a href="http://www.turizm.ru/search/">Поиск тура</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/hot/">Горящие туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/summer/">Летний отдых</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/bustours/">Автобусные туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/railtours/">Ж/д туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cruises/">Круизы</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/wed/">Свадебные туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ski/">Горные лыжи</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/study/">Обучение за рубежом</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cure/">Оздоровительные туры</a><div class="cmn_pipe"></div>
+	
+			<span id="fl_invis2">Все туры</span>
+			</div>
+			<div class="footerlink" id="hfl_invis2">
+	
+ <a href="http://www.turizm.ru/shoptours/">Шоп-туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/students/">Студенческий туризм</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/childrest/">Детский отдых</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/business/">Деловой туризм</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/realty/">Недвижимость за рубежом</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ohota/">Охота и рыбалка</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/credit/">Туры в кредит</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/palom/">Паломнические туры</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/may/">Майский отдых</a><div class="cmn_pipe"></div>		
+		
+			</div>
+
+
+
+
+
+
+<div class="footerlink">
+				<a href="http://avia.turizm.ru/">Авиабилеты</a><div class="cmn_pipe"></div>
+				<a href="http://railway.turizm.ru/">Ж/д билеты</a><div class="cmn_pipe"></div>
+				<a href="http://hotels.turizm.ru/pricelist/">Бронирование отелей</a><div class="cmn_pipe"></div>
+				<a href="http://railway.turizm.ru/">Расписание поездов</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/countries.htm">Страны</a><div class="cmn_pipe"></div>
+				<a href="http://maps.turizm.ru/">Туристические карты</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/realty/">Недвижимость за рубежом</a><div class="cmn_pipe"></div>
+				<a href="http://gorod.turizm.ru/">Города мира</a><div class="cmn_pipe"></div>
+				<a href="http://avia.turizm.ru/airline2/">Авиакомпании</a><div class="cmn_pipe"></div>
+				<a href="http://hotels.turizm.ru/">Каталог отелей</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/insurance/">Страхование</a><div class="cmn_pipe"></div>
+				<a href="http://firms.turizm.ru/">Рейтинг турфирм</a><div class="cmn_pipe"></div>
+				<span id="fl_invis1">Еще</span>
+			</div>
+			<div class="footerlink" id="hfl_invis1">
+				<a href="http://www.turizm.ru/tourism_low/">Единый федеральный реестр</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/visas/">Визы, загранпаспорта</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/simcards/">Связь на отдыхе</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/currency/">Курсы валют</a><div class="cmn_pipe"></div>
+				<a href="http://pogoda.turizm.ru/">Погода в мире</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/advice/">Полезные советы</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/stars/">Звезды на отдыхе</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/book/">Путеводители</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/job/">Работа в туризме</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/expo/">Выставки</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/ratings/">Рейтинги</a><div class="cmn_pipe"></div>
+				<a href="http://forum.turizm.ru/">Форум</a><div class="cmn_pipe"></div>
+				<a href="http://album.turizm.ru/">Рассказы туристов</a><div class="cmn_pipe"></div>
+				<a href="http://forum.turizm.ru/common/traveller/">Поиск попутчика</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/photoreports/">Фоторепортажи</a><div class="cmn_pipe"></div>
+				<a href="http://album.turizm.ru/photoconcurs/">Конкурс фотографий</a><div class="cmn_pipe"></div>
+				<a href="http://firms.turizm.ru/">Отзывы о турфирмах</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/humor/">Анекдоты</a><div class="cmn_pipe"></div>
+				<a href="http://www.turizm.ru/directory/">Каталог ссылок</a><div class="cmn_pipe"></div>
+			</div>
+
+
+
+
+
+
+
+		
+			<div class="footerlink">
+	
+ <a href="http://www.turizm.ru/turkey/">Турция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/greece/">Греция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/egypt/">Египет</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/spain/">Испания</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/bulgaria/">Болгария</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/tailand/">Таиланд</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cyprus/">Кипр</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/italy/">Италия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/tunis/">Тунис</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/russia/">Россия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/dominican_rep/">Доминикана</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/chehia/">Чехия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/china/">Китай</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/montenegro/">Черногория</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/cuba/">Куба</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/maldives/">Мальдивы</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/abkhazia/">Абхазия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/croatia/">Хорватия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/france/">Франция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/usa/">США</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/finland/">Финляндия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ukraine/">Украина</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/morocco/">Марокко</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/germany/">Германия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/israel/">Израиль</a><div class="cmn_pipe"></div>
+	
+			<span id="fl_invis3">Все страны</span>
+			</div>
+			<div class="footerlink" id="hfl_invis3">
+	
+ <a href="http://www.turizm.ru/portugal/">Португалия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/india/">Индия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/vietnam/">Вьетнам</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/oae/">ОАЭ</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/belarus/">Беларусь</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/mexica/">Мексика</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/australia/">Австралия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/hawaii/">Соединенные Штаты Америки: Гавайи</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/jamaica/">Ямайка</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/uk/">Великобритания</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/brazil/">Бразилия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/malta/">Мальта</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/indonezia/">Индонезия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/norway/">Норвегия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/japan/">Япония</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/south_korea/">Корея Южная</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/macedonia/">Македония</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/kanada/">Канада</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/philippines/">Филиппины</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/romania/">Румыния</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/ireland/">Ирландия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/azerbaijan/">Азербайджан</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/sweden/">Швеция</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/austria/">Австрия</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/poland/">Польша</a><div class="cmn_pipe"></div>
+ <a href="http://www.turizm.ru/srilanka/">Шри-Ланка</a><div class="cmn_pipe"></div>
+		
+			</div>
+
+
+
+
+
+
+</nav>
+
+
+		<footer class="footer_content grid_12">
+			<div class="footer_top">
+				<section class="footer_section">
+					<h3>Помощь</h3>
+					<nav>
+					<noindex>
+						<ul>
+							<li><a href="http://www.turizm.ru/price/reklama_example.htm">Реклама на сайте</a></li>
+							<li><a href="http://www.turizm.ru/feedback/">Служба поддержки</a></li>
+							<li><a href="http://forum.turizm.ru/faq.php">FAQ</a></li>
+							<li><a href="http://album.turizm.ru/help/">Зачем регистрироваться?</a></li>
+							<li><a href="http://forum.turizm.ru/common/all/009633.html">Правила форума</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+				
+				<section class="footer_section">
+					<h3>О Нас</h3>
+					<noindex>
+					<nav>
+						<ul>
+							<li><a href="http://www.turizm.ru/about/">О проекте</a></li>
+							<li><a href="http://www.turizm.ru/pay/">Способы оплаты</a></li>
+							<li><a href="http://www.turizm.ru/turizm_stat.html">Статистика сайта</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+				
+				<section class="footer_section">
+					<h3>Службы</h3>
+					<noindex>
+					<nav>
+						<ul>
+							<li><a href="http://news.turizm.ru/">Новости</a></li>
+							<li><a href="http://news.turizm.ru/news.rss">RSS</a></li>
+					    <li><a href="http://www.turizm.ru/reklamtours/">Рекламные туры</a></li>
+					    <li><a href="http://www.turizm.ru/search/">Поиск тура</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+				
+				<section class="footer_section">
+					<h3>Мы в соцсетях</h3>
+					<noindex>
+					<nav>
+						<ul>
+						<li><a href="http://vk.com/club16847736" rel="nofollow">Вконтакте</a></li>
+						</ul>
+					</nav>
+					</noindex>
+				</section>
+			</div>
+			
+			<div class="footer_bottom">
+				<div class="footer_info">
+					<div>© Turizm.Ru 1998—2012.</div>
+					<div>Портал о туризме. Информация о странах, путешествиях, отелях. Предложения по турам от туроператоров и турагентств.</div>
+				</div>
+				<div class="counters">
+					<!--LiveInternet logo--><a href="http://www.liveinternet.ru/click;turizm"
+					target="_blank"><img src="//counter.yadro.ru/logo;turizm?18.6"
+					title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня"
+					alt="" border="0" width="88" height="31"/></a>
+					<!--/LiveInternet-->
+
+					<!--Rating@Mail.ru LOGO--><a target=_top
+					href="http://top.mail.ru/jump?from=495896"><img
+					src="http://top.list.ru/counter?id=495896;t=224;l=1"
+					border=0 height=31 width=88 alt="Рейтинг@Mail.ru"></a>
+					<!--/LOGO-->
+
+
+					<!--Rambler LOGO-->
+						<a href="http://top100.rambler.ru/navi/?theme=504"><img src="http://www.turizm.ru/imgs/ram3.gif" border="0"></a>
+					<!--/Rambler LOGO-->
+
+				</div>
+			</div>
+
+
+        </footer>
+    </div>
+	<div class="cmn_some_modal_window jq_some_modal_window" style="display: none">
+		<div class="opacity_fake"></div>
+		<div class="some_insert_modal jq_some_insert_modal">
+			
+			
+		</div>
+		
+	</div>
+	
+</body>
+</html>
+
+
+
+
+
