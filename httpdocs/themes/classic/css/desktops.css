@@ -1,0 +1,31 @@
+.mainOtherBG
+{
+
+}
+
+.mainOtherBG #itemCategory, .mainOtherBG .titleLIneLeft,
+.mainOtherBG #centerRight, .mainOtherBG .titleLIneRight{background: none;}
+.mainOtherBG #Center
+{
+    background: url(../images/white_bg.png) repeat;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.mainOtherBG #itemCategory ul a{color: #000;}
+.mainOtherBG  a, .mainOtherBG .blockName{color:#080b7f;}
+
+.desktopBMW
+{
+    background:#000 url( ../images/desktops/2222_2.jpg ) no-repeat center top;
+}
+
+.desktopBMW2
+{
+    background:#000  url( ../images/desktops/2222_2.jpg ) no-repeat center top;
+}
+
+.desktopBMW3
+{
+    background:#000  url( ../images/desktops/2222_3.jpg ) no-repeat center top;
+}
