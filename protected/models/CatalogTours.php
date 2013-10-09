@@ -28,7 +28,8 @@ class CatalogTours extends CCmodel
     protected $tour_per; // string 
     protected $hotel_id; // integer 
     protected $hotels_count; // integer 
-    protected $col; // integer 
+    protected $col; // integer
+    protected $slug; // string
 
 /*
 * Поля - связи
@@ -56,7 +57,7 @@ class CatalogTours extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, srok, image, price, ltext, hot, firm_id, vip, list_key, order_link, firm_site_link, tour_per', 'required'),
+			array('name, description', 'required'),
 			array('active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('srok, price', 'length', 'max'=>25),
@@ -67,6 +68,8 @@ class CatalogTours extends CCmodel
             array('category_id, country_id, price', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
+
+			array('slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
 			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
 		);
 	}

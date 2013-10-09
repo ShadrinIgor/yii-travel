@@ -19,6 +19,12 @@ class SiteHelper
         return false;
     }
 
+    public static function getTranslateForUrl( $text )
+    {
+        if( !empty( $text ) )return SiteHelper::translate( trim( $text ) );
+        return false;
+    }
+
     public static function getLanguage()
     {
         return 1;
@@ -69,46 +75,46 @@ class SiteHelper
     }
 
     /*
-     * Функция делает транслит руских слов в названии файлов
+     * Функция делает транслит руских слов в английские
      */
-    static function checkedUploadFileName( $fileName )
+    protected static function translate($text, $toLowCase = TRUE)
     {
-        $rus=array("а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ш","щ","ь","ъ","э","ю","я"," ",".","-","(",")","j","w");
-        $eng=array("a","b","v","g","d","e","e","sh","z","i","i","k","l","m","n","o","p","r","s","t","u","f","h","c","sh","sch","","","e","yu","ya","_",".","_","(",")","j","w");
-        $text=strtolower($fileName);
+        $matrix=array(
+            "й"=>"i","ц"=>"c","у"=>"u","к"=>"k","е"=>"e","н"=>"n",
+            "г"=>"g","ш"=>"sh","щ"=>"shch","з"=>"z","х"=>"h","ъ"=>"",
+            "ф"=>"f","ы"=>"y","в"=>"v","а"=>"a","п"=>"p","р"=>"r",
+            "о"=>"o","л"=>"l","д"=>"d","ж"=>"zh","э"=>"e","ё"=>"e",
+            "я"=>"ya","ч"=>"ch","с"=>"s","м"=>"m","и"=>"i","т"=>"t",
+            "ь"=>"","б"=>"b","ю"=>"yu",
+            "Й"=>"I","Ц"=>"C","У"=>"U","К"=>"K","Е"=>"E","Н"=>"N",
+            "Г"=>"G","Ш"=>"SH","Щ"=>"SHCH","З"=>"Z","Х"=>"X","Ъ"=>"",
+            "Ф"=>"F","Ы"=>"Y","В"=>"V","А"=>"A","П"=>"P","Р"=>"R",
+            "О"=>"O","Л"=>"L","Д"=>"D","Ж"=>"ZH","Э"=>"E","Ё"=>"E",
+            "Я"=>"YA","Ч"=>"CH","С"=>"S","М"=>"M","И"=>"I","Т"=>"T",
+            "Ь"=>"","Б"=>"B","Ю"=>"YU",
+            "«"=>"","»"=>""," "=>"-",
 
-        $str="";
-        for($n=0;$n<strlen($text);$n++)
+            "\""=>"", "\."=>"", "–"=>"-", "\,"=>"", "\("=>"", "\)"=>"",
+            "\?"=>"", "\!"=>"", "\:"=>"",
+
+            '#' => '', '№' => '',' - '=>'-', '/'=>'-', '  '=>'-',
+        );
+
+        // Enforce the maximum component length
+        $maxlength = 100;
+        $text = implode(array_slice(explode('<br>',wordwrap(trim(strip_tags(html_entity_decode($text))),$maxlength,'<br>',false)),0,1));
+        //$text = substr(, 0, $maxlength);
+
+        foreach($matrix as $from=>$to)
+            $text=mb_eregi_replace($from,$to,$text);
+
+    // Optionally convert to lower case.
+        if ($toLowCase)
         {
-            for($i=0;$i<sizeof($rus);$i++)
-            {
-                if($text[$n]==$rus[$i])
-                {
-                    $str.=$eng[$i];
-                    break;
-                }
-
-                if($text[$n]==$eng[$i])
-                {
-                    $str.=$eng[$i];
-                    break;
-                }
-
-                if(intval($text[$n]))
-                {
-                    $str.=$text[$n];
-                    break;
-                }
-            }
+            $text = strtolower($text);
         }
 
-        $ar=explode(".",$str);
-        $type=$ar[sizeof($ar)-1];
-
-        $rn=rand(1,999);
-        $str=$rn.$ar[0].".".$type;
-
-        return $str;
+        return $text;
     }
 
     /*
