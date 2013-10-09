@@ -1825,3 +1825,30 @@ zoom: 1;
 #TMedal{float:left;background: url(../images/t_medal.png); width: 80px;height: 116px;margin-top: -8px;}
 #TrioMedal{float:left;background: url(../images/trio_medal.png); width: 82px;height: 117px;margin-top: -8px;}
 #TMedal a, #TrioMedal a{display: block;width: 80px;height: 76px;margin-top: 32px;}
+
+#InnerText .LParams .LPLink
+{
+    font-family:Arial;
+    font-weight:normal;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:5px;
+    border:1px solid #337fed;
+    text-decoration:none;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #3d94f6), color-stop(100%, #1e62d0) );
+    background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+    background:-ms-linear-gradient( top, #3d94f6 5%, #1e62d0 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+    background-color:#3d94f6;
+    color:#ffffff;
+    text-align: center;
+    padding: 3px 4px;
+}
+
+.LPLink:hover {
+         background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #1e62d0), color-stop(100%, #3d94f6) );
+         background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+         background:-ms-linear-gradient( top, #1e62d0 5%, #3d94f6 100% );
+         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+         background-color:#1e62d0;
+     }

@@ -2,7 +2,8 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        "Туристические странны"=>SiteHelper::createUrl("country/"),
+        "туры"=>SiteHelper::createUrl("tours/"),
+        $item->country_id->name_2=>SiteHelper::createUrl("tours/", array( "country"=>$item->country_id->slug )),
         $item->name
     )
 ));
@@ -11,18 +12,28 @@ $this->widget('addressLineWidget', array(
 <?php if( $this->beginCache( "country_".$item->id, array('duration'=>3600) ) ) : ?>
 <div id="InnerText">
     <h1><?= $item->name ?></h1>
-    <div id="ITText" class="ITSmallText">
+    <div id="ITText">
         <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
+        <div class="LParams">
+            страна: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
+            категория:<a href="<?= SiteHelper::createUrl("tours/", array("category"=>$item->category_id->id)) ?>" title="<?= SiteHelper::getTranslateForUrl( $item->category_id->name ) ?>"><?= $item->category_id->name ?></a><br/>
+            фирма: <a href="<?= SiteHelper::createUrl("firms/description", array("id"=>$item->firm_id->id)) ?>" title="<?= SiteHelper::getTranslateForUrl( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
+            <br/>
+            <a class="LPLink" href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>">забронировать</a><br/>
+        </div>
         <?= $item->description ?>
+        <div class="LParams">
+            <br/>
+            <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>">забронировать</a><br/>
+            <br/>
+        </div>
     </div>
     <div class="hr">&nbsp;</div>
-    <div class="textAlignRight">
-        <a href="#" class="cmore ITextHref" title="">подробнее...</a>
-    </div>
-    <?php if( sizeof($tours)>0 ) : ?>
-        <h2>Популярные туры <?= $item->name_2 ?></h2>
+
+    <?php if( sizeof($otherTours)>0 ) : ?>
+        <h2>Похошие туры <?= $item->country_id->name_2 ?></h2>
         <div class="ITBlock">
-            <?php foreach( $tours as $tour ) : ?>
+            <?php foreach( $otherTours as $tour ) : ?>
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
@@ -30,37 +41,15 @@ $this->widget('addressLineWidget', array(
             </div>
         </div>
     <?php endif; ?>
-    <?php if( sizeof($firms)>0 ) : ?>
-        <h2>Туристичесие фирмы <?= $item->name_2 ?></h2>
-        <div class="hr">&nbsp;</div>
-        <div class="ITBlock ITBFirms">
-            <?php foreach( $firms as $firm ) : ?>
-                <?php $this->widget("firmWidget", array( "item"=>$firm )) ?>
+    <?php if( sizeof($firmsTours)>0 ) : ?>
+        <h2>Тругие туры фирмы <?= $item->firm_id->name ?></h2>
+        <div class="ITBlock">
+            <?php foreach( $firmsTours as $tour ) : ?>
+                <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("firms/", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
+                <a href="<?= SiteHelper::createUrl("tours/", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
             </div>
-        </div>
-    <?php endif; ?>
-    <?php if( sizeof($otherCountry)>0 ) : ?>
-        <h2>Другие странны</h2>
-        <div class="hr">&nbsp;</div>
-        <div class="ITBlock ITBFirms ITBOthCountry">
-            <?php foreach( $otherCountry as $CItem ) :
-                $tourCounts = CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array(":country_id"=>$CItem->id) ) );
-                ?>
-                <div class="IBItem">
-                    <div class="IBIImage">
-                        <a href="<?= SiteHelper::createUrl("country/", array( "id"=>$CItem->id )) ?>" title="<?= $CItem->name ?>"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?>" /></a>
-                    </div>
-                    <?php if( $tour->price >0 ) : ?><p><?= $CItem->price ?></p><?php endif; ?>
-                    <br/><a href="<?= SiteHelper::createUrl("country/", array( "id"=>$CItem->id )) ?>" title="<?= $CItem->name ?>"><?= $CItem->name ?></a><br/>
-                    <div class="LParams">
-                        Просмотров: <b><?= $CItem->col>0 ? $CItem->col : 0 ?></b><br/>
-                        Туров: <b><?= $tourCounts ?></b><br/>
-                    </div>
-                </div>
-            <?php endforeach; ?>
         </div>
     <?php endif; ?>
 
