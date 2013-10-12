@@ -18,6 +18,8 @@ class ToursController extends Controller
             $item = CatalogTours::fetch( $id );
             if( $item->id >0 )
             {
+
+                Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(
                         "item" => $item,

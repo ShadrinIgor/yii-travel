@@ -8,6 +8,19 @@
  */
 class SiteHelper
 {
+    public static function getSlug( CCModel $item )
+    {
+        if( empty( $item->slug ) || !$item->slug)
+        {
+            $item->slug = SiteHelper::getTranslateForUrl( $item->name );
+            $item->save();
+            if( $item->getErrors() )
+                throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item )." )", print_r( $item->getErrors(), true) );
+        }
+
+        return $item->slug;
+    }
+
     public static function getConfig( $key )
     {
         $configModel = ConfigOptions::fetchByKeyWord( $key );
