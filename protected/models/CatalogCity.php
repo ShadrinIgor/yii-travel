@@ -7,12 +7,11 @@ class CatalogCity extends CCmodel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $active; // integer 
     protected $pos; // integer 
     protected $country_id; // integer 
     protected $del; // integer 
-    protected $ltext; // string 
     protected $description; // string 
+    protected $slug; // string 
 
 /*
 * Поля - связи
@@ -49,12 +48,14 @@ class CatalogCity extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ltext, description', 'required'),
-			array('active, pos, del', 'numerical', 'integerOnly'=>true),
+			array('name', 'required'),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
+			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, country_id, del, ltext, description', 'safe', 'on'=>'search'),
+			array('slug', 'safe'),
+            array('id, name, pos, country_id, del, description, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -87,12 +88,11 @@ class CatalogCity extends CCmodel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'active' => 'Active',
 			'pos' => 'Pos',
 			'country_id' => 'Country',
 			'del' => 'Del',
-			'ltext' => 'Ltext',
 			'description' => 'Description',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -109,12 +109,11 @@ class CatalogCity extends CCmodel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('country_id',$this->country_id);
 		$criteria->compare('del',$this->del);
-		$criteria->compare('ltext',$this->ltext,true);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

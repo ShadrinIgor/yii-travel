@@ -7,17 +7,16 @@ class CatalogCountry extends CCmodel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $active; // integer 
     protected $pos; // integer 
     protected $del; // integer 
     protected $description; // string 
     protected $flag; // string 
     protected $image; // string 
-    protected $ltext; // string 
     protected $name_2; // string 
-    protected $baner; // string
-    protected $slug; // string
-    protected $col; // integer
+    protected $baner; // string 
+    protected $slug; // string 
+    protected $col; // integer 
+
 /*
 * Поля - связи
 */
@@ -56,15 +55,16 @@ class CatalogCountry extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('description, flag, image, ltext, name_2, baner', 'required'),
-			array('active, pos, del', 'numerical', 'integerOnly'=>true),
+			array('name', 'required'),
+			array('pos, del, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
 			array('flag, image', 'length', 'max'=>100),
-			array('name_2', 'length', 'max'=>50),
+			array('name_2, slug', 'length', 'max'=>50),
 			array('baner', 'length', 'max'=>255),
+			array('slug, col', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, del, description, flag, image, ltext, name_2, baner', 'safe', 'on'=>'search'),
+			array('id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,15 +99,15 @@ class CatalogCountry extends CCmodel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'active' => 'Active',
 			'pos' => 'Pos',
 			'del' => 'Del',
 			'description' => 'Description',
 			'flag' => 'Flag',
 			'image' => 'Image',
-			'ltext' => 'Ltext',
 			'name_2' => 'Name 2',
 			'baner' => 'Baner',
+			'slug' => 'Slug',
+			'col' => 'Col',
 		);
 	}
 
@@ -124,15 +124,15 @@ class CatalogCountry extends CCmodel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('flag',$this->flag,true);
 		$criteria->compare('image',$this->image,true);
-		$criteria->compare('ltext',$this->ltext,true);
 		$criteria->compare('name_2',$this->name_2,true);
 		$criteria->compare('baner',$this->baner,true);
+		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('col',$this->col);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

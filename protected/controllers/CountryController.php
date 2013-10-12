@@ -21,6 +21,7 @@ class CountryController extends Controller
             if( !empty( $id ) && $id>0 )$item = CatalogCountry::fetch( $id );
             if( !empty( $item ) && $item->id >0 )
             {
+                Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(
                         "item" => $item,

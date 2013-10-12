@@ -10,7 +10,6 @@ class ToursController extends Controller
 
     public function actionDescription()
     {
-        $slug = Yii::app()->request->getParam("slug", "");
         $id = (int)Yii::app()->request->getParam("id", 0);
 
         if( $id > 0 )
@@ -18,7 +17,6 @@ class ToursController extends Controller
             $item = CatalogTours::fetch( $id );
             if( $item->id >0 )
             {
-
                 Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(

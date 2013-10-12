@@ -28,7 +28,7 @@ $this->widget('addressLineWidget', array(
         <?= $item->description ?>
         <div id="orderInfo" class="displayNone">
             <b>Тур предоставлен фирмой <?= $item->firm_id->name ?></b><br/>
-            <p>Для пронирования или уточнения информации по туру необходимо связатся с менеджером компании.</p>
+            <p>Для бронирования или уточнения информации по туру необходимо связатся с менеджером компании.</p>
             <p>
                 <?php if( $item->firm_id->tel ) : ?>Телефон: <?= $item->firm_id->tel ?><br/><?php endif; ?>
                 <?php if( $item->firm_id->fax ) : ?>Факс: <?= $item->firm_id->fax ?><br/><?php endif; ?>

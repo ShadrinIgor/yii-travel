@@ -17,23 +17,24 @@ class HotelsController extends Controller
 
     public function actionDescription()
     {
-        if( !empty($this->slug) )
+        $id = (int)Yii::app()->request->getParam("id", 0);
+
+        if( $id > 0 )
         {
-            $item = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("slug=:slug")->setParams(array(":slug"=>$this->slug)) );
-            if( sizeof($item)>0 && $item[0]->id >0 )
+            $item = CatalogHotels::fetch( $id );
+            if( $item->id >0 )
             {
+                Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(
-                        "item" => $item[0],
-                        "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item[0]->id))->setOrderBy("col DESC")->setLimit(8) ),
-                        "firms" => CatalogFirms::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item[0]->id))->setOrderBy("rand()")->setLimit(12) ),
-                        "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item[0]->id ) ) ),
-                        "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item[0]->id ) ) ),
+                        "item" => $item,
+                        "otherHotels" => CatalogHotels::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:country_id AND city_id=:city_id AND id!=:id")->setParams(array(":country_id"=>$item->country_id->id, ":city_id"=>$item->city_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
+                        "hotelCount" => CatalogHotels::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->country_id->id ) ) ),
                     ));
-            }
-                else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
-        }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
 
+            }
+            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+        }
+        else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
     }
 }
