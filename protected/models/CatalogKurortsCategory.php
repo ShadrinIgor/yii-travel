@@ -10,7 +10,8 @@ class CatalogKurortsCategory extends CCmodel
     protected $active; // integer 
     protected $pos; // integer 
     protected $del; // integer 
-    protected $owner; // integer 
+    protected $owner; // integer
+    protected $slug; // integer
 
 /*
 * Поля - связи
@@ -38,11 +39,13 @@ class CatalogKurortsCategory extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('name', 'required'),
 			array('active, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, del, owner', 'safe', 'on'=>'search'),
+			array('slug', 'safe'),
+            array('id, name, active, pos, del, owner', 'safe', 'on'=>'search'),
 		);
 	}
 

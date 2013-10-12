@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_info".
    */
-class CatalogInfo extends CCmodel
+class CatalogInfo extends CActiveRecord
 {
     protected $id; // integer 
     protected $col; // integer 
@@ -17,6 +17,7 @@ class CatalogInfo extends CCmodel
     protected $image; // string 
     protected $category_id; // integer 
     protected $list_key; // string 
+    protected $slug; // string 
 
 /*
 * Поля - связи
@@ -44,14 +45,14 @@ class CatalogInfo extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, image, category_id, list_key', 'required'),
+			array('name, description, category_id', 'required'),
 			array('col, pos, del', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>150),
+			array('name, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
-            array('name, country_id, category_id', 'search'),
+			array('metaData, list_key', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key', 'safe', 'on'=>'search'),
+			array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,9 +64,9 @@ class CatalogInfo extends CCmodel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
 		);
 	}
 
@@ -77,16 +78,17 @@ class CatalogInfo extends CCmodel
 		return array(
 			'id' => 'ID',
 			'col' => 'Col',
-			'name' => 'Название',
-			'active' => 'Active',
+			'name' => 'Name',
+			'description' => 'Description',
 			'pos' => 'Pos',
 			'metaData' => 'Meta Data',
 			'del' => 'Del',
-			'country_id' => 'Страна',
-			'city_id' => 'Город',
+			'country_id' => 'Country',
+			'city_id' => 'City',
 			'image' => 'Image',
-			'category_id' => 'Категория',
+			'category_id' => 'Category',
 			'list_key' => 'List Key',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -113,6 +115,7 @@ class CatalogInfo extends CCmodel
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('list_key',$this->list_key,true);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

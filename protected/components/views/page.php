@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="ParamsClear textAlignRight">
-            <a href="<?= SiteHelper::createUrl($url."/", array("params"=>"empty")) ?>" class="cMore" title="Сбросить критерии">[ Сбросить критерии ]</a>
+            <a href="<?= SiteHelper::createUrl($url."/index", array("params"=>"empty")) ?>" class="cMore" title="Сбросить критерии">[ Сбросить критерии ]</a>
         </div>
     <?php endif; ?>
     <?php if( !empty( $sort ) && sizeof( $sort )>0 ) : ?>
