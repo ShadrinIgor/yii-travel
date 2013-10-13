@@ -7,10 +7,10 @@ class CatalogInfoCategory extends CCmodel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $active; // integer 
     protected $pos; // integer 
     protected $del; // integer 
     protected $owner; // integer 
+    protected $slug; // string 
 
 /*
 * Поля - связи
@@ -40,11 +40,13 @@ class CatalogInfoCategory extends CCmodel
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('active, pos, del', 'numerical', 'integerOnly'=>true),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
+			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, del, owner', 'safe', 'on'=>'search'),
+			array('slug', 'safe'),
+            array('id, name, pos, del, owner, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,10 +72,10 @@ class CatalogInfoCategory extends CCmodel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'active' => 'Active',
 			'pos' => 'Pos',
 			'del' => 'Del',
 			'owner' => 'Owner',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -90,10 +92,10 @@ class CatalogInfoCategory extends CCmodel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('owner',$this->owner);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

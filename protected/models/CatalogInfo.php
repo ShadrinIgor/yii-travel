@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_info".
    */
-class CatalogInfo extends CActiveRecord
+class CatalogInfo extends CCmodel
 {
     protected $id; // integer 
     protected $col; // integer 
@@ -49,10 +49,11 @@ class CatalogInfo extends CActiveRecord
 			array('col, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
-			array('metaData, list_key', 'safe'),
+            array('name, country_id, category_id', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe', 'on'=>'search'),
+			array('col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe'),
+            array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,15 +79,15 @@ class CatalogInfo extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'col' => 'Col',
-			'name' => 'Name',
+			'name' => 'Название',
 			'description' => 'Description',
 			'pos' => 'Pos',
 			'metaData' => 'Meta Data',
 			'del' => 'Del',
-			'country_id' => 'Country',
-			'city_id' => 'City',
+			'country_id' => 'Страна',
+			'city_id' => 'Город',
 			'image' => 'Image',
-			'category_id' => 'Category',
+			'category_id' => 'Категория',
 			'list_key' => 'List Key',
 			'slug' => 'Slug',
 		);
