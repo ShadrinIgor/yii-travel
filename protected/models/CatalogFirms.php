@@ -8,7 +8,6 @@ class CatalogFirms extends CCmodel
     protected $id; // integer 
     protected $name; // string 
     protected $description; // string 
-    protected $active; // integer 
     protected $pos; // integer 
     protected $country_id; // integer 
     protected $city_id; // integer 
@@ -23,13 +22,15 @@ class CatalogFirms extends CCmodel
     protected $service_count; // integer 
     protected $fax; // string 
     protected $address; // string 
-    protected $category_id; // integer
-    protected $col; // integer
+    protected $category_id; // integer 
+    protected $col; // integer 
+    protected $slug; // string 
 
 /*
 * Поля - связи
 */
     protected $catalogAksiis; //  CatalogAksii
+    protected $catalogTours; //  CatalogTours
 
 
     public function attributeNames()
@@ -53,15 +54,15 @@ class CatalogFirms extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, image, email, www, tel', 'required'),
-			array('active, pos, del, tours_count, hotels_count, kurorts_count, service_count', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>150),
+			array('name', 'required'),
+			array('pos, del, tours_count, hotels_count, kurorts_count, service_count, col', 'numerical', 'integerOnly'=>true),
+			array('name, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
 			array('email, www, tel, fax', 'length', 'max'=>50),
-            array('name', 'search'),
+			array('image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, active, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id', 'safe', 'on'=>'search'),
+			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,9 +75,10 @@ class CatalogFirms extends CCmodel
 		// class name for the relations automatically generated below.
 		return array(
 			'catalogAksiis' => array(self::HAS_MANY, 'CatalogAksii', 'firm_id'),
-			'category' => array(self::BELONGS_TO, 'CatalogFirmCategory', 'category_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogFirmCategory', 'category_id'),
+			'catalogTours' => array(self::HAS_MANY, 'CatalogTours', 'firm_id'),
 		);
 	}
 
@@ -89,7 +91,6 @@ class CatalogFirms extends CCmodel
 			'id' => 'ID',
 			'name' => 'Имя',
 			'description' => 'Description',
-			'active' => 'Active',
 			'pos' => 'Pos',
 			'country_id' => 'Country',
 			'city_id' => 'City',
@@ -105,6 +106,8 @@ class CatalogFirms extends CCmodel
 			'fax' => 'Fax',
 			'address' => 'Address',
 			'category_id' => 'Category',
+			'col' => 'Col',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -122,7 +125,6 @@ class CatalogFirms extends CCmodel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('country_id',$this->country_id);
 		$criteria->compare('city_id',$this->city_id);
@@ -138,6 +140,8 @@ class CatalogFirms extends CCmodel
 		$criteria->compare('fax',$this->fax,true);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('col',$this->col);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

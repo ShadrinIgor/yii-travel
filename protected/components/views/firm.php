@@ -6,6 +6,6 @@
     <!--php if( $tour->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><= $tour->col ></b></div><php endif; -->
     <br/><a href="<?= SiteHelper::createUrl("firms/description", array( "slug"=>$tour->slug, "id"=>$tour->id )) ?>" title="<?= $tour->name ?>"><?= $tour->name ?></a><br/>
     <div class="LParams">
-        <a href="<?= SiteHelper::createUrl("tours/index", array("firms"=>$tour->id)) ?>" title="туров <?= $tour->name ?>">Туров: <b><?= $tourCounts ?></b></a>
+        Туров: <b><?= $tourCounts ?></b>
     </div>
 </div>
