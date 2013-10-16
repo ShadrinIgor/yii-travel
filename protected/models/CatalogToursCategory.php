@@ -8,10 +8,10 @@ class CatalogToursCategory extends CCmodel
     protected $id; // integer 
     protected $name; // string 
     protected $description; // string 
-    protected $active; // integer 
     protected $pos; // integer 
     protected $del; // integer 
     protected $owner; // integer 
+    protected $slug; // integer 
 
 /*
 * Поля - связи
@@ -40,12 +40,13 @@ class CatalogToursCategory extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('description', 'required'),
-			array('active, pos, del', 'numerical', 'integerOnly'=>true),
+			array('name', 'required'),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
+			array('slug', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, active, pos, del, owner', 'safe', 'on'=>'search'),
+			array('id, name, description, pos, del, owner, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,10 +73,10 @@ class CatalogToursCategory extends CCmodel
 			'id' => 'ID',
 			'name' => 'Name',
 			'description' => 'Description',
-			'active' => 'Active',
 			'pos' => 'Pos',
 			'del' => 'Del',
 			'owner' => 'Owner',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -93,10 +94,10 @@ class CatalogToursCategory extends CCmodel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('owner',$this->owner);
+		$criteria->compare('slug',$this->slug);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
