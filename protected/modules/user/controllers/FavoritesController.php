@@ -26,7 +26,7 @@ class FavoritesController extends Controller
                     $sql .= "id='".$value."'";
                 }
                 $sql .= " )";
-                $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $sql )->setCache(0) );
+                $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("status_id=1")->setConditions( $sql )->setCache(0) );
             }
                 else $items  = array();
 

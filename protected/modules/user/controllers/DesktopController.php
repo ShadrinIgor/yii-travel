@@ -18,7 +18,7 @@ class DesktopController extends Controller
                 $userModel->formMessage = "Рабочий стол успешно сохранен";
             }
 
-            $items = CatalogDesktops::fetchAll( );
+            $items = CatalogDesktops::fetchAll( DBQueryParamsClass::CreateParams()->setCache(0) );
             $this->render( "index", array( "message"=>$message, "items"=>$items, "userModel" =>$userModel ) );
         }
     }

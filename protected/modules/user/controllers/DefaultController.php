@@ -138,6 +138,7 @@ class DefaultController extends Controller
             if( !$user->hasErrors() && $user->save() )
             {
                 $user->onRegistration( new CModelEvent($user), array( ) );
+                die;
                 $this->redirect( $this->createUrl( "default/Registration/successfully/" ) );
             }
         }

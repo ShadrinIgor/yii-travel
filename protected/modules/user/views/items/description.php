@@ -51,7 +51,7 @@ $this->widget('addressLineWidget', array(
                 </div>
             <?php endforeach; ?>
         </div>
-    <div class="textAlignCenter"><input type="button" class="openDisplayNone" value="Добавить картинку" /></div>
+    <div class="textAlignCenter"><input type="button" class="openDisplayNone" value="Добавить фото" /></div>
     <div class="<?php if( empty( $_POST["sendGallery"] ) || $addImage->formMessage ) :?>displayNone <?php endif; ?>addForm">
         <?php echo CHtml::errorSummary($addImage); ?><br>
         <?= CHtml::form("","post", array("enctype"=>"multipart/form-data")) ?>
@@ -86,8 +86,10 @@ $this->widget('addressLineWidget', array(
                     <?= $comm->description ?>
                 </td>
                 <td>
-                    <?= $comm->user_id->name ?><br/>
-                    <?= $comm->user_id->email ?>
+                    <?php if( $comm->user_id ) : ?>
+                        <?= $comm->user_id->name ?><br/>
+                        <?= $comm->user_id->email ?>
+                    <?php endif; ?>
                 </td>
                 <td>
                     <?= SiteHelper::getDateOnFormat( $comm->date, "d.m.Y" ) ?>

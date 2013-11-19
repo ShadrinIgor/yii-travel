@@ -32,7 +32,7 @@
         <td>
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">
-                <?php if( $dateFinish>=time() && $item->is_hot ==0 && $item->status_id->id == 1 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/hot", array("id"=>$item->id)) ?>">Добавить в горячие</a><br/><?php endif; ?>
+                <?php /* if( $dateFinish>=time() && $item->is_hot ==0 && $item->status_id->id == 1 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/hot", array("id"=>$item->id)) ?>">Добавить в горячие</a><br/><?php endif;*/ ?>
                 <?php if( $dateFinish<time() || $item->status_id->id == 3 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/moderation", array("id"=>$item->id)) ?>">Опубликовать</a><br/><?php endif; ?>
                 <?php if( $dateFinish>=time() && $item->status_id->id == 1 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/><?php endif; ?>
                 <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id)) ?>">Описание</a><br/>

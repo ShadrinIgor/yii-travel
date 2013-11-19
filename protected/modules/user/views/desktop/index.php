@@ -11,7 +11,7 @@
         <?php foreach( $items as $item ) : ?>
             <div class="DLItem">
                 <div class="TImage"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt=""/></div>
-                <input type="radio" name="desktopID" value="<?= $item->id ?>" id="item_<?= $item->id ?>" <?= $userModel->desktop->id == $item->id ? "checked=\"checked\"" : "" ?> /><label for="item_<?= $item->id ?>"><?= $item->name ?></label>
+                <input type="radio" name="desktopID" value="<?= $item->id ?>" id="item_<?= $item->id ?>" <?= ( $userModel->desktop && $userModel->desktop->id == $item->id ) ? "checked=\"checked\"" : "" ?> /><label for="item_<?= $item->id ?>"><?= $item->name ?></label>
             </div>
         <?php endforeach; ?>
     </div>

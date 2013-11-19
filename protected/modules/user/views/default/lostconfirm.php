@@ -15,7 +15,7 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
     ));
     ?>
     <!--php Yii::app()->banners->getBannerByCategory( 1 ); ?-->
-    <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>
+    <?php echo CHtml::form( SiteHelper::createUrl("default/LostConfirm/", array("key"=>Yii::app()->request->getParam("key", ""))), 'post',array( 'id'=>'validateForm')); ?>
     <h1>Смена пароля</h1>
     <?php echo CHtml::errorSummary($form); ?><br>
     <?php if( $error ) : ?>

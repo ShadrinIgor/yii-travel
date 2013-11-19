@@ -14,7 +14,7 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
         'links'=>array( "Востановление пароля" ),
     ));
     ?>
-    <?php Yii::app()->banners->getBannerByCategory( 1 ); ?>
+
     <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>
     <h1>Востановление пароля</h1>
     <?php echo CHtml::errorSummary($form); ?><br/>

@@ -113,7 +113,7 @@ class ItemsController extends Controller
                 if( $item->id )
                 {
                     $listGallery = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(-1)->setCache(0) );
-                    if( sizeof( $listGallery )>5 )
+                    if( sizeof( $listGallery )>=SiteHelper::getConfig( "min_count_photo" ) )
                     {
                         $error = "";
                         $item->date = time();
@@ -122,7 +122,7 @@ class ItemsController extends Controller
                         if( !$item->save() )
                             print_r( $item->getErrors() );
                     }
-                        else $message = "Для публикации объявления необходимо залить минимум 6 фотографий";
+                        else $message = "Для публикации объявления необходимо залить минимум ".SiteHelper::getConfig( "min_count_photo" )." фотографий";
                 }
             }
 
