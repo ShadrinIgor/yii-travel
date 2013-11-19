@@ -23,7 +23,8 @@ class CatalogUsers extends CCmodel
     protected $site; // string 
     protected $quote; // string 
     protected $desktop; // integer 
-    protected $amount; // integer 
+    protected $amount; // integer
+    protected $pos; // integer
 
 /*
 * Поля - связи
@@ -64,7 +65,7 @@ class CatalogUsers extends CCmodel
             array('email', 'check_exists_email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
+			array('pos, del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
             array('id, del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
 		);
 	}

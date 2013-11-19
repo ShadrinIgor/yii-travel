@@ -712,7 +712,9 @@
      {
          return array(
              'url'      => 'например: http://www.sitename.ru',
+             'www'      => 'например: http://www.sitename.ru',
              'email'    => 'например: info@sitename.ru',
+             'tel'    => 'например: +998905555555, +998906666666',
              'password' => 'введите пароль',
              'pos'      => 'определяет позицию в общем списке',
              'key_word' => 'системный идентификатор, писать английскими буквами'
@@ -740,7 +742,8 @@
                         "password2"=>"password",
                         "email"=>"email",
                         "site"=>"url",
-                        "active"=>"checkbox"
+                        "active"=>"checkbox",
+                        "is_active"=>"checkbox"
                     );
      }
 

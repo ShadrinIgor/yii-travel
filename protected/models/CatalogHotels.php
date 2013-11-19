@@ -21,6 +21,8 @@ class CatalogHotels extends CCmodel
     protected $tel; // string 
     protected $col; // integer 
     protected $slug; // string 
+    protected $user_id; // integer 
+    protected $is_active; // integer 
 
 /*
 * Поля - связи
@@ -48,16 +50,16 @@ class CatalogHotels extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description', 'required'),
-			array('pos, del, level, col, country_id, city_id', 'numerical', 'integerOnly'=>true),
+			array('name, description, country_id, city_id, user_id, email, tel', 'required'),
+			array('pos, del, level, col, country_id, city_id, user_id, is_active', 'numerical', 'integerOnly'=>true),
 			array('name, image', 'length', 'max'=>100),
 			array('level', 'length', 'max'=>25),
 			array('email, www, fax, tel, slug', 'length', 'max'=>150),
             array('country_id, city_id, level', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe'),
-			array('id, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe', 'on'=>'search'),
+            array('user_id, is_active, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe'),
+			array('id, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug, user_id, is_active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +71,7 @@ class CatalogHotels extends CCmodel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 		);
@@ -88,21 +91,23 @@ class CatalogHotels extends CCmodel
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'pos' => 'Pos',
+			'name' => 'Название',
 			'country_id' => 'Страна',
 			'city_id' => 'Город',
-			'address' => 'Address',
-			'del' => 'Del',
-			'image' => 'Image',
+			'address' => 'Адресс',
+			'image' => 'Фото',
 			'level' => 'Кол. звезд',
 			'email' => 'Email',
-			'www' => 'Www',
-			'fax' => 'Fax',
-			'tel' => 'Tel',
+			'www' => 'Сайт',
+			'fax' => 'Факс',
+			'tel' => 'Телефон',
+            'description' => 'Описание',
 			'col' => 'Col',
 			'slug' => 'Slug',
+			'user_id' => 'User',
+			'is_active' => 'Is Active',
+            'pos' => 'Pos',
+            'del' => 'Del',
 		);
 	}
 
@@ -133,6 +138,8 @@ class CatalogHotels extends CCmodel
 		$criteria->compare('tel',$this->tel,true);
 		$criteria->compare('col',$this->col);
 		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('is_active',$this->is_active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
