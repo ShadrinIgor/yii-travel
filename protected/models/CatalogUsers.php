@@ -56,18 +56,89 @@ class CatalogUsers extends CCmodel
 		// will receive user inputs.
 		return array(
 			array('name, password, email, type_id', 'required'),
-			array('del, active, last_visit, amount', 'numerical', 'integerOnly'=>true),
+			array('del, active, last_visit, amount, country, city, type_id, desktop', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>35),
 			array('password, image', 'length', 'max'=>255),
 			array('surname, fatchname', 'length', 'max'=>25),
 			array('email', 'length', 'max'=>50),
-			array('country_other, phone, site', 'length', 'max'=>150),
-			array('quote', 'safe'),
+            array('email', 'check_exists_email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
+			array('del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
+            array('id, del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
 		);
 	}
+
+    public function setDefaultActive( $attribute,$params)
+    {
+        if( empty( $this->active ) )
+        {
+            $this->active = 0;
+        }
+    }
+
+    public function setDefaultType( $attribute,$params)
+    {
+        if( empty( $this->type_id ) )
+        {
+            $type = CatalogUsersType::fetchByKeyWord( "user" );
+            $this->type_id = intval( $type->id );
+        }
+    }
+
+    public function check_exists_email($attribute,$params)
+    {
+        if( !$this->hasErrors() )
+        {
+            $conditions = "email=:email";
+            $params = array( ":email"=> $this->email );
+            if( $this->id >0 )
+            {
+                $conditions .= " AND id !=:id";
+                $params = array_merge( $params, array( ":id"=>$this->id ) );
+            }
+
+            $dbCriterii = DBQueryParamsClass::CreateParams()
+                ->setCache(0)
+                ->setConditions( $conditions )
+                ->setParams( $params );
+
+            $exists = CatalogUsers::fetchAll( $dbCriterii );
+            if( sizeof( $exists )>0 )$this->addErrors( array(  "0"=>"Email:".$this->email.", уже зарегистрирован в системе" ) );
+        }
+    }
+
+    public function updatePasswordHashMD5($attribute,$params)
+    {
+        if( !$this->hasErrors() )
+        {
+            $DBUser = CatalogUsers::fetch( Yii::app()->user->id );
+            if( $this->password != $DBUser->password )
+            {
+                $this->password = md5( $this->password ) ;
+            }
+        }
+    }
+
+    public function passwordHashMD5($attribute,$params)
+    {
+        if( !$this->hasErrors() )
+        {
+            $this->password = md5( $this->password ) ;
+        }
+    }
+
+    public function uploadImage($attribute,$params)
+    {
+        $this->image = CUploadedFile::getInstance($this,'image');
+        if( !$this->hasErrors() && !empty( $this->image ) )
+        {
+            $fileName = SiteHelper::getImagePath( $this->tableName(), $this->id ).rand( 1000, 99999 ).".jpg";
+            $this->image->saveAs( $fileName );
+            $this->image = $fileName;
+        }
+    }
+
 
 	/**
 	 * @return array relational rules.
@@ -96,20 +167,20 @@ class CatalogUsers extends CCmodel
 		return array(
 			'id' => 'ID',
 			'del' => 'Del',
-			'name' => 'Name',
+			'name' => 'Имя',
 			'active' => 'Active',
-			'password' => 'Password',
-			'surname' => 'Surname',
-			'fatchname' => 'Fatchname',
+			'password' => 'Пароль',
+			'surname' => 'Фамилия',
+			'fatchname' => 'Отчество',
 			'email' => 'Email',
-			'country' => 'Country',
-			'city' => 'City',
-			'type_id' => 'Type',
-			'image' => 'Image',
-			'country_other' => 'Country Other',
+			'country' => 'Страна',
+			'city' => 'Город',
+			'type_id' => 'Тип',
+			'image' => 'Фото',
+			'country_other' => 'Другая страна',
 			'last_visit' => 'Last Visit',
-			'phone' => 'Phone',
-			'site' => 'Site',
+			'phone' => 'Телефон',
+			'site' => 'Сайт',
 			'quote' => 'Quote',
 			'desktop' => 'Desktop',
 			'amount' => 'Amount',
@@ -150,5 +221,42 @@ class CatalogUsers extends CCmodel
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+    public function fieldType()
+    {
+        return array_merge( parent::fieldType(), array( "quote"=>"visual_textarea" ) );
+    }
+
+    // описываем событие onRegistration
+    public function onRegistration($event, $arrayPrams = array())
+    {
+        if($this->hasEventHandler('onRegistration'))
+            $this->raiseEvent('onRegistration', array( "event"=>$event, "params"=>$arrayPrams ) );
+    }
+
+    // описываем событие onRegistrationConfirm
+    public function onRegistrationConfirm($event)
+    {
+        if($this->hasEventHandler('onRegistrationConfirm'))
+            $this->raiseEvent('onRegistrationConfirm', $event);
+    }
+
+    public function onLogin( $event )
+    {
+        if($this->hasEventHandler('onLogin'))
+            $this->raiseEvent('onLogin', $event);
+    }
+
+    public function onLostPassword( $event )
+    {
+        if($this->hasEventHandler('onLostPassword'))
+            $this->raiseEvent('onLostPassword', $event);
+    }
+
+    public function onLostPasswordConfirm( $event )
+    {
+        if($this->hasEventHandler('onLostPasswordConfirm'))
+            $this->raiseEvent('onLostPasswordConfirm', $event);
 	}
 }

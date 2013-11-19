@@ -194,43 +194,28 @@
 
      }
 
-     /*
-      * Выдает количесство
-      * Входящия либо DBQueryParamsClass либо SQL запрос
-      */
-     static function count( $QueryParams = null )
+     static function count( DBQueryParamsClass $QueryParams = null )
      {
          $nameCLass = get_called_class();
          $newObject = new $nameCLass;
          $tableAlias = self::getTableAlias( $newObject->tableName() );
 
-        if( is_a( $QueryParams, "DBQueryParamsClass" )  )
-        {
-            if( empty( $QueryParams ) )$QueryParams = DBQueryParamsClass::CreateParams()->setConditions( $tableAlias.".del=0" );
-                elseif( $QueryParams->getConditions()!="" ) $QueryParams->setConditions( $QueryParams->getConditions()." AND ".$tableAlias.".del=0 " );
-                    else $QueryParams->setConditions( $tableAlias.".del=0 " );
+         if( empty( $QueryParams ) )$QueryParams = DBQueryParamsClass::CreateParams()->setConditions( $tableAlias.".del=0" );
+            elseif( $QueryParams->getConditions()!="" ) $QueryParams->setConditions( $QueryParams->getConditions()." AND ".$tableAlias.".del=0 " );
+                else $QueryParams->setConditions( $tableAlias.".del=0 " );
 
-            // Определяем параметр WHERE
-            if( $QueryParams->getWhere() )$dopWhere = $QueryParams->getWhere();
+         // Определяем параметр WHERE
+         if( $QueryParams->getWhere() )$dopWhere = $QueryParams->getWhere();
                                   else $dopWhere = $newObject->tableName()." as ".$tableAlias;
 
-            $count = Yii::app()->db->cache( $QueryParams->getCache() )->createCommand()
-                 ->select( "count(".$tableAlias.".id)" )
-                 ->from( $dopWhere )
-                 ->where( $QueryParams->getConditions(), $QueryParams->getParams() )
-                 ->order( $QueryParams->getOrderBy() )
-                //  ->limit( $QueryParams->getLimit() )
-                //  ->offset( $QueryParams->getPage() )
-                 ->queryScalar();
-        }
-            elseif( is_string( $QueryParams ) )
-            {
-                echo "SELECT count(id) FROM ".self::tableName()." WHERE ".$QueryParams;
-                $count = Yii::app()->db->cache( 1000 )
-                    ->createCommand( "SELECT count(id) FROM ".self::tableName()." WHERE ".$QueryParams )
-                    ->queryScalar();
-            }
-                else $count = null;
+         $count = Yii::app()->db->cache( $QueryParams->getCache() )->createCommand()
+             ->select( "count(".$tableAlias.".id)" )
+             ->from( $dopWhere )
+             ->where( $QueryParams->getConditions(), $QueryParams->getParams() )
+             ->order( $QueryParams->getOrderBy() )
+//             ->limit( $QueryParams->getLimit() )
+//             ->offset( $QueryParams->getPage() )
+             ->queryScalar();
 
          return $count>0 ? $count : 0;
      }
@@ -274,6 +259,8 @@
                 ->from( $object->tableName() )
                 ->where( 'id=:id AND del=0', array( "id" => (int)$id ) )
                 ->queryRow();
+
+
 
             if( is_array( $offer ) )$object->setAttributesFromArray( $offer );
                 else return $object;
@@ -345,7 +332,7 @@
 
         if( !empty( $relation ) )
         {
-            if( !empty( $this->$field ) && $this->$field ) // Выдаем объект только если поле не пусто
+            if( $this->$field ) // Выдаем объект только если поле не пусто
             {
                 if( ( $relation[0] == self::HAS_ONE || $relation[0] == self::BELONGS_TO ) && !is_object( $this->$field ) ) //
                 {
@@ -425,6 +412,7 @@
      public function saveWithRelation()
      {
          $res = $this->save();
+
          if( $res )
          {
              foreach( $this->relations() as $relation )
@@ -456,8 +444,8 @@
                      $relationArray = isset( $_POST[$thisTable][$relationTable] ) ? $_POST[$thisTable][$relationTable] : array();
 
                      // Удаляем сохраненные ранее данные
-                     $res = CatRelations::fetchAll( DBQueryParamsClass::CreateParams()->setConditions(" ( leftId=:leftId AND leftClass=:leftClass AND rightClass=:rightClass ) OR ( rightId=:leftId AND rightClass=:leftClass AND leftClass=:rightClass ) ")->setParams( array( ":leftId"=>$this->id, ":leftClass"=>$thisTable, ":rightClass"=>$relationTable ) )->setCache(0) );
-                     foreach( $res as $item )
+                     $resRelation = CatRelations::fetchAll( DBQueryParamsClass::CreateParams()->setConditions(" ( leftId=:leftId AND leftClass=:leftClass AND rightClass=:rightClass ) OR ( rightId=:leftId AND rightClass=:leftClass AND leftClass=:rightClass ) ")->setParams( array( ":leftId"=>$this->id, ":leftClass"=>$thisTable, ":rightClass"=>$relationTable ) )->setCache(0) );
+                     foreach( $resRelation as $item )
                         $item->delete();
 
                      if( sizeof($relationArray)>0 )
@@ -494,6 +482,7 @@
     */
     public function save()
     {
+
         // TODO надо будет еще сделать рекурсивыное сохранение т.е. чтобы он шол по всем связям проверял
         // если значение нету то проверял валидацию связанной записи и сохранял
 
@@ -589,6 +578,7 @@
         if( $itemObject->id>0 )$sql = "UPDATE ".$this->tableName()." SET ".$sqlUpdateField." WHERE id='".$this->id."'";
                           else $sql = "INSERT INTO ".$this->tableName()."(".$sqlColumns.") VALUES( ".$sqlField.")";
 
+
         // echo $sql."<br/>";
         $coutUpdateItems = null;
         try
@@ -643,8 +633,6 @@
                  return explode( ",", $value[0] );
              }
          }
-
-         return false;
      }
 
      private function getSafeAtributes()
@@ -723,10 +711,11 @@
      public function attributePlaceholder()
      {
          return array(
-             'url' => 'Например: http://www.sitename.ru',
-             'email' => 'Например: info@sitename.ru',
+             'url'      => 'например: http://www.sitename.ru',
+             'email'    => 'например: info@sitename.ru',
              'password' => 'введите пароль',
-             'pos' => 'попределяет позицию в общем списке',
+             'pos'      => 'определяет позицию в общем списке',
+             'key_word' => 'системный идентификатор, писать английскими буквами'
          );
      }
 

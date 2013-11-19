@@ -22,6 +22,12 @@ class ConsoleController extends Controller
             else
         {
             $userModel = CatalogUsers::fetch( Yii::app()->user->id );
+            if( !$userModel || !$userModel->type_id )
+            {
+                Yii::app()->user->logout();
+                $this->redirect('/');
+            }
+
             if( $userModel->type_id->id == 1 )
                 $this->redirect('/');
         }

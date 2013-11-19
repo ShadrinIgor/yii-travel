@@ -530,8 +530,6 @@ img
 
 .LeftMenu
 {
-	float:left;
-	width:100%;
 }
 
 .LeftMenu ul ul{padding-left: 30px;}
@@ -563,8 +561,6 @@ img
 	color:#8d8d8d;
 	font-size:11px;
 	margin-bottom:5px;
-	float:left;
-	width:100%;
 	margin-bottom:5px;
 }
 
