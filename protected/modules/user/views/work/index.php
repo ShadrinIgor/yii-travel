@@ -27,12 +27,12 @@
         </td>
         <td><?= $item->category_id->name ?></td>
         <td><?= SiteHelper::getDateOnFormat( $dateFinish, "d.m.Y") ?></td>
-        <td class="textAlignCenter"><?= ( $item->is_active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+        <td class="textAlignCenter"><?= ( $item->del == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
         <td class="textAlignCenter">
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">
                 <a href="<?= SiteHelper::createUrl("/user/work/description", array("id"=>$item->id)) ?>">Описание</a><br/>
-                <?php if( $item->is_active == 1 ) : ?>
+                <?php if( $item->del == 1 ) : ?>
                     <a href="<?= SiteHelper::createUrl("/user/work/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/>
                 <?php else : ?>
                     <a href="<?= SiteHelper::createUrl("/user/work/publish", array("id"=>$item->id)) ?>">Опубликовать</a><br/>

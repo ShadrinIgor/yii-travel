@@ -1887,6 +1887,10 @@ zoom: 1;
     box-shadow: 0 0 5px #AFAFAF;
 }
 
+.tableForm td:hover input{border: 1px solid #DC5800 !important;}
+.tableForm td:hover select{border: 1px solid #DC5800;}
+.tableForm td:hover textarea{border: 1px solid #DC5800;}
+
 .tableForm th{
     background: #fefcea; /* Для старых браузров */
     background: -moz-linear-gradient(top, #fff, #efefef); /* Firefox 3.6+ */

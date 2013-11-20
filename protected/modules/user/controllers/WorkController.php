@@ -27,10 +27,10 @@ class WorkController extends Controller
             if( !empty( $id ) )
             {
                 $item = CatalogWorkAdd::fetch( $id );
-                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->is_active != 0 )
+                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->del != 0 )
                 {
                     $message = "Запись снята с публикации";
-                    $item->is_active = 0;
+                    $item->del = 0;
                     $item->save();
                 }
             }
@@ -50,10 +50,10 @@ class WorkController extends Controller
             if( !empty( $id ) )
             {
                 $item = CatalogWorkAdd::fetch( $id );
-                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->is_active != 1 )
+                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->del != 1 )
                 {
                     $message = "Запись опубликована";
-                    $item->is_active = 1;
+                    $item->del = 1;
 
                     if( !$item->save() )
                         print_r( $item->getErrors() );

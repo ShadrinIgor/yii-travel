@@ -84,6 +84,14 @@ class CatalogHotels extends CCmodel
                     );
     }
 
+    public function attributePlaceholder()
+    {
+        return array_merge(
+            parent::attributePlaceholder(),
+            array( "level"=>"от 1 до 5" )
+        );
+    }
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

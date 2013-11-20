@@ -25,12 +25,12 @@
             <a href="<?= SiteHelper::createUrl( "/user/hotels/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>
         </td>
         <td><?= $item->country_id->name.", ".$item->city_id->name ?></td>
-        <td class="textAlignCenter"><?= ( $item->is_active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+        <td class="textAlignCenter"><?= ( $item->del == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
         <td class="textAlignCenter">
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">
                 <a href="<?= SiteHelper::createUrl("/user/hotels/description", array("id"=>$item->id)) ?>">Описание</a><br/>
-                <?php if( $item->is_active == 1 ) : ?>
+                <?php if( $item->del == 1 ) : ?>
                     <a href="<?= SiteHelper::createUrl("/user/hotels/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/>
                 <?php else : ?>
                     <a href="<?= SiteHelper::createUrl("/user/hotels/publish", array("id"=>$item->id)) ?>">Опубликовать</a><br/>
