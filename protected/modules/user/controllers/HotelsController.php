@@ -27,10 +27,10 @@ class HotelsController extends Controller
             if( !empty( $id ) )
             {
                 $item = CatalogHotelsAdd::fetch( $id );
-                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->del != 0 )
+                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->is_active != 0 )
                 {
                     $message = "Запись снята с публикации";
-                    $item->del = 0;
+                    $item->is_active = 0;
                     $item->save();
                 }
             }
@@ -50,10 +50,10 @@ class HotelsController extends Controller
             if( !empty( $id ) )
             {
                 $item = CatalogHotelsAdd::fetch( $id );
-                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->del != 1 )
+                if( $item->id && $item->user_id->id == Yii::app()->user->getId() && $item->is_active != 1 )
                 {
                     $message = "Запись опубликована";
-                    $item->del = 1;
+                    $item->is_active = 1;
 
                     if( !$item->save() )
                         print_r( $item->getErrors() );

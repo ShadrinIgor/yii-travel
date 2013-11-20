@@ -2,7 +2,7 @@
 <?php
 $this->widget('addressLineWidget', array(
     'links'=>array(
-                    "Мои резюме"=>SiteHelper::createUrl( "/user/hotels" ),
+                    "Мои отели"=>SiteHelper::createUrl( "/user/hotels" ),
                     "Описание"
                   ),
 ));
