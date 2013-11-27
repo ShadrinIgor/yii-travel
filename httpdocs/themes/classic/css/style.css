@@ -1563,6 +1563,8 @@ zoom: 1;
     margin: 10px 0px 5px 0px;
 }
 
+#FCCentr h2{text-align: center;font-size: 18px;color:#DC5800;border-bottom: 1px solid #ff9249; }
+
 #counters
 {
    float: right;
@@ -2010,3 +2012,4 @@ zoom: 1;
     background: linear-gradient(top, #fff, #efefef); /* CSS3 */
 }
 .DLItem .TImage{width: 200px;height: 120px;overflow: hidden;border-radius: 10px;border: 3px solid #afafaf;box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);}
+#gallery{width: 668px;margin: 0px auto;}

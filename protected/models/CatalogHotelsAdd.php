@@ -15,7 +15,6 @@ class CatalogHotelsAdd extends CatalogHotels
 			'country_id' => 'Страна',
 			'city_id' => 'Город',
 			'address' => 'Адресс',
-			'image' => 'Фото',
 			'level' => 'Кол. звезд',
 			'email' => 'Email',
 			'www' => 'Сайт',

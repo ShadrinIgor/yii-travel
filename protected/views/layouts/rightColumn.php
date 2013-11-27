@@ -17,6 +17,7 @@
         <?php $this->widget("authWidget"); ?>
     <?php else : ?>
         <ul>
+            <li><a href="<?= SiteHelper::createUrl("/user/items" ) ?>" title="">Сообщения</a></li>
             <li><a href="<?= SiteHelper::createUrl("/user/items" ) ?>" title="">Мои объявления</a></li>
             <li><div class="hr"></div></li>
             <li><a href="<?= SiteHelper::createUrl("/user/firms" ) ?>" title="">Моя фирма</a></li>

@@ -153,7 +153,9 @@
         $DBQueryParams = DBQueryParamsClass::CreateParams()
                         ->setConditions( $conditional )
                         ->setCache( $cache )
-                        ->setParams( $params );
+                        ->setLimit( -1 )
+                        ->setParams( $params )
+                        ->setOrderBy( "pos, name" );
 
         return self::fetchAll( $DBQueryParams );
     }
