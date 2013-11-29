@@ -91,7 +91,7 @@ class HotelsController extends UserController
             $addImage = new CatGalleryAdd();
             if( !empty( $_POST["sendGallery"] ) )
             {
-                $this->uploadImages();
+                if( $id>0 )$this->uploadImages( (int) $id, get_class( $item ) );
             }
 
             $listComments = CatComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );

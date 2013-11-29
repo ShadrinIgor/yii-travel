@@ -80,9 +80,10 @@ class UserController extends Controller
         }
     }
 
-    function uploadImages( int $id )
+    function uploadImages( $id )
     {
         $error = "";
+
         if( $id>0 )
         {
             ///////
@@ -91,7 +92,8 @@ class UserController extends Controller
             // Проверить размер фотографий не более 5,6 мв на каждую
             // проверитьтиф файлов пропускать только gif|jpg|png|jpeg
 
-            $item = CatalogItems::fetch( $id );
+            $modelName = $this->addModel;
+            $item = $modelName::fetch( $id );
             if( $item->id >0 )
             {
                 // Для сохранения груп фотографий, будет задействованна фунция CCModel::save
@@ -162,8 +164,8 @@ class UserController extends Controller
                     $this->render( "save", array("id"=>$id, "error"=>$error) );
                 }
             }
-            else $this->redirect( SiteHelper::createUrl("/") );
+            else throw new Exception( "Ошибка групповой закачи картиноку ( Указанному ID нет соответствующей записи )" );
         }
-        else $this->redirect( SiteHelper::createUrl("/") );
+        else throw new Exception( "Ошибка групповой закачи картиноку ( Не указан ID )" );
     }
 }

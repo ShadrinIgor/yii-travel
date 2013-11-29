@@ -27,17 +27,17 @@ class ImageHelper
         $fileName = basename( $imageFile );
 
         if( $size == 1 )$imageSizeFile = $imageFile;
-                else
-            {
-                if( file_exists( $dirName."/".$size."_".$fileName ) )$imageSizeFile = $dirName."/".$size."_".$fileName;
-                                else $imageSizeFile = $dirName."/".$fileName;
-            }
+        else
+        {
+            if( file_exists( $dirName."/".$size."_".$fileName ) )$imageSizeFile = $dirName."/".$size."_".$fileName;
+            else $imageSizeFile = $dirName."/".$fileName;
+        }
 
         return $imageSizeFile;
 
         // С этим нужно будет разобратся, нужно ли это вообще
         if( $itemObject == null || !property_exists( $itemObject, $field ) )return $imageSizeFile;
-            else
+        else
         {
             // 1. Проверяем указана ли в катологе уже отптимизированные капии картинки, если да то просто их отдаем
             // 2. Иначе: Проверяем существут ли в действительности файл если дл то
@@ -57,7 +57,7 @@ class ImageHelper
                 $tableName = $itemObject->tableName();
                 $imageParams = null;
                 if( isset( Yii::app()->params["images"][ $tableName ] ) )$imageParams = Yii::app()->params["images"][ $tableName ];
-                                                                    else $imageParams = Yii::app()->params["images"][ "default" ];
+                else $imageParams = Yii::app()->params["images"][ "default" ];
 
                 // Если параметры картинки для данной таблицы не созданно то не проводить оптимизацию
                 if( is_array( $imageParams ) && sizeof( $imageParams ) > 0 )
@@ -103,8 +103,8 @@ class ImageHelper
         {
             $tableName = $itemObject->tableName();
             $queryParams = DBQueryParamsClass::CreateParams()
-                                ->setConditions( "item_id=:id" )
-                                ->setParams( array( ":id"=>$itemObject->id ) );
+                ->setConditions( "item_id=:id" )
+                ->setParams( array( ":id"=>$itemObject->id ) );
 
             return CatGallery::fetchAll( $queryParams );
         }
@@ -174,7 +174,7 @@ class ImageHelper
                 $new_file_name = $dirPath . $fileName;
                 if(!$width&&!$height)list($width,$height)=getimagesize($dopUrl.$fileUrl);
             }
-                else
+            else
             {
                 $new_file_name = $dirPath.$i."_".$fileName;
 
@@ -243,8 +243,8 @@ class ImageHelper
                 else
                     $cout ="<p class=\"err\">Произошла ошибка обработки файла (".$new_file_name.")</p>";
 
-//                #Наложение логотипа на картинки
-//                if( trim(getLocalVaribal("addLogoOnImage")) )$this->addLogoOnImage( $new_file_name, $itypre, $dopUrl.getLocalVaribal("logo") );
+                #Наложение логотипа на картинки
+                if( SiteHelper::getConfig( "watermark" ) )$this->addLogoOnImage( $dopUrl.$fileUrl, $upload_type, $dopUrl.SiteHelper::getConfig( "watermark" ) );
             }
         }
         return $cout;
@@ -323,10 +323,6 @@ class ImageHelper
                 {
                     $this->optimization( $fileUrl, $img_type, $fileType );
                 }
-    //            else
-    //                #Наложение логотипа на картинки
-    //                if( trim(getLocalVaribal("addLogoOnImage")) )$this->addLogoOnImage( $dopUrl.$newUrl, $_FILES[$fild]['type'], $dopUrl.getLocalVaribal("logo") );
-
             }
         }
 
@@ -351,4 +347,84 @@ class ImageHelper
             @unlink( $dir."/3_".$file );
         }
     }
+
+    /*
+     * Проверяет на наличие ошибок, анализируется масив $_FILES
+     */
+    static public function checkError( $ftype, $fsize=0, $ferror="", $type = array(), $size = 0 )
+    {
+        $error = NULL;
+        if( !$ftype || !$fsize )$error = "Произошла ошибка закачивания";
+        if( !$error && $ferror )$error = "Произошла ошибка закачивания";
+        if( !$error && $fsize>$size )$error = "Превышен размер загружаемого файла";
+
+        $ftypeAr = explode( "/", $ftype );
+        if( empty( $ftypeAr[1] ) || !in_array( $ftypeAr[1], $type ) )$error="Выбран не верный тип файла";
+
+        return $error;
+    }
+
+    /*
+     * Накладываем водяной знак
+     */
+    function addLogoOnImage( $tempImage, $imgType, $logo )
+    {
+        switch( $imgType )
+        {
+            case "jpeg":$srcImage = ImageCreateFromJPEG($tempImage);break;
+            case "image/jpeg":$srcImage = ImageCreateFromJPEG($tempImage);break;
+            case "image/pjpeg":$srcImage = ImageCreateFromJPEG($tempImage);break;
+
+            case "jpg":$srcImage = ImageCreateFromJPEG($tempImage);break;
+            case "image/jpg":$srcImage = ImageCreateFromJPEG($tempImage);break;
+
+            case "gif":$srcImage = ImageCreateFromGIF($tempImage);break;
+            case "image/gif":$srcImage = ImageCreateFromGIF($tempImage);break;
+
+            case "png":$srcImage = ImageCreateFromPNG($tempImage);break;
+            case "image/png":$srcImage = ImageCreateFromPNG($tempImage);break;
+            default:return -1;break;
+        }
+
+        $logoImage = imagecreatefrompng( $logo );
+
+        $srcWidth  = ImageSX($srcImage);
+        $srcHeight = ImageSY($srcImage);
+
+        $logoWidth  = ImageSX($logoImage);
+        $logoHeight = ImageSY($logoImage);
+
+        $newLogoWeight = $logoWidth;
+        $newlogoHeightt = $logoHeight;
+
+        if( $logoWidth>$srcWidth )
+        {
+            $newLogoWeight = $srcWidth;
+            $pr = (100*$srcWidth)/$logoWidth;
+            $newlogoHeightt = ($logoHeight*$pr)/100;
+        }
+
+        $res = imagecopyresized($srcImage, $logoImage, 0, $srcHeight - $newlogoHeightt, 0, 0, $newLogoWeight, $newlogoHeightt, $logoWidth, $logoHeight);
+
+        unlink($tempImage);
+
+        switch( $imgType )
+        {
+            case "jpeg":ImageJPEG($srcImage, $tempImage, 100);break;
+            case "image/jpeg":ImageJPEG($srcImage, $tempImage, 100);break;
+            case "image/pjpeg":ImageJPEG($srcImage, $tempImage, 100);break;
+
+            case "jpg":ImageJPEG($srcImage, $tempImage, 100);break;
+            case "image/jpg":ImageJPEG($srcImage, $tempImage, 100);break;
+
+            case "gif":ImageGIF($srcImage, $tempImage);break;
+            case "image/gif":ImageGIF($srcImage, $tempImage);break;
+
+            case "png":ImagePNG($srcImage, $tempImage);break;
+            case "image/png":ImagePNG($srcImage, $tempImage);break;
+        }
+
+        ImageDestroy($srcImage);
+    }
+
 }

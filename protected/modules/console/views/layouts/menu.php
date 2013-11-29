@@ -27,7 +27,7 @@
                     <div class="displayNone">
                         <ul>
                             <li><a href="<?= SiteHelper::createUrl("/console/banners") ?>">Банеры</a></li>
-                            <li><a href="#">Настройки</a></li>
+                            <li><a href="<?= SiteHelper::createUrl("/console/catalog", array( "catalog"=>"ConsoleConfigOptions" ) ) ?>">Настройки</a></li>
                         </ul>
                     </div>
                 </li>

@@ -25,7 +25,7 @@ class ConsoleController extends Controller
             if( !$userModel || !$userModel->type_id )
             {
                 Yii::app()->user->logout();
-                $this->redirect('/');
+                $this->redirect('/console/default/login');
             }
 
             if( $userModel->type_id->id == 1 )

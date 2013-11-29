@@ -6,7 +6,7 @@ $this->listCssFiles[] = $baseUrl.'/css/jquery/validationEngine.jquery.css';
 ?>
 
 <div id="PageText">
-    <?php Yii::app()->banners->getBannerByCategory( 1 ); ?>
+
     <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>
     <h1>Авторизация</h1>
     <?php echo CHtml::errorSummary($form); ?><br>
