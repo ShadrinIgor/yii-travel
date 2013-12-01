@@ -91,6 +91,19 @@
                 </div>
             </div>
         </div>
+        <div class="CItem">
+            <a href="<?= SiteHelper::createUrl( "work/" ) ?>" title="Работа" class="MenuJsClass" id="h8">
+                <img src="f/catalog_menu/789work.jpg" alt="Фирмы" /></a>
+            <div class="CHint" id="bh8">
+                <div class="CHText">
+                    <div>Работы</div>
+
+                    <br/>
+                    Туристические компании, разделенные странам.
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

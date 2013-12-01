@@ -30,19 +30,27 @@ $this->widget('addressLineWidget', array(
     <div id="gallery">
         <h2>Галлерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
+        <form action="" method="post">
         <div class="listGallery">
             <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Список пуст</div><?php endif; ?>
             <?php foreach( $listGallery as $gall ) : ?>
                 <div class="LGItem">
                     <div>
-                        <a href="<?= $gall->image ?>" target="_blank"><img src="<?= ImageHelper::getImage( $gall->image, 3 ) ?>" /></a>
+                        <a href="<?= $gall->image ?>" data-lightbox="roadtrip"><img src="<?= ImageHelper::getImage( $gall->image, 3 ) ?>" /></a>
                     </div>
-                    <?= $gall->name ?><br/>
-                    <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "gall_id"=>$gall->id, "action"=>"delGallery")) ?>">Удалить</a>&nbsp;
+                    <input type="text" name="ITitle[<?= $gall->id ?>]" value="<?= $gall->name ?>" placeholder="описание фото" /><br/>
+                    <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "gall_id"=>$gall->id, "action"=>"delGallery")) ?>">Удалить</a>&nbsp;
                 </div>
             <?php endforeach; ?>
+
         </div>
-        <div class="textAlignCenter"><input type="button" class="openDisplayNone" value="Добавить фото" /></div>
+        <div class="textAlignCenter">
+            <input type="submit" name="saveTitle" value="Сохранить описание" />&nbsp;
+        </div>
+        </form>
+        <div class="textAlignCenter">
+            <input type="button" class="openDisplayNone" value="Добавить фото" />
+        </div>
         <div class="<?php if( empty( $_POST["sendGallery"] ) || $addImage->formMessage ) :?>displayNone <?php endif; ?>addForm">
             <?php echo CHtml::errorSummary($addImage); ?><br>
             <?= CHtml::form("","post", array("enctype"=>"multipart/form-data")) ?>

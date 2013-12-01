@@ -14,7 +14,8 @@ class CatalogController extends ConsoleController
 
         $requestUrl = Yii::app()->request->requestUri;
         $requestUrlArr = explode( "?", $requestUrl );
-        $requestUrl = $requestUrlArr[1];
+        if( !empty( $requestUrlArr[1] ) )$requestUrl = $requestUrlArr[1];
+                                    else $requestUrl = "";
         $requestUrlArr = explode( "&", $requestUrl );
         $this->params = "?".$requestUrlArr[0];
         $requestUrlArr[0] = null;

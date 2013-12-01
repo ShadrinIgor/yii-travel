@@ -6,47 +6,48 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Yii-news',
+    'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+    'name'=>'Yii-news',
     'sourceLanguage' => 'ru',
     'language' => 'ru',
     // Название темы
     'theme' => 'classic',
-	// preloading 'log' component
-	'preload'=>array('log'),
+    // preloading 'log' component
+    'preload'=>array('log'),
 
     'defaultController'=>'site',
 
-	// autoloading model and component classes
-	'import'=>array(
-		'application.models.*',
-		'application.components.*',
+    // autoloading model and component classes
+    'import'=>array(
+        'application.models.*',
+        'application.components.*',
         'modules.catalog.models.*',
         'modules.catalog.components.*',
         'application.components.ImageHandler.CImageHandler',
         'application.components.CCApplicationComponent',
         'ext.favorites.*',
+        'ext.banners.models.*',
 //        'ext.eoauth.*',
 //        'ext.eoauth.lib.*',
 //        'ext.lightopenid.*',
 //        'ext.eauth.services.*',
-	),
+    ),
 
-	'modules'=>array(
+    'modules'=>array(
         'user', 'console', 'catalog', 'find',
-		// uncomment the following to enable the Gii tool
+        // uncomment the following to enable the Gii tool
 
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'6223772',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-		),
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'6223772',
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'ipFilters'=>array('127.0.0.1','::1'),
+        ),
 
-	),
+    ),
 
-	// application components
-	'components'=>array(
+    // application components
+    'components'=>array(
 
         'cache'=>array('class'=>'system.caching.CFileCache'),
 
@@ -60,37 +61,29 @@ return array(
             'class'=>'initFavorites',
         ),
 
+        // Banners
+        'banners'=>array(
+            'class'=>'BannerInit',
+        ),
 
-		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
-		),
-		// uncomment the following to enable URLs in path-format
+        'user'=>array(
+            // enable cookie-based authentication
+            'allowAutoLogin'=>true,
+        ),
+        // uncomment the following to enable URLs in path-format
 
-		'urlManager'=>array(
-			'urlFormat'=>'path',
+        'urlManager'=>array(
+            'urlFormat'=>'path',
             'showScriptName' => false,
-			'rules'=>array(
+            'rules'=>array(
                 ''=>'site/index',
 
-                '<controller:(Country)>-<id:\d+>.html'=> '<controller>/Description',
-                '<controller:(Country)>.html'=> '<controller>',
-
-           //     '<controller:\w+>_<id:\d+>.html'=> '<controller>/Description',
-           //     '<controller:\w+>.html'=>'<controller>',
-
-/*
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',
 //                '<controller:(tag)>/<action:(list)>.html'=> '<controller><action>', // /<action:(Tags)>
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-*/
+                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 
-                //'<slug:\w+>-<controller:(country)>.html'=> '<controller>',
-
-
-/*
                 '<slug:\w+>-<country:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
                 '<slug:\w+>-<country:\w+>_<controller:(category)>.html'=> '<controller>',
                 '<slug:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
@@ -110,14 +103,14 @@ return array(
 
                 '<controller:(gardens)>_<action:(place)>_<id:\d+>.html' => 'gardens/place',
                 'gardens.html' => '/gardens',
-*/
+
                 'registration.html'=> 'user/default/Registration',
                 'lost.html'=> 'user/default/lost',
                 'logout.html'=> 'user/default/logout',
 
                 '<slug:\w+>.html'=> 'page',
-			),
-		),
+            ),
+        ),
 
         'loid' => array(
             'class' => 'ext.lightopenid.loid',
@@ -133,35 +126,35 @@ return array(
                 'yandex' => array(
                     'class' => 'YandexOpenIDService',
                 ),
-/*
-                'twitter' => array(
-                    // register your app here: https://dev.twitter.com/apps/new
-                    'class' => 'TwitterOAuthService',
-                    'key' => 'fZOlqQCLbHGmQ5I7Swt0w',
-                    'secret' => 'FbxAxumTvWBXItYhR2K7wWQAdlaZyjeZn2svkp2PJW8',
-                ),
-                'google_oauth' => array(
-                    // register your app here: https://code.google.com/apis/console/
-                    'class' => 'GoogleOAuthService',
-                    'client_id' => '...',
-                    'client_secret' => '...',
-                    'title' => 'Google (OAuth)',
-                ),
-*/
+                /*
+                                'twitter' => array(
+                                    // register your app here: https://dev.twitter.com/apps/new
+                                    'class' => 'TwitterOAuthService',
+                                    'key' => 'fZOlqQCLbHGmQ5I7Swt0w',
+                                    'secret' => 'FbxAxumTvWBXItYhR2K7wWQAdlaZyjeZn2svkp2PJW8',
+                                ),
+                                'google_oauth' => array(
+                                    // register your app here: https://code.google.com/apis/console/
+                                    'class' => 'GoogleOAuthService',
+                                    'client_id' => '...',
+                                    'client_secret' => '...',
+                                    'title' => 'Google (OAuth)',
+                                ),
+                */
                 'facebook' => array(
                     // register your app here: https://developers.facebook.com/apps/
                     'class' => 'FacebookOAuthService',
                     'client_id' => '428081060609322',
                     'client_secret' => '2a900f700e80f38e0a77b700c6134f5e',
                 ),
-/*
-                'linkedin' => array(
-                    // register your app here: https://www.linkedin.com/secure/developer
-                    'class' => 'LinkedinOAuthService',
-                    'key' => '0ceu3iv6hcs3',
-                    'secret' => 'dlSpylUztNZ5BvJm',
-                ),
-*/
+                /*
+                                'linkedin' => array(
+                                    // register your app here: https://www.linkedin.com/secure/developer
+                                    'class' => 'LinkedinOAuthService',
+                                    'key' => '0ceu3iv6hcs3',
+                                    'secret' => 'dlSpylUztNZ5BvJm',
+                                ),
+                */
                 'github' => array(
                     // register your app here: https://github.com/settings/applications
                     'class' => 'GitHubOAuthService',
@@ -180,14 +173,14 @@ return array(
                     'client_id' => '700152',
                     'client_secret' => 'a65b90c87b21cfd93eb8ecf9bb6f0496',
                 ),
-/*
-                'moikrug' => array(
-                    // register your app here: https://oauth.yandex.ru/client/my
-                    'class' => 'MoikrugOAuthService',
-                    'client_id' => '813f1019ee444c10bcc8f355e74ef174',
-                    'client_secret' => '6e34781039ad4731a943a201707f0659',
-                ),
-*/
+                /*
+                                'moikrug' => array(
+                                    // register your app here: https://oauth.yandex.ru/client/my
+                                    'class' => 'MoikrugOAuthService',
+                                    'client_id' => '813f1019ee444c10bcc8f355e74ef174',
+                                    'client_secret' => '6e34781039ad4731a943a201707f0659',
+                                ),
+                */
                 'odnoklassniki' => array(
                     // register your app here: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
                     'class' => 'OdnoklassnikiOAuthService',
@@ -199,44 +192,44 @@ return array(
             ),
         ),
 
-		// uncomment the following to use a MySQL database
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=yii_travel',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '1',
-			'charset' => 'utf8',
-		),
+        // uncomment the following to use a MySQL database
+        'db'=>array(
+            'connectionString' => 'mysql:host=localhost;dbname=yii_travel',
+            'emulatePrepare' => true,
+            'username' => 'root',
+            'password' => '1',
+            'charset' => 'utf8',
+        ),
 
-		'errorHandler'=>array(
-			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
-		),
-		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
+        'errorHandler'=>array(
+            // use 'site/error' action to display errors
+            'errorAction'=>'site/error',
+        ),
+        'log'=>array(
+            'class'=>'CLogRouter',
+            'routes'=>array(
+                array(
                     'class'=>'CProfileLogRoute',
                     'levels'=>'profile',
                     'enabled'=>true,
-				),
-				// uncomment the following to show log messages on web pages
+                ),
+                // uncomment the following to show log messages on web pages
 
-				array(
-					'class'=>'CWebLogRoute',
-				),
-			),
-		),
+                array(
+                    'class'=>'CWebLogRoute',
+                ),
+            ),
+        ),
         'clientScript' => array(
             'class' => 'ext.minScript.components.ExtMinScript',
-/*
-            'scriptMap'=>array(
-                'jquery.js'=>'/js/all.js',
-                'jquery.easing.1.3.js'=>'/js/all.js',
-                'functions.js'=>'/js/all.js',
-                'lightbox.js'=>'/js/all.js',
-                )
-*/
+            /*
+                        'scriptMap'=>array(
+                            'jquery.js'=>'/js/all.js',
+                            'jquery.easing.1.3.js'=>'/js/all.js',
+                            'functions.js'=>'/js/all.js',
+                            'lightbox.js'=>'/js/all.js',
+                            )
+            */
         ),
 
         'assetManager'=>array(
@@ -283,54 +276,88 @@ return array(
             ),
         ),
     ),
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'info@world-news.uz',
+    // application-level parameters that can be accessed
+    // using Yii::app()->params['paramName']
+    'params'=>array(
+        // this is used in contact page
+        'adminEmail'=>'info@world-news.uz',
         'baseUrl' => 'http://yii-travel.loc/',
         'images' => array(
             "default" => array(
-                    "1" => array( "width"=>800, "height"=>800 ),
-                    "2" => array( "width"=>200, "height"=>200 ),
-                    "3" => array( "width"=>100, "height"=>100 )
-                )
+                "1" => array( "width"=>1300, "height"=>1300 ),
+                "2" => array( "width"=>200, "height"=>200 ),
+                "3" => array( "width"=>100, "height"=>100 )
+            )
         ),
         'images_quality'=>70, // Работает только для JPG
         "catalogList"=>array(
-                    "Каталог"=>array
-                        (
-                            "CatalogItems" => "Каталог",
-                            "CatalogItemsCategory" => "Категории каталога",
-                            "CatalogItemsType" => "Типы объявлений",
-                            "CatalogItemsStatus" => "Статусы объявлений",
-
-
-                        ),
-
-
+            array( "title"=>"Каталог",
+                "items"=>array
+                (
+                    array( "title"=>"Ожидает модерации", "controller"=>"catalog", "params"=>"catalog=CatalogItems&status_id=2" ),
+                    array( "title"=>"Объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
+                    array( "title"=>"Категории объявлений", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
                 ),
-        "titleName"=>"Каталог машин",
+            ),
 
-    /*
-    * для кэширования виджетов, все что вам надо, это добавить массив с названием виджета, без прифекса _Widget
-    * и указать параметры:
-    * duration: Время жизни кэша
-    * cacheID: ИД номер типа кэша
-    * в данный момент доступны следующие ID:
-    * CDummyCache - Пустышка, не производит кэширование данных (так же можно удалить массив с виджетом, тогда по дефолту ему выстовится CDummyCache)
-    * CFileCache - Кэширование по средством файлов
-    *
-    * что бы добавить свой тип кэширования, необходимо в компоненты добавить следующую строчку:
-    * 'CFileCache' => array('class' => 'CFileCache')  т.е. 'cacheID' => array('class' => 'ClassName'),
-*/
+            array( "title"=>"Каталог работы",
+                "items"=>array
+                (
+                    array( "title"=>"Объявления", "controller"=>"catalog", "params"=>"catalog=CatalogWork" ),
+                    array( "title"=>"Категории", "controller"=>"catalog", "params"=>"catalog=CatalogWorkCategory" ),
+                    array( "title"=>"График работы", "controller"=>"catalog", "params"=>"catalog=CatalogWorkGraf" ),
+                ),
+            ),
+
+            array(  "title"=>"Контент",
+                "items"=>array
+                (
+                    array( "title"=>"Записи", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
+                    array( "title"=>"Категории контента", "controller"=>"catalog", "params"=>"catalog=CatalogContentCategory" ),
+                ),
+            ),
+
+            array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
+            array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),
+            array( "title"=>"Услуги и цены", "controller"=>"catalog", "params"=>"catalog=CatalogServices" ),
+
+            // Параметры
+            array( "title"=>"Данные",
+                "items"=>array
+                (
+                    array( "title"=>"Салон", "controller"=>"catalog", "params"=>"catalog=CatalogItemsValuesSalon" ),
+                )
+            )
+        ),
+        "titleName"=>"Туристический портал",
+
+        /*
+        * для кэширования виджетов, все что вам надо, это добавить массив с названием виджета, без прифекса _Widget
+        * и указать параметры:
+        * duration: Время жизни кэша
+        * cacheID: ИД номер типа кэша
+        * в данный момент доступны следующие ID:
+        * CDummyCache - Пустышка, не производит кэширование данных (так же можно удалить массив с виджетом, тогда по дефолту ему выстовится CDummyCache)
+        * CFileCache - Кэширование по средством файлов
+        *
+        * что бы добавить свой тип кэширования, необходимо в компоненты добавить следующую строчку:
+        * 'CFileCache' => array('class' => 'CFileCache')  т.е. 'cacheID' => array('class' => 'ClassName'),
+    */
         'widgetList' => array(
+            'blocksnewswidget' => array(
+                'duration' => 86400,
+                'cacheID' => 'CFileCache',
+            ),
             'menuwidget' => array(
                 'duration' => 86400,
                 'cacheID' => 'CFileCache',
             ),
+            'fotoNewsWidget' => array(
+                'duration' => 86400,
+                'cacheID' => 'CFileCache',
+            ),
         ),
-	),
+    ),
 
     'controllerMap'=>array(
         'min'=>array(

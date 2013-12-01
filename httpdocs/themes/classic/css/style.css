@@ -55,7 +55,7 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
 #Menu
 {
     float: right;
-    background: url( ../images/menu_bg.png ) no-repeat; width: 734px;height: 136px;
+    background: url( ../images/menu_bg.png ) no-repeat; width: 826px;height: 136px;
 }
 
 *HTML #Main
@@ -2013,3 +2013,23 @@ zoom: 1;
 }
 .DLItem .TImage{width: 200px;height: 120px;overflow: hidden;border-radius: 10px;border: 3px solid #afafaf;box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);}
 #gallery{width: 668px;margin: 0px auto;}
+
+.listGallery{overflow: hidden;text-align: center;}
+.LGItem{overflow:hidden;text-align:center;display: inline-block;margin:3px;padding: 3px;width: 108px;height: 140px;
+    background: #fefcea; /* Для старых браузров */
+    background: -moz-linear-gradient(top, #fff, #dfdfff); /* Firefox 3.6+ */
+    /* Chrome 1-9, Safari 4-5 */
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#fff), color-stop(100%,#dfdfff));
+    /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-linear-gradient(top, #fff, #dfdfff);
+    background: -o-linear-gradient(top, #fff, #dfdfff); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fff, #dfdfff); /* IE10 */
+    background: linear-gradient(top, #fff, #dfdfff); /* CSS3 */
+
+    box-shadow: 0px 0px 3px #afafaf;
+}
+.LGItem div{height: 100px;overflow: hidden;}
+.LGItem div img{border-radius: 6px;}
+.LGItem a{font-size: 12px;}
+.LGItem input{width: 104px;font-size: 11px;}

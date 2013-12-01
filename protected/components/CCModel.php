@@ -563,7 +563,7 @@
 
                 if( is_object( $this->$value ) )$this->$value =  $this->$value->id;
 
-                $this->$value = str_replace("'", "&#039;", $this->$value);
+                $this->$value = SiteHelper::checkedVaribal( $this->$value );
                 $sqlField .= "'".$this->$value."'";
                 $sqlUpdateField .= "`".trim( $value )."`='".$this->$value."'";
             }

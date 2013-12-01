@@ -335,6 +335,7 @@ class SiteHelper
         if( $type == "int" )$value = abs( (int)$value );
         if( $type == "string" )
         {
+            $value = str_replace("'", "&#039;", $value);
             $value = trim( strip_tags( $value ) );
         }
         return $value;
