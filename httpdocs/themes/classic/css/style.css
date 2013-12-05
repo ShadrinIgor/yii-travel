@@ -2033,3 +2033,38 @@ zoom: 1;
 .LGItem div img{border-radius: 6px;}
 .LGItem a{font-size: 12px;}
 .LGItem input{width: 104px;font-size: 11px;}
+
+.listItemsImages{width: 120px;height: 120px;}
+.LII_1, .LII_2, .LII_3{background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
+.LII_1{z-index: 99999;}
+.LII_2{z-index: 88888;
+    /* Safari */-webkit-transform: rotate(-10deg);
+    /* Firefox */-moz-transform: rotate(-10deg);
+    /* IE */-ms-transform: rotate(-10deg);
+    /* Opera */-o-transform: rotate(-10deg);
+    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    opacity: 0.6;
+}
+
+.LII_3{z-index: 77777;
+    /* Safari */-webkit-transform: rotate(10deg);
+    /* Firefox */-moz-transform: rotate(10deg);
+    /* IE */-ms-transform: rotate(10deg);
+    /* Opera */-o-transform: rotate(10deg);
+    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    opacity: 0.6;
+}
+
+.listItemsImages:hover .LII_1, .listItemsImages:hover .LII_2, .listItemsImages:hover .LII_3{box-shadow: 0px 0px 10px rgba(0,0,0,0.8);}
+
+.listItemsImages:hover .LII_2
+{
+    -webkit-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
+    -moz-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
+    animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
+}
+.listItemsImages:hover .LII_3{
+    -webkit-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+    -moz-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+    animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+}

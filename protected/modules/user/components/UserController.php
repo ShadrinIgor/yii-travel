@@ -5,6 +5,16 @@ class UserController extends Controller
     var $addModel;
     var $tableName;
     var $name;
+
+    public function init()
+    {
+        if( Yii::app()->user->isGuest )
+        {
+            Yii::app()->session['redirect'] = $_SERVER["REQUEST_URI"];
+            $this->redirect( SiteHelper::createUrl( "/user" ) );
+        }
+    }
+
     public function actionNopublish()
     {
         if( !Yii::app()->user->isGuest )
@@ -158,7 +168,7 @@ class UserController extends Controller
                             print_r( $addGallery->getErrors() );
 
                     }
-                    $this->redirect( SiteHelper::createUrl("/catalog/add/saveImages/", array( "id"=>$id  )) );
+                    $this->redirect( SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description/", array( "id"=>$id  )) );
                 }
                 else
                 {

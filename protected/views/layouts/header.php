@@ -20,6 +20,7 @@
     $cs->registerCssFile($baseUrl.'/css/style.css');
     $cs->registerCssFile($baseUrl.'/css/style2.css');
     $cs->registerCssFile($baseUrl.'/css/b_style.css');
+    $cs->registerCssFile($baseUrl.'/css/animation.css');
 
     $cs->registerCssFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.css');
     $this->getJsFiles( $cs );

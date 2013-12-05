@@ -97,14 +97,15 @@ class ImageHelper
         return Yii::app()->getTheme()->getBaseUrl()."/images/no-image.png";
     }
 
-    static public function getImages( CCModel $itemObject )
+    static public function getImages( CCModel $itemObject, $limit = 0 )
     {
         if( $itemObject->id >0 )
         {
             $tableName = $itemObject->tableName();
             $queryParams = DBQueryParamsClass::CreateParams()
                 ->setConditions( "item_id=:id" )
-                ->setParams( array( ":id"=>$itemObject->id ) );
+                ->setParams( array( ":id"=>$itemObject->id ) )
+                ->setLimit( $limit );
 
             return CatGallery::fetchAll( $queryParams );
         }

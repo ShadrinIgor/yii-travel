@@ -44,9 +44,11 @@ $this->widget('addressLineWidget', array(
             <?php endforeach; ?>
 
         </div>
-        <div class="textAlignCenter">
-            <input type="submit" name="saveTitle" value="Сохранить описание" />&nbsp;
-        </div>
+        <?php if( sizeof( $listGallery )>0 ) : ?>
+            <div class="textAlignCenter">
+                <input type="submit" name="saveTitle" value="Сохранить описание" />&nbsp;
+            </div>
+        <?php endif; ?>
         </form>
         <div class="textAlignCenter">
             <input type="button" class="openDisplayNone" value="Добавить фото" />

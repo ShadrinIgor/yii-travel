@@ -11,6 +11,7 @@
 <table id="tableListItems">
     <tr>
         <th class="TLFId">№</th>
+        <th class="">Фото</th>
         <th class="TLFName">Заголовок</th>
         <th class="TLFType">Страна</th>
         <th>Статус</th>
@@ -21,6 +22,17 @@
     ?>
     <tr <?= $item->is_hot==1 ? 'class="isHot"' : "" ?>>
         <td><?= $item->id ?></td>
+        <td>
+            <?php
+                $listImages = ImageHelper::getImages( $item, 3 );
+                if( sizeof( $listImages ) >0 ) : ?>
+                    <div class="listItemsImages">
+                       <?php $i=1;foreach( $listImages as $LItem ) : ?>
+                           <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
+                       <?php $i++;endforeach; ?>
+                    </div>
+                <?php endif;?>
+        </td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/user/hotels/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>
         </td>
