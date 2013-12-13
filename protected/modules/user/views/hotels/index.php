@@ -24,14 +24,21 @@
         <td><?= $item->id ?></td>
         <td>
             <?php
-                $listImages = ImageHelper::getImages( $item, 3 );
-                if( sizeof( $listImages ) >0 ) : ?>
-                    <div class="listItemsImages">
-                       <?php $i=1;foreach( $listImages as $LItem ) : ?>
-                           <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                       <?php $i++;endforeach; ?>
-                    </div>
-                <?php endif;?>
+            if( empty( $item->image ) )$countImages = 4;
+            else $countImages = 3;
+
+            $listImages = ImageHelper::getImages( $item, $countImages );
+            if( sizeof( $listImages ) >0 || $item->image ) : ?>
+                <div class="listItemsImages">
+                    <?php if( $item->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $item->image, 3 ) ?>" alt="" /></div><?php endif; ?>
+                    <?php
+                    if( $item->image )$i=2;
+                    else $i=1;
+                    foreach( $listImages as $LItem ) : ?>
+                        <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
+                        <?php $i++;endforeach; ?>
+                </div>
+            <?php endif;?>
         </td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/user/hotels/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>

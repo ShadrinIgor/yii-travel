@@ -673,6 +673,20 @@
      }
 
      /*
+    * @desc Функция для проверки дубликатов в CCModel::rules()
+    */
+     public function duplicate()
+     {
+         if( !$this->hasErrors() && !empty( $this->name ) )
+         {
+             $modelClass = SiteHelper::getCamelCase( $this->tableName() );
+             if( $this->id>0 )$res = $modelClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "name=:name AND id!=:id" )->setParams( array(":name"=>$this->name, ":id"=>$this->id ) ) );
+                         else $res = $modelClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "name=:name" )->setParams( array(":name"=>$this->name ) ) );
+             if( sizeof( $res )>0 )$this->addError( "Ошибка обавление", "Указанное название уже зарегестрированно в базе, чтобы посмотреть запись перейдите по <a href=\"".SiteHelper::createUrl( "/".Yii::app()->controller->getId()."/description", array( "id"=>$res[0]->id, "slug"=>$res[0]->slug ) )."\" title=\"".$res[0]->name."\">ссылке</a>" );
+         }
+     }
+
+     /*
     * @desc Возврощает описание одной связи по полю
     * @param string $fieldName Название поля которое имеет связь
     * @return array $relationArray Масив - описание одной связи

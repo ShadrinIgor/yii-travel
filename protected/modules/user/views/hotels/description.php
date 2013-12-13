@@ -77,7 +77,7 @@ $this->widget('addressLineWidget', array(
         <tr>
             <td></td>
             <td>
-                <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/hotels") ?>';" name="update" value="Отмена" />&nbsp;
+                <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()) ?>';" name="update" value="Отмена" />&nbsp;
                 <input type="submit" name="update" value="Сохранить" />
             </td>
         </tr>
@@ -86,7 +86,6 @@ $this->widget('addressLineWidget', array(
 
     <?php if( $item->id>0 ) : ?>
         <br/>
-        <?php if( sizeof( $listComments ) == 0 ) : ?><div class="textAlignCenter">Пользовательских комментариев для данной записи не найдено</div><?php endif; ?>
         <?php if( sizeof( $listComments )>0 ) : ?>
             <h2>Коментарии</h2>
             <?= $comMessage ? '<div class="messageSummary">'.$comMessage.'</div>' : "" ?>
@@ -115,8 +114,8 @@ $this->widget('addressLineWidget', array(
                         </td>
                         <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? "нет" : "да" ?></td>
                         <td>
-                            <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
-                            <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
+                            <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
+                            <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

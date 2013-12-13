@@ -103,4 +103,110 @@
 }
 /* ------- end( анимация выезжающих картинок справа ) --------- */
 
+/* ------- Анимация выезжающих картинок слева 2 --------- */
 
+/* для браузеров Webkit */
+@-webkit-keyframes imageRotateRight2 {
+    0%{
+        -webkit-transform: rotate(20deg);
+        margin-left: 0px;
+        margin-top: 0px;
+        opacity: 0.6;
+    }
+    100% {
+        -webkit-transform: rotate(40deg);
+        margin-left: 95px;
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+/* для Firefox */
+@-moz-keyframes imageRotateRight2 {
+    0%{
+        -moz-transform: rotate(20deg);
+        margin-left: 0px;
+        margin-top: 0px;
+        opacity: 0.6;
+    }
+    100% {
+        -moz-transform: rotate(40deg);
+        margin-left: 95px;
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+/* Задел на будущее: для браузеров, поддеживающих безвендорный синтаксис */
+@keyframes imageRotateRight2 {
+    0%{
+        /* IE */-ms-transform: rotate(20deg);
+        /* Opera */-o-transform: rotate(20);
+        /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+        margin-left:0px;
+        margin-top: 0px;
+        opacity: 0.6;
+    }
+    100% {
+        /* IE */-ms-transform: rotate(40deg);
+        /* Opera */-o-transform: rotate(40deg);
+        /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+
+        margin-left: 95px;
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+/* ------- end( анимация выезжающих картинок справа 2 ) --------- */
+
+
+/* ------- Анимация выезжающих картинок слева 2 ------- */
+/* для браузеров Webkit */
+@-webkit-keyframes imageRotateLeft2   {
+    0%{
+        -webkit-transform: rotate(-20deg);
+        margin-left: 0px;
+        margin-top: 0px;
+        opacity: 0.6;
+    }
+    100% {
+        -webkit-transform: rotate(-40deg);
+        margin-left: -95px;
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+/* для Firefox */
+@-moz-keyframes imageRotateLeft2   {
+    0%{
+        -moz-transform: rotate(-20deg);
+        margin-left: 0px;
+        margin-top: 0px;
+        opacity: 0.6;
+    }
+    100% {
+        -moz-transform: rotate(-40deg);
+        margin-left: -95px;
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+/* Задел на будущее: для браузеров, поддеживающих безвендорный синтаксис */
+@keyframes imageRotateLeft2   {
+    0%{
+        /* IE */-ms-transform: rotate(-20deg);
+        /* Opera */-o-transform: rotate(-20);
+        /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+        margin-left:0px;
+        margin-top: 0px;
+        opacity: 0.6;
+    }
+    100% {
+        /* IE */-ms-transform: rotate(-40deg);
+        /* Opera */-o-transform: rotate(-40deg);
+        /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+
+        margin-left: -95px;
+        margin-top: 60px;
+        opacity: 1;
+    }
+}
+/* ------- end of ( Анимация выезжающих картинок слева 2 ) --------- */

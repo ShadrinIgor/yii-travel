@@ -1563,7 +1563,7 @@ zoom: 1;
     margin: 10px 0px 5px 0px;
 }
 
-#FCCentr h2{text-align: center;font-size: 18px;color:#DC5800;border-bottom: 1px solid #ff9249; }
+#FCCentr h2{margin-top: 0px;text-align: center;font-size: 18px;color:#DC5800;border-bottom: 1px solid #ff9249; }
 
 #counters
 {
@@ -1910,11 +1910,10 @@ zoom: 1;
 
 .tableForm th, .tableForm td {padding: 4px 10px;border-bottom: 1px solid #afafaf;text-align: left;}
 .tableForm th{width: 200px;}
-.tableForm td{width: 300px;}
-.tableForm td textarea{width: 315px;border: 1px solid #afafaf;}
-.tableForm td input[type=url], .tableForm td input[type=email], .tableForm td input[type=text],.tableForm td input[type=password]{width: 300px;padding: 4px 10px;border: 1px solid #afafaf;}
+.tableForm td textarea{width: 415px;border: 1px solid #afafaf;}
+.tableForm td input[type=url], .tableForm td input[type=email], .tableForm td input[type=text],.tableForm td input[type=password]{width: 400px;padding: 4px 10px;border: 1px solid #afafaf;}
 .tableForm td input[type=submit]{width: auto;}
-.tableForm td select {width: 320px;padding: 4px 10px;border: 1px solid #afafaf;}
+.tableForm td select {width: 420px;padding: 4px 10px;border: 1px solid #afafaf;}
 
 #tableListItems, .tableListItems{width: 100%;}
 #tableListItems th, .tableListItems th{
@@ -1956,7 +1955,7 @@ zoom: 1;
     background: -o-linear-gradient(top, #ffffff, #f2d3d3); /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #ffffff, #f2d3d3); /* IE10 */
     background: linear-gradient(top, #ffffff, #f2d3d3); /* CSS3 */
-    margin: 10px 5px 0px 5px;
+    margin: 10px 25px 0px 25px;
 }
 
 .messageSummary
@@ -2012,7 +2011,7 @@ zoom: 1;
     background: linear-gradient(top, #fff, #efefef); /* CSS3 */
 }
 .DLItem .TImage{width: 200px;height: 120px;overflow: hidden;border-radius: 10px;border: 3px solid #afafaf;box-shadow: 0px 0px 5px rgba(0,0,0, 0.8);}
-#gallery{width: 668px;margin: 0px auto;}
+#gallery{width: 631px;margin: 0px auto;border: 1px solid #afafaf;padding: 10px;border-radius: 12px;}
 
 .listGallery{overflow: hidden;text-align: center;}
 .LGItem{overflow:hidden;text-align:center;display: inline-block;margin:3px;padding: 3px;width: 108px;height: 140px;
@@ -2035,7 +2034,7 @@ zoom: 1;
 .LGItem input{width: 104px;font-size: 11px;}
 
 .listItemsImages{width: 120px;height: 120px;}
-.LII_1, .LII_2, .LII_3{background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
+.LII_1, .LII_2, .LII_3, .LII_4, .LII_5{background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
 .LII_1{z-index: 99999;}
 .LII_2{z-index: 88888;
     /* Safari */-webkit-transform: rotate(-10deg);
@@ -2043,7 +2042,6 @@ zoom: 1;
     /* IE */-ms-transform: rotate(-10deg);
     /* Opera */-o-transform: rotate(-10deg);
     /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-    opacity: 0.6;
 }
 
 .LII_3{z-index: 77777;
@@ -2052,20 +2050,48 @@ zoom: 1;
     /* IE */-ms-transform: rotate(10deg);
     /* Opera */-o-transform: rotate(10deg);
     /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-    opacity: 0.6;
 }
 
-.listItemsImages:hover .LII_1, .listItemsImages:hover .LII_2, .listItemsImages:hover .LII_3{box-shadow: 0px 0px 10px rgba(0,0,0,0.8);}
+.LII_4{z-index: 66666;
+    /* Safari */-webkit-transform: rotate(20deg);
+    /* Firefox */-moz-transform: rotate(20deg);
+    /* IE */-ms-transform: rotate(20deg);
+    /* Opera */-o-transform: rotate(20deg);
+    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+}
 
-.listItemsImages:hover .LII_2
+.LII_5{z-index: 66666;
+    /* Safari */-webkit-transform: rotate(-20deg);
+    /* Firefox */-moz-transform: rotate(-20deg);
+    /* IE */-ms-transform: rotate(-20deg);
+    /* Opera */-o-transform: rotate(-20deg);
+    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+}
+
+.listItemsImages:hover .LII_1, .listItemsImages:hover .LII_2, .listItemsImages:hover .LII_3, .listItemsImages:hover .LII_4, .listItemsImages:hover .LII_5{box-shadow: 0px 0px 10px rgba(0,0,0,0.8);}
+
+.listItemsImages:hover .LII_2, #tableListItems tr:hover .LII_2
 {
     -webkit-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
 }
-.listItemsImages:hover .LII_3
+.listItemsImages:hover .LII_3, #tableListItems tr:hover .LII_3
 {
     -webkit-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
 }
+.listItemsImages:hover .LII_4, #tableListItems tr:hover .LII_4
+{
+    -webkit-animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
+    -moz-animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
+    animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
+}
+.listItemsImages:hover .LII_5, #tableListItems tr:hover .LII_5
+{
+    -webkit-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
+    -moz-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
+    animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
+}
+.colorRad{color:#ff0000;}

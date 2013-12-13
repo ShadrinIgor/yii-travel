@@ -236,8 +236,9 @@ class UserController extends Controller
             Yii::app()->page->title = "Описание";
 
             $id = (int)Yii::app()->request->getParam("id", 0);
-            if( !empty( $id ) )$item = CatalogHotelsAdd::fetch( $id );
-            else $item = new CatalogHotelsAdd();
+            $addClass = $this->addModel;
+            if( !empty( $id ) )$item = $addClass::fetch( $id );
+                          else $item = new $addClass();
 
             $message = "";
 
@@ -245,18 +246,21 @@ class UserController extends Controller
             if( !empty( $_POST["update"] ) )
             {
                 if( !$item->id )$isAdd = true;
-                else $isAdd = false;
+                    else $isAdd = false;
 
-                $item->setAttributesFromArray( $_POST["CatalogHotelsAdd"] );
-                $item->is_resume = 0;
+                $item->setAttributesFromArray( $_POST[ $addClass ] );
+                //$item->is_resume = 0;
                 if( !$item->date )$item->date = time();
                 $item->user_id = Yii::app()->user->getId();
+
                 if( $item->save() )
                 {
-                    if( !$isAdd )$message = "Описание успешно обновленно";
-                    else $message = "Отель успешно добавлен";
+                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/save/", array("id"=>$item->id) ) );
+                    die;
+                    //if( !$isAdd )$message = "Описание успешно обновленно";
+                    //        else $message = "Запись успешно добавлена";
                 }
-                else $message = "Произошла ошибка обновления описания";
+//                    else $message = "Произошла ошибка обновления описания";
             }
 
             $action = Yii::app()->request->getParam( "action" );
@@ -314,4 +318,18 @@ class UserController extends Controller
         }
     }
 
+    public function actionSave()
+    {
+        $id = (int)Yii::app()->request->getParam("id", 0);
+        $addClass = $this->addModel;
+        if( !empty( $id ) )$item = $addClass::fetch( $id );
+                      else $item = new $addClass();
+
+        $message="Сохраненно";
+        $addImage = new CatGalleryAdd();
+        $listComments = CatComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
+        $listGallery = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
+
+        $this->render( "description", array( "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>"", "gallMessage"=>"", "listComments"=>$listComments ) );
+    }
 }

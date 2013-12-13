@@ -105,7 +105,8 @@ class ImageHelper
             $queryParams = DBQueryParamsClass::CreateParams()
                 ->setConditions( "item_id=:id" )
                 ->setParams( array( ":id"=>$itemObject->id ) )
-                ->setLimit( $limit );
+                ->setLimit( $limit )
+                ->setCache(0);
 
             return CatGallery::fetchAll( $queryParams );
         }

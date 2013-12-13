@@ -14,6 +14,7 @@
     $cs->scriptMap=array();
     $baseUrl=$Theme->getBaseUrl();
     $cs->registerCoreScript('jquery');
+    $cs->registerScriptFile($baseUrl.'/js/tiny_mce/tiny_mce.js');
     $cs->registerScriptFile($baseUrl.'/js/functions.js');
     $cs->registerScriptFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.js');
 

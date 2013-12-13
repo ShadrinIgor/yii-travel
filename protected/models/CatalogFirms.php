@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_firms".
    */
-class CatalogFirms extends CCmodel
+class CatalogFirms extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
@@ -25,12 +25,14 @@ class CatalogFirms extends CCmodel
     protected $category_id; // integer 
     protected $col; // integer 
     protected $slug; // string 
+    protected $user_id; // integer 
 
 /*
 * Поля - связи
 */
     protected $catalogAksiis; //  CatalogAksii
     protected $catalogTours; //  CatalogTours
+    protected $catalogWorks; //  CatalogWork
 
 
     public function attributeNames()
@@ -59,12 +61,13 @@ class CatalogFirms extends CCmodel
 			array('name, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
 			array('email, www, tel, fax', 'length', 'max'=>50),
-			array('image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug', 'safe'),
+			array('description, address', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug', 'safe', 'on'=>'search'),
+			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe', 'on'=>'search'),
 		);
 	}
+
 
 	/**
 	 * @return array relational rules.
@@ -75,10 +78,12 @@ class CatalogFirms extends CCmodel
 		// class name for the relations automatically generated below.
 		return array(
 			'catalogAksiis' => array(self::HAS_MANY, 'CatalogAksii', 'firm_id'),
+			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogFirmCategory', 'category_id'),
 			'catalogTours' => array(self::HAS_MANY, 'CatalogTours', 'firm_id'),
+			'catalogWorks' => array(self::HAS_MANY, 'CatalogWork', 'firm_id'),
 		);
 	}
 
@@ -89,25 +94,26 @@ class CatalogFirms extends CCmodel
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Имя',
-			'description' => 'Description',
+			'name' => 'Название фирмы',
+			'description' => 'Описание',
 			'pos' => 'Pos',
-			'country_id' => 'Country',
-			'city_id' => 'City',
-			'image' => 'Image',
+			'country_id' => 'Страна',
+			'city_id' => 'Город',
+			'image' => 'Логотип',
 			'email' => 'Email',
 			'www' => 'Www',
-			'tel' => 'Tel',
+			'tel' => 'Телефон',
 			'del' => 'Del',
 			'tours_count' => 'Tours Count',
 			'hotels_count' => 'Hotels Count',
 			'kurorts_count' => 'Kurorts Count',
 			'service_count' => 'Service Count',
-			'fax' => 'Fax',
-			'address' => 'Address',
+			'fax' => 'Факс',
+			'address' => 'Адрес',
 			'category_id' => 'Category',
 			'col' => 'Col',
 			'slug' => 'Slug',
+			'user_id' => 'Пользователь',
 		);
 	}
 
@@ -142,6 +148,7 @@ class CatalogFirms extends CCmodel
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('col',$this->col);
 		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('user_id',$this->user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
