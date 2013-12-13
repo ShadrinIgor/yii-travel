@@ -53,25 +53,30 @@
              if( $QueryParams->getFields() )$fields = $QueryParams->getFields();
                                        else $fields = "*";
 
+             // Расчет отступа от строк исходя из выбранной страницы
+             if( $QueryParams->getLimit() >0 && $QueryParams->getPage()>0 )$offset = ($QueryParams->getPage()-1)*$QueryParams->getLimit();
+                                                                      else $offset = $QueryParams->getPage();
              $arrayOffer = Yii::app()->db->cache( $QueryParams->getCache() )->createCommand()
                 ->select( $fields )
                 ->from( $dopWhere )
                 ->where( $QueryParams->getConditions(), $QueryParams->getParams() )
                 ->order( $QueryParams->getOrderBy() )
                 ->limit( $QueryParams->getLimit() )
-                ->offset( $QueryParams->getPage() )
+                ->offset( $offset )
                 ->group( $QueryParams->getGroup() )
                 ->queryAll();
 
-/*             echo Yii::app()->db->cache( $QueryParams->getCache() )->createCommand()
+             /*
+             echo Yii::app()->db->cache( $QueryParams->getCache() )->createCommand()
                  ->select( $fields )
                  ->from( $dopWhere )
                  ->where( $QueryParams->getConditions(), $QueryParams->getParams() )
                  ->order( $QueryParams->getOrderBy() )
                  ->limit( $QueryParams->getLimit() )
-                 ->offset( $QueryParams->getPage() )
+                 ->offset( $offset )
                  ->group( $QueryParams->getGroup() )
-                 ->getText();*/
+                 ->getText();
+             echo "-->";*/
 
          }
             elseif( is_a( $QueryParams, "CDbCriteria" )  )
@@ -563,7 +568,7 @@
 
                 if( is_object( $this->$value ) )$this->$value =  $this->$value->id;
 
-                $this->$value = SiteHelper::checkedVaribal( $this->$value );
+                $this->$value = str_replace("'", "&#039;", $this->$value);
                 $sqlField .= "'".$this->$value."'";
                 $sqlUpdateField .= "`".trim( $value )."`='".$this->$value."'";
             }

@@ -79,6 +79,10 @@ class UserController extends Controller
                 $item = $tableName::fetch( $id );
                 if( $item->id && $item->user_id->id == Yii::app()->user->getId() )
                 {
+                    foreach( CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions(" item_id=:itemId AND catalog=:catalog ")
+                                ->setParams( array( ":itemId"=>$item->id, ":catalog"=>$item->tableName() ) ) ) as $galItem )
+                            $galItem->delete();
+
                     $message = "Запись удалена";
                     $item->delete();
 

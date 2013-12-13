@@ -163,10 +163,10 @@ class CCmodelHelper
         {
             $cout .=
                 '<tr>
-                    <th width="150">Код проверки: <font class="redColor">*</font></th>
+                    <th width="150">'.Yii::t("system", "Verification code").': <font class="redColor">*</font></th>
                     <td>';
 
-            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '<br>[обновить картинку]'), true);
+            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '<br>['.Yii::t("system", "new code").']'), true);
 
             $cout .=  CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' )) .'
                     </td>
@@ -223,10 +223,10 @@ class CCmodelHelper
         {
             $cout = "";
 
-            // Если форма редактирования открыта в административную панель управления то даем возможность выбора OWNER позиций
-            if( Yii::app()->controller->module && Yii::app()->controller->module->getId() != "console" )
+            // Если форма редактирования открыто в консоле то даем возможность выбора OWNER позиций
+            if( Yii::app()->controller->module->getId() != "console" )
             {
-                foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0) )->setLimit(-1)->setOrderBy("pos, name") ) as $relationData )
+                foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0))->setCache(0)->setLimit(-1)->setOrderBy("pos, name") ) as $relationData )
                 {
                     $cout .= '<optgroup label="'.$relationData->name.'">';
                     foreach( $formClass::findByAttributes( array("owner"=>$relationData->id) ) as $relationData2 )
@@ -259,7 +259,7 @@ class CCmodelHelper
                     }
 
                     $cout .= '<option value="'.$relationData->id.'" '.$sel_.'>'.$relationData->name.'</option>';
-                    foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "owner=:owner" )->setParams( array("owner"=>$relationData->id) )->setOrderBy("name")->setLimit(-1) ) as $relationData2 )
+                    foreach( $formClass::findByAttributes( array("owner"=>$relationData->id) ) as $relationData2 )
                     {
                         if( $relationData2->id == $form->$fieldName )$sel = "selected";
                             else $sel = "";
@@ -298,11 +298,14 @@ class CCmodelHelper
         return $cout;
     }
 
-    static function getInputField( CCModel $form, $field, $needEmpty = true )
+    static function getInputField( CCModel $form, $field, $needEmpty = true, $defaultValue = "", $defaultValue2 = "" )
     {
         $listType = $form->fieldType();
         $tableClass = SiteHelper::getCamelCase( $form->tableName() );
         $value = !empty( $_POST[$tableClass] ) && !empty( $_POST[$tableClass][$field] ) ? $_POST[$tableClass][$field] : "";
+        $value2 = !empty( $_POST[$tableClass] ) && !empty( $_POST[$tableClass][$field."_2"] ) ? $_POST[$tableClass][$field."_2"] : "";
+        if( empty( $value ) && !empty( $defaultValue ) )$value = $defaultValue;
+        if( empty( $value2 ) && !empty( $defaultValue2 ) )$value2 = $defaultValue2;
         $HTMLOption = "";
         $fieldType = $form->fieldType();
 
@@ -317,7 +320,7 @@ class CCmodelHelper
                 case "url"              :$input= CHtml::activeUrlField( $form, $field ); break;
                 case "date"             :
                     $input= "от: ".CHtml::textField( $fieldName, $value, array("class"=>"yearField") );
-                    $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value, array("class"=>"yearField") );
+                    $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value2, array("class"=>"yearField") );
                     break;
             }
         }
@@ -338,10 +341,8 @@ class CCmodelHelper
         {
             if( !empty( $fieldType[$field] ) && $fieldType[$field] == "integer" )
             {
-                $value_2 = !empty( $_POST[$tableClass] ) && !empty( $_POST[$tableClass][$field."_2"] ) ? $_POST[$tableClass][$field."_2"] : "";
-
                 $input= "от: ".CHtml::textField( $fieldName, $value, array("class"=>"yearField") );
-                $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value_2, array("class"=>"yearField") );
+                $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value2, array("class"=>"yearField") );
             }
                 else
                     $input= CHtml::activeTextField( $form, $field );

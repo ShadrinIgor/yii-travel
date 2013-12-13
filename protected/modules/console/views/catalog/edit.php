@@ -7,14 +7,37 @@
 
 <table align="center" class="editTable">
     <?= CCmodelHelper::addForm( $form ); ?>
+</table>
+<br/>
+<div id="relationItems">
+    <?php foreach( $form->relations() as $relation ) : ?>
+        <?php if( $relation[0] == CCModel::HAS_MANY || $relation[0] == CCModel::MANY_MANY ) : // Связь многие ко многим или многоие к одному?>
+            <h3><?= $relation[1] ?></h3>
+            <div class="listItems">
+                <?php
+                    // Собираем ID значание из связанной таблицы в масив чтобы потом проверять  м т
+                    $listValue = array();
+                    foreach( CatRelations::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("leftId=:leftId AND leftClass=:leftClass AND rightClass=:rightClass")->setParams( array( ":leftId"=>$form->id, ":leftClass"=>SiteHelper::getCamelCase( $form->tableName() ), ":rightClass"=>$relation[1] ) )->setCache(0) ) as $itemValue )
+                        $listValue[] = $itemValue->rightId;
+
+                    foreach( RelationHelper::getRelationItems( $relation ) as $relationItem ) :
+                ?>
+                    <div><input type="checkbox" <?= in_array( $relationItem->id, $listValue ) ? "checked=\"checked\"" : "" ?> name="<?= SiteHelper::getCamelCase( $form->tableName() )."[".$relation[1] ?>][]" value="<?= $relationItem->id ?>" id="item_<?= $relation[2] ?>_<?= $relationItem->id ?>" /><label for="item_<?= $relation[2] ?>_<?= $relationItem->id ?>"><?= $relationItem->name ?></label></div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+<br/>
+<table align="center" class="editTable">
     <tr>
-        <td></td>
         <td>
             <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/console/catalog").$controller->params ?>';" value="Отмена" />&nbsp;
             <input type="submit" name="submit_update" value="Сохранить" />
         </td>
     </tr>
 </table>
+
 </form>
 <br/>
 <h2>Галлерея</h2>
