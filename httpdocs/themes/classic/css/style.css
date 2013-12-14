@@ -1915,7 +1915,7 @@ zoom: 1;
 .tableForm td input[type=submit]{width: auto;}
 .tableForm td select {width: 420px;padding: 4px 10px;border: 1px solid #afafaf;}
 
-#tableListItems, .tableListItems{width: 100%;}
+#tableListItems, .tableListItems{width: 100%;padding: 0px 10px;}
 #tableListItems th, .tableListItems th{
     background: #fefcea; /* Для старых браузров */
     background: -moz-linear-gradient(top, #fff, #dfdfff); /* Firefox 3.6+ */

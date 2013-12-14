@@ -4,7 +4,7 @@
         'links'=>array( "Мои фирмы" ),
     ));
 ?>
-<h1>Мои фирмы</h1>
+<h1>Мои курорты/зоны отдыха/дачи</h1>
 <?php if( $message ) :?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>
@@ -41,18 +41,18 @@
                 <?php endif;?>
         </td>
         <td>
-            <a href="<?= SiteHelper::createUrl( "/user/firms/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>
+            <a href="<?= SiteHelper::createUrl( "/user/resort/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>
         </td>
         <td><?= $item->country_id->name.", ".$item->city_id->name ?></td>
         <td class="textAlignCenter"><?= ( $item->is_active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
         <td class="textAlignCenter">
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">
-                <a href="<?= SiteHelper::createUrl("/user/firms/description", array("id"=>$item->id)) ?>">Описание</a><br/>
+                <a href="<?= SiteHelper::createUrl("/user/resort/description", array("id"=>$item->id)) ?>">Описание</a><br/>
                 <?php if( $item->is_active == 1 ) : ?>
-                    <a href="<?= SiteHelper::createUrl("/user/firms/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/user/resort/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/>
                 <?php else : ?>
-                    <a href="<?= SiteHelper::createUrl("/user/firms/publish", array("id"=>$item->id)) ?>">Опубликовать</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/user/resort/publish", array("id"=>$item->id)) ?>">Опубликовать</a><br/>
                 <?php endif; ?>
 
                 <div class="popup PMarginLeft">
@@ -60,7 +60,7 @@
                     <b>Вы действительно хотите удалить запись?</b>
                     <br/><br/>
                     <a href="#" class="PCancel">Отмена</a>&nbsp;|&nbsp;
-                    <a href="<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$item->id)) ?>">Удалить</a>
+                    <a href="<?= SiteHelper::createUrl("/user/resort/delete", array("id"=>$item->id)) ?>">Удалить</a>
                 </div>
                 <a href="#" class="PDel">Удалить</a>
             </div>
@@ -72,6 +72,6 @@
     <br/>
     <br/>
     <center>
-        <a href="<?= SiteHelper::createUrl("/user/firms/description") ?>">Добавить фирму</a>
+        <a href="<?= SiteHelper::createUrl("/user/resort/description") ?>">Добавить запись</a>
     </center>
 </div>

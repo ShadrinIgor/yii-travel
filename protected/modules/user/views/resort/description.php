@@ -2,12 +2,12 @@
 <?php
 $this->widget('addressLineWidget', array(
     'links'=>array(
-                    "Мои фирмы"=>SiteHelper::createUrl( "/user/hotels" ),
+                    "Зоны отдыха"=>SiteHelper::createUrl( "/user/resort" ),
                     "Описание"
                   ),
 ));
 ?>
-<h1>Описание фирмы</h1>
+<h1>Описание зоны отдаха</h1>
 <?php echo CHtml::errorSummary($item); ?><br>
 <?php if( !empty( $message ) ) : ?>
     <div class="messageSummary"><?= $message ?></div>

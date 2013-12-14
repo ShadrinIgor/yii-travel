@@ -22,6 +22,7 @@ class CatalogKurorts extends CCModel
     protected $col; // integer 
     protected $category_id; // integer 
     protected $slug; // string 
+    protected $user_id; // integer 
 
 /*
 * Поля - связи
@@ -55,11 +56,10 @@ class CatalogKurorts extends CCModel
 			array('image', 'length', 'max'=>100),
 			array('email', 'length', 'max'=>50),
 			array('price', 'length', 'max'=>25),
-            array('category_id, country_id, city_id', 'search'),
+			array('location', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, description, pos, country_id, city_id, image, del, location, www, email, telefon, price, firms_count, col, category_id, slug', 'safe'),
-            array('id, name, description, pos, country_id, city_id, image, del, location, www, email, telefon, price, firms_count, col, category_id, slug', 'safe', 'on'=>'search'),
+			array('id, name, description, pos, country_id, city_id, image, del, location, www, email, telefon, price, firms_count, col, category_id, slug, user_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +71,7 @@ class CatalogKurorts extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogKurortsCategory', 'category_id'),
@@ -87,8 +88,8 @@ class CatalogKurorts extends CCModel
 			'name' => 'Name',
 			'description' => 'Description',
 			'pos' => 'Pos',
-			'country_id' => 'Страна',
-			'city_id' => 'Город',
+			'country_id' => 'Country',
+			'city_id' => 'City',
 			'image' => 'Image',
 			'del' => 'Del',
 			'location' => 'Location',
@@ -98,7 +99,9 @@ class CatalogKurorts extends CCModel
 			'price' => 'Price',
 			'firms_count' => 'Firms Count',
 			'col' => 'Col',
-			'category_id' => 'Категория',
+			'category_id' => 'Category',
+			'slug' => 'Slug',
+			'user_id' => 'User',
 		);
 	}
 
@@ -130,6 +133,7 @@ class CatalogKurorts extends CCModel
 		$criteria->compare('col',$this->col);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('user_id',$this->user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
