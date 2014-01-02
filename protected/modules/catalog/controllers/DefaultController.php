@@ -12,41 +12,40 @@ class DefaultController extends Controller
 
         $cid = (int)Yii::app()->request->getParam("cid", 0);
 
-        $finishDate = time() - 60*60*24*30;
         if( !empty( $cid ) )
         {
-            $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "status_id=1 AND `date`>=:date AND category_id=:cid" )->setParams(array(":date"=>$finishDate, ":cid"=>$cid))->setLimit(10)->setCache(0) );
-            $category = CatalogItemsCategory::fetch( $cid );
+            $items = CatalogMarkets::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "id in ( SELECT leftId FROM cat_relations WHERE rightId=:rightID AND leftClass=:leftClass AND rightClass=:rightClass )" )->setParams(array(":rightID"=>$cid, ":leftClass"=>"CatalogMarkets", ":rightClass"=>"CatalogMarketsCategory"))->setLimit(10)->setCache(0) );
+            $category = CatalogMarketsCategory::fetch( $cid );
         }
         else
         {
 
-            $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "status_id=1 AND `date`>=:date AND category_id in (SELECT id FROM catalog_items_category WHERE owner=1 )" )->setParams(array( ":date"=>$finishDate ) )->setLimit(10)->setCache(0) );
-//            $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("id DESC")->setLimit(10) );
-            $category = CatalogItemsCategory::fetch( 1 );
+            $items = CatalogMarkets::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(10)->setCache(0) );
+            $category = CatalogMarketsCategory::fetch( 1 );
         }
 
+/*
         if( !empty( $_POST["find"] ) )
         {
             // Надо определить параметры основные и дополнительные
-            // затем исполльзую SQL запросом найти все записи из таблицы CatalogItems
+            // затем исполльзую SQL запросом найти все записи из таблицы CatalogMarkets
 
-            $categoryId = $_POST["CatalogItems"]["category_id"] >0 ? (int)$_POST["CatalogItems"]["category_id"] : 1;
-            $categoryModel = CatalogItemsCategory::fetch( $categoryId );
+            $categoryId = $_POST["CatalogMarkets"]["category_id"] >0 ? (int)$_POST["CatalogMarkets"]["category_id"] : 1;
+            $categoryModel = CatalogMarketsCategory::fetch( $categoryId );
             $paramsTable = SiteHelper::getCamelCase( $categoryModel->table_name );
             $paramsModel = new $paramsTable();
-            $itemFieldTypes = CatalogItems::fieldType();
+            $itemFieldTypes = CatalogMarkets::fieldType();
             $paramsFieldTypes = $paramsModel->fieldType();
 
             $sql="SELECT i.* FROM catalog_items i, ".$paramsModel->tableName()." p WHERE i.id = p.item_id ";
 
             // Проверяем основные параметры
-            foreach( CatalogItems::attributeLabels() as $key=>$value )
+            foreach( CatalogMarkets::attributeLabels() as $key=>$value )
             {
-                if( !empty( $_POST["CatalogItems"][ $key ] ) || !empty( $_POST["CatalogItems"][ $key."_2" ] ) )
+                if( !empty( $_POST["CatalogMarkets"][ $key ] ) || !empty( $_POST["CatalogMarkets"][ $key."_2" ] ) )
                 {
-                    $value = !empty( $_POST[ "CatalogItems" ][ $key ] ) ? str_replace("'", "", $_POST[ "CatalogItems" ][ $key ]) : "";
-                    $value_2 = !empty( $_POST[ "CatalogItems" ][ $key."_2"] ) ? str_replace("'", "", $_POST[ "CatalogItems" ][ $key."_2" ]) : "";
+                    $value = !empty( $_POST[ "CatalogMarkets" ][ $key ] ) ? str_replace("'", "", $_POST[ "CatalogMarkets" ][ $key ]) : "";
+                    $value_2 = !empty( $_POST[ "CatalogMarkets" ][ $key."_2"] ) ? str_replace("'", "", $_POST[ "CatalogMarkets" ][ $key."_2" ]) : "";
 
                     if( !empty( $sql ) )$sql.=" AND ";
                     if( !empty( $itemFieldTypes[ $key ] ) && $itemFieldTypes[ $key ] == "integer" )
@@ -89,16 +88,16 @@ class DefaultController extends Controller
                 }
             }
 
-            $result = CatalogItems::sql( $sql );
+            $result = CatalogMarkets::sql( $sql );
             $items = array();
             for( $i=0;$i<sizeof( $result );$i++ )
             {
                 if( $result[$i]["id"] == 0 )continue;
-                $newObject = new CatalogItems();
+                $newObject = new CatalogMarkets();
                 $items[] = $newObject->setAttributesFromArray( $result[$i] );
             }
         }
-
+*/
         $this->render( "index", array( "items" =>$items, "category"=>$category  ) );
 	}
 
@@ -128,7 +127,7 @@ class DefaultController extends Controller
         $catalog = Yii::app()->request->getParam("catalog","");
         $field = Yii::app()->request->getParam("field","");
 
-        $cout = "";
+        $cout = '<option value=""> --- --- --- </option>';
         if( $id>0 && !empty( $catalog ) && !empty( $field ) )
         {
             $catalogClass = SiteHelper::getCamelCase( $catalog );
@@ -153,7 +152,7 @@ class DefaultController extends Controller
         $cout = "";
         if( $cid_id>0  )
         {
-            $categoryModel = CatalogItemsCategory::fetch( $cid_id );
+            $categoryModel = CatalogMarketsCategory::fetch( $cid_id );
             if( $categoryModel->id >0 )
             {
                 if( $categoryModel->table_name )

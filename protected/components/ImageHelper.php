@@ -355,15 +355,18 @@ class ImageHelper
      */
     static public function checkError( $ftype, $fsize=0, $ferror="", $type = array(), $size = 0 )
     {
-        $error = NULL;
+        $error = "";
         if( !$ftype || !$fsize )$error = "Произошла ошибка закачивания";
         if( !$error && $ferror )$error = "Произошла ошибка закачивания";
         if( !$error && $fsize>$size )$error = "Превышен размер загружаемого файла";
 
         $ftypeAr = explode( "/", $ftype );
-        if( empty( $ftypeAr[1] ) || !in_array( $ftypeAr[1], $type ) )$error="Выбран не верный тип файла";
-
-        return $error;
+        if( empty( $ftypeAr[1] ) || !in_array( $ftypeAr[1], $type ) )
+        {
+            echo "$";
+            $error="Выбран не верный тип файла";
+        }
+        if( !empty( $error ) )return $error;
     }
 
     /*

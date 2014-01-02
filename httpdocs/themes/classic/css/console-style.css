@@ -250,3 +250,18 @@ h1{text-align: center;}
 }
 
 .subMenu:hover .displayNone{display: block;}
+
+.pageList{margin-bottom: 20px;text-align: center;}
+.pageList a, .pageList b{
+    display: inline-block;
+    padding: 2px 3px;
+
+
+    margin-left: 3px;
+}
+
+.pageList a{
+    background: #efefef;
+    border: 1px solid #afafaf;
+}
+.pageList b{background: #afafaf;color: #fff;border: 1px solid #afafaf;}

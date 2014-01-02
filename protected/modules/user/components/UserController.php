@@ -135,48 +135,36 @@ class UserController extends Controller
                 {
                     for( $i=0;$i<sizeof( $postImages["name"]["images"] );$i++ )
                     {
-                        if( $error = ImageHelper::checkError( $postImages["type"]["images"][$i], $postImages["size"]["images"][$i], $postImages["error"]["images"][$i], array("gif","jpg","png","jpeg"), 5242880 ) ); // 5mb
+                        if( $i>8 )
                         {
-                            $haveError = true;
+                            $error="Максимальное количество 8 файлов";
                             break;
                         }
+
+                        $error = ImageHelper::checkError( $postImages["type"]["images"][$i], $postImages["size"]["images"][$i], $postImages["error"]["images"][$i], array("jpg","jpeg"), 5242880 );
+                        if( empty( $error ) ) // 5mb
+                        {
+                            $_FILES["CatGallery"]=array(
+                                "name"     => array( "image" => $postImages["name"]["images"][$i] ),
+                                "type"     => array( "image" => $postImages["type"]["images"][$i] ),
+                                "tmp_name" => array( "image" => $postImages["tmp_name"]["images"][$i] ),
+                                "error"    => array( "image" => $postImages["error"]["images"][$i] ),
+                                "size"     => array( "image" => $postImages["size"]["images"][$i] ),
+                            );
+
+                            $addGallery = new CatGallery();
+                            $addGallery->image = $postImages["name"]["images"][$i];
+                            $addGallery->catalog = $this->tableName;
+                            $addGallery->item_id = $id;
+                            $addGallery->save();
+
+                            if( $addGallery->getErrors() && sizeof( $addGallery->getErrors() )>0 )
+                                print_r( $addGallery->getErrors() );
+                        }
                     }
-                }
 
-                // Проверяем количество файлов
-                if( !$error && sizeof( $postImages["name"]["images"] ) >8 )
-                {
-                    $error = "Превышено максимально количество файлов";
-                    $haveError = true;
-                }
-
-                if( !$error )
-                {
-                    for( $i=0;$i<sizeof( $postImages["name"]["images"] );$i++ )
-                    {
-                        $_FILES["CatGallery"]=array(
-                            "name"     => array( "image" => $postImages["name"]["images"][$i] ),
-                            "type"     => array( "image" => $postImages["type"]["images"][$i] ),
-                            "tmp_name" => array( "image" => $postImages["tmp_name"]["images"][$i] ),
-                            "error"    => array( "image" => $postImages["error"]["images"][$i] ),
-                            "size"     => array( "image" => $postImages["size"]["images"][$i] ),
-                        );
-
-                        $addGallery = new CatGallery();
-                        $addGallery->image = $postImages["name"]["images"][$i];
-                        $addGallery->catalog = $this->tableName;
-                        $addGallery->item_id = $id;
-                        $addGallery->save();
-
-                        if( $addGallery->getErrors() && sizeof( $addGallery->getErrors() )>0 )
-                            print_r( $addGallery->getErrors() );
-
-                    }
-                    $this->redirect( SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description/", array( "id"=>$id  )) );
-                }
-                else
-                {
-                    $this->render( "save", array("id"=>$id, "error"=>$error) );
+                    if( !$error )$this->redirect( SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description/", array( "id"=>$id  )) );
+                            else $this->redirect( SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description/", array( "id"=>$id, "error"=>"gallError" )) );
                 }
             }
             else throw new Exception( "Ошибка групповой закачи картиноку ( Указанному ID нет соответствующей записи )" );
@@ -229,7 +217,7 @@ class UserController extends Controller
         }
     }
 
-    public function actionDescription()
+    public function actionDescription( $gallError = "" )
     {
         if( !Yii::app()->user->isGuest )
         {
@@ -267,6 +255,7 @@ class UserController extends Controller
             $gall_id = (int) Yii::app()->request->getParam( "gall_id", 0 );
             $comMessage = "";
             $gallMessage = "";
+            if( !empty($gallError) )$message = $gallError;
             // Удаление фотографии
             if( !empty($action) && $gall_id>0 )
             {

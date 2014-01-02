@@ -55,8 +55,15 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
 #Menu
 {
     float: right;
-    background: url( ../images/menu_bg.png ) no-repeat; width: 826px;height: 136px;
+    background: url( ../images/menu_bg.png ) no-repeat;
+    width: 826px;
+    height: 136px;
+    position: absolute;
+    right: 0;
+    top: 194px;
 }
+
+.MInnerPage #Menu{top:126px;}
 
 *HTML #Main
 {

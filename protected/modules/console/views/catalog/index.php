@@ -14,6 +14,11 @@
         </td>
     </tr>
 <?php endforeach; ?>
+    <tr>
+        <td colspan="3" align="center">
+            <?php $this->widget( "paginatorWidget", array( "count"=>$allCount, "offset"=>50, "page"=>$page, "url"=>array( "/console/catalog", array("catalog"=>Yii::app()->request->getParam("catalog", "")) ) ) ); ?>
+        </td>
+    </tr>
 </table>
 <center>
     <a href="<?= SiteHelper::createUrl("/console/catalog/edit" ).$controller->params  ?>">Добавить запись</a>

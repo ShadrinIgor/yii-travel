@@ -75,7 +75,7 @@ class CCmodelHelper
                             {
                                 $catalog = SiteHelper::getCamelCase( $form->tableName() );
                                 $input = '<img src="../'.ImageHelper::getImage( $form->$field, 2, $form ) .'" width="100" /><br/>';
-                                if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array( "catalog"=>$catalog, "id"=>$form->id, "action"=>"img_del", "field"=>$field ) ).'">[удалить]</a><br/>';
+                                if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
                                 $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
                             }
                             $input .= CHtml::activeFileField( $form, $field );
@@ -86,7 +86,7 @@ class CCmodelHelper
                             {
                                 $catalog = SiteHelper::getCamelCase( $form->tableName() );
                                 $input = '<a href="../'.$form->$field.'" target="_blank">'.$form->$field.'</a><br/>';
-                                if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array( "catalog"=>$catalog, "id"=>$form->id, "action"=>"img_del", "field"=>$field ) ).'">[удалить]</a><br/>';
+                                if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
                                 $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
                             }
                             $input .= CHtml::activeFileField( $form, $field ); break;
@@ -226,7 +226,7 @@ class CCmodelHelper
             // Если форма редактирования открыто в консоле то даем возможность выбора OWNER позиций
             if( Yii::app()->controller->module->getId() != "console" )
             {
-                foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0))->setCache(0)->setLimit(-1)->setOrderBy("pos, name") ) as $relationData )
+                foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0) )->setLimit(-1)->setOrderBy("pos, name") ) as $relationData )
                 {
                     $cout .= '<optgroup label="'.$relationData->name.'">';
                     foreach( $formClass::findByAttributes( array("owner"=>$relationData->id) ) as $relationData2 )
@@ -298,14 +298,11 @@ class CCmodelHelper
         return $cout;
     }
 
-    static function getInputField( CCModel $form, $field, $needEmpty = true, $defaultValue = "", $defaultValue2 = "" )
+    static function getInputField( CCModel $form, $field, $needEmpty = true )
     {
         $listType = $form->fieldType();
         $tableClass = SiteHelper::getCamelCase( $form->tableName() );
         $value = !empty( $_POST[$tableClass] ) && !empty( $_POST[$tableClass][$field] ) ? $_POST[$tableClass][$field] : "";
-        $value2 = !empty( $_POST[$tableClass] ) && !empty( $_POST[$tableClass][$field."_2"] ) ? $_POST[$tableClass][$field."_2"] : "";
-        if( empty( $value ) && !empty( $defaultValue ) )$value = $defaultValue;
-        if( empty( $value2 ) && !empty( $defaultValue2 ) )$value2 = $defaultValue2;
         $HTMLOption = "";
         $fieldType = $form->fieldType();
 
@@ -320,7 +317,7 @@ class CCmodelHelper
                 case "url"              :$input= CHtml::activeUrlField( $form, $field ); break;
                 case "date"             :
                     $input= "от: ".CHtml::textField( $fieldName, $value, array("class"=>"yearField") );
-                    $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value2, array("class"=>"yearField") );
+                    $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value, array("class"=>"yearField") );
                     break;
             }
         }
@@ -341,8 +338,10 @@ class CCmodelHelper
         {
             if( !empty( $fieldType[$field] ) && $fieldType[$field] == "integer" )
             {
+                $value_2 = !empty( $_POST[$tableClass] ) && !empty( $_POST[$tableClass][$field."_2"] ) ? $_POST[$tableClass][$field."_2"] : "";
+
                 $input= "от: ".CHtml::textField( $fieldName, $value, array("class"=>"yearField") );
-                $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value2, array("class"=>"yearField") );
+                $input.= "&nbsp;&nbsp;до: ".CHtml::textField( $tableClass."[".$field."_2]", $value_2, array("class"=>"yearField") );
             }
                 else
                     $input= CHtml::activeTextField( $form, $field );

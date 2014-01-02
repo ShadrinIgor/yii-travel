@@ -14,8 +14,7 @@ class CatalogController extends ConsoleController
 
         $requestUrl = Yii::app()->request->requestUri;
         $requestUrlArr = explode( "?", $requestUrl );
-        if( !empty( $requestUrlArr[1] ) )$requestUrl = $requestUrlArr[1];
-                                    else $requestUrl = "";
+        $requestUrl = $requestUrlArr[1];
         $requestUrlArr = explode( "&", $requestUrl );
         $this->params = "?".$requestUrlArr[0];
         $requestUrlArr[0] = null;
@@ -26,9 +25,12 @@ class CatalogController extends ConsoleController
             if( !empty( $item ) )
             {
                 $itemArr = explode( "=", $item );
-                if( !empty( $params ) )$params.=" AND ";
-                $params .= "`".trim( $itemArr[0] )."`='".trim( $itemArr[1] )."'";
-                $this->params .= "&".$item;
+                if( $itemArr[0] != "p" )
+                {
+                    if( !empty( $params ) )$params.=" AND ";
+                    $params .= "`".trim( $itemArr[0] )."`='".trim( $itemArr[1] )."'";
+                    $this->params .= "&".$item;
+                }
             }
         }
 
@@ -229,8 +231,11 @@ class CatalogController extends ConsoleController
 
         if( !empty( $this->catalog ) )
         {
-            $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(100)->setConditions( $this->DBparams )->setCache(0) );
-            $this->render("index", array( "list"=>$list, "controller"=>$this ));
+            $page = (int) Yii::app()->request->getParam("p", 1 );
+
+            $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(50)->setConditions( $this->DBparams )->setCache(0)->setPage($page) );
+            $allCount = $catalog::count( DBQueryParamsClass::CreateParams()->setLimit(-1)->setConditions( $this->DBparams )->setCache(0) );
+            $this->render("index", array( "list"=>$list, "allCount"=>$allCount, "controller"=>$this, "page"=>$page ));
         }
 	}
 }
