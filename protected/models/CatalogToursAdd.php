@@ -3,53 +3,8 @@
 /**
  * This is the model class for table "catalog_tours".
    */
-class CatalogTours extends CCmodel
+class CatalogToursAdd extends CatalogTours
 {
-    protected $id; // integer 
-    protected $name; // string 
-    protected $description; // string 
-    protected $active; // integer 
-    protected $pos; // integer 
-    protected $del; // integer 
-    protected $srok; // string 
-    protected $image; // string 
-    protected $country_id; // integer 
-    protected $city_id; // integer 
-    protected $price; // string 
-    protected $ltext; // string 
-    protected $hot; // integer 
-    protected $firm_id; // integer 
-    protected $category_id; // integer 
-    protected $vip; // string 
-    protected $list_key; // string 
-    protected $order_link; // string 
-    protected $city_count; // integer 
-    protected $firm_site_link; // string 
-    protected $tour_per; // string 
-    protected $hotel_id; // integer 
-    protected $hotels_count; // integer 
-    protected $col; // integer 
-    protected $slug; // string 
-    protected $user_id; // integer 
-
-/*
-* Поля - связи
-*/
-
-
-    public function attributeNames()
-    {
-    }
-
-
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'catalog_tours';
-	}
-
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -58,18 +13,20 @@ class CatalogTours extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, srok, image, price, ltext, hot, firm_id, vip, list_key, order_link, firm_site_link, tour_per, slug', 'required'),
-			array('active, pos, del, hot, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
-			array('name, slug', 'length', 'max'=>150),
+			array('name, category_id, country_id, city_id, firm_id, description', 'required'),
+			array('category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>150),
 			array('srok, price', 'length', 'max'=>25),
 			array('image', 'length', 'max'=>100),
 			array('hot, vip', 'length', 'max'=>1),
 			array('order_link, firm_site_link', 'length', 'max'=>255),
 			array('tour_per', 'length', 'max'=>50),
-            array('category_id, country_id, price', 'search'),
+            array('firm_id, category_id, country_id, price', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col, slug, user_id', 'safe', 'on'=>'search'),
+
+			array('slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,20 +38,12 @@ class CatalogTours extends CCmodel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
+			'firm' => array(self::BELONGS_TO, 'CatalogFirms', 'firm_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogToursCategory', 'category_id'),
-			'firm' => array(self::BELONGS_TO, 'CatalogFirms', 'firm_id'),
 		);
 	}
-
-    public function attributePlaceholder()
-    {
-        return array(
-            "name"=> "Наименование тура"
-        );
-    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -102,39 +51,21 @@ class CatalogTours extends CCmodel
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-			'active' => 'Active',
-			'pos' => 'Pos',
-			'del' => 'Del',
-			'srok' => 'Srok',
-			'image' => 'Image',
+			'name' => 'Название',
+            'category_id' => 'Категория',
+			'active' => 'Активный тур',
+            'hot' => 'Горячий тур',
 			'country_id' => 'Страна',
-			'city_id' => 'City',
+			'city_id' => 'Город',
 			'price' => 'Цена',
-			'ltext' => 'Ltext',
-			'hot' => 'Hot',
-			'firm_id' => 'Firm',
-			'category_id' => 'Категория',
-			'vip' => 'Vip',
-			'list_key' => 'List Key',
-			'order_link' => 'Order Link',
-			'city_count' => 'City Count',
-			'firm_site_link' => 'Firm Site Link',
-			'tour_per' => 'Tour Per',
-			'hotel_id' => 'Hotel',
-			'hotels_count' => 'Hotels Count',
-			'col' => 'Col',
-			'slug' => 'Slug',
-			'user_id' => 'User',
+            'description' => 'Описание тура',
 		);
 	}
 
     public function fieldType()
     {
         return array_merge( parent::fieldType(),
-                                array("price"=>"integer")
+                                array("price"=>"integer", "hot" => "checkbox")
                     );
     }
 
@@ -161,7 +92,7 @@ class CatalogTours extends CCmodel
 		$criteria->compare('city_id',$this->city_id);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('ltext',$this->ltext,true);
-		$criteria->compare('hot',$this->hot);
+		$criteria->compare('hot',$this->hot,true);
 		$criteria->compare('firm_id',$this->firm_id);
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('vip',$this->vip,true);
@@ -173,8 +104,6 @@ class CatalogTours extends CCmodel
 		$criteria->compare('hotel_id',$this->hotel_id);
 		$criteria->compare('hotels_count',$this->hotels_count);
 		$criteria->compare('col',$this->col);
-		$criteria->compare('slug',$this->slug,true);
-		$criteria->compare('user_id',$this->user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

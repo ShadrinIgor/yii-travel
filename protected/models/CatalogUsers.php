@@ -23,13 +23,18 @@ class CatalogUsers extends CCmodel
     protected $site; // string 
     protected $quote; // string 
     protected $desktop; // integer 
-    protected $amount; // integer
-    protected $pos; // integer
+    protected $amount; // integer 
+    protected $pos; // integer 
 
 /*
 * Поля - связи
 */
+    protected $catalogFirms; //  CatalogFirms
+    protected $catalogHotels; //  CatalogHotels
     protected $catalogItems; //  CatalogItems
+    protected $catalogKurorts; //  CatalogKurorts
+    protected $catalogTours; //  CatalogTours
+    protected $catalogWorks; //  CatalogWork
     protected $favorites; //  Favorites
     protected $notifications; //  Notifications
     protected $orderRequests; //  OrderRequest
@@ -62,6 +67,7 @@ class CatalogUsers extends CCmodel
 			array('password, image', 'length', 'max'=>255),
 			array('surname, fatchname', 'length', 'max'=>25),
 			array('email', 'length', 'max'=>50),
+            array('email', 'email'),
             array('email', 'check_exists_email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -149,11 +155,16 @@ class CatalogUsers extends CCmodel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'catalogFirms' => array(self::HAS_MANY, 'CatalogFirms', 'user_id'),
+			'catalogHotels' => array(self::HAS_MANY, 'CatalogHotels', 'user_id'),
 			'catalogItems' => array(self::HAS_MANY, 'CatalogItems', 'user_id'),
+			'catalogKurorts' => array(self::HAS_MANY, 'CatalogKurorts', 'user_id'),
+			'catalogTours' => array(self::HAS_MANY, 'CatalogTours', 'user_id'),
 			'country0' => array(self::BELONGS_TO, 'CatalogCountry', 'country'),
 			'type' => array(self::BELONGS_TO, 'CatalogUsersType', 'type_id'),
 			'desktop0' => array(self::BELONGS_TO, 'CatalogDesktops', 'desktop'),
 			'city0' => array(self::BELONGS_TO, 'CatalogCity', 'city'),
+			'catalogWorks' => array(self::HAS_MANY, 'CatalogWork', 'user_id'),
 			'favorites' => array(self::HAS_MANY, 'Favorites', 'user_id'),
 			'notifications' => array(self::HAS_MANY, 'Notifications', 'user_id'),
 			'orderRequests' => array(self::HAS_MANY, 'OrderRequest', 'user_id'),
@@ -185,6 +196,7 @@ class CatalogUsers extends CCmodel
 			'quote' => 'Quote',
 			'desktop' => 'Desktop',
 			'amount' => 'Amount',
+			'pos' => 'Pos',
 		);
 	}
 
@@ -218,6 +230,7 @@ class CatalogUsers extends CCmodel
 		$criteria->compare('quote',$this->quote,true);
 		$criteria->compare('desktop',$this->desktop);
 		$criteria->compare('amount',$this->amount);
+		$criteria->compare('pos',$this->pos);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

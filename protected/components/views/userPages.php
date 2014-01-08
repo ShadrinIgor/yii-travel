@@ -2,7 +2,7 @@
     <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            $adressTitle=>SiteHelper::createUrl( "/user/hotels" ),
+            $adressTitle=>SiteHelper::createUrl( "/user/".Yii::app()->controller->getId() ),
             "Описание"
         ),
     ));
@@ -67,7 +67,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="textAlignCenter">
-                        <?= CHtml::submitButton( "Добавить", array("name"=>"sendGallery") ) ?>
+                        <?= CHtml::submitButton( "Закачать фото", array("name"=>"sendGallery") ) ?>
                     </td>
                 </tr>
             </table>

@@ -224,11 +224,12 @@ class UserController extends Controller
             Yii::app()->page->title = "Описание";
 
             $id = (int)Yii::app()->request->getParam("id", 0);
+            $status = Yii::app()->request->getParam("status", "");
             $addClass = $this->addModel;
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
 
-            $message = "";
+            $message = ( !empty( $status ) && $status == 'saved' ) ? "Сохраненно" : "";
 
             // Описание объявления
             if( !empty( $_POST["update"] ) )
@@ -243,7 +244,7 @@ class UserController extends Controller
 
                 if( $item->save() )
                 {
-                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/save/", array("id"=>$item->id) ) );
+                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "status"=>"saved") ) );
                     die;
                     //if( !$isAdd )$message = "Описание успешно обновленно";
                     //        else $message = "Запись успешно добавлена";
@@ -307,7 +308,7 @@ class UserController extends Controller
         }
     }
 
-    public function actionSave()
+/*    public function actionSave()
     {
         $id = (int)Yii::app()->request->getParam("id", 0);
         $addClass = $this->addModel;
@@ -320,5 +321,5 @@ class UserController extends Controller
         $listGallery = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
 
         $this->render( "description", array( "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>"", "gallMessage"=>"", "listComments"=>$listComments ) );
-    }
+    }*/
 }
