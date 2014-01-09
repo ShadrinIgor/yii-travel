@@ -346,6 +346,10 @@ class SiteHelper
      */
     static function checkedSlugName( $slug )
     {
+        $rus=array("а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ш","щ","ы","ь","ъ","э","ю","я"," ",".","-","(",")","j","w");
+        $eng=array("a","b","v","g","d","e","e","sh","z","i","i","k","l","m","n","o","p","r","s","t","u","f","h","c","sh","sch","i","","","e","yu","ya","_",".","_","(",")","j","w");
+        $slug = str_replace( $rus, $eng, $slug );
+
         $arrayReplace = array( '$', "&", "?", "#" );
         $arrayReplace = str_replace( $arrayReplace, "", $slug );
 

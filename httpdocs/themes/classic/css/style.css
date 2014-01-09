@@ -1974,15 +1974,15 @@ zoom: 1;
     box-shadow: 0px 0px 5px rgba( 40, 40, 40, 0.6 );
 
     background: #fefcea; /* Для старых браузров */
-    background: -moz-linear-gradient(top, #ffffff, #fe8238); /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5)); /* Firefox 3.6+ */
     /* Chrome 1-9, Safari 4-5 */
     background: -webkit-gradient(linear, left top, left bottom,
-    color-stop(0%,#ffffff), color-stop(100%,#fe8238));
+    color-stop(0%,#ffffff), color-stop(100%,rgba(254, 130, 56, 0.5)));
     /* Chrome 10+, Safari 5.1+ */
-    background: -webkit-linear-gradient(top, #ffffff, #fe8238);
-    background: -o-linear-gradient(top, #ffffff, #fe8238); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #ffffff, #fe8238); /* IE10 */
-    background: linear-gradient(top, #ffffff, #fe8238); /* CSS3 */
+    background: -webkit-linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5));
+    background: -o-linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5)); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5)); /* IE10 */
+    background: linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5)); /* CSS3 */
     margin: 10px 5px 5px 5px;
 }
 
@@ -2102,6 +2102,9 @@ zoom: 1;
     animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
 }
 .colorRad{color:#ff0000;}
-#dopMenu{overflow: hidden;width: 631px;margin: 0px auto;}
-#dopMenu a{display: inline-block;width: 150px;vertical-align: top;}
+#dopMenu{overflow: hidden;width: 631px;margin: 0px auto;text-align: center;}
+#dopMenu a{display: inline-block;width: 150px;vertical-align: top;padding: 2px 5px;text-align:center;}
+#dopMenu.tourPage a{width: auto;}
 .emptyList{padding: 10px 0px;}
+.activeDM{border-radius: 8px;border: 1px dotted #475071;}
+.pageTab{background: #fff;top: 355px;}

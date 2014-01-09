@@ -244,7 +244,7 @@ class UserController extends Controller
 
                 if( $item->save() )
                 {
-                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "status"=>"saved") ) );
+                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "fid"=>$item->firm_id->id, "status"=>"saved") ) );
                     die;
                     //if( !$isAdd )$message = "Описание успешно обновленно";
                     //        else $message = "Запись успешно добавлена";
@@ -307,19 +307,4 @@ class UserController extends Controller
             $this->render( "description", array( "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>$comMessage, "gallMessage"=>$gallMessage, "listComments"=>$listComments ) );
         }
     }
-
-/*    public function actionSave()
-    {
-        $id = (int)Yii::app()->request->getParam("id", 0);
-        $addClass = $this->addModel;
-        if( !empty( $id ) )$item = $addClass::fetch( $id );
-                      else $item = new $addClass();
-
-        $message="Сохраненно";
-        $addImage = new CatGalleryAdd();
-        $listComments = CatComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
-        $listGallery = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
-
-        $this->render( "description", array( "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>"", "gallMessage"=>"", "listComments"=>$listComments ) );
-    }*/
 }

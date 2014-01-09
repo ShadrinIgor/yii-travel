@@ -1,38 +1,21 @@
 <div id="innerPage">
-<?php
-$this->widget('addressLineWidget', array(
-    'links'=>array(
-                    "Мои фирмы"=>SiteHelper::createUrl( "/user/hotels" ),
-                    "Описание"
-                  ),
-));
-?>
-<h1>Описание фирмы</h1>
-    <div id="dopMenu">
-        <a href="#" id="description" class="activeDM dopMenuPages">Описание и галлерея</a>
-        <a href="#" id="tours" class="dopMenuPages">Туры компаниии</a>
-        <a href="#" id="items" class="dopMenuPages">Акции и скидки</a>
-        <a href="#" id="service" class="dopMenuPages">Дополнительные услуги</a>
-        <a href="#" id="reclame" class="dopMenuPages">Рекламный баннер</a>
-        <a href="<?= SiteHelper::createUrl( "/firms/description", array("id"=>$item->id, "slug"=>SiteHelper::checkedSlugName( $item->name )) ) ?>" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
+    <?php
+    $this->widget('addressLineWidget', array(
+        'links'=>array(
+            $item->firm_id->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ),
+            "Описание услуги"
+        ),
+    ));
+    ?>
+    <h1>Описание услуги</h1>
+    <div id="dopMenu" class="tourPage">
+        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ) ?>">[ << вернуться к описанию фирмы ]</a><br/>
     </div>
-<?php echo CHtml::errorSummary($item); ?>
-<?php if( !empty( $message ) ) : ?>
-    <div class="messageSummary"><?= $message ?></div>
-<?php endif; ?>
-<div id="service_page" class="pageTab displayNone">
-    <?php $this->renderPartial( "service_page", array("item"=>$item) ) ?>
-</div>
-<div id="items_page" class="pageTab displayNone">
-    <?php $this->renderPartial( "items_page", array("item"=>$item) ) ?>
-</div>
-<div id="reclame_page" class="pageTab displayNone">
-    <?php $this->renderPartial( "reclame_page", array("item"=>$item) ) ?>
-</div>
-<div id="tours_page" class="pageTab displayNone">
-    <?php $this->renderPartial( "tours_page", array("item"=>$item) ) ?>
-</div>
-<div id="description_page" class="pageTab activePage">
+    <?php echo CHtml::errorSummary($item); ?><br>
+    <?php if( !empty( $message ) ) : ?>
+        <div class="messageSummary"><?= $message ?></div>
+    <?php endif; ?>
+
     <div id="gallery">
         <h2>Галлерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
@@ -41,6 +24,8 @@ $this->widget('addressLineWidget', array(
         <?php else : ?>
         <form action="" method="post">
             <div class="listGallery">
+                <?php if( !empty( $error ) ) : ?><div class="errorSummary">Произошла ошибка закачки фотографий<br/>Повторите заново учитывая указанные ниже правила добавления фотографий</div>
+                <?php endif; ?>
                 <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Список пуст</div><?php endif; ?>
                 <?php foreach( $listGallery as $gall ) : ?>
                     <div class="LGItem">
@@ -71,6 +56,13 @@ $this->widget('addressLineWidget', array(
                 </tr>
                 <tr>
                     <td>
+                        <b>Правила добавление фотографий</b><br/>
+                        <ul>
+                            <li>Количество файлов не должно превышать 8 штук</li>
+                            <li>Размер одной фотографии не должен первышать 5mb</li>
+                            <li>Для загрузки допускаются файлы следующих типов jpg|jpeg</li>
+                        </ul>
+
                         <b>Внимание!</b><br/>
                         Вы можете добавлять несколько фотографий одновременно.<br/>
                         <i>( Для этого необходимо нажать кнопку [ ctrl ] и выбрать поочередно необходимые фотографии )</i>
@@ -78,7 +70,7 @@ $this->widget('addressLineWidget', array(
                 </tr>
                 <tr>
                     <td colspan="2" class="textAlignCenter">
-                        <?= CHtml::submitButton( "Добавить", array("name"=>"sendGallery") ) ?>
+                        <?= CHtml::submitButton( "Закачать фото", array("name"=>"sendGallery") ) ?>
                     </td>
                 </tr>
             </table>
@@ -90,19 +82,19 @@ $this->widget('addressLineWidget', array(
     <br/>
 
     <form action="" method="post" enctype="multipart/form-data">
-    <table class="tableForm">
-        <?=
+        <table class="tableForm">
+            <?=
             CatalogCCmodelHelper::addForm( $item )
-        ?>
-        <tr>
-            <td></td>
-            <td>
-                <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()) ?>';" name="update" value="Отмена" />&nbsp;
-                <input type="submit" name="update" value="Сохранить" />
-            </td>
-        </tr>
-    </table>
-</form>
+            ?>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" onclick="window.location = '<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ) ?>';" name="update" value="вернуться к описанию фирмы" />&nbsp;
+                    <input type="submit" name="update" value="Сохранить" />
+                </td>
+            </tr>
+        </table>
+    </form>
 
     <?php if( $item->id>0 ) : ?>
         <br/>
@@ -134,8 +126,8 @@ $this->widget('addressLineWidget', array(
                         </td>
                         <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? "нет" : "да" ?></td>
                         <td>
-                            <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
-                            <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
+                            <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
+                            <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -143,6 +135,5 @@ $this->widget('addressLineWidget', array(
         <?php endif; ?>
     <?php endif; ?>
 
-</div>
 </div>
 

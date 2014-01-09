@@ -73,7 +73,7 @@ class CCmodelHelper
 
                             if( $form->$field  )
                             {
-                                $catalog = SiteHelper::getCamelCase( $form->tableName() );
+                                $catalog = get_class( $form );
                                 $input = '<img src="../'.ImageHelper::getImage( $form->$field, 2, $form ) .'" width="100" /><br/>';
                                 if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
                                 $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
@@ -84,7 +84,7 @@ class CCmodelHelper
                         case "file"            :
                             if( $form->$field  )
                             {
-                                $catalog = SiteHelper::getCamelCase( $form->tableName() );
+                                $catalog = get_class( $form );
                                 $input = '<a href="../'.$form->$field.'" target="_blank">'.$form->$field.'</a><br/>';
                                 if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
                                 $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );

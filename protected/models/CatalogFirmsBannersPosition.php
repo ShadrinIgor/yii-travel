@@ -1,21 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "catalog_firm_service".
+ * This is the model class for table "catalog_firms_banners_position".
    */
-class CatalogFirmService extends CCmodel
+class CatalogFirmsBannersPosition extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $active; // integer 
     protected $pos; // integer 
     protected $del; // integer 
-    protected $firm_count; // integer 
-    protected $firm; // string 
 
 /*
 * Поля - связи
 */
+    protected $catalogFirmsBanners; //  CatalogFirmsBanners
 
 
     public function attributeNames()
@@ -28,7 +26,7 @@ class CatalogFirmService extends CCmodel
 	 */
 	public function tableName()
 	{
-		return 'catalog_firm_service';
+		return 'catalog_firms_banners_position';
 	}
 
 	/**
@@ -39,13 +37,12 @@ class CatalogFirmService extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, firm', 'required'),
-			array('active, pos, del, firm_count', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>100),
-			array('firm', 'length', 'max'=>15),
+			array('name', 'required'),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, del, firm_count, firm', 'safe', 'on'=>'search'),
+			array('id, name, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +54,7 @@ class CatalogFirmService extends CCmodel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'catalogFirmsBanners' => array(self::HAS_MANY, 'CatalogFirmsBanners', 'position_id'),
 		);
 	}
 
@@ -68,11 +66,8 @@ class CatalogFirmService extends CCmodel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'active' => 'Active',
 			'pos' => 'Pos',
 			'del' => 'Del',
-			'firm_count' => 'Firm Count',
-			'firm' => 'Firm',
 		);
 	}
 
@@ -89,11 +84,8 @@ class CatalogFirmService extends CCmodel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('del',$this->del);
-		$criteria->compare('firm_count',$this->firm_count);
-		$criteria->compare('firm',$this->firm,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

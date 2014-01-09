@@ -103,8 +103,8 @@ class ImageHelper
         {
             $tableName = $itemObject->tableName();
             $queryParams = DBQueryParamsClass::CreateParams()
-                ->setConditions( "item_id=:id" )
-                ->setParams( array( ":id"=>$itemObject->id ) )
+                ->setConditions( "catalog=:catalog AND item_id=:id" )
+                ->setParams( array( ":catalog"=>$tableName, ":id"=>$itemObject->id ) )
                 ->setLimit( $limit )
                 ->setCache(0);
 
