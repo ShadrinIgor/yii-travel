@@ -7,14 +7,92 @@ $this->widget('addressLineWidget', array(
         $item->name
     )
 ));
+
 ?>
 
 <?php if( $this->beginCache( "country_".$item->id, array('duration'=>3600) ) ) : ?>
     <div id="InnerText">
-        <h1><?= $item->name ?></h1>
+        <h1><?= $item->name ?>-</h1>
         <?php
         SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
         ?>
+        <div id="dopMenu">
+            <a href="#" id="description" class="activeDM dopMenuPages">Описание и галлерея</a>
+            <a href="#" id="tours" class="dopMenuPages">Туры компаниии</a>
+            <a href="#" id="items" class="dopMenuPages">Акции и скидки</a>
+        </div>
+        <div id="service_page" class="pageTab displayNone">
+            <?php $this->renderPartial( "service_page", array("item"=>$item) ) ?>
+        </div>
+        <div id="items_page" class="pageTab displayNone">
+            <?php $this->renderPartial( "items_page", array("item"=>$item) ) ?>
+        </div>
+        <div id="tours_page" class="pageTab displayNone">
+            <?php $this->renderPartial( "tours_page", array("item"=>$item) ) ?>
+        </div>
+        <div id="description_page" class="pageTab activePage">
+            <div id="gallery">
+                <h2>Галлерея</h2>
+                <div class="listGallery">
+                    <?php foreach( $listGallery as $gall ) : ?>
+                        <div class="LGItem">
+                            <div>
+                                <a href="<?= $gall->image ?>" data-lightbox="roadtrip"><img src="<?= ImageHelper::getImage( $gall->image, 3 ) ?>" /></a>
+                            </div>
+                            <?= $gall->name ?><br/>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <br/>
+
+            <table class="tableForm">
+                <?=
+                    CCmodelHelper::infoForm( $item )
+                ?>
+            </table>
+
+            <?php if( $item->id>0 ) : ?>
+                <br/>
+                <?php if( sizeof( $listComments )>0 ) : ?>
+                    <h2>Коментарии</h2>
+                    <?= $comMessage ? '<div class="messageSummary">'.$comMessage.'</div>' : "" ?>
+                    <table id="tableListItems" class="tableComments">
+                        <tr>
+                            <th>Описание</th>
+                            <th>Пользователь</th>
+                            <th>Дата</th>
+                            <th>Опубликованно</th>
+                            <th>Действия</th>
+                        </tr>
+                        <?php foreach( $listComments as $comm ) : ?>
+                            <tr>
+                                <td class="IHeader">
+                                    <b><?= $comm->subject ?></b><br/>
+                                    <?= $comm->description ?>
+                                </td>
+                                <td>
+                                    <?php if( $comm->user_id ) : ?>
+                                        <?= $comm->user_id->name ?><br/>
+                                        <?= $comm->user_id->email ?>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <?= SiteHelper::getDateOnFormat( $comm->date, "d.m.Y" ) ?>
+                                </td>
+                                <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? "нет" : "да" ?></td>
+                                <td>
+                                    <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
+                                    <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php endif; ?>
+            <?php endif; ?>
+
+        </div>
+
         <div id="ITText">
             <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
             <div class="LParams">

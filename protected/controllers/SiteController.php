@@ -67,6 +67,11 @@ class SiteController extends Controller
 		}
 	}
 
+    public function actionGetInfo()
+    {
+        echo SiteHelper::getAccessInfo();
+    }
+
 	/**
 	 * Displays the contact page
 	 */

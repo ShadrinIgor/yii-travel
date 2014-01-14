@@ -30,6 +30,7 @@ class FirmsController extends Controller
                         "item" => $item,
                         "otherFirms" => CatalogFirms::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND id!=:id")->setParams(array(":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
                         "firmsTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND firm_id=:firm_id")->setParams(array(":firm_id"=>$item->id))->setOrderBy("col DESC")->setLimit(-1) ),
+                        "listGallery" => CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:items_id")->setParams(array(":catalog"=>"catalog_firms", ":items_id"=>$item->id))->setLimit(15) ),
                         "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:firm_id" )->setParams( array( ":firm_id"=>$item->id ) ) ),
                     ));
 

@@ -176,6 +176,106 @@ class CCmodelHelper
         return $cout;
     }
 
+    static function infoForm( $form )
+    {
+        $fields = $form->attributeLabels();
+        $relationList = $form->getRelationFields();
+        $relations = $form->relations();
+        $fieldType = $form->fieldType();
+        $requiredFields = $form->getRequiredAttributes();
+        $placeholder = $form->attributePlaceholder();
+
+        $cout = "";
+        $classTable = get_class( $form );
+
+        foreach( $fields as $field=>$key )
+        {
+            if( !$form->$field  )continue;
+
+            // Вытаскиваем тип поля
+            $fieldTypeValue = ( !empty( $fieldType[ $field ] ) ) ? $fieldTypeValue = $fieldType[ $field ] : "";
+
+            if( !in_array( $field, $relationList ) &&
+                ( empty($fieldTypeValue) || empty( $relations[ $fieldTypeValue ] ) ) )// проверяем нет ли связи один ко многим у данного поля
+            {
+                // Подсказка к полю
+                if( !empty( $placeholder[ $field ] ) )$fieldPlaceholder = $placeholder[ $field ];
+                                else $fieldPlaceholder = "";
+
+                if( !empty( $fieldType[$field] ) )
+                {
+                    $input = "";
+                    switch( $fieldType[ $field ] )
+                    {
+                        case "url"             : $input = '<a href="'.$form->$field.'" target="_blank">'.$form->$field.'</a>'; break;
+                        case "email"           : $input = '<div><a href="#" onclick="$(this.parentNode).load(\''.Yii::app()->params["baseUrl"].SiteHelper::createUrl("site/getInfo", array("catalog"=>"catalogFirms", "id"=>$form->id, "field"=>"email")).'\' ); return false;"> [ показать email ]</a></div>'; break;
+                        case "date"            : $input = date( "Y-m-d", $form->$field );break;
+                        case "checkbox"        : $input = "+"; break;
+                        case "visual_textarea" : $input = $form->$field; break;
+                        case "image"           : $input = '<img src="../'.ImageHelper::getImage( $form->$field, 2, $form ) .'" width="100" /><br/>';break;
+                        case "file"            : $input = '<a href="../'.$form->$field.'" target="_blank">'.$form->$field.'</a><br/>';break;
+                        default                : $input = $form->$field;
+                    }
+                }
+                else $input = $form->$field;
+            }
+            else
+            {
+                $input = "";
+
+                // проверяем нет ли привязки данного поля к сязи один ко многим
+                if( !empty($fieldTypeValue) && !empty( $relations[ $fieldTypeValue ] ) )$relation = $relations[ $fieldTypeValue ]; // Привязка один ко многим
+                else $relation = $form->getRelationByField( $field );                                                      // привязка один к одному
+
+                $relationItems = CCmodelHelper::getRelationItems( $relation, $form );
+
+                $fieldName = $field;
+
+                if( sizeof( $relationItems ) >0 )
+                {
+                    if( $relation[0] == CCModel::HAS_MANY || $relation[0] == CCModel::MANY_MANY )
+                    {
+                        /*
+                        $relationModel = RelationParamsClass::CreateParams()
+                            ->setLeftId( $form->id )
+                            ->setLeftClass( $classTable )
+                            ->setRightClass( $relation[1] ) ;
+
+                        $listValues = SiteHelper::getRelation( $relationModel );
+                        $input .=    '<div class="relationListItems">
+                                            <ul>';
+
+                        foreach( $relationItems as $relationData )
+                        {
+                            if( !empty( $listValues[ $relationData->id ] ) )$checked = "checked=\"checked\"";
+                            else $checked = "";
+
+                            $input .= '<li><input type="checkbox" name="'.$classTable .'['.$relation[1].'][]" '.$checked.' value="'.$relationData->id.'" id="'.$field[1]."_".$relationData->id.'" /><label for="'.$field[1]."_".$relationData->id.'">'.$relationData->name.'</li>';
+                        }
+
+                        $input .=   '       </ul>
+                                     </div>';
+                        */
+                    }
+                    else
+                    {
+                        $input = $form->$fieldName->name;
+                    }
+                }
+            }
+
+            if( !empty( $input ) )
+            {
+                $cout .= '<tr>
+                             <th>'.$fields[ $field ].':</th>
+                             <td>'.$input.'</td>
+                          </tr>';
+            }
+        }
+
+        return $cout;
+    }
+
     private static function find_in_array( $text, $array )
     {
         if( is_array( $array ) )
@@ -224,7 +324,7 @@ class CCmodelHelper
             $cout = "";
 
             // Если форма редактирования открыто в консоле то даем возможность выбора OWNER позиций
-            if( Yii::app()->controller->module->getId() != "console" )
+            if( !empty( Yii::app()->controller->module ) && Yii::app()->controller->module->getId() != "console" )
             {
                 foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0) )->setLimit(-1)->setOrderBy("pos, name") ) as $relationData )
                 {

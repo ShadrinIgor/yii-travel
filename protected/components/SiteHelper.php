@@ -356,4 +356,29 @@ class SiteHelper
         $arrayReplace = array( " - ", ' ', "_" );
         return str_replace( $arrayReplace, "-", $slug );
     }
+
+    static public function getAccessInfo( )
+    {
+        $catalog = Yii::app()->request->getParam("catalog","");
+        $id = (int)Yii::app()->request->getParam("id",0);
+        $field = Yii::app()->request->getParam("field","");
+        if( $id>0 && !empty( $field ) && !empty( $catalog ) )
+        {
+            if( class_exists( $catalog ) )
+            {
+                $itemModel = $catalog::fetch( $id );
+                if( $itemModel->id > 0 && property_exists( $itemModel, $field ) )
+                {
+                    Yii::app()->ih
+                        ->load($_SERVER['DOCUMENT_ROOT'] . '/f/temp/1.jpg')
+                        ->text( $itemModel->$field, $_SERVER['DOCUMENT_ROOT'] . '/themes/classic/font/georgia.ttf',
+                            11, array(2,95,160), CImageHandler::CORNER_LEFT_BOTTOM, 3, 3)
+                        ->save($_SERVER['DOCUMENT_ROOT'] . '/f/temp/2.jpg');
+
+                    echo '<img src="/f/temp/2.jpg" />';
+                }
+            }
+        }
+    }
+
 }

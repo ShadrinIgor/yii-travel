@@ -144,5 +144,6 @@ $this->widget('addressLineWidget', array(
     <?php endif; ?>
 
 </div>
+
 </div>
 
