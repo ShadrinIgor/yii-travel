@@ -12,15 +12,20 @@ $this->widget('addressLineWidget', array(
 
 <?php if( $this->beginCache( "country_".$item->id, array('duration'=>3600) ) ) : ?>
     <div id="InnerText">
-        <h1><?= $item->name ?>-</h1>
         <?php
         SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
         ?>
+        <h1>туристическая компания - <?= $item->name ?></h1>
         <div id="dopMenu">
-            <a href="#" id="description" class="activeDM dopMenuPages">Описание и галлерея</a>
+            <a href="#" id="description" class="activeDM dopMenuPages">Описание</a>
+            <a href="#" id="gallery2" class="dopMenuPages">Галлерея</a>
             <a href="#" id="tours" class="dopMenuPages">Туры компаниии</a>
             <a href="#" id="items" class="dopMenuPages">Акции и скидки</a>
+            <a href="#" id="service" class="dopMenuPages">Дополнительные услуги</a>
         </div>
+        <br/>
+
+
         <div id="service_page" class="pageTab displayNone">
             <?php $this->renderPartial( "service_page", array("item"=>$item) ) ?>
         </div>
@@ -30,7 +35,7 @@ $this->widget('addressLineWidget', array(
         <div id="tours_page" class="pageTab displayNone">
             <?php $this->renderPartial( "tours_page", array("item"=>$item) ) ?>
         </div>
-        <div id="description_page" class="pageTab activePage">
+        <div id="gallery2_page" class="pageTab displayNone">
             <div id="gallery">
                 <h2>Галлерея</h2>
                 <div class="listGallery">
@@ -42,15 +47,43 @@ $this->widget('addressLineWidget', array(
                             <?= $gall->name ?><br/>
                         </div>
                     <?php endforeach; ?>
+                    <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Список пуст</div><?php endif; ?>
                 </div>
             </div>
-            <br/>
-
-            <table class="tableForm">
-                <?=
+        </div>
+        <div id="description_page" class="pageTab activePage">
+            <div id="ITText">
+                <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
+                <div class="LParams">
+                    <br/>
+                    страна: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
+                    туров: <b><?= $tourCount ?></b>
+                    <br/><br/>
+                    <a class="OrderRequest LPLink" href="#" title="связаться">связаться забронировать</a><br/>
+                </div>
+                <table class="tableForm">
+                    <?=
                     CCmodelHelper::infoForm( $item )
-                ?>
-            </table>
+                    ?>
+                </table>
+                <div id="orderInfo" class="displayNone">
+                    <b>Туристическая фирма - <?= $item->name ?></b><br/>
+                    <p>Для бронирования или уточнения информации по турам необходимо связатся с менеджером компании <?= $item->name ?>.</p>
+                    <p>
+                        <b>контакты компании:</b><br/>
+                        <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>
+                        <?php if( $item->fax ) : ?>Факс: <?= $item->fax ?><br/><?php endif; ?>
+                        <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogFirms", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ Показать Email ]</a></span><br/><?php endif; ?>
+                        <?php if( $item->www ) : ?>Сайт: <a href="<?= $item->www ?>" target="_blank"><?= $item->www ?></a><br/><?php endif; ?>
+                        <?php if( $item->address ) : ?><b>Адресс:</b> <?= $item->address ?><?php endif; ?>
+                    <div class="cMore">
+                        <a href="#" class="orderClose">закрыть</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+
+            <?= $item->description ?>
 
             <?php if( $item->id>0 ) : ?>
                 <br/>
@@ -90,51 +123,8 @@ $this->widget('addressLineWidget', array(
                     </table>
                 <?php endif; ?>
             <?php endif; ?>
-
         </div>
 
-        <div id="ITText">
-            <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
-            <div class="LParams">
-                <br/>
-                страна: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
-                туров: <b><?= $tourCount ?></b>
-                <br/><br/>
-                <a class="OrderRequest LPLink" href="#" title=связаться">связаться</a><br/>
-            </div>
-            <?= $item->description ?>
-            <div id="orderInfo" class="displayNone">
-                <b>Туристическая фирма - <?= $item->name ?></b><br/>
-                <p>Для бронирования или уточнения информации по турам необходимо связатся с менеджером компании.</p>
-                <p>
-                    <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>
-                    <?php if( $item->fax ) : ?>Факс: <?= $item->fax ?><br/><?php endif; ?>
-                    <?php if( $item->email ) : ?>E-mail: <a href="mailto:<?= $item->email ?>"><?= $item->email ?></a><br/><?php endif; ?>
-                    <?php if( $item->www ) : ?>Сайт: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
-                    <?php if( $item->address ) : ?><b>Адресс:</b> <?= $item->address ?><?php endif; ?>
-                <div class="cMore">
-                    <a href="#" class="orderClose">закрыть</a>
-                </div>
-                </p>
-            </div>
-            <div class="LParams">
-                <b>Контактная информация:</b><br/>
-                <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>
-                <?php if( $item->fax ) : ?>Факс: <?= $item->fax ?><br/><?php endif; ?>
-                <?php if( $item->email ) : ?>E-mail: <a href="mailto:<?= $item->email ?>"><?= $item->email ?></a><br/><?php endif; ?>
-                <?php if( $item->www ) : ?>Сайт: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
-                <?php if( $item->address ) : ?><b>Адресс:</b><br/><?= $item->address ?><?php endif; ?>
-            </div>
-        </div>
-        <div class="hr">&nbsp;</div>
-        <?php if( sizeof($firmsTours)>0 ) : ?>
-            <h2>Туры фирмы <?= $item->name ?></h2>
-            <div class="ITBlock">
-                <?php foreach( $firmsTours as $tour ) : ?>
-                    <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
         <?php if( sizeof($otherFirms)>0 ) : ?>
             <h2>Смотрите также</h2>
             <div class="ITBlock ITBFirms">

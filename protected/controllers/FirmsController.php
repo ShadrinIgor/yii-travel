@@ -21,7 +21,7 @@ class FirmsController extends Controller
 
         if( $id > 0 )
         {
-            $item = CatalogFirms::fetch( $id );
+            $item = CatalogFirmsInfo::fetch( $id );
             if( $item->id >0 )
             {
                 Yii::app()->page->title = $item->name;

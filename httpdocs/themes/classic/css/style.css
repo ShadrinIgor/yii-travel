@@ -9,6 +9,8 @@ div, body
 	color:#475071;
 }
 
+.floatLeft{float: left;}
+
 #Main
 {
 	overflow:hidden;
@@ -1939,7 +1941,7 @@ zoom: 1;
 
 .mainOtherBG #tableListItems th, .mainOtherBG .tableListItems th{background: rgba(246, 246, 246, 0.7)}
 
-#tableListItems td, .tableListItems td{border-bottom: 1px solid #cfcfcf;}
+#tableListItems td, .tableListItems td{border-bottom: 1px solid #cfcfcf;padding: 0px 5px;}
 #tableListItems select, #tableListItems input[type=text],
 .tableListItems select, .tableListItems input[type=text]{width: 415px;padding: 3px;}
 #tableListItems select, .tableListItems select{width: 425px;}
@@ -2102,9 +2104,13 @@ zoom: 1;
     animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
 }
 .colorRad{color:#ff0000;}
-#dopMenu{overflow: hidden;width: 631px;margin: 0px auto;text-align: center;}
+#dopMenu{overflow: hidden;margin: 0px auto;text-align: center;}
 #dopMenu a{display: inline-block;width: 150px;vertical-align: top;padding: 2px 5px;text-align:center;}
 #dopMenu.tourPage a{width: auto;}
 .emptyList{padding: 10px 0px;}
 .activeDM{border-radius: 8px;border: 1px dotted #475071;}
-.pageTab{background: #fff;top: 355px;}
+.pageTab{background: #fff;top: 355px;overflow: hidden;}
+
+#description_page{text-align: justify;text-indent: 25px;}
+#description_page p{margin:3px 0px !important;}
+#InnerText .pageTab {top:462px;}

@@ -3,9 +3,7 @@
     <tr>
         <th class="TLFId">№</th>
         <th class="">Фото</th>
-        <th class="TLFName">Заголовок</th>
-        <th>Статус</th>
-        <th class="TLFAction">Действия</th>
+        <th class="TLFAction">Краткое описание</th>
     </tr>
     <?php
     $listTours = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
@@ -30,13 +28,10 @@
                     </div>
                 <?php endif;?>
             </td>
-            <td>
-                <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a>
-            </td>
-            <td class="textAlignCenter"><?= ( $service->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
-            <td class="textAlignCenter">
-                <a href="#" class="aAction"></a>
-                <div class="itemAction textAlignCenter">
+            <td class="textAlignJustify">
+                <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
+                <?= SiteHelper::getSubTextOnWorld( $service->description, 400 ) ?>
+                <div class="itemAction textAlignRight">
                     <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>">Описание</a><br/>
                 </div>
             </td>

@@ -4,10 +4,8 @@
         <tr>
             <th class="TLFId">№</th>
             <th class="">Фото</th>
-            <th class="TLFName">Заголовок</th>
-            <th class="TLFType">Страна</th>
-            <th>Статус</th>
-            <th class="TLFAction">Действия</th>
+            <th class="TLFName" style="width: 150px;">Заголовок</th>
+            <th class="TLFAction">Краткое описание</th>
         </tr>
         <?php
         $listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
@@ -33,14 +31,13 @@
                     <?php endif;?>
                 </td>
                 <td>
-                    <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a>
+                    <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a><br/>
+                    <?= $tour->country_id->name.", ".$tour->city_id->name ?>
                 </td>
-                <td><?= $tour->country_id->name.", ".$tour->city_id->name ?></td>
-                <td class="textAlignCenter"><?= ( $tour->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
-                <td class="textAlignCenter">
-                    <a href="#" class="aAction"></a>
-                    <div class="itemAction textAlignCenter">
-                        <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>">Описание</a><br/>
+                <td class="textAlignJustify">
+                    <?= SiteHelper::getSubTextOnWorld( $tour->description, 400 ) ?>
+                    <div class="itemAction textAlignRight">
+                        <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>">смотреть подробнее...</a><br/>
                     </div>
                 </td>
             </tr>

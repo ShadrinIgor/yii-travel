@@ -23,7 +23,7 @@
     </Div>
     <div id="Menu">
         <div class="CItem MFirst">
-            <a href="<?= SiteHelper::createUrl( "Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="h2">
+            <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="h2">
                 <img src="f/catalog_menu/801center1.jpg" alt="Странны" /></a>
             <div class="CHint" id="bh2">
                 <div class="CHText">
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "tours/" ) ?>" title="Туры" class="MenuJsClass" id="h10">
+            <a href="<?= SiteHelper::createUrl( "/tours/" ) ?>" title="Туры" class="MenuJsClass" id="h10">
                 <img src="f/catalog_menu/547tours.jpg" alt="Туры" /></a>
             <div class="CHint" id="bh10">
                 <div class="CHText">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "hotels/" ) ?>" title="Отели" class="MenuJsClass" id="h9">
+            <a href="<?= SiteHelper::createUrl( "/hotels/" ) ?>" title="Отели" class="MenuJsClass" id="h9">
                 <img src="f/catalog_menu/514hotels.jpg" alt="Отели" /></a>
             <div class="CHint" id="bh9">
                 <div class="CHText">
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "resorts/" ) ?>" title="Курорты" class="MenuJsClass" id="h3">
+            <a href="<?= SiteHelper::createUrl( "/resorts/" ) ?>" title="Курорты" class="MenuJsClass" id="h3">
                 <img src="f/catalog_menu/821center2.jpg" alt="Курорты" /></a>
             <div class="CHint" id="bh3">
                 <div class="CHText">
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "info/" ) ?>" title="О туризме" class="MenuJsClass" id="h4">
+            <a href="<?= SiteHelper::createUrl( "/info/" ) ?>" title="О туризме" class="MenuJsClass" id="h4">
                 <img src="f/catalog_menu/21center3.jpg" alt="О туризме" /></a>
             <div class="CHint" id="bh4">
                 <div class="CHText">
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "firms/" ) ?>" title="Фирмы" class="MenuJsClass" id="h8">
+            <a href="<?= SiteHelper::createUrl( "/firms/" ) ?>" title="Фирмы" class="MenuJsClass" id="h8">
                 <img src="f/catalog_menu/964travel.jpg" alt="Фирмы" /></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "work/" ) ?>" title="Работа" class="MenuJsClass" id="h8">
+            <a href="<?= SiteHelper::createUrl( "/work/" ) ?>" title="Работа" class="MenuJsClass" id="h8">
                 <img src="f/catalog_menu/789work.jpg" alt="Фирмы" /></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">

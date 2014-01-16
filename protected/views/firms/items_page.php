@@ -4,8 +4,7 @@
         <th class="TLFId">№</th>
         <th class="">Фото</th>
         <th class="TLFName">Заголовок</th>
-        <th>Статус</th>
-        <th class="TLFAction">Действия</th>
+        <th class="TLFAction">Краткое описание</th>
     </tr>
     <?php
     $listTours = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
@@ -33,10 +32,9 @@
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array("id"=>$firmItem->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $firmItem->name ?></a>
             </td>
-            <td class="textAlignCenter"><?= ( $firmItem->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
-            <td class="textAlignCenter">
-                <a href="#" class="aAction"></a>
-                <div class="itemAction textAlignCenter">
+            <td class="textAlignJustify">
+                <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 400 ) ?>
+                <div class="itemAction textAlignRight">
                     <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array("id"=>$firmItem->id, "fid"=>$item->id)) ?>">Описание</a><br/>
                 </div>
             </td>

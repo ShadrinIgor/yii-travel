@@ -357,11 +357,18 @@ class SiteHelper
         return str_replace( $arrayReplace, "-", $slug );
     }
 
+
+    // Передача закрытой информации такой как email и название сайта не текстом а картинкой
     static public function getAccessInfo( )
     {
         $catalog = Yii::app()->request->getParam("catalog","");
         $id = (int)Yii::app()->request->getParam("id",0);
         $field = Yii::app()->request->getParam("field","");
+
+        // Для передачи возможны только следующие поля
+        $arraList = array("email", "www");
+        if( !in_array($field, $arraList ) )$field="";
+
         if( $id>0 && !empty( $field ) && !empty( $catalog ) )
         {
             if( class_exists( $catalog ) )
