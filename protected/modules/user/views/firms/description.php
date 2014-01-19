@@ -14,12 +14,16 @@ $this->widget('addressLineWidget', array(
         <a href="#" id="items" class="dopMenuPages">Акции и скидки</a>
         <a href="#" id="service" class="dopMenuPages">Дополнительные услуги</a>
         <a href="#" id="reclame" class="dopMenuPages">Рекламный баннер</a>
+        <a href="#" id="pcomment" class="dopMenuPages">Отзывы/Сообщения</a>
         <a href="<?= SiteHelper::createUrl( "/firms/description", array("id"=>$item->id, "slug"=>SiteHelper::checkedSlugName( $item->name )) ) ?>" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
     </div>
 <?php echo CHtml::errorSummary($item); ?>
 <?php if( !empty( $message ) ) : ?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>
+<div id="pcomment_page" class="pageTab displayNone">
+    <?php $this->renderPartial( "pcomment_page", array("item"=>$item) ) ?>
+</div>
 <div id="service_page" class="pageTab displayNone">
     <?php $this->renderPartial( "service_page", array("item"=>$item) ) ?>
 </div>
@@ -40,6 +44,7 @@ $this->widget('addressLineWidget', array(
             <div class="messageSummary">После сохранения вы сможете добавить фотографии.</div>
         <?php else : ?>
         <form action="" method="post">
+            <?php echo CHtml::errorSummary($addImage); ?><br>
             <div class="listGallery">
                 <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Список пуст</div><?php endif; ?>
                 <?php foreach( $listGallery as $gall ) : ?>
@@ -63,7 +68,6 @@ $this->widget('addressLineWidget', array(
             <input type="button" class="openDisplayNone" value="Добавить фото" />
         </div>
         <div class="<?php if( empty( $_POST["sendGallery"] ) || $addImage->formMessage ) :?>displayNone <?php endif; ?>addForm">
-            <?php echo CHtml::errorSummary($addImage); ?><br>
             <?= CHtml::form("","post", array("enctype"=>"multipart/form-data")) ?>
             <table class="tableListItems">
                 <tr>

@@ -6,7 +6,7 @@
         <th class="TLFAction">Краткое описание</th>
     </tr>
     <?php
-    $listTours = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
+    $listTours = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
     foreach( $listTours as $service ): ?>
         <tr <?= $service->hot==1 ? 'class="isHot"' : "" ?>>
             <td><?= $service->id ?></td>

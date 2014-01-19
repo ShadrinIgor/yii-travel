@@ -225,6 +225,7 @@ class UserController extends Controller
 
             $id = (int)Yii::app()->request->getParam("id", 0);
             $status = Yii::app()->request->getParam("status", "");
+            $error = Yii::app()->request->getParam("error", "");
             $addClass = $this->addModel;
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
@@ -293,6 +294,7 @@ class UserController extends Controller
             }
 
             $addImage = new CatGalleryAdd();
+            if( $error == "gallError" )$addImage->addError( "error uploda", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке ( Email : ".Yii::app()->params["supportEmail"]." ) " );
             if( !empty( $_POST["sendGallery"] ) )
             {
                 if( $id>0 )$this->uploadImages( (int) $id, get_class( $item ) );

@@ -167,8 +167,7 @@ class CCmodelHelper
                     <td>';
 
             $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '<br>['.Yii::t("system", "new code").']'), true);
-
-            $cout .=  CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' )) .'
+            $cout .= CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' )) .'
                     </td>
                 </tr>';
         }
