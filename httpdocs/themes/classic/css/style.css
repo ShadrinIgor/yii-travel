@@ -2121,4 +2121,13 @@ zoom: 1;
 #InnerText .pageTab {top:462px;}
 #yw0{float: left;}
 
-.isNewItem td, .isNewItem td a{font-weight: bold;}
+.isNewItem td, .isNewItem a{font-weight: bold;}
+
+.ajaxError
+{
+    position: absolute;
+    width: 818px;
+    margin-left: -724px;
+    background: rgba( 255, 200, 200, 0.6 ); /* Для старых браузров */
+    border: 1px solid #ff0000;
+}

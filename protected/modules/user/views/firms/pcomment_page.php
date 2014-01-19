@@ -14,16 +14,17 @@
             <td><?= $service->id ?></td>
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
-                <?= SiteHelper::getSubTextOnWorld( $service->description, 450 ) ?>
+                <?= SiteHelper::getSubTextOnWorld( $service->description, 550 ) ?>
+                <br/><br/>
             </td>
             <td class="textAlignCenter"><?= SiteHelper::getDateOnFormat( $service->date, "d.m.Y H:i" ) ?></td>
-            <td class="textAlignCenter"><?= ( $service->is_new == 1 ) ? "новое<br/>" : "" ?><?= ( $service->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+            <td class="textAlignCenter"><?= ( $service->is_new == 1 ) ? "<div class=\"readNew\">новое<br/></div>" : "" ?><?= ( $service->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">
                     <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>">Описание</a><br/>
                     <?php if( $service->is_new == 1 ) : ?>
-                        <a href="#" onclick="ajaxAction( '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentRead", array("id"=>$service->id)) ?>' );">прочитанное</a><br/>
+                        <div class="readNew"><a href="#" onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentRead", array("id"=>$service->id)) ?>', 'readItem' );">прочитанное</a><br/></div>
                     <?php endif; ?>
                     <?php if( $service->active == 1 ) : ?>
                         <a href="<?= SiteHelper::createUrl("/user/firmService/nopublish", array("id"=>$service->id, "fid"=>$item->id)) ?>">Снять с публикации</a><br/>
