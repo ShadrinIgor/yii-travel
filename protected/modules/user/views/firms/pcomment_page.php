@@ -5,12 +5,11 @@
         <th sytle="width:400px" class="TLFName">Краткое описание</th>
         <th>Дата</th>
         <th sytle="width:140px">Статус</th>
-        <th class="TLFAction">Действия</th>
+        <th style="width: 130px;" class="TLFAction">Действия</th>
     </tr>
     <?php
-    $listTours = CatalogFirmsComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
-    foreach( $listTours as $service ): ?>
-        <tr <?= $service->hot==1 ? 'class="isHot"' : "" ?><?= $service->is_new==1 ? 'class="isNewItem"' : "" ?>>
+    foreach( $items as $service ): ?>
+        <tr class="<?= $service->hot==1 ? 'isHot ' : "" ?><?= $service->is_new==1 ? 'isNewItem ' : "" ?><?= $service->active==1 ? 'publish  ' : "" ?>">
             <td><?= $service->id ?></td>
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
@@ -18,7 +17,7 @@
                 <br/><br/>
             </td>
             <td class="textAlignCenter"><?= SiteHelper::getDateOnFormat( $service->date, "d.m.Y H:i" ) ?></td>
-            <td class="textAlignCenter"><?= ( $service->is_new == 1 ) ? "<div class=\"readNew\">новое<br/></div>" : "" ?><?= ( $service->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+            <td class="textAlignCenter"><?= ( $service->is_new == 1 ) ? "<div class=\"readNew\">новое<br/></div>" : "" ?><div class="publishStatus"><?= ( $service->active == 1 ) ? "опубликовано" : "не опубликованно" ?></div></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">
@@ -26,12 +25,13 @@
                     <?php if( $service->is_new == 1 ) : ?>
                         <div class="readNew"><a href="#" onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentRead", array("id"=>$service->id)) ?>', 'readItem' );">прочитанное</a><br/></div>
                     <?php endif; ?>
-                    <?php if( $service->active == 1 ) : ?>
-                        <a href="<?= SiteHelper::createUrl("/user/firmService/nopublish", array("id"=>$service->id, "fid"=>$item->id)) ?>">Снять с публикации</a><br/>
-                    <?php else : ?>
-                        <a href="<?= SiteHelper::createUrl("/user/firmService/publish", array("id"=>$service->id, "fid"=>$item->id)) ?>">Опубликовать</a><br/>
-                    <?php endif; ?>
-
+                    <div>
+                        <?php if( $service->active == 1 ) : ?>
+                            <a href="#" class="commentPublishLink" onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Снять с публикации</a><br/>
+                        <?php else : ?>
+                            <a href="#" class="commentPublishLink"  onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Опубликовать</a><br/>
+                        <?php endif; ?>
+                    </div>
                     <div class="popup PMarginLeft">
                         <br/>
                         <b>Вы действительно хотите удалить запись?</b>
@@ -44,7 +44,7 @@
             </td>
         </tr>
     <?php endforeach; ?>
-    <?php if( sizeof( $listTours ) == 0 ) : ?>
+    <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
             <td colspan="5" class="textAlignCenter emptyList">Список пуст</td>
         </tr>

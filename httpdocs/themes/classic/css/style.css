@@ -2109,11 +2109,11 @@ zoom: 1;
     animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
 }
 .colorRad, .redColor{color:#ff0000;}
-#dopMenu{overflow: hidden;margin: 0px auto;text-align: center;}
-#dopMenu a{display: inline-block;width: 150px;vertical-align: top;padding: 2px 5px;text-align:center;}
+#dopMenu{overflow: hidden;margin: 0px auto 10px auto;text-align: center;}
+#dopMenu a{display: inline-block;width: 180px;vertical-align: top;padding: 2px 5px;text-align:center;border-right: 1px solid #bfbfbf;margin-top: 2px;}
 #dopMenu.tourPage a{width: auto;}
 .emptyList{padding: 10px 0px;}
-.activeDM{border-radius: 8px;border: 1px dotted #475071;}
+.activeDM{background: #dfdfff;}
 .pageTab{background: #fff;top: 355px;overflow: hidden;}
 
 #description_page{text-align: justify;}
@@ -2130,4 +2130,18 @@ zoom: 1;
     margin-left: -724px;
     background: rgba( 255, 200, 200, 0.6 ); /* Для старых браузров */
     border: 1px solid #ff0000;
+}
+
+.publish
+{
+    background:rgba(255, 102, 0, 0.3);
+    background: -moz-linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* Firefox 3.6+ */
+    /* Chrome 1-9, Safari 4-5 */
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#fff), color-stop(100%,rgba(255, 102, 0, 0.3)));
+    /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-linear-gradient(top, #fff, rgba(255, 102, 0, 0.3));
+    background: -o-linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* IE10 */
+    background: linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* CSS3 */
 }

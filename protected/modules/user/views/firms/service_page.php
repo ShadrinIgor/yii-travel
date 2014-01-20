@@ -8,8 +8,8 @@
         <th class="TLFAction">Действия</th>
     </tr>
     <?php
-    $listTours = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
-    foreach( $listTours as $service ): ?>
+
+    foreach( $items as $service ): ?>
         <tr <?= $service->hot==1 ? 'class="isHot"' : "" ?>>
             <td><?= $service->id ?></td>
             <td>
@@ -56,7 +56,7 @@
             </td>
         </tr>
     <?php endforeach; ?>
-    <?php if( sizeof( $listTours ) == 0 ) : ?>
+    <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
             <td colspan="5" class="textAlignCenter emptyList">Список пуст</td>
         </tr>

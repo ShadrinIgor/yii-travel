@@ -60,4 +60,24 @@ class FirmsController extends UserController
         echo false;
         return;
     }
+
+    public function actionCommentPublish()
+    {
+        $id = (int)Yii::app()->request->getParam("id", 0);
+        if( $id >0 )
+        {
+            $commentModel = CatalogFirmsCommentsAdd::fetch( $id );
+            if( $commentModel->id > 0 && $commentModel->user_id->id == Yii::app()->user->getId() )
+            {
+                if( $commentModel->active == 0 )$commentModel->active = 1;
+                                           else $commentModel->active = 0;
+                $commentModel->save();
+                echo true;
+                return;
+            }
+        }
+
+        echo false;
+        return;
+    }
 }
