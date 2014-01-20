@@ -18,6 +18,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
     SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
     <h1>туристическая компания - <?= $item->name ?></h1>
+    <?= FirmsHelper::getBannerByCategory( "1", $item->id  ) ?>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages">Описание</a>
         <a href="#" id="gallery2" class="dopMenuPages">Галлерея (<?= sizeof( $listGallery ) ?>)</a>
@@ -86,48 +87,9 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                 </p>
             </div>
         </div>
-
         <?= $item->description ?>
-
-        <?php if( $item->id>0 ) : ?>
-            <br/>
-            <?php if( sizeof( $listComments )>0 ) : ?>
-                <h2>Коментарии</h2>
-                <?= $comMessage ? '<div class="messageSummary">'.$comMessage.'</div>' : "" ?>
-                <table id="tableListItems" class="tableComments">
-                    <tr>
-                        <th>Описание</th>
-                        <th>Пользователь</th>
-                        <th>Дата</th>
-                        <th>Опубликованно</th>
-                        <th>Действия</th>
-                    </tr>
-                    <?php foreach( $listComments as $comm ) : ?>
-                        <tr>
-                            <td class="IHeader">
-                                <b><?= $comm->subject ?></b><br/>
-                                <?= $comm->description ?>
-                            </td>
-                            <td>
-                                <?php if( $comm->user_id ) : ?>
-                                    <?= $comm->user_id->name ?><br/>
-                                    <?= $comm->user_id->email ?>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?= SiteHelper::getDateOnFormat( $comm->date, "d.m.Y" ) ?>
-                            </td>
-                            <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? "нет" : "да" ?></td>
-                            <td>
-                                <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
-                                <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
-            <?php endif; ?>
-        <?php endif; ?>
     </div>
+    <?= FirmsHelper::getBannerByCategory( "2", $item->id  ) ?>
 
     <?php if( sizeof($otherFirms)>0 ) : ?>
         <h2>Смотрите также</h2>

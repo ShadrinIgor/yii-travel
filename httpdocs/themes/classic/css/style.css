@@ -2145,3 +2145,5 @@ zoom: 1;
     background: -ms-linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* IE10 */
     background: linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* CSS3 */
 }
+.banerBlock{width: 800px;height: 90px;overflow: hidden;}
+.banerBlock img{max-width: 800px}
