@@ -5,6 +5,7 @@
    */
 class CatalogFirmsInfo extends CatalogFirms
 {
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

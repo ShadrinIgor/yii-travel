@@ -17,6 +17,7 @@ class ToursController extends Controller
             $item = CatalogTours::fetch( $id );
             if( $item->id >0 )
             {
+                CCmodelHelper::colCounter( $item );
                 Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(

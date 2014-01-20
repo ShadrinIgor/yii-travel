@@ -22,12 +22,16 @@ $listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setCond
         <a href="#" id="service" class="dopMenuPages">Дополнительные услуги( <?= sizeof($listService) ?> )</a>
         <a href="#" id="reclame" class="dopMenuPages">Рекламный баннер( <?= sizeof($listBanners) ?> )</a>
         <a href="#" id="pcomment" class="dopMenuPages">Отзывы/Сообщения( <?= sizeof($listComments) ?> )</a>
+        <a href="#" id="counter" class="dopMenuPages">Статистика посещаемости</a>
         <a href="<?= SiteHelper::createUrl( "/firms/description", array("id"=>$item->id, "slug"=>SiteHelper::checkedSlugName( $item->name )) ) ?>" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
     </div>
 <?php echo CHtml::errorSummary($item); ?>
 <?php if( !empty( $message ) ) : ?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>
+<div id="counter_page" class="pageTab displayNone">
+    <?php $this->renderPartial( "counter_page", array("item"=>$item ) ) ?>
+</div>
 <div id="pcomment_page" class="pageTab displayNone">
     <?php $this->renderPartial( "pcomment_page", array("item"=>$item, "items"=>$listComments) ) ?>
 </div>

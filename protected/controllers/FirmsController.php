@@ -46,6 +46,7 @@ class FirmsController extends Controller
 
             if( $item->id >0 )
             {
+                CCmodelHelper::colCounter( $item );
                 $commentModel = new CatalogFirmsCommentsAdd();
                 if( !empty( $_POST["send_comment"] ) )
                 {

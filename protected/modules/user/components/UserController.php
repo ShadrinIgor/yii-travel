@@ -230,6 +230,8 @@ class UserController extends Controller
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
 
+
+
             $message = ( !empty( $status ) && $status == 'saved' ) ? "Сохраненно" : "";
 
             // Описание объявления

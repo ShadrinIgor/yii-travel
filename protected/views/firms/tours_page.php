@@ -31,13 +31,13 @@
                     <?php endif;?>
                 </td>
                 <td>
-                    <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a><br/>
+                    <a href="<?= SiteHelper::createUrl("/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a><br/>
                     <?= $tour->country_id->name.", ".$tour->city_id->name ?>
                 </td>
                 <td class="textAlignJustify">
                     <?= SiteHelper::getSubTextOnWorld( $tour->description, 400 ) ?>
                     <div class="itemAction textAlignRight">
-                        <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>">смотреть подробнее...</a><br/>
+                        <a href="<?= SiteHelper::createUrl("/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>">смотреть подробнее...</a><br/>
                     </div>
                 </td>
             </tr>

@@ -7,6 +7,7 @@
             <th class="TLFName">Заголовок</th>
             <th class="TLFType">Страна</th>
             <th>Статус</th>
+            <th>Просмотров</th>
             <th class="TLFAction">Действия</th>
         </tr>
         <?php
@@ -37,6 +38,7 @@
                 </td>
                 <td><?= $tour->country_id->name.", ".$tour->city_id->name ?></td>
                 <td class="textAlignCenter"><?= ( $tour->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+                <td class="textAlignCenter"><?= $tour->col ?></td>
                 <td class="textAlignCenter">
                     <a href="#" class="aAction"></a>
                     <div class="itemAction textAlignCenter">
@@ -61,11 +63,11 @@
         <?php endforeach; ?>
         <?php if( sizeof( $items ) == 0 ) : ?>
             <tr>
-                <td colspan="6" class="textAlignCenter emptyList">Список пуст</td>
+                <td colspan="7" class="textAlignCenter emptyList">Список пуст</td>
             </tr>
         <?php endif; ?>
         <tr>
-            <td colspan="6" class="textAlignCenter emptyList"><br/><a href="<?= SiteHelper::createUrl("/user/tours/description", array("fid"=>$item->id)) ?>">[ добавить новый тур ]</a><br/></td>
+            <td colspan="7" class="textAlignCenter emptyList"><br/><a href="<?= SiteHelper::createUrl("/user/tours/description", array("fid"=>$item->id)) ?>">[ добавить новый тур ]</a><br/></td>
         </tr>
     </table>
 </div>

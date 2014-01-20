@@ -5,6 +5,7 @@
         <th class="">Фото</th>
         <th class="TLFName">Заголовок</th>
         <th>Статус</th>
+        <th>Просмотров</th>
         <th class="TLFAction">Действия</th>
     </tr>
     <?php
@@ -34,6 +35,7 @@
                 <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array("id"=>$banner->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $banner->name ?></a>
             </td>
             <td class="textAlignCenter"><?= ( $banner->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+            <td class="textAlignCenter"><?= $banner->col ?></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">
@@ -58,10 +60,10 @@
     <?php endforeach; ?>
     <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
-            <td colspan="5" class="textAlignCenter emptyList">Список пуст</td>
+            <td colspan="6" class="textAlignCenter emptyList">Список пуст</td>
         </tr>
     <?php endif; ?>
     <tr>
-        <td colspan="5" class="textAlignCenter emptyList"><br/><a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array("fid"=>$item->id)) ?>">[ добавить банер ]</a><br/></td>
+        <td colspan="6" class="textAlignCenter emptyList"><br/><a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array("fid"=>$item->id)) ?>">[ добавить банер ]</a><br/></td>
     </tr>
 </table>
