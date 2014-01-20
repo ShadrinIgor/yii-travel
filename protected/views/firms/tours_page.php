@@ -8,8 +8,8 @@
             <th class="TLFAction">Краткое описание</th>
         </tr>
         <?php
-        $listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
-        foreach( $listTours as $tour ): ?>
+
+        foreach( $items as $tour ): ?>
             <tr <?= $tour->hot==1 ? 'class="isHot"' : "" ?>>
                 <td><?= $tour->id ?></td>
                 <td>

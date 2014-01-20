@@ -7,7 +7,10 @@ $this->widget('addressLineWidget', array(
         $item->name
     )
 ));
-
+$listComments = CatalogFirmsComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setOrderBy("id DESC")->setLimit(50)->setCache(0));
+$listService = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
+$listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
+$listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
 ?>
 
 <div id="InnerText" class="innerPage">
@@ -17,24 +20,24 @@ $this->widget('addressLineWidget', array(
     <h1>туристическая компания - <?= $item->name ?></h1>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages">Описание</a>
-        <a href="#" id="gallery2" class="dopMenuPages">Галлерея</a>
-        <a href="#" id="tours" class="dopMenuPages">Туры компаниии</a>
-        <a href="#" id="items" class="dopMenuPages">Акции и скидки</a>
-        <a href="#" id="service" class="dopMenuPages">Дополнительные услуги</a>
-        <a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages">Коментарии и отзывы</a>
+        <a href="#" id="gallery2" class="dopMenuPages">Галлерея (<?= sizeof( $listGallery ) ?>)</a>
+        <a href="#" id="tours" class="dopMenuPages">Туры компаниии (<?= sizeof( $listTours ) ?>)</a>
+        <a href="#" id="items" class="dopMenuPages">Акции и скидки (<?= sizeof( $listItems ) ?>)</a>
+        <a href="#" id="service" class="dopMenuPages">Дополнительные услуги (<?= sizeof( $listService ) ?>)</a>
+        <a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages">Коментарии и отзывы (<?= sizeof( $listComments ) ?>)</a>
     </div>
     <br/>
     <div id="pcomments_page" class="pageTab<?= $activeTab == "pcomments" ? " activePage " : " displayNone" ?>">
-        <?php $this->renderPartial( "pcomemts_page", array("item"=>$item, "commentModel"=>$commentModel) ) ?>
+        <?php $this->renderPartial( "pcomemts_page", array("item"=>$item, "commentModel"=>$commentModel, "items"=>$listComments) ) ?>
     </div>
     <div id="service_page" class="pageTab displayNone">
-        <?php $this->renderPartial( "service_page", array("item"=>$item) ) ?>
+        <?php $this->renderPartial( "service_page", array("item"=>$item, "items"=>$listService) ) ?>
     </div>
     <div id="items_page" class="pageTab displayNone">
-        <?php $this->renderPartial( "items_page", array("item"=>$item) ) ?>
+        <?php $this->renderPartial( "items_page", array("item"=>$item, "items"=>$listItems) ) ?>
     </div>
     <div id="tours_page" class="pageTab displayNone">
-        <?php $this->renderPartial( "tours_page", array("item"=>$item) ) ?>
+        <?php $this->renderPartial( "tours_page", array("item"=>$item, "items"=>$listTours) ) ?>
     </div>
     <div id="gallery2_page" class="pageTab displayNone">
         <div id="gallery">
