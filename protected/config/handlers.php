@@ -25,6 +25,10 @@ return array(
         array('ItemsNotifier', 'onNewComment'),
     ),
 
+    'onFirmNewComment'=>array(
+        array('FirmNotifier', 'onNewComment'),
+    ),
+
     // Добавление объявления
     'onAddItem'=>array(
         array('ItemsNotifier', 'onAddItem'),

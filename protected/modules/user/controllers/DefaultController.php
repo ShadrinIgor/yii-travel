@@ -126,7 +126,7 @@ class DefaultController extends Controller
                         if( $content && $content->id >0 )
                         {
                             $errorMessage = $content->description;
-                            $errorMessage = str_replace("{link}", Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/default/resend", array("email"=>$user->email)),$errorMessage );
+                            $errorMessage = str_replace("{link}", SiteHelper::createUrl("/user/default/resend", array("email"=>$user->email)),$errorMessage );
                         }
                             else $errorMessage = "Вы уже зарегелись ранее";
 
@@ -311,5 +311,21 @@ class DefaultController extends Controller
                 else throw new CHttpException("Error",'Ваш аккаунт активирован ранее.');
         }
             else throw new CHttpException("Error",'Вы использовали нерабочую сылку, попробуйте заново');
+    }
+
+    public function actionNotificationHide()
+    {
+        $id = (int)Yii::app()->request->getParam("id", 0 );
+        $notification = Notifications::fetch( $id );
+
+        if( $notification->id >0 && $notification->user_id->id == Yii::app()->user->getId() )
+        {
+            echo $notification->id;
+            $notification->delete();
+
+            return;
+        }
+        echo 0;
+        return ;
     }
 };

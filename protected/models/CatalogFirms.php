@@ -154,4 +154,10 @@ class CatalogFirms extends CCModel
 			'criteria'=>$criteria,
 		));
 	}
+
+    function onFirmNewComment( $event, $params )
+    {
+        if($this->hasEventHandler('onFirmNewComment'))
+            $this->raiseEvent('onFirmNewComment', array( "event"=>$event, "params"=>$params ));
+    }
 }

@@ -1,4 +1,5 @@
 <h2>Коментарии и отзывы</h2>
+<?= $commentModel->getMessage(); ?>
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
         <th class="TLFId">№</th>
@@ -13,7 +14,7 @@
                 <div class="commentLText">
                     <?= SiteHelper::getSubTextOnWorld( $comment->description, 400 ) ?>
                 </div>
-                <div class="commentText displayNone">
+                <div class="commentText overflowHidden displayNone">
                     <?= $comment->description ?>
                 </div>
                 <div class="itemAction textAlignRight">
@@ -33,7 +34,6 @@
 </div>
 <div id="commentdAdd_display" class="displayNone">
     <form action="" method="post">
-        <?= $commentModel->getMessage(); ?>
         <?= CHtml::errorSummary($commentModel); ?>
         <table class="tableForm">
             <?= CCmodelHelper::addForm( $commentModel, true, $this ) ?>

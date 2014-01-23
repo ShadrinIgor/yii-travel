@@ -151,8 +151,8 @@ class initNotifications extends CApplicationComponent
 
                 foreach( $list as $item )
                 {
-                    $cout .='<div class="NBItem">
-                                <div class="NHeader">'. $item->subject .'<div class="floatRight"><a href="'.SiteHelper::createUrl("/user/items/index", array("hide"=>$item->id)).'" id="'.$item->id.'">скрыть</a>&nbsp;&nbsp;&nbsp;<a href="#" class="NBdesc">подробнее</a></div></div>
+                    $cout .= '<div class="NBItem">
+                                <div class="NHeader">'. $item->subject .'<div class="floatRight"><a href="#" class="NHide" id="'.$item->id.'">скрыть</a>&nbsp;&nbsp;&nbsp;<a href="#" class="NBdesc">подробнее</a></div></div>
                                 <div class="displayNone">
                                     Дата: <font>'. SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) .'</font><br/>
                                     <div class="textAlignLeft">
@@ -162,11 +162,26 @@ class initNotifications extends CApplicationComponent
                             </div>';
                 }
 
-                            // <!-- div class="textAlignLeft"><a href="<?= SiteHelper::createUrl("/notifications") ">смотреть все уведомления</a></div-->
                 $cout .='</div>
                          <script type="text/javascript">
                             $( document).ready( function()
                             {
+                                $(".NHide").click( function()
+                                {
+                                    $.ajax({
+                                            type: "GET",
+                                            url: "'.SiteHelper::createUrl("/user/default/notificationHide/id") .'/"+this.id,
+                                            success: function(msg){
+                                                if( msg > 0 )
+                                                {
+                                                    $( $( "#"+msg )[0].parentNode.parentNode.parentNode ).remove();
+                                                    if( $( "#notificationsBlock .NBItem" ).length == 0 )$( "#notificationsBlock" ).hide(400);
+                                                }
+                                            }
+                                        });                                        
+                                    return false;
+                                })
+
                                 $(".NBhide").click( function()
                                 {
                                     $.ajax( "'.SiteHelper::createUrl("/user/notifications/show/id") .'/"+this.id );

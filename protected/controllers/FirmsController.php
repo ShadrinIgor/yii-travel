@@ -38,11 +38,15 @@ class FirmsController extends Controller
     {
         $id = (int)Yii::app()->request->getParam("id", 0);
         $error = Yii::app()->request->getParam("error", "");
+        $tab = Yii::app()->request->getParam("tab", "");
+        $tabArray = array("description","pcomments");
+        if( !in_array( $tab, $tabArray ) )$tab = "";
 
         if( $id > 0 )
         {
             $item = CatalogFirmsInfo::fetch( $id );
-            $activeTab = "description";
+            if( empty($tab) )$activeTab = "description";
+                        else $activeTab = $tab;
 
             if( $item->id >0 )
             {
@@ -53,10 +57,11 @@ class FirmsController extends Controller
                     $activeTab = "pcomments";
                     $commentModel->setAttributesFromArray( $_POST["CatalogFirmsCommentsAdd"] );
                     $commentModel->firm_id = $id;
-                    $commentModel->user_id = Yii::app()->user->getId();
+                    if( Yii::app()->user && Yii::app()->user->getId()>0 )$commentModel->user_id = Yii::app()->user->getId();
                     $commentModel->date = time();
                     if( $commentModel->save() )
                     {
+                        $item->onFirmNewComment( new CEvent( $commentModel ), array( "subject"=>$commentModel->name, "firm_name"=>$item->name, "date"=>date("d.m.Y H:i"), "user_name"=>$commentModel->fio, "description"=>$commentModel->message, "link"=>SiteHelper::createUrl( "/user/firms/description", array("id"=>$item->id, "tab"=>"pcomment") ) ) );
                         $commentModel = new CatalogFirmsCommentsAdd();
                         $commentModel->formMessage = "Сообщение отправленно, после модерации оно будет опубликованно.";
                     }

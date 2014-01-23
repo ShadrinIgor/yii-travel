@@ -31,18 +31,18 @@
                     <?php endif;?>
                 </td>
                 <td>
-                    <a href="<?= SiteHelper::createUrl("/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a><br/>
+                    <a href="<?= SiteHelper::createUrl("/tours/description", array("id"=>$tour->id, "slug"=>$tour->slug)) ?>" title="описание"><?= $tour->name ?></a><br/>
                     <?= $tour->country_id->name.", ".$tour->city_id->name ?>
                 </td>
                 <td class="textAlignJustify">
                     <?= SiteHelper::getSubTextOnWorld( $tour->description, 400 ) ?>
                     <div class="itemAction textAlignRight">
-                        <a href="<?= SiteHelper::createUrl("/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>">смотреть подробнее...</a><br/>
+                        <a href="<?= SiteHelper::createUrl("/tours/description", array("id"=>$tour->id, "slug"=>$tour->slug)) ?>">смотреть подробнее...</a><br/>
                     </div>
                 </td>
             </tr>
         <?php endforeach; ?>
-        <?php if( sizeof( $listTours ) == 0 ) : ?>
+        <?php if( sizeof( $items ) == 0 ) : ?>
             <tr>
                 <td colspan="6" class="textAlignCenter emptyList">Список пуст</td>
             </tr>

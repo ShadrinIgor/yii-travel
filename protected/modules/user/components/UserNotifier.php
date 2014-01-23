@@ -25,7 +25,7 @@ class UserNotifier {
         }
             else
         {
-            $arrayParams = array_merge( $arrayParams, array( "link"=> Yii::app()->params["baseUrl"].SiteHelper::createUrl( "/user/default/confirm", array( "confirm_key"=>$confim->confirm_key )  )  ));
+            $arrayParams = array_merge( $arrayParams, array( "link"=> SiteHelper::createUrl( "/user/default/confirm", array( "confirm_key"=>$confim->confirm_key )  )  ));
             // Отправляем письмо для подтверждения Email
             Yii::app()->notifications->send( "registration_confirm", array( "mail" ), $user->id, $arrayParams );
         }
@@ -90,7 +90,7 @@ class UserNotifier {
         }
             else
         {
-            $arrayParams = array( "link"=> Yii::app()->params["baseUrl"].SiteHelper::createUrl( "/user/default/LostConfirm", array( "key"=>$confim->confirm_key ) ) );
+            $arrayParams = array( "link"=> SiteHelper::createUrl( "/user/default/LostConfirm", array( "key"=>$confim->confirm_key ) ) );
             // Отправляем письмо для подтверждения Email
             Yii::app()->notifications->send( "lostpassword_request", array( "mail" ), $user->id, $arrayParams );
         }

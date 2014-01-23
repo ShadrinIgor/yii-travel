@@ -17,6 +17,9 @@ class FirmsController extends UserController
 
         $id = (int)Yii::app()->request->getParam("id", 0);
         $tid = (int)Yii::app()->request->getParam("tid", 0);
+
+
+
         if( !empty( $id ) && !empty( $tid ) )
         {
 

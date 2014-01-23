@@ -23,13 +23,13 @@
                 <div class="itemAction textAlignCenter">
                     <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>">Описание</a><br/>
                     <?php if( $service->is_new == 1 ) : ?>
-                        <div class="readNew"><a href="#" onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentRead", array("id"=>$service->id)) ?>', 'readItem' );">прочитанное</a><br/></div>
+                        <div class="readNew"><a href="#" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/commentRead", array("id"=>$service->id)) ?>', 'readItem' );">прочитанное</a><br/></div>
                     <?php endif; ?>
                     <div>
                         <?php if( $service->active == 1 ) : ?>
-                            <a href="#" class="commentPublishLink" onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Снять с публикации</a><br/>
+                            <a href="#" class="commentPublishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Снять с публикации</a><br/>
                         <?php else : ?>
-                            <a href="#" class="commentPublishLink"  onclick="return ajaxAction( this, '<?= Yii::app()->params["baseUrl"].SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Опубликовать</a><br/>
+                            <a href="#" class="commentPublishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Опубликовать</a><br/>
                         <?php endif; ?>
                     </div>
                     <div class="popup PMarginLeft">

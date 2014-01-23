@@ -30,7 +30,7 @@
     <meta http-equiv="Cache-Control" content="public"/>
     <meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate"/>
 
-    <base href="<?= Yii::app()->params["baseUrl"]."console/" ?>" />
+    <base href="<?= SiteHelper::createUrl("/")."console/" ?>" />
 
     <!-- TinyMCE -->
     <script type="text/javascript">

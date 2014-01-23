@@ -2118,7 +2118,7 @@ zoom: 1;
 
 #description_page{text-align: justify;}
 #description_page p{margin:3px 0px !important;text-indent: 25px;}
-#InnerText .pageTab {top:462px;}
+#InnerText .pageTab {top:auto;}
 #yw0{float: left;}
 
 .isNewItem td, .isNewItem a{font-weight: bold;}
@@ -2147,3 +2147,34 @@ zoom: 1;
 }
 .banerBlock{width: 800px;height: 90px;overflow: hidden;}
 .banerBlock img{max-width: 800px}
+
+/* Notifications */
+#notificationsBlock{box-shadow:0px 0px 10px rgba( 0, 0, 0, 0.4 );margin:10px 15px;padding:10px;overflow: hidden;border:1px solid #475071;border-left:3px solid #475071;border-right:3px solid #475071 ;border-radius: 10px;}
+.NBItem{overflow:hidden;padding: 5px 10px;border-radius: 6px;margin-bottom: 5px;
+    background: #fefcea; /* Для старых браузров */
+    background: -moz-linear-gradient(top, #fff, #efefef); /* Firefox 3.6+ */
+    /* Chrome 1-9, Safari 4-5 */
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#fff), color-stop(100%,#efefef));
+    /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-linear-gradient(top, #fff, #efefef);
+    background: -o-linear-gradient(top, #fff, #efefef); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fff, #efefef); /* IE10 */
+    background: linear-gradient(top, #fff, #efefef); /* CSS3 */
+}
+
+.NBItem:hover{
+    background: #fefcea; /* Для старых браузров */
+    background: -moz-linear-gradient(top, #fff, #dfdfff); /* Firefox 3.6+ */
+    /* Chrome 1-9, Safari 4-5 */
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#fff), color-stop(100%,#dfdfff));
+    /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-linear-gradient(top, #fff, #dfdfff);
+    background: -o-linear-gradient(top, #fff, #dfdfff); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fff, #dfdfff); /* IE10 */
+    background: linear-gradient(top, #fff, #dfdfff); /* CSS3 */
+}
+.NBItem .displayNone{overflow:hidden;padding: 10px;background:transparent;border-radius: 8px 8px 8px 8px;}
+.NBItem .displayNone.greyBack{background: #DFDFDF;border: 1px solid #AFAFAF;}
+.NBItem .displayNone .textAlignLeft{display: none;}

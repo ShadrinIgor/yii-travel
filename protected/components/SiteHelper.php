@@ -214,7 +214,12 @@ class SiteHelper
                 $route=Yii::app()->controller->Id.'/'.$route;
             if($route[0]!=='/' && ($module=Yii::app()->controller->module)!==null)
                 $route=$module->getId().'/'.$route;
-            return Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
+
+            $url = Yii::app()->params["baseUrl"].Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
+            $url = str_replace("//","/", $url);
+            $url = str_replace(":/","://", $url);
+
+            return $url;
         }
 
     }

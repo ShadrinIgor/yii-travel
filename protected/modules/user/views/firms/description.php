@@ -13,41 +13,45 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
 $listBanners = CatalogFirmsBanners::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
 $listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
 
+$tab = Yii::app()->request->getParam("tab", "description");
+
+$tabArray = array("description" ,"ptours" ,"items" ,"service" ,"reclame" ,"pcomments" ,"counter");
+if( !in_array( $tab, $tabArray ) )$tab = "description";
 ?>
-<h1>Описание фирмы</h1>
+<h1>Описание туристической фирмы - <?= $item->id >0 ? $item->name : "" ?> </h1>
     <div id="dopMenu">
-        <a href="#" id="description" class="activeDM dopMenuPages">Описание и галлерея</a>
-        <a href="#" id="tours" class="dopMenuPages">Туры компаниии( <?= sizeof($listTours) ?> )</a>
-        <a href="#" id="items" class="dopMenuPages">Акции и скидки( <?= sizeof($listItems) ?> )</a>
-        <a href="#" id="service" class="dopMenuPages">Дополнительные услуги( <?= sizeof($listService) ?> )</a>
-        <a href="#" id="reclame" class="dopMenuPages">Рекламный баннер( <?= sizeof($listBanners) ?> )</a>
-        <a href="#" id="pcomment" class="dopMenuPages">Отзывы/Сообщения( <?= sizeof($listComments) ?> )</a>
-        <a href="#" id="counter" class="dopMenuPages">Статистика посещаемости</a>
+        <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages">Описание и галлерея</a>
+        <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages">Туры компаниии( <?= sizeof($listTours) ?> )</a>
+        <a href="#" id="items" class="<?= $tab== "items" ? "items " : "" ?>dopMenuPages">Акции и скидки( <?= sizeof($listItems) ?> )</a>
+        <a href="#" id="service" class="<?= $tab== "service" ? "service " : "" ?>dopMenuPages">Дополнительные услуги( <?= sizeof($listService) ?> )</a>
+        <a href="#" id="reclame" class="<?= $tab== "reclame" ? "reclame " : "" ?>dopMenuPages">Рекламный баннер( <?= sizeof($listBanners) ?> )</a>
+        <a href="#" id="pcomments" class="<?= $tab== "pcomments" ? "pcomments " : "" ?>dopMenuPages">Отзывы/Сообщения( <?= sizeof($listComments) ?> )</a>
+        <a href="#" id="counter" class="<?= $tab== "counter" ? "counter " : "" ?>dopMenuPages">Статистика посещаемости</a>
         <a href="<?= SiteHelper::createUrl( "/firms/description", array("id"=>$item->id, "slug"=>SiteHelper::checkedSlugName( $item->name )) ) ?>" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
     </div>
 <?php echo CHtml::errorSummary($item); ?>
 <?php if( !empty( $message ) ) : ?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>
-<div id="counter_page" class="pageTab displayNone">
+<div id="counter_page" class="pageTab<?= $tab == "counter" ? " activePage" : " displayNone" ?>">
     <?php $this->renderPartial( "counter_page", array("item"=>$item ) ) ?>
 </div>
-<div id="pcomment_page" class="pageTab displayNone">
-    <?php $this->renderPartial( "pcomment_page", array("item"=>$item, "items"=>$listComments) ) ?>
+<div id="pcomments_page" class="pageTab<?= $tab == "pcomments" ? " activePage" : " displayNone" ?>">
+    <?php $this->renderPartial( "pcomments_page", array("item"=>$item, "items"=>$listComments) ) ?>
 </div>
-<div id="service_page" class="pageTab displayNone">
+<div id="service_page" class="pageTab<?= $tab== "service" ? " activePage" : " displayNone" ?>">
     <?php $this->renderPartial( "service_page", array("item"=>$item, "items"=>$listService) ) ?>
 </div>
-<div id="items_page" class="pageTab displayNone">
+<div id="items_page" class="pageTab<?= $tab == "items" ? " activePage" : " displayNone" ?>">
     <?php $this->renderPartial( "items_page", array("item"=>$item, "items"=>$listItems) ) ?>
 </div>
-<div id="reclame_page" class="pageTab displayNone">
+<div id="reclame_page" class="pageTab<?= $tab == "reclame" ? " activePage" : " displayNone" ?>">
     <?php $this->renderPartial( "reclame_page", array("item"=>$item, "items"=>$listBanners) ) ?>
 </div>
-<div id="tours_page" class="pageTab displayNone">
-    <?php $this->renderPartial( "tours_page", array("item"=>$item, "items"=>$listTours) ) ?>
+<div id="ptours_page" class="pageTab<?= $tab == "ptours" ? " activePage" : " displayNone" ?>">
+    <?php $this->renderPartial( "ptours_page", array("item"=>$item, "items"=>$listTours) ) ?>
 </div>
-<div id="description_page" class="pageTab activePage">
+<div id="description_page" class="pageTab<?= $tab == "description" ? " activePage" : " displayNone" ?>">
     <div id="gallery">
         <h2>Галлерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
@@ -118,45 +122,6 @@ $listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setCond
         </tr>
     </table>
 </form>
-
-    <?php if( $item->id>0 ) : ?>
-        <br/>
-        <?php if( sizeof( $listComments )>0 ) : ?>
-            <h2>Коментарии</h2>
-            <?= $comMessage ? '<div class="messageSummary">'.$comMessage.'</div>' : "" ?>
-            <table id="tableListItems" class="tableComments">
-                <tr>
-                    <th>Описание</th>
-                    <th>Пользователь</th>
-                    <th>Дата</th>
-                    <th>Опубликованно</th>
-                    <th>Действия</th>
-                </tr>
-                <?php foreach( $listComments as $comm ) : ?>
-                    <tr>
-                        <td class="IHeader">
-                            <b><?= $comm->subject ?></b><br/>
-                            <?= $comm->description ?>
-                        </td>
-                        <td>
-                            <?php if( $comm->user_id ) : ?>
-                                <?= $comm->user_id->name ?><br/>
-                                <?= $comm->user_id->email ?>
-                            <?php endif; ?>
-                        </td>
-                        <td>
-                            <?= SiteHelper::getDateOnFormat( $comm->date, "d.m.Y" ) ?>
-                        </td>
-                        <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? "нет" : "да" ?></td>
-                        <td>
-                            <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>">Удалить</a>&nbsp;
-                            <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>">Отобразить на сайте</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
-    <?php endif; ?>
 
 </div>
 

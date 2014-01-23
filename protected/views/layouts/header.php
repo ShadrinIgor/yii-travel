@@ -5,7 +5,7 @@
 <link rel="icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" />
 
-<base href="<?= Yii::app()->params["baseUrl"] ?>" />
+<base href="<?= SiteHelper::createUrl("/") ?>" />
 
 <?php
 
