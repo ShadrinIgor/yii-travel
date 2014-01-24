@@ -37,24 +37,26 @@
                     <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a>
                 </td>
                 <td><?= $tour->country_id->name.", ".$tour->city_id->name ?></td>
-                <td class="textAlignCenter"><?= ( $tour->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+                <td class="textAlignCenter publishStatus"><?= ( $tour->active == 1 ) ? "опубликовано" : "не опубликовано" ?></td>
                 <td class="textAlignCenter"><?= $tour->col ?></td>
                 <td class="textAlignCenter">
                     <a href="#" class="aAction"></a>
                     <div class="itemAction textAlignCenter">
                         <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>">Описание</a><br/>
-                        <?php if( $tour->active == 1 ) : ?>
-                            <a href="<?= SiteHelper::createUrl("/user/tours/nopublish", array("id"=>$tour->id, "fid"=>$item->id)) ?>">Снять с публикации</a><br/>
-                        <?php else : ?>
-                            <a href="<?= SiteHelper::createUrl("/user/tours/publish", array("id"=>$tour->id, "fid"=>$item->id)) ?>">Опубликовать</a><br/>
-                        <?php endif; ?>
+                        <div>
+                            <?php if( $tour->active == 1 ) : ?>
+                                <a href="#" class="publishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$tour->id, "catalog"=>"CatalogTours")) ?>', '' );">Снять с публикации</a><br/>
+                            <?php else : ?>
+                                <a href="#" class="publishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$tour->id, "catalog"=>"CatalogTours")) ?>', '' );">Опубликовать</a><br/>
+                            <?php endif; ?>
+                        </div>
 
                         <div class="popup PMarginLeft">
                             <br/>
                             <b>Вы действительно хотите удалить запись?</b>
                             <br/><br/>
                             <a href="#" class="PCancel">Отмена</a>&nbsp;|&nbsp;
-                            <a href="<?= SiteHelper::createUrl("/user/firms/tourDelete", array("id"=>$item->id, "tid"=>$tour->id)) ?>">Удалить</a>
+                            <a href="#"  onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$tour->id, "catalog"=>"CatalogTours")) ?>', '' );" class="deleteItem">Удалить</a>
                         </div>
                         <a href="#" class="PDel">Удалить</a>
                     </div>

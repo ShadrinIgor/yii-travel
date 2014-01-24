@@ -2,7 +2,7 @@
 <?php
 $this->widget('addressLineWidget', array(
     'links'=>array(
-                    "Мои фирмы"=>SiteHelper::createUrl( "/user/hotels" ),
+                    "Мои фирмы"=>SiteHelper::createUrl( "/user/firms" ),
                     "Описание"
                   ),
 ));
@@ -18,7 +18,7 @@ $tab = Yii::app()->request->getParam("tab", "description");
 $tabArray = array("description" ,"ptours" ,"items" ,"service" ,"reclame" ,"pcomments" ,"counter");
 if( !in_array( $tab, $tabArray ) )$tab = "description";
 ?>
-<h1>Описание туристической фирмы - <?= $item->id >0 ? $item->name : "" ?> </h1>
+<h1>Описание туристической фирмы - <?= $item->id >0 ? $item->name : "" ?></h1>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages">Описание и галлерея</a>
         <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages">Туры компаниии( <?= sizeof($listTours) ?> )</a>
@@ -122,7 +122,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         </tr>
     </table>
 </form>
-
+    <?php $this->widget( "formNoteWidget" ) ?>
 </div>
 
 </div>

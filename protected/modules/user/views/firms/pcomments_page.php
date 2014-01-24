@@ -27,9 +27,9 @@
                     <?php endif; ?>
                     <div>
                         <?php if( $service->active == 1 ) : ?>
-                            <a href="#" class="commentPublishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Снять с публикации</a><br/>
+                            <a href="#" class="publishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$service->id, "catalog"=>"CatalogFirmsComments")) ?>', 'comment' );">Снять с публикации</a><br/>
                         <?php else : ?>
-                            <a href="#" class="commentPublishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/commentPublish", array("id"=>$service->id)) ?>', 'commentPublish' );">Опубликовать</a><br/>
+                            <a href="#" class="publishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$service->id, "catalog"=>"CatalogFirmsComments")) ?>', 'comment' );">Опубликовать</a><br/>
                         <?php endif; ?>
                     </div>
                     <div class="popup PMarginLeft">
@@ -37,7 +37,7 @@
                         <b>Вы действительно хотите удалить запись?</b>
                         <br/><br/>
                         <a href="#" class="PCancel">Отмена</a>&nbsp;|&nbsp;
-                        <a href="<?= SiteHelper::createUrl("/user/firms/serviceDelete", array("id"=>$item->id, "tid"=>$service->id)) ?>">Удалить</a>
+                        <a href="#"  onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$service->id, "catalog"=>"CatalogFirmsComments")) ?>', '' );" class="deleteItem">Удалить</a>
                     </div>
                     <a href="#" class="PDel">Удалить</a>
                 </div>

@@ -2127,9 +2127,12 @@ zoom: 1;
 {
     position: absolute;
     width: 818px;
-    margin-left: -724px;
+    margin-right: 250px;
     background: rgba( 255, 200, 200, 0.6 ); /* Для старых браузров */
-    border: 1px solid #ff0000;
+    border: 2px solid rgba( 255, 0, 0, 0.4 );
+    z-index: 99999;
+    right: 0;
+    box-shadow: 0px 0px 5px;
 }
 
 .publish
@@ -2178,3 +2181,20 @@ zoom: 1;
 .NBItem .displayNone{overflow:hidden;padding: 10px;background:transparent;border-radius: 8px 8px 8px 8px;}
 .NBItem .displayNone.greyBack{background: #DFDFDF;border: 1px solid #AFAFAF;}
 .NBItem .displayNone .textAlignLeft{display: none;}
+#formNote
+{
+    background: url(../images/note.png ) no-repeat;
+    padding-left: 44px;
+    width: 642px;
+    margin: 10px auto;
+    min-height: 27px;
+    padding-top: 12px;
+}
+
+#formNote .displayNone
+{
+    border: 1px dotted #000;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0px 0px 5px;
+}

@@ -34,24 +34,26 @@
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array("id"=>$banner->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $banner->name ?></a>
             </td>
-            <td class="textAlignCenter"><?= ( $banner->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+            <td class="textAlignCenter publishStatus"><?= ( $banner->active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
             <td class="textAlignCenter"><?= $banner->col ?></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">
                     <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array("id"=>$banner->id, "fid"=>$item->id)) ?>">Описание</a><br/>
-                    <?php if( $banner->active == 1 ) : ?>
-                        <a href="<?= SiteHelper::createUrl("/user/firmBanners/nopublish", array("id"=>$banner->id, "fid"=>$item->id)) ?>">Снять с публикации</a><br/>
-                    <?php else : ?>
-                        <a href="<?= SiteHelper::createUrl("/user/firmBanners/publish", array("id"=>$banner->id, "fid"=>$item->id)) ?>">Опубликовать</a><br/>
-                    <?php endif; ?>
+                    <div>
+                        <?php if( $banner->active == 1 ) : ?>
+                            <a href="#" class="publishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$banner->id, "catalog"=>"CatalogFirmsBanners")) ?>', '' );">Снять с публикации</a><br/>
+                        <?php else : ?>
+                            <a href="#" class="publishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$banner->id, "catalog"=>"CatalogFirmsBanners")) ?>', '' );">Опубликовать</a><br/>
+                        <?php endif; ?>
+                    </div>
 
                     <div class="popup PMarginLeft">
                         <br/>
                         <b>Вы действительно хотите удалить запись?</b>
                         <br/><br/>
                         <a href="#" class="PCancel">Отмена</a>&nbsp;|&nbsp;
-                        <a href="<?= SiteHelper::createUrl("/user/firms/bannerDelete", array("id"=>$item->id, "tid"=>$banner->id)) ?>">Удалить</a>
+                        <a href="#"  onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$banner->id, "catalog"=>"CatalogFirmsBanners")) ?>', '' );" class="deleteItem">Удалить</a>
                     </div>
                     <a href="#" class="PDel">Удалить</a>
                 </div>

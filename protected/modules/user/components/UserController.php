@@ -230,7 +230,12 @@ class UserController extends Controller
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
 
-
+            if( $item->firm_id && $item->firm_id->id>0 )$firm = $item->firm_id;
+                else
+            {
+                $fid = (int)Yii::app()->request->getParam("fid", 0);
+                $firm = CatalogFirms::fetch( $fid );
+            }
 
             $message = ( !empty( $status ) && $status == 'saved' ) ? "Сохраненно" : "";
 
@@ -296,7 +301,7 @@ class UserController extends Controller
             }
 
             $addImage = new CatGalleryAdd();
-            if( $error == "gallError" )$addImage->addError( "error uploda", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке ( Email : ".Yii::app()->params["supportEmail"]." ) " );
+            if( $error == "gallError" )$addImage->addError( "error upload", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке ( Email : ".Yii::app()->params["supportEmail"]." ) " );
             if( !empty( $_POST["sendGallery"] ) )
             {
                 if( $id>0 )$this->uploadImages( (int) $id, get_class( $item ) );
@@ -308,7 +313,7 @@ class UserController extends Controller
             $listComments = CatComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
             $listGallery = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
 
-            $this->render( "description", array( "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>$comMessage, "gallMessage"=>$gallMessage, "listComments"=>$listComments ) );
+            $this->render( "description", array( "item"=>$item, "firm"=>$firm, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>$comMessage, "gallMessage"=>$gallMessage, "listComments"=>$listComments ) );
         }
     }
 }

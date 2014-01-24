@@ -2,14 +2,16 @@
     <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            $item->firm_id->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ),
+            $firm->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ),
             "Описание тура"
         ),
     ));
     ?>
     <h1>Описание тура</h1>
     <div id="dopMenu" class="tourPage">
-        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ) ?>">[ << вернуться к описанию фирмы ]</a><br/>
+        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ) ?>">вернуться к описанию фирмы</a>
+        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"ptours" ) ) ?>">вернуться к списку туров</a>
+        <br/>
     </div>
     <?php echo CHtml::errorSummary($item); ?><br>
     <?php if( !empty( $message ) ) : ?>
@@ -95,6 +97,8 @@
             </tr>
         </table>
     </form>
+
+    <?php $this->widget( "formNoteWidget" ) ?>
 
     <?php if( $item->id>0 ) : ?>
         <br/>
