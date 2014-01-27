@@ -1,7 +1,7 @@
 <?php
    $this->widget( "userPagesWidget", array(
-       "adressTitle" => "Описание отеля",
-       "h1Titile" => "Описание отеля",
+       "adressTitle" => "Отзыв/коментарий",
+       "h1Titile" => "Отзыв/коментарий",
        "item" => $item,
        "message" => $message,
        "gallMessage" => $gallMessage,

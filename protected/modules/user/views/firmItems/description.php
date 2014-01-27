@@ -2,14 +2,15 @@
     <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            $item->firm_id->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ),
+            $firm->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ),
             "Описание тура"
         ),
     ));
     ?>
-    <h1>Описание тура</h1>
+    <h1>Описание акции/скидки</h1>
     <div id="dopMenu" class="tourPage">
-        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ) ?>">[ << вернуться к описанию фирмы ]</a><br/>
+        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ) ?>">вернуться к описанию фирмы</a>
+        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"items" ) ) ?>">вернуться к списку акций</a>
     </div>
     <?php echo CHtml::errorSummary($item); ?><br>
     <?php if( !empty( $message ) ) : ?>
@@ -89,7 +90,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="button" onclick="window.location = '<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ) ?>';" name="update" value="вернуться к описанию фирмы" />&nbsp;
+                    <input type="button" onclick="window.location = '<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id ) ) ?>';" name="update" value="вернуться к описанию фирмы" />&nbsp;
                     <input type="submit" name="update" value="Сохранить" />
                 </td>
             </tr>
@@ -134,6 +135,6 @@
             </table>
         <?php endif; ?>
     <?php endif; ?>
-
+    <?php $this->widget( "formNoteWidget" ) ?>
 </div>
 

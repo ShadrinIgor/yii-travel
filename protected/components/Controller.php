@@ -12,6 +12,19 @@ class Controller extends CController
         if ( !empty($_GET['language'] ))
             Yii::app()->language = $_GET['language'];
     }
+
+    public function filters()
+    {
+        return array(
+            array(
+                'application.filters.YXssFilter',
+                'clean'   => '*',
+                'tags'    => 'strict',
+                'actions' => 'all'
+            )
+        );
+    }
+
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.

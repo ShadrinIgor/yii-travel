@@ -12,7 +12,7 @@
         <tr class="<?= $service->hot==1 ? 'isHot ' : "" ?><?= $service->is_new==1 ? 'isNewItem ' : "" ?><?= $service->active==1 ? 'publish  ' : "" ?>">
             <td><?= $service->id ?></td>
             <td>
-                <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
+                <a href="<?= SiteHelper::createUrl("/user/firmComments/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $service->description, 550 ) ?>
                 <br/><br/>
             </td>
@@ -21,7 +21,7 @@
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">
-                    <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/user/firmComments/description", array("id"=>$service->id, "fid"=>$item->id)) ?>">Описание</a><br/>
                     <?php if( $service->is_new == 1 ) : ?>
                         <div class="readNew"><a href="#" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/commentRead", array("id"=>$service->id)) ?>', 'readItem' );">прочитанное</a><br/></div>
                     <?php endif; ?>

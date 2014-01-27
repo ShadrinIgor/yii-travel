@@ -103,3 +103,5 @@ $this->widget('addressLineWidget', array(
         <?php endforeach; ?>
     </table>
 <?php endif; ?>
+
+<?php $this->widget( "formNoteWidget" ) ?>

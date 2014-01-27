@@ -341,7 +341,6 @@ class SiteHelper
         if( $type == "string" )
         {
             $value = str_replace("'", "&#039;", $value);
-            $value = trim( strip_tags( $value ) );
         }
         return $value;
     }
@@ -361,7 +360,6 @@ class SiteHelper
         $arrayReplace = array( " - ", ' ', "_" );
         return str_replace( $arrayReplace, "-", $slug );
     }
-
 
     // Передача закрытой информации такой как email и название сайта не текстом а картинкой
     static public function getAccessInfo( )
@@ -392,5 +390,4 @@ class SiteHelper
             }
         }
     }
-
 }

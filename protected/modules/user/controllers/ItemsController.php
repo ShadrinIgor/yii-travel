@@ -160,11 +160,14 @@ class ItemsController extends Controller
             Yii::app()->page->title = "Описание объявления";
 
             $id = (int)Yii::app()->request->getParam("id", 0);
+            $fid = (int)Yii::app()->request->getParam("fid", 0);
             if( !empty( $id ) )
             {
                 $item = CatalogItemsAdd::fetchParam( $id );
                 if( $item->id )
                 {
+                    if( $item->firmid->id>0 )$firmModel = $item->firm_id;
+                            elseif( $fid>0 )$firmModel = CatalogFirms::fetch( $fid );
                     $message = "";
                     if( !empty( $_POST["update_tree"] ) )
                     {
@@ -229,7 +232,7 @@ class ItemsController extends Controller
                     $listComments = CatalogItemsComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("item_id=:item_id")->setParams( array( ":item_id"=>$item->id ) )->setOrderBy("is_new DESC, date DESC")->setLimit(50)->setCache(0) );
                     $listGallery = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setLimit(50)->setCache(0) );
 
-                    $this->render( "description", array( "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>$comMessage, "gallMessage"=>$gallMessage, "listComments"=>$listComments ) );
+                    $this->render( "description", array( "firm"=>$firmModel, "item"=>$item, "listGallery"=>$listGallery, "message"=>$message, "addImage"=>$addImage, "comMessage"=>$comMessage, "gallMessage"=>$gallMessage, "listComments"=>$listComments ) );
                 }
                     else $this->redirect("/");
             }
