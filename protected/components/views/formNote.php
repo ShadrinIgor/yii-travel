@@ -7,3 +7,6 @@
         </div>
     </div>
 </div>
+<div class="greeBorder">
+    Если произошла непонятная/некорректная ошибка при сохранении формы, напишите в техническую поддержку, мы обязательно Вам поможем - <a href="mailto:<?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>.
+</div>

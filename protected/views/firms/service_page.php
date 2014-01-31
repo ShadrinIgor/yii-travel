@@ -37,7 +37,7 @@
             </td>
         </tr>
     <?php endforeach; ?>
-    <?php if( sizeof( $listTours ) == 0 ) : ?>
+    <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
             <td colspan="5" class="textAlignCenter emptyList">Список пуст</td>
         </tr>
