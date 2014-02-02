@@ -9,9 +9,7 @@ class CatalogContent extends CCmodel
     protected $name; // string 
     protected $active; // integer 
     protected $pos; // integer 
-    protected $cer_id; // integer 
-    protected $ltext; // string 
-    protected $description; // string 
+    protected $description; // string
     protected $date; // string 
     protected $image; // string 
     protected $file; // string 
@@ -46,16 +44,16 @@ class CatalogContent extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, ltext, date, image, file', 'required'),
-			array('active, pos, cer_id, del', 'numerical', 'integerOnly'=>true),
+			array('name, category_id', 'required'),
+			array('country_id, category_id, active, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('image', 'length', 'max'=>50),
 			array('file', 'length', 'max'=>100),
 			array('key_word', 'length', 'max'=>25),
-			array('description', 'safe'),
+            array('name, active, pos, description, date, image, file, del, country_id, category_id, key_word', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, cer_id, ltext, description, date, image, file, del, country_id, category_id, key_word', 'safe', 'on'=>'search'),
+			array('id, name, active, pos, description, date, image, file, del, country_id, category_id, key_word', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,8 +80,6 @@ class CatalogContent extends CCmodel
 			'name' => 'Name',
 			'active' => 'Active',
 			'pos' => 'Pos',
-			'cer_id' => 'Cer',
-			'ltext' => 'Ltext',
 			'description' => 'Description',
 			'date' => 'Date',
 			'image' => 'Image',
@@ -110,8 +106,6 @@ class CatalogContent extends CCmodel
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
-		$criteria->compare('cer_id',$this->cer_id);
-		$criteria->compare('ltext',$this->ltext,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('image',$this->image,true);

@@ -265,3 +265,11 @@ h1{text-align: center;}
     border: 1px solid #afafaf;
 }
 .pageList b{background: #afafaf;color: #fff;border: 1px solid #afafaf;}
+#consoleRightBlock
+{
+    float: right;
+    width: 200px;
+}
+
+#consoleRightBlock a{display: block;margin-left: 5px;text-decoration: none;}
+#consoleRightBlock a.selectCategory{font-weight: bold;text-decoration: underline;}

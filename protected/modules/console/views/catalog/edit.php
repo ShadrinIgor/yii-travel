@@ -1,5 +1,8 @@
+<div id="Address">
+    <a href="<?= SiteHelper::createUrl( "/console" ) ?>">главная</a> ... <a href="<?= SiteHelper::createUrl( "/console/catalog", $arrayParams ) ?>">назад к списку</a>
+</div>
 <h1>Редактирование - <?= $form->name ?></h1>
-<form action="<?= SiteHelper::createUrl("/console/catalog/update", array( "id"=>$form->id)).$controller->params?>" method="post" onsubmit="submitForm()"  enctype="multipart/form-data">
+<form action="<?= SiteHelper::createUrl("/console/catalog/update", array( "id"=>$form->id)).$controller->params?>" method="post" onsubmit="submitForm();"  enctype="multipart/form-data">
 <?php
     echo CHtml::errorSummary($form);
     if( !empty( $message ) ):?><div class="messageSummary"><?= $message ?></div><?php endif;?>

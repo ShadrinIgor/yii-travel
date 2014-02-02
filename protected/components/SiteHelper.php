@@ -300,7 +300,8 @@ class SiteHelper
             if( $timeStamp > 0 )
                 return date( $format, $timeStamp );
             else
-                trigger_error( "Не правельный формат переданной даты ( Класс: ".$classNme." | Дата: ".$date." ".$note.")", E_USER_NOTICE );
+                return "";
+                //trigger_error( "Не правельный формат переданной даты ( Класс: ".$classNme." | Дата: ".$date." ".$note.")", E_USER_NOTICE );
 
         }
          return false;

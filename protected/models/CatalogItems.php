@@ -50,7 +50,7 @@ class CatalogItems extends CCmodel
 			array('del, price, is_hot, date, pos', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('image', 'length', 'max'=>255),
-			array('description', 'safe'),
+            array('name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos', 'safe', 'on'=>'search'),

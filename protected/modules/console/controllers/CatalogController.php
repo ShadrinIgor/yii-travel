@@ -6,6 +6,7 @@ class CatalogController extends ConsoleController
     public $id;
     public $params;
     public $DBparams;
+    public $arrayParams;
 
     public function init()
     {
@@ -14,29 +15,28 @@ class CatalogController extends ConsoleController
 
         $requestUrl = Yii::app()->request->requestUri;
         $requestUrlArr = explode( "?", $requestUrl );
-        $requestUrl = $requestUrlArr[1];
-        $requestUrlArr = explode( "&", $requestUrl );
-        $this->params = "?".$requestUrlArr[0];
-        $requestUrlArr[0] = null;
+        $this->params = "?".$requestUrlArr[1];
+        $requestUrlArr = explode( "&", $requestUrlArr[1] );
 
         $params = "";
+        $this->arrayParams = array();
+        $array = array( "p", "catalog" );
         foreach( $requestUrlArr as $item )
         {
             if( !empty( $item ) )
             {
                 $itemArr = explode( "=", $item );
-                if( $itemArr[0] != "p" )
+                if( !in_array( $itemArr[0], $array ) )
                 {
+                    $this->arrayParams[ $itemArr[0] ] = $itemArr[1];
                     if( !empty( $params ) )$params.=" AND ";
                     $params .= "`".trim( $itemArr[0] )."`='".trim( $itemArr[1] )."'";
-                    $this->params .= "&".$item;
                 }
             }
         }
 
+        $this->arrayParams["catalog"] = $this->catalog;
         $this->DBparams = $params;
-
-//        DBQueryParamsClass::CreateParams()->setConditions("status_id=:status_id")->setParams( array(":status_id"=>2) )
     }
 
     public function filters()
@@ -97,7 +97,10 @@ class CatalogController extends ConsoleController
             if( $item->id >0 )$listImage = CatGallery::findByAttributes( array( "catalog"=>$item->tableName(), "item_id"=>$item->id ) );
                          else $listImage=array();
 
+            $this->arrayParams["catalog"] = $catalog;
+
             $this->render('edit',array(
+                'arrayParams' => $this->arrayParams,
                 'controller'  => $this,
                 'form'        => $item,
                 'catalog'     => SiteHelper::getCamelCase( $item->tableName() ),
@@ -190,6 +193,7 @@ class CatalogController extends ConsoleController
                 else $listImage=array();
 
             $this->render('edit',array(
+                'arrayParams' => $this->arrayParams,
                 'form'        => $model,
                 'catalog'     => $this->catalog,
                 'listImage'   => $listImage,
@@ -208,18 +212,21 @@ class CatalogController extends ConsoleController
 	{
         $catalog = $this->catalog;
         $id = (int) Yii::app()->request->getParam("id", 0 );
+        $category_id = (int) Yii::app()->request->getParam("category_id", "" );
 
+        $array = array("catalog"=>$this->catalog);
+        if( $category_id>0 )$array["category_id"] = $category_id;
         if( !empty( $this->catalog ) )
         {
             $item = $catalog::fetch($id);
             if( $item->id >0 )
             {
                 $item->delete();
-                $this->redirect( SiteHelper::createUrl("/console/catalog", array("catalog"=>$this->catalog)) );
+                $this->redirect( SiteHelper::createUrl("/console/catalog", $array ) );
             }
         }
 
-        $this->redirect( SiteHelper::createUrl("/console/catalog", array("catalog"=>$this->catalog)) );
+        $this->redirect( SiteHelper::createUrl("/console/catalog", $array ) );
 	}
 
 	/**
@@ -232,10 +239,30 @@ class CatalogController extends ConsoleController
         if( !empty( $this->catalog ) )
         {
             $page = (int) Yii::app()->request->getParam("p", 1 );
+            $find = Yii::app()->request->getParam( "find", "");
 
-            $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(50)->setConditions( $this->DBparams )->setCache(0)->setPage($page) );
-            $allCount = $catalog::count( DBQueryParamsClass::CreateParams()->setLimit(-1)->setConditions( $this->DBparams )->setCache(0) );
-            $this->render("index", array( "list"=>$list, "allCount"=>$allCount, "controller"=>$this, "page"=>$page ));
+            if( empty( $find ) )
+            {
+                $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(50)->setConditions( $this->DBparams )->setCache(0)->setPage($page) );
+                $allCount = $catalog::count( DBQueryParamsClass::CreateParams()->setLimit(-1)->setConditions( $this->DBparams )->setCache(0) );
+            }
+                else
+            {
+                $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(100)->setConditions( "( id='".$find."' OR ( name like '%".$find."%' OR description like '%".$find."%' ) )" )->setParams( array( ":find"=>$find ) )->setCache(0) );
+                $allCount = 0;
+            }
+
+            $listCategory = "";
+            if( property_exists( $catalog, "category_id" ) )
+            {
+                $newModel = new $catalog();
+                $relation = $newModel->getRelationByField( "category_id" );
+                $categoryClass = $relation[1];
+                if( !property_exists( $catalog, "owner" ) )$listCategory = $categoryClass::fetchAll();
+                                                      else $listCategory = $categoryClass::findByAttributes( array("owner"=>0) );
+            }
+
+            $this->render("index", array( "arrayParams"=>$this->arrayParams, "catalogClass"=>$catalog, "listCategory"=>$listCategory,"list"=>$list, "allCount"=>$allCount, "controller"=>$this, "page"=>$page ));
         }
 	}
 }

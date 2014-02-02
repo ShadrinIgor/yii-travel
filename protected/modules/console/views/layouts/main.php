@@ -34,6 +34,7 @@
 
     <!-- TinyMCE -->
     <script type="text/javascript">
+
         tinyMCE.init({
             // General options
             mode : "textareas",
