@@ -44,8 +44,7 @@ class CatalogKurortsCategory extends CCmodel
 			array('name', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('slug', 'safe'),
-            array('id, name, active, pos, del, owner', 'safe', 'on'=>'search'),
+            array('slug, name, active, pos, del, owner', 'safe'),
 		);
 	}
 
@@ -74,6 +73,7 @@ class CatalogKurortsCategory extends CCmodel
 			'pos' => 'Pos',
 			'del' => 'Del',
 			'owner' => 'Owner',
+            'slug' => 'slug'
 		);
 	}
 

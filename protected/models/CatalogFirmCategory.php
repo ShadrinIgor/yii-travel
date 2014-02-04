@@ -10,7 +10,9 @@ class CatalogFirmCategory extends CCmodel
     protected $active; // integer 
     protected $pos; // integer 
     protected $del; // integer 
-    protected $owner; // integer 
+    protected $owner; // integer
+    protected $slug; // integer
+    protected $description;
 
 /*
 * Поля - связи
@@ -44,7 +46,7 @@ class CatalogFirmCategory extends CCmodel
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, del, owner', 'safe', 'on'=>'search'),
+			array('slug, description, id, name, active, pos, del, owner', 'safe'),
 		);
 	}
 
@@ -74,6 +76,8 @@ class CatalogFirmCategory extends CCmodel
 			'pos' => 'Pos',
 			'del' => 'Del',
 			'owner' => 'Owner',
+            'description' => 'description',
+            'slug' => 'slug'
 		);
 	}
 

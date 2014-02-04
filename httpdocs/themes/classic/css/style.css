@@ -2118,7 +2118,7 @@ zoom: 1;
 
 #description_page{text-align: justify;}
 #description_page p{margin:3px 0px !important;text-indent: 25px;}
-#InnerText .pageTab {top:auto;}
+/*#InnerText .pageTab {top:auto;}*/
 #yw0{float: left;}
 
 .isNewItem td, .isNewItem a{font-weight: bold;}

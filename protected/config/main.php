@@ -281,7 +281,7 @@ return array(
     'params'=>array(
         // this is used in contact page
         'adminEmail'=>'info@world-news.uz',
-        'supportEmail'=>'info@world-news.uz',
+        'supportEmail'=>'support@world-news.uz',
         'baseUrl' => 'http://yii-travel.loc/',
         'images' => array(
             "default" => array(

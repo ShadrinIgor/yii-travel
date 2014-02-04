@@ -13,7 +13,7 @@ class CatalogItemsCategory extends CCmodel
     protected $owner; // integer 
     protected $table_name; // string 
     protected $pos; // integer 
-
+    protected $slug; // integer
 /*
 * Поля - связи
 */
@@ -46,10 +46,9 @@ class CatalogItemsCategory extends CCmodel
 			array('name', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>255),
 			array('table_name', 'length', 'max'=>50),
-			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, image, description, del, owner, table_name, pos', 'safe', 'on'=>'search'),
+			array('slug, name, image, description, del, owner, table_name, pos', 'safe'),
 		);
 	}
 
@@ -80,6 +79,7 @@ class CatalogItemsCategory extends CCmodel
 			'del' => 'Del',
 			'owner' => 'Owner',
 			'table_name' => 'Table Name',
+            'slug'=>'slug',
 			'pos' => 'Pos',
 		);
 	}

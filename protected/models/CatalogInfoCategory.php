@@ -10,7 +10,8 @@ class CatalogInfoCategory extends CCmodel
     protected $pos; // integer 
     protected $del; // integer 
     protected $owner; // integer 
-    protected $slug; // string 
+    protected $slug; // string
+    protected $description;
 
 /*
 * Поля - связи
@@ -45,8 +46,7 @@ class CatalogInfoCategory extends CCmodel
 			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('slug', 'safe'),
-            array('id, name, pos, del, owner, slug', 'safe', 'on'=>'search'),
+            array('description, name, pos, del, owner, slug', 'safe'),
 		);
 	}
 
@@ -76,6 +76,7 @@ class CatalogInfoCategory extends CCmodel
 			'del' => 'Del',
 			'owner' => 'Owner',
 			'slug' => 'Slug',
+            'description' => 'description'
 		);
 	}
 

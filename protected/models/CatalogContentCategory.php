@@ -9,7 +9,8 @@ class CatalogContentCategory extends CCmodel
     protected $del; // integer 
     protected $image; // string 
     protected $pos; // integer 
-    protected $name; // string 
+    protected $name; // string
+    protected $description;
 
 /*
 * Поля - связи
@@ -44,7 +45,7 @@ class CatalogContentCategory extends CCmodel
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, del, image, pos, name', 'safe', 'on'=>'search'),
+			array('description, del, image, pos, name', 'safe'),
 		);
 	}
 
@@ -71,6 +72,7 @@ class CatalogContentCategory extends CCmodel
 			'image' => 'Image',
 			'pos' => 'Pos',
 			'name' => 'Name',
+            'description' => 'description'
 		);
 	}
 

@@ -10,7 +10,8 @@ class CatalogWorkCategory extends CCModel
     protected $image; // string 
     protected $description; // string 
     protected $del; // integer 
-    protected $pos; // integer 
+    protected $pos; // integer
+    protected $slug;
 
 /*
 * Поля - связи
@@ -43,10 +44,9 @@ class CatalogWorkCategory extends CCModel
 			array('del, pos', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>255),
-			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, image, description, del, pos', 'safe', 'on'=>'search'),
+			array('slug, name, image, description, del, pos', 'safe'),
 		);
 	}
 
@@ -74,6 +74,7 @@ class CatalogWorkCategory extends CCModel
 			'description' => 'Description',
 			'del' => 'Del',
 			'pos' => 'Pos',
+            'slug' => 'slug'
 		);
 	}
 
