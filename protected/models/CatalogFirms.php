@@ -81,7 +81,7 @@ class CatalogFirms extends CCModel
 			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
-			'category' => array(self::BELONGS_TO, 'CatalogFirmCategory', 'category_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogFirmsCategory', 'category_id'),
 			'catalogTours' => array(self::HAS_MANY, 'CatalogTours', 'firm_id'),
 			'catalogWorks' => array(self::HAS_MANY, 'CatalogWork', 'firm_id'),
 		);

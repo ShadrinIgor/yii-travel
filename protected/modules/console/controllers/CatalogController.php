@@ -252,7 +252,7 @@ class CatalogController extends ConsoleController
                 $allCount = 0;
             }
 
-            $listCategory = "";
+            $listCategory = array();
             if( property_exists( $catalog, "category_id" ) )
             {
                 $newModel = new $catalog();

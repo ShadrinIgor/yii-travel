@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_firm_category".
    */
-class CatalogFirmCategory extends CCmodel
+class CatalogFirmsCategory extends CCmodel
 {
     protected $id; // integer 
     protected $name; // string 
@@ -30,7 +30,7 @@ class CatalogFirmCategory extends CCmodel
 	 */
 	public function tableName()
 	{
-		return 'catalog_firm_category';
+		return 'catalog_firms_category';
 	}
 
 	/**

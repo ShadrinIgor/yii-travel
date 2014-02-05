@@ -292,41 +292,29 @@ return array(
         ),
         'images_quality'=>70, // Работает только для JPG
         "catalogList"=>array(
-            array( "title"=>"Каталог",
+            array( "title"=>"объявления",
                 "items"=>array
                 (
-                    array( "title"=>"Ожидает модерации", "controller"=>"catalog", "params"=>"catalog=CatalogItems&status_id=2" ),
-                    array( "title"=>"Объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
-                    array( "title"=>"Категории объявлений", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
-                ),
-            ),
-
-            array( "title"=>"Каталог работы",
-                "items"=>array
-                (
-                    array( "title"=>"Объявления", "controller"=>"catalog", "params"=>"catalog=CatalogWork" ),
-                    array( "title"=>"Категории", "controller"=>"catalog", "params"=>"catalog=CatalogWorkCategory" ),
-                    array( "title"=>"График работы", "controller"=>"catalog", "params"=>"catalog=CatalogWorkGraf" ),
-                ),
-            ),
-
-            array(  "title"=>"Контент",
-                "items"=>array
-                (
-                    array( "title"=>"Записи", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
-                    array( "title"=>"Категории контента", "controller"=>"catalog", "params"=>"catalog=CatalogContentCategory" ),
+                    array( "title"=>"Фирмы", "controller"=>"catalog", "params"=>"catalog=CatalogFirms" ),
+                    array( "title"=>"ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
+                    array( "title"=>"Информация", "controller"=>"catalog", "params"=>"catalog=CatalogInfo" ),
+                    array( "title"=>"Курорты", "controller"=>"catalog", "params"=>"catalog=CatalogKurorts" ),
+                    array( "title"=>"Туры", "controller"=>"catalog", "params"=>"catalog=CatalogTours" ),
                 ),
             ),
 
             array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),
-            array( "title"=>"Услуги и цены", "controller"=>"catalog", "params"=>"catalog=CatalogServices" ),
 
             // Параметры
             array( "title"=>"Данные",
                 "items"=>array
                 (
-                    array( "title"=>"Салон", "controller"=>"catalog", "params"=>"catalog=CatalogItemsValuesSalon" ),
+                    array( "title"=>"Категории фирм", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsCategory" ),
+                    array( "title"=>"Категории ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
+                    array( "title"=>"Категории информации", "controller"=>"catalog", "params"=>"catalog=CatalogInfoCategory" ),
+                    array( "title"=>"Категории курортов", "controller"=>"catalog", "params"=>"catalog=CatalogKurortsCategory" ),
+                    array( "title"=>"Категории туров", "controller"=>"catalog", "params"=>"catalog=CatalogToursCategory" ),
                 )
             )
         ),
