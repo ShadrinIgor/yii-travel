@@ -304,6 +304,7 @@ return array(
             ),
 
             array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
+            array( "title"=>"Текст. информация", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),
             array( "title"=>"Выставление Slug", "controller"=>"SetSlug", "params"=>"" ),
 

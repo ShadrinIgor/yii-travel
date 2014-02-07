@@ -3,13 +3,12 @@
 $this->widget('addressLineWidget', array(
     'links'=>array(
         "информация о туризме"=>SiteHelper::createUrl("/touristInfo"),
-        $item->category_id->name=>SiteHelper::createUrl("resorts/index", array( "category_id"=>$item->category_id->id, "slug"=>SiteHelper::getSlug( $item->category_id ) )),
+        $item->category_id->name=>SiteHelper::createUrl("/touristInfo", array( "category"=>$item->category_id->slug )),
         $item->name
     )
 ));
 ?>
 
-<?php if( $this->beginCache( "country_".$item->id, array('duration'=>3600) ) ) : ?>
 <div id="InnerText">
     <h1><?= $item->name ?></h1>
     <?php
@@ -39,4 +38,3 @@ $this->widget('addressLineWidget', array(
         </div>
     <?php endif; ?>
 </div>
-<?php $this->endCache(); endif;?>
