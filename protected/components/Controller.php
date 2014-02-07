@@ -13,6 +13,32 @@ class Controller extends CController
             Yii::app()->language = $_GET['language'];
     }
 
+/*
+    public function run($actionID)
+    {
+        // Это необходимо чтобы не писать каждый раз в адресной строке INDEX
+        $action=$this->createAction($actionID);
+        if( $action === null )
+        {
+            $actionID = "index";
+            $action=$this->createAction($actionID);
+        }
+
+        if($action!==null)
+        {
+            if(($parent=$this->getModule())===null)
+                $parent=Yii::app();
+            if($parent->beforeControllerAction($this,$action))
+            {
+                $this->runActionWithFilters($action,$this->filters());
+                $parent->afterControllerAction($this,$action);
+            }
+        }
+        else
+            $this->missingAction($actionID);
+    }
+*/
+
     public function filters()
     {
         return array(

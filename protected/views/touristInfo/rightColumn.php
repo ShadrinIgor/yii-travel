@@ -7,14 +7,14 @@
             foreach( CatalogInfoCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1)->setConditions("owner=0") ) as $item_ ) :
             $count = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category")->setParams(array(":category"=>$item_->id))->setLimit(-1) );
             ?>
-            <li><a href="<?= SiteHelper::createUrl("info/index", array("category_id"=>$item_->id)) ?>" title="<?= $item_->name ?> информация для туристов"><?= $item_->name ?> ( <?= $count ?> )</a>
+            <li><a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item_->slug)) ?>" title="<?= $item_->name ?> информация для туристов"><?= $item_->name ?> ( <?= $count ?> )</a>
                 <ul>
                 <?php
                 foreach( CatalogInfoCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setConditions("owner=:owner")->setParams(array(":owner"=>$item_->id))->setLimit(-1) ) as $item ) :
                     $count = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category")->setParams(array(":category"=>$item->id))->setLimit(-1) );
             ?>
 
-                    <?php if( $count>0 ) : ?><li><a href="<?= SiteHelper::createUrl("info/index", array("category_id"=>$item->id)) ?>" title="<?= $item->name ?> туры"><?= $item->name ?> ( <?= $count ?> )</a></li><?php endif; ?>
+                    <?php if( $count>0 ) : ?><li><a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->slug)) ?>" title="<?= $item->name ?>"><?= $item->name ?> ( <?= $count ?> )</a></li><?php endif; ?>
                 <?php endforeach; ?>
                 </ul>
             </li>
@@ -32,7 +32,7 @@
                     $count = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country")->setParams(array(":country"=>$item->id))->setLimit(-1) );
                     if( $count > 0 ) :
                     ?>
-                    <li><a href="<?= SiteHelper::createUrl("info/index", array("country_id"=>$item->id)) ?>" title="тур. информация <?= $item->name_2 ?>"><?= $item->name ?> ( <?= $count ?> )</a></li>
+                    <li><a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->slug)) ?>" title="тур. информация <?= $item->name_2 ?>"><?= $item->name ?> ( <?= $count ?> )</a></li>
                 <?php
                     endif;
                 endforeach; ?>

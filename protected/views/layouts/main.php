@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/info/" ) ?>" title="О туризме" class="MenuJsClass" id="h4">
+            <a href="<?= SiteHelper::createUrl( "/touristInfo" ) ?>" title="О туризме" class="MenuJsClass" id="h4">
                 <img src="f/catalog_menu/21center3.jpg" alt="О туризме" /></a>
             <div class="CHint" id="bh4">
                 <div class="CHText">

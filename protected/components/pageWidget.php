@@ -74,13 +74,22 @@ class pageWidget extends CWidget
 
         // Поиск
         $SQL = " 1=1 ";
+
+        $category = Yii::app()->request->getParam("category", "");
+        if( !empty( $category ) )
+        {
+            $categoryClass = SiteHelper::getCamelCase( $this->$catalog."_category" );
+            $categoryModel = $categoryClass::fetchByKeyWord( $category );
+            if( $categoryModel->id >0 )$SQL." AND category_id='".$categoryModel->id."'";
+        }
+        $country = Yii::app()->request->getParam("country", "");
+
         if( !empty( $SearchAttributes ) && is_array($SearchAttributes) && sizeof($SearchAttributes)>0)
         {
             $arrayFindParam = array();
             foreach( $SearchAttributes as $field ) :
 
                 $field = trim( $field );
-                //echo $field;
                 $fieldValue = Yii::app()->request->getParam( $field, "" );
                 if( empty($fieldValue) && !empty( $_POST[$catalog] ) && !empty( $_POST[$catalog][ $field ] ) )$fieldValue = $_POST[$catalog][ $field ];
 

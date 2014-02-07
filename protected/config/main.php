@@ -305,6 +305,7 @@ return array(
 
             array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),
+            array( "title"=>"Выставление Slug", "controller"=>"SetSlug", "params"=>"" ),
 
             // Параметры
             array( "title"=>"Данные",

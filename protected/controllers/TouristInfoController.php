@@ -1,6 +1,6 @@
 <?php
 
-class InfoController extends Controller
+class TouristInfoController extends Controller
 {
     var $slug;
 	public function actionIndex()
@@ -10,14 +10,64 @@ class InfoController extends Controller
                        else $this->actionDescription();
 	}
 
-    public function index()
+    public function index( )
     {
+
         $this->render( 'index' );
+    }
+
+    public function actionCountry()
+    {
+
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $class = "CatalogCountry";
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                unset( $_GET[$key] );
+                $_GET["country_id"] = $model->id;
+            }
+            break;
+        }
+
+        $this->actionIndex();
+    }
+
+    public function actionCategory()
+    {
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $class = "CatalogInfoCategory";
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                unset( $_GET[$key] );
+                $_GET["category_id"] = $model->id;
+            }
+            break;
+        }
+
+        $this->actionIndex();
     }
 
     public function actionDescription()
     {
-        $id = (int)Yii::app()->request->getParam("id", 0);
+        $id =0;
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $class = "CatalogInfo";
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                $_GET["id"]=$model->id;
+                $id = $model->id;
+            }
+            break;
+        }
 
         if( $id > 0 )
         {

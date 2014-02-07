@@ -12,7 +12,10 @@ class SiteHelper
     {
         if( empty( $item->slug ) || !$item->slug)
         {
-            $item->slug = SiteHelper::getTranslateForUrl( $item->name );
+            if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug = $item->owner->name."-";
+                                              else $dopSlug = "";
+            $item->slug = SiteHelper::getTranslateForUrl( $dopSlug.$item->name );
+            $item->slug = str_replace( array( "---", "--" ), "-", $item->slug );
             $item->save();
             if( $item->getErrors() )
                 throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item )." )", print_r( $item->getErrors(), true) );
