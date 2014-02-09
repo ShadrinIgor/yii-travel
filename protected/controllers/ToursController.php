@@ -1,12 +1,15 @@
 <?php
 
-class ToursController extends Controller
+class ToursController extends InfoController
 {
-    var $slug;
-	public function actionIndex()
-	{
-        $this->render( 'index' );
-	}
+    public function init()
+    {
+        parent::init();
+        $this->classModel = "CatalogTours";
+        $this->classCategory = "CatalogToursCategory";
+        $this->description = "Список самых популярных туристических предложений, туров. ";
+        $this->keyWord = "бизнес туры, деловой туризм, иследовательские, лечебные туры, развлектельные, vip отдых, детские лагеря, загородный отдых, конный тур, морские и речные круизы, рафтинг+экскурсии, сафари на верблюдах";
+    }
 
     public function actionDescription()
     {

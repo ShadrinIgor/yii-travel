@@ -2,7 +2,6 @@
 
 class TouristInfoController extends InfoController
 {
-    var $slug;
 	public function init()
     {
         parent::init();

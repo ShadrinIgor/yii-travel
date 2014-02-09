@@ -17,7 +17,6 @@ class SiteHelper
                                               else $dopSlug = "";
 
             if( property_exists( $item, "category_id" ) && $item->category_id->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->category_id->name );
-                                                else $dopSlug = "";
 
             // Проверяем чтобы название категории не содержалось в названии чтобы не было такого: banki-banki-tashkenta
             if( !empty( $dopSlug ) && strpos( $nameTranstlit, $dopSlug ) !== false  )$dopSlug = "";
