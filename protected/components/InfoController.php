@@ -6,6 +6,8 @@ class InfoController extends Controller
     var $classCountry = 'CatalogCountry';
     var $classModel = '';
     var $classCategory = '';
+    var $description;
+    var $keyWord;
 
 	public function actionIndex()
 	{
@@ -51,6 +53,7 @@ class InfoController extends Controller
 
     public function actionDescription()
     {
+        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
         $id =0;
         $class = $this->classModel;
         foreach( $_GET as $key=>$item )

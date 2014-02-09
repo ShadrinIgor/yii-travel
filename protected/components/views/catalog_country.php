@@ -2,9 +2,9 @@
 foreach( $items as $item ) :
     ?>
     <div class="listItems">
-        <?php if( $item->image ) : ?><div class="IImage"><a title="<?= $item->name ?>" href="<?= SiteHelper::createUrl( $url."/description", array( "id"=>$item->id, "slug"=>SiteHelper::getSlug( $item ) )) ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" width="200" alt="<?= $item->name ?>" /></a></div><?php endif; ?>
+        <?php if( $item->image ) : ?><div class="IImage"><a title="<?= $item->name ?>" href="<?= SiteHelper::createUrl( "/country/description" ) ?>/<?= $item->slug ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" width="200" alt="<?= $item->name ?>" /></a></div><?php endif; ?>
         <div class="LHeader">
-            <a title="<?= $item->name ?>" href="<?= SiteHelper::createUrl( $url."/description", array( "id"=>$item->id, "slug"=>SiteHelper::getSlug( $item ) )) ?>"><?= $item->name ?></a>
+            <a title="<?= $item->name ?>, туристическая информация, фирмы, туры, достопримечательности" href="<?= SiteHelper::createUrl( "/country/description" ) ?>/<?= $item->slug ?>"><?= $item->name ?></a>
             <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>
         </div>
         <div class="LParams">

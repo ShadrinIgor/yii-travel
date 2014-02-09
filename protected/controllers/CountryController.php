@@ -2,6 +2,15 @@
 
 class CountryController extends Controller
 {
+    var $description;
+    var $keyWord;
+    public function init()
+    {
+        parent::init();
+        $this->description = "Туристический страны, описание, туристические достопримечательности";
+        $this->keyWord = "туристические страны, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд";
+    }
+
     public function actionIndex()
     {
         $this->render( 'index' );
@@ -9,16 +18,18 @@ class CountryController extends Controller
 
     public function actionDescription()
     {
-        $id = (int) Yii::app()->request->getParam("id", 0 );
-
-        if( !empty($this->slug) || !empty($id) )
+        foreach( $_GET as $key=>$item )
         {
-            if( !empty($this->slug) )
-            {
-                $itemModel = CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("slug=:slug")->setParams(array(":slug"=>$this->slug)) );
-                if( sizeof($itemModel)>0 )$item = $itemModel[0];
-            }
-            if( !empty( $id ) && $id>0 )$item = CatalogCountry::fetch( $id );
+            if( !empty( $_GET[$key] ) )continue;
+            $model = CatalogCountry::fetchBySlug( $key );
+            if( $model->id >0 )break;
+        }
+
+        if( $model && $model->id >0)
+        {
+            $item = $model;
+
+            Yii::app()->page->setInfo( array( "description"=>$item->name.",".$this->description, "keyWord"=>$item->name.",".$this->keyWord ) );
             if( !empty( $item ) && $item->id >0 )
             {
                 Yii::app()->page->title = $item->name;

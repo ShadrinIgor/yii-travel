@@ -51,10 +51,10 @@ $this->widget('addressLineWidget', array(
                 ?>
                 <div class="IBItem">
                     <div class="IBIImage">
-                        <a href="<?= SiteHelper::createUrl("country/", array( "id"=>$CItem->id )) ?>" title="<?= $CItem->name ?>"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?>" /></a>
+                        <a href="<?= SiteHelper::createUrl("/country")."/".$CItem->slug ?>"" title="<?= $CItem->name ?> - туристическая страна"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?> - туризм" /></a>
                     </div>
                     <?php if( $tour->price >0 ) : ?><p><?= $CItem->price ?></p><?php endif; ?>
-                    <br/><a href="<?= SiteHelper::createUrl("country/", array( "id"=>$CItem->id )) ?>" title="<?= $CItem->name ?>"><?= $CItem->name ?></a><br/>
+                    <br/><a href="<?= SiteHelper::createUrl("/country")."/".$CItem->slug ?>" title="<?= $CItem->name ?> - туристическая страна"><?= $CItem->name ?></a><br/>
                     <div class="LParams">
                         Просмотров: <b><?= $CItem->col>0 ? $CItem->col : 0 ?></b><br/>
                         Туров: <b><?= $tourCounts ?></b><br/>
