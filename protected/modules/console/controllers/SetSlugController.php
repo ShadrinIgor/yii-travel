@@ -10,16 +10,24 @@ class SetSlugController extends ConsoleController
 	 */
 	public function actionIndex()
 	{
+        $limit  = 50;
+        $p = (int)Yii::app()->request->getParam( "p", 1 );
+        $catalog = Yii::app()->request->getParam( "catalog", "" );
+
         Yii::app()->page->title = "Выставить слаг";
-        if( !empty( $_POST["submit_slug"] ) && !empty( $_POST["satalog"] ) )
+        if( !empty( $_POST["submit_slug"] ) && !empty( $catalog ) )
         {
-            $catalog = SiteHelper::getCamelCase( $_POST["satalog"] );
-            $items = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1)->setCache(0) );
+            $catalog = SiteHelper::getCamelCase( $catalog );
+            $items = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit($limit)->setCache(0)->setPage( $p ) );
             for( $i=0;$i<sizeof( $items );$i++ )
             {
                 $items[$i]->slug = SiteHelper::getSlug( $items[$i] );
                 $items[$i]->save();
+            }
 
+            if( sizeof( $items ) == $limit )
+            {
+                $this->redirect( SiteHelper::createUrl("/console/SetSlug", array( "catalog"=>$catalog, "p"=>$p+1 ) ) );
             }
         }
             else $items = array();

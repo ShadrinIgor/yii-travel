@@ -12,9 +12,19 @@ class SiteHelper
     {
         if( empty( $item->slug ) || !$item->slug)
         {
-            if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug = $item->owner->name."-";
+            $nameTranstlit = SiteHelper::getTranslateForUrl( $item->name );
+            if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->owner->name );
                                               else $dopSlug = "";
-            $item->slug = SiteHelper::getTranslateForUrl( $dopSlug.$item->name );
+
+            if( property_exists( $item, "category_id" ) && $item->category_id->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->category_id->name );
+                                                else $dopSlug = "";
+
+            // Проверяем чтобы название категории не содержалось в названии чтобы не было такого: banki-banki-tashkenta
+            if( !empty( $dopSlug ) && strpos( $nameTranstlit, $dopSlug ) !== false  )$dopSlug = "";
+
+            if( !empty( $dopSlug ) )$item->slug = $dopSlug ."-". $nameTranstlit;
+                               else $item->slug = $nameTranstlit;
+
             $item->slug = str_replace( array( "---", "--" ), "-", $item->slug );
             $item->save();
             if( $item->getErrors() )

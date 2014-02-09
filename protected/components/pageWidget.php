@@ -12,6 +12,8 @@ class pageWidget extends CWidget
     var $template = "catalog_default";
     var $catalog;
     var $title;
+    var $description;
+    var $keyWord;
     var $url = 'tours';
     var $order = "col DESC";
     var $sort = array(
@@ -156,15 +158,16 @@ class pageWidget extends CWidget
         $items = $this->render( $this->template,
             array(
                     'url'=> $this->url,
-                    "items" => $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $SQL )->setOrderBy( $SQLsort )->setPage( ( $page -1 ) * $this->offset )->setLimit( $this->offset ) ),
+                    "items" => $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $SQL )->setOrderBy( $SQLsort )->setPage( $page )->setLimit( $this->offset ) ),
                     'findText' => $findText
             ),
             true );
 
-        if( !empty( $dopTitle ) )$dopTitle = " - ".$dopTitle;
+        if( !empty( $dopTitle ) )$dopTitle = $dopTitle." - ";
 
         // Выставляем TITLE для страницы
-        Yii::app()->page->title = $this->title.$dopTitle;
+        Yii::app()->page->title = $dopTitle.$this->title;
+        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
 
         $this->render( "page", array(
             'items'     => $items,
@@ -179,7 +182,7 @@ class pageWidget extends CWidget
             'tableModel' => $catalogModel,
             'SQLParams'=> $SQL,
             'url'=> $this->url,
-            'title'=> $this->title.$dopTitle,
+            'title'=> $dopTitle ? $dopTitle."<font>".$this->title."</font>" : $this->title,
         ));
     }
 }

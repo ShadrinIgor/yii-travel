@@ -19,8 +19,35 @@ class Controller extends CController
         $action=$this->createAction($actionID);
         if( $action === null )
         {
-            $_GET[ $actionID ] = null;
+            $_GET = array();
             $actionID = "index";
+
+            $urlArray = explode( Yii::app()->controller->getId(), Yii::app()->request->getUrl() );
+            $urlArray = explode( "?", $urlArray[1] );
+            $urlArrayList = explode( "/", $urlArray[0] );
+            if( !empty( $urlArray[1] ) )
+            {
+                // Собирем переменные переденные после знака ?
+                $urlArrayDop = explode( "&", $urlArray[1] );
+                for( $i=0;$i<sizeof( $urlArrayDop );$i++ )
+                {
+                    $arr = explode( "=", $urlArrayDop[$i] );
+                    $key = $arr[ 0 ];
+                    if( !empty( $arr[ 1 ] ) )$_GET[$key] =$arr[ 1 ];
+                                        else $_GET[$key] = "null";
+                }
+            }
+
+            if( sizeof( $urlArrayList )>0 )
+            {
+                for( $i=1;$i<sizeof( $urlArrayList );$i+=2 )
+                {
+                    $key = $urlArrayList[ $i ];
+                    if( !empty( $urlArrayList[ $i+1 ] ) )$_GET[$key] = $urlArrayList[ $i+1 ];
+                                                else $_GET[$key] = "null";
+                }
+            }
+
             $action=$this->createAction($actionID);
         }
 

@@ -5,16 +5,8 @@ class TouristInfoController extends Controller
     var $slug;
 	public function actionIndex()
 	{
-        $this->slug = Yii::app()->request->getParam("slug", "");
-        if( empty( $this->slug ) )$this->index();
-                       else $this->actionDescription();
-	}
-
-    public function index( )
-    {
-
         $this->render( 'index' );
-    }
+	}
 
     public function actionCountry()
     {

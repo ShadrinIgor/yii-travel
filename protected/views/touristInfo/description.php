@@ -18,12 +18,20 @@ $this->widget('addressLineWidget', array(
         <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="отелиистическия странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
-            <?php if( $item->country_id ) : ?>страна: <a href="<?= SiteHelper::createUrl("/touristInfo", array("id"=>$item->country_id->id, "slug"=>SiteHelper::getSlug( $item->country_id ))) ?>" title="отелиистическая страна <?= $item->country_id->name ?>"><?= $item->country_id->name ?></a><br/><?php endif; ?>
-            <?php if( $item->category_id ) : ?>категория:<a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>" title="<?= $item->category_id->name ?>"><?= $item->category_id->name ?></a><br/><?php endif; ?>
+            <?php if( $item->country_id ) : ?>страна: <a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->country_id->slug)) ?>" title="<?= $item->country_id->name ?>"><?= $item->country_id->name ?></a><br/><?php endif; ?>
+            <?php if( $item->category_id ) : ?>категория:<a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>" title="<?= $item->category_id->name ?> - категория туристической информации"><?= $item->category_id->name ?></a><br/><?php endif; ?>
             <br/>
         </div>
         <?= $item->description ?>
     </div>
+
+    <div class="greeBorder">
+        <p>
+            <b>Нашли ошибку?</b><br>
+            Пишите нам на емаил <a href="mailto:support@world-news.uz">support@world-news.uz</a>, и мы обязательно все исправим.
+        </p>
+    </div>
+
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($otherHotels)>0 ) : ?>

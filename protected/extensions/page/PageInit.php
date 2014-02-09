@@ -19,14 +19,14 @@ class PageInit extends CApplicationComponent
         $this->page = new page();
     }
 
-    private function getInfo( $key )
+    public function getInfo( $key )
     {
         $value = null;
         if( property_exists( $this->page, $key) )$value = $this->page->$key;
         return $value;
     }
 
-    private function setInfo( array $values )
+    public function setInfo( array $values )
     {
         foreach( $values as $key=>$value )
             if( property_exists( $this->page, $key) )
@@ -35,13 +35,40 @@ class PageInit extends CApplicationComponent
 
     // ---- Title
     public function setTitle( $values )
-    {
-        $this->setInfo( array( "title"=>$values ) );
-    }
+{
+    $this->setInfo( array( "title"=>$values ) );
+}
 
     public function getTitle( )
     {
         return $this->getInfo( "title" )." :: ".Yii::app()->params["titleName"];
     }
     // ---- end of Title
+
+
+    // ---- Title
+    public function setDescription( $values )
+    {
+        $this->setInfo( array( "title"=>$values ) );
+    }
+
+    public function getDescription( )
+    {
+        return $this->getInfo( "title" ).",". $this->getInfo( "description" );
+    }
+    // ---- end of Title
+
+
+    // ---- Title
+    public function setKeyWord( $values )
+    {
+        $this->setInfo( array( "keyWord"=>$values ) );
+    }
+
+    public function getKeyWord( )
+    {
+        return $this->getInfo( "keyWord" );
+    }
+    // ---- end of Title
+
 }

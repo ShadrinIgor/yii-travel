@@ -1571,7 +1571,7 @@ zoom: 1;
 	color: #DC5800;
     margin: 10px 0px 5px 0px;
 }
-#FCCentr h1 font{font-size: 11px;color: rgba(220, 88, 0, 0.67);}
+#FCCentr h1 font{font-size: 14px;color: rgba(220, 88, 0, 0.67);}
 
 #FCCentr h2{margin-top: 0px;text-align: center;font-size: 18px;color:#DC5800;border-bottom: 1px solid #ff9249; }
 #FCCentr h2 font{font-size: 11px;color: rgba(220, 88, 0, 0.67);}
@@ -2049,7 +2049,7 @@ zoom: 1;
 .LGItem a{font-size: 12px;}
 .LGItem input{width: 104px;font-size: 11px;}
 
-.listItemsImages{width: 120px;height: 110px;padding-top: 10px;}
+.listItemsImages{width: 120px;height: 110px;padding-top: 10px;text-indent: 0px;}
 .LII_1, .LII_2, .LII_3, .LII_4, .LII_5{background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
 .LII_1{z-index: 99999;}
 .LII_2{z-index: 88888;

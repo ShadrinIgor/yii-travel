@@ -8,4 +8,6 @@ class Page
     public $id; // integer
     public $name; // string
     public $title; // string
+    public $description;
+    public $keyWord;
 }
