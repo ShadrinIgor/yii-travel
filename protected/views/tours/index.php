@@ -6,5 +6,9 @@
     ));
 ?>
 <div id="catalogItems">
-<?php $this->widget( "pageWidget", array( "catalog"=>"catalog_tours", "template"=>"catalog_tours", "title"=>"Туры" ) ) ?>
+<?php $this->widget( "pageWidget", array( "catalog"=>"catalog_tours", "template"=>"catalog_tours",
+    "title"=>"Туры",
+    "description" => $this->description,
+    "keyWord" => $this->keyWord,
+) ) ?>
 </div>

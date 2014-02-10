@@ -7,7 +7,7 @@ class ToursController extends InfoController
         parent::init();
         $this->classModel = "CatalogTours";
         $this->classCategory = "CatalogToursCategory";
-        $this->description = "Список самых популярных туристических предложений, туров. ";
+        $this->description = "Список самых популярных туристических предложений, туров.";
         $this->keyWord = "бизнес туры, деловой туризм, иследовательские, лечебные туры, развлектельные, vip отдых, детские лагеря, загородный отдых, конный тур, морские и речные круизы, рафтинг+экскурсии, сафари на верблюдах";
     }
 
