@@ -27,7 +27,7 @@ class SiteHelper
             $item->slug = str_replace( array( "---", "--" ), "-", $item->slug );
             $item->save();
             if( $item->getErrors() )
-                throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item )." )", print_r( $item->getErrors(), true) );
+                throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item ).", id=".$item->id.", id=".$item->category_id." )", print_r( $item, true) .print_r( $item->getErrors(), true) );
         }
 
         return $item->slug;

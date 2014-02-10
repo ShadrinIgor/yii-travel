@@ -1,6 +1,6 @@
 <?php
 
-class SetSlugController extends ConsoleController
+class CheckDescriptionController extends ConsoleController
 {
     public $id;
 
@@ -10,7 +10,7 @@ class SetSlugController extends ConsoleController
 	 */
 	public function actionIndex()
 	{
-        $limit  = 50;
+        $limit  = 30;
         $p = (int)Yii::app()->request->getParam( "p", 1 );
         $catalog = Yii::app()->request->getParam( "catalog", "" );
 
@@ -19,29 +19,27 @@ class SetSlugController extends ConsoleController
         {
             $catalogS = SiteHelper::getCamelCase( $catalog );
             $items = $catalogS::fetchAll( DBQueryParamsClass::CreateParams()->setLimit($limit)->setCache(0)->setPage( $p ) );
+            //echo sizeof( $items )."*";
+            //die;
             for( $i=0;$i<sizeof( $items );$i++ )
             {
-                $items[$i]->slug = SiteHelper::getSlug( $items[$i] );
-                if( $catalog == "catalog_tours" )
+                if( strpos( $items[$i]->description, "</xml>" ) !== false )
                 {
-                    $items[$i]->slug = $items[$i]->id."-".$items[$i]->slug;
-                }
-
-                try
-                {
-                    $items[$i]->category_id = (int)$items[$i]->category_id->id;
-                    $items[$i]->save();
-                }
-                    catch ( Exception $e)
-                {
-
+                    $arr = explode( "</xml>", $items[$i]->description );
+                    $items[$i]->description = $arr[1];
+                    if( empty( $items[$i]->description ) )$items[$i]->description = "  - ";
+                    if( !$items[$i]->save() )
+                    {
+                        //print_r( $items[$i]->getErrors() );
+                        //die;
+                    }
                 }
             }
 
 
             if( sizeof( $items ) == $limit )
             {
-                $this->redirect( SiteHelper::createUrl("/console/SetSlug", array( "catalog"=>$catalog, "p"=>$p+1 ) ) );
+                $this->redirect( SiteHelper::createUrl("/console/CheckDescription", array( "catalog"=>$catalog, "p"=>$p+1 ) ) );
             }
         }
             else $items = array();

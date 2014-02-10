@@ -13,7 +13,7 @@ class CatalogToursAdd extends CatalogTours
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, category_id, country_id, city_id, firm_id, description', 'required'),
+			array('name, category_id, country_id, firm_id, description', 'required'),
 			array('category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('srok, price', 'length', 'max'=>25),

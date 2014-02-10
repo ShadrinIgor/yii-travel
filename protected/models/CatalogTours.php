@@ -53,25 +53,27 @@ class CatalogTours extends CCmodel
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('name, description, firm_id', 'required'),
-			array('active, pos, del, hot, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
-			array('name, slug', 'length', 'max'=>150),
-			array('srok, price', 'length', 'max'=>25),
-			array('image', 'length', 'max'=>100),
-			array('hot, vip', 'length', 'max'=>1),
-			array('order_link, firm_site_link', 'length', 'max'=>255),
-			array('tour_per', 'length', 'max'=>50),
-            array('category_id, country_id, price', 'search'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col, slug, user_id', 'safe', 'on'=>'search'),
-		);
-	}
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('name, category_id, country_id, firm_id, description', 'required'),
+            array('category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
+            array('name', 'length', 'max'=>150),
+            array('srok, price', 'length', 'max'=>25),
+            array('image', 'length', 'max'=>100),
+            array('hot, vip', 'length', 'max'=>1),
+            array('order_link, firm_site_link', 'length', 'max'=>255),
+            array('tour_per', 'length', 'max'=>50),
+            array('firm_id, category_id, country_id, price', 'search'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+
+            array('slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+            array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
+        );
+    }
 
 	/**
 	 * @return array relational rules.

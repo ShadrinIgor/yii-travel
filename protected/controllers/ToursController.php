@@ -13,7 +13,20 @@ class ToursController extends InfoController
 
     public function actionDescription()
     {
-        $id = (int)Yii::app()->request->getParam("id", 0);
+        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
+        $id =0;
+        $class = $this->classModel;
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                $_GET["id"]=$model->id;
+                $id = $model->id;
+            }
+            break;
+        }
 
         if( $id > 0 )
         {
@@ -21,7 +34,7 @@ class ToursController extends InfoController
             if( $item->id >0 )
             {
                 CCmodelHelper::colCounter( $item );
-                Yii::app()->page->title = $item->name;
+                Yii::app()->page->title = $item->name.", тур ". $item->category_id->name .", ". $item->country_id->name ;
                 $this->render('description',
                     array(
                         "item" => $item,
