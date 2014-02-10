@@ -18,6 +18,14 @@ class SiteHelper
 
             if( property_exists( $item, "category_id" ) && $item->category_id->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->category_id->name );
 
+            if( get_class( $item ) == "CatalogHotels" )
+            {
+                $dopSlug = SiteHelper::getTranslateForUrl( $item->country_id->name );
+                if( $item->city_id->id >0 )$dopSlug .= "-".SiteHelper::getTranslateForUrl( $item->city_id->name );
+            }
+
+            if( get_class( $item ) == "catalogTours" )$dopSlug = $item->id;
+
             // Проверяем чтобы название категории не содержалось в названии чтобы не было такого: banki-banki-tashkenta
             if( !empty( $dopSlug ) && strpos( $nameTranstlit, $dopSlug ) !== false  )$dopSlug = "";
 
@@ -27,7 +35,7 @@ class SiteHelper
             $item->slug = str_replace( array( "---", "--" ), "-", $item->slug );
             $item->save();
             if( $item->getErrors() )
-                throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item ).", id=".$item->id.", id=".$item->category_id." )", print_r( $item, true) .print_r( $item->getErrors(), true) );
+                throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item ).", item id=".$item->id." )", print_r( $item->getErrors(), true) );
         }
 
         return $item->slug;

@@ -8,6 +8,8 @@
 <div id="catalogItems">
 <?php $this->widget( "pageWidget", array( "catalog"=>"catalog_hotels", "template"=>"catalog_hotels", "url"=>"hotels",
                 "title"=>"Отели",
+                "description" => $this->description,
+                "keyWord" => $this->keyWord,
                 "sort"=>
                     array(
                         array( "col", "просмотрам" ),

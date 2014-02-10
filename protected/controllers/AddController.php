@@ -6,9 +6,10 @@ class AddController extends Controller
     {
         $arrayTab = array( "travel-agency", "curorts", "hotels", "vacancy-resume", "ads-items", "other-info" );
         $arrayTabTitle = array( "travel-agency"=>"добавление туристической фирмы", "curorts"=>"добавление курорта/зоны отдаха", "hotels"=>"добавление отеля/гостиницы","vacancy-resume"=>"добавление вакансии или резюме", "ads-items"=>"добавление частных объявлений", "other-info"=>"добавление прочей информации" );
+
         foreach( $_GET as $key=>$item )
         {
-            if( !empty( $_GET[$key] ) )continue;
+            if( !empty( $_GET[$key] ) && $_GET[$key]!='null' )continue;
             if( in_array( $key, $arrayTab) )
             {
                 $activeTab = $key;

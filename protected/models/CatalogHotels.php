@@ -50,7 +50,7 @@ class CatalogHotels extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, country_id, city_id, user_id, email, tel', 'required'),
+			array('name, description, country_id, city_id, email, tel', 'required'),
 			array('pos, del, level, col, country_id, city_id, user_id, is_active', 'numerical', 'integerOnly'=>true),
 			array('name, image', 'length', 'max'=>100),
 			array('level', 'length', 'max'=>25),

@@ -1,23 +1,32 @@
 <?php
 
-class HotelsController extends Controller
+class HotelsController extends InfoController
 {
-    var $slug;
-	public function actionIndex()
-	{
-        $this->slug = Yii::app()->request->getParam("slug", "");
-        if( empty( $this->slug ) )$this->index();
-                       else $this->actionDescription();
-	}
-
-    public function index()
+    public function init()
     {
-        $this->render( 'index' );
+        parent::init();
+        $this->classModel = "CatalogHotels";
+        $this->classCategory = "";
+        $this->description = "Самые популярные отели мира, отсортированные по рейтингу. Возможноть просмотра подробного описания";
+        $this->keyWord = "Полезная информация для туристов, архитектура, базары узбекистана, банки тпшкента, великие люди, великий шелковый путь, автобусные путешествия, виза в узбекистан, дети, культура / искуства, разновидности туризма, эктримальный туризм , рыбалка/охота, религия / духовные центры, кладбища";
     }
 
     public function actionDescription()
     {
-        $id = (int)Yii::app()->request->getParam("id", 0);
+        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
+        $id =0;
+        $class = $this->classModel;
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                $_GET["id"]=$model->id;
+                $id = $model->id;
+            }
+            break;
+        }
 
         if( $id > 0 )
         {
