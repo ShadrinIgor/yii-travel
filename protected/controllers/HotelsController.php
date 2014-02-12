@@ -11,6 +11,23 @@ class HotelsController extends InfoController
         $this->keyWord = "Полезная информация для туристов, архитектура, базары узбекистана, банки тпшкента, великие люди, великий шелковый путь, автобусные путешествия, виза в узбекистан, дети, культура / искуства, разновидности туризма, эктримальный туризм , рыбалка/охота, религия / духовные центры, кладбища";
     }
 
+    public function actionCity()
+    {
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $model = CatalogCity::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                unset( $_GET[$key] );
+                $_GET["city_id"] = $model->id;
+            }
+            break;
+        }
+
+        $this->actionIndex();
+    }
+
     public function actionDescription()
     {
         Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );

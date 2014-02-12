@@ -2,26 +2,26 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        "Отели"=>SiteHelper::createUrl("hotels/"),
-        $item->country_id->name_2=>SiteHelper::createUrl("resorts/index", array( "country_id"=>$item->country_id->id, "slug"=>SiteHelper::getSlug( $item->country_id ) )),
+        "Отели"=>SiteHelper::createUrl("/hotels"),
+        $item->country_id->name=>SiteHelper::createUrl("/hotels/country" )."/".$item->country_id->slug,
+        $item->category_id->name=>SiteHelper::createUrl("/hotels/category" )."/".$item->category_id->slug ,
         $item->name
     )
 ));
 ?>
 
-<?php if( $this->beginCache( "country_".$item->id, array('duration'=>3600) ) ) : ?>
 <div id="InnerText">
     <h1><?= $item->name ?></h1>
     <?php
         SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
     <div id="ITText">
-        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="отелиистическия странна <?= $item->name ?>" /></div><?php endif; ?>
+        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="отелии странны <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
-            <?php if( $item->level && $item->level>0 ) : ?><?= SiteHelper::getStarsLevel( $item->level ) ?><br/><?php endif; ?>
-            страна: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="отелиистическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
-            город:<a href="<?= SiteHelper::createUrl("hotels/", array("category"=>$item->city_id->id)) ?>" title="<?= SiteHelper::getTranslateForUrl( $item->city_id->name ) ?>"><?= $item->city_id->name ?></a><br/>
+            <?php if( $item->level && $item->level>0 ) : ?><img src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" /><br/><?php endif; ?>
+            страна: <a href="<?= SiteHelper::createUrl("/hotels/country/")."/".$item->country_id->slug ?>" title="<?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
+            город:<a href="<?= SiteHelper::createUrl("/hotels/city/")."/".$item->city_id->slug ?>" title="<?= SiteHelper::getTranslateForUrl( $item->city_id->name ) ?>"><?= $item->city_id->name ?></a><br/>
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Забронировать отель <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>
@@ -60,9 +60,8 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("hotelWidget", array( "item"=>$hotel )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("hotels/", array("country"=>$item->slug)) ?>" class="cmore" title="все отелиы <?= $item->country_id->name_2 ?>">Смотреть все отелиы <?= $item->country_id->name_2 ?> ( <?= $hotelCount ?> отелей(я) )...</a>
+                <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->slug ?>" class="cmore" title="все отели <?= $item->country_id->name_2 ?>">Смотреть все отели <?= $item->country_id->name_2 ?> ( <?= $hotelCount ?> отелей(я) )...</a>
             </div>
         </div>
     <?php endif; ?>
 </div>
-<?php $this->endCache(); endif;?>

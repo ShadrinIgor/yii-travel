@@ -25,6 +25,7 @@ class InfoController extends Controller
             if( $model->id >0 )
             {
                 unset( $_GET[$key] );
+
                 $_GET["country_id"] = $model->id;
             }
             break;

@@ -9,8 +9,8 @@
         <div class="LParams">
             <?php if( $item->price > 0 ) : ?>цена: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
             <?php if( $item->level > 0 ) : ?><div class="levelStar"><img src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" alt="" /></div><?php endif;  ?>
-            <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->country_id->slug  ?>" title="<?= $item->country_id->name ?>">Страна: <b><?= $item->country_id->name ?></b></a><br/>
-            Город: <b><?= $item->city_id->name ?></b><br/>
+            Страна: <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->country_id->slug  ?>" title="<?= $item->country_id->name ?>"><b><?= $item->country_id->name ?></b></a><br/>
+            Город: <a href="<?= SiteHelper::createUrl("/hotels/city")."/".$item->city_id->slug  ?>" title="<?= $item->city_id->name ?>"><b><?= $item->city_id->name ?></b></a><br/>
         </div>
         <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
     </div>

@@ -1712,7 +1712,7 @@ zoom: 1;
 .listItems .IImage{width: 200px;height: 120px;overflow: hidden;float: left;margin: 0px 10px 10px 0px;border-radius: 25px;}
 #FCCentr .listItems a{text-decoration: underline;font-weight: bold;font-size: 14px;text-transform: capitalize;}
 #FCCentr .listItems .LParams a{font-weight: normal;}
-.LParams{float: right;text-align: left;border-left: 2px solid #DC5800;padding-left: 10px;margin-left: 4px;min-width: 100px;}
+.LParams{float: right;text-align: left;border-left: 2px solid #DC5800;padding-left: 10px;margin-left: 4px;min-width: 100px;font-size: 10px;}
 #FCCentr .LParams a{font-size: 10px;}
 
 

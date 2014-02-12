@@ -39,7 +39,7 @@ class SetSlugController extends ConsoleController
             }
 
 
-            if( sizeof( $items ) == $limit )
+            if( sizeof( $items ) >0 )
             {
                 $this->redirect( SiteHelper::createUrl("/console/SetSlug", array( "catalog"=>$catalog, "p"=>$p+1 ) ) );
             }
