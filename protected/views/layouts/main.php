@@ -91,7 +91,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/work/" ) ?>" title="Работа" class="MenuJsClass" id="h8">
+            <a href="<?= SiteHelper::createUrl( "/jobs" ) ?>" title="Работа" class="MenuJsClass" id="h8">
                 <img src="f/catalog_menu/789work.jpg" alt="Фирмы" /></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">

@@ -38,6 +38,7 @@
 
     <div id="share">
         <font>Поделитесь находкой:</font>
+        <noindex>
         <ul>
             <li id="CB_01"><a onclick="return new_window('http://vkontakte.ru/share.php?url=http://www.world-travel.uz/',600,400);" href="#"></a></li>
             <li id="CB_02"><a onclick="return new_window('http://www.odnoklassniki.ru/dk?st.cmd=addShare&st._surl=http://www.world-travel.uz/',600,400);" href="#"></a></li>
@@ -46,6 +47,7 @@
             <li id="CB_05"><a onclick="return new_window('http://twitter.com/share?url=http://www.world-travel.uz/',600,400);" href="#"></a></li>
             <li id="CB_06"><a href="#" onclick="return new_window('http://www.livejournal.com/update.bml?event=http://www.world-travel.uz/',800,600);"></a></li>
         </ul>
+        </noindex>
         <!--
         <div><script src="http://connect.facebook.net/ru_RU/all.js#xfbml=1"></script><fb:like href="http://www.world-travel.uz/" layout="button_count" show_faces="false" width="200" font="lucida grande"></fb:like></div>
         -->
