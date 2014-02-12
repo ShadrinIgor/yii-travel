@@ -8,7 +8,7 @@
         </div>
         <div class="LParams">
             <?php if( $item->price > 0 ) : ?>цена: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
-            <a href="<?= SiteHelper::createUrl("/firms/description")."/".$item->firm_id->slug ?>" title="<?= $item->firm_id->name ?>">Фирма: <b><?= $item->firm_id->name ?></b></a><br/>
+            <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>" title="<?= $item->firm_id->name ?>">Фирма: <b><?= $item->firm_id->name ?></b></a><br/>
             <a href="<?= SiteHelper::createUrl("/country")."/".$item->country_id->slug ?>" title="<?= $item->country_id->name ?>">Страна: <b><?= $item->country_id->name ?></b></a><br/>
             <a href="<?= SiteHelper::createUrl("/tours/description")."/".$item->category_id->slug ?>" title="<?= $item->category_id->name ?>">Категория: <b><?= $item->category_id->name ?></b></a><br/>
         </div>

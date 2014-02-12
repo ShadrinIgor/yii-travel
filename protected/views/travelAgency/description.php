@@ -2,8 +2,8 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        "туристические фирмы"=>SiteHelper::createUrl("firms/"),
-        $item->country_id->name_2=>SiteHelper::createUrl("firms/index", array( "country_id"=>$item->country_id->id, "slug"=>SiteHelper::getSlug( $item->country_id ) )),
+        "Туристические агентства"=>SiteHelper::createUrl("/travelAgency"),
+        $item->country_id->name_2=>SiteHelper::createUrl("/country" )."/".$item->country_id->slug,
         $item->name
     )
 ));

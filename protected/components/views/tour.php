@@ -14,6 +14,6 @@
     <?php if( $tour->price >0 ) : ?><p>цена:<b><?= $tour->price ?></b>у.е.</p><?php endif; ?>
     <?= SiteHelper::getSubTextOnWorld( $tour->description, 150 ) ?>
     <div class="LParams">
-        <a href="<?= SiteHelper::createUrl("/firms")."/".$tour->firm_id->slug ?>" title="туристическая фирма <?= SiteHelper::getStringForTitle( $tour->firm_id->name ) ?>"><?= $tour->firm_id->name ?></a>
+        <a href="<?= SiteHelper::createUrl("/travelAgency")."/".$tour->firm_id->slug ?>" title="туристическая фирма <?= SiteHelper::getStringForTitle( $tour->firm_id->name ) ?>"><?= $tour->firm_id->name ?></a>
     </div>
 </div>

@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/firms/" ) ?>" title="Фирмы" class="MenuJsClass" id="h8">
+            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="Фирмы" class="MenuJsClass" id="h8">
                 <img src="f/catalog_menu/964travel.jpg" alt="Фирмы" /></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">

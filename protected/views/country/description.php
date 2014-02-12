@@ -38,7 +38,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("firmWidget", array( "item"=>$firm )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("firms/", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
+                <a href="<?= SiteHelper::createUrl("/travelAgency", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
             </div>
         </div>
     <?php endif; ?>

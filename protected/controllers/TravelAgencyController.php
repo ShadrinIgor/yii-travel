@@ -1,7 +1,16 @@
 <?php
 
-class FirmsController extends Controller
+class TravelAgencyController extends InfoController
 {
+    public function init()
+    {
+        parent::init();
+        $this->classModel = "CatalogFirms";
+        $this->classCategory = "";
+        $this->description = "туристические агентства";
+        $this->keyWord = "Туристические агентства, туристическая фирма тур, Туристические агентства узбекистана, туристические компании, туристические агентства, , , , , , , , , , ";
+    }
+
     /**
      * Declares class-based actions.
      */
@@ -21,22 +30,24 @@ class FirmsController extends Controller
         );
     }
 
-    var $slug;
-	public function actionIndex()
-	{
-        $this->slug = Yii::app()->request->getParam("slug", "");
-        if( empty( $this->slug ) )$this->index();
-                       else $this->actionDescription();
-	}
-
-    public function index()
-    {
-        $this->render( 'index' );
-    }
-
     public function actionDescription()
     {
-        $id = (int)Yii::app()->request->getParam("id", 0);
+        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
+        $id =0;
+        $class = $this->classModel;
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                $_GET["id"]=$model->id;
+                $id = $model->id;
+            }
+            break;
+        }
+        if( empty($id) )$id = (int)Yii::app()->request->getParam("id", 0);
+
         $error = Yii::app()->request->getParam("error", "");
         $tab = Yii::app()->request->getParam("tab", "");
         $tabArray = array("description","pcomments");
