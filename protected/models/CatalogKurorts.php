@@ -56,9 +56,10 @@ class CatalogKurorts extends CCModel
 			array('image', 'length', 'max'=>100),
 			array('email', 'length', 'max'=>50),
 			array('price', 'length', 'max'=>25),
-			array('location', 'safe'),
+            array('category_id', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
+            array('name, description, country_id, city_id, image, location, www, email, telefon, price, category_id, slug, user_id', 'safe'),
 			array('id, name, description, pos, country_id, city_id, image, del, location, www, email, telefon, price, firms_count, col, category_id, slug, user_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -99,7 +100,7 @@ class CatalogKurorts extends CCModel
 			'price' => 'Price',
 			'firms_count' => 'Firms Count',
 			'col' => 'Col',
-			'category_id' => 'Category',
+			'category_id' => 'Категория',
 			'slug' => 'Slug',
 			'user_id' => 'User',
 		);

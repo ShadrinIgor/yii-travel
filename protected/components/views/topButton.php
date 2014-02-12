@@ -1,3 +1,33 @@
+<?php if( $type == "add_resorts_big" ) : ?>
+    <div class="B01">
+        <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Добавить бесплатно зону отдыха, детский лагерь">
+            <b>Вы работает в Зоне отдыха или Курорте? Хотите разместить рекламу БЕСПЛАТНО ?</b>
+            <br/>
+            вы можете БЕСПЛАТНО добавить инфомацию о Вашей зоне или курорта отдыха, цены, фотографии, дополнительных услугах<br/>
+            Например: Ваши услуги, рекламный баннер, спец предложениея, акции, скидки...
+        </a>
+    </div>
+<?php endif; ?>
+<?php if( $type == "add_resorts_small" ) : ?>
+    <div class="B01">
+        <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Добавить бесплатно зону отдыха, детский лагерь">
+            <b>Хотите добавить Вашу зону отдыха?</b>
+            <br/>
+            вы можете БЕСПЛАТНО добавить инфомацию о курорте<br/>
+            Ваши услуги, рекламный баннер, акции...
+        </a>
+    </div>
+<?php endif; ?>
+<?php if( $type == "add_resorts_confirm" ) : ?>
+    <div class="B02">
+        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Поддвертить информаци и внесить изминеия бесплатно">
+            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Работаете в этой зоне отдыха?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+            <br/>
+            Хотите изменить/добавить информацию о зоне отдыха?<br/>
+            Вы можете БЕСПЛАТНО вносить изминения
+        </a>
+    </div>
+<?php endif; ?>
 <?php if( $type == "add_hotel_big" ) : ?>
     <div class="B01">
         <a href="<?= SiteHelper::createUrl("/add") ?>/hotels" title="Добавить отель гостинуцу бесплатно">
@@ -19,7 +49,7 @@
     </div>
 <?php endif; ?>
 <?php if( $type == "add_hotel_confirm" ) : ?>
-    <div class="B01">
+    <div class="B02">
         <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Подтвердить информацию о отеле гостинуци бесплатно">
             <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вы работаете в этом отеле?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
             <br/>

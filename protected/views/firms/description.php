@@ -73,7 +73,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
             </table>
             <div id="orderInfo" class="displayNone">
                 <b>Туристическая фирма - <?= $item->name ?></b><br/>
-                <p>Для бронирования или уточнения информации по турам необходимо связатся с менеджером компании <?= $item->name ?>.</p>
+                <p>Для бронирования или уточнения информации по турам необходимо связаться с менеджером компании <?= $item->name ?>.</p>
                 <p>
                     <b>контакты компании:</b><br/>
                     <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>

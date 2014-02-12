@@ -1,23 +1,32 @@
 <?php
 
-class ResortsController extends Controller
+class ResortsController extends InfoController
 {
-    var $slug;
-	public function actionIndex()
-	{
-        $this->slug = Yii::app()->request->getParam("slug", "");
-        if( empty( $this->slug ) )$this->index();
-                       else $this->actionDescription();
-	}
-
-    public function index()
+    public function init()
     {
-        $this->render( 'index' );
+        parent::init();
+        $this->classModel = "CatalogKurorts";
+        $this->classCategory = "CatalogKurortsCategory";
+        $this->description = "Самые популярные курорты, зоны отдыха, дестские лагеря, отсортированные по рейтингу. Возможноть просмотра подробного описания, галлереи, дополнительных услуг цен и возможноть отправить заказ";
+        $this->keyWord = "курорты, зоны отдыха, дестские лагеря, vip отдых, горные курорты, зоны отдыха в горах, горнолыжные/сноуборт, зона отдыха, отдых в горах, детский лагерь, лечебные";
     }
 
     public function actionDescription()
     {
-        $id = (int)Yii::app()->request->getParam("id", 0);
+        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
+        $id =0;
+        $class = $this->classModel;
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $model = $class::fetchBySlug( $key );
+            if( $model->id >0 )
+            {
+                $_GET["id"]=$model->id;
+                $id = $model->id;
+            }
+            break;
+        }
 
         if( $id > 0 )
         {
@@ -29,7 +38,7 @@ class ResortsController extends Controller
                     array(
                         "item" => $item,
                         "otherHotels" => CatalogKurorts::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
-                        "hotelCount" => CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->country_id->id ) ) ),
+                        "hotelCount" => CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions( "category_id=:category" )->setParams( array( ":category"=>$item->category_id->id ) ) ),
                     ));
 
             }

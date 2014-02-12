@@ -41,6 +41,7 @@ class InfoController extends Controller
             if( !empty( $_GET[$key] ) )continue;
             $class = $this->classCategory;
             $model = $class::fetchBySlug( $key );
+            echo $model."*";
             if( $model->id >0 )
             {
                 unset( $_GET[$key] );
