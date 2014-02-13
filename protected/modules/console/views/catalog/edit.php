@@ -23,9 +23,17 @@
                     foreach( CatRelations::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("leftId=:leftId AND leftClass=:leftClass AND rightClass=:rightClass")->setParams( array( ":leftId"=>$form->id, ":leftClass"=>SiteHelper::getCamelCase( $form->tableName() ), ":rightClass"=>$relation[1] ) )->setCache(0) ) as $itemValue )
                         $listValue[] = $itemValue->rightId;
 
-                    foreach( RelationHelper::getRelationItems( $relation ) as $relationItem ) :
+                    $relationTable = $relation[1];
+                    if( !property_exists( $relationTable, "owner" ) )$listItems = $relationTable::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("name")->setLimit(-1)->setCache(0) );
+                                 else $listItems = $relationTable::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=0")->setOrderBy("name")->setLimit(-1)->setCache(0) );
+                    foreach( $listItems as $relationItem ) :
                 ?>
-                    <div><input type="checkbox" <?= in_array( $relationItem->id, $listValue ) ? "checked=\"checked\"" : "" ?> name="<?= SiteHelper::getCamelCase( $form->tableName() )."[".$relation[1] ?>][]" value="<?= $relationItem->id ?>" id="item_<?= $relation[2] ?>_<?= $relationItem->id ?>" /><label for="item_<?= $relation[2] ?>_<?= $relationItem->id ?>"><?= $relationItem->name ?></label></div>
+                    <div><input type="checkbox" <?= in_array( $relationItem->id, $listValue ) ? "checked=\"checked\"" : "" ?> name="<?= SiteHelper::getCamelCase( $form->tableName() )."[".$relation[1] ?>][]" value="<?= $relationItem->id ?>" id="item_<?= $relation[1] ?>_<?= $relationItem->id ?>" /><label for="item_<?= $relation[1] ?>_<?= $relationItem->id ?>"><?= $relationItem->name ?></label></div>
+                    <?php if( property_exists( $relationTable, "owner" ) ) : ?>
+                        <?php foreach( $relationTable::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams(array("owner"=>$relationItem->id))->setOrderBy("name")->setLimit(-1)->setCache(0) ) as $relationSubItem ) : ?>
+                            <div>&nbsp;--&nbsp;<input type="checkbox" <?= in_array( $relationSubItem->id, $listValue ) ? "checked=\"checked\"" : "" ?> name="<?= SiteHelper::getCamelCase( $form->tableName() )."[".$relation[1] ?>][]" value="<?= $relationSubItem->id ?>" id="item_<?= $relation[1] ?>_<?= $relationSubItem->id ?>" /><label for="item_<?= $relation[1] ?>_<?= $relationSubItem->id ?>"><?= $relationSubItem->name ?></label></div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>

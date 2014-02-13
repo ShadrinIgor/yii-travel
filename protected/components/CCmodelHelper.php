@@ -133,7 +133,7 @@ class CCmodelHelper
                             if( !empty( $listValues[ $relationData->id ] ) )$checked = "checked=\"checked\"";
                                     else $checked = "";
 
-                            $input .= '<li><input type="checkbox" name="'.$classTable .'['.$relation[1].'][]" '.$checked.' value="'.$relationData->id.'" id="'.$field[1]."_".$relationData->id.'" /><label for="'.$field[1]."_".$relationData->id.'">'.$relationData->name.'</li>';
+                            $input .= '<li><input type="checkbox" name="'.$classTable .'['.$relation[1].'][]" '.$checked.' value="'.$relationData->id.'" id="'.$fieldName."_".$relationData->id.'" /><label for="'.$fieldName."_".$relationData->id.'">'.$relationData->name.'</li>';
                         }
 
                         $input .=   '       </ul>

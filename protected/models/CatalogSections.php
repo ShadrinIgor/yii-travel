@@ -3,27 +3,27 @@
 /**
  * This is the model class for table "catalog_sections".
    */
-class CatalogSections extends CCmodel
+class CatalogSections extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $active; // integer 
+    protected $del; // integer 
     protected $pos; // integer 
-    protected $tours; // string 
-    protected $info; // string 
+    protected $tours; // integer 
+    protected $info; // integer 
     protected $images; // string 
-    protected $info_count; // integer 
-    protected $tours_count; // integer 
-    protected $kurorts_count; // integer 
-    protected $images_count; // integer 
     protected $words; // string 
     protected $country_id; // integer 
     protected $baner_l; // string 
-    protected $group; // string 
+    protected $curorts; // integer 
+    protected $description; // string 
 
 /*
 * Поля - связи
 */
+    protected $catalogInfoCategories; //  CatalogInfoCategory
+    protected $catalogKurortsCategories; //  CatalogKurortsCategory
+    protected $catalogToursCategories; //  CatalogToursCategory
 
 
     public function attributeNames()
@@ -47,14 +47,15 @@ class CatalogSections extends CCmodel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tours, info, images, words, baner_l, group', 'required'),
-			array('active, pos, info_count, tours_count, kurorts_count, images_count', 'numerical', 'integerOnly'=>true),
-			array('name, tours, info, images', 'length', 'max'=>25),
+			array('name, images, words', 'required'),
+			array('del, pos', 'numerical', 'integerOnly'=>true),
+			array('name, images', 'length', 'max'=>25),
 			array('baner_l', 'length', 'max'=>255),
-			array('group', 'length', 'max'=>5),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, tours, info, images, info_count, tours_count, kurorts_count, images_count, words, country_id, baner_l, group', 'safe', 'on'=>'search'),
+            array('name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description', 'safe'),
+			array('id, name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,7 +67,13 @@ class CatalogSections extends CCmodel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'catalogInfoCategories' => array(self::HAS_MANY, 'CatalogInfoCategory', 'section_id'),
+			'catalogKurortsCategories' => array(self::HAS_MANY, 'CatalogKurortsCategory', 'section_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
+			'tours0' => array(self::BELONGS_TO, 'CatalogToursCategory', 'tours'),
+			'info0' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'info'),
+			'curorts0' => array(self::BELONGS_TO, 'CatalogKurortsCategory', 'curorts'),
+			'catalogToursCategories' => array(self::HAS_MANY, 'CatalogToursCategory', 'section_id'),
 		);
 	}
 
@@ -78,19 +85,16 @@ class CatalogSections extends CCmodel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'active' => 'Active',
+			'del' => 'Del',
 			'pos' => 'Pos',
 			'tours' => 'Tours',
 			'info' => 'Info',
 			'images' => 'Images',
-			'info_count' => 'Info Count',
-			'tours_count' => 'Tours Count',
-			'kurorts_count' => 'Kurorts Count',
-			'images_count' => 'Images Count',
 			'words' => 'Words',
 			'country_id' => 'Country',
 			'baner_l' => 'Baner L',
-			'group' => 'Group',
+			'curorts' => 'Curorts',
+			'description' => 'Description',
 		);
 	}
 
@@ -107,19 +111,16 @@ class CatalogSections extends CCmodel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('active',$this->active);
+		$criteria->compare('del',$this->del);
 		$criteria->compare('pos',$this->pos);
-		$criteria->compare('tours',$this->tours,true);
-		$criteria->compare('info',$this->info,true);
+		$criteria->compare('tours',$this->tours);
+		$criteria->compare('info',$this->info);
 		$criteria->compare('images',$this->images,true);
-		$criteria->compare('info_count',$this->info_count);
-		$criteria->compare('tours_count',$this->tours_count);
-		$criteria->compare('kurorts_count',$this->kurorts_count);
-		$criteria->compare('images_count',$this->images_count);
 		$criteria->compare('words',$this->words,true);
 		$criteria->compare('country_id',$this->country_id);
 		$criteria->compare('baner_l',$this->baner_l,true);
-		$criteria->compare('group',$this->group,true);
+		$criteria->compare('curorts',$this->curorts);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

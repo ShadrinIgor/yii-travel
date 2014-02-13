@@ -300,6 +300,7 @@ return array(
                     array( "title"=>"Информация", "controller"=>"catalog", "params"=>"catalog=CatalogInfo" ),
                     array( "title"=>"Курорты", "controller"=>"catalog", "params"=>"catalog=CatalogKurorts" ),
                     array( "title"=>"Туры", "controller"=>"catalog", "params"=>"catalog=CatalogTours" ),
+                    array( "title"=>"Группы", "controller"=>"catalog", "params"=>"catalog=CatalogSections" ),
                 ),
             ),
 
