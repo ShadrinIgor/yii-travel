@@ -17,6 +17,7 @@ class CatalogSections extends CCModel
     protected $baner_l; // string 
     protected $curorts; // integer 
     protected $description; // string 
+    protected $slug; // string 
 
 /*
 * Поля - связи
@@ -47,15 +48,16 @@ class CatalogSections extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, images, words', 'required'),
+			array('name', 'required'),
 			array('del, pos', 'numerical', 'integerOnly'=>true),
 			array('name, images', 'length', 'max'=>25),
 			array('baner_l', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('slug', 'length', 'max'=>150),
+			array('words, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description', 'safe'),
-			array('id, name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description', 'safe', 'on'=>'search'),
+            array('slug, name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description', 'safe'),
+			array('id, name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,13 +69,10 @@ class CatalogSections extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'catalogInfoCategories' => array(self::HAS_MANY, 'CatalogInfoCategory', 'section_id'),
-			'catalogKurortsCategories' => array(self::HAS_MANY, 'CatalogKurortsCategory', 'section_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
-			'tours0' => array(self::BELONGS_TO, 'CatalogToursCategory', 'tours'),
-			'info0' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'info'),
-			'curorts0' => array(self::BELONGS_TO, 'CatalogKurortsCategory', 'curorts'),
-			'catalogToursCategories' => array(self::HAS_MANY, 'CatalogToursCategory', 'section_id'),
+			'tours0' => array(self::MANY_MANY, 'CatalogToursCategory', 'tours'),
+			'info0' => array(self::MANY_MANY, 'CatalogInfoCategory', 'info'),
+			'curorts0' => array(self::MANY_MANY, 'CatalogKurortsCategory', 'curorts'),
 		);
 	}
 
@@ -95,6 +94,7 @@ class CatalogSections extends CCModel
 			'baner_l' => 'Baner L',
 			'curorts' => 'Curorts',
 			'description' => 'Description',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -121,6 +121,7 @@ class CatalogSections extends CCModel
 		$criteria->compare('baner_l',$this->baner_l,true);
 		$criteria->compare('curorts',$this->curorts);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
