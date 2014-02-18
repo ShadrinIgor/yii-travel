@@ -2049,8 +2049,8 @@ zoom: 1;
 .LGItem a{font-size: 12px;}
 .LGItem input{width: 104px;font-size: 11px;}
 
-.listItemsImages{width: 120px;height: 110px;padding-top: 10px;text-indent: 0px;}
-.LII_1, .LII_2, .LII_3, .LII_4, .LII_5{background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
+.listItemsImages{width: 120px;height: 110px;padding-top: 10px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center center;}
+.LII_1, .LII_2, .LII_3, .LII_4, .LII_5{text-align: center;background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
 .LII_1{z-index: 99999;}
 .LII_2{z-index: 88888;
     /* Safari */-webkit-transform: rotate(-10deg);
@@ -2110,6 +2110,9 @@ zoom: 1;
     -moz-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
 }
+.listItemsImages img{max-height: 104px;}
+.pageTab td, .pageTab th{text-indent: 0px;}
+
 .colorRad, .redColor{color:#ff0000;}
 #dopMenu{overflow: hidden;margin: 0px auto 10px auto;text-align: center;}
 #dopMenu a{display: inline-block;width: 180px;vertical-align: top;padding: 2px 5px;text-align:center;border-right: 1px solid #bfbfbf;margin-top: 2px;}
@@ -2228,3 +2231,4 @@ zoom: 1;
     background: -ms-linear-gradient(top, #dfdfff, #fff); /* IE10 */
     background: linear-gradient(top, #dfdfff, #fff); /* CSS3 */
 }
+

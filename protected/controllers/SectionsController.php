@@ -26,13 +26,22 @@ class SectionsController extends Controller
             Yii::app()->page->setInfo( array( "description"=>$item->name.",".$this->description, "keyWord"=>$item->name.",".$this->keyWord ) );
             if( !empty( $item ) && $item->id >0 )
             {
+                $toursCategory = "";
+                $categoryList = $item->tours;
+                foreach( $categoryList as $item )
+                {
+                    if( !empty( $toursCategory ) )$toursCategory .= " OR ";
+                    $toursCategory .= " category_id='".$item->id."' ";
+                }
+
+
                 Yii::app()->page->title = $item->name;
                 $this->render('index',
                     array(
                         "item" => $item,
                         "activeTab" => "s_tours",
                         "info" => $item->info,
-                        "tours" => $item->tours,
+                        "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )->setPage( 1 )->setLimit( 15 )),
                         "curorts" => $item->curorts,
                     ));
             }

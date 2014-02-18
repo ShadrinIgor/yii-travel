@@ -22,37 +22,37 @@ $this->widget('addressLineWidget', array(
             <tr>
                 <th class="TLFId">№</th>
                 <th class="">Фото</th>
-                <th class="TLFName">Заголовок</th>
                 <th class="TLFAction">Краткое описание</th>
             </tr>
             <?php
 
-            foreach( $tours as $firmItem ): ?>
+            foreach( $tours as $firmItem ):
+                ?>
                 <tr <?= $firmItem->hot==1 ? 'class="isHot"' : "" ?>>
                     <td><?= $firmItem->id ?></td>
                     <td>
-                        <?php
-                        if( !$firmItem->image )$countImages = 5;
-                        else $countImages = 4;
+                        <div class="listItemsImages">
+                            <?php
+                            if( !$firmItem->image )$countImages = 5;
+                            else $countImages = 4;
 
-                        $listImages = ImageHelper::getImages( $firmItem, $countImages );
-                        if( sizeof( $listImages ) >0 || $firmItem->image ) : ?>
-                            <div class="listItemsImages">
-                                <?php if( $firmItem->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $firmItem->image, 3 ) ?>" alt="" /></div><?php endif; ?>
-                                <?php
-                                if( $firmItem->image )$i=2;
-                                else $i=1;
-                                foreach( $listImages as $LItem ) : ?>
-                                    <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                                    <?php $i++;endforeach; ?>
-                            </div>
-                        <?php endif;?>
-                    </td>
-                    <td>
-                        <a href="<?= SiteHelper::createUrl("/touristInfo/").$firmItem->id."-".$firmItem->slug ?>" title="описание акции/скидки"><?= $firmItem->name ?></a>
+                            $listImages = ImageHelper::getImages( $firmItem, $countImages );
+                            if( sizeof( $listImages ) >0 || $firmItem->image ) : ?>
+
+                                    <?php if( $firmItem->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $firmItem->image, 3 ) ?>" alt="" /></div><?php endif; ?>
+                                    <?php
+                                    if( $firmItem->image )$i=2;
+                                    else $i=1;
+                                    foreach( $listImages as $LItem ) : ?>
+                                        <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
+                                        <?php $i++;endforeach; ?>
+
+                            <?php endif;?>
+                        </div>
                     </td>
                     <td class="textAlignJustify">
-                        <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 400 ) ?>
+                        <a href="<?= SiteHelper::createUrl("/tours/description").$firmItem->slug ?>" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
+                        <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 300 ) ?>
                         <div class="itemAction textAlignRight">
                             <a href="<?= SiteHelper::createUrl("/touristInfo/").$firmItem->id."-".$firmItem->slug ?>">Описание</a><br/>
                         </div>
