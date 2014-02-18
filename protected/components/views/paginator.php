@@ -21,7 +21,8 @@ if($count>$offset)
             if((($i>($page-5))&&($i<($page+5)))||($i==1)||($i==$finish))
             {
                 if( empty( $url ) )$elem.="<a href=\"".$defaultUrl."?p=".$i."\">".$i."</a>";
-                    else $elem.="<a href=\"".SiteHelper::createUrl( $url[0], array_merge( $url[1], array( "p"=>$i ) ) ) ."\">".$i."</a>";
+                    elseif( is_array( $url ) ) $elem.="<a href=\"".SiteHelper::createUrl( $url[0], array_merge( $url[1], array( "p"=>$i ) ) ) ."\">".$i."</a>";
+                        else $elem.="<a href=\"".$defaultUrl."?p=".$i.$url."\">".$i."</a>";
                 $space="";
             }
             else

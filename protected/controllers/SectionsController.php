@@ -13,7 +13,16 @@ class SectionsController extends Controller
 
     public function actionIndex()
     {
-        $tab = "";
+        $page = (int)Yii::app()->request->getParam( "p", 1 );
+        $action = Yii::app()->request->getParam( "action", "t" );
+
+        $t_page = 1;
+        $i_page = 1;
+        $c_page = 1;
+        if( $action == "t" )$t_page = $page;
+        if( $action == "i" )$i_page = $page;
+        if( $action == "c" )$c_page = $page;
+
         foreach( $_GET as $key=>$item )
         {
             if( !empty( $_GET[$key] ) && $_GET[$key]!="null" )continue;
@@ -28,12 +37,11 @@ class SectionsController extends Controller
             {
                 $toursCategory = "";
                 $categoryList = $item->tours;
-                foreach( $categoryList as $item )
+                foreach( $categoryList as $itemC )
                 {
                     if( !empty( $toursCategory ) )$toursCategory .= " OR ";
-                    $toursCategory .= " category_id='".$item->id."' ";
+                    $toursCategory .= " category_id='".$itemC->id."' ";
                 }
-
 
                 Yii::app()->page->title = $item->name;
                 $this->render('index',
@@ -41,8 +49,13 @@ class SectionsController extends Controller
                         "item" => $item,
                         "activeTab" => "s_tours",
                         "info" => $item->info,
-                        "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )->setPage( 1 )->setLimit( 15 )),
+                        "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )->setPage( $t_page )->setLimit( 15 )),
+                        "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )),
                         "curorts" => $item->curorts,
+                        "t_page" => $t_page,
+                        "i_page" => $i_page,
+                        "c_page" => $c_page,
+                        "offset" => 15
                     ));
             }
                 else throw new CHttpException("Ошибка","Ошибка перехода на страницу");

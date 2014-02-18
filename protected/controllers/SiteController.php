@@ -35,8 +35,6 @@ class SiteController extends Controller
         //$items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("status_id=1 AND is_hot=:hot AND `date`>=:date")->setParams(array(":hot"=>1, ":date"=>$finishDate ) )->setLimit(20)->setCache(0) );
 
         $this->render('index', array( "controller"=>$this, "content"=>$content, "items"=>array() ));
-
-
 	}
 
     public function actionPage()
