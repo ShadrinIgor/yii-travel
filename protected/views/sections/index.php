@@ -14,16 +14,16 @@ $this->widget('addressLineWidget', array(
     </p>
     <div id="dopMenu">
         <a href="#" id="s_tours" class="<?= $activeTab == "s_tours" ? "activeDM " : "" ?>dopMenuPages">Туры (<?= $tourCount ?>)</a>
-        <a href="#" id="s_info" class="<?= $activeTab == "s_info" ? "activeDM " : "" ?>dopMenuPages">Информация (<?= sizeof( $info ) ?>)</a>
-        <a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages">Курорты/соны отдаха (<?= sizeof( $curorts ) ?>)</a>
+        <a href="#" id="s_info" class="<?= $activeTab == "s_info" ? "activeDM " : "" ?>dopMenuPages">Информация (<?= $infoCount ?>)</a>
+        <a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages">Курорты/зоны отдыха (<?= $curortsCount ?>)</a>
     </div>
     <div id="s_tours_page" class="pageTab<?= $activeTab == "s_tours" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "tours", array( "item"=>$item, "tours"=>$tours, "tourCount"=>$tourCount, "offset"=>$offset, "page"=>$t_page ) ) ?>
     </div>
     <div id="s_info_page" class="pageTab<?= $activeTab == "s_info" ? " activePage " : " displayNone" ?>">
-        66
+        <?php $this->renderPartial( "info", array( "item"=>$item, "items"=>$info, "infoCount"=>$infoCount, "offset"=>$offset, "page"=>$i_page ) ) ?>
     </div>
     <div id="s_curorts_page" class="pageTab<?= $activeTab == "s_curorts" ? " activePage " : " displayNone" ?>">
-        777
+        <?php $this->renderPartial( "curorts", array( "item"=>$item, "items"=>$curorts, "curortsCount"=>$curortsCount, "offset"=>$offset, "page"=>$c_page ) ) ?>
     </div>
 </div>

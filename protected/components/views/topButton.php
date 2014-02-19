@@ -1,3 +1,23 @@
+<?php if( $type == "add_first" ) : ?>
+    <div class="B01">
+        <a href="<?= SiteHelper::createUrl("/add") ?>" title="Добавить бесплатно тур. информацию зону отдыха, детский лагерь, информацию на сайте">
+            <b>Добавить информацию</b>
+            <br/>
+            свои туры, тур. фирму, зону отдыха,<br/>
+            курортную зону, частное объявление или прочее...
+        </a>
+    </div>
+<?php endif; ?>
+<?php if( $type == "confirm_first" ) : ?>
+    <div class="B02">
+        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Подтвердить информацию">
+            <b>Подтвердить информацию</b>
+            <br/>
+            Информация о Вашей компании уже размещена на сайте?<br/>
+            Вы можете вномсить изминения, добавлять информацмю
+        </a>
+    </div>
+<?php endif; ?>
 <?php if( $type == "add_resorts_big" ) : ?>
     <div class="B01">
         <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Добавить бесплатно зону отдыха, детский лагерь">

@@ -53,7 +53,6 @@ class CatalogSections extends CCModel
 			array('name, images', 'length', 'max'=>25),
 			array('baner_l', 'length', 'max'=>255),
 			array('slug', 'length', 'max'=>150),
-			array('words, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
             array('slug, name, del, pos, tours, info, images, words, country_id, baner_l, curorts, description', 'safe'),

@@ -214,14 +214,16 @@ noindex{ display:block;text-align:right; }
 }
 #lblock_text .innerForm  .closeForm a:hover{ background:#DC5800;color:#fff;border:1px solid #fff; }
 
-#setions { margin-left: 100px;height:211px;overflow:hidden; }
-.SItems { float: left;height:201px;position:relative;margin-left: -230px; }
-#SI01 { margin-left:0px;z-index:60; }
-#SI02 { z-index:50; }
-#SI03 { z-index:40; }
-#SI04 { z-index:30; }
-#SI05 { z-index:20; }
-#SI06 { z-index:10; }
+#setions { margin-left: 20px;height:185px;}
+.SItems { float: left;height:201px;position:relative;margin-left: -238px; }
+#SI01 { margin-left:0px;z-index:80; }
+#SI02 { z-index:70; }
+#SI03 { z-index:60; }
+#SI04 { z-index:50; }
+#SI05 { z-index:40; }
+#SI06 { z-index:30; }
+#SI07 { z-index:20; }
+#SI08 { z-index:10; }
 
 .SItems  img { height:185px;}
 #setions .SISelect {z-index:100;margin-top:5px; }
@@ -332,7 +334,7 @@ noindex{ display:block;text-align:right; }
 	padding-bottom: 5px;
 }
 .FCItems ul { margin:0px;padding-left: 30px; }
-.FCItems li { margin-bottom: 5px; }
+.FCItems li { margin-bottom: 5px;height: 17px; overflow: hidden; }
 .FCItems p { text-align:right;margin:0px 6px; }
 #Center .FCItems p a { color:#DE9644; }
 .FCItems b { color:#DC5800;}

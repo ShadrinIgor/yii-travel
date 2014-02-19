@@ -1678,7 +1678,7 @@ zoom: 1;
 #Buttons .B02 a{color:#985d2c;}
 #Buttons .B01 a b, #Buttons .B02 a b{font-size: 20px;text-transform: capitalize;border-bottom: 1px solid #afafaf;padding: 0px 25px;}
 #Buttons.BSmall .B01 a b, #Buttons.BSmall .B02 a b{font-size: 16px;padding: 0px 15px;text-transform: none; }
-#Buttons .B02 a b{border-bottom: 1px solid #ffffff;padding: 0px 115px;}
+#Buttons .B02 a b{border-bottom: 1px solid #ffffff;padding: 0px 0px;text-align: center;}
 .B01, .B02{ width: 374px;height: 65px; text-align: center;}
 
 .FCItems li:hover .display_none{ display: block;}
@@ -2118,7 +2118,7 @@ zoom: 1;
 #dopMenu a{display: inline-block;width: 180px;vertical-align: top;padding: 2px 5px;text-align:center;border-right: 1px solid #bfbfbf;margin-top: 2px;}
 #dopMenu.tourPage a{width: auto;}
 .emptyList{padding: 10px 0px;}
-.activeDM{background: #dfdfff;}
+#dopMenu .activeDM{background: #cfcfff;}
 .pageTab{background: #fff;top: 355px;overflow: hidden;text-align: justify;text-indent: 25px;}
 
 #description_page{text-align: justify;}

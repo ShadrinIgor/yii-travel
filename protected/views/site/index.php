@@ -6,22 +6,8 @@ $this->pageTitle=Yii::app()->name;
 // if( $this->beginCache( "firstPage", array('duration'=>3600) ) ) :
 ?>
     <div id="Buttons">
-        <div class="B01">
-            <a href="#" title="">
-                <b>Добавить информацию</b>
-                <br/>
-                свои туры, тур. фирму, зону отдыха,<br/>
-                курортную зону, частное объявление или прочее...
-            </a>
-        </div>
-        <div class="B02">
-            <a href="#" title="">
-                <b>Найти</b>
-                <br/>
-                подобрать тур, найти курорт, зону отдыха<br/>
-                новости туризма, статьи о туризме
-            </a>
-        </div>
+        <?php $this->widget("topButtonWidget", array( "type"=>"add_first" )) ?>
+        <?php $this->widget("topButtonWidget", array( "type"=>"confirm_first" )) ?>
     </div>
 
     <div class="hr">&nbsp;</div>

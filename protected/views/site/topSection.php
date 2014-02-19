@@ -1,9 +1,9 @@
 <div id="setions">
     <div class="SItems" id="SI01">
-        <a href="sections/7/" title="Детские лагеря отдыха"><img src="<?= $Theme->getBaseUrl() ?>/images/menu07.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/detskie-lagerya" ?>" title="Детские лагеря отдыха"><img src="<?= $Theme->getBaseUrl() ?>/images/menu07.jpg" /></a>
     </div>
     <div class="SItems" id="SI02">
-        <a href="sections/8/" title="Туризм отдых в горах"><img src="<?= $Theme->getBaseUrl() ?>/images/menu08.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/otdyh-v-gorah" ?>" title="Туризм отдых в горах"><img src="<?= $Theme->getBaseUrl() ?>/images/menu08.jpg" /></a>
     <pre>
       <ul>
           <li>Зоны отдыха</li>
@@ -15,7 +15,7 @@
     </pre>
     </div>
     <div class="SItems" id="SI03">
-        <a href="sections/1/" title="Экстримальный туризм"><img src="<?= $Theme->getBaseUrl() ?>/images/menu01.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/ektrimalnyi-turizm" ?>" title="Экстримальный туризм"><img src="<?= $Theme->getBaseUrl() ?>/images/menu01.jpg" /></a>
     <pre>
       <ul>
           <li>Горнолыжный/Сноуборд</li>
@@ -27,7 +27,7 @@
     </pre>
     </div>
     <div class="SItems" id="SI04">
-        <a href="sections/2/" title="Туризм Охота и рыбалка"><img src="<?= $Theme->getBaseUrl() ?>/images/menu02.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/ohota-i-rybalka" ?>" title="Туризм Охота и рыбалка"><img src="<?= $Theme->getBaseUrl() ?>/images/menu02.jpg" /></a>
     <pre>
       <ul>
           <li>Рыбалка и охота</li>
@@ -39,7 +39,7 @@
     </pre>
     </div>
     <div class="SItems" id="SI05">
-        <a href="sections/3/" title="Туризм VIP отдых"><img src="<?= $Theme->getBaseUrl() ?>/images/menu03.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/vip-otdyh" ?>" title="Туризм VIP отдых"><img src="<?= $Theme->getBaseUrl() ?>/images/menu03.jpg" /></a>
     <pre>
       <ul>
           <li>VIP Отдых</li>
@@ -51,7 +51,7 @@
     </pre>
     </div>
     <div class="SItems" id="SI06">
-        <a href="sections/4/" title="Туризм Развлечения"><img src="<?= $Theme->getBaseUrl() ?>/images/menu04.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/razvlekatelnyi-turizm" ?>" title="Туризм Развлечения"><img src="<?= $Theme->getBaseUrl() ?>/images/menu04.jpg" /></a>
     <pre>
       <ul>
           <li>Шипинг</li>
@@ -62,9 +62,8 @@
       </ul>
     </pre>
     </div>
-    <!--
      <div class="SItems" id="SI07">
-      <a href="sections/5/" title="Туризм Иследование"><img src="<?= $Theme->getBaseUrl() ?>/images/menu05.jpg" /></a>
+      <a href="<?= SiteHelper::createUrl( "/sections" )."/issledovatelskii-turizm" ?>" title="Туризм Иследование"><img src="<?= $Theme->getBaseUrl() ?>/images/menu05.jpg" /></a>
         <pre>
           <ul>
             <li>Исторические</li>
@@ -76,7 +75,7 @@
         </pre>
      </div>
      <div class="SItems" id="SI08">
-      <a href="sections/6/" title="Туризм Религиозный"><img src="<?= $Theme->getBaseUrl() ?>/images/menu06.jpg" /></a>
+      <a href="<?= SiteHelper::createUrl( "/sections" )."/religioznyi-turizm" ?>" title="Туризм Религиозный"><img src="<?= $Theme->getBaseUrl() ?>/images/menu06.jpg" /></a>
         <pre>
           <ul>
             <li>Духовные центры</li>
@@ -87,5 +86,4 @@
           </ul>
         </pre>
      </div>
-    -->
 </div>

@@ -1,15 +1,13 @@
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
-        <th class="TLFId">№</th>
         <th class="">Фото</th>
         <th class="TLFAction">Краткое описание</th>
     </tr>
     <?php
 
-    foreach( $tours as $firmItem ):
+    foreach( $items as $firmItem ):
         ?>
         <tr <?= $firmItem->hot==1 ? 'class="isHot"' : "" ?>>
-            <td><?= $firmItem->id ?></td>
             <td>
                 <div class="listItemsImages">
                     <?php
@@ -31,27 +29,27 @@
                 </div>
             </td>
             <td class="textAlignJustify">
-                <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
+                <a href="<?= SiteHelper::createUrl("/touristInfo/description")."/".$firmItem->slug ?>" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 300 ) ?>
                 <div class="itemAction textAlignRight">
-                    <a href="<?= SiteHelper::createUrl("/tours/category")."/".$firmItem->category_id->slug ?>"><?= $firmItem->category_id->name ?></a><br/>
-                    <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/touristInfo/category")."/".$firmItem->category_id->slug ?>"><?= $firmItem->category_id->name ?></a><br/>
+                    <a href="<?= SiteHelper::createUrl("/touristInfo/description")."/".$firmItem->slug ?>">Описание</a><br/>
                 </div>
             </td>
         </tr>
     <?php endforeach; ?>
     <tr>
-        <td colspan="3" align="center">
+        <td colspan="2" align="center">
             <?php
-            $this->widget( "paginatorWidget", array( "count"=>$tourCount, "page"=>$page, "offset"=>$offset, "url"=>"&action=t" ) );
+            $this->widget( "paginatorWidget", array( "count"=>$infoCount, "page"=>$page, "offset"=>$offset, "url"=>"&action=i" ) );
 
             ?>
             <br/>
         </td>
     </tr>
-    <?php if( sizeof( $tours ) == 0 ) : ?>
+    <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
-            <td colspan="3" class="textAlignCenter emptyList">Список пуст</td>
+            <td colspan="2" class="textAlignCenter emptyList">Список пуст</td>
         </tr>
     <?php endif; ?>
 </table>
