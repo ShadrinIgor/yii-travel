@@ -29,11 +29,11 @@
                 </div>
             </td>
             <td class="textAlignJustify">
-                <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
+                <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>.html" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 300 ) ?>
                 <div class="itemAction textAlignRight">
-                    <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$firmItem->category_id->slug ?>"><?= $firmItem->category_id->name ?></a><br/>
-                    <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$firmItem->category_id->slug ?>.html"><?= $firmItem->category_id->name ?></a><br/>
+                    <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>.html">Описание</a><br/>
                 </div>
             </td>
         </tr>

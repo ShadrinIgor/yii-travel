@@ -3,7 +3,7 @@
 $this->widget('addressLineWidget', array(
     'links'=>array(
         "информация о туризме"=>SiteHelper::createUrl("/touristInfo"),
-        $item->category_id->name=>SiteHelper::createUrl("/touristInfo", array( "category"=>$item->category_id->slug )),
+        $item->category_id->name=>SiteHelper::createUrl("/touristInfo", array( "category"=>$item->category_id->slug )).".html",
         $item->name
     )
 ));
@@ -18,8 +18,8 @@ $this->widget('addressLineWidget', array(
         <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
-            <?php if( $item->country_id ) : ?>страна: <a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->country_id->slug)) ?>" title="<?= $item->country_id->name ?>"><?= $item->country_id->name ?></a><br/><?php endif; ?>
-            <?php if( $item->category_id ) : ?>категория:<a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>" title="<?= $item->category_id->name ?> - категория туристической информации"><?= $item->category_id->name ?></a><br/><?php endif; ?>
+            <?php if( $item->country_id ) : ?>страна: <a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->country_id->slug)) ?>.html" title="<?= $item->country_id->name ?>"><?= $item->country_id->name ?></a><br/><?php endif; ?>
+            <?php if( $item->category_id ) : ?>категория:<a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>.html" title="<?= $item->category_id->name ?> - категория туристической информации"><?= $item->category_id->name ?></a><br/><?php endif; ?>
             <br/>
         </div>
         <?= $item->description ?>
@@ -41,7 +41,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("infoWidget", array( "item"=>$hotel )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>" class="cmore" title="информация - <?= $item->category_id->name ?>">информация - <?= $item->category_id->name ?> ( <?= $hotelCount ?> записи )...</a>
+                <a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>.html" class="cmore" title="информация - <?= $item->category_id->name ?>">информация - <?= $item->category_id->name ?> ( <?= $hotelCount ?> записи )...</a>
             </div>
         </div>
     <?php endif; ?>

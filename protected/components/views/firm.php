@@ -4,7 +4,7 @@
     </div>
     <?php if( $tour->price >0 ) : ?><p><?= $tour->price ?></p><?php endif; ?>
     <!--php if( $tour->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><= $tour->col ></b></div><php endif; -->
-    <br/><a href="<?= SiteHelper::createUrl("/travelAgency/description", array( "slug"=>$tour->slug, "id"=>$tour->id )) ?>" title="<?= $tour->name ?>"><?= $tour->name ?></a><br/>
+    <br/><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$tour->slug ?>.html" title="<?= $tour->name ?>"><?= $tour->name ?></a><br/>
     <div class="LParams">
         Туров: <b><?= $tourCounts ?></b>
     </div>

@@ -3,8 +3,8 @@
 $this->widget('addressLineWidget', array(
     'links'=>array(
         "туры"=>SiteHelper::createUrl("/tours"),
-        $item->category_id->name=>SiteHelper::createUrl("/tours/category")."/".$item->category_id->slug,
-        $item->country_id->name_2=>SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug,
+        $item->category_id->name=>SiteHelper::createUrl("/tours/category")."/".$item->category_id->slug.".html",
+        $item->country_id->name_2=>SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug.".html",
         $item->name
     )
 ));
@@ -19,9 +19,9 @@ $this->widget('addressLineWidget', array(
         <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
-            страна: <a href="<?= SiteHelper::createUrl("/country")."/".$item->slug ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
-            категория:<a href="<?= SiteHelper::createUrl("/tours")."/".$item->category_id->slug ?>" title="<?= SiteHelper::getStringForTitle( $item->category_id->name ) ?>"><?= $item->category_id->name ?></a><br/>
-            фирма: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
+            страна: <a href="<?= SiteHelper::createUrl("/country")."/".$item->slug ?>.html" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
+            категория:<a href="<?= SiteHelper::createUrl("/tours")."/".$item->category_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->category_id->name ) ?>"><?= $item->category_id->name ?></a><br/>
+            фирма: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Забронировать тур <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>
@@ -35,7 +35,7 @@ $this->widget('addressLineWidget', array(
                 <?php if( $item->firm_id->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogFirms", "id"=>$item->firm_id->id, "field"=>"email" ) ) ?>' ); return false;">[ Показать Email ]</a></span><br/><?php endif; ?>
                 <?php if( $item->firm_id->www ) : ?>Сайт: <a target="_blank" href="<?= $item->firm_id->www ?>"><?= $item->firm_id->www ?></a><br/><?php endif; ?>
                 <div class="cMore">
-                    <a href="#" class="orderClose">закрыть</a> | <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>">подробнее о фирме...</a>
+                    <a href="#" class="orderClose">закрыть</a> | <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html">подробнее о фирме...</a>
                 </div>
             </p>
         </div>
@@ -53,7 +53,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
+                <a href="<?= SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug ?>.html" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
             </div>
         </div>
     <?php endif; ?>
@@ -64,7 +64,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/travelAgency")."/".$item->slug ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
+                <a href="<?= SiteHelper::createUrl("/travelAgency")."/".$item->slug ?>.html" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
             </div>
         </div>
     <?php endif; ?>

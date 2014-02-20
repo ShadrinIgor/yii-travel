@@ -26,7 +26,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("tours/", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
+                <a href="<?= SiteHelper::createUrl("/tours/", array("country"=>$item->slug)) ?>.html" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все туры <?= $item->name_2 ?> ( <?= $tourCount ?> тура(ов) )...</a>
             </div>
         </div>
     <?php endif; ?>
@@ -38,7 +38,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("firmWidget", array( "item"=>$firm )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/travelAgency", array("country"=>$item->slug)) ?>" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
+                <a href="<?= SiteHelper::createUrl("/travelAgency", array("country"=>$item->slug)) ?>.html" class="cmore" title="все туры <?= $item->name_2 ?>">Смотреть все фирмы <?= $item->name_2 ?> ( <?= $firmCount ?> фирм )...</a>
             </div>
         </div>
     <?php endif; ?>
@@ -51,10 +51,10 @@ $this->widget('addressLineWidget', array(
                 ?>
                 <div class="IBItem">
                     <div class="IBIImage">
-                        <a href="<?= SiteHelper::createUrl("/country")."/".$CItem->slug ?>"" title="<?= $CItem->name ?> - туристическая страна"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?> - туризм" /></a>
+                        <a href="<?= SiteHelper::createUrl("/country")."/".$CItem->slug ?>.html" title="<?= $CItem->name ?> - туристическая страна"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?> - туризм" /></a>
                     </div>
                     <?php if( $tour->price >0 ) : ?><p><?= $CItem->price ?></p><?php endif; ?>
-                    <br/><a href="<?= SiteHelper::createUrl("/country")."/".$CItem->slug ?>" title="<?= $CItem->name ?> - туристическая страна"><?= $CItem->name ?></a><br/>
+                    <br/><a href="<?= SiteHelper::createUrl("/country")."/".$CItem->slug ?>.html" title="<?= $CItem->name ?> - туристическая страна"><?= $CItem->name ?></a><br/>
                     <div class="LParams">
                         Просмотров: <b><?= $CItem->col>0 ? $CItem->col : 0 ?></b><br/>
                         Туров: <b><?= $tourCounts ?></b><br/>

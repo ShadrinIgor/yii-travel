@@ -3,7 +3,7 @@
 $this->widget('addressLineWidget', array(
     'links'=>array(
         "Туристические агентства"=>SiteHelper::createUrl("/travelAgency"),
-        $item->country_id->name_2=>SiteHelper::createUrl("/country" )."/".$item->country_id->slug,
+        $item->country_id->name_2=>SiteHelper::createUrl("/country" )."/".$item->country_id->slug.".html",
         $item->name
     )
 ));

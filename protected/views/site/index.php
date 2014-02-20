@@ -22,21 +22,21 @@ $this->pageTitle=Yii::app()->name;
                 <ul>
                     <?php foreach( CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array(":country"=>$item->id) )->setLimit(4) ) as $item2  ) : ?>
                     <li>
-                        <a href="tours/t_id/622/" title="<?= $item2->name ?>"><?= $item2->name ?><b><?= $item2->price>0 ? " - ".$item2->price."$" : "" ?></b></a>
+                        <a href="<?= SiteHelper::createUrl( "/tours/description" )."/".$item2->slug ?>.html" title="<?= $item2->name ?>"><?= $item2->name ?><b><?= $item2->price>0 ? " - ".$item2->price."$" : "" ?></b></a>
                         <div class="display_none fc_popup">
                             <?php if( $item2->image ) : ?><img src="<?= ImageHelper::getImage( $item2->image, 2 ) ?>" alt="<?= $item2->name ?>" /><?php endif; ?>
                             <?php if( $item2->price>0 ) : ?>Стоимость: <b><?= $item2->price ?>$</b><br/><?php endif; ?>
                             <?= SiteHelper::getSubTextOnWorld( $item2->description, 400 ) ?>
                             <div class="textAlignRight">
-                                <a class="cMore" href="tours/t_id/622/" title="">читать подробнее</a>
+                                <a class="cMore" href="<?= SiteHelper::createUrl( "/tours/description" )."/".$item2->slug ?>.html" title="<?= $item2->name ?>">читать подробнее</a>
                             </div>
                         </div>
                     </li>
                     <?php endforeach; ?>
                 </ul>
-                <p><a href="tours/0/11/">смотреть все туры <?= $item->name_2 ?></a></p>
-                <p><a href="hotels/0/11/">отели <?= $item->name_2 ?></a></p>
-                <p><a href="info/0/11/">туристическая информаци <?= $item->name_2 ?></a></p>
+                <p><a href="<?= SiteHelper::createUrl( "/tours/country" )."/".$item->slug ?>.html">смотреть все туры <?= $item->name_2 ?></a></p>
+                <p><a href="<?= SiteHelper::createUrl( "/hotels/country" )."/".$item->slug ?>.html">отели <?= $item->name_2 ?></a></p>
+                <p><a href="<?= SiteHelper::createUrl( "/touristInfo/country" )."/".$item->slug ?>.html">туристическая информаци <?= $item->name_2 ?></a></p>
             </div>
         </div>
         <?php endforeach; ?>
@@ -54,7 +54,7 @@ $this->pageTitle=Yii::app()->name;
                             $info = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id" )->setParams( array( "country_id"=>$item->id ) ) );
                             ?>
                             <li>
-                                <a href="tours/0/33/" title="Туры <?= $item->name_2 ?>" onmouseover="displayOrNone('fcp_lt_<?= $item->id ?>')" onmouseout="displayOrNone('fcp_lt_<?= $item->id ?>')"><img src="<?= $item->flag ?>" alt="<?= $item->name ?>" /><br/><?= $item->name ?></a>
+                                <a href="<?= SiteHelper::createUrl( "/tours/country" )."/".$item->slug ?>.html" title="Туры <?= $item->name_2 ?>" onmouseover="displayOrNone('fcp_lt_<?= $item->id ?>')" onmouseout="displayOrNone('fcp_lt_<?= $item->id ?>')"><img src="<?= $item->flag ?>" alt="<?= $item->name ?>" /><br/><?= $item->name ?></a>
                                 <div class="display_none fc_popup fc_popup_lt" id="fcp_lt_<?= $item->id ?>" >
                                     <?php if( $tour>0 ) : ?>Туров: <b><?= $tour ?></b><br/><?php endif; ?>
                                     <?php if( $hotels>0 ) : ?>Отелей: <b><?= $hotels ?></b><br/><?php endif; ?>

@@ -3,7 +3,7 @@
 $this->widget('addressLineWidget', array(
     'links'=>array(
         "куротные зоны"=>SiteHelper::createUrl("/resorts"),
-        $item->category_id->name=>SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug,
+        $item->category_id->name=>SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug.".html",
         $item->name
     )
 ));
@@ -57,7 +57,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("resortWidget", array( "item"=>$hotel )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug ?>" class="cmore" title="все курорты <?= $item->category_id->name ?>">Смотреть все курорты - <?= $item->category_id->name ?> ( <?= $hotelCount ?> зон отдыха )...</a>
+                <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug ?>.html" class="cmore" title="все курорты <?= $item->category_id->name ?>">Смотреть все курорты - <?= $item->category_id->name ?> ( <?= $hotelCount ?> зон отдыха )...</a>
             </div>
         </div>
     <?php endif; ?>

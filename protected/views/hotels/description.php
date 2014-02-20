@@ -3,8 +3,8 @@
 $this->widget('addressLineWidget', array(
     'links'=>array(
         "Отели"=>SiteHelper::createUrl("/hotels"),
-        $item->country_id->name=>SiteHelper::createUrl("/hotels/country" )."/".$item->country_id->slug,
-        $item->category_id->name=>SiteHelper::createUrl("/hotels/category" )."/".$item->category_id->slug ,
+        $item->country_id->name=>SiteHelper::createUrl("/hotels/country" )."/".$item->country_id->slug.".html",
+        $item->category_id->name=>SiteHelper::createUrl("/hotels/category" )."/".$item->category_id->slug.".html" ,
         $item->name
     )
 ));
@@ -20,8 +20,8 @@ $this->widget('addressLineWidget', array(
         <div class="LParams">
             <br/>
             <?php if( $item->level && $item->level>0 ) : ?><img src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" /><br/><?php endif; ?>
-            страна: <a href="<?= SiteHelper::createUrl("/hotels/country/")."/".$item->country_id->slug ?>" title="<?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
-            город:<a href="<?= SiteHelper::createUrl("/hotels/city/")."/".$item->city_id->slug ?>" title="<?= SiteHelper::getStringForTitle( $item->city_id->name ) ?>"><?= $item->city_id->name ?></a><br/>
+            страна: <a href="<?= SiteHelper::createUrl("/hotels/country/")."/".$item->country_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
+            город:<a href="<?= SiteHelper::createUrl("/hotels/city/")."/".$item->city_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->city_id->name ) ?>"><?= $item->city_id->name ?></a><br/>
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Забронировать отель <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>
@@ -60,7 +60,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("hotelWidget", array( "item"=>$hotel )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->slug ?>" class="cmore" title="все отели <?= $item->country_id->name_2 ?>">Смотреть все отели <?= $item->country_id->name_2 ?> ( <?= $hotelCount ?> отелей(я) )...</a>
+                <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->slug ?>.html" class="cmore" title="все отели <?= $item->country_id->name_2 ?>">Смотреть все отели <?= $item->country_id->name_2 ?> ( <?= $hotelCount ?> отелей(я) )...</a>
             </div>
         </div>
     <?php endif; ?>
