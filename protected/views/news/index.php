@@ -1,21 +1,19 @@
 <?php
-    $this->widget('addressLineWidget', array(
-        'links'=>array(
-            'Новости'
-            )
-    ));
+$this->widget('addressLineWidget', array(
+    'links'=>array(
+        'Туристические новости'
+    )
+));
 ?>
 <div id="catalogItems">
-<h1>Новости</h1>
-<?php foreach( $content as $news ) :
-    //echo $news->image."*";
-    ?>
-    <div class="listItems">
-        <div class="LIHeader">
-            <b><a title="<?= $news->name ?>" href="<?= SiteHelper::createUrl("/news/index", array("id"=>$news->id)) ?>"><?= $news->name ?></a></b>
-        </div>
-        <?php if( $news->image ) : ?><img src="<?= $news->image ?>" width="200" alt="<?= $news->name ?>" /><?php endif; ?>
-        <?= CCmodelHelper::getLimitText( $news->description, "120" ) ?>
-    </div>
-<?php endforeach; ?>
+    <?php $this->widget( "pageWidget", array( "catalog"=>"catalog_content", "template"=>"catalog_content", "url"=>"news",
+        "title"=>"Туристические новости",
+        "description" => $this->description,
+        "keyWord" => $this->keyWord,
+        "sort"=>
+        array(
+            array( "col", "просмотрам" ),
+            array( "name", "названию" ),
+        )
+    ) ) ?>
 </div>

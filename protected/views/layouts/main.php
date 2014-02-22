@@ -22,8 +22,7 @@
     </Div>
     <div id="Menu">
         <div class="CItem MFirst">
-            <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="h2">
-                <img src="f/catalog_menu/801center1.jpg" alt="Странны" /></a>
+            <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="c1"></a>
             <div class="CHint" id="bh2">
                 <div class="CHText">
                     <div>Странны</div>
@@ -32,8 +31,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/tours/" ) ?>" title="Туры" class="MenuJsClass" id="h10">
-                <img src="f/catalog_menu/547tours.jpg" alt="Туры" /></a>
+            <a href="<?= SiteHelper::createUrl( "/tours/" ) ?>" title="Туры" class="MenuJsClass" id="c2"></a>
             <div class="CHint" id="bh10">
                 <div class="CHText">
                     <div>Туры</div>
@@ -43,8 +41,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/hotels/" ) ?>" title="Отели" class="MenuJsClass" id="h9">
-                <img src="f/catalog_menu/514hotels.jpg" alt="Отели" /></a>
+            <a href="<?= SiteHelper::createUrl( "/hotels/" ) ?>" title="Отели" class="MenuJsClass" id="c3"></a>
             <div class="CHint" id="bh9">
                 <div class="CHText">
                     <div>Отели</div>
@@ -54,8 +51,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/resorts/" ) ?>" title="Курорты" class="MenuJsClass" id="h3">
-                <img src="f/catalog_menu/821center2.jpg" alt="Курорты" /></a>
+            <a href="<?= SiteHelper::createUrl( "/resorts/" ) ?>" title="Курорты зоны отдыха, детские лагеря" class="MenuJsClass" id="c4"></a>
             <div class="CHint" id="bh3">
                 <div class="CHText">
                     <div>Курорты</div>
@@ -65,8 +61,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/touristInfo" ) ?>" title="О туризме" class="MenuJsClass" id="h4">
-                <img src="f/catalog_menu/21center3.jpg" alt="О туризме" /></a>
+            <a href="<?= SiteHelper::createUrl( "/touristInfo" ) ?>" title="информация для туристов" class="MenuJsClass" id="c5"></a>
             <div class="CHint" id="bh4">
                 <div class="CHText">
                     <div>О туризме</div>
@@ -78,8 +73,19 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="Фирмы" class="MenuJsClass" id="h8">
-                <img src="f/catalog_menu/964travel.jpg" alt="Фирмы" /></a>
+            <a href="<?= SiteHelper::createUrl( "/news" ) ?>" title="туристические новости" class="MenuJsClass" id="c6"></a>
+            <div class="CHint" id="bh8">
+                <div class="CHText">
+                    <div>Новости</div>
+
+                    <br/>
+                    Туристические компании, разделенные странам.
+
+                </div>
+            </div>
+        </div>
+        <div class="CItem">
+            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="туистические агентсва, тур фирмы" class="MenuJsClass" id="c7"></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
                     <div>Фирмы</div>
@@ -91,11 +97,22 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/jobs" ) ?>" title="Работа" class="MenuJsClass" id="h8">
-                <img src="f/catalog_menu/789work.jpg" alt="Фирмы" /></a>
+            <a href="<?= SiteHelper::createUrl( "/jobs" ) ?>" title="Работа" class="MenuJsClass" id="c8"></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
                     <div>Работы</div>
+
+                    <br/>
+                    Туристические компании, разделенные странам.
+
+                </div>
+            </div>
+        </div>
+        <div class="CItem">
+            <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="туристические частные объявления" class="MenuJsClass" id="c9"></a>
+            <div class="CHint" id="bh8">
+                <div class="CHText">
+                    <div>Частные объявления</div>
 
                     <br/>
                     Туристические компании, разделенные странам.

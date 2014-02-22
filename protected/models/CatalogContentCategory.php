@@ -11,6 +11,7 @@ class CatalogContentCategory extends CCmodel
     protected $pos; // integer 
     protected $name; // string
     protected $description;
+    protected $slug;
 
 /*
 * Поля - связи
@@ -45,7 +46,7 @@ class CatalogContentCategory extends CCmodel
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('description, del, image, pos, name', 'safe'),
+			array('slug, del, image, pos, name', 'safe'),
 		);
 	}
 

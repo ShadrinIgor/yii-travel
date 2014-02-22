@@ -61,6 +61,7 @@ class InfoController extends Controller
         foreach( $_GET as $key=>$item )
         {
             if( !empty( $_GET[$key] ) )continue;
+
             $model = $class::fetchBySlug( $key );
             if( $model->id >0 )
             {
@@ -72,15 +73,17 @@ class InfoController extends Controller
 
         if( $id > 0 )
         {
-            $item = CatalogInfo::fetch( $id );
+            if( $model->id >0 )$item = $model;
+                          else $item = $class::fetch( $id );
+
             if( $item->id >0 )
             {
+                $other = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(24) );
                 Yii::app()->page->title = $item->name;
-
                 $this->render('description',
                     array(
                         "item" => $item,
-                        "otherHotels" => $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(24) ),
+                        "other" => $other ,
                         "hotelCount" => $class::count( DBQueryParamsClass::CreateParams()->setConditions( "category_id=:category_id" )->setParams( array( ":category_id"=>$item->category_id->id ) ) ),
                     ));
 
