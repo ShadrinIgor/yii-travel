@@ -861,14 +861,12 @@ zoom: 1;
 
 #IILeft #ILHeder01, .IILeft #ILHeder01
 {
-	font-weight:bold;
-	padding:26px 0px 0px 96px;
-	background:url( ../images/items.jpg ) no-repeat;
-	height:36px;
-	color:#2d91ee;
-	float:left;
-	width:70%;
-	border-bottom:1px solid #2D91EE;
+    font-weight: bold;
+    padding: 5px 0px 0px 0px;
+    background: url(../images/items.jpg ) no-repeat;
+    font-size: 15px;
+    border-bottom: 1px solid #2D91EE;
+    text-align: center;
 }
 
 #ILHeder02

@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 
         Yii::app()->page->title = "Первая страница";
-        $content = CatalogContent::fetchByKeyWord( "about_us" );
+        $content = CatalogContent::fetchBySlug( "about_us" );
 
         //$finishDate = time() - 60*60*24*30;
         //$items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("status_id=1 AND is_hot=:hot AND `date`>=:date")->setParams(array(":hot"=>1, ":date"=>$finishDate ) )->setLimit(20)->setCache(0) );

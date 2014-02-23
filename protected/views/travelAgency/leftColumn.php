@@ -1,2 +1,2 @@
-<?php $this->widget("infoWidget", array( "class"=>"CatalogContent", "link"=>"/news", "category_id"=>2 )); ?>
+<?php $this->widget("infoWidget", array( "class"=>"CatalogTours", "link"=>"/tours" )); ?>
 <?php $this->widget("infoWidget", array( "title"=>"Информация туристу", "class"=>"CatalogInfo", "link"=>"/touristInfo" )); ?>

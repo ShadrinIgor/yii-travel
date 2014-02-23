@@ -8,11 +8,12 @@
  */
 class pageWidget extends CWidget
 {
-    var $offset = 10;
+    var $offset = 15;
     var $template = "catalog_default";
     var $catalog;
     var $title;
     var $description;
+    var $category_id;
     var $keyWord;
     var $url = 'tours';
     var $order = "col DESC";
@@ -30,159 +31,164 @@ class pageWidget extends CWidget
         $by = Yii::app()->request->getParam("by", "");
         $params = Yii::app()->request->getParam("params", "");
 
-        // Дополнение к TITLE
-        $dopTitle = "";
+        //if( ( $page!=1 || !empty( $sortField ) || !empty( $params ) ) || ( $page==1 && $this->beginCache( 'pageWidget_'.$catalog.'_1', array('duration'=>3600) ) ) ) :
 
-        // Очищаем параметры сессии
-        // Если указан параметр черезе GET и это не сортировка и не страницы, от очищаем параметры
-        if( $params == "empty" || ( !empty( $_GET ) && empty($_GET["sort"]) && empty($_GET["p"]) ) )Yii::app()->session[ "page_".$catalog ] = null;
+            // Дополнение к TITLE
+            $dopTitle = "";
 
-        // Сдесь будем хранить параметры сортировки и посика, для сохранения  в сессию
-        $pageParams = array();
+            // Очищаем параметры сессии
+            // Если указан параметр черезе GET и это не сортировка и не страницы, от очищаем параметры
+            if( $params == "empty" || ( !empty( $_GET ) && empty($_GET["sort"]) && empty($_GET["p"]) ) )Yii::app()->session[ "page_".$catalog ] = null;
 
-        if( empty( $sortField ) )
-        {
-            // Проверяем сохранено ли в сессии значение для сортироваки,
-            // если нет, то выставляем значения по умолчанию
-            if( !empty( Yii::app()->session[ "page_".$catalog ]["sort"] ) )
+            // Сдесь будем хранить параметры сортировки и посика, для сохранения  в сессию
+            $pageParams = array();
+
+            if( empty( $sortField ) )
             {
-                $sortField = Yii::app()->session[ "page_".$catalog ]["sort"]["field"];
-                $by = Yii::app()->session[ "page_".$catalog ]["sort"]["by"];
+                // Проверяем сохранено ли в сессии значение для сортироваки,
+                // если нет, то выставляем значения по умолчанию
+                if( !empty( Yii::app()->session[ "page_".$catalog ]["sort"] ) )
+                {
+                    $sortField = Yii::app()->session[ "page_".$catalog ]["sort"]["field"];
+                    $by = Yii::app()->session[ "page_".$catalog ]["sort"]["by"];
+                }
+                    else
+                {
+                    $sortField = "col";
+                    $by = "asc";
+                }
             }
-                else
+
+            // Сортировка
+            $SQLsort = $this->order;
+            if( !empty( $sortField ) && property_exists( $catalog, $sortField ) )
             {
-                $sortField = "col";
-                $by = "asc";
+                if( $by == "desc" )$SQLsort = $sortField." DESC";
+                              else $SQLsort = $sortField;
+
+                // Сохряняем параметры сортировки для сессии
+                $pageParams["sort"] = array( "field"=>$sortField, "by"=>$by );
             }
-        }
 
-        // Сортировка
-        $SQLsort = $this->order;
-        if( !empty( $sortField ) && property_exists( $catalog, $sortField ) )
-        {
-            if( $by == "desc" )$SQLsort = $sortField." DESC";
-                          else $SQLsort = $sortField;
+            $catalogModel = new $catalog();
+            $SearchAttributes = $catalogModel->getSearchAttributes();
+            $fieldsType = $catalogModel->fieldType();
 
-            // Сохряняем параметры сортировки для сессии
-            $pageParams["sort"] = array( "field"=>$sortField, "by"=>$by );
-        }
+            // Переменная будет хронить если человек ищет какой-то текст, и этот текст будет подсвечиватся
+            $findText = "";
 
-        $catalogModel = new $catalog();
-        $SearchAttributes = $catalogModel->getSearchAttributes();
-        $fieldsType = $catalogModel->fieldType();
+            // Поиск
+            $SQL = " 1=1 ";
 
-        // Переменная будет хронить если человек ищет какой-то текст, и этот текст будет подсвечиватся
-        $findText = "";
+            $category = Yii::app()->request->getParam("category", "");
+            if( !empty( $category ) )
+            {
+                $categoryClass = SiteHelper::getCamelCase( $this->$catalog."_category" );
+                $categoryModel = $categoryClass::fetchByKeyWord( $category );
+                if( $categoryModel->id >0 )$SQL." AND category_id='".$categoryModel->id."'";
+            }
+            $country = Yii::app()->request->getParam("country", "");
 
-        // Поиск
-        $SQL = " 1=1 ";
+            if( !empty( $SearchAttributes ) && is_array($SearchAttributes) && sizeof($SearchAttributes)>0)
+            {
+                $arrayFindParam = array();
+                foreach( $SearchAttributes as $field ) :
 
-        $category = Yii::app()->request->getParam("category", "");
-        if( !empty( $category ) )
-        {
-            $categoryClass = SiteHelper::getCamelCase( $this->$catalog."_category" );
-            $categoryModel = $categoryClass::fetchByKeyWord( $category );
-            if( $categoryModel->id >0 )$SQL." AND category_id='".$categoryModel->id."'";
-        }
-        $country = Yii::app()->request->getParam("country", "");
+                    $field = trim( $field );
+                    $fieldValue = Yii::app()->request->getParam( $field, "" );
+                    if( empty($fieldValue) && !empty( $_POST[$catalog] ) && !empty( $_POST[$catalog][ $field ] ) )$fieldValue = $_POST[$catalog][ $field ];
 
-        if( !empty( $SearchAttributes ) && is_array($SearchAttributes) && sizeof($SearchAttributes)>0)
-        {
-            $arrayFindParam = array();
-            foreach( $SearchAttributes as $field ) :
-
-                $field = trim( $field );
-                $fieldValue = Yii::app()->request->getParam( $field, "" );
-                if( empty($fieldValue) && !empty( $_POST[$catalog] ) && !empty( $_POST[$catalog][ $field ] ) )$fieldValue = $_POST[$catalog][ $field ];
-
-                // Если тип поля integer то проверяем поля ОТ и ДО
-                if( !empty( $fieldsType[ $field ] ) && $fieldsType[ $field ] == "integer" )
-                {
-                    if( !empty( $_POST[$catalog] ) && !empty( $_POST[$catalog][ $field."_2" ] ) )$fieldValue_2 = $_POST[$catalog][ $field."_2" ];
-                    else $fieldValue_2 = "";
-
-                    $fieldValue = (int)$fieldValue;
-                    $fieldValue_2 = (int)$fieldValue_2;
-                }
-
-                if( empty( $fieldValue ) && empty( $fieldValue_2 ) && !empty( Yii::app()->session[ "page_".$catalog ]["find"] ) )
-                {
-                    if( !empty( Yii::app()->session[ "page_".$catalog ]["find"][$field] ) )$fieldValue = Yii::app()->session[ "page_".$catalog ]["find"][$field];
-                    if( !empty( Yii::app()->session[ "page_".$catalog ]["find"][$field."_2"] ) )$fieldValue_2 = Yii::app()->session[ "page_".$catalog ]["find"][$field."_2"];
-                }
-
-                if( !empty( $fieldValue ) )
-                {
+                    // Если тип поля integer то проверяем поля ОТ и ДО
                     if( !empty( $fieldsType[ $field ] ) && $fieldsType[ $field ] == "integer" )
                     {
-                        if( !empty( $fieldValue ) && $fieldValue>0 )$SQL .= " AND ".$field.">=".$fieldValue;
-                        if( !empty( $fieldValue_2 ) && $fieldValue_2>0 )$SQL .= " AND ".$field."<".$fieldValue_2;
+                        if( !empty( $_POST[$catalog] ) && !empty( $_POST[$catalog][ $field."_2" ] ) )$fieldValue_2 = $_POST[$catalog][ $field."_2" ];
+                        else $fieldValue_2 = "";
+
+                        $fieldValue = (int)$fieldValue;
+                        $fieldValue_2 = (int)$fieldValue_2;
                     }
-                        elseif( $relation = $catalogModel->getRelationByField( $field ) ) // Проверяем условие
+
+                    if( empty( $fieldValue ) && empty( $fieldValue_2 ) && !empty( Yii::app()->session[ "page_".$catalog ]["find"] ) )
+                    {
+                        if( !empty( Yii::app()->session[ "page_".$catalog ]["find"][$field] ) )$fieldValue = Yii::app()->session[ "page_".$catalog ]["find"][$field];
+                        if( !empty( Yii::app()->session[ "page_".$catalog ]["find"][$field."_2"] ) )$fieldValue_2 = Yii::app()->session[ "page_".$catalog ]["find"][$field."_2"];
+                    }
+
+                    if( !empty( $fieldValue ) )
+                    {
+                        if( !empty( $fieldsType[ $field ] ) && $fieldsType[ $field ] == "integer" )
                         {
-                            $relationCatalog = $relation[1];
-                            if( !empty( $relationCatalog ) )
-                            {
-                                $relationItem = $relationCatalog::fetch( (int)$fieldValue );
-                                if( !empty( $relationItem ) && $relationItem->id >0 )
-                                {
-                                    // Добавилям в titile
-                                    if( !empty( $dopTitle ) )$dopTitle .= ", ";
-                                    $dopTitle .= $relationItem->name;
-                                }
-                            }
-                            $SQL .= " AND `".$field."`='".$fieldValue."'";
-                            $fieldValue_2 = 0;
+                            if( !empty( $fieldValue ) && $fieldValue>0 )$SQL .= " AND ".$field.">=".$fieldValue;
+                            if( !empty( $fieldValue_2 ) && $fieldValue_2>0 )$SQL .= " AND ".$field."<".$fieldValue_2;
                         }
-                            else // Если остальные условия не сработали значит считаем что ищут текст
+                            elseif( $relation = $catalogModel->getRelationByField( $field ) ) // Проверяем условие
                             {
-                                $SQL .= " AND `".$field."` like '%".$fieldValue."%'";
+                                $relationCatalog = $relation[1];
+                                if( !empty( $relationCatalog ) )
+                                {
+                                    $relationItem = $relationCatalog::fetch( (int)$fieldValue );
+                                    if( !empty( $relationItem ) && $relationItem->id >0 )
+                                    {
+                                        // Добавилям в titile
+                                        if( !empty( $dopTitle ) )$dopTitle .= ", ";
+                                        $dopTitle .= $relationItem->name;
+                                    }
+                                }
+                                $SQL .= " AND `".$field."`='".$fieldValue."'";
                                 $fieldValue_2 = 0;
-                                $findText = $fieldValue;
                             }
+                                else // Если остальные условия не сработали значит считаем что ищут текст
+                                {
+                                    $SQL .= " AND `".$field."` like '%".$fieldValue."%'";
+                                    $fieldValue_2 = 0;
+                                    $findText = $fieldValue;
+                                }
 
-                    $arrayFindParam[ $field ] = $fieldValue;
-                    $arrayFindParam[ $field."_2" ] = $fieldValue_2 ;
-                }
+                        $arrayFindParam[ $field ] = $fieldValue;
+                        $arrayFindParam[ $field."_2" ] = $fieldValue_2 ;
+                    }
 
-            endforeach;
+                endforeach;
 
-            // Сохряняем параметры каталога для сессии
-            $pageParams["find"] = $arrayFindParam;
-            $catalogModel->setAttributesFromArray( $arrayFindParam );
+                // Сохряняем параметры каталога для сессии
+                $pageParams["find"] = $arrayFindParam;
+                $catalogModel->setAttributesFromArray( $arrayFindParam );
 
-            // Сохраняем все в сессию
-            Yii::app()->session[ "page_".$catalog ] = $pageParams;
-        }
+                // Сохраняем все в сессию
+                Yii::app()->session[ "page_".$catalog ] = $pageParams;
+            }
 
-        $items = $this->render( $this->template,
-            array(
-                    'url'=> $this->url,
-                    "items" => $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $SQL )->setOrderBy( $SQLsort )->setPage( $page )->setLimit( $this->offset ) ),
-                    'findText' => $findText
-            ),
-            true );
+            $items = $this->render( $this->template,
+                array(
+                        'url'=> $this->url,
+                        "items" => $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $SQL )->setOrderBy( $SQLsort )->setPage( $page )->setLimit( $this->offset ) ),
+                        'findText' => $findText
+                ),
+                true );
 
-        if( !empty( $dopTitle ) )$dopTitle = $dopTitle." - ";
+            if( !empty( $dopTitle ) )$dopTitle = $dopTitle." - ";
 
-        // Выставляем TITLE для страницы
-        Yii::app()->page->title = $dopTitle.$this->title;
-        Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
+            // Выставляем TITLE для страницы
+            Yii::app()->page->title = $dopTitle.$this->title;
+            Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
 
-        $this->render( "page", array(
-            'items'     => $items,
-            'page'      => $page,
-            'catalog'   => $catalog,
-            'sort'      => $this->sort,
-            'sortField' => $sortField,
-            'by'        => $by,
-            'offset'    => $this->offset,
-            'arrSearchFields'=> $SearchAttributes,
-            'attributeLabels'=> $catalogModel->attributeLabels(),
-            'tableModel' => $catalogModel,
-            'SQLParams'=> $SQL,
-            'url'=> $this->url,
-            'title'=> $dopTitle ? $dopTitle."<font>".$this->title."</font>" : $this->title,
-        ));
+            $this->render( "page", array(
+                'items'     => $items,
+                'page'      => $page,
+                'catalog'   => $catalog,
+                'sort'      => $this->sort,
+                'sortField' => $sortField,
+                'by'        => $by,
+                'offset'    => $this->offset,
+                'arrSearchFields'=> $SearchAttributes,
+                'attributeLabels'=> $catalogModel->attributeLabels(),
+                'tableModel' => $catalogModel,
+                'SQLParams'=> $SQL,
+                'url'=> $this->url,
+                'title'=> $dopTitle ? $dopTitle."<font>".$this->title."</font>" : $this->title,
+            ));
+
+        //    if( empty( $sortField ) && empty( $params ) && $page == 1 )$this->endCache();
+        //endif;
     }
 }

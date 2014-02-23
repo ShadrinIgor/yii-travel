@@ -1,13 +1,13 @@
 <div class="IILeft">
-    <!--div id="ILHeder01">Статьи о туризме</div-->
+    <?php if( !empty( $title ) ) : ?><div id="ILHeder01"><?= $title ?></div><?php endif; ?>
     <?php
     $i=1;
     $step = 1;
     foreach( $list as $item ) :
 
         if(  $step!=3 && !$item->image ) continue;
-        if( $i == 4 )$step=2;
-        if( $i == 8 )$step=3;
+        if( $i == 3 )$step=2;
+        if( $i == 6 )$step=3;
 
         $i++;
         ?>
@@ -19,5 +19,5 @@
             <?= $step==3 ? SiteHelper::getSubTextOnWorld( $item->name, 100 ) : "" ?>
         </div>
     <?php endforeach; ?>
-    <a title="остальные" class="mLinks" href="info/">остальные ...</a>
+    <a title="смотреть все <?= $title ?>" class="mLinks" href="<?= $linkAll ?>">остальные ...</a>
 </div>

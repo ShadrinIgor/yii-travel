@@ -5,15 +5,17 @@ $this->widget('addressLineWidget', array(
         $activeTitle
     )
 ));
+
+//if( $this->beginCache( 'add_page', array('duration'=>3600) ) ) :
 ?>
 
 <?php
-    $firm = CatalogContent::fetchByKeyWord("add_firm");
-    $kurorts = CatalogContent::fetchByKeyWord("add_kurorts");
-    $hotels = CatalogContent::fetchByKeyWord("add_hotels");
-    $vacansy = CatalogContent::fetchByKeyWord("add_vacansy");
-    $items = CatalogContent::fetchByKeyWord("add_items");
-    $otherInfo = CatalogContent::fetchByKeyWord("other-info");
+    $firm = CatalogContent::fetchBySlug("add_firm");
+    $kurorts = CatalogContent::fetchBySlug("add_kurorts");
+    $hotels = CatalogContent::fetchBySlug("add_hotels");
+    $vacansy = CatalogContent::fetchBySlug("add_vacansy");
+    $items = CatalogContent::fetchBySlug("add_items");
+    $otherInfo = CatalogContent::fetchBySlug("other-info");
 ?>
 
 <div id="InnerText" class="innerPage">
@@ -79,4 +81,3 @@ $this->widget('addressLineWidget', array(
         </p>
     </div>
 </div>
-
