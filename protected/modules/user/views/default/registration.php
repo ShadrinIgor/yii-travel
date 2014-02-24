@@ -19,14 +19,16 @@
 ?>
 <?php echo CHtml::form('user/default/registration/','post',array('enctype'=>'multipart/form-data', 'id'=>'validateForm')); ?>
 <h1><?= $title ?></h1>
-    <div class="messageSummary">
-        <?php
-        $text = CatalogContent::fetchBySlug( "after_registration" );
-        echo $text->description;
-        ?>
-    </div>
-    <br/>
-<?php echo CHtml::errorSummary($form); ?><br>
+    <?php if( empty($okMessage) ) : ?>
+        <div class="messageSummary">
+            <?php
+            $text = CatalogContent::fetchBySlug( "after_registration" );
+            echo $text->description;
+            ?>
+        </div>
+        <br/>
+    <?php endif; ?>
+<?php echo CHtml::errorSummary($form); ?>
 <?php if(!empty($okMessage) ) : ?><div class="messageSummary"><p><?= $okMessage ?></p></div><?php endif;?>
 
 <table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">

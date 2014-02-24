@@ -34,9 +34,10 @@ class SiteHelper
 
             $item->slug = str_replace( array( "---", "--" ), "-", $item->slug );
             $item->save();
-
-            if( $item->getErrors() )
+/*
+            if( $item->getErrors() && CONSOLE_PANEL == true )
                 throw new CHttpException( "Ошибка сохранения SLUG ( ".get_class( $item ).", item id=".$item->id." )", print_r( $item->getErrors(), true) );
+*/
         }
 
         return $item->slug;

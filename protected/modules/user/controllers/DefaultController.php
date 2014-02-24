@@ -130,18 +130,17 @@ class DefaultController extends Controller
                             $errorMessage = $content->description;
                             $errorMessage = str_replace("{link}", SiteHelper::createUrl("/user/default/resend", array("email"=>$user->email)),$errorMessage );
                         }
-                            else $errorMessage = "Вы уже зарегелись ранее";
+                            else $errorMessage = "Вы уже зарегистрировались ранее";
 
                         $user->addError( "Ошибка регистрации", $errorMessage );
                     }
                 }
             }
 
-            if( !$user->hasErrors() && $user->save() )
+            if( $user->save() )
             {
                 $user->onRegistration( new CModelEvent($user), array( ) );
-                die;
-                $this->redirect( $this->createUrl( "default/Registration/successfully/" ) );
+                $this->redirect( $this->createUrl( "/user/default/registration/successfully/" ) );
             }
         }
 
@@ -152,7 +151,7 @@ class DefaultController extends Controller
 
         $title = "Регистрация";
 
-        if( isset( $_GET["successfully"] ) )$okMessage = "<b>Регистрация сохраненна.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email";
+        if( isset( $_GET["successfully"] ) )$okMessage = "<b>Регистрация сохранена.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email";
                                        else $okMessage=null;
 
         $this->render( "registration", array( "form"=>$user, "arrayCountry"=>$arrayCountry, "title"=>$title, "okMessage"=>$okMessage ) );

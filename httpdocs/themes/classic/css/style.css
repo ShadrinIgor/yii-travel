@@ -844,7 +844,7 @@ zoom: 1;
     background-image: linear-gradient(top,#FFFFFF 52%, #fde8dc 100%);
 }
 
-#IILeft  img, .IILeft  img {width:90px;}
+#IILeft img, .IILeft img {width:90px;margin:0px 5px 0px 0px;}
 .IILeft .ISize1 img{max-width: 240px;width: auto;}
 
 #IILeft .ILItems a, #Cleft .ILItems a,
