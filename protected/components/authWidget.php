@@ -16,5 +16,7 @@ class authWidget extends CWidget
             $form = new CatalogUsersAuth();
             $this->render( "auth", array( "form"=>$form ));
         }
+            else
+                $this->render( "auth_cabinet" );
     }
 }

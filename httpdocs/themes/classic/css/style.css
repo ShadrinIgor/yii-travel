@@ -900,7 +900,8 @@ zoom: 1;
 	overflow:hidden;
 }
 
-#FCCentr {overflow:hidden;}
+#FCCentr {overflow:hidden;padding: 0px 10px;line-height: 21px;
+    text-align: justify;}
 
 #IIRight .IItem
 {
@@ -1982,6 +1983,7 @@ zoom: 1;
     background: -ms-linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5)); /* IE10 */
     background: linear-gradient(top, #ffffff, rgba(254, 130, 56, 0.5)); /* CSS3 */
     margin: 10px 5px 5px 5px;
+    line-height: 15px;
 }
 
 .textAlignCenter{text-align: center;}

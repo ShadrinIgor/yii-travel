@@ -4,4 +4,4 @@ $this->widget('addressLineWidget', array(
 ));
 ?>
 <h1>Правила работы с сайтом</h1>
-    Тут будет текст описывающий правила работы с сайтом.
+<?= $text->description ?>

@@ -21,7 +21,7 @@
 <h1><?= $title ?></h1>
     <div class="messageSummary">
         <?php
-        $text = CatalogContent::fetchByKeyWord( "after_registration" );
+        $text = CatalogContent::fetchBySlug( "after_registration" );
         echo $text->description;
         ?>
     </div>

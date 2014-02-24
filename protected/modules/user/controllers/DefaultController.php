@@ -106,6 +106,8 @@ class DefaultController extends Controller
 
     public function actionRegistration()
     {
+        if( !Yii::app()->user->isGuest )$this->redirect( SiteHelper::createUrl("/user") );
+
         $user =  new CatalogUsersRegistration();
         Yii::app()->page->title = "Регистрация";
 
@@ -122,7 +124,7 @@ class DefaultController extends Controller
                 {
                     if( $checkUser[0]->active == 0 )
                     {
-                        $content = CatalogContent::fetchByKeyWord("registration_resend_activation");
+                        $content = CatalogContent::fetchBySlug("registration_resend_activation");
                         if( $content && $content->id >0 )
                         {
                             $errorMessage = $content->description;
@@ -291,7 +293,7 @@ class DefaultController extends Controller
 
     public function actionTerm()
     {
-        $text = CatalogContent::fetchByKeyWord("site_rules");
+        $text = CatalogContent::fetchBySlug("site_rules");
         if( !empty( $text ) && $text->id>0 )
             $this->render("term", array( "text"=>$text ));
     }

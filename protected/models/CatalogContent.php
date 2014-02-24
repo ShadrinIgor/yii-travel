@@ -87,7 +87,7 @@ class CatalogContent extends CCmodel
 			'del' => 'Del',
 			'country_id' => 'Country',
 			'category_id' => 'Category',
-			'key_word' => 'Key Word',
+			'slug' => 'slug',
 		);
 	}
 
