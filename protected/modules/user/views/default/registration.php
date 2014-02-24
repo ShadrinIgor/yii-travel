@@ -29,17 +29,19 @@
         <br/>
     <?php endif; ?>
 <?php echo CHtml::errorSummary($form); ?>
-<?php if(!empty($okMessage) ) : ?><div class="messageSummary"><p><?= $okMessage ?></p></div><?php endif;?>
-
-<table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">
-    <?= CCmodelHelper::addForm( $form, true, $this ) ?>
-    <tr class="trNoBorder">
-        <td></td>
-        <td>
-            <?php echo CHtml::activeCheckBox($form, 'term'); ?>&nbsp;
-            <?php echo CHtml::activeLabel($form, 'С'); ?>&nbsp;<?php echo CHtml::link('правилами', SiteHelper::createUrl("/user/default/term"), array("target"=>"_blank")); ?>&nbsp;<?php echo CHtml::activeLabel($form, ' согласен'); ?>
-            <?php echo CHtml::submitButton('Зарегистрироваться'); ?></td>
-    </tr>
-</table>
+<?php if(!empty($okMessage) ) : ?>
+    <div class="messageSummary"><p><?= $okMessage ?></p></div>
+<?php else: ?>
+    <table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">
+        <?= CCmodelHelper::addForm( $form, true, $this ) ?>
+        <tr class="trNoBorder">
+            <td></td>
+            <td>
+                <?php echo CHtml::activeCheckBox($form, 'term'); ?>&nbsp;
+                <?php echo CHtml::activeLabel($form, 'С'); ?>&nbsp;<?php echo CHtml::link('правилами', SiteHelper::createUrl("/user/default/term"), array("target"=>"_blank")); ?>&nbsp;<?php echo CHtml::activeLabel($form, ' согласен'); ?>
+                <?php echo CHtml::submitButton('Зарегистрироваться'); ?></td>
+        </tr>
+    </table>
+<?php endif; ?>
 <?php echo CHtml::endForm(); ?>
 </div>
