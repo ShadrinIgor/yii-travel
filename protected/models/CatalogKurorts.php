@@ -22,7 +22,8 @@ class CatalogKurorts extends CCModel
     protected $col; // integer 
     protected $category_id; // integer 
     protected $slug; // string 
-    protected $user_id; // integer 
+    protected $user_id; // integer
+    protected $active;
 
 /*
 * Поля - связи
@@ -51,7 +52,7 @@ class CatalogKurorts extends CCModel
 		// will receive user inputs.
 		return array(
 			array('name, description, category_id', 'required'),
-			array('pos, del, firms_count, col', 'numerical', 'integerOnly'=>true),
+			array('active, pos, del, firms_count, col', 'numerical', 'integerOnly'=>true),
 			array('name, www, telefon, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
 			array('email', 'length', 'max'=>50),
@@ -59,7 +60,7 @@ class CatalogKurorts extends CCModel
             array('category_id', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, description, country_id, city_id, image, location, www, email, telefon, price, category_id, slug, user_id', 'safe'),
+            array('active, name, description, country_id, city_id, image, location, www, email, telefon, price, category_id, slug, user_id', 'safe'),
 			array('id, name, description, pos, country_id, city_id, image, del, location, www, email, telefon, price, firms_count, col, category_id, slug, user_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -103,6 +104,7 @@ class CatalogKurorts extends CCModel
 			'category_id' => 'Категория',
 			'slug' => 'Slug',
 			'user_id' => 'User',
+            'active' => 'active'
 		);
 	}
 

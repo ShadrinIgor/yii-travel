@@ -23,17 +23,19 @@
             <div class="listGallery">
                 <?php if( !empty( $error ) ) : ?><div class="errorSummary">Произошла ошибка закачки фотографий<br/>Повторите заново учитывая указанные ниже правила добавления фотографий</div>
                 <?php endif; ?>
-                <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Список пуст</div><?php endif; ?>
-                <?php foreach( $listGallery as $gall ) : ?>
-                    <div class="LGItem">
-                        <div>
-                            <a href="<?= $gall->image ?>" data-lightbox="roadtrip"><img src="<?= ImageHelper::getImage( $gall->image, 3 ) ?>" /></a>
+                <?php if( sizeof( $listGallery ) == 0 ) : ?>
+                    <div class="textAlignCenter">Список пуст</div>
+                <?php else : ?>
+                    <?php foreach( $listGallery as $gall ) : ?>
+                        <div class="LGItem">
+                            <div>
+                                <a href="<?= $gall->image ?>" data-lightbox="roadtrip"><img src="<?= ImageHelper::getImage( $gall->image, 3 ) ?>" /></a>
+                            </div>
+                            <input type="text" name="ITitle[<?= $gall->id ?>]" value="<?= $gall->name ?>" placeholder="описание фото" /><br/>
+                            <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "gall_id"=>$gall->id, "action"=>"delGallery")) ?>">Удалить</a>&nbsp;
                         </div>
-                        <input type="text" name="ITitle[<?= $gall->id ?>]" value="<?= $gall->name ?>" placeholder="описание фото" /><br/>
-                        <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "gall_id"=>$gall->id, "action"=>"delGallery")) ?>">Удалить</a>&nbsp;
-                    </div>
-                <?php endforeach; ?>
-
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <?php if( sizeof( $listGallery )>0 ) : ?>
                 <div class="textAlignCenter">

@@ -25,7 +25,8 @@ class CatalogFirms extends CCModel
     protected $category_id; // integer 
     protected $col; // integer 
     protected $slug; // string 
-    protected $user_id; // integer 
+    protected $user_id; // integer
+    protected $active;
 
 /*
 * Поля - связи
@@ -63,7 +64,7 @@ class CatalogFirms extends CCModel
 			array('email, www, tel, fax', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe'),
+            array('active, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe'),
 			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -114,6 +115,7 @@ class CatalogFirms extends CCModel
 			'col' => 'Col',
 			'slug' => 'Slug',
 			'user_id' => 'Пользователь',
+            'active'=>'active'
 		);
 	}
 

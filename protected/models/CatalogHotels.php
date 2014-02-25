@@ -22,7 +22,7 @@ class CatalogHotels extends CCmodel
     protected $col; // integer 
     protected $slug; // string 
     protected $user_id; // integer 
-    protected $is_active; // integer 
+    protected $active; // integer 
 
 /*
 * Поля - связи
@@ -51,15 +51,15 @@ class CatalogHotels extends CCmodel
 		// will receive user inputs.
 		return array(
 			array('name, description, country_id, city_id, email, tel', 'required'),
-			array('pos, del, level, col, country_id, city_id, user_id, is_active', 'numerical', 'integerOnly'=>true),
+			array('pos, del, level, col, country_id, city_id, user_id, active', 'numerical', 'integerOnly'=>true),
 			array('name, image', 'length', 'max'=>100),
 			array('level', 'length', 'max'=>25),
 			array('email, www, fax, tel, slug', 'length', 'max'=>150),
             array('country_id, city_id, level', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('user_id, is_active, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe'),
-			array('id, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug, user_id, is_active', 'safe', 'on'=>'search'),
+            array('user_id, active, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe'),
+			array('id, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug, user_id, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -112,7 +112,7 @@ class CatalogHotels extends CCmodel
 			'col' => 'Col',
 			'slug' => 'Slug',
 			'user_id' => 'User',
-			'is_active' => 'Is Active',
+			'active' => 'Is Active',
 		);
 	}
 
@@ -144,7 +144,7 @@ class CatalogHotels extends CCmodel
 		$criteria->compare('col',$this->col);
 		$criteria->compare('slug',$this->slug,true);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('is_active',$this->is_active);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

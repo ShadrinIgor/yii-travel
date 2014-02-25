@@ -28,6 +28,7 @@
             else $countImages = 3;
 
             $listImages = ImageHelper::getImages( $item, $countImages );
+
             if( sizeof( $listImages ) >0 || $item->image ) : ?>
                 <div class="listItemsImages">
                     <?php if( $item->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $item->image, 3 ) ?>" alt="" /></div><?php endif; ?>
@@ -44,16 +45,18 @@
             <a href="<?= SiteHelper::createUrl( "/user/hotels/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>
         </td>
         <td><?= $item->country_id->name.", ".$item->city_id->name ?></td>
-        <td class="textAlignCenter"><?= ( $item->is_active == 1 ) ? "опубликовано" : "не опубликованно" ?></td>
+        <td class="textAlignCenter publishStatus"><?= ( $item->active == 1 ) ? "опубликовано" : "не опубликовано" ?></td>
         <td class="textAlignCenter">
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">
                 <a href="<?= SiteHelper::createUrl("/user/hotels/description", array("id"=>$item->id)) ?>">Описание</a><br/>
-                <?php if( $item->is_active == 1 ) : ?>
-                    <a href="<?= SiteHelper::createUrl("/user/hotels/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/>
-                <?php else : ?>
-                    <a href="<?= SiteHelper::createUrl("/user/hotels/publish", array("id"=>$item->id)) ?>">Опубликовать</a><br/>
-                <?php endif; ?>
+                <div>
+                    <?php if( $item->active == 1 ) : ?>
+                        <a href="#" class="publishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$item->id, "catalog"=>"CatalogHotels")) ?>', '' );">Снять с публикации</a><br/>
+                    <?php else : ?>
+                        <a href="#" class="publishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$item->id, "catalog"=>"CatalogHotels")) ?>', '' );">Опубликовать</a><br/>
+                    <?php endif; ?>
+                </div>
 
                 <div class="popup PMarginLeft">
                     <br/>
