@@ -97,18 +97,29 @@ class FirmsController extends UserController
     {
         $id = (int)Yii::app()->request->getParam("id", 0);
         $catalog = Yii::app()->request->getParam("catalog");
+
         if( $id >0 && !empty( $catalog ) )
         {
-            $commentModel = $catalog::fetch( $id );
-            if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
-                                                                    else $id = $commentModel->firm_id->user_id->id;
-
-            if( $commentModel->id > 0 && $id == Yii::app()->user->getId() )
+            $listImages = CatGallery::findByAttributes( array("catalog"=>$catalog::tableName(), "item_id"=>$id) );
+            $imagesMin = SiteHelper::getConfig( "publish_min_images" );
+            if( sizeof( $listImages )>=$imagesMin )
             {
-                if( $commentModel->active == 0 )$commentModel->active = 1;
-                                           else $commentModel->active = 0;
-                $commentModel->save();
-                echo true;
+                $commentModel = $catalog::fetch( $id );
+                if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
+                                                                        else $id = $commentModel->firm_id->user_id->id;
+
+                if( $commentModel->id > 0 && $id == Yii::app()->user->getId() )
+                {
+                    if( $commentModel->active == 0 )$commentModel->active = 1;
+                                               else $commentModel->active = 0;
+                    $commentModel->save();
+                    echo true;
+                    return;
+                }
+            }
+                else
+            {
+                echo 3;
                 return;
             }
         }

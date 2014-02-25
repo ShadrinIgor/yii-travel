@@ -249,7 +249,6 @@ class UserController extends Controller
                 //$item->is_resume = 0;
                 if( !$item->date )$item->date = time();
                 $item->user_id = Yii::app()->user->getId();
-
                 if( $item->save() )
                 {
                     $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "fid"=>$item->firm_id->id, "status"=>"saved") ) );

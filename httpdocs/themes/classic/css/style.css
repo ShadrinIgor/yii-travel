@@ -2037,7 +2037,7 @@ zoom: 1;
 }
 .innerPage .LGItem{width: 190px;height: 143px;}
 
-.LGItem div{height: 100px;overflow: hidden;}
+.LGItem div{height: 100px;overflow: hidden;text-indent: 0px;}
 .innerPage .LGItem div{height: 147px;}
 .LGItem div img{border-radius: 6px;max-width: 108px;}
 .innerPage .LGItem div img{max-width: 190px;}
@@ -2046,6 +2046,7 @@ zoom: 1;
 .LGItem input{width: 104px;font-size: 11px;}
 
 .listItemsImages{width: 120px;height: 110px;padding-top: 10px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center center;}
+#tableListItems .listItemsImages{background: none;}
 .LII_1, .LII_2, .LII_3, .LII_4, .LII_5{text-align: center;background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
 .LII_1{z-index: 99999;}
 .LII_2{z-index: 88888;

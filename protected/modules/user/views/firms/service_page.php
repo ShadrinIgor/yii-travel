@@ -39,7 +39,7 @@
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">
-                    <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>id, "fid"=>$item->id)) ?>">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$item->id, "fid"=>$item->id)) ?>">Описание</a><br/>
                     <div>
                         <?php if( $service->active == 1 ) : ?>
                             <a href="#" class="publishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$service->id, "catalog"=>"CatalogFirmsService")) ?>', '' );">Снять с публикации</a><br/>
