@@ -12,7 +12,7 @@
             Страна: <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->country_id->slug  ?>.html" title="<?= $item->country_id->name ?>"><b><?= $item->country_id->name ?></b></a><br/>
             Город: <a href="<?= SiteHelper::createUrl("/hotels/city")."/".$item->city_id->slug  ?>.html" title="<?= $item->city_id->name ?>"><b><?= $item->city_id->name ?></b></a><br/>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

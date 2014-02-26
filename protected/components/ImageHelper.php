@@ -13,9 +13,9 @@ class ImageHelper
      * Проверяет сушествование необходимой картинк в нужном размере, если нет то создает
      * @param string $imageFile путь до файла
      * @param int $size размер необходимой картинки ( варинаты : 1, 2, 3 )
-     * @param CCmodel $itemObject объект текущей записи
+     * @param CCModel $itemObject объект текущей записи
      */
-    static function getImage( $imageFile, $size = 1, CCmodel $itemObject = null  )
+    static function getImage( $imageFile, $size = 1, CCModel $itemObject = null  )
     {
         if( empty( $imageFile ) )return false;
 

@@ -23,12 +23,12 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
     <?php if(!empty($okMessage) ) : ?><div class="messageSummary"><p><?= $okMessage ?></p></div><?php endif;?>
     <div class="messageSummary"><p>После добавления объявления, Вы сможете прикрепить фотографии к объявлению. Для публикации объявления необходимо опубликовать минимум 6 фотографий.</p></div>
     <table border="0" width="600" cellpadding="6" cellspacing="6" class="tableForm">
-        <?= CCmodelHelper::addForm( $form ) ?>
+        <?= CCModelHelper::addForm( $form ) ?>
         <tr>
             <td colspan="2">
                 <table border="0" id="addFormDopParam" width="500" cellpadding="6" cellspacing="6" class="tableForm<?= ( empty( $addDopParams ) ) ? " displayNone" : "" ?>">
                     <?php if( !empty( $addDopParams ) ) : ?>
-                        <?= CCmodelHelper::addForm( $addDopParams ) ?>
+                        <?= CCModelHelper::addForm( $addDopParams ) ?>
                     <?php endif; ?>
                 </table>
             </td>

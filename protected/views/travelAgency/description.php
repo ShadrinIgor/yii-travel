@@ -68,7 +68,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
             </div>
             <table class="tableForm">
                 <?=
-                CCmodelHelper::infoForm( $item )
+                CCModelHelper::infoForm( $item )
                 ?>
             </table>
             <div id="orderInfo" class="displayNone">

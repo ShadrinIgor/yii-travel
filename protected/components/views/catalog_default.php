@@ -6,7 +6,7 @@
             <a title="<?= $item->name ?>" href="<?= SiteHelper::createUrl( $url."/", array(  "slug"=>$item->slug)) ?>.html"><?= $item->name ?></a>
             <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
         <div class="LParams">
             <?php if( $item->price > 0 ) : ?>цена: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
             <a href="<?= SiteHelper::createUrl("/travelAgency")."/".$item->firm_id->slug ?>.html" title="<?= $item->firm_id->name ?>">Фирма: <b><?= $item->firm_id->name ?></b></a><br/>

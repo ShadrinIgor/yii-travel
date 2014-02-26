@@ -36,7 +36,7 @@
     <form action="" method="post">
         <?= CHtml::errorSummary($commentModel); ?>
         <table class="tableForm">
-            <?= CCmodelHelper::addForm( $commentModel, true, $this ) ?>
+            <?= CCModelHelper::addForm( $commentModel, true, $this ) ?>
             <tr>
                 <td></td>
                 <td >

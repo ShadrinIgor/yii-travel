@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_feedback".
    */
-class CatalogFeedback extends CCmodel
+class CatalogFeedback extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 

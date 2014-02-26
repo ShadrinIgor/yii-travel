@@ -25,7 +25,7 @@ $this->widget('addressLineWidget', array(
         <br/>
     <table class="tableForm">
         <?=
-            CatalogCCmodelHelper::addForm( $item )
+            CatalogCCModelHelper::addForm( $item )
         ?>
         <tr>
             <td></td>
@@ -56,7 +56,7 @@ $this->widget('addressLineWidget', array(
         <?php echo CHtml::errorSummary($addImage); ?><br>
         <?= CHtml::form("","post", array("enctype"=>"multipart/form-data")) ?>
             <table class="tableListItems">
-                <?= CCmodelHelper::addForm( $addImage ); ?>
+                <?= CCModelHelper::addForm( $addImage ); ?>
                 <tr>
                     <td colspan="2" class="textAlignCenter">
                         <?= CHtml::submitButton( "Добавить", array("name"=>"sendGallery") ) ?>

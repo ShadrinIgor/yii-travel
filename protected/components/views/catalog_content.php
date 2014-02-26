@@ -6,7 +6,7 @@
             <a title="<?= $item->name ?>" href="<?= SiteHelper::createUrl( "/news/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
             <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

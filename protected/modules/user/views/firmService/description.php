@@ -85,7 +85,7 @@
     <form action="" method="post" enctype="multipart/form-data">
         <table class="tableForm">
             <?=
-            CatalogCCmodelHelper::addForm( $item )
+            CatalogCCModelHelper::addForm( $item )
             ?>
             <tr>
                 <td></td>

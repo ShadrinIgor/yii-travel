@@ -33,7 +33,7 @@
     <div class="messageSummary"><p><?= $okMessage ?></p></div>
 <?php else: ?>
     <table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">
-        <?= CCmodelHelper::addForm( $form, true, $this ) ?>
+        <?= CCModelHelper::addForm( $form, true, $this ) ?>
         <tr class="trNoBorder">
             <td></td>
             <td>

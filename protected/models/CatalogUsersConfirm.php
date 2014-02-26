@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_users_confirm".
    */
-class CatalogUsersConfirm extends CCmodel
+class CatalogUsersConfirm extends CCModel
 {
     protected $id; // integer 
     protected $user_id; // integer 

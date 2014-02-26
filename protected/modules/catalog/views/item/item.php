@@ -97,7 +97,7 @@ $this->widget('addressLineWidget', array(
                     <?php echo CHtml::errorSummary($addForm); ?><br>
                     <form action="" method="post">
                         <table>
-                            <?= CCmodelHelper::addForm( $addForm ); ?>
+                            <?= CCModelHelper::addForm( $addForm ); ?>
                             <tr>
                                 <td colspan="2" class="textAlignCenter">
                                     <?= CHtml::submitButton( "Отправить", array("name"=>"sentComment") ) ?>

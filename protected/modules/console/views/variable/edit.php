@@ -6,7 +6,7 @@
 <br>
 
 <table align="center" class="editTable">
-    <?= CCmodelHelper::addForm( $form ); ?>
+    <?= CCModelHelper::addForm( $form ); ?>
     <tr>
         <td></td>
         <td>

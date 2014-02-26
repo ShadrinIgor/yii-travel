@@ -11,7 +11,7 @@
             <a href="<?= SiteHelper::createUrl("/country")."/".$item->country_id->slug ?>.html" title="<?= $item->country_id->name ?>">Страна: <b><?= $item->country_id->name ?></b></a><br/>
             Туров: <b><?= CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id")->setParams(array(":firm_id"=>$item->id)) ) ?></b><br/>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

@@ -9,7 +9,7 @@
 <br>
 
 <table align="center" class="editTable">
-    <?= CCmodelHelper::addForm( $form ); ?>
+    <?= CCModelHelper::addForm( $form ); ?>
 </table>
 <br/>
 <div id="relationItems">

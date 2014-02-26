@@ -14,7 +14,7 @@ foreach( $items as $item ) :
             <?php if( $item->country_id ) : ?><a href="<?= SiteHelper::createUrl("/touristInfo", array( "country"=>$item->country_id->slug )) ?>.html" title="<?= $item->country_id->name ?>">Страна: <b><?= $item->country_id->name ?></b></a><br/><?php endif; ?>
             <?php if( $item->city_id ) : ?>Город: <b><?= $item->city_id->name ?></b><br/><?php endif; ?>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

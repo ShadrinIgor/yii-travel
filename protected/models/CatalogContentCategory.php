@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_content_category".
    */
-class CatalogContentCategory extends CCmodel
+class CatalogContentCategory extends CCModel
 {
     protected $id; // integer 
     protected $del; // integer 

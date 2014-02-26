@@ -15,7 +15,7 @@ foreach( $items as $item ) :
             <?php if( $tours>0 ) : ?>Туров: <b><?= $tours ?></b><br/><?php endif; ?>
             <?php if( $firms>0 ) : ?>Фирмы: <b><?= $firms ?></b><br/><?php endif; ?>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

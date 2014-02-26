@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_menu".
    */
-class CatalogMenu extends CCmodel
+class CatalogMenu extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 

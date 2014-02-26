@@ -24,7 +24,7 @@ $itemModel = new CatalogItems();
                 <br/>
             <div class="FPItem">
                 <div class="FPITitle">Город</div>
-                <div class="FPIInput"><?= CCmodelHelper::getInputField( $itemModel, "city_id" ) ?></div>
+                <div class="FPIInput"><?= CCModelHelper::getInputField( $itemModel, "city_id" ) ?></div>
             </div>
 
             <div class="FPItem">
@@ -55,7 +55,7 @@ $itemModel = new CatalogItems();
                     </div>
                     <div class="FPItem">
                         <div class="FPITitle">Цена</div>
-                        <div class="FPIInput"><?= CCmodelHelper::getInputField( $itemModel, "price" ) ?></div>
+                        <div class="FPIInput"><?= CCModelHelper::getInputField( $itemModel, "price" ) ?></div>
                     </div>
             <?php
 
@@ -72,7 +72,7 @@ $itemModel = new CatalogItems();
                     ?>
                     <div class="FPItem">
                         <div class="FPITitle"><?= !empty( $attributeLabels[$key] ) ? $attributeLabels[$key] : $key ?></div>
-                        <div class="FPIInput<?= ( $i>5 && ( empty( $_POST[$tableClass][$key] ) && empty( $_POST[$tableClass][$key."_2"] )  ) ) ? " displayNone" : "" ?>"><?= CCmodelHelper::getInputField( $tableModel, $key ) ?></div>
+                        <div class="FPIInput<?= ( $i>5 && ( empty( $_POST[$tableClass][$key] ) && empty( $_POST[$tableClass][$key."_2"] )  ) ) ? " displayNone" : "" ?>"><?= CCModelHelper::getInputField( $tableModel, $key ) ?></div>
                     </div>
                 <?php $i++;endforeach;
                     endif;

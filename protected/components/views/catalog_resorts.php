@@ -13,7 +13,7 @@
             Страна: <b><?= $item->country_id->name ?></b><br/>
             <?php if( $item->city_id ) : ?>Город: <b><?= $item->city_id->name ?></b><br/><?php endif; ?>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

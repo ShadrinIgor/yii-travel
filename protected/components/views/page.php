@@ -11,7 +11,7 @@
                     ?>
                     <div class="displayInlainBlock">
                         <?= !empty( $attributeLabels[$key] ) ? $attributeLabels[$key] : $key ?>:
-                        <?= CCmodelHelper::getInputField( $tableModel, $key ) ?>
+                        <?= CCModelHelper::getInputField( $tableModel, $key ) ?>
                     </div>
                     <?php endforeach; ?>
                 <div class="displayInlainBlock">

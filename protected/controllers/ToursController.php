@@ -34,7 +34,7 @@ class ToursController extends InfoController
             $item = CatalogTours::fetch( $id );
             if( $item->id >0 )
             {
-                CCmodelHelper::colCounter( $item );
+                CCModelHelper::colCounter( $item );
                 Yii::app()->page->title = $item->name.", тур ". $item->category_id->name .", ". $item->country_id->name ;
                 $this->render('description',
                     array(

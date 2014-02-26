@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_tours_category".
    */
-class CatalogToursCategory extends CCmodel
+class CatalogToursCategory extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 

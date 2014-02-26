@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_statistic".
    */
-class CatalogStatistic extends CCmodel
+class CatalogStatistic extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 

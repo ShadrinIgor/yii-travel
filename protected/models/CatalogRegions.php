@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_regions".
    */
-class CatalogRegions extends CCmodel
+class CatalogRegions extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 

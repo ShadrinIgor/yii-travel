@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_firms_service".
    */
-class CatalogFirmsService extends CCmodel
+class CatalogFirmsService extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 

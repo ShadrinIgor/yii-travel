@@ -1,6 +1,6 @@
 <?php
 
-class CatalogCCmodelHelper extends CCmodelHelper
+class CatalogCCModelHelper extends CCModelHelper
 {
     static function addForm( $form, $captcha = false, Controller $controller = null  )
     {

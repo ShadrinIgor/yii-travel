@@ -165,7 +165,7 @@ class DefaultController extends Controller
                         if( empty( $model ) || $model->id==0 )
                             $model = new $catalogClass;
 
-                        echo CCmodelHelper::addForm( $model );
+                        echo CCModelHelper::addForm( $model );
                     }
                 }
             }

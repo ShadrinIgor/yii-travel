@@ -12,7 +12,7 @@
             <a href="<?= SiteHelper::createUrl("/country")."/".$item->country_id->slug ?>.html" title="<?= $item->country_id->name ?>">Страна: <b><?= $item->country_id->name ?></b></a><br/>
             <a href="<?= SiteHelper::createUrl("/tours/description")."/".$item->category_id->slug ?>.html" title="<?= $item->category_id->name ?>">Категория: <b><?= $item->category_id->name ?></b></a><br/>
         </div>
-        <?= CCmodelHelper::getLimitText( $item->description, "30" ) ?>
+        <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
 <?php
 endforeach;

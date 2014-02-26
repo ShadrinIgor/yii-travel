@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_info".
    */
-class CatalogInfo extends CCmodel
+class CatalogInfo extends CCModel
 {
     protected $id; // integer 
     protected $col; // integer 

@@ -22,7 +22,7 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
     <?php echo CHtml::errorSummary($form); ?><br>
     <?php if(!empty($okMessage) ) : ?><div class="messageSummary"><p><?= $okMessage ?></p></div><?php endif;?>
     <table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">
-       <?= CCmodelHelper::addForm( $form ) ?>
+       <?= CCModelHelper::addForm( $form ) ?>
         <tr class="trNoBorder">
             <td></td>
             <td><?php echo CHtml::submitButton('Сохранить', array("name"=>"save_profile")); ?></td>
