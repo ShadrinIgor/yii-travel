@@ -8,6 +8,7 @@
 <?php if( $message ) :?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>
+<?php $this->widget("listNoteWidget") ?>
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
         <th class="TLFId">№</th>

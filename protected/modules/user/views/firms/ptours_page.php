@@ -1,5 +1,6 @@
 <div id="firmTours">
     <h2>Туры компании</h2>
+    <?php $this->widget("listNoteWidget") ?>
     <table id="tableListItems" cellpadding="0" cellspacing="0">
         <tr>
             <th class="TLFId">№</th>
