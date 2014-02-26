@@ -37,18 +37,29 @@ class SiteController extends Controller
         $this->render('index', array( "controller"=>$this, "content"=>$content, "items"=>array() ));
 	}
 
-    public function actionPage()
+    public function actionPage( $slug = "" )
     {
-        $page = Yii::app()->request->getParam("page", "");
+        if( empty( $slug ) )$page = Yii::app()->request->getParam("page", "");
+                       else $page = $slug;
+
+        foreach( $_GET as $key=>$item )
+        {
+            if( !empty( $_GET[$key] ) )continue;
+            $page = $key;
+            break;
+        }
+
         if( !empty( $page ) )
         {
-            $pageInfo = CatalogContent::fetchByKeyWord( $page );
+            $pageInfo = CatalogContent::fetchBySlug( $page );
+
             if( $pageInfo->id >0 )
             {
                 Yii::app()->page->title = $pageInfo->name;
                 $this->render('page', array( "content"=>$pageInfo ));
             }
         }
+
     }
 
     /**
@@ -75,6 +86,8 @@ class SiteController extends Controller
 	 */
 	public function actionContact()
 	{
+
+
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
@@ -94,7 +107,7 @@ class SiteController extends Controller
 			}
 		}
 
-        $pageInfo = CatalogContent::fetchByKeyWord( "contacts" );
+        $pageInfo = CatalogContent::fetchBySlug( "contact" );
 		$this->render('contact',array('model'=>$model, "content"=>$pageInfo));
 	}
 

@@ -863,7 +863,6 @@ zoom: 1;
 {
     font-weight: bold;
     padding: 5px 0px 0px 0px;
-    background: url(../images/items.jpg ) no-repeat;
     font-size: 15px;
     border-bottom: 1px solid #2D91EE;
     text-align: center;
@@ -900,7 +899,10 @@ zoom: 1;
 	overflow:hidden;
 }
 
-#FCCentr {overflow:hidden;padding: 0px 10px;line-height: 21px;
+#FCCentr
+{
+    overflow:hidden;
+    padding: 0px 10px;
     text-align: justify;}
 
 #IIRight .IItem

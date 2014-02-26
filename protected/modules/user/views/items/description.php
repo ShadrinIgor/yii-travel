@@ -17,7 +17,7 @@ $this->widget('addressLineWidget', array(
         <?php if( $item->status_id != 1 && sizeof($listGallery)<6 ) : ?>
             <div class="messageSummary">
                 <?php
-                    $textMinimumImage = CatalogContent::fetchByKeyWord( "image_minimum" );
+                    $textMinimumImage = CatalogContent::fetchBySlug( "image_minimum" );
                     echo $textMinimumImage->description;
                 ?>
             </div>

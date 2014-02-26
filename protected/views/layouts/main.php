@@ -149,8 +149,8 @@
     </div>
 
     <div id="ALLinks">
-        <a href="project/" title="О проекте">О проекте</a> |
-        <a href="contact/" title="Контакты">Контакты</a> |
+        <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="О проекте">О проекте</a> |
+        <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="Контакты">Контакты</a> |
         <!--a href="" title="Реклама на сайте">Реклама на сайте</a> | -->
         <a href="map/" title="Карта сайта">Карта сайта</a><!-- |
     <a href="" title="Карта сайта">Карта ссылок</a>-->

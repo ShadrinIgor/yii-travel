@@ -11,7 +11,7 @@ class PageController extends Controller
 
         if( !empty( $slug ) )
         {
-            $page = CatalogContent::fetchByKeyWord( $slug );
+            $page = CatalogContent::fetchBySlug( $slug );
         }
 
         if( !empty( $page ) && $page->id >0 )

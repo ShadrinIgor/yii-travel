@@ -9,7 +9,7 @@ $this->widget('addressLineWidget', array(
 
 <?php
 //if( $this->beginCache("addPage", array('duration'=>3600) ) ):
-    $firm = CatalogContent::fetchByKeyWord("add_confirm");
+    $firm = CatalogContent::fetchBySlug("add_confirm");
 ?>
 
 <div id="InnerText" class="innerPage">

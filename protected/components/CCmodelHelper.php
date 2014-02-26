@@ -1,6 +1,6 @@
 <?php
 
-class CCmodelHelper
+class CCModelHelper
 {
     static function colCounter( CCModel $model )
     {
@@ -70,7 +70,7 @@ class CCmodelHelper
                         case "url"             : $input = CHtml::activeUrlField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) )."<br/><font class='smallGrey'>формат: http://www.sitename.ru</font>"; break;
                         case "email"           : $input = CHtml::activeEmailField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                         case "date"            :
-                            if( (int)$form->$field >0 )$form->$field = date( "Y-m-d", $form->$field );
+                            if( is_int( $form->$field ) && (int)$form->$field >0 )$form->$field = date( "Y-m-d", $form->$field );
                             $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                         case "password"        : $input = CHtml::activePasswordField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                         case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
@@ -110,7 +110,7 @@ class CCmodelHelper
                 if( !empty($fieldTypeValue) && !empty( $relations[ $fieldTypeValue ] ) )$relation = $relations[ $fieldTypeValue ]; // Привязка один ко многим
                         else $relation = $form->getRelationByField( $field );                                                      // привязка один к одному
 
-                $relationItems = CCmodelHelper::getRelationItems( $relation, $form );
+                $relationItems = CCModelHelper::getRelationItems( $relation, $form );
 
                 $fieldName = $field;
                 $paramValue = ( !empty( $_POST[ $classTable ][$fieldName] ) ) ? (int)$_POST[ $classTable ][$fieldName] : 0;
@@ -232,7 +232,7 @@ class CCmodelHelper
                 if( !empty($fieldTypeValue) && !empty( $relations[ $fieldTypeValue ] ) )$relation = $relations[ $fieldTypeValue ]; // Привязка один ко многим
                 else $relation = $form->getRelationByField( $field );                                                      // привязка один к одному
 
-                $relationItems = CCmodelHelper::getRelationItems( $relation, $form );
+                $relationItems = CCModelHelper::getRelationItems( $relation, $form );
 
                 $fieldName = $field;
 
@@ -434,7 +434,7 @@ class CCmodelHelper
             {
                 $input = '<select name="'.$tableClass.'['.$field.']" class="field_'.$field.'">';
                 if( !empty( $needEmpty ) )$input .= '<option value=""> --- --- --- </option>';
-                $input .= CCmodelHelper::getRelationListOptions( $form, $field, CCmodelHelper::getRelationItems( $relation, $form ), $value );
+                $input .= CCModelHelper::getRelationListOptions( $form, $field, CCModelHelper::getRelationItems( $relation, $form ), $value );
                 $input .= '</select>';
             }
         }
