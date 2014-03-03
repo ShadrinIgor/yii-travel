@@ -107,6 +107,7 @@ class DefaultController extends Controller
     public function actionRegistration()
     {
         if( !Yii::app()->user->isGuest )$this->redirect( SiteHelper::createUrl("/user") );
+        $successfully = SiteHelper::checkedVaribal( Yii::app()->request->getParam("successfully", "" ), "string" );
 
         $user =  new CatalogUsersRegistration();
         Yii::app()->page->title = "Регистрация";
@@ -140,7 +141,7 @@ class DefaultController extends Controller
             if( $user->save() )
             {
                 $user->onRegistration( new CModelEvent($user), array( ) );
-                $this->redirect( $this->createUrl( "/user/default/registration/successfully/" ) );
+                $this->redirect( $this->createUrl( "/user/default/registration", array( "successfully"=>$user->email ) ) );
             }
         }
 
@@ -151,7 +152,9 @@ class DefaultController extends Controller
 
         $title = "Регистрация";
 
-        if( isset( $_GET["successfully"] ) )$okMessage = "<b>Регистрация сохранена.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email";
+        if( !empty( $successfully ) )$okMessage = "<b>Регистрация сохранена.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email
+                                                    <br/><br/><b>Письмо не пришло?</b><br/> <a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$successfully ) ) ."\">отправить заново письмо для подтверждения на ".$successfully."</a>
+                                                    <br/><br/><b>Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста";
                                        else $okMessage=null;
 
         $this->render( "registration", array( "form"=>$user, "arrayCountry"=>$arrayCountry, "title"=>$title, "okMessage"=>$okMessage ) );
@@ -299,7 +302,7 @@ class DefaultController extends Controller
 
     public function actionResend()
     {
-        $email = Yii::app()->request->getParam("email", "" );
+        $email = SiteHelper::checkedVaribal( Yii::app()->request->getParam("email", "" ), "string" );
 
         if( !empty( $email ) )
         {
@@ -309,9 +312,10 @@ class DefaultController extends Controller
                 $userModel[0]->onRegistration( new CModelEvent($userModel[0]), array( ) );
                 $this->render( "resend", array("user"=>$userModel) );
             }
-                else throw new CHttpException("Error",'Ваш аккаунт активирован ранее.');
         }
-            else throw new CHttpException("Error",'Вы использовали нерабочую сылку, попробуйте заново');
+
+        die;
+        $this->redirect( SiteHelper::createUrl( "/user" ) );
     }
 
     public function actionNotificationHide()

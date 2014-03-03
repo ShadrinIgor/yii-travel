@@ -20,7 +20,8 @@
             <h1>Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, узбекистан</h1>
         </div>
     </Div>
-    <div id="Menu">
+    <div id="Menu1">
+        <div id="Menu">
         <div class="CItem MFirst">
             <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="c1"></a>
             <div class="CHint" id="bh2">
@@ -120,6 +121,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

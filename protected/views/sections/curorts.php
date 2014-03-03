@@ -41,7 +41,7 @@
     <tr>
         <td colspan="2" align="center">
             <?php
-            $this->widget( "paginatorWidget", array( "count"=>$infoCount, "page"=>$page, "offset"=>$offset, "url"=>"&action=c" ) );
+            $this->widget( "paginatorWidget", array( "count"=>$curortsCount, "page"=>$page, "offset"=>$offset, "url"=>"&action=c" ) );
 
             ?>
             <br/>

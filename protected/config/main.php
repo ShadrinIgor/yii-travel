@@ -280,8 +280,8 @@ return array(
     // using Yii::app()->params['paramName']
     'params'=>array(
         // this is used in contact page
-        'adminEmail'=>'info@world-news.uz',
-        'supportEmail'=>'support@world-news.uz',
+        'adminEmail'=>'info@world-travel.uz',
+        'supportEmail'=>'support@world-travel.uz',
         'baseUrl' => 'http://yii-travel.loc/',
         'images' => array(
             "default" => array(

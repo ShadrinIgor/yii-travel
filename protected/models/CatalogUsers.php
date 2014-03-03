@@ -111,7 +111,18 @@ class CatalogUsers extends CCModel
                 ->setParams( $params );
 
             $exists = CatalogUsers::fetchAll( $dbCriterii );
-            if( sizeof( $exists )>0 )$this->addErrors( array(  "0"=>"Email:".$this->email.", уже зарегистрирован в системе" ) );
+            if( sizeof( $exists )>0 )
+            {
+                $textError = "Email:".$this->email.", уже зарегистрирован в системе<br/>";
+                if( $exists[0]->active == 0 )$textError .= "Вам по почте должно было прийти письмо для подверждения регистрации.
+                                                           <br/><br/><b>Письмо не пришло?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">отправить заново письмо для подтверждения регистрации на ".$this->email."</a>
+                                                           <br/><br/><b>Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста";
+                    else
+                        $textError .= "<br/><b>Забыли пароль?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">востановить пароль</a>";
+
+                $this->addErrors( array(  "0"=>$textError ) );
+            }
+            // <br/><br/>
         }
     }
 

@@ -25,7 +25,7 @@ $this->widget('addressLineWidget', array(
         <br/>
     <table class="tableForm">
         <?=
-            CatalogCCModelHelper::addForm( $item )
+            CCModelHelper::addForm( $item )
         ?>
         <tr>
             <td></td>

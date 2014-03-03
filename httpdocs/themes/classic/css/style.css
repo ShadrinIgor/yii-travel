@@ -13,10 +13,10 @@ div, body
 
 #Main
 {
-	overflow:hidden;
+    overflow: auto;
 	background:#ffffff;
-	min-width: 1024px;
-    background: url(../images/header_bg.jpg) no-repeat left top;
+	min-width: 1280px;
+    background: url(../images/header_bg.jpg) no-repeat -20px top;
 }
 
 #Main.MInnerPage{background-size: auto 358px;}
@@ -28,12 +28,12 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
     overflow: hidden;
 }
 
-#BBLeft{ float: left;width: 531px;height: 332px;margin: 0px 0px 0px 17px; }
-.MInnerPage #BBLeft{ width: 430px;height: 260px;margin: 0px 0px 0px 17px; }
+#BBLeft{ float: left;width: 531px;height: 332px; }
+.MInnerPage #BBLeft{ width: 430px;height: 260px; }
 .MInnerPage #BBLeft img{height: 260px;}
-#BRight {float: right;width: 780px;}
+#BRight {float: right;width: 730px;}
 .MInnerPage #BRight{float: left;}
-#BRTitle{font-family:Myriad Pro;float: left;width: 641px;height: 87px;margin:90px 30px 0px 10px; }
+#BRTitle{font-family:Myriad Pro;float: left;width: 641px;height: 87px;margin:90px 0px 0px 0px; }
 .MInnerPage #BRTitle img{height: 75px;}
 .MInnerPage #BRTitle{ margin:30px 30px 0px 10px; }
 #BRHref{float: right;background: url(../images/logo_href.jpg) no-repeat;width: 49px;height: 204px;}
@@ -54,23 +54,25 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
 
 #BRHref a b, #BRHref a font{ color: #ef5806; }
 #BRHref a font {font-size: 17px;}
+
+#Menu1
+{
+    position: absolute;
+    right: 0;
+    top: 200px;
+}
+
+.MInnerPage #Menu1{ top: 130px; }
+
 #Menu
 {
     float: right;
     background: url( ../images/menu_bg.png ) no-repeat;
     width: 826px;
     height: 136px;
-    position: absolute;
-    right: 0;
-    top: 194px;
 }
 
 .MInnerPage #Menu{top:126px;}
-
-*HTML #Main
-{
-	width:1003px;
-}
 
 img
 {
@@ -90,7 +92,7 @@ img
 
 #BannerBlock .BottomLink{position: absolute;color:#a4d1f2;margin: 0px;}
 
-#BH1{float: left;padding: 0px 30px 0px 30px;margin-left: 70px }
+#BH1{float: left;padding: 0px 0px 0px 0px;margin-left: 90px; }
 #BH1 h1{color:#f8893f;font-style: normal;font-weight: normal;margin: 0px;}
 
 .BottomLink h2, .BottomLink h3, .BottomLink h4, .BottomLink h5
@@ -240,7 +242,6 @@ img
 
 .lopen
 {
-	background:url( ../images/sel_little_menu.jpg) no-repeat center bottom;
 	width:82px;
 	height:29px;
 	padding-top:0px;
@@ -262,7 +263,6 @@ img
 {
 	float:left;
 	width:100%;
-    background:url( ../images/sub_menu_bg.jpg) repeat-x;
 	background-position:left 1px
 }
 
@@ -872,7 +872,6 @@ zoom: 1;
 {
 	font-weight:bold;
 	padding:32px 0 0 76px;
-	background:url( ../images/news.jpg ) no-repeat;
 	height:30px;
 	color:#2d91ee;
 	border-bottom:1px solid #2D91EE;
@@ -1602,7 +1601,7 @@ zoom: 1;
 #Buttons{margin: 0px 10px;padding:10px 0px;text-align: center;background: url(../images/buttom_bg_.png) no-repeat right top, url(../images/buttom_bg.png) no-repeat left top, url(../images/button_bg_2.jpg) repeat;}
 #Buttons.BBig{background-size: auto 62px;padding: 6px 0px;}
 
-#Buttons .B01, #Buttons .B02 {display: inline-block;width: 374px;padding-top: 10px;}
+#Buttons .B01, #Buttons .B02 {display: inline-block;width: 48%;padding-top: 10px;}
 
 .B01 {
     font-size:16px;
@@ -1715,7 +1714,27 @@ zoom: 1;
 
 .floatRight{float: right;}
 .rightInfo{font-size: 10px;background:#BEC1CC;color: #fff;padding:1px 3px; }
-#Address{margin: 0px 15px;}
+#Address
+{
+    margin: 0px 15px;
+
+    /* IE10 */
+background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba( 255, 255, 255, 0 ) 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba( 255, 255, 255, 0 ) 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba( 255, 255, 255, 0 ) 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, rgba( 255, 255, 255, 0 )), color-stop(1, rgba( 255, 255, 255, 0.8 )));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba( 255, 255, 255, 0 ) 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(left,rgba( 255, 255, 255, 0.8 ) 0%, rgba( 255, 255, 255, 0 ) 100%);
+
+    padding: 3px 3px 3px 10px;
+    border-left: 4px solid #DC5800;
+}
+
 #InnerText{ margin: 0px 10px; }
 #ITImage{float: left;padding: 3px;border: 1px solid #afafaf;margin: 0px 10px 10px 0px;overflow: hidden;}
 #ITText{overflow: hidden;}

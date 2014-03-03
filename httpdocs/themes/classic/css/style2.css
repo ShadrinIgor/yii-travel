@@ -214,8 +214,8 @@ noindex{ display:block;text-align:right; }
 }
 #lblock_text .innerForm  .closeForm a:hover{ background:#DC5800;color:#fff;border:1px solid #fff; }
 
-#setions { margin-left: 20px;height:185px;}
-.SItems { float: left;height:201px;position:relative;margin-left: -240px; }
+#setions { margin-left: 11px;height:185px;}
+.SItems { float: left;height:201px;position:relative;margin-left: -250px; }
 #SI01 { margin-left:0px;z-index:80; }
 #SI02 { z-index:70; }
 #SI03 { z-index:60; }
@@ -319,7 +319,7 @@ noindex{ display:block;text-align:right; }
 {
     padding-top:184px;
     float:left;
-    width: 400px;
+    width: 48%;
     margin:4px 4px 0px 4px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -328,12 +328,12 @@ noindex{ display:block;text-align:right; }
 
 .FCItems
 {
-    background:url( ../images/fc_bg.jpg ) repeat-x;
+    /*background:url( ../images/fc_bg.jpg ) repeat-x;*/
 
     padding-top: 18px;
 	padding-bottom: 5px;
 }
-.FCItems ul { margin:0px;padding-left: 30px; }
+.FCItems ul { margin:0px;padding-left: 20px; }
 .FCItems li { margin-bottom: 5px;height: 17px; overflow: hidden; }
 .FCItems p { text-align:right;margin:0px 6px; }
 #Center .FCItems p a { color:#DE9644; }

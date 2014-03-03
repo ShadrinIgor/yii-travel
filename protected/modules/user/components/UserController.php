@@ -230,7 +230,10 @@ class UserController extends Controller
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
 
-            if( $item->firm_id && $item->firm_id->id>0 )$firm = $item->firm_id;
+            if( property_exists( $item, "firm_id" ) )$field = "firm_id";
+                                                else $field = "id";
+
+            if( $item->$field && $item->$field->id>0 )$firm = $item->$field;
                 else
             {
                 $fid = (int)Yii::app()->request->getParam("fid", 0);
