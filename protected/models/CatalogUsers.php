@@ -122,7 +122,6 @@ class CatalogUsers extends CCModel
 
                 $this->addErrors( array(  "0"=>$textError ) );
             }
-            // <br/><br/>
         }
     }
 

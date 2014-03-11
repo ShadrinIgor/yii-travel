@@ -58,7 +58,10 @@
         <div class="overflowHidden">
         <?php foreach( $listImage as $image ) : ?>
             <div class="GItem">
-                <img src="../<?= ImageHelper::getImage( $image->image, 2, $image )  ?>" width="200" /><br/><input type="text" name="image[<?= $image->id ?>]" value="<?= $image->name ?>" />
+                <img src="../<?= ImageHelper::getImage( $image->image, 2, $image )  ?>" width="200" /><br/>
+                <input type="text" name="image[<?= $image->id ?>][name]" value="<?= $image->name ?>" style="width:125px" />
+                <input type="text" name="image[<?= $image->id ?>][pos]" value="<?= $image->pos ?>" style="width:20px" />
+                <input type="hidden" name="image[<?= $image->id ?>][id]" value="<?= $image->id ?>" />
                 <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$form->id, "action"=>"gal_del", "img_id"=>$image->id )).$controller->params ?>">удалить</a>
             </div>
         <?php endforeach; ?>
@@ -71,7 +74,11 @@
             <table>
                 <tr>
                     <th>Название</th>
-                    <td><?= CHtml::activeTextField( $addGallery, "name" ) ?></td>
+                    <td><?= CHtml::activeTextField( $addGallery, "name", array( "placeholder"=>"Подпись для картинки" ) ) ?></td>
+                </tr>
+                <tr>
+                    <th>Позиция</th>
+                    <td><?= CHtml::activeTextField( $addGallery, "pos", array( "value"=>"0", "placeholder"=>"Позиция при отображении" ) ) ?></td>
                 </tr>
                 <tr>
                     <th>Файл</th>

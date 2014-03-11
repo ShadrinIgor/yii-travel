@@ -94,7 +94,7 @@ class CatalogController extends ConsoleController
 
             $addGallery = new CatGallery();
 
-            if( $item->id >0 )$listImage = CatGallery::findByAttributes( array( "catalog"=>$item->tableName(), "item_id"=>$item->id ) );
+            if( $item->id >0 )$listImage = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "catalog=:catalog AND item_id=:item_id" )->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setOrderBy("pos, id") );
                          else $listImage=array();
 
             $this->arrayParams["catalog"] = $catalog;
@@ -165,16 +165,20 @@ class CatalogController extends ConsoleController
             // Сохранение TITLE галлереи
             if( !empty( $_POST["image_submit"] )  && !empty( $_POST["image"] ) )
             {
-                foreach( $_POST["image"] as $key=>$value )
+                foreach( $_POST["image"] as $value )
                 {
-                    $imageModel = CatGallery::fetch( $key );
-                    if( $imageModel->id >0 )
+                    if( $value["id"]>0 )
                     {
-                        $imageModel->name = $value;
-                        $imageModel->save();
+                        $imageModel = CatGallery::fetch( $value["id"] );
+                        if( $imageModel->id >0 )
+                        {
+                            $imageModel->name = $value["name"];
+                            $imageModel->pos = $value["pos"];
+                            $imageModel->save();
+                        }
                     }
-                    $message = "Галлерея успешно сохраненна";
                 }
+                $message = "Галлерея успешно сохраненна";
             }
 
             // Добвление картинки

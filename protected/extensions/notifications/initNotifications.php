@@ -132,7 +132,7 @@ class initNotifications extends CApplicationComponent
         $msg = iconv("UTF-8", "cp1251", $msg);
         $subject = iconv("UTF-8", "cp1251", $subject);
 
-   echo $to.",".$subject.",".$msg.",".$headers;
+   //echo $to.",".$subject.",".$msg.",".$headers;
         $res=@mail($to,$subject,$msg,$headers);
 
         if($res===false)$error="Произошла ошибка отправки сообщения на E-mail (<b>".$to."</b>). Проверте коректность вводимого E-mail и попробуйте снова.";

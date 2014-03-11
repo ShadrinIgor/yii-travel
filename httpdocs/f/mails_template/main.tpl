@@ -1,30 +1,24 @@
 <div xmlns="http://www.w3.org/1999/html">
-  <div style="background:#efefef url( http://mastercity.kz/themes/classic/images/footer_bg.jpg ) repeat-x;padding:10px;">
-    <img src="http://mastercity.kz/themes/classic/images/logo.png" align="left" />
-	<h3>Город мастеров</h3>
-	тут можно будет вставить вводный текст о сатйте.
+  <div style="background:#fff url( http://travel.world-news.uz/themes/classic/images/footer_bg.jpg ) repeat-x;padding:10px;">
+    <div style="text-align: center;"><img src="http://travel.world-news.uz/themes/classic/images/mail_logo.jpg" alt="World-News - туристический портал Узбекистана" /></div>
+	<h3>Туристический портал - World-travel.uz</h3>
   </div>
-  <div style="margin:25px 0px;">
+  <div style="margin: 0px 0px 25px 0px;border-radius: 8px;border: 2px dotted #bfbfbf;padding: 10px 20px;background: #efefef;">
     @cotent_text@
   </div>
-  <div style="overflow:hidden;background:#efefef url( http://mastercity.kz/themes/classic/images/footer_bg.jpg ) repeat-x;padding:10px;">
+    <font style="font-size: 11px;color:#6f6f6f">
+        На нашем туристическом портале, Вы можете найти интересующее Вас туристическое прдложение, отель, зону отдыха. Либо разместить у нас Вашу тур. фирмы ( туры компании, услуги ) совершенно <b>БЕСПЛАТНО</b>+ первые 100 челове могу разместить <b>бесплатный рекламный банер</b> на сайте.
+    </font>
+    <div style="text-align: right;font-style: italic;">P.S. Весь туризм в одной тарелке.</div>
+
+    <div style="overflow:hidden;background:#efefef url( http://travel.world-news.uz/themes/classic/images/footer_bg.jpg ) repeat-x;padding:10px;">
 	<div style="float:left;margin-left:20px;color:#666666;">
-		<table>
-			<tr>
-				<td >Телефон:</td>
-				<td>+ 7 ( 777 ) 555-55-55</td>
-			</tr>
-			<tr>
-                <td>&nbsp;</td>
-				<td>+ 7 ( 777 ) 555-55-66</td>
-			</tr>
-        </table>
     </div>
     <div style="float:left;margin-left:20px;color:#666666;">
-      <table>
+      <table style="font-size: 11px;">
           <tr>
-              <td>Email:</td>
-              <td>info@mastercity.kz</td>
+              <td>Email для связи:</td>
+              <td>info@world-travel.uz, support@world-travel.uz</td>
           </tr>
       </table>
     </div>

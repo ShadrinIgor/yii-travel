@@ -23,6 +23,9 @@ class CatalogUsersAuth extends CatalogUsers
 		);
 	}
 
+    public function check_exists_email()
+    {}
+
     public function check_exists_params($attribute,$params)
     {
         if( !$this->hasErrors() )
@@ -34,14 +37,20 @@ class CatalogUsersAuth extends CatalogUsers
                 Yii::app()->user->login($identity);
             else
             {
-                switch( $errorCode )
+                if( $errorCode == 100 )
                 {
-                    case 1:
-                    case 2: $error = "Вы ввели неверный EMAIL или ПАРОЛЬ";break;
-                    case 100 :$error = "Ваш аккаунт не активный, Вы не подтвердили регистрацию";break;
-                    default : $error = "Вы ввели неверный EMAIL или ПАРОЛЬ";
+                    $textError = "Вы не подтвердили Свой Email:".$this->email."<br/>";
+                    $textError .= "Вам по почте должно было прийти письмо для подверждения регистрации.
+                                                   <br/><br/><b>Письмо не пришло?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">отправить заново письмо для подтверждения регистрации на ".$this->email."</a>
+                                                   <br/><br/><b>Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста";
+                    $this->addErrors( array(  "0"=>$textError ) );
                 }
-                $this->addErrors( array( "0"=>$error ) );
+                    else
+                {
+                    $textError = "Вы ввели не верный Email или ПАРОЛЬ<br/>";
+                    $textError .= "<br/><b>Забыли пароль?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">востановить пароль</a>";
+                    $this->addErrors( array(  "0"=>$textError ) );
+                }
             }
         }
     }

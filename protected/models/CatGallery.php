@@ -44,7 +44,7 @@ class CatGallery extends CCModel
 			array('image', 'length', 'max'=>255),
 			array('name', 'length', 'max'=>150),
 			array('catalog', 'length', 'max'=>50),
-            array('image, name, catalog, item_id', 'safe'),
+            array('image, name, catalog, item_id, pos', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, del, image, pos, name, catalog, item_id', 'safe', 'on'=>'search'),

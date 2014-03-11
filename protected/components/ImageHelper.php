@@ -116,8 +116,9 @@ class ImageHelper
 
     public function checkFileName($text)
     {
+        /*
         $rus=array("а","б","в","г","д","е","ё","ж","з","и","й","к","л","м","н","о","п","р","с","т","у","ф","х","ц","ш","щ","ь","ъ","э","ю","я"," ",".","-","(",")","j","w");
-        $eng=array("a","b","v","g","d","e","e","sh","z","i","i","k","l","m","n","o","p","r","s","t","u","f","h","c","sh","sch","","","e","yu","ya","_",".","_","(",")","j","w");
+        $eng=array("a","b","v","g","d","e","e","sh","z","i","i","k","l","m","n","o","p","r","s","t","u","f","h","c","sh","sch","","","e","yu","ya","_",".","","(",")","j","w");
         $text=strtolower($text);
 
         $str="";
@@ -144,12 +145,12 @@ class ImageHelper
                 }
             }
         }
-
-        $ar=explode(".",$str);
+*/
+        $ar=explode(".",$text);
         $type=$ar[sizeof($ar)-1];
 
-        $rn=rand(1,999);
-        $str=$rn.$ar[0].".".$type;
+        $rn=rand(1000,99999);
+        $str=$rn.".".$type;
 
         return $str;
     }
