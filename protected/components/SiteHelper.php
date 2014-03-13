@@ -16,7 +16,7 @@ class SiteHelper
             if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->owner->name );
                                               else $dopSlug = "";
 
-            if( property_exists( $item, "category_id" ) && $item->category_id->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->category_id->name );
+            if( property_exists( $item, "category_id" ) && !empty( $item->category_id ) && $item->category_id->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->category_id->name );
 
             if( get_class( $item ) == "CatalogHotels" )
             {

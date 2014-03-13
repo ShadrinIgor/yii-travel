@@ -7,6 +7,8 @@ h2{text-align: center;margin: 5px 0px 3px;font-size: 22px;}
     margin: 0px auto;
 }
 
+.textAlignCenter{text-align: center;}
+
 #tableListItems
 {
     width: 800px;
