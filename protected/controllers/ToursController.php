@@ -29,6 +29,7 @@ class ToursController extends InfoController
             break;
         }
 
+        $error = "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы";
         if( $id > 0 )
         {
             $item = CatalogTours::fetch( $id );
@@ -46,8 +47,8 @@ class ToursController extends InfoController
                     ));
 
             }
-                else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+                else throw new CHttpException( "", $error );
         }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+            else throw new CHttpException( "", $error );
     }
 }

@@ -232,7 +232,7 @@ img
 */
 .lmenu
 {
-	background:url( ../images/little_menu.jpg) no-repeat center bottom;
+	/*background:url( ../images/little_menu.jpg) no-repeat center bottom;*/
 	width:81px;
 	height:16px;
 	float:left;
@@ -328,7 +328,7 @@ img
 {
 	float:left;
 	width:98%;
-	background:url( ../images/ cent_bg.jpg ) repeat-x;
+	/*background:url( ../images/ cent_bg.jpg ) repeat-x;*/
 }
 
 .tours
@@ -350,7 +350,7 @@ img
 	overflow:hidden;
 	padding:7px;
 	width:205px;
-	background:url( ../images/ firm_bg.jpg ) no-repeat 0px 21px;
+	/*background:url( ../images/ firm_bg.jpg ) no-repeat 0px 21px;*/
 	font-size:11px;
 }
 
@@ -516,14 +516,14 @@ img
 
 #BItems
 {
-	background:url( ../images/bottom02.png) repeat-y;
+	/*background:url( ../images/bottom02.png) repeat-y;*/
 	width:100%;
 	float:right;
 }
 
 #BItems #BITop
 {
-	background:url( ../images/bottom01.png) no-repeat;
+	/*background:url( ../images/bottom01.png) no-repeat;*/
 	width:100%;
 	height:30px;
 	font-size:0px;
@@ -629,7 +629,7 @@ img
 
 #BItems #BIBottom
 {
-	background:url( ../images/bottom03.png) no-repeat;
+	/*background:url( ../images/bottom03.png) no-repeat;*/
 	width:100%;
 	height:30px;
 	font-size:0px;
@@ -650,20 +650,19 @@ img
 
 #RMenu
 {
-	background:url( ../images/rightmenu02.png) repeat-y;
-
+    /*background:url( ../images/rightmenu02.png) repeat-y;*/
 }
 
 #RMTop
 {
-	background:url( ../images/rightmenu01.png) no-repeat;
+	/*background:url( ../images/rightmenu01.png) no-repeat;*/
 	font-size:0px;
 	height:20px;
 }
 
 #RMBottom
 {
-	background:url( ../images/rightmenu03.png) no-repeat;
+    /*background:url( ../images/rightmenu03.png) no-repeat;*/
 	font-size:0px;
 	height:20px;
 }
@@ -691,11 +690,12 @@ img
 	width:332px;
 	position:absolute;
 	background:none;
+    /*
 	background:transparent url( ../images/hint.png) no-repeat scroll 0 !important;
 	background-image:none;
 filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/hint.png', sizingMethod='scale');
 zoom: 1;
-
+*/
 	display:none;
 }
 
@@ -739,72 +739,72 @@ zoom: 1;
 	float:left;
 	width:12px;
 	height:36px;
-	background:url( ../images/menusep.png) no-repeat;
+/*background:url( ../images/menusep.png) no-repeat;*/
 }
 
 #menu01
 {
-	display:block;
-	background:url( ../images/menu01.png) no-repeat;
-	width:80px;
-	height:36px;
+display:block;
+/*background:url( ../images/menu01.png) no-repeat;*/
+width:80px;
+height:36px;
 }
 
 #menu02
 {
-	display:block;
-	background:url( ../images/menu02.png);
-	width:88px;
-	height:36px;
+display:block;
+/*background:url( ../images/menu02.png);*/
+width:88px;
+height:36px;
 }
 
 #CCInfo
 {
-	overflow:hidden;
+overflow:hidden;
 }
 
 #popup_pages #CCInfo
 {
-	float:left;
+float:left;
 }
 
 #menu03
 {
-	display:block;
-	background:url( ../images/menu03.png);
-	width:82px;
-	height:36px;
+display:block;
+/*background:url( ../images/menu03.png);*/
+width:82px;
+height:36px;
 }
 
 #menu04
 {
-	display:block;
-	background:url( ../images/menu04.png);
-	width:87px;
-	height:36px;
+display:block;
+/*background:url( ../images/menu04.png);*/
+width:87px;
+height:36px;
 }
 
 #BBTopRight
 {
-	float:left;
-	width:343px;
-	padding-top:5px;
-	padding-bottom:12px;
-	padding-left:125px;
+float:left;
+width:343px;
+padding-top:5px;
+padding-bottom:12px;
+padding-left:125px;
 }
 
 #BottomSpaceInner
 {
-	font-size:0px;
-	height:46px;
+font-size:0px;
+height:46px;
 }
 
 #ItemInfo
 {
-	overflow:hidden;
-	padding-top:10px;
-	float:left;
-	width:100%;
+overflow:hidden;
+padding-top:10px;
+float:left;
+width:100%;
 }
 
 #IILeft, #FCLEft /* #ItemInfo */
@@ -932,7 +932,7 @@ zoom: 1;
 {
 	font-weight:bold;
 	padding:26px 0px 0px 55px;
-	background:url( ../images/ gall.jpg ) no-repeat left bottom;
+	/*background:url( ../images/ gall.jpg ) no-repeat left bottom;*/
 	height:36px;
 	color:#2d91ee;
 	border-bottom:1px solid #2d91ee;
@@ -1106,7 +1106,7 @@ zoom: 1;
 	border-top:0px;
 	float:left;
 	padding:10px;
-	background:#f5faff url( ../images/ c_bg.jpg ) repeat-x bottom right;
+	/*background:#f5faff url( ../images/ c_bg.jpg ) repeat-x bottom right;*/
 	width:95%;
 	font-size:12px;
 	margin-bottom:10px;
@@ -1507,7 +1507,7 @@ zoom: 1;
     padding: 20px 0px 20px 70px ;
     width: 83%;
 	box-shadow: 0 0 5px rgba( 0, 0, 0, 0.6);		
-	background: url( ../images/icons/error.png) no-repeat 10px center;
+	/*background: url( ../images/icons/error.png) no-repeat 10px center;*/
 	background-size: 50px auto;	
 }
 
@@ -1537,7 +1537,7 @@ zoom: 1;
 
 .imgOk
 {
-    background:url( ../images/ apply.png ) no-repeat left center;
+    /*background:url( ../images/ apply.png ) no-repeat left center;*/
     padding-left: 70px;
     padding-top: 40px;
     height:24px;

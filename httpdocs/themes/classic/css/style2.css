@@ -214,7 +214,7 @@ noindex{ display:block;text-align:right; }
 }
 #lblock_text .innerForm  .closeForm a:hover{ background:#DC5800;color:#fff;border:1px solid #fff; }
 
-#setions { margin-left: 11px;height:185px;margin-bottom: 11px;}
+#setions { margin-left: 11px;height:195px;margin-bottom: 11px;}
 .SItems { float: left;height:201px;position:relative;margin-left: -252px; }
 #SI01 { margin-left:0px;z-index:80; }
 #SI02 { z-index:70; }
@@ -443,3 +443,13 @@ noindex{ display:block;text-align:right; }
 .story .cTitle{height:14px;overflow:hidden;}
 .story .textBlock{height:82px;overflow:hidden;}
 .story .cMore{ margin:0px; }
+
+.pageError
+{
+    background: url( ../images/error_page.jpg ) no-repeat left center;
+    padding-left: 220px;
+    min-height: 184px;
+    overflow: hidden;
+}
+
+.pageError div{margin-top:40px;}

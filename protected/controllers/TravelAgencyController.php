@@ -38,9 +38,7 @@ class TravelAgencyController extends InfoController
         foreach( $_GET as $key=>$item )
         {
             if( !empty( $_GET[$key] ) )continue;
-
             $model = $class::fetchBySlug( $key );
-
             if( $model->id >0 )
             {
                 $_GET["id"]=$model->id;
@@ -54,6 +52,9 @@ class TravelAgencyController extends InfoController
         $tab = Yii::app()->request->getParam("tab", "");
         $tabArray = array("description","pcomments");
         if( !in_array( $tab, $tabArray ) )$tab = "";
+
+        // Ошибка при не правельно ID
+        $error = "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы";
 
         if( $id > 0 )
         {
@@ -94,8 +95,8 @@ class TravelAgencyController extends InfoController
                     ));
 
             }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+            else throw new CHttpException("",$error);
         }
-        else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+        else throw new CHttpException("",$error);
     }
 }

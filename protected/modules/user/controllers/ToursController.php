@@ -41,5 +41,7 @@ class ToursController extends UserController
         $_POST["CatalogToursAdd"]["firm_id"] = $this->firmId;
         $_POST["CatalogToursAdd"]["user_id"] = Yii::app()->user->getId();
         parent::actionDescription();
+
+
     }
 }
