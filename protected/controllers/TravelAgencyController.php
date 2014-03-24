@@ -38,7 +38,9 @@ class TravelAgencyController extends InfoController
         foreach( $_GET as $key=>$item )
         {
             if( !empty( $_GET[$key] ) )continue;
+
             $model = $class::fetchBySlug( $key );
+
             if( $model->id >0 )
             {
                 $_GET["id"]=$model->id;

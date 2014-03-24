@@ -11,6 +11,7 @@ class FirmsHelper
 {
     static public function getBannerByCategory( $position, $firmId )
     {
+        $cout = "";
         $DBParams = DBQueryParamsClass::CreateParams()
             ->setConditions( "position_id=:position_id AND firm_id=:firmId AND active=1" )
             ->setParams( array( ":position_id"=>$position, ":firmId"=>$firmId ))

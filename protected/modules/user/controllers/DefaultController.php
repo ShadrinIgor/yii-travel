@@ -314,7 +314,7 @@ class DefaultController extends Controller
             }
         }
 
-        die;
+//        die;
         $this->redirect( SiteHelper::createUrl( "/user" ) );
     }
 

@@ -54,7 +54,7 @@
                         <b>Вы действительно хотите удалить запись?</b>
                         <br/><br/>
                         <a href="#" class="PCancel">Отмена</a>&nbsp;|&nbsp;
-                        <a href="#"  onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$firmItem->id, "catalog"=>"CatalogFirmsItems")) ?>', '' );" class="deleteItem">Удалить</a>
+                        <a href="#" onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$firmItem->id, "catalog"=>"CatalogFirmsItems")) ?>', '' );" class="deleteItem">Удалить</a>
                     </div>
                     <a href="#" class="PDel">Удалить</a>
                 </div>

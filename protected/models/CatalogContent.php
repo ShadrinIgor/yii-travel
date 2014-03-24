@@ -77,17 +77,17 @@ class CatalogContent extends CCModel
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'active' => 'Active',
-			'pos' => 'Pos',
-			'description' => 'Description',
-			'date' => 'Date',
-			'image' => 'Image',
-			'file' => 'File',
-			'del' => 'Del',
-			'country_id' => 'Country',
-			'category_id' => 'Category',
-			'slug' => 'slug',
+			'name' => 'Название',
+			'description' => 'Текст записи',
+            'category_id' => 'Категории',
+            'country_id' => 'Страна',
+			'date' => 'Дата',
+			'image' => 'Картинка',
+			'file' => 'Файл, приложение для записи',
+            'active' => 'Активность',
+            'del' => 'Удаленная запись',
+			'slug' => 'Название для ссылки',
+            'pos' => 'Позиция',
 		);
 	}
 

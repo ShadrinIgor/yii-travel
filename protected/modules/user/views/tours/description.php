@@ -91,7 +91,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="button" onclick="window.location = '<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$item->firm_id->id ) ) ?>';" name="update" value="вернуться к описанию фирмы" />&nbsp;
+                    <input type="button" onclick="window.location = '<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id ) ) ?>';" name="update" value="вернуться к описанию фирмы" />&nbsp;
                     <input type="submit" name="update" value="Сохранить" />
                 </td>
             </tr>

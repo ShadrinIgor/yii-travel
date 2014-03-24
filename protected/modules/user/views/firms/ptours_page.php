@@ -37,7 +37,11 @@
                 <td>
                     <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a>
                 </td>
-                <td><?= $tour->country_id->name.", ".$tour->city_id->name ?></td>
+                <td>
+
+                <?php if( !empty( $tour->country_id ) || !empty( $tour->city_id ) ) : ?>
+                    <?= !empty( $tour->country_id ) ? $tour->country_id->name : "" ?> <?= !empty( $tour->city_id ) ? $tour->city_id->name : "" ?></td>
+                <?php endif; ?>
                 <td class="textAlignCenter publishStatus"><?= ( $tour->active == 1 ) ? "опубликовано" : "не опубликовано" ?></td>
                 <td class="textAlignCenter"><?= $tour->col ?></td>
                 <td class="textAlignCenter">

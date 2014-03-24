@@ -27,7 +27,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         <a href="#" id="reclame" class="<?= $tab== "reclame" ? "reclame " : "" ?>dopMenuPages">Рекламный баннер( <?= sizeof($listBanners) ?> )</a>
         <a href="#" id="pcomments" class="<?= $tab== "pcomments" ? "pcomments " : "" ?>dopMenuPages">Отзывы/Сообщения( <?= sizeof($listComments) ?> )</a>
         <a href="#" id="counter" class="<?= $tab== "counter" ? "counter " : "" ?>dopMenuPages">Статистика посещаемости</a>
-        <a href="<?= SiteHelper::createUrl( "/travelAgency/description", array("id"=>$item->id, "slug"=>SiteHelper::checkedSlugName( $item->name )) ) ?>" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
+        <a href="<?= SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug ?>.html" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
     </div>
 <?php echo CHtml::errorSummary($item); ?>
 <?php if( !empty( $message ) ) : ?>

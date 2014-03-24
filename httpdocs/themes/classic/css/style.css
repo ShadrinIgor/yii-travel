@@ -16,7 +16,7 @@ div, body
     overflow: auto;
 	background:#ffffff;
 	min-width: 1265px;
-    background: #ffffff url(../images/header_bg.jpg) no-repeat -20px top;
+    background: #ffffff url(../images/header_bg.jpg) no-repeat 0px top;
     max-width: 1500px;
     margin: 0px auto;
 }
@@ -1738,7 +1738,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 }
 
 #InnerText{ margin: 0px 10px; }
-#ITImage{float: left;padding: 3px;border: 1px solid #afafaf;margin: 0px 10px 10px 0px;overflow: hidden;}
+#ITImage{float: left;padding: 3px;border: 1px solid #afafaf;margin: 0px 10px 10px 0px;overflow: hidden;text-indent: 0px;}
 #ITText{overflow: hidden;}
 #ITText,#ITText p{text-align: justify;margin: 8px 0px;}
 .ITSmallText{height: 265px;}
@@ -1935,7 +1935,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .mainOtherBG .tableForm th{background: rgba(246, 246, 246, 0.4)}
 
 .tableForm th, .tableForm td {padding: 4px 10px;border-bottom: 1px solid #afafaf;text-align: left;}
-.tableForm th{width: 200px;}
+.tableForm th{max-width: 200px;}
 .tableForm td textarea{width: 415px;border: 1px solid #afafaf;}
 .tableForm td input[type=url], .tableForm td input[type=email], .tableForm td input[type=text],.tableForm td input[type=password]{width: 400px;padding: 4px 10px;border: 1px solid #afafaf;}
 .tableForm td input[type=submit]{width: auto;}
@@ -2066,7 +2066,6 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .LGItem input{width: 104px;font-size: 11px;}
 
 .listItemsImages{width: 120px;height: 110px;padding-top: 10px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center center;}
-#tableListItems .listItemsImages{background: none;}
 .LII_1, .LII_2, .LII_3, .LII_4, .LII_5{text-align: center;background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
 .LII_1{z-index: 99999;}
 .LII_2{z-index: 88888;
@@ -2220,7 +2219,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     padding: 5px;
     box-shadow: 0px 0px 5px;
 }
-.greeBorder{border: 2px dotted #afafaf;padding: 10px;margin: 10px 20px;background: #efefef;box-shadow: 0px 0px 10px; }
+.greeBorder{border: 3px dotted #afafaf;padding: 10px;margin: 10px 20px;background: #efefef;box-shadow: 0px 0px 10px; }
 .dopMenuPages
 {
     background: #dfdfff; /* Для старых браузров */

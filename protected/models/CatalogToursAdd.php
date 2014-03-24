@@ -53,9 +53,9 @@ class CatalogToursAdd extends CatalogTours
 		return array(
 			'name' => 'Название',
             'category_id' => 'Категория',
-			'active' => 'Активный тур',
+			//'active' => 'Активный тур<br/><i>( поставте галочку если необходимо опубликавать тур на сайте )</i>',
             'hot' => 'Горячий тур',
-			'country_id' => 'Страна',
+			'country_id' => 'Страна тура',
 			'city_id' => 'Город',
 			'price' => 'Цена',
             'description' => 'Описание тура',

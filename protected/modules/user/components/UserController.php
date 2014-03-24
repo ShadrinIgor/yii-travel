@@ -230,11 +230,10 @@ class UserController extends Controller
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
 
-            if( property_exists( $item, "firm_id" ) )$field = "firm_id";
-                                                else $field = "id";
+            if( property_exists( $item, "firm_id" ) && $item->firm_id )$firm = $item->firm_id;
+            if( !property_exists( $item, "firm_id" ) && $item->id )$firm = $item;
 
-            if( $item->$field && $item->$field->id>0 )$firm = $item->$field;
-                else
+            if( empty( $firm ) || $firm->id == 0 )
             {
                 $fid = (int)Yii::app()->request->getParam("fid", 0);
                 $firm = CatalogFirms::fetch( $fid );
@@ -254,7 +253,7 @@ class UserController extends Controller
                 $item->user_id = Yii::app()->user->getId();
                 if( $item->save() )
                 {
-                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "fid"=>$item->firm_id->id, "status"=>"saved") ) );
+                    $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "fid"=>$firm->id, "status"=>"saved") ) );
                     die;
                     //if( !$isAdd )$message = "Описание успешно обновленно";
                     //        else $message = "Запись успешно добавлена";

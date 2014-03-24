@@ -40,7 +40,7 @@ class CatalogUsersRegistration extends CatalogUsers
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, password, surname, fatchname, email, country, city, image, country_other, type_id, active, last_visit', 'safe'),
+            array('name, password, surname, fatchname, email, country_id, city_id, image, country_other, type_id, active, last_visit', 'safe'),
 		);
 	}
 
@@ -61,8 +61,8 @@ class CatalogUsersRegistration extends CatalogUsers
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'country0' => array(self::BELONGS_TO, 'CatalogCountry', 'country'),
-            'city0' => array(self::BELONGS_TO, 'CatalogCity', 'city'),
+            'country_id0' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
+            'city_id0' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
         );
     }
 
@@ -79,8 +79,8 @@ class CatalogUsersRegistration extends CatalogUsers
 //            'surname' => 'Фамилия',
 //            'fatchname' => 'Отчество',
             'email' => 'Email',
-            'country' => 'Страна',
-            'city' => 'Город',
+            'country_id' => 'Страна',
+            'city_id' => 'Город',
 //            'image' => 'Фото пользователя',
 //            'country_other' => 'Другая страна',
             'phone' => 'Сотовый',

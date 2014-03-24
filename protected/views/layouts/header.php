@@ -1,3 +1,5 @@
+<meta http-equiv="Cache-Control" content="public"/>
+<meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="ru" />
 <title><?= Yii::app()->page->title; ?></title>
@@ -15,14 +17,17 @@
     $cs->coreScriptPosition=CClientScript::POS_HEAD;
     $cs->scriptMap=array();
     $baseUrl=$Theme->getBaseUrl();
-    $cs->registerCoreScript('jquery');
-    $cs->registerScriptFile($baseUrl.'/js/tiny_mce/tiny_mce.js');
+
+    $cs->registerScriptFile($baseUrl.'/js/jquery/jquery.js');
+
+    if( Yii::app()->controller->module && ( Yii::app()->controller->module->getId() == "console" ||  Yii::app()->controller->module->getId() == "user" ) )
+        $cs->registerScriptFile($baseUrl.'/js/tiny_mce/tiny_mce.js');
+
     $cs->registerScriptFile($baseUrl.'/js/functions.js');
     $cs->registerScriptFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.js');
 
     $cs->registerCssFile($baseUrl.'/css/style.css');
     $cs->registerCssFile($baseUrl.'/css/style2.css');
-    $cs->registerCssFile($baseUrl.'/css/b_style.css');
     $cs->registerCssFile($baseUrl.'/css/animation.css');
 
     $cs->registerCssFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.css');
@@ -31,6 +36,29 @@
 
 ?>
 
-<meta http-equiv="Cache-Control" content="public"/>
-<meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate"/>
+<?php
+    //   $cs->registerCssFile($baseUrl.'/css/b_style.css');
+?>
+<style type="text/css">
+    #TNet{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/t_bg.jpg ) no-repeat;width:958px;height:116px;margin:20px auto 10px;overflow:hidden; }
+    #TLogo{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/t_logo.png ) no-repeat;width:144px;height:97px;float:left;margin:9px 20px 0 12px; }
+    .TBan{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/baner_bg.png ) no-repeat;width:253px;height:112px;float:left;margin-top:1px }
+    .TBan a{display:block;width:227px;height:97px;}
 
+    .RB{margin: 0px 0 0 16px;  }
+    .RBSmiles{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/smiles.uz.jpg) no-repeat; }
+    .RBWorldTravel{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/world-travel.uz.jpg) no-repeat; }
+    .RBWorldNews{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/world-news.uz.jpg) no-repeat; }
+    .RBTrio{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/trio.uz.jpg) no-repeat; }
+</style>
+
+<?php if( Yii::app()->controller->module && ( Yii::app()->controller->module->getId() == "console" ||  Yii::app()->controller->module->getId() == "user" ) ) :?>
+    <script type="text/javascript">
+        if( $("#ConsoleMain").length == 0 )
+        {
+            tinyMCE.init({
+                mode : "textareas", theme: "simple"
+            });
+        }
+    </script>
+<?php endif; ?>

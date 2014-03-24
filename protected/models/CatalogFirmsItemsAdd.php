@@ -30,7 +30,7 @@ class CatalogFirmsItemsAdd extends CatalogFirmsItems
 	{
 		return array(
 			'name' => 'Название',
-			'date' => 'Date',
+			'date' => 'Дата',
 			'active' => 'Опубликовать',
             'description' => 'Описание',
 		);

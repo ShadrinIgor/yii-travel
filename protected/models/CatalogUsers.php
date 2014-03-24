@@ -13,8 +13,8 @@ class CatalogUsers extends CCModel
     protected $surname; // string 
     protected $fatchname; // string 
     protected $email; // string 
-    protected $country; // integer 
-    protected $city; // integer 
+    protected $country_id; // integer 
+    protected $city_id; // integer 
     protected $type_id; // integer 
     protected $image; // string 
     protected $country_other; // string 
@@ -62,7 +62,7 @@ class CatalogUsers extends CCModel
 		// will receive user inputs.
 		return array(
 			array('name, password, email, type_id', 'required'),
-			array('del, active, last_visit, amount, country, city, type_id, desktop', 'numerical', 'integerOnly'=>true),
+			array('del, active, last_visit, amount, country_id, city_id, type_id, desktop', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>35),
 			array('password, image', 'length', 'max'=>255),
 			array('surname, fatchname', 'length', 'max'=>25),
@@ -71,8 +71,8 @@ class CatalogUsers extends CCModel
             array('email', 'check_exists_email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('pos, del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
-            array('id, del, name, active, password, surname, fatchname, email, country, city, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
+			array('pos, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
+            array('id, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -170,10 +170,10 @@ class CatalogUsers extends CCModel
 			'catalogItems' => array(self::HAS_MANY, 'CatalogItems', 'user_id'),
 			'catalogKurorts' => array(self::HAS_MANY, 'CatalogKurorts', 'user_id'),
 			'catalogTours' => array(self::HAS_MANY, 'CatalogTours', 'user_id'),
-			'country0' => array(self::BELONGS_TO, 'CatalogCountry', 'country'),
+			'country_id0' => array(self::BELONGS_TO, 'Catalogcountry_id', 'country_id'),
 			'type' => array(self::BELONGS_TO, 'CatalogUsersType', 'type_id'),
 			'desktop0' => array(self::BELONGS_TO, 'CatalogDesktops', 'desktop'),
-			'city0' => array(self::BELONGS_TO, 'CatalogCity', 'city'),
+			'city_id0' => array(self::BELONGS_TO, 'Catalogcity_id', 'city_id'),
 			'catalogWorks' => array(self::HAS_MANY, 'CatalogWork', 'user_id'),
 			'favorites' => array(self::HAS_MANY, 'Favorites', 'user_id'),
 			'notifications' => array(self::HAS_MANY, 'Notifications', 'user_id'),
@@ -195,8 +195,8 @@ class CatalogUsers extends CCModel
 			'surname' => 'Фамилия',
 			'fatchname' => 'Отчество',
 			'email' => 'Email',
-			'country' => 'Страна',
-			'city' => 'Город',
+			'country_id' => 'Страна',
+			'city_id' => 'Город',
 			'type_id' => 'Тип',
 			'image' => 'Фото',
 			'country_other' => 'Другая страна',
@@ -229,8 +229,8 @@ class CatalogUsers extends CCModel
 		$criteria->compare('surname',$this->surname,true);
 		$criteria->compare('fatchname',$this->fatchname,true);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('country',$this->country);
-		$criteria->compare('city',$this->city);
+		$criteria->compare('country_id',$this->country_id);
+		$criteria->compare('city_id',$this->city_id);
 		$criteria->compare('type_id',$this->type_id);
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('country_other',$this->country_other,true);
