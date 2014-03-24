@@ -16,7 +16,7 @@ class CatalogFirmsItemsAdd extends CatalogFirmsItems
 			array('name, description, date, firm_id, user_id', 'required'),
 			array('date, active, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
-            array('name, description, date, firm_id, user_id, active', 'safe'),
+            array('name, description, date, firm_id, user_id, active, slug', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, date, firm_id, user_id, active, pos, del', 'safe', 'on'=>'search'),
@@ -31,7 +31,6 @@ class CatalogFirmsItemsAdd extends CatalogFirmsItems
 		return array(
 			'name' => 'Название',
 			'date' => 'Дата',
-			'active' => 'Опубликовать',
             'description' => 'Описание',
 		);
 	}

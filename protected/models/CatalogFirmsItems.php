@@ -13,7 +13,8 @@ class CatalogFirmsItems extends CCModel
     protected $user_id; // integer 
     protected $active; // integer 
     protected $pos; // integer 
-    protected $del; // integer 
+    protected $del; // integer
+    protected $slug;
 
 /*
 * Поля - связи
@@ -44,7 +45,7 @@ class CatalogFirmsItems extends CCModel
 			array('name, date, firm_id, user_id', 'required'),
 			array('date, active, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
-			array('description', 'safe'),
+            array('slug, name, description, date, firm_id, user_id, active, pos, del', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, date, firm_id, user_id, active, pos, del', 'safe', 'on'=>'search'),

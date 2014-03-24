@@ -81,7 +81,7 @@ class TravelAgencyController extends InfoController
                     }
                 }
 
-                Yii::app()->page->title = $item->name;
+                Yii::app()->page->title = $item->name." - туристическое агенство ".$item->country_id->name_2 ." ".$item->city_id->name;
 
                 $this->render('description',
                     array(

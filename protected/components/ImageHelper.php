@@ -97,7 +97,7 @@ class ImageHelper
         return Yii::app()->getTheme()->getBaseUrl()."/images/no-image.png";
     }
 
-    static public function getImages( CCModel $itemObject, $limit = 0 )
+    static public function getImages( CCModel $itemObject, $limit = 10 )
     {
         if( $itemObject->id >0 )
         {

@@ -453,3 +453,8 @@ noindex{ display:block;text-align:right; }
 }
 
 .pageError div{margin-top:40px;}
+.leftImages{width: 220px;margin-left: 5px;}
+.leftImages img{border-radius: 8px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 4px rgba(0,0,0, 0.6);
+    margin: 4px;}

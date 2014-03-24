@@ -30,12 +30,12 @@
                 <?php endif;?>
             </td>
             <td>
-                <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array("id"=>$firmItem->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $firmItem->name ?></a>
+                <a href="<?= SiteHelper::createUrl("/items/description")."/".$firmItem->slug ?>.html" title="<?= $firmItem->name ?> акции/скидки от компании <?= $firmItem->firm_id->name ?>"><?= $firmItem->name ?></a>
             </td>
             <td class="textAlignJustify">
                 <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 400 ) ?>
                 <div class="itemAction textAlignRight">
-                    <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array("id"=>$firmItem->id, "fid"=>$item->id)) ?>">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/items/description")."/".$firmItem->slug ?>.html" title="Описание акции/скидки <?= $firmItem->name ?>">Описание</a><br/>
                 </div>
             </td>
         </tr>

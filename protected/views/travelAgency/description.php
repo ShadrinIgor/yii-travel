@@ -11,13 +11,14 @@ $listComments = CatalogFirmsComments::fetchAll( DBQueryParamsClass::CreateParams
 $listService = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
 $listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
 $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
+
 ?>
 
 <div id="InnerText" class="innerPage">
     <?php
     SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
-    <h1>туристическая компания - <?= $item->name ?></h1>
+    <h1><?= $item->name ?> <font>- туристическое агенство <?= $item->country_id->name_2 ?> <?= $item->city_id->name ?></font></h1>
     <?= FirmsHelper::getBannerByCategory( "1", $item->id  ) ?>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages">Описание</a>
@@ -72,7 +73,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                 ?>
             </table>
             <div id="orderInfo" class="displayNone">
-                <b>Туристическая фирма - <?= $item->name ?></b><br/>
+                <b>Туристическое агентсво - <?= $item->name ?></b><br/>
                 <p>Для бронирования или уточнения информации по турам необходимо связаться с менеджером компании <?= $item->name ?>.</p>
                 <p>
                     <b>контакты компании:</b><br/>
