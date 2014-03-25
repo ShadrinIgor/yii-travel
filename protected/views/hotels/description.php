@@ -2,21 +2,19 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        "Отели"=>SiteHelper::createUrl("/hotels"),
-        $item->country_id->name=>SiteHelper::createUrl("/hotels/country" )."/".$item->country_id->slug.".html",
-        $item->category_id->name=>SiteHelper::createUrl("/hotels/category" )."/".$item->category_id->slug.".html" ,
+        "Все отели"=>SiteHelper::createUrl("/hotels"),
+        "отели ".$item->country_id->name_2=>SiteHelper::createUrl("/hotels/country" )."/".$item->country_id->slug.".html",
         $item->name
     )
 ));
+$images = ImageHelper::getImages( $item );
 ?>
 
 <div id="InnerText">
+    <br/>
+    <?php SiteHelper::renderDinamicPartial( "pageDescriptionTop" ); ?>
     <h1><?= $item->name ?></h1>
-    <?php
-        SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
-    ?>
     <div id="ITText">
-        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="отелии странны <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
             <?php if( $item->level && $item->level>0 ) : ?><img src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" /><br/><?php endif; ?>
@@ -25,12 +23,20 @@ $this->widget('addressLineWidget', array(
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Забронировать отель <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>
+        <?php if( sizeof($images) >0 ) : ?>
+            <div class="floatLeft leftImages">
+                <?php foreach( $images as $image ) : ?>
+                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
         <?= $item->description ?>
         <div class="LParams">
             <p><b>Контактая информация:</b><br/><br/>
                 <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>
                 <?php if( $item->fax ) : ?>Факс: <?= $item->fax ?><br/><?php endif; ?>
-                <?php if( $item->email ) : ?>E-mail: <a href="mailto:<?= $item->email ?>"><?= $item->email ?></a><br/><?php endif; ?>
+                <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogHotels", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ Показать Email ]</a></span><br/><?php endif; ?>
                 <?php if( $item->www ) : ?>Сайт: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
                 <?php if( $item->address ) : ?><?= $item->address ?><?php endif; ?>
                 <br/><br/>
@@ -43,7 +49,7 @@ $this->widget('addressLineWidget', array(
             <p>
                 <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>
                 <?php if( $item->fax ) : ?>Факс: <?= $item->fax ?><br/><?php endif; ?>
-                <?php if( $item->email ) : ?>E-mail: <a href="mailto:<?= $item->email ?>"><?= $item->email ?></a><br/><?php endif; ?>
+                <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogHotels", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ Показать Email ]</a></span><br/><?php endif; ?>
                 <?php if( $item->www ) : ?>Сайт: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
                 <div class="cMore">
                     <a href="#" class="orderClose">закрыть</a>

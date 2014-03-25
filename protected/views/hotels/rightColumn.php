@@ -1,4 +1,6 @@
 <div id="Cleft">
+    <?php $this->widget("authWidget"); ?>
+
     <div class="LeftMenu">
         <h3>Разделение по городам</h3>
         <?php if( $this->beginCache( "hotels_city", array('duration'=>3600) ) ) : ?>

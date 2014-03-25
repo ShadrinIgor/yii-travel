@@ -1,7 +1,7 @@
 <?php
 $this->widget( "userPagesWidget", array(
-    "adressTitle" => "Описание зоны отдыха, отеля, курорта",
-    "h1Titile" => "Описание зоны отдыха, отеля, курорта",
+    "adressTitle" => "Мои зоны отдыха",
+    "h1Titile" => "Описание зоны отдыха, курорта",
     "item" => $item,
     "message" => $message,
     "gallMessage" => $gallMessage,
@@ -9,5 +9,6 @@ $this->widget( "userPagesWidget", array(
     "listComments" => $listComments,
     "addImage" => $addImage,
     "comMessage" => $comMessage,
+    "sitePage" => '<a href="'.SiteHelper::createUrl( "/resorts/description" ).'/'.$item->slug.'.html" title="">просмотреть страницу зоны отдыха</a>'
 ) );
 ?>

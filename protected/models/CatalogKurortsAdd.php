@@ -37,7 +37,7 @@ class CatalogKurortsAdd extends CatalogKurorts
             'category_id' => 'Категория',
             'country_id' => 'Страна',
             'city_id' => 'Город',
-            'location' => 'Location',
+            'location' => 'Адресс',
             'www' => 'Сайт',
             'email' => 'Email',
             'telefon' => 'Телефон',

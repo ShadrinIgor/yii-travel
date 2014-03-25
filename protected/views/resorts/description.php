@@ -2,20 +2,19 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        "куротные зоны"=>SiteHelper::createUrl("/resorts"),
+        "куротные зоны узбекистана"=>SiteHelper::createUrl("/resorts"),
         $item->category_id->name=>SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug.".html",
         $item->name
     )
 ));
+$images = ImageHelper::getImages( $item );
 ?>
 
 <div id="InnerText">
+    <br/>
+    <?php SiteHelper::renderDinamicPartial( "pageDescriptionTop" ); ?>
     <h1><?= $item->name ?></h1>
-    <?php
-        SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
-    ?>
     <div id="ITText">
-        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
             <?php if( $item->price >0 ) : ?><b><?= $item->price ?>$</b><?php endif; ?>
@@ -25,6 +24,13 @@ $this->widget('addressLineWidget', array(
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Забронировать зону отдха <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>
+        <?php if( sizeof($images) >0 ) : ?>
+            <div class="floatLeft leftImages">
+                <?php foreach( $images as $image ) : ?>
+                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <?= $item->description ?>
         <div class="LParams">
             <p><b>Контактая информация:</b><br/><br/>

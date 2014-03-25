@@ -17,12 +17,14 @@ class userPagesWidget extends CWidget
     var $addImage;
     var $listComments;
     var $comMessage;
+    var $sitePage;
 
     public function run()
     {
         $this->render( "userPages", array(
                     "adressTitle" => $this->adressTitle,
                     "h1Titile" => $this->h1Titile,
+                    "sitePage" => $this->sitePage,
                     "item" => $this->item,
                     "message" => $this->message,
                     "gallMessage" => $this->gallMessage,

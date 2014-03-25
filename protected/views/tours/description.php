@@ -17,7 +17,6 @@ $this->widget('addressLineWidget', array(
     ?>
     <h1><?= $item->name ?><font>, тур <?= $item->category_id->name ?> <?= $item->country_id->name ?></font></h1>
     <div id="ITText">
-        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
             страна: <a href="<?= SiteHelper::createUrl("/country")."/".$item->slug ?>.html" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>

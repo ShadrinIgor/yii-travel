@@ -8,6 +8,11 @@
     ));
     ?>
     <h1><?= $h1Titile ?></h1>
+    <?php if( !empty( $sitePage ) ) : ?>
+        <div id="dopMenu" class="tourPage">
+            <?= $sitePage ?>
+        </div>
+    <?php endif; ?>
     <?php echo CHtml::errorSummary($item); ?><br>
     <?php if( !empty( $message ) ) : ?>
         <div class="messageSummary"><?= $message ?></div>

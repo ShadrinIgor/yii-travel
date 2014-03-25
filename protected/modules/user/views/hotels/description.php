@@ -8,6 +8,8 @@
        "listComments" => $listComments,
        "addImage" => $addImage,
        "comMessage" => $comMessage,
+       "listGallery" => $listGallery,
+       "sitePage" => '<a href="'.SiteHelper::createUrl( "/hotels/description" ).'/'.$item->slug.'.html" title="">просмотреть страницу отеля</a>'
    ) );
 ?>
 <?php $this->widget( "formNoteWidget" ) ?>

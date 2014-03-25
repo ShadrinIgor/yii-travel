@@ -16,7 +16,6 @@ $this->widget('addressLineWidget', array(
     ?>
     <h1><?= $item->name ?><font>, акция/скидки от <?= $item->firm_id->name ?> <?= $item->firm_id->country_id->name ?></font></h1>
     <div id="ITText">
-        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
             <br/>
             фирма: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
