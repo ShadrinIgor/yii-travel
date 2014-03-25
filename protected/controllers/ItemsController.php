@@ -43,6 +43,7 @@ class ItemsController extends InfoController
                     array(
                         "item" => $item,
                         "images" => $images,
+                        "firmsItems" => CatalogFirmsItems::findByAttributes( array( "firm_id"=>$item->firm_id ) )
                     ));
 
             }

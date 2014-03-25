@@ -74,7 +74,10 @@ class CCModelHelper
                             $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                         case "password"        : $input = CHtml::activePasswordField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                         case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
-                        case "visual_textarea" : $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) ); break;
+                        case "visual_textarea" :
+                            //
+                            $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
+                            break;
                         case "image"           :
 
                             if( $form->$field  )

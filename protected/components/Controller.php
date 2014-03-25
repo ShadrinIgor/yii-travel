@@ -71,7 +71,7 @@ class Controller extends CController
             array(
                 'application.filters.YXssFilter',
                 'clean'   => '*',
-                'tags'    => 'strict',
+                'tags'    => 'none',
                 'actions' => 'all'
             )
         );

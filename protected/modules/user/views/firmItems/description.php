@@ -2,8 +2,10 @@
     <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            $firm->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ),
-            "Описание тура"
+            "мои фирмы" => SiteHelper::createUrl( "/user/firms" ),
+            $firm->name => SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ),
+            "список акций компании" => SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"items" ) ),
+            $firm->id > 0 ? $firm->name : "Описание тура"
         ),
     ));
     ?>

@@ -57,7 +57,24 @@
         if( $("#ConsoleMain").length == 0 )
         {
             tinyMCE.init({
-                mode : "textareas", theme: "simple"
+                // General options
+                mode : "textareas",
+                theme : "simple",
+                plugins : "paste",
+
+                // Theme options
+                width: "100%",
+                height: "300",
+                paste_remove_styles: true,
+                paste_remove_spans: true,
+                paste_strip_class_attributes: 'all',
+                paste_text_sticky : true,
+                paste_block_drop: true,
+                paste_preprocess : function(pl, o) {
+                    console.log(o.content);
+                    o.content = strip_tags(o.content, '<p><br><a><h1><h2><h3><h4><h5><h6>');
+                    console.log(o.content);
+                }
             });
         }
     </script>

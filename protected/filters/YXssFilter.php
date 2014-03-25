@@ -41,7 +41,7 @@
 class YXssFilter extends CFilter
 {
         public  $clean   = '*';
-        public  $tags    = 'strict';
+        public  $tags    = 'none';
         public  $actions = '*,all';
 
         protected function preFilter($filterChain)
