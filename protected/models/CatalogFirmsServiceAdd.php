@@ -18,7 +18,7 @@ class CatalogFirmsServiceAdd extends CatalogFirmsService
 			array('name', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, active, pos, del, firm_id, user_id, description', 'safe'),
+			array('slug, name, active, pos, del, firm_id, user_id, description', 'safe'),
             array('id, name, active, pos, del, firm_id, user_id, description', 'safe', 'on'=>'search'),
 		);
 	}

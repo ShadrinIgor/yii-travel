@@ -12,7 +12,8 @@ class CatalogFirmsService extends CCModel
     protected $del; // integer 
     protected $firm_id; // integer 
     protected $user_id; // integer 
-    protected $description; // string 
+    protected $description; // string
+    protected $slug;
 
 /*
 * Поля - связи

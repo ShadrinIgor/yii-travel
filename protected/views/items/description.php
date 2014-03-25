@@ -10,10 +10,11 @@ $this->widget('addressLineWidget', array(
 ?>
 
 <div id="InnerText">
-    <h1><?= $item->name ?><font>, акция/скидки от <?= $item->firm_id->name ?> <?= $item->firm_id->country_id->name ?></font></h1>
+    <br/>
     <?php
         SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
+    <h1><?= $item->name ?><font>, акция/скидки от <?= $item->firm_id->name ?> <?= $item->firm_id->country_id->name ?></font></h1>
     <div id="ITText">
         <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="Туристическия странна <?= $item->name ?>" /></div><?php endif; ?>
         <div class="LParams">
@@ -48,10 +49,10 @@ $this->widget('addressLineWidget', array(
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($firmsItems)>0 ) : ?>
-        <h2>Тругие акции фирмы <?= $item->firm_id->name ?></h2>
+        <h2>Другие акции фирмы <?= $item->firm_id->name ?></h2>
         <div class="ITBlock">
             <?php foreach( $firmsItems as $tour ) : ?>
-                <?php $this->widget("itemWidget", array( "item"=>$tour )) ?>
+                <?php $this->widget("itemWidget", array( "link"=>"item", "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
                 <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html" class="cmore" title="все акции/скидки <?= $item->firm_id->name ?>">все акции/скидки <?= $item->firm_id->name ?></a>

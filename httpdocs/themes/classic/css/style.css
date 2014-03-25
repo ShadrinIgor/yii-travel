@@ -1600,7 +1600,7 @@ width:100%;
 .LI.ISize1{float: none;text-align: center;height: 120px;overflow: hidden;}
 .LI.ImageLimit{ height: 90px;overflow: hidden; }
 
-#Buttons{margin: 0px 10px;padding:10px 0px;text-align: center;background: url(../images/buttom_bg_.png) no-repeat right top, url(../images/buttom_bg.png) no-repeat left top, url(../images/button_bg_2.jpg) repeat;}
+#Buttons{margin: 0px 4px;padding:10px 0px;text-align: center;background: url(../images/buttom_bg_.png) no-repeat right top, url(../images/buttom_bg.png) no-repeat left top, url(../images/button_bg_2.jpg) repeat;}
 #Buttons.BBig{background-size: auto 62px;padding: 6px 0px;}
 
 #Buttons .B01, #Buttons .B02 {display: inline-block;width: 48%;padding-top: 10px;}

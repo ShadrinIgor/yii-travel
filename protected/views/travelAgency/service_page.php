@@ -29,10 +29,10 @@
                 <?php endif;?>
             </td>
             <td class="textAlignJustify">
-                <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
+                <a href="<?= SiteHelper::createUrl("/service/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $service->description, 400 ) ?>
                 <div class="itemAction textAlignRight">
-                    <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl( "/service/description" )."/".$service->slug ?>.html" title="<?= $service->name ?> - услгу компании <?= $service->firm_id->name ?>">Описание</a><br/>
                 </div>
             </td>
         </tr>

@@ -1,14 +1,14 @@
 <?php
 
-class ItemsController extends InfoController
+class ServiceController extends InfoController
 {
     public function init()
     {
         parent::init();
-        $this->classModel = "CatalogFirmsItems";
+        $this->classModel = "CatalogFirmsService";
         $this->classCategory = "";
-        $this->description = "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры.";
-        $this->keyWord = "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры";
+        $this->description = "Дополнительные услуги компании.";
+        $this->keyWord = "Дополнительные услуги компании";
     }
 
     public function actionDescription()
@@ -32,18 +32,19 @@ class ItemsController extends InfoController
         $error = "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы";
         if( $id > 0 )
         {
-            $item = CatalogFirmsItems::fetch( $id );
+            $item = CatalogFirmsService::fetch( $id );
             if( $item->id >0 )
             {
                 CCModelHelper::colCounter( $item );
                 // Картинки тура
                 $images = ImageHelper::getImages( $item );
-                Yii::app()->page->title = $item->name." - акция скидка от компании";
+                Yii::app()->page->title = $item->name." - услуги от компании";
                 $this->render('description',
                     array(
                         "item" => $item,
                         "images" => $images,
-                        "firmsItems" => CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:firm_id AND id!=:id" )->setParams( array( ":firm_id"=>$item->firm_id, ":id"=>$item->id ) ) )
+                        "firmsService" => CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:firm_id AND id!=:id" )->setParams( array( ":firm_id"=>$item->firm_id, ":id"=>$item->id ) )->setCache(0) ),
+                        "firmsItems"   => CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:firm_id" )->setParams( array( ":firm_id"=>$item->firm_id ) )->setCache(0) )
                     ));
 
             }

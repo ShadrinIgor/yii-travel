@@ -291,9 +291,10 @@ class SiteHelper
      */
     static function getSubTextOnWorld( $text, $count )
     {
+        $text = strip_tags( $text);
         if( strlen( $text )>$count )
         {
-            $cout = substr( strip_tags( $text), 0, $count );
+            $cout = substr( $text, 0, $count );
             $ar = explode( " ", $cout );
             $ar[ sizeof( $ar )-1 ] = "";
             $cout = implode( " ", $ar );
