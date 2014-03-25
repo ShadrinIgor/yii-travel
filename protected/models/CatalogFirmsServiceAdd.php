@@ -30,7 +30,6 @@ class CatalogFirmsServiceAdd extends CatalogFirmsService
 	{
 		return array(
 			'name' => 'Название',
-			'active' => 'Опубликовать',
 			'description' => 'Описание услуги',
 		);
 	}

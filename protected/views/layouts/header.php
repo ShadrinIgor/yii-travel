@@ -67,14 +67,7 @@
                 height: "300",
                 paste_remove_styles: true,
                 paste_remove_spans: true,
-                paste_strip_class_attributes: 'all',
-                paste_text_sticky : true,
-                paste_block_drop: true,
-                paste_preprocess : function(pl, o) {
-                    console.log(o.content);
-                    o.content = strip_tags(o.content, '<p><br><a><h1><h2><h3><h4><h5><h6>');
-                    console.log(o.content);
-                }
+                paste_strip_class_attributes: 'all'
             });
         }
     </script>

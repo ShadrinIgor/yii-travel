@@ -2,15 +2,17 @@
     <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
+            "мои фирмы" => SiteHelper::createUrl( "/user/firms" ),
             $firm->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ),
-            "Описание услуги"
+            "дом. услуги компании" => SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"service" ) ),
+            $firm->id > 0 ? $firm->name : "Описание услуги"
         ),
     ));
     ?>
     <h1>Описание услуги</h1>
     <div id="dopMenu" class="tourPage">
         <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ) ?>">вернуться к описанию фирмы</a>
-        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"items" ) ) ?>">вернуться к списку услуг</a>
+        <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"service" ) ) ?>">вернуться к списку услуг</a>
     </div>
     <?php echo CHtml::errorSummary($item); ?><br>
     <?php if( !empty( $message ) ) : ?>
