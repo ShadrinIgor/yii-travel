@@ -19,8 +19,8 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
     ?>
     <?php echo CHtml::form('','post',array('enctype'=>'multipart/form-data', 'id'=>'validateForm')); ?>
     <h1>Персональная информация</h1>
-    <?php echo CHtml::errorSummary($form); ?><br>
-    <?php if(!empty($okMessage) ) : ?><div class="messageSummary"><p><?= $okMessage ?></p></div><?php endif;?>
+    <?= CHtml::errorSummary($form); ?><br>
+    <?= $form->getMessage() ?><br>
     <table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">
        <?= CCModelHelper::addForm( $form ) ?>
         <tr class="trNoBorder">

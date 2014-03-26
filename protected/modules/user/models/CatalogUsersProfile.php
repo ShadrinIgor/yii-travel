@@ -67,7 +67,7 @@ class CatalogUsersProfile extends CatalogUsers
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, password, password2, surname, country_id, city_id, image, country_other', 'safe'),
+            array('name, password, surname, country_id, city_id, image, country_other, phone', 'safe'),
 		);
 	}
 

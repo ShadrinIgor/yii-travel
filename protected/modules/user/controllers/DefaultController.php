@@ -92,7 +92,7 @@ class DefaultController extends Controller
                 $user->setAttributesFromArray( $_POST["CatalogUsersProfile"] );
                 if( $user->save() )
                 {
-
+                    $user->formMessage = "Профиль пользователя успешно сохранен";
                 }
             }
 
