@@ -62,6 +62,7 @@ class CatalogFirms extends CCModel
 			array('name, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
 			array('email, www, tel, fax', 'length', 'max'=>50),
+            array('name, country_id, price', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
             array('active, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe'),
@@ -78,7 +79,7 @@ class CatalogFirms extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'catalogAksiis' => array(self::HAS_MANY, 'CatalogAksii', 'firm_id'),
+//			'catalogAksiis' => array(self::HAS_MANY, 'CatalogAksii', 'firm_id'),
 			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),

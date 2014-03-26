@@ -6,13 +6,19 @@ $this->widget('addressLineWidget', array(
         $item->name
     )
 ));
-$listComments = CatalogFirmsComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setOrderBy("id DESC")->setLimit(50)->setCache(0));
-$listService = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
-$listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
-$listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(50)->setCache(0));
+$listComments = CatalogFirmsComments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setOrderBy("id DESC")->setLimit(-1)->setCache(0));
+$listService = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(-1)->setCache(0));
+$toursCondition = "firm_id=:firm_id AND active=1";
+$tourParams = array( ":firm_id"=>$item->id );
+$country = (int)Yii::app()->request->getParam( "country", 0 );
+$category = (int)Yii::app()->request->getParam( "category", 0 );
+if( !empty( $country ) )$toursCondition .= " AND country_id='".$country."'";
+if( !empty( $category ) )$toursCondition .= " AND category_id='".$category."'";
+echo $item->id." - ".$toursCondition."*";
+$listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCondition )->setParams( $tourParams )->setLimit(-1)->setCache(0));
+$listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(-1)->setCache(0));
 
 ?>
-
 <div id="InnerText" class="innerPage">
     <?php
     SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
@@ -21,26 +27,26 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
     <?= FirmsHelper::getBannerByCategory( "1", $item->id  ) ?>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages">Описание</a>
-        <a href="#" id="gallery2" class="dopMenuPages">Галлерея (<?= sizeof( $listGallery ) ?>)</a>
-        <a href="#" id="tours" class="dopMenuPages">Туры компаниии (<?= sizeof( $listTours ) ?>)</a>
-        <a href="#" id="items" class="dopMenuPages">Акции и скидки (<?= sizeof( $listItems ) ?>)</a>
-        <a href="#" id="service" class="dopMenuPages">Дополнительные услуги (<?= sizeof( $listService ) ?>)</a>
-        <a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages">Коментарии и отзывы (<?= sizeof( $listComments ) ?>)</a>
+        <?php if( sizeof($listGallery) >0 ) : ?><a href="#" id="gallery2" class="<?= $activeTab == "gallery" ? "activeDM " : "" ?>dopMenuPages">Галлерея (<?= sizeof( $listGallery ) ?>)</a><?php endif; ?>
+        <?php if( sizeof($listTours) >0 ) : ?><a href="#" id="tours" class="<?= $activeTab == "tours" ? "activeDM " : "" ?>dopMenuPages">Туры компаниии (<?= sizeof( $listTours ) ?>)</a><?php endif; ?>
+        <?php if( sizeof($listItems) >0 ) : ?><a href="#" id="items" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages">Акции и скидки (<?= sizeof( $listItems ) ?>)</a><?php endif; ?>
+        <?php if( sizeof($listService) >0 ) : ?><a href="#" id="service" class="<?= $activeTab == "service" ? "activeDM " : "" ?>dopMenuPages">Дополнительные услуги (<?= sizeof( $listService ) ?>)</a><?php endif; ?>
+        <?php if( sizeof($listComments) >0 ) : ?><a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages">Коментарии и отзывы (<?= sizeof( $listComments ) ?>)</a><?php endif; ?>
     </div>
     <br/>
     <div id="pcomments_page" class="pageTab<?= $activeTab == "pcomments" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "pcomemts_page", array("item"=>$item, "commentModel"=>$commentModel, "items"=>$listComments) ) ?>
     </div>
-    <div id="service_page" class="pageTab displayNone">
+    <div id="service_page" class="pageTab<?= $activeTab == "service" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "service_page", array("item"=>$item, "items"=>$listService) ) ?>
     </div>
-    <div id="items_page" class="pageTab displayNone">
+    <div id="items_page" class="pageTab<?= $activeTab == "items" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "items_page", array("item"=>$item, "items"=>$listItems) ) ?>
     </div>
-    <div id="tours_page" class="pageTab displayNone">
-        <?php $this->renderPartial( "tours_page", array("item"=>$item, "items"=>$listTours) ) ?>
+    <div id="tours_page" class="pageTab<?= $activeTab == "tours" ? " activePage " : " displayNone" ?>">
+        <?php $this->renderPartial( "tours_page", array("item"=>$item, "items"=>$listTours, "arrSearchFieldsTours"=>$arrSearchFieldsTours, "url"=>SiteHelper::createUrl("/travelAgency/description/")."/".$item->slug.".html" ) ) ?>
     </div>
-    <div id="gallery2_page" class="pageTab displayNone">
+    <div id="gallery2_page" class="pageTab<?= $activeTab == "gallery" ? " activePage " : " displayNone" ?>">
         <div id="gallery">
             <h2>Галлерея</h2>
             <div class="listGallery">
@@ -62,7 +68,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
             <div class="LParams">
                 <br/>
                 страна: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="туристическая страна <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
-                туров: <b><?= $tourCount ?></b>
+                туров: <b><?= sizeof( $listTours ) ?></b>
                 <br/><br/>
                 <a class="OrderRequest LPLink" href="#" title="связаться">связаться забронировать</a><br/>
             </div>

@@ -1710,7 +1710,7 @@ width:100%;
 .listItems .IImage{width: 200px;height: 120px;overflow: hidden;float: left;margin: 0px 10px 10px 0px;border-radius: 25px;}
 #FCCentr .listItems a{text-decoration: underline;font-weight: bold;font-size: 14px;text-transform: capitalize;}
 #FCCentr .listItems .LParams a{font-weight: normal;}
-.LParams{float: right;text-align: left;border-left: 2px solid #DC5800;padding-left: 10px;margin-left: 4px;min-width: 100px;font-size: 10px;}
+.LParams{text-indent: 0px;float: right;text-align: left;border-left: 2px solid #DC5800;padding-left: 10px;margin-left: 4px;min-width: 100px;font-size: 10px;}
 #FCCentr .LParams a{font-size: 10px;}
 
 
@@ -1814,7 +1814,6 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     margin-bottom: 10px;
 }
 #CIHeader div{color:#100503;}
-#CIHeader div{margin: 0px 4px;}
 
 .overflowHidden{overflow: hidden}
 .CIH{display: inline-block;margin-top: 1px;}
@@ -2305,3 +2304,60 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     font-size: 12px;
     color: #fff;
 }
+
+.CICategory
+{
+    vertical-align: top;
+    text-align: left;
+    width: 375px;
+    display: inline-block;
+    text-indent: 0px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px rgba( 0,0,0, 0.8 );
+    margin: 3px;
+
+    background: #fff; /* Для старых браузров */
+    background: -moz-linear-gradient(top, #ffffff, rgba( 0,0,0, 0.1) ); /* Firefox 3.6+ */
+    /* Chrome 1-9, Safari 4-5 */
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%,#ffffff), color-stop(100%,rgba( 0,0,0, 0.2) ));
+    /* Chrome 10+, Safari 5.1+ */
+    background: -webkit-linear-gradient(top, #ffffff, rgba( 0,0,0, 0.1) );
+    background: -o-linear-gradient(top, #ffffff, rgba( 0,0,0, 0.1) ); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff, rgba( 0,0,0, 0.1) ); /* IE10 */
+    background: linear-gradient(top, #ffffff, rgba( 0,0,0, 0.1) ); /* CSS3 */
+    overflow: hidden;
+
+}
+
+.CICategory .CICategoryScrool{height: 120px;overflow: auto;}
+
+#CICategory ul ul{margin-bottom: 10px;}
+
+#CIHeader .CICLabel{
+    box-shadow: 0px 0px 10px #000;
+    margin: 0px 0px 0px 0px;
+    padding: 5px 0px 5px 20px;
+    font-size: 14px;
+    padding-bottom: 3px;
+    color:#fff;
+    text-shadow: 0px 0px 5px #000;
+
+    /* IE10 */
+    background-image: -ms-linear-gradient(left, #00A3EF 30%, #FFFFFF 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(left, #00A3EF 30%, #FFFFFF 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(left, #00A3EF 30%, #FFFFFF 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(left, #00A3EF 30%, #FFFFFF 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(left,#00A3EF 30%, #FFFFFF 100%);
+
+}
+
+.CLISelected{background: rgba(0,100,255, 0.4);padding-left: 10px;}
+.CLISelected a{color: #fff;}

@@ -58,8 +58,8 @@ class CatalogFirmsCategory extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'owner0' => array(self::BELONGS_TO, 'CatalogFirmCategory', 'owner'),
-			'catalogFirmCategories' => array(self::HAS_MANY, 'CatalogFirmCategory', 'owner'),
+			'owner0' => array(self::BELONGS_TO, 'CatalogFirmsCategory', 'owner'),
+			'catalogFirmCategories' => array(self::HAS_MANY, 'CatalogFirmsCategory', 'owner'),
 			'catalogFirms' => array(self::HAS_MANY, 'CatalogFirms', 'category_id'),
 		);
 	}

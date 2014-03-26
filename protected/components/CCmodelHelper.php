@@ -41,6 +41,7 @@ class CCModelHelper
         $fieldType = $form->fieldType();
         $requiredFields = $form->getRequiredAttributes();
         $placeholder = $form->attributePlaceholder();
+        $saveFields = $form->getSafeAtributes();
 
         $cout = "";
         $classTable = get_class( $form );
@@ -62,48 +63,53 @@ class CCModelHelper
                 if( !empty( $placeholder[ $field ] ) )$fieldPlaceholder = $placeholder[ $field ];
                     else $fieldPlaceholder = "";
 
-                if( !empty( $fieldType[$field] ) )
+                // нужно проверить если данное поле не указанно в списке SAVE то вывести не поля ввода а просто значение
+                $input = "";
+                if( CCModelHelper::find_in_array( $field, $saveFields ) || $field == "password2" )
                 {
-                    $input = "";
-                    switch( $fieldType[ $field ] )
+                    if( !empty( $fieldType[$field] ) )
                     {
-                        case "url"             : $input = CHtml::activeUrlField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) )."<br/><font class='smallGrey'>формат: http://www.sitename.ru</font>"; break;
-                        case "email"           : $input = CHtml::activeEmailField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
-                        case "date"            :
-                            if( (int)$form->$field >0 )$form->$field = date( "Y-m-d", $form->$field );
-                            $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
-                        case "password"        : $input = CHtml::activePasswordField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
-                        case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
-                        case "visual_textarea" :
-                            //
-                            $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
-                            break;
-                        case "image"           :
+                        switch( $fieldType[ $field ] )
+                        {
+                            case "url"             : $input = CHtml::activeUrlField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) )."<br/><font class='smallGrey'>формат: http://www.sitename.ru</font>"; break;
+                            case "email"           : $input = CHtml::activeEmailField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
+                            case "date"            :
+                                if( (int)$form->$field >0 )$form->$field = date( "Y-m-d", $form->$field );
+                                $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
+                            case "password"        :
+                                $input = CHtml::passwordField( $classTable."[".$field."]", '', array( "placeholder"=>$fieldPlaceholder ) ); break;
+                            case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
+                            case "visual_textarea" :
+                                $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
+                                break;
+                            case "image"           :
 
-                            if( $form->$field  )
-                            {
-                                $catalog = get_class( $form );
-                                $input = '<img src="../'.ImageHelper::getImage( $form->$field, 2, $form ) .'" width="100" /><br/>';
-                                if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
-                                $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
-                            }
-                            $input .= CHtml::activeFileField( $form, $field );
+                                if( $form->$field  )
+                                {
+                                    $catalog = get_class( $form );
+                                    $input = '<img src="../'.ImageHelper::getImage( $form->$field, 2, $form ) .'" width="100" /><br/>';
+                                    if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
+                                    $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
+                                }
+                                $input .= CHtml::activeFileField( $form, $field );
 
-                            break;
-                        case "file"            :
-                            if( $form->$field  )
-                            {
-                                $catalog = get_class( $form );
-                                $input = '<a href="../'.$form->$field.'" target="_blank">'.$form->$field.'</a><br/>';
-                                if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
-                                $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
-                            }
-                            $input .= CHtml::activeFileField( $form, $field ); break;
-                        case "label"           : $input = $form->$field; break;
-                        default                : $input = CHtml::activeTextField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) );
+                                break;
+                            case "file"            :
+                                if( $form->$field  )
+                                {
+                                    $catalog = get_class( $form );
+                                    $input = '<a href="../'.$form->$field.'" target="_blank">'.$form->$field.'</a><br/>';
+                                    if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[удалить]</a><br/>';
+                                    $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
+                                }
+                                $input .= CHtml::activeFileField( $form, $field ); break;
+                            case "label"           : $input = $form->$field; break;
+                            default                : $input = CHtml::activeTextField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) );
+                        }
                     }
+                        else $input = CHtml::activeTextField( $form, $field, array("placeholder"=>$fieldPlaceholder) );
                 }
-                    else $input = CHtml::activeTextField( $form, $field, array("placeholder"=>$fieldPlaceholder) );
+                    else $input = $form->$field;
             }
                 else
             {
