@@ -1,9 +1,9 @@
 <div id="firmTours">
-    <?php if( $this->beginCache( "firmDescriptionTours-".$item->id, array('duration'=>3600) ) ) : ?>
+    <?php if( $this->beginCache( "firmDescriptionTours-".$item->id, array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
         <div id="CIHeader" class="overflowHidden">
             <?php
                 // Категории
-                $listCategory = CatalogToursCategory::sql( "SELECT id, owner FROM `catalog_tours_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_tours WHERE firm_id=96 AND del=0  AND active=1 )" );
+                $listCategory = CatalogToursCategory::sql( "SELECT id, owner FROM `catalog_tours_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_tours WHERE firm_id=".$item->id." AND del=0  AND active=1 )" );
                 $reCategory = array();
                 $reCategory2 = array();
 
@@ -30,7 +30,7 @@
                 }
 
                 // Странны
-                $listCountry = CatalogCountry::sql( "SELECT id FROM `catalog_country` WHERE id IN( SELECT country_id FROM catalog_tours WHERE firm_id=96 AND del=0 AND active=1 )" );
+                $listCountry = CatalogCountry::sql( "SELECT id FROM `catalog_country` WHERE id IN( SELECT country_id FROM catalog_tours WHERE firm_id=".$item->id." AND del=0 AND active=1 )" );
 
                 $reCountry2 = array();
                 // Подменяем ID на обект и подсчитываем количество
