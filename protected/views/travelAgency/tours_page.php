@@ -1,88 +1,87 @@
-<?php
-    // Категории
-    $listCategory = CatalogToursCategory::sql( "SELECT id, owner FROM `catalog_tours_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_tours WHERE firm_id=96 AND del=0  AND active=1 )" );
-    $reCategory = array();
-    $reCategory2 = array();
-
-    // Раскладываем по OWNER-у
-    foreach( $listCategory as $category )
-    {
-        $reCategory[ $category["owner"] ][] =  $category["id"];
-    }
-
-    // Подменяем ID на обект и подсчитываем количество
-    foreach( $reCategory as $category=>$value )
-    {
-        $ownerCategoryModel = CatalogToursCategory::fetch( $category );
-        $array = array();
-        foreach( $value as $cid )
-        {
-            $array[] = CatalogToursCategory::fetch($cid);
-        }
-        $reCategory2[ $ownerCategoryModel->name ] = $array;
-    }
-
-    // Странны
-    $listCountry = CatalogCountry::sql( "SELECT id FROM `catalog_country` WHERE id IN( SELECT country_id FROM catalog_tours WHERE firm_id=96 AND del=0 AND active=1 )" );
-
-    $reCountry2 = array();
-    // Подменяем ID на обект и подсчитываем количество
-    foreach( $listCountry as $id=>$keys )
-    {
-        if( $id >0 )$reCountry2[] = CatalogCountry::fetch( $id );
-    }
-
-    $country = (int)Yii::app()->request->getParam( "country", 0 );
-    $category = (int)Yii::app()->request->getParam( "category", 0 );
-?>
-
 <div id="firmTours">
-    <div id="CIHeader" class="overflowHidden">
-        <div class="CICategory">
-            <div class="CICLabel">Категории туров</div>
-            <div class="CICategoryScrool">
-            <ul>
-                <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
-                    <li>
-                        <b><?= $cItem ?></b>
-                        <ul>
-                            <?php foreach( $values as $cKey=>$cValue ) : ?>
-                                <li <?= $category == $cValue->id ? 'class="CLISelected"' : '' ?>><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?category=<?= $cValue->id ?>&tab=tours" title="категория туров - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            </div>
-        </div>
-        <div class="CICategory">
-            <div class="CICLabel CLRight">Туры по странам</div>
-            <div class="CICategoryScrool">
-            <ul>
-                <?php foreach( $reCountry2 as $cItem=>$values ) : ?>
-                    <li <?= $country == $values->id ? 'class="CLISelected"' : '' ?>><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?country=<?= $values->id ?>&tab=tours" title="туры <?= $values->name_2 ?>"><?= $values->name ?></a></li>
-                <?php endforeach; ?>
-            </ul>
-            </div>
-        </div>
-        <?php if( !empty( $sort ) && sizeof( $sort )>0 ) : ?>
-            <div id="CISort">
-                <br/>
-                <div class="displayInlainBlock">Сортировка:&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                <div class="displayInlainBlock">
-                    <?php
-                    $n=0;
-                    foreach( $sort as $item ) :
-                        $n++;
-                        ?>
-                        <a class="CIH CIH<?= $by ?><?= $sortField == $item[0] ? " CIHActive" : "" ?>" href="<?= ( $sortField == $item[0] && $by == "desc" ) ? SiteHelper::createUrl($url."/", array("sort"=>$item[0], "by"=>"asc")) : SiteHelper::createUrl($url."/", array("sort"=>$item[0], "by"=>"desc")) ?>" title="отсортировать по <?= $item[1] ?>">по <?= $item[1] ?></a>&nbsp;
+    <?php if( $this->beginCache( "firmDescriptionTours-".$item->id, array('duration'=>3600) ) ) : ?>
+        <div id="CIHeader" class="overflowHidden">
+            <?php
+                // Категории
+                $listCategory = CatalogToursCategory::sql( "SELECT id, owner FROM `catalog_tours_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_tours WHERE firm_id=96 AND del=0  AND active=1 )" );
+                $reCategory = array();
+                $reCategory2 = array();
+
+                // Раскладываем по OWNER-у
+                foreach( $listCategory as $category )
+                {
+                    $reCategory[ $category["owner"] ][] =  $category["id"];
+                }
+
+                // Подменяем ID на обект и подсчитываем количество
+                foreach( $reCategory as $category=>$value )
+                {
+                    $ownerCategoryModel = CatalogToursCategory::fetch( $category );
+                    $array = array();
+                    foreach( $value as $cid )
+                    {
+                        if( $cid>0 )
+                        {
+                            $obj = CatalogToursCategory::fetch($cid);
+                            $array[] = $obj;
+                        }
+                    }
+                    $reCategory2[ $ownerCategoryModel->name ] = $array;
+                }
+
+                // Странны
+                $listCountry = CatalogCountry::sql( "SELECT id FROM `catalog_country` WHERE id IN( SELECT country_id FROM catalog_tours WHERE firm_id=96 AND del=0 AND active=1 )" );
+
+                $reCountry2 = array();
+                // Подменяем ID на обект и подсчитываем количество
+                foreach( $listCountry as $id=>$keys )
+                {
+                    if( $keys["id"] >0 )
+                    {
+                        $obj = CatalogCountry::fetch( $keys["id"] );
+                        if( $obj->id >0 )$reCountry2[] = $obj;
+                    }
+                }
+            ?>
+
+            <div class="CICategory">
+                <div class="CICLabel">Категории туров</div>
+                <div class="CICategoryScrool">
+                <ul>
+                    <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
+                        <li>
+                            <b><?= $cItem ?></b>
+                            <ul>
+                                <?php foreach( $values as $cKey=>$cValue ) : ?>
+                                    <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="категория туров - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
                     <?php endforeach; ?>
+                </ul>
                 </div>
             </div>
-        <?php endif; ?>
-    </div>
+            <div class="CICategory">
+                <div class="CICLabel CLRight">Туры по странам</div>
+                <div class="CICategoryScrool">
+                <ul>
+                    <?php foreach( $reCountry2 as $cItem=>$values ) : ?>
+                        <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="туры <?= $values->name_2 ?>"><?= $values->name ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+                </div>
+            </div>
+        </div>
+    <?php $this->endCache();endif; ?>
 
-    <h2>Туры компании</h2>
+    <h2>Туры компании
+        <?php if( !empty( $categoryModel ) && $categoryModel->id >0 ) : ?>
+            , в категории <?= $categoryModel->name ?>
+        <?php endif; ?>
+        <?php if( !empty( $countryModel ) && $countryModel->id >0 ) : ?>
+           , по стране <?= $countryModel->name ?>
+        <?php endif; ?>
+    </h2>
     <table id="tableListItems" cellpadding="0" cellspacing="0">
         <tr>
             <th class="TLFId">№</th>

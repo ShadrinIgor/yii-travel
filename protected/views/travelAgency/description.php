@@ -10,12 +10,18 @@ $listComments = CatalogFirmsComments::fetchAll( DBQueryParamsClass::CreateParams
 $listService = CatalogFirmsService::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(-1)->setCache(0));
 $toursCondition = "firm_id=:firm_id AND active=1";
 $tourParams = array( ":firm_id"=>$item->id );
-$country = (int)Yii::app()->request->getParam( "country", 0 );
-$category = (int)Yii::app()->request->getParam( "category", 0 );
-if( !empty( $country ) )$toursCondition .= " AND country_id='".$country."'";
-if( !empty( $category ) )$toursCondition .= " AND category_id='".$category."'";
-echo $item->id." - ".$toursCondition."*";
-$listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCondition )->setParams( $tourParams )->setLimit(-1)->setCache(0));
+$country = Yii::app()->request->getParam( "country", "" );
+if( !empty( $country ) )$countryModel = CatalogCountry::fetchBySlug( $country );
+                   else $countryModel = new CatalogCountry();
+
+$category = Yii::app()->request->getParam( "category", "" );
+if( !empty( $category ) )$categoryModel = CatalogToursCategory::fetchBySlug( $category );
+                    else $categoryModel = new CatalogToursCategory();
+
+if( $countryModel->id > 0 )$toursCondition .= " AND country_id='".$countryModel->id."'";
+if( $categoryModel->id >0 )$toursCondition .= " AND category_id='".$categoryModel->id."'";
+
+$listTours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCondition )->setParams( $tourParams )->setOrderBy( "pos DESC" )->setLimit(-1)->setCache(0));
 $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:firm_id AND active=1")->setParams( array( ":firm_id"=>$item->id ) )->setLimit(-1)->setCache(0));
 
 ?>
@@ -44,7 +50,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
         <?php $this->renderPartial( "items_page", array("item"=>$item, "items"=>$listItems) ) ?>
     </div>
     <div id="tours_page" class="pageTab<?= $activeTab == "tours" ? " activePage " : " displayNone" ?>">
-        <?php $this->renderPartial( "tours_page", array("item"=>$item, "items"=>$listTours, "arrSearchFieldsTours"=>$arrSearchFieldsTours, "url"=>SiteHelper::createUrl("/travelAgency/description/")."/".$item->slug.".html" ) ) ?>
+        <?php $this->renderPartial( "tours_page", array( "categoryModel"=>$categoryModel ,"countryModel"=>$countryModel, "item"=>$item, "items"=>$listTours, "arrSearchFieldsTours"=>$arrSearchFieldsTours, "url"=>SiteHelper::createUrl("/travelAgency/description/")."/".$item->slug.".html" ) ) ?>
     </div>
     <div id="gallery2_page" class="pageTab<?= $activeTab == "gallery" ? " activePage " : " displayNone" ?>">
         <div id="gallery">
