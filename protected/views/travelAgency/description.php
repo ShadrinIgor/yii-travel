@@ -102,7 +102,6 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
         <?= $item->description ?>
     </div>
     <?= FirmsHelper::getBannerByCategory( "2", $item->id  ) ?>
-
     <?php if( sizeof($otherFirms)>0 ) : ?>
         <h2>Смотрите также</h2>
         <div class="ITBlock ITBFirms">

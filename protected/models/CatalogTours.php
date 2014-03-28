@@ -117,7 +117,7 @@ class CatalogTours extends CCModel
 			'price' => 'Цена',
 			'ltext' => 'Ltext',
 			'hot' => 'Hot',
-			'firm_id' => 'Firm',
+			'firm_id' => 'тур. Фирма',
 			'category_id' => 'Категория',
 			'vip' => 'Vip',
 			'list_key' => 'List Key',
