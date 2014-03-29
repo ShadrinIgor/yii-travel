@@ -12,6 +12,6 @@
         </div>
     <?php endif; ?>
     <div class="LParams">
-        <a href="<?= SiteHelper::createUrl("/touristInfo")."/".$item->category_id ?>" title="<?= $item->category_id->name ?>"><?= $item->category_id->name ?></a>
+        <a href="<?= SiteHelper::createUrl("/touristInfo")."/category/".$item->category_id->slug ?>.html" title="<?= $item->category_id->name ?>"><?= $item->category_id->name ?></a>
     </div>
 </div>

@@ -13,14 +13,14 @@ $images = ImageHelper::getImages( $item );
 <div id="InnerText">
     <br/>
     <?php SiteHelper::renderDinamicPartial( "pageDescriptionTop" ); ?>
-    <h1><?= $item->name ?></h1>
+    <h1><?= $item->name ?> <font> - <?= $item->category_id->name." ".$item->country_id->name_2 ?></font></h1>
     <div id="ITText">
         <div class="LParams">
             <br/>
             <?php if( $item->price >0 ) : ?><b><?= $item->price ?>$</b><?php endif; ?>
             <?php if( $item->level && $item->level>0 ) : ?><?= SiteHelper::getStarsLevel( $item->level ) ?><br/><?php endif; ?>
             страна: <?= $item->country_id->name ?><br/>
-            <?php if( $item->city_id ) : ?>город:<?= $item->city_id->name ?><br/><?php endif; ?>
+            <?php if( $item->city_id->id >0 ) : ?>город:<?= $item->city_id->name ?><br/><?php endif; ?>
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Забронировать зону отдха <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>

@@ -7,8 +7,9 @@
  */
 class formNoteWidget extends CWidget
 {
+    var $type = "formNote";
     public function run()
     {
-        $this->render( "formNote", array());
+        $this->render( $this->type, array());
     }
 }

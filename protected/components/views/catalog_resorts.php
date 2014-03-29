@@ -11,7 +11,7 @@
             <?php if( $item->level > 0 ) : ?><div class="levelStar"><img src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" alt="" /></div><?php endif;  ?>
             <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug ?>.html" title="курорты <?= $item->category_id->name ?>"><b><?= $item->category_id->name ?></b></a><br/>
             Страна: <b><?= $item->country_id->name ?></b><br/>
-            <?php if( $item->city_id ) : ?>Город: <b><?= $item->city_id->name ?></b><br/><?php endif; ?>
+            <?php if( $item->city_id->id>0 ) : ?>Город: <b><?= $item->city_id->name ?></b><br/><?php endif; ?>
         </div>
         <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>
