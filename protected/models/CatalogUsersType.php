@@ -9,7 +9,8 @@ class CatalogUsersType extends CCModel
     protected $pos; // integer 
     protected $del; // integer 
     protected $name; // string 
-    protected $key_word; // string 
+    protected $key_word; // string
+    protected $description;
 
 /*
 * Поля - связи
@@ -44,7 +45,7 @@ class CatalogUsersType extends CCModel
 			array('key_word', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, pos, del, name, key_word', 'safe', 'on'=>'search'),
+			array('id, description pos, del, name, key_word', 'safe', 'on'=>'search'),
 		);
 	}
 

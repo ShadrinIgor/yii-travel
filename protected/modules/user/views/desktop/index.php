@@ -7,7 +7,7 @@
 <h1>Рабочий стол</h1>
 <form action="" method="post">
     <?= $userModel->getMessage();  ?>
-    <div class="overflowHidden">
+    <div class="overflowHidden textAlignCenter">
         <?php foreach( $items as $item ) : ?>
             <div class="DLItem">
                 <div class="TImage"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt=""/></div>

@@ -4,14 +4,34 @@
     <?php $this->renderPartial('//layouts/header'); ?>
 </head>
 
+<?php
+    Yii::app()->session["otherStyle"] = false;
+    $mainClass = "";
+    if( Yii::app()->controller->getId() != "site" )$mainClass = "MInnerPage";
+    if( !Yii::app()->user->isGuest )
+    {
+        $userModel = CatalogUsers::fetch( Yii::app()->user->getId() );
+        if( $userModel->desktop->id >0 && $userModel->desktop->class_name )
+        {
+            if( !empty( $mainClass ) )$mainClass.= " ";
+            $mainClass .= "otherStyle ".$userModel->desktop->class_name;
+            Yii::app()->session["otherStyle"] = true;
+        }
+    }
+?>
+
 <body>
-<div id="Main" <?= ( Yii::app()->controller->getId() != "site" ) ? ' class="MInnerPage"' : '' ?>>
+<div id="Main" <?= !empty( $mainClass ) ? ' class="'.$mainClass.'"' : '' ?>>
 
 <div id="BannerBlock">
     <div class="BottomLink">
         <h3>детский лагерь</h3> <h4>отдых</h4> <b>туры</b> <u>туроператоры</u> <i>турфирмы</i> <i>горный лагерь</i> <font>турагентство</font> <u>зоны отдыха</u> <u>туристические агентства</u> <h3>тур фирмы</h3> <h4>туристические компании</h4> <b>поиск тура</b> <u>туроператоры</u> <h2>отдых в горах</h2> <b>тур фирмы</b>
     </div>
-    <div id="BBLeft"><img src="<?= $Theme->getBaseUrl() ?>/images/logo.jpg" alt="мировой отдых для вас, туристический портал" /></div>
+        <div id="BBLeft">
+            <?php if( !Yii::app()->session["otherStyle"] ) : ?>
+                <img src="<?= $Theme->getBaseUrl() ?>/images/logo.jpg" alt="мировой отдых для вас, туристический портал" />
+            <?php endif; ?>
+        </div>
     <Div id="BRight">
         <div id="BRTitle"><a href=""><img src="<?= $Theme->getBaseUrl() ?>/images/logo_title.png" /></a></div>
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>

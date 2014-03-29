@@ -39,7 +39,7 @@ class CatalogDesktops extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, class_name', 'required'),
+			array('name', 'required'),
 			array('del, pos', 'numerical', 'integerOnly'=>true),
 			array('name, class_name', 'length', 'max'=>50),
 			array('image', 'length', 'max'=>255),
