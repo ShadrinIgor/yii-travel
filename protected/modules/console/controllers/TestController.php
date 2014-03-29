@@ -24,7 +24,7 @@ class TestController extends ConsoleController
                 echo "Create";
                 $newUser = new CatalogUsers();
                 $newUser->name = $item->name;
-                $newUser->email = $item->email;
+                $newUser->email = trim( $item->email );
                 $newUser->image = $item->image;
                 $newUser->pass = rand( 100, 999 );
                 $newUser->password = md5( $newUser->pass );
@@ -38,15 +38,17 @@ class TestController extends ConsoleController
             }
                 else
                 {
-                    echo "Find";
+                    echo "Find - ".$findUser[0]->id;
                     $newUser = $findUser[0];
                 }
 
             if( $newUser->id > 0 )
             {
+                echo " save";
                 $item->user_id = $newUser->id;
                 $item->save();
             }
+            echo "<br/>";
             $i++;
         }
 	}
