@@ -147,6 +147,7 @@
 
 <div id="Center">
 
+
 <div id="Left">
     <?= SiteHelper::renderDinamicPartial("leftColumn") ?>
 </div>

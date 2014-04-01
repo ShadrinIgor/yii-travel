@@ -305,9 +305,15 @@ img
 #Left
 {
 	float:left;
-	margin:0 5px 0px 10px;
 	overflow:hidden;
-	width:240px;
+	width:275px;
+}
+
+#LeftBG
+{
+    margin:0 5px 0px 10px;
+    overflow:hidden;
+    width:240px;
     background: #fff url( ../images/news_bg.jpg ) no-repeat top center;
     box-shadow: 0px 0px 8px rgba( 0, 0, 0, 0.8);
     margin: 6px;
@@ -315,6 +321,87 @@ img
     margin-left: 10px;
 }
 
+#findTour
+{
+    background: url( ../images/tour_find.jpg ) no-repeat;
+    width: 258px;
+    height: 200px;
+    margin-left: 10px;
+    border-radius: 8px;
+    /* Webkit (Safari/Chrome) */ -webkit-box-shadow: 4px 4px 7px 0px #CCCCCC;
+    /* Mozilla Firefox */ -moz-box-shadow: 4px 4px 7px 0px #CCCCCC;
+    /* Proposed W3C Markup */ box-shadow: 4px 4px 7px 0px #CCCCCC;
+    margin-bottom: 15px;
+}
+
+#FTFormTab, #FTHotelsTab{display: none;}
+#findTour .FTFActive{display: block;}
+
+#findTour #FTHeader a
+{
+    color: #bd7a22;
+    font-size: 14px;
+    display: inline-block;
+    height: 25px;
+    width: 100px;
+    padding-top: 6px;
+    text-align: center;
+    vertical-align: top;
+}
+
+#FTFormTab
+{
+    margin: 0px 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#FTFormTab p{margin: 3px 0px;text-align: right;text-shadow: 0px 0px 3px #000;}
+#FTFormTab p select
+{
+    border:1px solid #888;
+    border-radius: 6px;
+    padding:3px;
+    width: 147px;
+    box-shadow:1px 2px 6px -1px rgba( 0, 0, 0, 0.6 );
+    background: rgba(255,255,255, 0.8);
+}
+
+#FTBF.FTBottom
+{
+    margin: 20px;
+    font-weight: normal;
+    margin: 20px 0px 20px 10px;
+}
+
+#findTour .FTBottom a
+{
+    display: inline-block;
+    height: 21px;
+    width: 82px;
+    margin-right: 4px;
+    text-align: center;
+    padding-top: 6px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+#findTour #FTHeader font
+{
+    display: inline-block;
+    background: url(../images/find_tour_sep.png ) no-repeat right top;
+    width: 41px;
+    height: 31px;
+}
+
+#findTour #FTHeader #FTForm
+{
+    color: #cd3301;
+    font-size: 14px;
+    font-weight: bold;
+
+}
 .CItem{ margin-top: 27px;overflow: hidden; }
 
 .CItem, #sectionMenu .CItem, .centrItem
@@ -2294,7 +2381,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     background: rgba( 255,255,255, 0.2 );
 }
 
-#userCabinet #logOut
+#userCabinet #logOut, .FTBottom
 {
     font-size: 11px;
     line-height: 10px;
