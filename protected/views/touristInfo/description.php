@@ -24,7 +24,7 @@ $this->widget('addressLineWidget', array(
         </div>
         <?= $item->description ?>
     </div>
-
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
     <?php $this->widget( "formNoteWidget", array( "type"=>"infoErrorNote" ) ); ?>
 
     <div class="hr">&nbsp;</div>

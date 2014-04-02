@@ -57,6 +57,7 @@ $images = ImageHelper::getImages( $item );
             </p>
         </div>
     </div>
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($otherHotels)>0 ) : ?>

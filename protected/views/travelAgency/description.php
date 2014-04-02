@@ -26,6 +26,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
 
 ?>
 <div id="InnerText" class="innerPage">
+    <br/>
     <?php
     SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
@@ -110,4 +111,6 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
 </div>

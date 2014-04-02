@@ -17,6 +17,7 @@ $this->widget('addressLineWidget', array(
         <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="<?= $item->name ?>" /></div><?php endif; ?>
         <?= $item->description ?>
     </div>
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($other)>0 ) : ?>

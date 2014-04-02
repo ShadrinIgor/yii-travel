@@ -66,4 +66,5 @@ $this->widget('addressLineWidget', array(
             </div>
         </div>
     <?php endif; ?>
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
 </div>

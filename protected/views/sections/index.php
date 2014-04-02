@@ -26,4 +26,5 @@ $this->widget('addressLineWidget', array(
     <div id="s_curorts_page" class="pageTab<?= $activeTab == "s_curorts" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "curorts", array( "item"=>$item, "items"=>$curorts, "curortsCount"=>$curortsCount, "offset"=>$offset, "page"=>$c_page ) ) ?>
     </div>
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
 </div>

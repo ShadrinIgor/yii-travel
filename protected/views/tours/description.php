@@ -52,6 +52,7 @@ $this->widget('addressLineWidget', array(
             <a class="OrderRequest LPLink" href="#" title=Забронировать тур <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>">забронировать</a><br/>
         </div>
     </div>
+    <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($otherTours)>0 ) : ?>

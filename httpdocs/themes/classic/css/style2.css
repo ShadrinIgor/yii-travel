@@ -271,14 +271,11 @@
 #share
 {
 	float: left;
-	width: 234px;
-	height:74px;
-	background:#E5F6FE;
 	padding:3px;
 	color:#475071;
 	font-size: 11px;
 }
-#share a{display:block;width:32px;height:31px;}
+.SC a{display:block;width:32px;height:31px;}
 #Main #CB_01 { width:32px;height:31px;background:url( ../images/share_01.jpg );margin-right:1px; }
 #Main #CB_02 { width:32px;height:31px;background:url(../images/share_02.jpg );margin-right:1px; }
 #Main #CB_03 { width:32px;height:31px;background:url( ../images/share_03.jpg );margin-right:1px; }
@@ -286,8 +283,9 @@
 #Main #CB_05 { width:32px;height:31px;background:url( ../images/share_05.jpg );margin-right:1px; }
 #Main #CB_06 { width:32px;height:31px;background:url( ../images/share_06.jpg );margin-right:1px; }
 
-#share ul {padding:0px;margin: 3px 0px 0 7px;}
-#Main #share li {list-style: none outside none;display: inline-block;margin:0px;padding:0px;}
+.SC ul {padding:0px;margin: 3px 0px 0 7px;}
+#socialLinks{text-align: center}
+#Main .SC li {list-style: none outside none;display: inline-block;margin:0px;padding:0px;}
 #share div{padding-left: 7px;margin-top: 4px;}
 
 #comemts { float:left;width: 100%;margin-top: 20px; }
