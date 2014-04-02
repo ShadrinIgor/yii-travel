@@ -349,15 +349,15 @@ img
     vertical-align: top;
 }
 
-#FTFormTab
+.FTFormTab
 {
     margin: 0px 16px;
     color: #fff;
     font-weight: bold;
 }
 
-#FTFormTab p{margin: 3px 0px;text-align: right;text-shadow: 0px 0px 3px #000;}
-#FTFormTab p select
+.FTFormTab p{margin: 3px 0px;text-align: right;text-shadow: 0px 0px 3px #000;}
+.FTFormTab p select
 {
     border:1px solid #888;
     border-radius: 6px;
@@ -374,28 +374,34 @@ img
     margin: 20px 0px 20px 10px;
 }
 
-#findTour .FTBottom a
+#findTour .FTBottom input[type=submit]
 {
-    display: inline-block;
-    height: 21px;
-    width: 82px;
-    margin-right: 4px;
-    text-align: center;
-    padding-top: 6px;
+    background: transparent;
+    border: 0px;
     color: #fff;
     font-weight: bold;
-    font-size: 11px;
+    width: 80px;
+    margin-right: 7px;
 }
 
 #findTour #FTHeader font
 {
     display: inline-block;
-    background: url(../images/find_tour_sep.png ) no-repeat right top;
     width: 41px;
     height: 31px;
 }
 
-#findTour #FTHeader #FTForm
+#findTour #FTHeader .FTFormSepar
+{
+    background: url(../images/find_tour_sep.png ) no-repeat right top;
+}
+
+#findTour #FTHeader .FTHotelsSepar
+{
+    background: url(../images/find_tour_sep.png ) no-repeat right -31px;
+}
+
+#findTour #FTHeader .FTActive
 {
     color: #cd3301;
     font-size: 14px;
