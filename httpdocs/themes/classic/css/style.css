@@ -2460,25 +2460,26 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 .CLISelected{background: rgba(0,100,255, 0.4);padding-left: 10px;}
 .CLISelected a{color: #fff;}
+.SC{text-align: center;}
 .SC div
 {
     border-radius: 8px;
     padding: 5px 20px;
     display: inline-block;
-    box-shadow: inset -2px -4px 16px 3px rgba(0,0,0,0.6), 0px 0px 15px rgba( 0, 0, 0 , 1 );
-    border: 3px solid #fff;
+    box-shadow: inset -1px -2px 15px 1px rgba(0,0,0,0.6), 0px 0px 5px rgba( 0, 0, 0 , 1 );
+    border: 2px solid #fff;
     /* IE10 */
-    background-image: -ms-linear-gradient(top, #009900 0%, #00FF66 100%);
+    background-image: -ms-linear-gradient(top, #83d81e 0%, #b8ee34 100%);
     /* Mozilla Firefox */
-    background-image: -moz-linear-gradient(top, #009900 0%, #00FF66 100%);
+    background-image: -moz-linear-gradient(top, #83d81e 0%, #b8ee34 100%);
     /* Opera */
-    background-image: -o-linear-gradient(top, #009900 0%, #00FF66 100%);
+    background-image: -o-linear-gradient(top, #83d81e 0%, #b8ee34 100%);
     /* Webkit (Safari/Chrome 10) */
-    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #83d81e), color-stop(1, #b8ee34));
     /* Webkit (Chrome 11+) */
-    background-image: -webkit-linear-gradient(top, #009900 0%, #00FF66 100%);
+    background-image: -webkit-linear-gradient(top, #83d81e 0%, #b8ee34 100%);
     /* Proposed W3C Markup */
-    background-image: linear-gradient(top,#009900 0%, #00FF66 100%);
+    background-image: linear-gradient(top,#83d81e 0%, #b8ee34 100%);
 }
 
 #share.SC div
@@ -2486,5 +2487,5 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     box-shadow: inset -2px -4px 16px 3px rgba(0,0,0,0.6), 0px 0px 5px rgba( 0, 0, 0 , 1 );
 }
 
-.SC font{color:#fff;font-weight: bold;}
-.SC li a{border-radius: 3px;}
+.SC font{color:#cd3301;font-weight: bold;}
+.SC li a{border-radius: 3px;box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.6);}
