@@ -24,6 +24,7 @@ class SubscribeActionController extends Controller
         $save = Yii::app()->request->getParam( "save", "" );
         $id = (int) Yii::app()->request->getParam("id", 0 );
 
+        $message = "";
         if( $save == "ok" )$message = "Данные успешно сохраненны";
 
         if( $id )$item = SubscribeItems::fetch( $id );

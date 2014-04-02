@@ -15,6 +15,8 @@ class SubscribeItems extends CCModel
     protected $status_id; // integer 
     protected $date; // integer 
     protected $date_start; // integer 
+    protected $users; // integer 
+    protected $users_list; // string 
 
 /*
 * Поля - связи
@@ -43,13 +45,14 @@ class SubscribeItems extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, subject, status_id, date, date_start', 'required'),
-			array('pos, del, date, date_start', 'numerical', 'integerOnly'=>true),
+			array('name, subject, status_id, date, users', 'required'),
+			array('pos, del, date, date_start, users', 'numerical', 'integerOnly'=>true),
 			array('name, subject', 'length', 'max'=>150),
-            array('name, group_id, subject, description, pos, del, status_id, date, date_start', 'safe'),
+			array('description, users_list', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, group_id, subject, description, pos, del, status_id, date, date_start', 'safe', 'on'=>'search'),
+			array('date, date_start, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe'),
+            array('id, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -76,20 +79,15 @@ class SubscribeItems extends CCModel
 			'id' => 'ID',
 			'name' => 'Name',
 			'group_id' => 'Group',
-            'status_id' => 'Status',
 			'subject' => 'Subject',
 			'description' => 'Description',
 			'pos' => 'Pos',
 			'del' => 'Del',
+			'status_id' => 'Status',
 			'date' => 'Date',
 			'date_start' => 'Date Start',
 		);
 	}
-
-    public function fieldType()
-    {
-        return array_merge( parent::fieldType(), array( "date_start"=>"date" ) );
-    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -112,6 +110,8 @@ class SubscribeItems extends CCModel
 		$criteria->compare('status_id',$this->status_id);
 		$criteria->compare('date',$this->date);
 		$criteria->compare('date_start',$this->date_start);
+		$criteria->compare('users',$this->users);
+		$criteria->compare('users_list',$this->users_list,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
