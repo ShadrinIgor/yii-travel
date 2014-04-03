@@ -39,4 +39,5 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
         </tr>
     </table>
     <?php echo CHtml::endForm(); ?>
+    <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
 </div>

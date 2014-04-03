@@ -16,12 +16,12 @@ class CatalogFirmsBannersAdd extends CatalogFirmsBanners
 			array('name, date, type_id, firm_id, user_id, position_id', 'required'),
 			array('type_id, file, firm_id, user_id, date, active, pos, col, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
-			array('link, type, file', 'length', 'max'=>255),
+			array('link, type_id, file', 'length', 'max'=>255),
             array( 'name', "checkFile" ),
-            array('name, link, type_id, file, date, firm_id, user_id, position_id, active, pos, col, del', 'safe'),
+            array('name, link, type_id, file, date, firm_id, user_id, position_id, pos, col, del', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, link, type, file, date, firm_id, user_id, position_id, active, pos, col, del', 'safe', 'on'=>'search'),
+			array('id, name, link, type_id, file, date, firm_id, user_id, position_id, active, pos, col, del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -36,7 +36,6 @@ class CatalogFirmsBannersAdd extends CatalogFirmsBanners
             'type_id' => 'Тип баннера',
             'position_id' => 'Позиция баннера',
             'file' => 'Файл',
-            'active' => 'Опубликовать',
         );
     }
 }

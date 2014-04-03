@@ -222,7 +222,7 @@ class CCModelHelper
                     switch( $fieldType[ $field ] )
                     {
                         case "url"             : $input = '<a href="'.$form->$field.'" target="_blank">'.$form->$field.'</a>'; break;
-                        case "email"           : $input = '<div><a href="#" onclick="$(this.parentNode).load(\''.SiteHelper::createUrl("site/getInfo", array("catalog"=>"catalogFirms", "id"=>$form->id, "field"=>"email")).'\' ); return false;"> [ показать email ]</a></div>'; break;
+                        case "email"           : $input = '<div><a href="#" onclick="$(this.parentNode).load(\''.SiteHelper::createUrl("site/getInfo", array("catalog"=>"CatalogFirms", "id"=>$form->id, "field"=>"email")).'\' ); return false;"> [ показать email ]</a></div>'; break;
                         case "date"            : $input = date( "Y-m-d", $form->$field );break;
                         case "checkbox"        : $input = "+"; break;
                         case "visual_textarea" : $input = $form->$field; break;

@@ -45,5 +45,6 @@
                 </td>
             </tr>
         </table>
+        <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
     </form>
 </div>

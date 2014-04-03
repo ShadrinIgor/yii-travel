@@ -102,6 +102,11 @@ class DefaultController extends Controller
 
             $this->render('profile', array( "form"=>$user, "arrayCountry"=>$arrayCountry ));
         }
+            else
+            {
+                Yii::app()->session['redirect'] = SiteHelper::createUrl("/user/default/Profile");
+                $this->redirect("/user");
+            }
     }
 
     public function actionRegistration()

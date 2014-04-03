@@ -30,8 +30,9 @@
                 </td>
             </tr>
         </table>
-    </form>
 
+    </form>
+    <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
     <?php if( $item->id>0 ) : ?>
         <br/>
         <?php if( sizeof( $listComments )>0 ) : ?>

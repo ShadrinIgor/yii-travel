@@ -34,6 +34,7 @@ $this->widget('addressLineWidget', array(
                 <input type="submit" name="update_tree" value="Сохранить" /></td>
         </tr>
     </table>
+        <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
 </form>
 <br/>
 

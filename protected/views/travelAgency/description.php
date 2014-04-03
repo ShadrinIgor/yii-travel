@@ -84,6 +84,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                 CCModelHelper::infoForm( $item )
                 ?>
             </table>
+
             <div id="orderInfo" class="displayNone">
                 <b>Туристическое агентсво - <?= $item->name ?></b><br/>
                 <p>Для бронирования или уточнения информации по турам необходимо связаться с менеджером компании <?= $item->name ?>.</p>
@@ -91,7 +92,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                     <b>контакты компании:</b><br/>
                     <?php if( $item->tel ) : ?>Телефон: <?= $item->tel ?><br/><?php endif; ?>
                     <?php if( $item->fax ) : ?>Факс: <?= $item->fax ?><br/><?php endif; ?>
-                    <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogFirms", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ Показать Email ]</a></span><br/><?php endif; ?>
+                    <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"CatalogFirms", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ Показать Email ]</a></span><br/><?php endif; ?>
                     <?php if( $item->www ) : ?>Сайт: <a href="<?= $item->www ?>" target="_blank"><?= $item->www ?></a><br/><?php endif; ?>
                     <?php if( $item->address ) : ?><b>Адресс:</b> <?= $item->address ?><?php endif; ?>
                 <div class="cMore">

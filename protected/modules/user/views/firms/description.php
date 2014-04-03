@@ -121,6 +121,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
             </td>
         </tr>
     </table>
+    <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
 </form>
     <?php $this->widget( "formNoteWidget" ) ?>
 </div>

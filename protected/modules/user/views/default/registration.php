@@ -44,4 +44,5 @@
     </table>
 <?php endif; ?>
 <?php echo CHtml::endForm(); ?>
+    <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
 </div>

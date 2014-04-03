@@ -54,4 +54,5 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
         </table>
         <?php echo CHtml::endForm(); ?>
     <?php endif; ?>
+    <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
 </div>
