@@ -48,13 +48,18 @@ class SubscribeItems extends CCModel
 			array('name, subject, status_id, date, users', 'required'),
 			array('pos, del, date, date_start, users', 'numerical', 'integerOnly'=>true),
 			array('name, subject', 'length', 'max'=>150),
-			array('description, users_list', 'safe'),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('date, date_start, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe'),
             array('id, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe', 'on'=>'search'),
 		);
 	}
+
+    public function fieldType()
+    {
+        return array_merge( parent::fieldType(), array( "date_start"=>"date" ) );
+    }
 
 	/**
 	 * @return array relational rules.

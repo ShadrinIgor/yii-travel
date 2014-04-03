@@ -12,7 +12,6 @@
 </table>
 
     <h2>Адресаты</h2>
-
 <table align="center" class="editTable">
     <tr>
         <th>Все пользователи:</th>

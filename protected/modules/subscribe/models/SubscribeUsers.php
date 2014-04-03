@@ -10,6 +10,7 @@ class SubscribeUsers extends CCModel
     protected $name; // string 
     protected $del; // integer 
     protected $pos; // integer 
+    protected $group_id; // integer 
 
 /*
 * Поля - связи
@@ -37,12 +38,13 @@ class SubscribeUsers extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email', 'required'),
+			array('email, group_id', 'required'),
 			array('del, pos', 'numerical', 'integerOnly'=>true),
 			array('email, name', 'length', 'max'=>150),
+            array('id, email, name, del, pos, group_id', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, email, name, del, pos', 'safe', 'on'=>'search'),
+			array('id, email, name, del, pos, group_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +56,7 @@ class SubscribeUsers extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'group' => array(self::BELONGS_TO, 'SubscribeGroups', 'group_id'),
 		);
 	}
 
@@ -68,6 +71,7 @@ class SubscribeUsers extends CCModel
 			'name' => 'Name',
 			'del' => 'Del',
 			'pos' => 'Pos',
+			'group_id' => 'Group',
 		);
 	}
 
@@ -87,6 +91,7 @@ class SubscribeUsers extends CCModel
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('pos',$this->pos);
+		$criteria->compare('group_id',$this->group_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

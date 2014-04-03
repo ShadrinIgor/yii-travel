@@ -1,4 +1,8 @@
 <h1>Рассылки</h1>
+<div class="textAlignCenter">
+    <a href="<?= SiteHelper::createUrl("/console/subscribe/users") ?>">Список новых пользователей |</a>
+</div>
+<br/>
 <div id="consoleRightBlock">
     <b>Категории</b><br/>
     <?php foreach( $listCroup as $category ) : ?>

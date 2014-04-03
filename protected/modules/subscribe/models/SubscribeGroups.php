@@ -14,6 +14,7 @@ class SubscribeGroups extends CCModel
 * Поля - связи
 */
     protected $subscribeItems; //  SubscribeItems
+    protected $subscribeUsers; //  SubscribeUsers
 
 
     public function attributeNames()
@@ -40,10 +41,10 @@ class SubscribeGroups extends CCModel
 			array('name', 'required'),
 			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
+            array('id, name, pos, del', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, pos, del', 'safe'),
-            array('id, name, pos, del', 'safe', 'on'=>'search'),
+			array('id, name, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,6 +57,7 @@ class SubscribeGroups extends CCModel
 		// class name for the relations automatically generated below.
 		return array(
 			'subscribeItems' => array(self::HAS_MANY, 'SubscribeItems', 'group_id'),
+			'subscribeUsers' => array(self::HAS_MANY, 'SubscribeUsers', 'group_id'),
 		);
 	}
 

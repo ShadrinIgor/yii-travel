@@ -19,8 +19,9 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
     ?>
     <?php echo CHtml::form('','post',array('enctype'=>'multipart/form-data', 'id'=>'validateForm')); ?>
     <h1>Персональная информация</h1>
-    <?= CHtml::errorSummary($form); ?><br>
-    <?= $form->getMessage() ?><br>
+    <?= CHtml::errorSummary($form); ?><br/>
+    <?= $form->getMessage() ?>
+    <?php $this->widget( "formNoteWidget", array( "type"=>"profileNote" ) ) ?>
     <table border="0" width="500" cellpadding="6" cellspacing="6" class="tableForm">
        <?= CCModelHelper::addForm( $form ) ?>
         <tr class="trNoBorder">
