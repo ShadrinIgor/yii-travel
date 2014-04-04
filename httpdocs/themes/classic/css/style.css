@@ -2404,7 +2404,8 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 {
     vertical-align: top;
     text-align: left;
-    width: 375px;
+    margin: 3px 0px;
+    width: 373px;
     display: inline-block;
     text-indent: 0px;
     border: 2px solid #fff;
