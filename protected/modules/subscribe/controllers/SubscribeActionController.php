@@ -124,11 +124,18 @@ class SubscribeActionController extends Controller
         {
             $model->setAttributesFromArray( $_POST[ "SubscribeUsers" ] );
 
-            if($model->save())
+            // проверяем email среди уже существующих
+            $checkEmail = CatalogUsers::findByAttributes( array( "email"=>$model->email ) );
+
+            if( sizeof($checkEmail) == 0 )
             {
-                $this->redirect( SiteHelper::createUrl("/console/subscribe/userEdit", array( "id"=>$model->id, "save"=>"ok" ) ) );
+                if( $model->save())
+                {
+                    $this->redirect( SiteHelper::createUrl("/console/subscribe/userEdit", array( "id"=>$model->id, "save"=>"ok" ) ) );
+                }
+                    else $this->actionUserEdit( print_r( $model->getErrors(), true ) );
             }
-            else $this->actionUserEdit( print_r( $model->getErrors(), true ) );
+                else $this->actionUserEdit( print_r( "Такой Email уже зарегестрирован в системе", true ) );
         }
     }
 

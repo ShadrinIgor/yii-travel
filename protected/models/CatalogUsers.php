@@ -26,6 +26,7 @@ class CatalogUsers extends CCModel
     protected $amount; // integer 
     protected $pos; // integer
     protected $pass;
+    protected $subscribe;
 
 /*
 * Поля - связи
@@ -63,7 +64,7 @@ class CatalogUsers extends CCModel
 		// will receive user inputs.
 		return array(
 			array('name, password, email, type_id', 'required'),
-			array('del, active, last_visit, amount, country_id, city_id, type_id, desktop', 'numerical', 'integerOnly'=>true),
+			array('subscribe, del, active, last_visit, amount, country_id, city_id, type_id, desktop', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>35),
 			array('password, image', 'length', 'max'=>255),
 			array('surname, fatchname', 'length', 'max'=>25),
@@ -72,7 +73,7 @@ class CatalogUsers extends CCModel
             array('email', 'check_exists_email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('pass, pos, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
+			array('subscribe, pass, pos, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
             array('id, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
 		);
 	}

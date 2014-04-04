@@ -112,6 +112,33 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model, "content"=>$pageInfo));
 	}
 
+    public function actionUnSubscribe()
+    {
+        $email = Yii::app()->request->getParam("email", "");
+        $hash = Yii::app()->request->getParam("hash", "");
+        $hashCheck = substr( md5( md5( $email ) ), 3, 8 );
+        $error = "";
+
+        if( $hash == $hashCheck )
+        {
+            Yii::import("modules.subscribe.models.*");
+            $emailModel = CatalogUsers::findByAttributes( array( "email"=>$email ) );
+            if( $emailModel[0]->subscribe == 1 )
+            {
+                $emailModel[0]->subscribe = 0;
+                $emailModel[0]->save();
+            }
+
+            $emailModel2 = SubscribeUsers::findByAttributes( array( "email"=>$email ) );
+            if( sizeof( $emailModel2 ) )
+            {
+                $emailModel2[0]->delete();
+            }
+            $this->render( "unSubscribe" );
+        }
+            else throw new CHttpException("Ошибка","Неправельный адресс, проверьте адррес.");
+    }
+
 /*
 	/**
 	 * Displays the login page
