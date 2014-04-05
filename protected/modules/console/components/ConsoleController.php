@@ -16,7 +16,8 @@ class ConsoleController extends Controller
         if ( Yii::app()->user->isGuest )
         {
             $controller = Yii::app()->controller->getId();
-            if( $controller != "default" || ( $action->getId() != 'login' && $action->getId() != 'index' ) )
+
+            if( $controller != "default" || ( $action->getId() != 'login' && $action->getId() != 'index' && $action->getId() != 'captcha' ) )
                 $this->redirect('/console/default/login');
         }
             else

@@ -14,14 +14,7 @@ $this->listCssFiles[] = $baseUrl.'/css/jquery/validationEngine.jquery.css';
         <tr>
             <td colspan="2" align="center">
                 <table>
-                <tr>
-                    <th width="150"><?php echo CHtml::activeLabel($form, 'email'); ?><font class="redColor">*</font></th>
-                    <td><?php echo CHtml::activeTextField($form, 'email', array( 'class'=>'validate[required,custom[email]]' )) ?></td>
-                </tr>
-                <tr>
-                    <th><?php echo CHtml::activeLabel($form, 'password'); ?><font class="redColor">*</font></th>
-                    <td><?php echo CHtml::activePasswordField($form, 'password', array( 'class'=>'validate[required]' )) ?></td>
-                </tr>
+                    <?= CCModelHelper::addForm( $form, true, $this ) ?>
                 <tr>
                     <td></td>
                     <td align="left">

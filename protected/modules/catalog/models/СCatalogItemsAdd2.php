@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_items".
    */
-class CatalogItemsAdd extends CatalogItems
+class CatalogItemsAdd2 extends CatalogItems2
 {
 	/**
 	 * @return array validation rules for model attributes.

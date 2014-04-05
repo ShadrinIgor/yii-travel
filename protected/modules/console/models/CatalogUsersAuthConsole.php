@@ -5,6 +5,7 @@
    */
 class CatalogUsersAuthConsole extends CatalogUsers
 {
+    var $captcha;
  	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -18,9 +19,11 @@ class CatalogUsersAuthConsole extends CatalogUsers
 			array('password', 'length', 'max'=>255),
             array('email', 'check_exists_params'),
             array('type_id', 'check_type'),
+            array( 'captcha', 'captcha' ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('last_visit', 'safe'),
+            array('email, password', 'safe'),
+
 		);
 	}
 
@@ -65,19 +68,8 @@ class CatalogUsersAuthConsole extends CatalogUsers
     public function attributeLabels()
     {
         return array(
-            'id' => 'ID',
-            'del' => 'Del',
-            'name' => 'Name',
-            'active' => 'Active',
-            'password' => 'Password',
-            'surname' => 'Surname',
-            'fathname' => 'Father name',
             'email' => 'Email',
-            'country' => 'Country',
-            'city' => 'City',
-            'type_id' => 'Type',
-            'image' => 'Image',
-            'country_other' => 'Country Other',
+            'password' => 'Password',
         );
     }
 

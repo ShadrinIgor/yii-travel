@@ -328,9 +328,9 @@ img
     height: 200px;
     margin-left: 10px;
     border-radius: 8px;
-    /* Webkit (Safari/Chrome) */ -webkit-box-shadow: 4px 4px 7px 0px #CCCCCC;
-    /* Mozilla Firefox */ -moz-box-shadow: 4px 4px 7px 0px #CCCCCC;
-    /* Proposed W3C Markup */ box-shadow: 4px 4px 7px 0px #CCCCCC;
+    /* Webkit (Safari/Chrome) */ -webkit-box-shadow:0 0 8px rgba(0, 0, 0, 0.8);
+    /* Mozilla Firefox */ -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    /* Proposed W3C Markup */ box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
     margin-bottom: 15px;
 }
 
@@ -2077,6 +2077,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     background: -ms-linear-gradient(top, #ffffff, #f2d3d3); /* IE10 */
     background: linear-gradient(top, #ffffff, #f2d3d3); /* CSS3 */
     margin: 10px 25px 0px 25px;
+    text-align: left;
 }
 
 .messageSummary
