@@ -23,6 +23,33 @@ if( $categoryModel->id == 0 )
     <?php endif; ?>
 
     <?= $addModel->getMessage() ?>
+    <div class="textAlignCenter">
+        <a href="#" class="openDisplayNone addButton" title="добавить бесплатно туристическое объявление">+ добавить объявление</a>
+        <br/>
+
+        <?php $countErrors = sizeof( $addModel->getErrors() );  ?>
+        <div class="<?= $countErrors == 0 ? "displayNone " : "" ?> addForm">
+            <?php if( !Yii::app()->user->isGuest ) : ?>
+                <?= CHtml::errorSummary( $addModel ) ?>
+                <form action="<?= SiteHelper::createUrl( "/adsUsers/save" ) ?>" enctype="multipart/form-data" method="post">
+                    <table class="tableForm" align="center" width="400">
+                        <?= CCModelHelper::addForm( $addModel ) ?>
+                        <tr>
+                            <th colspan="2" class="textAlignCenter">
+                                <input type="submit" name="add_new" value="Отправить" />
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            <?php else : ?>
+                <center><b>Для добавления необходимо авторизоваться</b></center>
+                <?php
+                Yii::app()->session['redirect'] = SiteHelper::createUrl("/adsUsers");
+                $this->widget( "authWidget" )
+                ?>
+            <?php endif; ?>
+        </div>
+    </div>
     <?php
     foreach( $items as $item ) :
         ?>
@@ -34,13 +61,20 @@ if( $categoryModel->id == 0 )
             $listImages = ImageHelper::getImages( $item, $countImages );
             if( sizeof( $listImages ) >0 || $item->image ) : ?>
                 <div class="listItemsImages">
-                    <?php if( $item->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $item->image, 3 ) ?>" alt="" /></div><?php endif; ?>
+                    <?php if( $item->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="" /></div><?php endif; ?>
                     <?php
                     if( $item->image )$i=2;
-                    else $i=1;
-                    foreach( $listImages as $LItem ) : ?>
-                        <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                        <?php $i++;endforeach; ?>
+                        else $i=1;
+
+                    foreach( $listImages as $LItem ) :
+                        if( $i == 1 )$imageSize = 2;
+                               else $imageSize = 3;
+                    ?>
+                        <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, $imageSize ) ?>" alt="" /></div>
+                    <?php
+                        $i++;
+                        endforeach;
+                    ?>
                 </div>
             <?php endif;?>
             <div class="LHeader">
@@ -61,31 +95,5 @@ if( $categoryModel->id == 0 )
         <center>--- Список пуст ---</center>
     <?php endif; ?>
     <hr/>
-    <div class="textAlignCenter">
-        <a href="#" class="openDisplayNone" title="добавить бесплатно туристическое объявление">[ добавить объявление ]</a>
-        <br/>
 
-        <?php $countErrors = sizeof( $addModel->getErrors() );  ?>
-        <div class="<?= $countErrors == 0 ? "displayNone " : "" ?> addForm">
-            <?php if( !Yii::app()->user->isGuest ) : ?>
-                <?= CHtml::errorSummary( $addModel ) ?>
-                <form action="<?= SiteHelper::createUrl( "/adsUsers/save" ) ?>" enctype="multipart/form-data" method="post">
-                    <table class="tableForm" align="center" width="400">
-                        <?= CCModelHelper::addForm( $addModel ) ?>
-                        <tr>
-                            <th colspan="2" class="textAlignCenter">
-                                <input type="submit" name="add_new" value="Отправить" />
-                            </th>
-                        </tr>
-                    </table>
-                </form>
-            <?php else : ?>
-                <center><b>Для добавления необходимо авторизоваться</b></center>
-                <?php
-                    Yii::app()->session['redirect'] = SiteHelper::createUrl("/adsUsers");
-                    $this->widget( "authWidget" )
-                ?>
-            <?php endif; ?>
-        </div>
-    </div>
 </div>

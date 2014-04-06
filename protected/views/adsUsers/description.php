@@ -39,15 +39,23 @@ $images = ImageHelper::getImages( $item );
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
     <div class="hr">&nbsp;</div>
 
-    <?php if( sizeof($otherHotels)>0 ) : ?>
-        <h2>Другие отели <?= $item->country_id->name_2 ?>,<?= $item->city_id->name ?></h2>
+    <?php if( sizeof($usersOther)>0 ) : ?>
+        <h2>Другие объяления пользователя</h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
-            <?php foreach( $otherHotels as $hotel ) : ?>
-                <?php $this->widget("hotelWidget", array( "item"=>$hotel )) ?>
+            <?php foreach( $usersOther as $hotel ) : ?>
+                <?php $this->widget("infoWidget", array( "class"=>"CatalogItems", "link"=>"/adsUsers", "title"=>$hotel->name )) ?>
             <?php endforeach; ?>
-            <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/hotels/country")."/".$item->slug ?>.html" class="cmore" title="все отели <?= $item->country_id->name_2 ?>">Смотреть все отели <?= $item->country_id->name_2 ?> ( <?= $hotelCount ?> отелей(я) )...</a>
-            </div>
         </div>
     <?php endif; ?>
+
+    <?php if( sizeof($otherHotels)>0 ) : ?>
+        <h2>Другие объяления категории</h2>
+        <div class="ITBlock ITBFirms ITBOthCountry">
+            <?php foreach( $otherHotels as $hotel ) : ?>
+                <?php $this->widget("infoWidget", array( "class"=>"CatalogItems", "link"=>"/adsUsers", "title"=>$hotel->name )) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+
 </div>

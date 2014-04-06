@@ -35,7 +35,7 @@
     <Div id="BRight">
         <div id="BRTitle"><a href=""><img src="<?= $Theme->getBaseUrl() ?>/images/logo_title.png" /></a></div>
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>
-        <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"><a href=""></a></div><div id="TrioMedal"><a href=""></a></div></div><?php endif; ?>
+        <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"></div><div id="TrioMedal"></div></div><?php endif; ?>
         <div id="BH1">
             <h1>Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, узбекистан</h1>
         </div>
@@ -118,10 +118,10 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/jobs" ) ?>" title="Работа" class="MenuJsClass" id="c8"></a>
+            <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="туристические частные объявления" class="MenuJsClass" id="c9"></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
-                    <div>Работы</div>
+                    <div>Частные объявления</div>
 
                     <br/>
                     Туристические компании, разделенные странам.
@@ -130,10 +130,10 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="туристические частные объявления" class="MenuJsClass" id="c9"></a>
+            <a href="<?= SiteHelper::createUrl( "/jobs" ) ?>" title="Работа" class="MenuJsClass" id="c8"></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
-                    <div>Частные объявления</div>
+                    <div>Работы</div>
 
                     <br/>
                     Туристические компании, разделенные странам.

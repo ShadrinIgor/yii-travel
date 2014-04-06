@@ -10,8 +10,7 @@ class CatalogItemsCategory extends CCModel
     protected $image; // string 
     protected $description; // string 
     protected $del; // integer 
-    protected $owner; // integer 
-    protected $table_name; // string 
+    protected $table_name; // string
     protected $pos; // integer 
     protected $slug; // integer
 /*
@@ -48,7 +47,7 @@ class CatalogItemsCategory extends CCModel
 			array('table_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('slug, name, image, description, del, table_name, pos, slug', 'safe'),
+			array('name, image, description, del, table_name, pos, slug', 'safe'),
 		);
 	}
 

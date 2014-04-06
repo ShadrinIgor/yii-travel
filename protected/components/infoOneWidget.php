@@ -9,6 +9,8 @@
 class infoOneWidget extends CWidget
 {
     var $item;
+    var $link = "";
+
     public function run()
     {
         $this->render( "info", array(

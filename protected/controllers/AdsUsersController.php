@@ -125,14 +125,15 @@ class AdsUsersController extends InfoController
         if( $id > 0 )
         {
             $item = CatalogItems::fetch( $id );
+            $item->setColView();
             if( $item->id >0 )
             {
                 Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(
                         "item" => $item,
-                        "otherHotels" => CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
-                        "hotelCount" => CatalogItems::count( DBQueryParamsClass::CreateParams()->setConditions( "category_id=:category_id" )->setParams( array( ":category_id"=>$item->category_id->id ) ) ),
+                        "otherHotels" => CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
+                        "usersOther" => CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id AND id!=:id")->setParams(array(":user_id"=>$item->user_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
                     ));
 
             }

@@ -25,6 +25,7 @@ class SiteHelper
             }
 
             if( get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
+                || get_class( $item ) == "CatalogItems" || get_class( $item ) == "CatalogItemsAdd"
                 || get_class( $item ) == "CatalogFirmsItems" || get_class( $item ) == "CatalogFirmsItemsAdd"
                     )$dopSlug = $item->id;
 
