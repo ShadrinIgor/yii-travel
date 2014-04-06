@@ -48,7 +48,7 @@ class CatalogItemsCategory extends CCModel
 			array('table_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('slug, name, image, description, del, owner, table_name, pos', 'safe'),
+			array('slug, name, image, description, del, table_name, pos, slug', 'safe'),
 		);
 	}
 
@@ -61,8 +61,6 @@ class CatalogItemsCategory extends CCModel
 		// class name for the relations automatically generated below.
 		return array(
 			'catalogItems' => array(self::HAS_MANY, 'CatalogItems', 'category_id'),
-			'owner0' => array(self::BELONGS_TO, 'CatalogItemsCategory', 'owner'),
-			'catalogItemsCategories' => array(self::HAS_MANY, 'CatalogItemsCategory', 'owner'),
 		);
 	}
 
@@ -77,7 +75,6 @@ class CatalogItemsCategory extends CCModel
 			'image' => 'Image',
 			'description' => 'Description',
 			'del' => 'Del',
-			'owner' => 'Owner',
 			'table_name' => 'Table Name',
             'slug'=>'slug',
 			'pos' => 'Pos',
@@ -100,7 +97,6 @@ class CatalogItemsCategory extends CCModel
 		$criteria->compare('image',$this->image,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('del',$this->del);
-		$criteria->compare('owner',$this->owner);
 		$criteria->compare('table_name',$this->table_name,true);
 		$criteria->compare('pos',$this->pos);
 

@@ -6,6 +6,7 @@
         <li><a href="<?= SiteHelper::createUrl("/user/firms" ) ?>" title="">Моя фирма</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/hotels" ) ?>" title="">Мои отели</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/resort" ) ?>" title="">Мои зоны отдыха</a></li>
+        <li><a href="<?= SiteHelper::createUrl("/user/items" ) ?>" title="">Частные объявления</a></li>
         <!--li><div class="hr"></div></li>
         <li><a href="<?= SiteHelper::createUrl("/user/work" ) ?>" title="">Мои вакансии</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/resume" ) ?>" title="">Мои резюме</a></li-->

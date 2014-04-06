@@ -303,7 +303,15 @@ return array(
                     array( "title"=>"Группы", "controller"=>"catalog", "params"=>"catalog=CatalogSections" ),
                 ),
             ),
-
+            array( "title"=>"частные объявления",
+                "items"=>array
+                (
+                    array( "title"=>"Объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
+                    array( "title"=>"Категории", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
+                    array( "title"=>"Срок публикации", "controller"=>"catalog", "params"=>"catalog=CatalogItemsTime" ),
+                    array( "title"=>"Статус", "controller"=>"catalog", "params"=>"catalog=CatalogItemsStatus" ),
+                ),
+            ),
             array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
             array( "title"=>"Текст. информация", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),

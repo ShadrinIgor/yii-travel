@@ -20,7 +20,7 @@
 
     $cs->registerScriptFile($baseUrl.'/js/jquery/jquery.js');
 
-    if( Yii::app()->controller->module && ( Yii::app()->controller->module->getId() == "console" ||  Yii::app()->controller->module->getId() == "user" ) )
+    if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "default" )
         $cs->registerScriptFile($baseUrl.'/js/tiny_mce/tiny_mce.js');
 
     $cs->registerScriptFile($baseUrl.'/js/functions.js');
@@ -52,7 +52,9 @@
     .RBTrio{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/trio.uz.jpg) no-repeat; }
 </style>
 
-<?php if( Yii::app()->controller->module && ( Yii::app()->controller->module->getId() == "console" ||  Yii::app()->controller->module->getId() == "user" ) ) :?>
+<?php
+
+if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "default" ) :?>
     <script type="text/javascript">
         if( $("#ConsoleMain").length == 0 )
         {

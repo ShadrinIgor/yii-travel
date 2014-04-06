@@ -340,7 +340,8 @@ class CCModelHelper
             // Если форма редактирования открыто в консоле то даем возможность выбора OWNER позиций
             if( !empty( Yii::app()->controller->module ) && Yii::app()->controller->module->getId() != "console" )
             {
-                foreach( $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0) )->setLimit(-1)->setOrderBy("pos, name") ) as $relationData )
+                $listItems = $formClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams( array(":owner"=>0) )->setLimit(-1)->setOrderBy("pos, name") );
+                foreach( $listItems as $relationData )
                 {
                     $cout .= '<optgroup label="'.$relationData->name.'">';
                     foreach( $formClass::findByAttributes( array("owner"=>$relationData->id) ) as $relationData2 )

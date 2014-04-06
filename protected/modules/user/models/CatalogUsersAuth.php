@@ -5,6 +5,7 @@
    */
 class CatalogUsersAuth extends CatalogUsers
 {
+    var $captcha;
  	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -14,14 +15,23 @@ class CatalogUsersAuth extends CatalogUsers
 		// will receive user inputs.
 		return array(
 
-			array('email, password', 'required'),
+			array('email, password, captcha', 'required'),
 			array('password', 'length', 'max'=>255),
             array('email', 'check_exists_params'),
+            array( 'captcha', 'captcha' ),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('last_visit', 'safe'),
+            array('email, password, last_visit', 'safe'),
 		);
 	}
+
+    public function attributeLabels()
+    {
+        return array(
+            'email' => 'email',
+            'password' => 'Пароль',
+        );
+    }
 
     public function check_exists_email()
     {}

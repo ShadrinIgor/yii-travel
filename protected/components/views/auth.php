@@ -3,14 +3,9 @@
     <?php echo CHtml::form('/user','post',array( 'id'=>'validateForm')); ?>
     <h1>Авторизация</h1>
     <table id="loginForm" align="center">
-        <tr>
-            <th width="150"><?php echo CHtml::activeLabel($form, 'email'); ?><font class="redColor">*</font></th>
-            <td><input class="validate[required,custom[email]]" name="CatalogUsersAuth[email]" id="CatalogUsersAuth_email" type="text"></td>
-        </tr>
-        <tr>
-            <th><?php echo CHtml::activeLabel($form, 'password'); ?><font class="redColor">*</font></th>
-            <td><input class="validate[required]" name="CatalogUsersAuth[password]" id="CatalogUsersAuth_password" type="password" maxlength="255"></td>
-        </tr>
+        <?=
+            CCModelHelper::addForm( $form, true, Yii::app()->controller )
+        ?>
         <tr>
             <td></td>
             <td align="left">

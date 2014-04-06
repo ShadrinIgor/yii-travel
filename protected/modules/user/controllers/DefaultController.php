@@ -215,7 +215,6 @@ class DefaultController extends Controller
                 }
 
                 $this->redirect( $this->createUrl( "/user" ) );
-
             }
         }
 

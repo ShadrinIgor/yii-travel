@@ -32,11 +32,22 @@
         <td>
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">
-                <?php /* if( $dateFinish>=time() && $item->is_hot ==0 && $item->status_id->id == 1 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/hot", array("id"=>$item->id)) ?>">Добавить в горячие</a><br/><?php endif;*/ ?>
-                <?php if( $dateFinish<time() || $item->status_id->id == 3 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/moderation", array("id"=>$item->id)) ?>">Опубликовать</a><br/><?php endif; ?>
-                <?php if( $dateFinish>=time() && $item->status_id->id == 1 ) : ?><a href="<?= SiteHelper::createUrl("/user/items/nopublish", array("id"=>$item->id)) ?>">Снять с публикации</a><br/><?php endif; ?>
+                <div>
+                    <?php if( $item->active == 1 ) : ?>
+                        <a href="#" class="publishLink" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$item->id, "catalog"=>"CatalogHotels")) ?>', '' );">Снять с публикации</a><br/>
+                    <?php else : ?>
+                        <a href="#" class="publishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$item->id, "catalog"=>"CatalogHotels")) ?>', '' );">Опубликовать</a><br/>
+                    <?php endif; ?>
+                </div>
                 <a href="<?= SiteHelper::createUrl("/user/items/description", array("id"=>$item->id)) ?>">Описание</a><br/>
-                <a href="<?= SiteHelper::createUrl("/user/items", array("delete"=>$item->id)) ?>">Удалить</a>
+                <div class="popup PMarginLeft">
+                    <br/>
+                    <b>Вы действительно хотите удалить запись?</b>
+                    <br/><br/>
+                    <a href="#" class="PCancel">Отмена</a>&nbsp;|&nbsp;
+                    <a href="<?= SiteHelper::createUrl("/user/items/delete", array("id"=>$item->id)) ?>">Удалить</a>
+                </div>
+                <a href="#" class="PDel">Удалить</a>
             </div>
         </td>
     </tr>
