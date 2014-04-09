@@ -247,12 +247,12 @@ class CatalogController extends ConsoleController
 
             if( empty( $find ) )
             {
-                $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(50)->setConditions( $this->DBparams )->setCache(0)->setPage($page) );
+                $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(50)->setConditions( $this->DBparams )->setOrderBy("id DESC")->setCache(0)->setPage($page) );
                 $allCount = $catalog::count( DBQueryParamsClass::CreateParams()->setLimit(-1)->setConditions( $this->DBparams )->setCache(0) );
             }
                 else
             {
-                $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(100)->setConditions( "( id='".$find."' OR ( name like '%".$find."%' OR description like '%".$find."%' ) )" )->setParams( array( ":find"=>$find ) )->setCache(0) );
+                $list = $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(100)->setConditions( "( id='".$find."' OR ( name like '%".$find."%' OR description like '%".$find."%' ) )" )->setParams( array( ":find"=>$find ) )->setOrderBy("id DESC")->setCache(0) );
                 $allCount = 0;
             }
 
