@@ -15,10 +15,10 @@ class CatalogUsersAuth extends CatalogUsers
 		// will receive user inputs.
 		return array(
 
-			array('email, password, captcha', 'required'),
+			array('email, password', 'required'),
 			array('password', 'length', 'max'=>255),
-            array('email', 'check_exists_params'),
             array( 'captcha', 'captcha' ),
+            array('email', 'check_exists_params'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
             array('email, password, last_visit', 'safe'),

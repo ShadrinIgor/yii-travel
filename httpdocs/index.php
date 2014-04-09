@@ -20,3 +20,5 @@ Yii::setPathOfAlias('configPath', dirname(__DIR__)."/protected".DIRECTORY_SEPARA
 
 Yii::createWebApplication($config)->run();
 
+
+

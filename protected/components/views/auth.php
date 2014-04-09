@@ -9,7 +9,7 @@
         <tr>
             <td></td>
             <td align="left">
-                <input type="submit" name="yt0" value="Авторизоватся">
+                <input type="submit" name="yt023" value="Авторизоватся">
             </td>
         </tr>
         <tr>

@@ -8,6 +8,12 @@
  */
 class SiteHelper
 {
+    public static function checkWWW( $www )
+    {
+        if( strpos( $www, "http://" ) === false )$www = "http://".$www;
+        return $www;
+    }
+
     public static function getSlug( CCModel $item )
     {
         if( empty( $item->slug ) || !$item->slug)

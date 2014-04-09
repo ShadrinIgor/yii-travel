@@ -37,14 +37,14 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
     overflow: hidden;
 }
 
-#BBLeft{ float: left;width: 531px;height: 332px; }
+#BBLeft{ float: left;width: 400px;height: 332px; }
 .MInnerPage #BBLeft{ width: 430px;height: 260px; }
 .MInnerPage #BBLeft img{height: 260px;}
-#BRight {float: right;width: 730px;}
+#BRight {float: right;width: 835px;}
 .MInnerPage #BRight{float: left;}
 #BRTitle{font-family:Myriad Pro;float: left;width: 641px;height: 87px;margin:90px 0px 0px 0px; }
 .MInnerPage #BRTitle img{height: 75px;}
-.MInnerPage #BRTitle{ margin:30px 30px 0px 10px; }
+.MInnerPage #BRTitle{ margin:30px 0px 0px 10px; }
 #BRHref{float: right;background: url(../images/logo_href.jpg) no-repeat;width: 49px;height: 204px;}
 #BRHref a{
     width: 197px;
@@ -67,8 +67,10 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
 #Menu1
 {
     position: absolute;
-    right: 0;
+    min-width: 1265px;
     top: 200px;
+    width: 100%;
+    max-width: 1500px;
 }
 
 .MInnerPage #Menu1{ top: 130px; }
@@ -99,7 +101,7 @@ img
 
 }
 
-#BannerBlock .BottomLink{position: absolute;color:#a4d1f2;margin: 0px;}
+#BannerBlock .BottomLink{position: absolute;color:#a4d1f2;margin: 0px;right: 0px;}
 
 #BH1{float: left;padding: 0px 0px 0px 0px;margin-left: 90px; }
 #BH1 h1{color:#f8893f;font-style: normal;font-weight: normal;margin: 0px;}
@@ -1941,7 +1943,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 #CIFind input[type=text], #CIFind select{ border: 1px solid #afafaf;border-radius: 8px;padding: 2px 5px;max-width: 200px; }
 #CIFind input[type=submit]{border-radius: 8px; }
-#BMedal{position: absolute;right: 0px;margin: 0px 20px 0px 0px;}
+#BMedal{float:left;margin: 0 20px 0 0px;width: 162px;}
 #TMedal{float:left;background: url(../images/t_medal.png); width: 80px;height: 116px;margin-top: -8px;}
 #TrioMedal{float:left;background: url(../images/trio_medal.png); width: 82px;height: 117px;margin-top: -8px;}
 #TMedal a, #TrioMedal a{display: block;width: 80px;height: 76px;margin-top: 32px;}
@@ -2202,25 +2204,25 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 .listItemsImages:hover .LII_1, .listItemsImages:hover .LII_2, .listItemsImages:hover .LII_3, .listItemsImages:hover .LII_4, .listItemsImages:hover .LII_5{box-shadow: 0px 0px 10px rgba(0,0,0,0.8);}
 
-.listItemsImages:hover .LII_2, #tableListItems tr:hover .LII_2
+#InnerText .listItems:hover .LII_2, .listItemsImages:hover .LII_2, #tableListItems tr:hover .LII_2
 {
     -webkit-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
 }
-.listItemsImages:hover .LII_3, #tableListItems tr:hover .LII_3
+#InnerText .listItems:hover .LII_3, .listItemsImages:hover .LII_3, #tableListItems tr:hover .LII_3
 {
     -webkit-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
 }
-.listItemsImages:hover .LII_4, #tableListItems tr:hover .LII_4
+#InnerText .listItems:hover .LII_4, .listItemsImages:hover .LII_4, #tableListItems tr:hover .LII_4
 {
     -webkit-animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
 }
-.listItemsImages:hover .LII_5, #tableListItems tr:hover .LII_5
+#InnerText .listItems:hover .LII_5, .listItemsImages:hover .LII_5, #tableListItems tr:hover .LII_5
 {
     -webkit-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
@@ -2606,4 +2608,25 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     background-image: -webkit-linear-gradient(top, #b8ee34 0%, #83d81e 100%);
     /* Proposed W3C Markup */
     background-image: linear-gradient(top,#b8ee34 0%, #83d81e 100%);
+}
+#captchaTD a{display: block;}
+
+#Cleft #authForm
+{
+    border-left: 3px solid #88ff00;
+    border-radius: 20px;
+
+    /* IE10 */
+    background-image: -ms-linear-gradient(left, rgba(136, 255, 0, 0.22) 0%, #FFFFFF 97%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(left, rgba(136, 255, 0, 0.22) 0%, #FFFFFF 97%);
+    /* Opera */
+    background-image: -o-linear-gradient(left, rgba(136, 255, 0, 0.22) 0%, #FFFFFF 97%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, rgba(136, 255, 0, 0.22)));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(left, rgba(136, 255, 0, 0.22) 0%, #FFFFFF 97%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(left,rgba(136, 255, 0, 0.22) 0%, #FFFFFF 97%);
+
 }

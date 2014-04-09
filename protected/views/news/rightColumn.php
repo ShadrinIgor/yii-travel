@@ -1,4 +1,5 @@
 <div id="Cleft">
+    <?php $this->widget("authWidget"); ?>
     <?php $this->widget("infoWidget", array( "title"=>"Информация туристу", "class"=>"CatalogInfo", "link"=>"/touristInfo" )); ?>
     <div id="keywords">
         <hr/>

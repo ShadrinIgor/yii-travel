@@ -1,5 +1,7 @@
 <div id="Cleft">
-    <?php $this->widget("authWidget"); ?>
+
+        <?php $this->widget("authWidget"); ?>
+
 
     <div class="BIBlock LeftMenu">
         <?php if( $this->beginCache( "umor", array('duration'=>3600) ) ) : ?>

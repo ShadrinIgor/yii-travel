@@ -5,6 +5,7 @@
         <?php foreach( $listCategory as $category ) : ?>
             <a <?= $activeCategory==$category->id ? 'class="selectCategory"' : "" ?> href="<?= SiteHelper::createUrl( "/console/catalog", array( "catalog"=>$catalogClass, "category_id"=>$category->id) ) ?>"><?= $category->name ?></a>
         <?php endforeach; ?>
+        <a <?= $activeCategory==$category->id ? 'class="selectCategory"' : "" ?> href="<?= SiteHelper::createUrl( "/console/catalog", array( "catalog"=>$catalogClass, "category_id"=>0) ) ?>">Вне категорий</a>
     </div>
 <?php endif; ?>
 <div>

@@ -1,0 +1,8 @@
+Options -indexes
+
+<files *.php>
+order allow,deny
+deny from all
+</files>
+
+

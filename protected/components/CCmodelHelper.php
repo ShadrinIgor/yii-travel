@@ -154,7 +154,7 @@ class CCModelHelper
                             else $selectedID = "";
 
                         $input .= '<select name="'.$classTable .'['.$fieldName.']" class="field_'.$fieldName.'">
-                                        <option value="0"> --- --- --- </option>';
+                                        <option value=""> --- --- --- </option>';
                         $input .= self::getRelationListOptions( $form, $fieldName, $relationItems, $selectedID );
                         $input .= '</select>';
                     }
@@ -177,9 +177,9 @@ class CCModelHelper
             $cout .=
                 '<tr>
                     <th width="150">'.Yii::t("system", "Verification code").': <font class="redColor">*</font></th>
-                    <td>';
+                    <td id="captchaTD">';
 
-            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '<br>['.Yii::t("system", "new code").']'), true);
+            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '['.Yii::t("system", "new code").']'), true);
             $cout .= CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' ));
 
             $cout .='
