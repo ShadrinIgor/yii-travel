@@ -2237,6 +2237,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 .colorRad, .redColor{color:#ff0000;}
 #dopMenu{overflow: hidden;margin: 0px auto 10px auto;text-align: center;}
+#dopMenu span{display: inline-block;padding: 2px 5px;margin-top: 2px;}
 #dopMenu a{display: inline-block;width: 180px;vertical-align: top;padding: 2px 5px;text-align:center;border-right: 1px solid #bfbfbf;margin-top: 2px;}
 #dopMenu.tourPage a{width: auto;}
 .emptyList{padding: 10px 0px;}
@@ -2260,6 +2261,8 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     z-index: 99999;
     right: 0;
     box-shadow: 0px 0px 5px;
+    text-align: center;
+    top: 400px;
 }
 
 .publish

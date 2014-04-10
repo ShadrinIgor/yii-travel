@@ -167,7 +167,7 @@
     <div id="trioLogo"><a href="http://www.trio.uz" title="Студия нового TRIO.uz!!!"><img src="<?= $Theme->getBaseUrl() ?>/images/trio.png" title="Студия нового TRIO.uz!!!"/></a></div>
 
     <div id="counters">
-        Возкла ошибка или есть вопросы, обращайтесь в нашу службу поддержки - <a href="mailto: <?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, мы обязательно Вам поможем.
+        Возникла ошибка или есть вопросы, обращайтесь в нашу службу поддержки - <a href="mailto: <?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, мы обязательно Вам поможем.
         <br/><br/>
     </div>
 
