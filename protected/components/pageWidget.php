@@ -15,6 +15,7 @@ class pageWidget extends CWidget
     var $description;
     var $category_id;
     var $keyWord;
+    var $sectionTextSlug;
     var $url = 'tours';
     var $order = "col DESC";
     var $sort = array(
@@ -175,6 +176,7 @@ class pageWidget extends CWidget
             $this->render( "page", array(
                 'items'     => $items,
                 'page'      => $page,
+                'sectionTextSlug' => $this->sectionTextSlug,
                 'catalog'   => $catalog,
                 'sort'      => $this->sort,
                 'sortField' => $sortField,

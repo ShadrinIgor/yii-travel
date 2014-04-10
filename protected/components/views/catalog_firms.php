@@ -1,7 +1,7 @@
 <?php foreach( $items as $item ) :
     ?>
     <div class="listItems">
-        <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug .".html", "туристическое агенство ".$item->country->name2." - ". SiteHelper::getStringForTitle( $item->name )  ) ?>
+        <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug .".html", "туристическое агенство ".$item->country_id->name2." - ". SiteHelper::getStringForTitle( $item->name )  ) ?>
         <div class="LHeader">
             <a title="туристическое агенство <?= SiteHelper::getStringForTitle( $item->name ) ?>" href="<?= SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
             <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>

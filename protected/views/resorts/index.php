@@ -10,6 +10,7 @@
                 "title"=>"Курорты, зоны отдыха, детские лагеря",
                 "description" => $this->description,
                 "keyWord" => $this->keyWord,
+                "sectionTextSlug" => "tekstovka-dlya-stranicy-kurorty",
                 "sort"=>
                     array(
                         array( "col", "просмотрам" ),

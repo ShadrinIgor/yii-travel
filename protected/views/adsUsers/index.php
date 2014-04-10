@@ -21,7 +21,7 @@ if( $categoryModel->id == 0 )
     <?php else : ?>
         <h1><?= $categoryModel->name ?><font>, туристические объявления</font></h1>
     <?php endif; ?>
-
+    <?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-chastnye-obyavleniya" ) ?>
     <?= $addModel->getMessage() ?>
     <div class="textAlignCenter">
         <a href="#" class="openDisplayNone addButton" title="добавить бесплатно туристическое объявление">+ добавить объявление</a>

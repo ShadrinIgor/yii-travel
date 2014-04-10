@@ -10,6 +10,7 @@
         "title"=>"Туристическая информация, информация для туристов",
         "description" => $this->description,
         "keyWord" => $this->keyWord,
+        "sectionTextSlug" => "tekstovka-dlya-stranicy-o-turizme",
         "sort"=>
         array(
             array( "col", "просмотрам" ),

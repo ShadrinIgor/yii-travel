@@ -3,6 +3,9 @@
     SiteHelper::renderDinamicPartial( "pageTop" );
 ?>
 <h1><?= $title ?></h1>
+<?php if( !empty( $sectionTextSlug ) ) : ?>
+    <?= SiteHelper::getAnimateText( $sectionTextSlug ) ?>
+<?php endif; ?>
 <div id="CIHeader" class="overflowHidden">
     <?php if( is_array( $arrSearchFields ) && sizeof($arrSearchFields)>0 ) : ?>
         <div id="CIFind">

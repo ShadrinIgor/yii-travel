@@ -1,7 +1,7 @@
 <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            'Акции и скидка от комании'
+            'Акции и скидка от компании'
             )
     ));
 ?>

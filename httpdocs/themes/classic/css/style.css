@@ -1904,7 +1904,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .ITBlock.ITBFirms.ITBOthCountry .IBIImage{height: 100px;width: 150px;max-height: none;}
 .IBIImage img{max-height: 100px;max-width: 120px;}
 .ITBlock.ITBFirms.ITBOthCountry img{max-height: 120px;max-width: 150px;}
-.pageList{ border-top: 1px solid #DC5800;text-align: center; }
+.pageList{border-top: 1px solid #DC5800;text-align: center;margin: 0px 0px 10px 0px;padding-top: 5px; }
 #FCCentr .pageList a{padding-right: 3px;font-size: 14px;}
 .pageList b{font-size: 16px;padding-right: 3px;}
 .radColor{color:#ff0000;}
@@ -2638,3 +2638,6 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     background-image: linear-gradient(left,rgba(136, 255, 0, 0.22) 0%, #FFFFFF 97%);
 
 }
+
+.sectionText{margin: 0px 10px;color: #6f6f6f;padding: 4px 0px;text-indent: 30px;}
+.sectionText p{padding: 0px;margin: 3px 0px;}

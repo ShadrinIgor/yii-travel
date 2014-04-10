@@ -1,4 +1,5 @@
 <h2>Отзывы/Сообщения</h2>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-otzyvy" ) ?>
 <?php $this->widget("listNoteWidget") ?>
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>

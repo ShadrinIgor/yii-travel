@@ -11,5 +11,6 @@
     "title"=>"Туры",
     "description" => $this->description,
     "keyWord" => $this->keyWord,
+    "sectionTextSlug" => "tekstovka-dlya-stranicy-tury",
 ) ) ?>
 </div>

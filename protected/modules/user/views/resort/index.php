@@ -5,6 +5,7 @@
     ));
 ?>
 <h1>Мои курорты/зоны отдыха/дачи</h1>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-zony-otdyxa" ) ?>
 <?php if( $message ) :?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>

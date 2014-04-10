@@ -1,4 +1,5 @@
-<h2>Акции/скидки компании</h2>
+<h2>Рекламные баннеры компании</h2>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-reklamnyi-banner" ) ?>
 <?php $this->widget("listNoteWidget") ?>
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>

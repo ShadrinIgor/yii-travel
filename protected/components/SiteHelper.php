@@ -8,6 +8,12 @@
  */
 class SiteHelper
 {
+    public static function getAnimateText( $slug )
+    {
+        $textModel = CatalogContent::fetchBySlug( $slug );
+        return '<div class="sectionText">'.$textModel->description.'</div>';
+    }
+
     public static function checkWWW( $www )
     {
         if( strpos( $www, "http://" ) === false )$www = "http://".$www;

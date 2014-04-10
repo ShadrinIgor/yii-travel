@@ -10,6 +10,7 @@
                 "title"=>"Отели",
                 "description" => $this->description,
                 "keyWord" => $this->keyWord,
+                "sectionTextSlug" => "tekstovka-dlya-stranicy-oteli",
                 "sort"=>
                     array(
                         array( "col", "просмотрам" ),

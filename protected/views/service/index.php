@@ -10,5 +10,6 @@
     "title"=>"Акции и скидка от комании",
     "description" => $this->description,
     "keyWord" => $this->keyWord,
+
 ) ) ?>
 </div>

@@ -5,6 +5,7 @@
     ));
 ?>
 <h1>Мои отели</h1>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-oteli" ) ?>
 <?php if( $message ) :?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>

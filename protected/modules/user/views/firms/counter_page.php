@@ -8,6 +8,7 @@
     $listBanners = CatalogFirmsBanners::findByAttributes( array( "firm_id"=>$item->id ) );
 ?>
 <h2>Статистика посещаемости</h2>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-statistika" ) ?>
 <table align="center">
     <tr>
         <th>Количесво просмотров страниц о компании: </th>

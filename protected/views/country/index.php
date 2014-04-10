@@ -10,6 +10,7 @@
         "title"=>"Страны",
         "description" => $this->description,
         "keyWord" => $this->keyWord,
+        "sectionTextSlug" => "tekstovka-dlya-stranicy-strany",
         "sort"=>
         array(
             array( "col", "просмотрам" ),

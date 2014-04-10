@@ -1,4 +1,5 @@
 <h2>Акции/скидки компании</h2>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-akcii" ) ?>
 <?php $this->widget("listNoteWidget") ?>
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
