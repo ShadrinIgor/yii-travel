@@ -32,6 +32,7 @@ if( $categoryModel->id == 0 )
             <?php if( !Yii::app()->user->isGuest ) : ?>
                 <?= CHtml::errorSummary( $addModel ) ?>
                 <form action="<?= SiteHelper::createUrl( "/adsUsers/save" ) ?>" enctype="multipart/form-data" method="post">
+                    <div class="messageSummary">После сохранения вы сможете добавить большее количество фотографий.</div>
                     <table class="tableForm" align="center" width="400">
                         <?= CCModelHelper::addForm( $addModel ) ?>
                         <tr>
@@ -41,6 +42,7 @@ if( $categoryModel->id == 0 )
                         </tr>
                     </table>
                 </form>
+                <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
             <?php else : ?>
                 <center><b>Для добавления необходимо авторизоваться</b></center>
                 <?php
@@ -54,29 +56,7 @@ if( $categoryModel->id == 0 )
     foreach( $items as $item ) :
         ?>
         <div class="listItems">
-            <?php
-            if( !$item->image )$countImages = 5;
-            else $countImages = 4;
-
-            $listImages = ImageHelper::getImages( $item, $countImages );
-            if( sizeof( $listImages ) >0 || $item->image ) : ?>
-                <div class="listItemsImages">
-                    <?php if( $item->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="" /></div><?php endif; ?>
-                    <?php
-                    if( $item->image )$i=2;
-                        else $i=1;
-
-                    foreach( $listImages as $LItem ) :
-                        if( $i == 1 )$imageSize = 2;
-                               else $imageSize = 3;
-                    ?>
-                        <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, $imageSize ) ?>" alt="" /></div>
-                    <?php
-                        $i++;
-                        endforeach;
-                    ?>
-                </div>
-            <?php endif;?>
+            <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/adsUsers/description")."/".$item->slug .".html" ) ?>
             <div class="LHeader">
                 <a title="<?= SiteHelper::getStringForTitle( $item->name )?>" href="<?= SiteHelper::createUrl( "/adsUsers/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
                 <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>
@@ -92,8 +72,6 @@ if( $categoryModel->id == 0 )
     <?php
     endforeach;
     if( !is_array( $items ) || sizeof( $items ) == 0 ) : ?>
-        <center>--- Список пуст ---</center>
+        <center><br/><br/><b>Список пока пуст, Ваше объявление может стать <u>первым</u> в данном разделе</b></center>
     <?php endif; ?>
-    <hr/>
-
 </div>

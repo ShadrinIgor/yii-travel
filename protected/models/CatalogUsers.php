@@ -24,22 +24,29 @@ class CatalogUsers extends CCModel
     protected $quote; // string 
     protected $desktop; // integer 
     protected $amount; // integer 
-    protected $pos; // integer
-    protected $pass;
-    protected $subscribe;
+    protected $pos; // integer 
+    protected $pass; // string 
+    protected $subscribe; // integer 
+    protected $icq; // string 
+    protected $skype; // string 
 
 /*
 * Поля - связи
 */
     protected $catalogFirms; //  CatalogFirms
+    protected $catalogFirmsBanners; //  CatalogFirmsBanners
+    protected $catalogFirmsComments; //  CatalogFirmsComments
+    protected $catalogFirmsItems; //  CatalogFirmsItems
+    protected $catalogFirmsServices; //  CatalogFirmsService
     protected $catalogHotels; //  CatalogHotels
     protected $catalogItems; //  CatalogItems
     protected $catalogKurorts; //  CatalogKurorts
     protected $catalogTours; //  CatalogTours
     protected $catalogWorks; //  CatalogWork
-    protected $favorites; //  Favorites
+    protected $exFavorites; //  ExFavorites
     protected $notifications; //  Notifications
     protected $orderRequests; //  OrderRequest
+    protected $subscribeSends; //  SubscribeSend
 
 
     public function attributeNames()
@@ -74,7 +81,7 @@ class CatalogUsers extends CCModel
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('subscribe, pass, pos, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
-            array('id, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe', 'on'=>'search'),
+			array('id, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount, pos, pass, subscribe, icq, skype', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -168,18 +175,23 @@ class CatalogUsers extends CCModel
 		// class name for the relations automatically generated below.
 		return array(
 			'catalogFirms' => array(self::HAS_MANY, 'CatalogFirms', 'user_id'),
+			'catalogFirmsBanners' => array(self::HAS_MANY, 'CatalogFirmsBanners', 'user_id'),
+			'catalogFirmsComments' => array(self::HAS_MANY, 'CatalogFirmsComments', 'user_id'),
+			'catalogFirmsItems' => array(self::HAS_MANY, 'CatalogFirmsItems', 'user_id'),
+			'catalogFirmsServices' => array(self::HAS_MANY, 'CatalogFirmsService', 'user_id'),
 			'catalogHotels' => array(self::HAS_MANY, 'CatalogHotels', 'user_id'),
 			'catalogItems' => array(self::HAS_MANY, 'CatalogItems', 'user_id'),
 			'catalogKurorts' => array(self::HAS_MANY, 'CatalogKurorts', 'user_id'),
 			'catalogTours' => array(self::HAS_MANY, 'CatalogTours', 'user_id'),
-			'country_id0' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'type' => array(self::BELONGS_TO, 'CatalogUsersType', 'type_id'),
 			'desktop0' => array(self::BELONGS_TO, 'CatalogDesktops', 'desktop'),
-			'city_id0' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
+			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
+			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'catalogWorks' => array(self::HAS_MANY, 'CatalogWork', 'user_id'),
-			'favorites' => array(self::HAS_MANY, 'Favorites', 'user_id'),
+			'exFavorites' => array(self::HAS_MANY, 'ExFavorites', 'user_id'),
 			'notifications' => array(self::HAS_MANY, 'Notifications', 'user_id'),
 			'orderRequests' => array(self::HAS_MANY, 'OrderRequest', 'user_id'),
+			'subscribeSends' => array(self::HAS_MANY, 'SubscribeSend', 'user_id'),
 		);
 	}
 
@@ -209,6 +221,10 @@ class CatalogUsers extends CCModel
 			'desktop' => 'Desktop',
 			'amount' => 'Amount',
 			'pos' => 'Pos',
+			'pass' => 'Pass',
+			'subscribe' => 'Subscribe',
+			'icq' => 'Icq',
+			'skype' => 'Skype',
 		);
 	}
 
@@ -243,6 +259,10 @@ class CatalogUsers extends CCModel
 		$criteria->compare('desktop',$this->desktop);
 		$criteria->compare('amount',$this->amount);
 		$criteria->compare('pos',$this->pos);
+		$criteria->compare('pass',$this->pass,true);
+		$criteria->compare('subscribe',$this->subscribe);
+		$criteria->compare('icq',$this->icq,true);
+		$criteria->compare('skype',$this->skype,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

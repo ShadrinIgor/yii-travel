@@ -16,7 +16,7 @@ class initFavorites extends CApplicationComponent
      */
     public function init( )
     {
-        Yii::import("ext.favorites.models.*");
+        Yii::import("ext.Favorites.models.*");
     }
 
     /*
@@ -33,12 +33,12 @@ class initFavorites extends CApplicationComponent
 
             if( empty( $error ) )
             {
-                $newFavorites = new Favorites;
-                $newFavorites->item_id = $object_id;
-                $newFavorites->user_id = Yii::app()->user->id;
-                $newFavorites->date = time();
-                $newFavorites->catalog = $object_type;
-                if( !$newFavorites->save() )$error = $newFavorites->getErrors();
+                $newExFavorites = new ExFavorites;
+                $newExFavorites->item_id = $object_id;
+                $newExFavorites->user_id = Yii::app()->user->id;
+                $newExFavorites->date = time();
+                $newExFavorites->catalog = $object_type;
+                if( !$newExFavorites->save() )$error = $newExFavorites->getErrors();
                                        else $data = true;
             }
 
@@ -69,11 +69,11 @@ class initFavorites extends CApplicationComponent
 
         if( empty( $error ) )
         {
-            $existFavorites = Favorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "user_id=:user_id AND `catalog`=:object_type AND item_id=:object_id" )->setParams( array( ":user_id"=>Yii::app()->user->getID(), ":object_type"=>$object_type, ":object_id"=>$object_id ) )->setCache(0) );
-            if( $existFavorites && $existFavorites[0]->id )
+            $existExFavorites = ExFavorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "user_id=:user_id AND `catalog`=:object_type AND item_id=:object_id" )->setParams( array( ":user_id"=>Yii::app()->user->getID(), ":object_type"=>$object_type, ":object_id"=>$object_id ) )->setCache(0) );
+            if( $existExFavorites && $existExFavorites[0]->id )
             {
-                $existFavorites[0]->delete();
-                $error = $existFavorites[0]->getErrors();
+                $existExFavorites[0]->delete();
+                $error = $existExFavorites[0]->getErrors();
                 $data = true;
             }
                else $data = array( "status"=>"error", "error_message"=>self::ERROR_NO_EXISTS_DATA );
@@ -98,8 +98,8 @@ class initFavorites extends CApplicationComponent
             $params = array( ":user_id"=>Yii::app()->user->getID() );
             if( !empty( $inParams ) && is_array( $inParams ) )$params = array_merge( $params, $inParams );
 
-            $listFavorites = Favorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $Conditional )->setParams( $params ) );
-            return $listFavorites;
+            $listExFavorites = ExFavorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $Conditional )->setParams( $params ) );
+            return $listExFavorites;
         }
 
         return null;
@@ -119,9 +119,9 @@ class initFavorites extends CApplicationComponent
             $params = array( ":user_id"=>Yii::app()->user->getID() );
             if( !empty( $inParams ) && is_array( $inParams ) )$params = array_merge( $params, $inParams );
 
-            $listFavorites = Favorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $Conditional )->setParams( $params )->setCache(0) );
+            $listExFavorites = ExFavorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $Conditional )->setParams( $params )->setCache(0) );
             $listId = array();
-            foreach( $listFavorites as $item )
+            foreach( $listExFavorites as $item )
                 $listId[] = $item->item_id;
             return $listId;
         }
@@ -146,9 +146,9 @@ class initFavorites extends CApplicationComponent
         if( !empty( $object_id ) && $object_id>0 )
         {
             //проверяем существование
-            $existFavorites = Favorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id AND `catalog`=:object_type AND item_id=:object_id")->setParams( array( ":user_id"=>Yii::app()->user->getID(), ":object_type"=>$object_type, ":object_id"=>$object_id ) )->setCache(0) );
+            $existExFavorites = ExFavorites::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id AND `catalog`=:object_type AND item_id=:object_id")->setParams( array( ":user_id"=>Yii::app()->user->getID(), ":object_type"=>$object_type, ":object_id"=>$object_id ) )->setCache(0) );
 
-            if( is_array( $existFavorites ) && sizeof( $existFavorites )>0 )$objectId = $existFavorites[0]->id;
+            if( is_array( $existExFavorites ) && sizeof( $existExFavorites )>0 )$objectId = $existExFavorites[0]->id;
                                                                        else $objectId = 0;
 
         }

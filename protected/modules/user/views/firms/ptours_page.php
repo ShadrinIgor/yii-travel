@@ -17,22 +17,7 @@
             <tr <?= $tour->hot==1 ? 'class="isHot"' : "" ?>>
                 <td><?= $tour->id ?></td>
                 <td>
-                    <?php
-                    if( !$tour->image )$countImages = 5;
-                    else $countImages = 4;
-
-                    $listImages = ImageHelper::getImages( $tour, $countImages );
-                    if( sizeof( $listImages ) >0 || $tour->image ) : ?>
-                        <div class="listItemsImages">
-                            <?php if( $tour->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $tour->image, 3 ) ?>" alt="" /></div><?php endif; ?>
-                            <?php
-                            if( $tour->image )$i=2;
-                            else $i=1;
-                            foreach( $listImages as $LItem ) : ?>
-                                <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                                <?php $i++;endforeach; ?>
-                        </div>
-                    <?php endif;?>
+                    <?= ImageHelper::getAnimateImageBlock( $tour, SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id) ) ) ?>
                 </td>
                 <td>
                     <a href="<?= SiteHelper::createUrl("/user/tours/description", array("id"=>$tour->id, "fid"=>$item->id)) ?>" title="описание"><?= $tour->name ?></a>

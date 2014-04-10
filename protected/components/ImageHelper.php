@@ -9,6 +9,38 @@ class ImageHelper
 {
     public $error;
     public $newFileUrl;
+
+    static function getAnimateImageBlock( $item, $link, $title = "" )
+    {
+        if( !$item->image )$countImages = 4;
+            else $countImages = 3;
+
+        $titleValue = !empty( $title ) ? $title : $item->name;
+        $listImages = ImageHelper::getImages( $item, $countImages );
+        if( sizeof( $listImages ) >0 || $item->image ) : ?>
+            <div class="listItemsImages">
+                <?php if( $item->image ) : ?><div class="LII_1"><a href="<?= $link ?>" title="<?= $titleValue ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $titleValue ?>" /></a></div><?php endif; ?>
+                <?php
+                if( $item->image )$i=2;
+                             else $i=1;
+
+                foreach( $listImages as $LItem ) :
+                    if( $i == 1 )$imageSize = 2;
+                            else $imageSize = 3;
+                    ?>
+                    <div class="LII_<?= $i ?>">
+                        <?php if( $i==1 ) : ?><a href="<?= $link ?>" title="<?= $titleValue ?>"><?php endif; ?>
+                        <img src="<?= ImageHelper::getImage( $LItem->image, $imageSize ) ?>" alt="<?= $titleValue ?>" />
+                        <?php if( $i==1 ) : ?></a><?php endif; ?>
+                    </div>
+                    <?php
+                    $i++;
+                endforeach;
+                ?>
+            </div>
+        <?php endif;
+    }
+
     /*
      * Проверяет сушествование необходимой картинк в нужном размере, если нет то создает
      * @param string $imageFile путь до файла

@@ -2163,10 +2163,10 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .LGItem a{font-size: 12px;}
 .LGItem input{width: 104px;font-size: 11px;}
 
-.listItemsImages{float: left;width: 215px;height: 130px;padding-top: 10px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center center;}
+.listItemsImages{float: left;width: 215px;height: 130px;padding-top: 10px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center 10px;}
 .LII_1, .LII_2, .LII_3, .LII_4, .LII_5{text-align: center;background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
 .LII_1{z-index: 99999;width:200px;max-height: 130px;}
-.LII_2{z-index: 88888;
+.LII_2{z-index: 44444;
 
     /* Safari */-webkit-transform: rotate(-10deg);
     /* Firefox */-moz-transform: rotate(-10deg);
@@ -2175,7 +2175,29 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 }
 
-.LII_3{z-index: 77777;
+.LII_3{
+    z-index: 55555;
+
+    /* Safari */-webkit-transform: rotate(-20deg);
+    /* Firefox */-moz-transform: rotate(-20deg);
+    /* IE */-ms-transform: rotate(-20deg);
+    /* Opera */-o-transform: rotate(-20deg);
+    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    margin: 5px 0px 0px -1px;
+}
+
+.LII_4{z-index: 66666;
+
+    /* Safari */-webkit-transform: rotate(-30deg);
+    /* Firefox */-moz-transform: rotate(-30deg);
+    /* IE */-ms-transform: rotate(-30deg);
+    /* Opera */-o-transform: rotate(-30deg);
+    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+    margin: 13px 0px 0px -8px;
+}
+
+.LII_5{
+    z-index: 77777;
     margin-left: 101px;
     /* Safari */-webkit-transform: rotate(10deg);
     /* Firefox */-moz-transform: rotate(10deg);
@@ -2184,49 +2206,32 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 }
 
-.LII_4{z-index: 66666;
-    margin-left: 105px;
-    /* Safari */-webkit-transform: rotate(20deg);
-    /* Firefox */-moz-transform: rotate(20deg);
-    /* IE */-ms-transform: rotate(20deg);
-    /* Opera */-o-transform: rotate(20deg);
-    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-}
-
-.LII_5{z-index: 66666;
-
-    /* Safari */-webkit-transform: rotate(-20deg);
-    /* Firefox */-moz-transform: rotate(-20deg);
-    /* IE */-ms-transform: rotate(-20deg);
-    /* Opera */-o-transform: rotate(-20deg);
-    /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-}
-
 .listItemsImages:hover .LII_1, .listItemsImages:hover .LII_2, .listItemsImages:hover .LII_3, .listItemsImages:hover .LII_4, .listItemsImages:hover .LII_5{box-shadow: 0px 0px 10px rgba(0,0,0,0.8);}
 
-#InnerText .listItems:hover .LII_2, .listItemsImages:hover .LII_2, #tableListItems tr:hover .LII_2
+#Main .listItems:hover .LII_2, .listItemsImages:hover .LII_2, #tableListItems tr:hover .LII_2
 {
     -webkit-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateLeft 500ms ease-in-out 0s 1 alternate forwards;
 }
-#InnerText .listItems:hover .LII_3, .listItemsImages:hover .LII_3, #tableListItems tr:hover .LII_3
+#Main .listItems:hover .LII_3, .listItemsImages:hover .LII_3, #tableListItems tr:hover .LII_3
 {
-    -webkit-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
-    -moz-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
-    animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+    -webkit-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
+    -moz-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
+    animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
 }
-#InnerText .listItems:hover .LII_4, .listItemsImages:hover .LII_4, #tableListItems tr:hover .LII_4
+#Main .listItems:hover .LII_4, .listItemsImages:hover .LII_4, #tableListItems tr:hover .LII_4
 {
     -webkit-animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
     -moz-animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
     animation: imageRotateRight2 500ms ease-in-out 0s 1 alternate forwards;
 }
-#InnerText .listItems:hover .LII_5, .listItemsImages:hover .LII_5, #tableListItems tr:hover .LII_5
+#Main .listItems:hover .LII_5, .listItemsImages:hover .LII_5, #tableListItems tr:hover .LII_5
 {
-    -webkit-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
-    -moz-animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
-    animation: imageRotateLeft2 500ms ease-in-out 0s 1 alternate forwards;
+    -webkit-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+    -moz-animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+    animation: imageRotateRight 500ms ease-in-out 0s 1 alternate forwards;
+
 }
 .pageTab td, .pageTab th{text-indent: 0px;}
 
@@ -2463,7 +2468,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 .CLISelected{background: rgba(0,100,255, 0.4);padding-left: 10px;}
 .CLISelected a{color: #fff;}
-.SC{text-align: center;}
+.SC{text-align: center;margin: 5px 0px;}
 .SC div
 {
     border-radius: 8px;

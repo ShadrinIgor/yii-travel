@@ -19,9 +19,9 @@ class CatalogItems extends CCModel
     protected $date; // integer 
     protected $city_id; // integer 
     protected $pos; // integer 
-    protected $time_id; // integer
-    protected $slug; // integer
-    protected $col; // integer
+    protected $time_id; // integer 
+    protected $slug; // string 
+    protected $col; // integer 
 
 /*
 * Поля - связи
@@ -49,14 +49,13 @@ class CatalogItems extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, user_id, type_id', 'required'),
-			array('del, price, is_hot, date, pos', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>50),
-			array('image', 'length', 'max'=>255),
+			array('name, description, user_id, type_id, slug', 'required'),
+			array('del, price, is_hot, date, pos, col', 'numerical', 'integerOnly'=>true),
+			array('name, image', 'length', 'max'=>255),
+			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('slug, id, name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos, time_id', 'safe', 'on'=>'search'),
-
+			array('id, name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos, time_id, slug, col', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,12 +67,12 @@ class CatalogItems extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'time' => array(self::BELONGS_TO, 'CatalogItemsTime', 'time_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogItemsCategory', 'category_id'),
 			'status' => array(self::BELONGS_TO, 'CatalogItemsStatus', 'status_id'),
 			'type' => array(self::BELONGS_TO, 'CatalogItemsType', 'type_id'),
 			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
+			'time' => array(self::BELONGS_TO, 'CatalogItemsTime', 'time_id'),
 		);
 	}
 
@@ -98,6 +97,8 @@ class CatalogItems extends CCModel
 			'city_id' => 'City',
 			'pos' => 'Pos',
 			'time_id' => 'Time',
+			'slug' => 'Slug',
+			'col' => 'Col',
 		);
 	}
 
@@ -127,6 +128,8 @@ class CatalogItems extends CCModel
 		$criteria->compare('city_id',$this->city_id);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('time_id',$this->time_id);
+		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('col',$this->col);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -15,22 +15,7 @@
         <tr <?= $service->hot==1 ? 'class="isHot"' : "" ?>>
             <td><?= $service->id ?></td>
             <td>
-                <?php
-                if( !$service->image )$countImages = 5;
-                else $countImages = 4;
-
-                $listImages = ImageHelper::getImages( $service, $countImages );
-                if( sizeof( $listImages ) >0 || $service->image ) : ?>
-                    <div class="listItemsImages">
-                        <?php if( $service->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $service->image, 3 ) ?>" alt="" /></div><?php endif; ?>
-                        <?php
-                        if( $service->image )$i=2;
-                        else $i=1;
-                        foreach( $listImages as $LItem ) : ?>
-                            <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                            <?php $i++;endforeach; ?>
-                    </div>
-                <?php endif;?>
+                <?= ImageHelper::getAnimateImageBlock( $service, SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ) ?>
             </td>
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="описание акции/скидки"><?= $service->name ?></a>

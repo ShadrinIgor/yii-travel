@@ -22,7 +22,9 @@
     ?>
     <tr <?= $item->is_hot==1 ? 'class="isHot"' : "" ?>>
         <td><?= $item->id ?></td>
-        <td><div class="TImage"><img src="<?= ImageHelper::getImage( $item->image, 3 ) ?>" width="100" alt=""/></div></td>
+        <td>
+            <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/user/items/description", array("id"=>$item->id) ) ) ?>
+        </td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/user/items/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>
             <br/><font class="smallGrey"><?= $dateFinish>=time() ? $item->status_id->name : "не активно" ?></font>

@@ -7,9 +7,9 @@
         opacity: 0.6;
     }
     100% {
-        -webkit-transform: rotate(-35deg);
-        margin-left: -45px;
-        margin-top: 5px;
+        -webkit-transform: rotate(35deg);
+        margin-left: -105px;
+        margin-top: -45px;
         opacity: 1;
     }
 }
@@ -22,9 +22,9 @@
         opacity: 0.6;
     }
     100% {
-        -moz-transform: rotate(-35deg);
-        margin-left: -45px;
-        margin-top: 5px;
+        -moz-transform: rotate(35deg);
+        margin-left: -105px;
+        margin-top: -45px;
         opacity: 1;
     }
 }
@@ -39,12 +39,12 @@
         opacity: 0.6;
     }
     100% {
-        /* IE */-ms-transform: rotate(-35deg);
-        /* Opera */-o-transform: rotate(-35deg);
+        /* IE */-ms-transform: rotate(35deg);
+        /* Opera */-o-transform: rotate(35deg);
         /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 
-        margin-left: -45px;
-        margin-top: 5px;
+        margin-left: -105px;
+        margin-top: -45px;
         opacity: 1;
     }
 }
@@ -108,50 +108,44 @@
 /* для браузеров Webkit */
 @-webkit-keyframes imageRotateRight2 {
     0%{
-        -webkit-transform: rotate(20deg);
-        margin-left: 105px;
-        margin-top: 0px;
+        -webkit-transform: rotate(-30deg);
+        margin: 13px 0px 0px -8px;
         opacity: 0.6;
     }
     100% {
-        -webkit-transform: rotate(40deg);
-        margin-left: 200px;
-        margin-top: 20px;
+        -webkit-transform: rotate(-20deg);
+        margin: 115px 0px 0px -95px;
         opacity: 1;
     }
 }
 /* для Firefox */
 @-moz-keyframes imageRotateRight2 {
     0%{
-        -moz-transform: rotate(20deg);
-        margin-left: 105px;
-        margin-top: 0px;
+        -moz-transform: rotate(-30deg);
+        margin: 13px 0px 0px -8px;
         opacity: 0.6;
     }
     100% {
-        -moz-transform: rotate(40deg);
-        margin-left: 200px;
-        margin-top: 20px;
+        -moz-transform: rotate(-20deg);
+        margin: 115px 0px 0px -95px;
         opacity: 1;
     }
 }
 /* Задел на будущее: для браузеров, поддеживающих безвендорный синтаксис */
 @keyframes imageRotateRight2 {
     0%{
-        /* IE */-ms-transform: rotate(20deg);
-        /* Opera */-o-transform: rotate(20);
+        /* IE */-ms-transform: rotate(-30deg);
+        /* Opera */-o-transform: rotate(30);
         /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-        margin-left:105px;
-        margin-top: 0px;
+        margin: 13px 0px 0px -8px;
         opacity: 0.6;
     }
     100% {
-        /* IE */-ms-transform: rotate(40deg);
-        /* Opera */-o-transform: rotate(40deg);
+        /* IE */-ms-transform: rotate(-20deg);
+        /* Opera */-o-transform: rotate(-20deg);
         /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 
-        margin-left: 200px;
-        margin-top: 20px;
+        margin: 115px 0px 0px -95px;
         opacity: 1;
     }
 }
@@ -168,7 +162,7 @@
         opacity: 0.6;
     }
     100% {
-        -webkit-transform: rotate(-40deg);
+        -webkit-transform: rotate(0deg);
         margin-left: -95px;
         margin-top: 20px;
         opacity: 1;
@@ -183,7 +177,7 @@
         opacity: 0.6;
     }
     100% {
-        -moz-transform: rotate(-40deg);
+        -moz-transform: rotate(0deg);
         margin-left: -95px;
         margin-top: 20px;
         opacity: 1;
@@ -200,8 +194,8 @@
         opacity: 0.6;
     }
     100% {
-        /* IE */-ms-transform: rotate(-40deg);
-        /* Opera */-o-transform: rotate(-40deg);
+        /* IE */-ms-transform: rotate(0deg);
+        /* Opera */-o-transform: rotate(0deg);
         /* Internet Explorer */filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
 
         margin-left: -95px;

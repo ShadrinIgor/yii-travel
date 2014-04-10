@@ -230,7 +230,7 @@ class UserController extends Controller
             if( !empty( $id ) )$item = $addClass::fetch( $id );
                           else $item = new $addClass();
 
-            if( !$item->id || $item->user_id->id == Yii::app()->user->getId()  )
+            if( !$item->id || ( ( $item->user_id && $item->user_id->id == Yii::app()->user->getId() ) || ( $item->firm_id && $item->firm_id->user_id->id == Yii::app()->user->getId() ) ) )
             {
                 if( property_exists( $item, "firm_id" ) && $item->firm_id )$firm = $item->firm_id;
                 if( !property_exists( $item, "firm_id" ) && $item->id )$firm = $item;

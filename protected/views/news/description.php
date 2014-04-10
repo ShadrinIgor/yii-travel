@@ -14,7 +14,14 @@ $this->widget('addressLineWidget', array(
     SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
     <div id="ITText">
-        <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="<?= $item->name ?>" /></div><?php endif; ?>
+        <?php if( sizeof($images) >0 || $item->image ) : ?>
+            <div class="floatLeft leftImages">
+                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" rel="lightbox" title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
+                <?php foreach( $images as $image ) : ?>
+                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <?= $item->description ?>
     </div>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>

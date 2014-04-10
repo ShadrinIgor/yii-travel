@@ -25,7 +25,7 @@ return array(
         'modules.catalog.components.*',
         'application.components.ImageHandler.CImageHandler',
         'application.components.CCApplicationComponent',
-        'ext.favorites.*',
+        'ext.favorites.models.*',
         'ext.banners.models.*',
 //        'ext.eoauth.*',
 //        'ext.eoauth.lib.*',
@@ -36,6 +36,7 @@ return array(
     'modules'=>array(
         'user', 'console', 'catalog', 'find',
         // uncomment the following to enable the Gii tool
+
 
         'gii'=>array(
             'class'=>'system.gii.GiiModule',

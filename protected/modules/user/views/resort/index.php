@@ -23,22 +23,7 @@
     <tr <?= $item->is_hot==1 ? 'class="isHot"' : "" ?>>
         <td><?= $item->id ?></td>
         <td>
-            <?php
-                if( !$item->image )$countImages = 5;
-                                      else $countImages = 4;
-
-                $listImages = ImageHelper::getImages( $item, $countImages );
-                if( sizeof( $listImages ) >0 || $item->image ) : ?>
-                    <div class="listItemsImages">
-                       <?php if( $item->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $item->image, 3 ) ?>" alt="" /></div><?php endif; ?>
-                       <?php
-                            if( $item->image )$i=2;
-                                         else $i=1;
-                            foreach( $listImages as $LItem ) : ?>
-                           <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                       <?php $i++;endforeach; ?>
-                    </div>
-                <?php endif;?>
+            <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/user/resort/description", array("id"=>$item->id) ) ) ?>
         </td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/user/resort/description", array("id"=>$item->id) ) ?>" title="описание"><?= $item->name ?></a>

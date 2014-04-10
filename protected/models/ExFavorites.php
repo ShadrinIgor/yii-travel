@@ -1,16 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "favorites".
+ * This is the model class for table "ex_favorites".
    */
-class Favorites extends CCModel
+class ExFavorites extends CCModel
 {
     protected $id; // integer 
     protected $user_id; // integer 
     protected $catalog; // string 
     protected $item_id; // integer 
-    protected $date; // integer
-    protected $del; // integer
+    protected $date; // integer 
+    protected $del; // integer 
+    protected $pos; // integer 
+    protected $name; // string 
 
 /*
 * Поля - связи
@@ -27,7 +29,7 @@ class Favorites extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'favorites';
+		return 'ex_favorites';
 	}
 
 	/**
@@ -38,12 +40,13 @@ class Favorites extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, catalog, item_id, date', 'required'),
-			array('item_id, date', 'numerical', 'integerOnly'=>true),
+			array('user_id, catalog, item_id, date, name', 'required'),
+			array('item_id, date, del, pos', 'numerical', 'integerOnly'=>true),
 			array('catalog', 'length', 'max'=>50),
+			array('name', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, catalog, item_id, date', 'safe', 'on'=>'search'),
+			array('id, user_id, catalog, item_id, date, del, pos, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,6 +73,9 @@ class Favorites extends CCModel
 			'catalog' => 'Catalog',
 			'item_id' => 'Item',
 			'date' => 'Date',
+			'del' => 'Del',
+			'pos' => 'Pos',
+			'name' => 'Name',
 		);
 	}
 
@@ -89,6 +95,9 @@ class Favorites extends CCModel
 		$criteria->compare('catalog',$this->catalog,true);
 		$criteria->compare('item_id',$this->item_id);
 		$criteria->compare('date',$this->date);
+		$criteria->compare('del',$this->del);
+		$criteria->compare('pos',$this->pos);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -22,8 +22,9 @@ $this->widget('addressLineWidget', array(
             <br/>
             <a class="OrderRequest LPLink" href="#" title=Связатся с компанией <?= $item->firm_id->name ?>">Связатся с компанией</a><br/>
         </div>
-        <?php if( sizeof($images) >0 ) : ?>
+        <?php if( sizeof($images) >0 || $item->image ) : ?>
             <div class="floatLeft leftImages">
+                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" rel="lightbox" title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
                 <?php foreach( $images as $image ) : ?>
                     <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
                 <?php endforeach; ?>

@@ -12,22 +12,7 @@
         <tr <?= $firmItem->hot==1 ? 'class="isHot"' : "" ?>>
             <td><?= $firmItem->id ?></td>
             <td>
-                <?php
-                if( !$firmItem->image )$countImages = 5;
-                else $countImages = 4;
-
-                $listImages = ImageHelper::getImages( $firmItem, $countImages );
-                if( sizeof( $listImages ) >0 || $firmItem->image ) : ?>
-                    <div class="listItemsImages">
-                        <?php if( $firmItem->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $firmItem->image, 3 ) ?>" alt="" /></div><?php endif; ?>
-                        <?php
-                        if( $firmItem->image )$i=2;
-                        else $i=1;
-                        foreach( $listImages as $LItem ) : ?>
-                            <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                            <?php $i++;endforeach; ?>
-                    </div>
-                <?php endif;?>
+                <?= ImageHelper::getAnimateImageBlock( $firmItem, SiteHelper::createUrl("/items/description")."/".$firmItem->slug .".html", "Описание акции/скидки ".$firmItem->name ) ?>
             </td>
             <td>
                 <a href="<?= SiteHelper::createUrl("/items/description")."/".$firmItem->slug ?>.html" title="<?= $firmItem->name ?> акции/скидки от компании <?= $firmItem->firm_id->name ?>"><?= $firmItem->name ?></a>
