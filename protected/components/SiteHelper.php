@@ -8,10 +8,13 @@
  */
 class SiteHelper
 {
-    public static function getAnimateText( $slug )
+    public static function getAnimateText( $slug, $link = "" )
     {
         $textModel = CatalogContent::fetchBySlug( $slug );
-        return '<div class="sectionText">'.$textModel->description.'</div>';
+        $cout = '<div class="sectionText">'.$textModel->description;
+        if( !empty( $link ) )$cout .= "<div class='textAlignRight'><a href='".$link."' title='подробнее о туристическом портале Узбекистана'>подробнее...</div>";
+        $cout .='</div>';
+        return $cout;
     }
 
     public static function checkWWW( $www )

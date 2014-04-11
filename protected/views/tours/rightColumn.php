@@ -1,4 +1,6 @@
 <div id="Cleft">
+    <?php $this->widget("authWidget"); ?>
+
     <div class="LeftMenu">
         <h3>Категории туров</h3>
         <?php if( $this->beginCache( "tours_category", array('duration'=>3600) ) ) : ?>

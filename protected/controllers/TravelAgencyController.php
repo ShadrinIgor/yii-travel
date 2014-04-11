@@ -56,7 +56,7 @@ class TravelAgencyController extends InfoController
                     $commentModel->date = time();
                     if( $commentModel->save() )
                     {
-                        $item->onFirmNewComment( new CEvent( $commentModel ), array( "subject"=>$commentModel->name, "firm_name"=>$item->name, "date"=>date("d.m.Y H:i"), "user_name"=>$commentModel->fio, "description"=>$commentModel->message, "link"=>SiteHelper::createUrl( "/user/firms/description", array("id"=>$item->id, "tab"=>"pcomment") ) ) );
+                        $item->onFirmNewComment( new CEvent( $commentModel ), array( "subject"=>$commentModel->name, "firm_name"=>$item->name, "date"=>date("d.m.Y H:i"), "user_name"=>$commentModel->fio, "description"=>$commentModel->message, "link"=>SiteHelper::createUrl( "/user/firms/description", array("id"=>$item->id, "tab"=>"pcomments") ) ) );
                         $commentModel = new CatalogFirmsCommentsAdd();
                         $commentModel->formMessage = "Сообщение отправленно, после модерации оно будет опубликованно.";
                     }

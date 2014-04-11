@@ -100,9 +100,14 @@ class FirmsController extends UserController
 
         if( $id >0 && !empty( $catalog ) )
         {
+            $modelClass = SiteHelper::getCamelCase( $catalog::tableName() );
+            $model = $modelClass::fetch( $id );
             $listImages = CatGallery::findByAttributes( array("catalog"=>$catalog::tableName(), "item_id"=>$id) );
             $imagesMin = SiteHelper::getConfig( "publish_min_images" );
-            if( sizeof( $listImages )>=$imagesMin )
+            $sizeofImages = sizeof( $listImages );
+            if( $model->image )$sizeofImages ++;
+
+            if( $sizeofImages>=$imagesMin )
             {
                 $commentModel = $catalog::fetch( $id );
                 if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;

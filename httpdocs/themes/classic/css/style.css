@@ -2163,9 +2163,11 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .LGItem a{font-size: 12px;}
 .LGItem input{width: 104px;font-size: 11px;}
 
-.listItemsImages{float: left;width: 215px;height: 130px;padding-top: 10px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center 10px;}
+.listItemsImages{float: left;width: 215px;height: 117px;padding-top: 5px;text-indent: 0px;background: url( ../images/no_image.png ) no-repeat center 10px;}
 .LII_1, .LII_2, .LII_3, .LII_4, .LII_5{text-align: center;background:#fff;position: absolute;width: 100px;max-height: 100px;overflow: hidden;border: 2px solid #fff;border-radius: 8px;box-shadow: 0px 0px 5px rgba(0,0,0,0.6);}
-.LII_1{z-index: 99999;width:200px;max-height: 130px;}
+.LII_1{z-index: 99999;width:200px;max-height: 110px;}
+.LII_1 img{max-width: 200px;}
+
 .LII_2{z-index: 44444;
 
     /* Safari */-webkit-transform: rotate(-10deg);
@@ -2256,13 +2258,14 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     position: absolute;
     width: 818px;
     margin-right: 250px;
-    background: rgba( 255, 200, 200, 0.6 ); /* Для старых браузров */
+    background: rgba( 255, 200, 200, 1 ); /* Для старых браузров */
     border: 2px solid rgba( 255, 0, 0, 0.4 );
     z-index: 99999;
     right: 0;
     box-shadow: 0px 0px 5px;
     text-align: center;
     top: 400px;
+    padding: 5px 0px;
 }
 
 .publish
@@ -2639,5 +2642,29 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 }
 
-.sectionText{margin: 0px 10px;color: #6f6f6f;padding: 4px 0px;text-indent: 30px;}
+.sectionText
+{
+    color: #6f6f6f;
+    padding: 5px;
+    text-indent: 30px;
+    border-top: 3px solid #afafaf;
+    border-bottom: 3px solid #afafaf;
+    margin: 5px 0px 10px 0px;
+    background: #efffef;
+
+    /* IE10 */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EFFFEF 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EFFFEF 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #EFFFEF 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EFFFEF 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(top,#FFFFFF 0%, #EFFFEF 100%);
+
+    border-radius: 8px;
+}
 .sectionText p{padding: 0px;margin: 3px 0px;}

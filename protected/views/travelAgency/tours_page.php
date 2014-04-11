@@ -95,7 +95,7 @@
             <tr <?= $tour->hot==1 ? 'class="isHot"' : "" ?>>
                 <td><?= $tour->id ?></td>
                 <td>
-                    <?= ImageHelper::getAnimateImageBlock( $tour, SSiteHelper::createUrl("/tours/description")."/".$tour->slug.".html", "описание тура ". $tour->name ) ?>
+                    <?= ImageHelper::getAnimateImageBlock( $tour, SiteHelper::createUrl("/tours/description")."/".$tour->slug.".html", "описание тура ". $tour->name ) ?>
                 </td>
                 <td>
                     <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html" title="описание тура <?= $tour->name ?>"><?= $tour->name ?></a><br/>

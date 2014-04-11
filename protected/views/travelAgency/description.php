@@ -38,7 +38,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
         <?php if( sizeof($listTours) >0 ) : ?><a href="#" id="tours" class="<?= $activeTab == "tours" ? "activeDM " : "" ?>dopMenuPages">Туры компаниии (<?= sizeof( $listTours ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listItems) >0 ) : ?><a href="#" id="items" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages">Акции и скидки (<?= sizeof( $listItems ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listService) >0 ) : ?><a href="#" id="service" class="<?= $activeTab == "service" ? "activeDM " : "" ?>dopMenuPages">Дополнительные услуги (<?= sizeof( $listService ) ?>)</a><?php endif; ?>
-        <?php if( sizeof($listComments) >0 ) : ?><a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages">Коментарии и отзывы (<?= sizeof( $listComments ) ?>)</a><?php endif; ?>
+        <a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages">Коментарии и отзывы (<?= sizeof( $listComments ) ?>)</a>
     </div>
     <br/>
     <div id="pcomments_page" class="pageTab<?= $activeTab == "pcomments" ? " activePage " : " displayNone" ?>">

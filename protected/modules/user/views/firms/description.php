@@ -28,6 +28,11 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         <a href="#" id="pcomments" class="<?= $tab== "pcomments" ? "pcomments " : "" ?>dopMenuPages">Отзывы/Сообщения( <?= sizeof($listComments) ?> )</a>
         <a href="#" id="counter" class="<?= $tab== "counter" ? "counter " : "" ?>dopMenuPages">Статистика посещаемости</a>
         <a href="<?= SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug ?>.html" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
+        <br/>
+        <span>статус: <b class="publishStatus"><?= $item->active == 0 ? " не опубликован " : " опубликован " ?></b></span>
+        <a href="#" class="publishLink linkButton" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl( "/user/firms/setPublish", array( "id"=>$item->id, "catalog"=>SiteHelper::getCamelCase( $item->tableName() ) ) ) ?>', '' );">
+            <?php if( $item->active == 0 ) : ?>Опубликовать на сайте ?<?php endif; ?><?php if( $item->active == 1 ) : ?>Снять с публикации ?<?php endif; ?></a>
+
     </div>
 <?php echo CHtml::errorSummary($item); ?>
 <?php if( !empty( $message ) ) : ?>

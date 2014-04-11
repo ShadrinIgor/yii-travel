@@ -5,7 +5,7 @@
     ));
 ?>
 <h1>Мои фирмы</h1>
-<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-firmy" ) ?>
+<?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-moi-firmy" ) ?>
 <?php if( $message ) :?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>

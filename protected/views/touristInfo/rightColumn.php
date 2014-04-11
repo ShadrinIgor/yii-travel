@@ -1,4 +1,5 @@
 <div id="Cleft">
+    <?php $this->widget("authWidget"); ?>
     <div class="LeftMenu">
         <h3>Категории</h3>
         <?php if( $this->beginCache( "info_category", array('duration'=>3600) ) ) : ?>
