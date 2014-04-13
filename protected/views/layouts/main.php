@@ -153,6 +153,7 @@
 </div>
 <?= SiteHelper::renderDinamicPartial("rightColumn") ?>
 <div id="FCCentr">
+    <?= Yii::app()->banners->getBannerByCategory( "top" ) ?>
     <?= Yii::app()->notifications->getList() ?>
     <?= SiteHelper::renderDinamicPartial("topSection") ?>
     <?= $content; ?>

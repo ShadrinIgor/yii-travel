@@ -16,67 +16,96 @@ class BannerInit extends CApplicationComponent
      */
     public function init( )
     {
-        Yii::import("ext.banners.models.*");
+        // Yii::import("ext.banners.models.*");
     }
 
-    public function getBannerByCategory( $category )
+    public function getBannerByCategory( $categoryKeyWord )
     {
-        $banner = false;
-        $DBParams = DBQueryParamsClass::CreateParams()
-                        ->setConditions( "category=:category" )
-                        ->setParams( array( ":category"=>$category ))
-                        ->setOrderBy( "count_show DESC" )
-                        ->setLimit( 1 );
-
-        $bannerArray = BBaners::fetchAll( $DBParams );
-
-        if( sizeof( $bannerArray ) > 0)
+        if( !empty( $categoryKeyWord ) )
         {
-            $banner = $bannerArray[0];
-            // Окончание показа банера
-            if( $banner->id >0 && ( !empty( $banner->finish_date) && strtotime( $banner->finish_date ) < time() ) )
+            $banner = false;
+
+            $categoryModel = ExBannerCategory::fetchByKeyWord( $categoryKeyWord );
+            if( !$categoryModel || $categoryModel->id >0 )
             {
-                $banner =false;
-                $banner->update( array( "count_show"=>$banner->count_show+1 ) );
+                $DBParams = DBQueryParamsClass::CreateParams()
+                                ->setConditions( "category=:category AND status_id=2" )
+                                ->setParams( array( ":category"=>$categoryModel->id ))
+                                ->setOrderBy( "count_show ASC" )
+                                ->setCache(0)
+                                ->setLimit( 1 );
 
-                // Отправляем уведомление о окончании заказщику
-                if( $banner->email )
+                $bannerArray = ExBanner::fetchAll( $DBParams );
+
+                if( sizeof( $bannerArray ) > 0)
                 {
-    /*                $subject = "Показ рекламного банера на сайте ".ZONA_HOST." успешно завершен";
-                    $message = "Здравствуйте<br/>
-                                Показ рекламного банера на сайте ".ZONA_HOST." успешно завершен.<br/>
-                                Параметры:<br/>
-                                -------------------------------------------------<br/>\
-                                Дата начала: ".date( "d.m.Y", strtotime( $start_date ) )."<br/>
-                                Дата окнчания: ".date( "d.m.Y", strtotime( $finish_date ) )."<br/>
-                                Количество показов: ".( $count_show + $addCount )."<br/>
-                                <br/>
-                                С уважением<br/>
-                                Администрация сайта ".ZONA_HOST;
+                    $banner = $bannerArray[0];
 
-                    mailto( $subject."-", $from='', $email, $message );  */
+                    // Дефолтовый банер
+                    if( !$banner )
+                    {
+                        $DBParams = DBQueryParamsClass::CreateParams()
+                            ->setConditions( "category=:category AND `default`=1 AND status_id=2" )
+                            ->setParams( array( ":category"=>$categoryModel->id ))
+                            ->setOrderBy( "count_show DESC" )
+                            ->setCache(0)
+                            ->setLimit( 1 );
+
+                        $bannerArray = ExBanner::fetchAll( $DBParams );
+                        if( sizeof( $bannerArray ) > 0)$banner = $bannerArray[0];
+                    }
+
+                    if( $banner->id >0 ) // У величиваем счетчик просмотра
+                    {
+                        $banner->update( array( "count_show"=>$banner->count_show+1 ) );
+
+                        // Если выставлено ограничение показов
+                        if( $banner->finish_count_show >0 && $banner->count_show>=$banner->finish_count_show )
+                        {
+                            $banner->update( array( "status_id"=>3 ) );
+                        }
+
+                        // Окончание показа банера, если указана дата окончания публикации
+                        //echo "=".$banner->finish_date."  ".( date("d.m.Y", $banner->finish_date ) )."<hr/>";
+                        //echo "=".time()." ".( date("d.m.Y" ));
+                        if( !empty( $banner->finish_date ) && $banner->finish_date <= time() )
+                        {
+                            // $banner->update( array( "status_id"=>3 ) );
+
+                            // Отправляем уведомление о окончании заказщику
+                            if( $banner->email )
+                            {
+                /*                $subject = "Показ рекламного банера на сайте ".ZONA_HOST." успешно завершен";
+                                $message = "Здравствуйте<br/>
+                                            Показ рекламного банера на сайте ".ZONA_HOST." успешно завершен.<br/>
+                                            Параметры:<br/>
+                                            -------------------------------------------------<br/>\
+                                            Дата начала: ".date( "d.m.Y", strtotime( $start_date ) )."<br/>
+                                            Дата окнчания: ".date( "d.m.Y", strtotime( $finish_date ) )."<br/>
+                                            Количество показов: ".( $count_show + $addCount )."<br/>
+                                            <br/>
+                                            С уважением<br/>
+                                            Администрация сайта ".ZONA_HOST;
+
+                                mailto( $subject."-", $from='', $email, $message );  */
+                            }
+                        }
+                    }
+                }
+
+
+
+                if( !empty( $banner ) )
+                {
+                    $controller = new Controller("index");
+                    $controller->layout = false;
+                    return $controller->renderPartial( "ext.banners.views.index", array( "banner"=>$banner ), true );
                 }
             }
+                else throw new CHttpException("Banner error", "Неправельно указана категория банера ( ".$categoryKeyWord." )");
         }
+            else throw new CHttpException("Banner error", "Не указана категория банера");
 
-        // Дефолтовый банер
-        if( !$banner )
-        {
-            $DBParams = DBQueryParamsClass::CreateParams()
-                ->setConditions( "category=:category AND `default`=1" )
-                ->setParams( array( ":category"=>$category ))
-                ->setOrderBy( "count_show DESC" )
-                ->setLimit( 1 );
-
-            $bannerArray = BBaners::fetchAll( $DBParams );
-            if( sizeof( $bannerArray ) > 0)$banner = $bannerArray[0];
-        }
-
-        if( !empty( $banner ) )
-        {
-            $controller = new Controller("index");
-            $controller->layout = false;
-            $controller->render( "ext.banners.views.index", array( "banner"=>$banner ) );
-        }
+        return false;
     }
 }

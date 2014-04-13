@@ -1,13 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "b_category".
+ * This is the model class for table "ex_banner_type".
    */
-class BCategory extends CCModel
+class ExBannerType extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
     protected $pos; // integer 
+    protected $del; // integer 
+
+/*
+* Поля - связи
+*/
+    protected $exBanners; //  ExBanner
+
 
     public function attributeNames()
     {
@@ -19,7 +26,7 @@ class BCategory extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'b_category';
+		return 'ex_banner_type';
 	}
 
 	/**
@@ -30,11 +37,11 @@ class BCategory extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pos', 'numerical', 'integerOnly'=>true),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, pos', 'safe', 'on'=>'search'),
+			array('id, name, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,6 +53,7 @@ class BCategory extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'exBanners' => array(self::HAS_MANY, 'ExBanner', 'type_id'),
 		);
 	}
 
@@ -58,6 +66,7 @@ class BCategory extends CCModel
 			'id' => 'ID',
 			'name' => 'Name',
 			'pos' => 'Pos',
+			'del' => 'Del',
 		);
 	}
 
@@ -75,6 +84,7 @@ class BCategory extends CCModel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('pos',$this->pos);
+		$criteria->compare('del',$this->del);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
