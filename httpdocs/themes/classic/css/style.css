@@ -2264,7 +2264,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     right: 0;
     box-shadow: 0px 0px 5px;
     text-align: center;
-    top: 400px;
+    top: 439px;
     padding: 5px 0px;
 }
 
@@ -2331,7 +2331,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     padding: 5px;
     box-shadow: 0px 0px 5px;
 }
-.greeBorder{border: 3px dotted #afafaf;padding: 10px;margin: 10px 20px;background: #efefef;box-shadow: 0px 0px 10px; }
+.greeBorder{width: 650px;margin: 10px auto;border: 3px dotted #afafaf;padding: 10px;background: #efefef;box-shadow: 0px 0px 10px; }
 .dopMenuPages
 {
     background: #dfdfff; /* Для старых браузров */

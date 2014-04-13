@@ -1,6 +1,6 @@
 <?php
 
-class ItemsController extends UserController
+class WorkController extends UserController
 {
     var $firmId;
 
@@ -18,11 +18,11 @@ class ItemsController extends UserController
 
     public function actionDescription( $gallError = "" )
     {
-        $_POST["catalogItemsAdd"]["user_id"] = Yii::app()->user->getId();
+        $_POST["CatalogWorkAdd"]["user_id"] = Yii::app()->user->getId();
+        $_POST["CatalogWorkAdd"]["type_id"] = 2;
 
         if( !Yii::app()->user->isGuest )
         {
-
             Yii::app()->page->title = "Описание";
 
             $id = (int)Yii::app()->request->getParam("id", 0);

@@ -55,4 +55,5 @@
     </tr>
 <?php endforeach; ?>
 </table>
+    <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/items/description" ) ?>">[ Добавить объявление ]</a></div>
 </div>
