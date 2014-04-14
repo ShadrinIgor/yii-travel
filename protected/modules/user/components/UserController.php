@@ -9,9 +9,11 @@ class UserController extends Controller
 
     public function init()
     {
-        if( Yii::app()->user->isGuest )
+        $userId = Yii::app()->user->getId();
+        if( Yii::app()->user->isGuest || empty( $userId ) )
         {
             Yii::app()->session['redirect'] = $_SERVER["REQUEST_URI"];
+            Yii::app()->user->logout();
             $this->redirect( SiteHelper::createUrl( "/user" ) );
         }
     }

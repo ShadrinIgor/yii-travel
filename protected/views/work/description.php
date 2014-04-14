@@ -43,7 +43,7 @@ $images = ImageHelper::getImages( $item );
         <h2>Другие объяления пользователя</h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $usersOther as $hotel ) : ?>
-                <?php $this->widget("infoWidget", array( "class"=>"CatalogItems", "link"=>"/work", "title"=>$hotel->name )) ?>
+                <?php $this->widget("infoOneWidget", array( "item"=>$hotel, "link"=>"/work" )) ?>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
@@ -52,7 +52,7 @@ $images = ImageHelper::getImages( $item );
         <h2>Другие объяления категории</h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $otherHotels as $hotel ) : ?>
-                <?php $this->widget("infoWidget", array( "class"=>"CatalogItems", "link"=>"/work", "title"=>$hotel->name )) ?>
+                <?php $this->widget("infoOneWidget", array( "item"=>$hotel, "link"=>"/work" )) ?>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>

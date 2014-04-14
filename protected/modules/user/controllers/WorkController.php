@@ -47,7 +47,7 @@ class WorkController extends UserController
                     $item->setAttributesFromArray( $_POST[ $addClass ] );
                     //$item->is_resume = 0;
                     if( !$item->date )$item->date = time();
-                    if( !$item->id )$item->user_id = Yii::app()->user->getId();
+                    $item->user_id = Yii::app()->user->getId();
 
                     if( $item->save() )
                     {

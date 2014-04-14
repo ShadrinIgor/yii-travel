@@ -12,6 +12,7 @@ class infoWidget extends CWidget
     var $link;
     var $title;
     var $category_id;
+
     public function run()
     {
         if( $this->beginCache( 'widgetInfo_'.$this->class.$this->category_id, array('duration'=>3600) ) ) :
@@ -21,8 +22,8 @@ class infoWidget extends CWidget
                                  else $dopCondition = "";
 
             $this->render( "infoWidget", array(
-                        'title' => $this->title,
-                        'link' => SiteHelper::createUrl( $this->link."/description" ),
+                        'title'   => $this->title,
+                        'link'    => SiteHelper::createUrl( $this->link."/description" ),
                         'linkAll' => SiteHelper::createUrl( $this->link ),
                         'list' => $className::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>''".$dopCondition)->setOrderBy("pos DESC")->setLimit( 9 ) )
                 ));

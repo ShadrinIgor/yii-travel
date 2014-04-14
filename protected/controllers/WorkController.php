@@ -87,6 +87,7 @@ class WorkController extends InfoController
             $addModel->status_id = 1;
             $addModel->active = 1;
             $addModel->date = time();
+
             if( $addModel->save( ) )
             {
                 $id = $addModel->id;

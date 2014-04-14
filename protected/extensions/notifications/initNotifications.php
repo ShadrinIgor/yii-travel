@@ -116,7 +116,7 @@ class initNotifications extends CApplicationComponent
 
         $headers .= 'Date: '.date("r")."\r\n";
         $headers .= 'To: '.$to." \r\n";
-        $headers .= 'From: '.Yii::app()->params['titleName'].'<'.$from.'>' . "\r\n";
+        $headers .= 'From: '.$from.'<'.$from.'>' . "\r\n";
         if( !empty( $copy ) )$headers .= "Bcc: ".$copy."\r\n";
 
         if( $template && file_exists( "f/mails_template/".$template) )
