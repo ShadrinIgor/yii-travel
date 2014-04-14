@@ -17,7 +17,7 @@ class CatalogWorkAdd extends CatalogWork
             array('user_id, type_id, price, del, pos, is_resume, date, active', 'numerical', 'integerOnly'=>true),
             array('name', 'length', 'max'=>150),
             array('image', 'length', 'max'=>255),
-            array('type_id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active', 'safe'),
+            array('col, slug, type_id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active', 'safe', 'on'=>'search'),
@@ -46,7 +46,7 @@ class CatalogWorkAdd extends CatalogWork
             'graf' => 'График',
             'price' => 'Заработная плата',
             'contacts' => 'Контакты',
-            'description' => 'Описание ваакнсии',
+            'description' => 'Описание вакансии',
         );
     }
 }

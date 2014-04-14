@@ -39,7 +39,8 @@ class SiteHelper
                 if( $item->city_id->id >0 )$dopSlug .= "-".SiteHelper::getTranslateForUrl( $item->city_id->name );
             }
 
-            if( get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
+            if( get_class( $item ) == "CatalogWork" || get_class( $item ) == "CatalogWorkAdd" || get_class( $item ) == "CatalogWorkResumeAdd"
+                || get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
                 || get_class( $item ) == "CatalogItems" || get_class( $item ) == "CatalogItemsAdd"
                 || get_class( $item ) == "CatalogFirmsItems" || get_class( $item ) == "CatalogFirmsItemsAdd"
                     )$dopSlug = $item->id;

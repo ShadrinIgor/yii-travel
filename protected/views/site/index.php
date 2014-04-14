@@ -16,7 +16,7 @@ if( $this->beginCache( "firstPage", array('duration'=>3600) ) ) :
     <div id="FCountryList">
         <?php  if( $this->beginCache( "firstPage_big_country", array('duration'=>1800) ) ) : ?>
         <?php
-            $countryLIst = CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "baner>''" )->setLimit(4) );
+            $countryLIst = CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "baner>''" )->setOrderBy("rand()")->setLimit(4) );
             foreach( $countryLIst as $item ) :
         ?>
         <div class="FCountry" style="background:url( <?= $item->baner ?> ) -15px -7px no-repeat;">

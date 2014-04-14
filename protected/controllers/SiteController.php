@@ -28,7 +28,7 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 
-        Yii::app()->page->title = "Первая страница";
+        Yii::app()->page->title = "Туристический портал Узбекистана, отдых, туры, туроператоры, путешествия, турция, анталия, узбекистан";
         $content = CatalogContent::fetchBySlug( "about_us" );
 
         //$finishDate = time() - 60*60*24*30;

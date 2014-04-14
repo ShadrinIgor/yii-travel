@@ -9,7 +9,8 @@ class WorkController extends UserController
         parent::init();
         $this->addModel = "CatalogWorkAdd";
         $this->tableName = "catalog_work";
-        $this->name = "Моя работа";
+        $this->name = "Мои вакансии";
+        $this->dopSQL = " AND type_id=2";
 
         $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
         $id = (int) Yii::app()->request->getParam("id", 0);

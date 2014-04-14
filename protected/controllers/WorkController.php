@@ -1,14 +1,14 @@
 <?php
 
-class AdsUsersController extends InfoController
+class WorkController extends InfoController
 {
     public function init()
     {
         parent::init();
-        $this->classModel = "CatalogItemsAdd";
+        $this->classModel = "CatalogWorkAdd";
         $this->classCategory = "";
-        $this->description = "Самые популярные отели мира, отсортированные по рейтингу. Возможноть просмотра подробного описания";
-        $this->keyWord = "Полезная информация для туристов, архитектура, базары узбекистана, банки тпшкента, великие люди, великий шелковый путь, автобусные путешествия, виза в узбекистан, дети, культура / искуства, разновидности туризма, эктримальный туризм , рыбалка/охота, религия / духовные центры, кладбища";
+        $this->description = "Предложение по работе в туристической отрасле, работа в туризме";
+        $this->keyWord = "Предложение по работе в туристической отрасле, работа в туризме";
     }
 
     public function actions(){
@@ -29,16 +29,16 @@ class AdsUsersController extends InfoController
 
     public function actionIndex()
     {
-        Yii::app()->page->title = "Частные объявления в туристической сфере";
+        Yii::app()->page->title = "Объявления о работе в туристической сфере";
         $p = (int)Yii::app()->request->getParam( "p", 1 );
         $saved = (int)Yii::app()->request->getParam( "saved", 0 );
         $categoryId = "";
-        $categoryModel = new CatalogItemsCategory();
+        $categoryModel = new CatalogWorkCategory();
 
         foreach( $_GET as $key=>$item )
         {
             if( !empty( $_GET[$key] ) && $_GET[$key] != "null" )continue;
-            $categoryModel = CatalogItemsCategory::fetchBySlug( $key );
+            $categoryModel = CatalogWorkCategory::fetchBySlug( $key );
             if( $categoryModel->id >0 )
             {
                 $categoryId = $categoryModel->id;
@@ -46,14 +46,14 @@ class AdsUsersController extends InfoController
             break;
         }
 
-        $addModel = new CatalogItemsAdd();
+        $addModel = new CatalogWorkAdd();
 
         if( !empty( $saved ) )
         {
             $addModel->formMessage = "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">ссылке</a>";
         }
 
-        $condition = "";
+        $condition = "1=1";
         $params = array( );
 
         if( $categoryId >0 )
@@ -62,12 +62,14 @@ class AdsUsersController extends InfoController
             $condition = " category_id=:category";
         }
 
-        $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $condition )->setParams( $params )->setCache(0)->setLimit( 25 )->setPage( $p )->setOrderBy( "id DESC" ) );
+        $items = CatalogWork::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $condition." AND type_id=2" )->setParams( $params )->setCache(0)->setLimit( 25 )->setPage( $p )->setOrderBy( "id DESC" ) );
+        $itemsResume = CatalogWork::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $condition." AND type_id=1"  )->setParams( $params )->setCache(0)->setLimit( 25 )->setPage( $p )->setOrderBy( "id DESC" ) );
 
         $this->render( "index",
                 array
                 (
                     "items" => $items,
+                    "itemsResume" => $itemsResume,
                     "categoryModel" => $categoryModel,
                     "addModel" => $addModel
                 )
@@ -76,11 +78,11 @@ class AdsUsersController extends InfoController
 
     public function actionSave()
     {
-        $addModel = new CatalogItemsAdd();
+        $addModel = new CatalogWorkAdd();
 
-        if( !empty( $_POST["CatalogItemsAdd"] ) && !Yii::app()->user->isGuest )
+        if( !empty( $_POST["CatalogWorkAdd"] ) && !Yii::app()->user->isGuest )
         {
-            $addModel->setAttributesFromArray( $_POST["CatalogItemsAdd"] );
+            $addModel->setAttributesFromArray( $_POST["CatalogWorkAdd"] );
             $addModel->user_id = Yii::app()->user->getId();
             $addModel->status_id = 1;
             $addModel->active = 1;
@@ -93,7 +95,7 @@ class AdsUsersController extends InfoController
                 else
             {
                 $p = (int)Yii::app()->request->getParam( "p", 1 );
-                $items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setCache(0)->setLimit( 25 )->setPage( $p )->setOrderBy( "id DESC" ) );
+                $items = CatalogWork::fetchAll( DBQueryParamsClass::CreateParams()->setCache(0)->setLimit( 25 )->setPage( $p )->setOrderBy( "id DESC" ) );
                 $this->render( "index",
                     array
                     (
@@ -124,7 +126,7 @@ class AdsUsersController extends InfoController
 
         if( $id > 0 )
         {
-            $item = CatalogItems::fetch( $id );
+            $item = CatalogWork::fetch( $id );
             $item->setColView();
             if( $item->id >0 )
             {
@@ -132,8 +134,8 @@ class AdsUsersController extends InfoController
                 $this->render('description',
                     array(
                         "item" => $item,
-                        "otherHotels" => CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
-                        "usersOther" => CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id AND id!=:id")->setParams(array(":user_id"=>$item->user_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
+                        "otherHotels" => CatalogWork::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
+                        "usersOther" => CatalogWork::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id AND id!=:id")->setParams(array(":user_id"=>$item->user_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
                     ));
 
             }

@@ -22,7 +22,9 @@ class CatalogWork extends CCModel
     protected $date; // integer 
     protected $country_id; // integer 
     protected $active; // integer 
-    protected $type_id; // integer 
+    protected $type_id; // integer
+    protected $slug;
+    protected $col;
 
 /*
 * Поля - связи

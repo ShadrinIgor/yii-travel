@@ -110,16 +110,19 @@ class FirmsController extends UserController
             if( $sizeofImages>=$imagesMin )
             {
                 $commentModel = $catalog::fetch( $id );
-                if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
-                                                                        else $id = $commentModel->firm_id->user_id->id;
-
-                if( $commentModel->id > 0 && $id == Yii::app()->user->getId() )
+                if( $commentModel->user_id->id == Yii::app()->user->getId() )
                 {
-                    if( $commentModel->active == 0 )$commentModel->active = 1;
-                                               else $commentModel->active = 0;
-                    $commentModel->save();
-                    echo true;
-                    return;
+                    if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
+                                                                            else $id = $commentModel->firm_id->user_id->id;
+
+                    if( $commentModel->id > 0 && $id == Yii::app()->user->getId() )
+                    {
+                        if( $commentModel->active == 0 )$commentModel->active = 1;
+                                                   else $commentModel->active = 0;
+                        $commentModel->save();
+                        echo true;
+                        return;
+                    }
                 }
             }
                 else

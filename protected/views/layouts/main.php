@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/jobs" ) ?>" title="Работа" class="MenuJsClass" id="c8"></a>
+            <a href="<?= SiteHelper::createUrl( "/work" ) ?>" title="Работа" class="MenuJsClass" id="c8"></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
                     <div>Работы</div>

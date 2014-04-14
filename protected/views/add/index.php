@@ -33,32 +33,34 @@ $this->widget('addressLineWidget', array(
         <h2>Добавление фирмы</h2>
         <?= $firm->description; ?>
         <br/>
-        Для добавления туристической фирмы перейдите по ссылке <a href="<?= SiteHelper::createUrl("/user/firms") ?>" title="Добавить туристическую фирму бесплатно"><?= SiteHelper::createUrl("/user/firms") ?></a>
+        <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/firms/description" ) ?>" class="addButton" title="добавить бесплатно туристическое агенство"> добавить туристическое агенство БЕСПЛАТНО</a></div>
     </div>
     <div id="curorts_page" class="pageTab<?= $activeTab == "curorts" ? " activePage " : " displayNone" ?>">
         <h2>Добавление курортов/зон отдыха</h2>
         <?= $kurorts->description; ?>
         <br/>
-        Для добавления зоны отдыха/курорта перейдите по ссылке <a href="<?= SiteHelper::createUrl("/user/resort") ?>" title="Добавить зону отдыха/курорт бесплатно"><?= SiteHelper::createUrl("/user/resort") ?></a>
+        <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/resort/description" ) ?>" class="addButton" title="Добавить зону отдыха/курорт бесплатно"> добавить зону отдыха/курорт БЕСПЛАТНО</a></div>
     </div>
     <div id="hotels_page" class="pageTab<?= $activeTab == "hotels" ? " activePage " : " displayNone" ?>">
         <h2>Добавление гостиницы</h2>
         <?= $hotels->description; ?>
         <br/>
-        Для добавления гостиницы перейдите по ссылке <a href="<?= SiteHelper::createUrl("/user/hotels") ?>" title="Добавить гостиницы бесплатно"><?= SiteHelper::createUrl("/user/hotels") ?></a>
+        <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/hotels/description" ) ?>" class="addButton" title="Добавить гостиницу бесплатно"> Добавить гостиницу БЕСПЛАТНО</a></div>
     </div>
     <div id="vacancy-resume_page" class="pageTab<?= $activeTab == "vacancy-resume" ? " activePage " : " displayNone" ?>">
         <h2>Добавление вакансий/резюме</h2>
         <?= $vacansy->description; ?>
         <br/>
-        Для добавления вакансии перейдите по ссылке <a href="<?= SiteHelper::createUrl("/user/work") ?>" title="Добавить вакансию фирму бесплатно"><?= SiteHelper::createUrl("/user/work") ?></a><br/>
-        Для добавления резюме перейдите по ссылке <a href="<?= SiteHelper::createUrl("/user/work") ?>" title="Добавить резюме фирму бесплатно"><?= SiteHelper::createUrl("/user/resume") ?></a>
+        <div class="textAlignCenter">
+            <a href="<?= SiteHelper::createUrl( "/user/work/description" ) ?>" class="addButton" title="Добавить гостиницу бесплатно"> Добавить Вакансию БЕСПЛАТНО</a>&nbsp;
+            <a href="<?= SiteHelper::createUrl( "/user/resume/description" ) ?>" class="addButton" title="Добавить резюме бесплатно"> Добавить резюме БЕСПЛАТНО</a>
+        </div>
     </div>
     <div id="ads-items_page" class="pageTab<?= $activeTab == "ads-items" ? " activePage " : " displayNone" ?>">
         <h2>Добавление частных объявлений</h2>
         <?= $items->description; ?>
         <br/>
-        Для добавления частных объявлений перейдите по ссылке <a href="<?= SiteHelper::createUrl("/user/items") ?>" title="Добавить частных объявлений на доске объявлений бесплатно"><?= SiteHelper::createUrl("/user/items") ?></a>
+        <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/items/description" ) ?>" class="addButton" title="Добавить частное объявление бесплатно">Добавить частное объявление БЕСПЛАТНО</a></div>
     </div>
     <div id="other-info_page" class="pageTab<?= $activeTab == "other-info" ? " activePage " : " displayNone" ?>">
         <h2>Прочая информация</h2>

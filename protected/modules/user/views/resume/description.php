@@ -1,31 +1,15 @@
-<div id="innerPage">
 <?php
-$this->widget('addressLineWidget', array(
-    'links'=>array(
-                    "Мои резюме"=>SiteHelper::createUrl( "/user/resume" ),
-                    "Описание"
-                  ),
-));
+$this->widget( "userPagesWidget", array(
+    "adressTitle" => "Описание резюме",
+    "h1Titile" => "Описание резюме",
+    "item" => $item,
+    "message" => $message,
+    "gallMessage" => $gallMessage,
+    "listComments" => $listComments,
+    "addImage" => $addImage,
+    "comMessage" => $comMessage,
+    "listGallery" => $listGallery,
+    "sitePage" => ''
+) );
 ?>
-<h1>Описание резюме</h1>
-<?php echo CHtml::errorSummary($item); ?><br>
-<?php if( !empty( $message ) ) : ?>
-    <div class="messageSummary"><?= $message ?></div>
-<?php endif; ?>
-    <form action="" method="post" enctype="multipart/form-data">
-    <table class="tableForm">
-        <?=
-            CCModelHelper::addForm( $item )
-        ?>
-        <tr>
-            <td></td>
-            <td>
-                <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/resume") ?>';" name="update" value="Отмена" />&nbsp;
-                <input type="submit" name="update" value="Сохранить" />
-            </td>
-        </tr>
-    </table>
-        <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
-</form>
-</div>
-
+<?php $this->widget( "formNoteWidget" ) ?>
