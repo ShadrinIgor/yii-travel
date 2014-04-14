@@ -33,6 +33,11 @@ return array(
     'onAddItem'=>array(
         array('ItemsNotifier', 'onAddItem'),
     ),
+
+    'onBannerRequest'=>array(
+        array('BannerRequestNotifier', 'onBannerRequest'),
+    ),
+
     /*
         // Публикация объявления
         'onItemPublish'=>array(

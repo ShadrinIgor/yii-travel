@@ -165,19 +165,21 @@
 
 
 <div id="about_link">
-    <div id="trioLogo"><a href="http://www.trio.uz" title="Студия нового TRIO.uz!!!"><img src="<?= $Theme->getBaseUrl() ?>/images/trio.png" title="Студия нового TRIO.uz!!!"/></a></div>
-
-    <div id="counters">
-        Возникла ошибка или есть вопросы, обращайтесь в нашу службу поддержки - <a href="mailto: <?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, мы обязательно Вам поможем.
-        <br/><br/>
-    </div>
-
     <div id="ALLinks">
         <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="О проекте">О проекте</a> |
+        <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="Правила">Правила</a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="Контакты">Контакты</a> |
         <!--a href="" title="Реклама на сайте">Реклама на сайте</a> | -->
         <a href="map/" title="Карта сайта">Карта сайта</a><!-- |
     <a href="" title="Карта сайта">Карта ссылок</a>-->
+    </div>
+    <div id="counters">
+        Возникла ошибка или есть вопросы, обращайтесь в нашу службу поддержки - <a href="mailto: <?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, мы обязательно Вам поможем.
+        <br/><br/>
+    </div>
+    <div id="trioLogo">
+        <?php SiteHelper::renderDinamicPartial( "counters" ) ?>
+        <!--a href="http://www.trio.uz" title="Студия нового TRIO.uz!!!"><img src="<?= $Theme->getBaseUrl() ?>/images/trio.png" title="Студия нового TRIO.uz!!!"/></a-->
     </div>
 </div>
 <div class="BottomLink">
@@ -185,11 +187,11 @@
 </div>
 </div>
 
-<div id="TNet">
+<!--div id="TNet">
     <div id="TLogo"></div>
     <div class="TBan"><div class="RB RBSmiles"><a href="http://www.smiles.uz" title="Юмористические портал смешные новости, фото и видео приколы, карикатуры, демотиваторы :: Юмористические портал - Smilesт"></a></div></div>
     <div class="TBan"><div class="RB RBWorldNews"><a href="http://www.world-news.uz" title="Мировые новости, политика, финансы, экономика, спорт"></a></div></div>
     <div class="TBan"><div class="RB RBTrio"><a href="http://www.trio.uz" title="Студия нового"></a></div></div>
-</div>
+</div-->
 </body>
 </html>

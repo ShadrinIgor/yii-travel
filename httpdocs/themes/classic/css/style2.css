@@ -266,7 +266,7 @@
 #about_link{background:#FCD6AE; float: left;padding-left: 20px;width: 98%;}
 #about_link #trioLogo{ float: right;margin-right:10px; }
 #about_link a {color:#0E4884;}
-#ALLinks { margin-top:6px; }
+#ALLinks { margin-top:6px;float: left;width: 300px; }
 
 #share
 {

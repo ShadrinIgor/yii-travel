@@ -107,10 +107,15 @@ class FirmsController extends UserController
             $sizeofImages = sizeof( $listImages );
             if( $model->image )$sizeofImages ++;
 
-            if( $sizeofImages>=$imagesMin )
+            // Для CatalogFirmsBannersAdd не должно влиять ограичение перед публиацией по количесву картинок
+            if( $sizeofImages>=$imagesMin || $catalog == "CatalogFirmsBannersAdd"  || $catalog == "CatalogFirmsBanners" )
             {
+                $error = false;
                 $commentModel = $catalog::fetch( $id );
-                if( $commentModel->user_id->id == Yii::app()->user->getId() )
+                if( ( $catalog == "CatalogFirmsBannersAdd" || $catalog == "CatalogFirmsBanners" ) && !$commentModel->file )$error = true;
+                if( $commentModel->user_id->id != Yii::app()->user->getId() )$error = true;
+
+                if( !$error )
                 {
                     if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
                                                                             else $id = $commentModel->firm_id->user_id->id;
