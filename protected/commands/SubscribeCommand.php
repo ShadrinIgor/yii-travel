@@ -4,7 +4,7 @@ class SubscribeCommand extends CConsoleCommand
 {
     public function run($args)
     {
-        $countLimit =SiteHelper::getConfig("subscribee_count_send");
+        $countLimit = SiteHelper::getConfig("subscribee_count_send");
         $emails = array();
         $countSend = 0;
         $res = SubscribeItems::findByAttributes( array( "status_id"=>2 ) );
@@ -13,23 +13,32 @@ class SubscribeCommand extends CConsoleCommand
             // 1 - отправляем и зарегеным и подписчикам
             if( $line->users == 1 || $line->users == 2 ) //отправляем и зарегеным
             {
-                $lisUsers = CatalogUsers::sql( "SELECT u.* FROM catalog_users u WHERE `active`=1 AND subscribe=1 AND !exists( SELECT id FROM subscribe_send WHERE email=u.email AND subscribe_id='".$line->id."' AND is_reg=1 ) LIMIT ".$countLimit );
+                $lisUsers = CatalogUsers::sql( "SELECT u.* FROM catalog_users u WHERE `active`=1 AND subscribe=1 AND !exists( SELECT id FROM subscribe_send WHERE email=u.email AND item_id='".$line->id."' AND is_reg=1 ) LIMIT ".$countLimit );
                 foreach( $lisUsers as $userLine )
                 {
-                    $emails[] = $userLine["EMAIL"];
-                    mysql_query( "INSERT INTO subscribe_send( subscribe_id, user_id, email, is_reg) VALUES( '".$line->id."', '".$userLine["EMAIL"]."', '1' )" );
-                    $countSend++;
+                    $emails[] = $userLine["email"];
+                    $newSend = new SubscribeSend();
+                    $newSend->item_id = $line->id;
+                    $newSend->user_id = $userLine["id"];
+                    $newSend->email = $userLine["email"];
+                    $newSend->is_reg = 1;
+                    if( !$newSend->save() )
+                        print_r( $newSend->getErrors() );
                 }
             }
 
             if( sizeof($emails)<$countLimit && ( $line->users == 1 || $line->users == 3 ) )//отправляем и подписчикам
             {
-                $lisUsers = CatalogUsers::sql( "SELECT u.* FROM subscribe_users u WHERE `active`=1 AND subscribe=1 AND !exists( SELECT id FROM subscribe_send WHERE email=u.email AND subscribe_id='".$line->id."' AND is_reg=0 ) LIMIT ".( $countLimit - sizeof($emails) ) );
+                $lisUsers = CatalogUsers::sql( "SELECT u.* FROM subscribe_users u WHERE !exists( SELECT id FROM subscribe_send WHERE email=u.email AND item_id='".$line->id."' AND is_reg=0 ) LIMIT ".( $countLimit - sizeof($emails) ) );
                 foreach( $lisUsers as $userLine )
                 {
-                    $emails[] = $userLine["EMAIL"];
-                    mysql_query( "INSERT INTO subscribe_send( subscribe_id, email, is_reg) VALUES( '".$line->id."', '".$userLine["email"]."', '0' )" );
-                    $countSend++;
+                    $newSend = new SubscribeSend();
+                    $newSend->item_id = $line->id;
+                    $newSend->user_id = null;
+                    $newSend->email = $userLine["email"];
+                    $newSend->is_reg = 0;
+                    if( !$newSend->save() )
+                        print_r( $newSend->getErrors() );
                 }
             }
 
@@ -42,12 +51,17 @@ class SubscribeCommand extends CConsoleCommand
                     for( $m=0;$m<sizeof( $listEmail );$m++ )
                     {
                         $listEmail[$m] = trim( $listEmail[$m] );
-                        list( $ext ) = mysql_fetch_array( mysql_query( "SELECT id FROM subscribe_send WHERE subscribe_id='".$line->id."' AND email='".$listEmail[$m]."'" ) );
-                        if( empty( $ext ) && !empty( $listEmail[$m] ) )
+                        $ext = SubscribeSend::findByAttributes( array( "item_id"=>$line->id, "email"=>$listEmail[$m] ) );
+                        if( sizeof($ext) == 0 )
                         {
                             $emails[] = $listEmail[$m];
-                            mysql_query( "INSERT INTO sb_send( subscribe_id, email, is_reg) VALUES( '".$line->id."', '".$listEmail[$m]."', 0 )" );
-                            $countSend++;
+                            $newSend = new SubscribeSend();
+                            $newSend->item_id = $line->id;
+                            $newSend->user_id = null;
+                            $newSend->email = $listEmail[$m];
+                            $newSend->is_reg = 0;
+                            if( !$newSend->save() )
+                                print_r( $newSend->getErrors() );
                         }
                     }
                 }
@@ -61,7 +75,8 @@ class SubscribeCommand extends CConsoleCommand
                     $message = $line->description;
                     $message = str_replace( "</body>", "<img src=\"".SiteHelper::createUrl( "/site/subscribeOpen", array( "subscribe"=>$line->id, "email"=>$emails[$n] ) )."\" alt=\"\" style=\"width:0px;height:0px\" /></body>", $message );
 
-                    SiteHelper::mailto( $line->subject, $line->from, $emails[$n], stripslashes( $message ) );
+                    echo $emails[$n]."*";
+                    //SiteHelper::mailto( $line->subject, $line->from, $emails[$n], stripslashes( $message ) );
                 }
             }
 

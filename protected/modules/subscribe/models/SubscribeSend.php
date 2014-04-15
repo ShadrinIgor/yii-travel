@@ -41,7 +41,7 @@ class SubscribeSend extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, item_id, user_id', 'required'),
+			array('item_id, email', 'required'),
 			array('is_open, is_reg, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
