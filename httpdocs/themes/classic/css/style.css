@@ -2399,7 +2399,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 {
     background: url( ../images/user_cabinet.jpg ) no-repeat;
     width: 243px;
-    height: 257px;
+    height: 281px;
 }
 
 #userCabinet ul
@@ -2428,7 +2428,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 {
     font-size: 11px;
     line-height: 10px;
-    margin: 14px 0px 0px 33px;
+    margin: 18px 0px 0px 33px;
     color:#6f6f6f;
 }
 
@@ -2692,3 +2692,18 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     border-radius: 8px;
 }
 .sectionText p{padding: 0px;margin: 3px 0px;}
+tr.isHot
+{
+    /* IE10 */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #BABEBA 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #BABEBA 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #BABEBA 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #BABEBA 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(top,#FFFFFF 0%, #BABEBA 100%);
+}

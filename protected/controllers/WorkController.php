@@ -7,8 +7,8 @@ class WorkController extends InfoController
         parent::init();
         $this->classModel = "CatalogWorkAdd";
         $this->classCategory = "";
-        $this->description = "Предложение по работе в туристической отрасле, работа в туризме";
-        $this->keyWord = "Предложение по работе в туристической отрасле, работа в туризме";
+        $this->description = "Предложение по работе в туристической отрасли, работа в туризме";
+        $this->keyWord = "Предложение по работе в туристической отрасли, работа в туризме";
     }
 
     public function actions(){
@@ -53,7 +53,7 @@ class WorkController extends InfoController
             $addModel->formMessage = "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">ссылке</a>";
         }
 
-        $condition = "1=1";
+        $condition = "active=1";
         $params = array( );
 
         if( $categoryId >0 )
@@ -87,7 +87,6 @@ class WorkController extends InfoController
             $addModel->status_id = 1;
             $addModel->active = 1;
             $addModel->date = time();
-
             if( $addModel->save( ) )
             {
                 $id = $addModel->id;

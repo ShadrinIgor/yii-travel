@@ -170,7 +170,7 @@
         <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="Правила">Правила</a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="Контакты">Контакты</a> |
         <!--a href="" title="Реклама на сайте">Реклама на сайте</a> | -->
-        <a href="map/" title="Карта сайта">Карта сайта</a><!-- |
+        <a href="<?= SiteHelper::createUrl("/site/page")."/besplatniy-reklamnyi-banner" ?>" title="Размещение бесплатного баннера">Бесплатный баннер</a><!-- |
     <a href="" title="Карта сайта">Карта ссылок</a>-->
     </div>
     <div id="counters">

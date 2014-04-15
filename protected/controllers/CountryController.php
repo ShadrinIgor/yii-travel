@@ -7,8 +7,8 @@ class CountryController extends Controller
     public function init()
     {
         parent::init();
-        $this->description = "Туристический страны, описание, туристические достопримечательности";
-        $this->keyWord = "туристические страны, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд";
+        $this->description = "Туристический страны мира, описание, туристические достопримечательности";
+        $this->keyWord = "туристические страны мира, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд";
     }
 
     public function actionIndex()

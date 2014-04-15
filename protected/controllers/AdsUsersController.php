@@ -7,8 +7,8 @@ class AdsUsersController extends InfoController
         parent::init();
         $this->classModel = "CatalogItemsAdd";
         $this->classCategory = "";
-        $this->description = "Самые популярные отели мира, отсортированные по рейтингу. Возможноть просмотра подробного описания";
-        $this->keyWord = "Полезная информация для туристов, архитектура, базары узбекистана, банки тпшкента, великие люди, великий шелковый путь, автобусные путешествия, виза в узбекистан, дети, культура / искуства, разновидности туризма, эктримальный туризм , рыбалка/охота, религия / духовные центры, кладбища";
+        $this->description = "Самые популярные отели мира, отсортированные по рейтингу. Возможность просмотра подробного описания";
+        $this->keyWord = "Полезная информация для туристов, архитектура, базары Узбекистана, банки Ташкента, великие люди, великий шелковый путь, автобусные путешествия, виза в Узбекистана, дети, культура / искусства, разновидности туризма, экстримальный туризм , рыбалка/охота, религия / духовные центры, кладбища";
     }
 
     public function actions(){
@@ -32,7 +32,7 @@ class AdsUsersController extends InfoController
         Yii::app()->page->title = "Частные объявления в туристической сфере";
         $p = (int)Yii::app()->request->getParam( "p", 1 );
         $saved = (int)Yii::app()->request->getParam( "saved", 0 );
-        $categoryId = "";
+        $categoryId = "status_id = 1";
         $categoryModel = new CatalogItemsCategory();
 
         foreach( $_GET as $key=>$item )
@@ -50,7 +50,7 @@ class AdsUsersController extends InfoController
 
         if( !empty( $saved ) )
         {
-            $addModel->formMessage = "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">ссылке</a>";
+            $addModel->formMessage = "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования пройдите по <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">ссылке</a>";
         }
 
         $condition = "";

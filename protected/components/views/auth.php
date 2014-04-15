@@ -1,7 +1,7 @@
 <?php if( Yii::app()->user->isGuest ) : ?>
 <div id="authForm">
     <?php echo CHtml::form('/user','post',array( 'id'=>'validateForm')); ?>
-    <h1>Авторизация</h1>
+    <div style="text-align:center;"><b>Авторизация</b></div>
     <table id="loginForm" align="center">
         <?=
             CCModelHelper::addForm( $form, true, Yii::app()->controller )

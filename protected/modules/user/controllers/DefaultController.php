@@ -330,7 +330,8 @@ class DefaultController extends Controller
         if( $notification->id >0 && $notification->user_id->id == Yii::app()->user->getId() )
         {
             echo $notification->id;
-            $notification->delete();
+            $notification->is_new = 0;
+            $notification->save();
 
             return;
         }

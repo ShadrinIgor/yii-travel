@@ -74,7 +74,7 @@ class CCModelHelper
                             case "url"             : $input = CHtml::activeUrlField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) )."<br/><font class='smallGrey'>формат: http://www.sitename.ru</font>"; break;
                             case "email"           : $input = CHtml::activeEmailField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                             case "date"            :
-                                if( (int)$form->$field >0 )$form->$field = date( "Y-m-d", $form->$field );
+                                if( (int)$form->$field >0 )$form->$field = date( "Y-m-d", (int)$form->$field );
                                 $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                             case "password"        :
                                 $input = CHtml::passwordField( $classTable."[".$field."]", '', array( "placeholder"=>$fieldPlaceholder ) ); break;
