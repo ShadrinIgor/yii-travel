@@ -16,7 +16,8 @@ class SubscribeItems extends CCModel
     protected $date; // integer 
     protected $date_start; // integer 
     protected $users; // integer 
-    protected $users_list; // string 
+    protected $users_list; // string
+    protected $count_send;
 
 /*
 * Поля - связи
@@ -46,12 +47,12 @@ class SubscribeItems extends CCModel
 		// will receive user inputs.
 		return array(
 			array('name, subject, status_id, date, users', 'required'),
-			array('pos, del, date, date_start, users', 'numerical', 'integerOnly'=>true),
+			array('count_send, pos, del, date, date_start, users', 'numerical', 'integerOnly'=>true),
 			array('name, subject', 'length', 'max'=>150),
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('date, date_start, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe'),
+			array('count_send, date, date_start, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe'),
             array('id, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe', 'on'=>'search'),
 		);
 	}

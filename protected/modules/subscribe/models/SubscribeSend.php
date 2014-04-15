@@ -10,7 +10,10 @@ class SubscribeSend extends CCModel
     protected $item_id; // integer 
     protected $user_id; // integer 
     protected $pos; // integer 
-    protected $del; // integer 
+    protected $del; // integer
+    protected $email;
+    protected $is_reg;
+    protected $is_open;
 
 /*
 * Поля - связи
@@ -39,11 +42,11 @@ class SubscribeSend extends CCModel
 		// will receive user inputs.
 		return array(
 			array('name, item_id, user_id', 'required'),
-			array('pos, del', 'numerical', 'integerOnly'=>true),
+			array('is_open, is_reg, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, item_id, user_id, pos, del', 'safe'),
+			array('is_open, is_reg, email, name, item_id, user_id, pos, del', 'safe'),
             array('id, name, item_id, user_id, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
@@ -73,6 +76,9 @@ class SubscribeSend extends CCModel
 			'user_id' => 'User',
 			'pos' => 'Pos',
 			'del' => 'Del',
+            'email'=>'email',
+            'is_reg'=>'is_reg',
+            'is_open'=>'is_open'
 		);
 	}
 

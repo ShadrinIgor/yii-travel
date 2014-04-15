@@ -21,6 +21,7 @@ class SiteController extends Controller
 		);
 	}
 
+
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -111,6 +112,24 @@ class SiteController extends Controller
         $pageInfo = CatalogContent::fetchBySlug( "contact" );
 		$this->render('contact',array('model'=>$model, "content"=>$pageInfo));
 	}
+
+
+    public function actionSubscribeOpen()
+    {
+        $email = Yii::app()->request->getParam("email", "");
+        $subscribe = (int)Yii::app()->request->getParam("subscribe", 0);
+
+        echo "ggg";
+        if( !empty( $email ) && !empty( $subscribe ) )
+        {
+            $checkModel = SubscribeSend::findByAttributes( array( "email"=>$email, "subscribe_id"=>$subscribe ) );
+            if( sizeof( $checkModel ) >0 && $checkModel[0]->is_open == 0 )
+            {
+                $checkModel[0]->is_open = 1;
+                $checkModel[0]->save();
+            }
+        }
+    }
 
     public function actionUnSubscribe()
     {

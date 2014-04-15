@@ -86,7 +86,7 @@ class initNotifications extends CApplicationComponent
                             foreach( $arrayParams as $key=>$value )
                                 $messages = str_replace( "{".$key."}", $value, $messages );
 
-                            $this->mailto( $notificationMessage[$i]->subject, $notificationMessage[$i]->send_from, $userTo->email, $messages, $notificationMessage[$i]->copy_sender );
+                            SiteHelper::mailto( $notificationMessage[$i]->subject, $notificationMessage[$i]->send_from, $userTo->email, $messages, $notificationMessage[$i]->copy_sender );
                             $status = true;
                         }
                             else
@@ -107,38 +107,7 @@ class initNotifications extends CApplicationComponent
         return $status;
     }
 
-    private function mailto($subject, $from = "", $to, $msg, $copy='', $template='main.tpl')
-    {
-        if( empty( $from ) )$from = Yii::app()->params['adminEmail'];
-        $error = null;
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=cp1251' . "\r\n";
 
-        $headers .= 'Date: '.date("r")."\r\n";
-        $headers .= 'To: '.$to." \r\n";
-        $headers .= 'From: '.$from.'<'.$from.'>' . "\r\n";
-        if( !empty( $copy ) )$headers .= "Bcc: ".$copy."\r\n";
-
-        if( $template && file_exists( "f/mails_template/".$template) )
-        {
-            $fullUrl = "f/mails_template/".$template;
-            $file = fopen( $fullUrl, "r+" );
-            $templateText = fread( $file, filesize( $fullUrl ) );
-            fclose( $file );
-            $msg = str_replace( "@cotent_text@", $msg, $templateText );
-        }
-
-        $headers = iconv("UTF-8", "cp1251", $headers);
-        $msg = iconv("UTF-8", "cp1251", $msg);
-        $subject = iconv("UTF-8", "cp1251", $subject);
-
-   //echo $to.",".$subject.",".$msg.",".$headers;
-        $res=@mail($to,$subject,$msg,$headers);
-
-        if($res===false)$error="Произошла ошибка отправки сообщения на E-mail (<b>".$to."</b>). Проверте коректность вводимого E-mail и попробуйте снова.";
-
-        return $error;
-    }
 
     public function getList()
     {
