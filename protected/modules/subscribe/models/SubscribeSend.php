@@ -45,6 +45,7 @@ class SubscribeSend extends CCModel
 			array('is_open, is_reg, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
+
 			// Please remove those attributes that should not be searched.
 			array('is_open, is_reg, email, name, item_id, user_id, pos, del', 'safe'),
             array('id, name, item_id, user_id, pos, del', 'safe', 'on'=>'search'),
