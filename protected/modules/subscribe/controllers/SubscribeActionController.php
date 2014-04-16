@@ -10,6 +10,12 @@ class SubscribeActionController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
+
+    public function init()
+    {
+        if( Yii::app()->user->isGuest )$this->redirect("/console");
+    }
+
 	public function actionIndex()
 	{
         $list = SubscribeItems::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "id DESC" )->setCache(0) );
@@ -18,6 +24,57 @@ class SubscribeActionController extends Controller
 
         $this->render($this->viewPath."index",  array( "list"=>$list, "listCroup"=>$listCroup, "activeCategory"=>$activeCategory ) );
 	}
+
+    public function actionStat()
+    {
+        $id = (int) Yii::app()->request->getParam("id", 0 );
+        if( $id>0 )
+        {
+            $subscribeModel = SubscribeItems::fetch( $id );
+            if( $subscribeModel->id >0 )
+            {
+                if( $this->beginCache("SubscribeStat".$id, array('duration'=>1200) ) ) :
+                    $needSend = 0;
+
+                    if( $subscribeModel->user == 1 || $subscribeModel->user == 2 )
+                    {
+                        $countUsers = CatalogUsers::count( DBQueryParamsClass::CreateParams()->setConditions( "subscribe=1" )->setLimit(-1) );
+                        $needSend += $countUsers;
+                    }
+
+                    if( $subscribeModel->user == 1 || $subscribeModel->user == 3 )
+                    {
+                        $countUsers = SubscribeUsers::count( DBQueryParamsClass::CreateParams()->setLimit(-1) );
+                        $needSend += $countUsers;
+                    }
+
+                    if( $subscribeModel->users == 4 ) // Отправка по спику
+                    {
+                        $usersList = trim( strip_tags( $subscribeModel->users_list ) );
+                        if( !empty( $usersList ) )
+                        {
+                            $listEmail = explode( ",", $usersList );
+                            $needSend += sizeof($listEmail);
+                        }
+                    }
+
+                    $countSend = SubscribeSend::count( DBQueryParamsClass::CreateParams()->setConditions("item_id=".$id)->setLimit(-1) );
+                    $countOpen = SubscribeSend::count( DBQueryParamsClass::CreateParams()->setConditions("item_id=".$id." AND is_open=1")->setLimit(-1) );
+
+                    $this->render($this->viewPath."stat",
+                            array(
+                                "item"=>$subscribeModel,
+                                "countSend"=>$countSend,
+                                "countOpen"=>$countOpen,
+                                "needSend"=>$needSend,
+                                'arrayParams' => array( "group_id" =>$subscribeModel->group_id )
+                            ) );
+
+                    $this->endCache();
+                endif;
+            }
+        }
+    }
 
     public function actionEdit( $message = "" )
     {

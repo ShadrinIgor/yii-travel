@@ -13,6 +13,7 @@
     <tr>
         <th>ID</th>
         <th>Название</th>
+        <th>Отправлено</th>
         <th>Состояние</th>
         <th></th>
     </tr>
@@ -20,6 +21,7 @@
     <tr>
         <td><?= $item->id ?></td>
         <td><a href="<?= SiteHelper::createUrl( "/console/subscribe/edit", array( "id"=>$item->id ) ) ?>"><?= $item->name ?></a></td>
+        <td><a href="<?= SiteHelper::createUrl( "/console/subscribe/stat", array( "id"=>$item->id ) ) ?>"><?= $item->count_send>0 ? $item->count_send : 0 ?></a></td>
         <td><?= $item->status_id->name ?></td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/console/subscribe/edit", array( "id"=>$item->id ) ) ?>">Редактировать</a>&nbsp;

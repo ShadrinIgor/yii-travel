@@ -120,7 +120,7 @@ class SiteController extends Controller
 
         if( !empty( $email ) && !empty( $subscribe ) )
         {
-            $checkModel = SubscribeSend::findByAttributes( array( "email"=>$email, "subscribe_id"=>$subscribe ) );
+            $checkModel = SubscribeSend::findByAttributes( array( "email"=>$email, "item_id"=>$subscribe ) );
             if( sizeof( $checkModel ) >0 && $checkModel[0]->is_open == 0 )
             {
                 $checkModel[0]->is_open = 1;

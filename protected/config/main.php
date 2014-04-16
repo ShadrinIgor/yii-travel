@@ -27,6 +27,7 @@ return array(
         'application.components.CCApplicationComponent',
         'ext.favorites.models.*',
         'ext.banners.models.*',
+        'application.modules.subscribe.models.*',
 //        'ext.eoauth.*',
 //        'ext.eoauth.lib.*',
 //        'ext.lightopenid.*',
@@ -34,7 +35,7 @@ return array(
     ),
 
     'modules'=>array(
-        'user', 'console', 'catalog', 'find',
+        'user', 'console', 'catalog', 'find', 'subscribe',
         // uncomment the following to enable the Gii tool
 
 
