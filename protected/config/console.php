@@ -37,4 +37,15 @@ return array(
 			),
 		),
 	),
+
+    'params'=>array(
+        // this is used in contact page
+        'adminEmail'=>'info@world-travel.uz',
+        'supportEmail'=>'support@world-travel.uz',
+        'baseUrl' => 'http://yii-travel.loc/',
+        'images' => array(),
+        'images_quality'=>70, // Работает только для JPG
+        "catalogList"=>array(),
+        "titleName"=>"Туристический портал",
+    ),
 );

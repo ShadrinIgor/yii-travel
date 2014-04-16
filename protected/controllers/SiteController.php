@@ -28,7 +28,6 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-
         Yii::app()->page->title = "Туристический портал Узбекистана, отдых, туры, туроператоры, путешествия, турция, анталия, узбекистан";
         $content = CatalogContent::fetchBySlug( "about_us" );
 
@@ -119,7 +118,6 @@ class SiteController extends Controller
         $email = Yii::app()->request->getParam("email", "");
         $subscribe = (int)Yii::app()->request->getParam("subscribe", 0);
 
-        echo "ggg";
         if( !empty( $email ) && !empty( $subscribe ) )
         {
             $checkModel = SubscribeSend::findByAttributes( array( "email"=>$email, "subscribe_id"=>$subscribe ) );

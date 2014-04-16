@@ -5,7 +5,11 @@ chdir(dirname(__FILE__).'/');
 $root = dirname( __FILE__ ).'/';
 $common = $root . '/../framework';
 $config = require($root.'/../protected/config/cron.php');
+
+defined('YII_DEBUG') or define('YII_DEBUG',true);
+defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 require_once($common.'/yii.php');
+
 /*
 define('YII_ENABLE_ERROR_HANDLER', false);
 define('YII_ENABLE_EXCEPTION_HANDLER', false);*/

@@ -16,7 +16,7 @@ class SubscribeCommand extends CConsoleCommand
                 $lisUsers = CatalogUsers::sql( "SELECT u.* FROM catalog_users u WHERE `active`=1 AND subscribe=1 AND !exists( SELECT id FROM subscribe_send WHERE email=u.email AND item_id='".$line->id."' AND is_reg=1 ) LIMIT ".$countLimit );
                 foreach( $lisUsers as $userLine )
                 {
-                    $emails[] = $userLine["email"];
+                    $emails[] = array( "email"=>$userLine["email"], "name"=> $userLine["name"] );
                     $newSend = new SubscribeSend();
                     $newSend->item_id = $line->id;
                     $newSend->user_id = $userLine["id"];
@@ -32,6 +32,7 @@ class SubscribeCommand extends CConsoleCommand
                 $lisUsers = CatalogUsers::sql( "SELECT u.* FROM subscribe_users u WHERE !exists( SELECT id FROM subscribe_send WHERE email=u.email AND item_id='".$line->id."' AND is_reg=0 ) LIMIT ".( $countLimit - sizeof($emails) ) );
                 foreach( $lisUsers as $userLine )
                 {
+                    $emails[] = array( "email"=>$userLine["email"], "name"=> $userLine["name"] );
                     $newSend = new SubscribeSend();
                     $newSend->item_id = $line->id;
                     $newSend->user_id = null;
@@ -54,7 +55,7 @@ class SubscribeCommand extends CConsoleCommand
                         $ext = SubscribeSend::findByAttributes( array( "item_id"=>$line->id, "email"=>$listEmail[$m] ) );
                         if( sizeof($ext) == 0 )
                         {
-                            $emails[] = $listEmail[$m];
+                            $emails[] = array( "email"=>$listEmail[$m], "name"=>"пользователь" );
                             $newSend = new SubscribeSend();
                             $newSend->item_id = $line->id;
                             $newSend->user_id = null;
@@ -73,10 +74,9 @@ class SubscribeCommand extends CConsoleCommand
                 {
                     $countSend ++;
                     $message = $line->description;
-                    $message = str_replace( "</body>", "<img src=\"".SiteHelper::createUrl( "/site/subscribeOpen", array( "subscribe"=>$line->id, "email"=>$emails[$n] ) )."\" alt=\"\" style=\"width:0px;height:0px\" /></body>", $message );
+                    $message = str_replace( "@user_name@", $emails[$n]["name"], $message );
 
-                    echo $emails[$n]."*";
-                    //SiteHelper::mailto( $line->subject, $line->from, $emails[$n], stripslashes( $message ) );
+                    SiteHelper::mailto( $line->subject, $line->from, $emails[$n]["email"], stripslashes( $message ), "", "", array( "<!-- @openSubscribeLink@ -->"=>"<img src=\"".Yii::app()->params["baseUrl"]."site/subscribeOpen/subscribe/".$line->id."/email/".$emails[$n]["email"]."\" alt=\"\" style=\"width:0px;height:0px\" />" ) );
                 }
             }
 
@@ -93,27 +93,6 @@ class SubscribeCommand extends CConsoleCommand
                 $line->status_id = 3;
                 $line->save();
             }
-        }
-
-        function mailto($subject, $from='', $to, $msg, $hideCopyRecender="" )
-        {
-            $headers  = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=windows-1251' . "\r\n";
-
-            $headers .= 'Date: '.date("r")."\r\n";
-            $headers .= 'To: '.$to." \r\n";
-            $headers .= 'From: Embassy Alliance Travel (www.embassyalliance.ru)<'.$from.'>' . "\r\n";
-            $headers .= 'Reply-To: '.$from. "\r\n" ;
-            if( !empty( $hideCopyRecender ) )$headers .= 'Bcc: '.$hideCopyRecender."\r\n";
-
-            $headers = mb_convert_encoding($headers, 'CP1251','UTF8');
-            $msg = mb_convert_encoding( $msg, 'CP1251','UTF8');
-            $subject = mb_convert_encoding($subject, 'CP1251','UTF8' );
-
-            $error="";
-            $res=mail($to,$subject,$msg,$headers);
-            if($res===false)$error="Произошла ошибка отправки сообщения на E-mail (<b>".$to."</b>). Проверте коректность вводимого E-mail и попробуйте снова.";
-            return $error;
         }
 
     }
