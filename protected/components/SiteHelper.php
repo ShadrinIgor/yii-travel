@@ -8,6 +8,18 @@
  */
 class SiteHelper
 {
+    public static function setLog( $catalog, $action, $itemId, $userId=0 )
+    {
+        $newLog = new CatLog();
+        $newLog->catalog = $catalog;
+        $newLog->action = $action;
+        $newLog->item_id = $itemId;
+        $newLog->user_id = $userId;
+        $newLog->date = date("Y-m-d");
+        $newLog->date2 = date("Y-m-d");
+        $newLog->save();
+    }
+
     public static function getAnimateText( $slug, $link = "" )
     {
         $textModel = CatalogContent::fetchBySlug( $slug );

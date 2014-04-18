@@ -15,6 +15,8 @@ class UserNotifier {
         $confim->type = "registration";
         $confim->save();
 
+        SiteHelper::setLog( "catalog_users", "registration", $user->id );
+
         if( $confim->hasErrors() && sizeof( $confim )>0 )
         {
             $errors = "Ошибка сохранение записи для подтверждения регистрации: ";
@@ -50,6 +52,7 @@ class UserNotifier {
             }
                 else
             {
+                SiteHelper::setLog( "catalog_users", "registration_confirm", $user->id );
                 // Удаляем запись в базе о необходимости подтверждения
                 if( $confirm->id>0 )$confirm->delete();
 
