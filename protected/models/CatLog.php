@@ -12,6 +12,7 @@ class CatLog extends CCModel
     protected $action; // string 
     protected $user_id; // integer
     protected $date2;
+    protected $del;
 
 /*
 * Поля - связи
@@ -40,11 +41,11 @@ class CatLog extends CCModel
 		// will receive user inputs.
 		return array(
 			array('date, date2, catalog, item_id, action', 'required'),
-			array('date, item_id', 'numerical', 'integerOnly'=>true),
+			array('del, date, item_id', 'numerical', 'integerOnly'=>true),
 			array('catalog', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('date2, date, catalog, item_id, action, user_id', 'safe'),
+			array('del, date2, date, catalog, item_id, action, user_id', 'safe'),
             array('id, date, catalog, item_id, action, user_id', 'safe', 'on'=>'search'),
 		);
 	}

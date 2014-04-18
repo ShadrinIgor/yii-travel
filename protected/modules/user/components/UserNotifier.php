@@ -83,6 +83,8 @@ class UserNotifier {
         $confim->confirm_key = substr( md5( $user->email.time() ), 0, 8 );
         $confim->type = "lostpassword";
         $confim->save();
+        SiteHelper::setLog( "catalog_users", "lost_password_request", $user->id );
+
         if( $confim->hasErrors() && sizeof( $confim )>0 )
         {
             $errors = "Ошибка сохранение подтвержджения востановление пароля: ";
@@ -107,6 +109,7 @@ class UserNotifier {
         $user->password = md5( $_POST["CatalogUsersLostConfirm"]["password"] );
 
         $user->save();
+        SiteHelper::setLog( "catalog_users", "lost_password", $user->id );
         if( $user->hasErrors() && sizeof( $user )>0 )
         {
             $errors = "Ошибка сохранение нового пароля: ";

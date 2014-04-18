@@ -15,7 +15,7 @@ class SiteHelper
         $newLog->action = $action;
         $newLog->item_id = $itemId;
         $newLog->user_id = $userId;
-        $newLog->date = date("Y-m-d");
+        $newLog->date = time();
         $newLog->date2 = date("Y-m-d");
         $newLog->save();
     }

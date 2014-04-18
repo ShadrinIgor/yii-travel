@@ -30,8 +30,11 @@ class DefaultController extends ConsoleController
         }
             else
         {
+
+            $list = CatLog::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "id DESC" )->setLimit(50)->setCache(0) );
+
             Yii::app()->page->title = "Административный кабинет";
-            $this->render( "room", array(  ) );
+            $this->render( "room", array( "listStat"=>$list ) );
         }
 	}
 
