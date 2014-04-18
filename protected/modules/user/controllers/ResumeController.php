@@ -51,6 +51,12 @@ class ResumeController extends UserController
 
                     if( $item->save() )
                     {
+                        if( $isAdd )$action = "create";
+                        else $action = "edit";
+
+                        SiteHelper::setLog( $item->tableName(), $action, $item->id, Yii::app()->user->getId() );
+
+
                         $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "status"=>"saved") ) );
                         die;
                         //if( !$isAdd )$message = "Описание успешно обновленно";

@@ -72,6 +72,11 @@ class FirmBannersController extends UserController
                     $item->user_id = Yii::app()->user->getId();
                     if( $item->save() )
                     {
+                        if( $isAdd )$action = "create";
+                               else $action = "edit";
+
+                        SiteHelper::setLog( $item->tableName(), $action, $item->id, Yii::app()->user->getId() );
+
                         if( !empty( $_POST["banner_request"] ) )
                         {
                             if( $count<$maxCount )

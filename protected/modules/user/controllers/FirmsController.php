@@ -31,6 +31,7 @@ class FirmsController extends UserController
                     $galItem->delete();
 
                 $item->delete();
+                SiteHelper::setLog( $item->tableName(), "delete", $item->id, Yii::app()->user->getId() );
                 echo 1;
                 return;
             }
@@ -117,13 +118,16 @@ class FirmsController extends UserController
 
                 if( !$error )
                 {
+
                     if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
                                                                             else $id = $commentModel->firm_id->user_id->id;
 
                     if( $commentModel->id > 0 && $id == Yii::app()->user->getId() )
                     {
-                        if( $commentModel->active == 0 )$commentModel->active = 1;
-                                                   else $commentModel->active = 0;
+                        if( $commentModel->active == 0 ){$commentModel->active = 1;$action="publish";}
+                                                   else {$commentModel->active = 0;$action="nopublish";}
+
+                        SiteHelper::setLog( $catalog::tableName(), $action, $commentModel->user_id->id, Yii::app()->user->getId() );
                         $commentModel->save();
                         echo true;
                         return;

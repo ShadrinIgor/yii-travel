@@ -88,6 +88,7 @@ class UserController extends Controller
 
                     $message = "Запись удалена";
                     $item->delete();
+                    SiteHelper::setLog( $item->tableName(), "delete", $item->id, Yii::app()->user->getId() );
 
                     if( is_array($item->getErrors()) && sizeof( $item->getErrors() )>0 )
                         print_r( $item->getErrors() );
@@ -258,6 +259,12 @@ class UserController extends Controller
                     $item->user_id = Yii::app()->user->getId();
                     if( $item->save() )
                     {
+                        if( $isAdd )$action = "create";
+                               else $action = "edit";
+
+                        SiteHelper::setLog( $item->tableName(), $action, $item->id, Yii::app()->user->getId() );
+
+
                         $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "fid"=>$firm->id, "status"=>"saved") ) );
                         die;
                         //if( !$isAdd )$message = "Описание успешно обновленно";
