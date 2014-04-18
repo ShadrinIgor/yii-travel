@@ -88,6 +88,7 @@ class AdsUsersController extends InfoController
             if( $addModel->save( ) )
             {
                 $id = $addModel->id;
+                SiteHelper::setLog( $addModel->tableName(), "add", $addModel->id, Yii::app()->user->getId() );
                 $this->redirect( SiteHelper::createUrl( "/adsUsers", array( "saved"=>$id ) ) );
             }
                 else

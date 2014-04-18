@@ -2603,16 +2603,19 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 }
 
 #LMenu .LMItem a{color: #000;display: block;}
-.addButton
+#Center div .addButton
 {
     font-weight: bold;
-    padding: 8px 10px;
-    border-radius: 20px;
+    border-radius: 12px;
     border: 2px solid #fff;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.8);
     text-align: center;
     margin: 6px 7px;
     display: inline-block;
+
+    color:#fff;
+    padding: 8px 25px;
+    text-shadow: 0px 0px 6px #000;
 
     /* IE10 */
     background-image: -ms-linear-gradient(top, #83d81e 0%, #b8ee34 100%);
@@ -2630,6 +2633,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 .addButton:hover
 {
+
     /* IE10 */
     background-image: -ms-linear-gradient(top, #b8ee34 0%, #83d81e 100%);
     /* Mozilla Firefox */

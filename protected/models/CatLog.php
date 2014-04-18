@@ -40,7 +40,7 @@ class CatLog extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('date, date2, catalog, item_id, action', 'required'),
+			array('date, date2, catalog, action', 'required'),
 			array('del, date, item_id', 'numerical', 'integerOnly'=>true),
 			array('catalog', 'length', 'max'=>150),
 			// The following rule is used by search().

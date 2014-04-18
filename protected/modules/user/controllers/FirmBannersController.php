@@ -41,7 +41,11 @@ class FirmBannersController extends UserController
             $error = Yii::app()->request->getParam("error", "");
             $addClass = $this->addModel;
             if( !empty( $id ) )$item = $addClass::fetch( $id );
-            else $item = new $addClass();
+                else
+            {
+                $item = new $addClass();
+                SiteHelper::setLog( $item->tableName(), "open_add_form", $item->id, Yii::app()->user->getId() );
+            }
 
             $count = CatalogBannerRequest::count();
             $maxCount = SiteHelper::getConfig( "banner_max_count" );

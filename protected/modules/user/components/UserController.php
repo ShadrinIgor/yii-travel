@@ -232,7 +232,11 @@ class UserController extends Controller
             $error = Yii::app()->request->getParam("error", "");
             $addClass = $this->addModel;
             if( !empty( $id ) )$item = $addClass::fetch( $id );
-                          else $item = new $addClass();
+                    else
+            {
+                $item = new $addClass();
+                SiteHelper::setLog( $item->tableName(), "open_add_form", $item->id, Yii::app()->user->getId() );
+            }
 
             if( !$item->id || ( ( $item->user_id && $item->user_id->id == Yii::app()->user->getId() ) || ( $item->firm_id && $item->firm_id->user_id->id == Yii::app()->user->getId() ) ) )
             {
@@ -263,7 +267,6 @@ class UserController extends Controller
                                else $action = "edit";
 
                         SiteHelper::setLog( $item->tableName(), $action, $item->id, Yii::app()->user->getId() );
-
 
                         $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", array("id"=>$item->id, "fid"=>$firm->id, "status"=>"saved") ) );
                         die;

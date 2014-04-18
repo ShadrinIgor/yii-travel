@@ -173,7 +173,19 @@ class pageWidget extends CWidget
             Yii::app()->page->title = $dopTitle.$this->title;
             Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
 
+            $addUrl = "";
+            $linkName = "";
+            switch( $catalogModel->tableName() )
+            {
+                case "catalog_firms" : $addUrl =  SiteHelper::createUrl( "/user/firms/description/" );$linkName="Добавить тиристическое агенство";break;
+                case "catalog_hotels" : $addUrl =  SiteHelper::createUrl( "/user/hotels/description/" );$linkName="Добавить отель/гостиницу";break;
+                case "catalog_kurorts" : $addUrl =  SiteHelper::createUrl( "/user/resort/description/" );$linkName="Добавить зону отдыха / курорт /дет. лагерь";break;
+                //case "catalog_tours" : $addUrl =  SiteHelper::createUrl( "/user/tours/description/" );$linkName="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Добавить тур&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";break;
+            }
+
             $this->render( "page", array(
+                'linkName'  => $linkName,
+                'addUrl'    => $addUrl,
                 'items'     => $items,
                 'page'      => $page,
                 'sectionTextSlug' => $this->sectionTextSlug,

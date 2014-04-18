@@ -6,6 +6,9 @@
 <?php if( !empty( $sectionTextSlug ) ) : ?>
     <?= SiteHelper::getAnimateText( $sectionTextSlug ) ?>
 <?php endif; ?>
+<?php if( !empty( $addUrl ) ) : ?>
+    <div class="textAlignCenter"><a href="<?= $addUrl ?>" class="addButton" title="<?= $linkName ?>"><?= $linkName ?></a></div>
+<?php endif; ?>
 <div id="CIHeader" class="overflowHidden">
     <?php if( is_array( $arrSearchFields ) && sizeof($arrSearchFields)>0 ) : ?>
         <div id="CIFind">

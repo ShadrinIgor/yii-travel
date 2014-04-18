@@ -32,7 +32,11 @@ class WorkController extends UserController
             $addClass = $this->addModel;
 
             if( !empty( $id ) )$item = $addClass::fetch( $id );
-            else $item = new $addClass();
+                else
+            {
+                $item = new $addClass();
+                SiteHelper::setLog( $item->tableName(), "open_add_form", $item->id, Yii::app()->user->getId() );
+            }
 
             if( !$item->id || $item->user_id->id == Yii::app()->user->getId()  )
             {
