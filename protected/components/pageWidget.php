@@ -17,7 +17,7 @@ class pageWidget extends CWidget
     var $keyWord;
     var $sectionTextSlug;
     var $url = 'tours';
-    var $order = "col DESC";
+    var $order = "id DESC";
     var $sort = array(
                     array( "col", "просмотрам" ),
                     array( "name", "названию" ),
@@ -53,15 +53,11 @@ class pageWidget extends CWidget
                     $sortField = Yii::app()->session[ "page_".$catalog ]["sort"]["field"];
                     $by = Yii::app()->session[ "page_".$catalog ]["sort"]["by"];
                 }
-                    else
-                {
-                    $sortField = "col";
-                    $by = "asc";
-                }
             }
 
             // Сортировка
             $SQLsort = $this->order;
+
             if( !empty( $sortField ) && property_exists( $catalog, $sortField ) )
             {
                 if( $by == "desc" )$SQLsort = $sortField." DESC";

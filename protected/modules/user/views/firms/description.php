@@ -39,6 +39,13 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
 <?php if( !empty( $message ) ) : ?>
     <div class="messageSummary"><?= $message ?></div>
 <?php endif; ?>
+<?php if( $item->id > 0 ) : ?>
+    <div class="textAlignCenter">
+        <a href="<?= SiteHelper::createUrl("/user/tours/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ Добавить тур для Вашей компания">+ Добавить тур</a>
+        <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ Добавить акцию или скидку для Вашей компания">+ Добавить акцию</a>
+        <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ Добавить БЕСПЛАТНЫЙ баннер">+ Добавить БЕСПЛАТНЫЙ баннер</a>
+    </div>
+<?php endif; ?>
 <div id="counter_page" class="pageTab<?= $tab == "counter" ? " activePage" : " displayNone" ?>">
     <?php $this->renderPartial( "counter_page", array("item"=>$item ) ) ?>
 </div>
@@ -58,6 +65,9 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
     <?php $this->renderPartial( "ptours_page", array("item"=>$item, "items"=>$listTours) ) ?>
 </div>
 <div id="description_page" class="pageTab<?= $tab == "description" ? " activePage" : " displayNone" ?>">
+    <?php if( $item->id == 0 ) : ?>
+        <?= SiteHelper::getAnimateText( "tekst-dlya-stranica-dobavlenie-fimy" ) ?>
+    <?php endif; ?>
     <div id="gallery">
         <h2>Галлерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>

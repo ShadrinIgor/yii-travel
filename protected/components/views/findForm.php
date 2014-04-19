@@ -21,7 +21,7 @@
                 Категория: <select name="CatalogTours[category_id]">
                     <option value=""> - выберите категорию - </option>
                     <?php foreach( CatalogToursCategory::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=0")->setOrderBy("name")->setLimit(-1)) as $category ) : ?>
-                        <optgroup label="<?= $country->name ?>">
+                        <optgroup label="<?= $category->name ?>">
                             <?php foreach( CatalogToursCategory::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams(array(":owner"=>$category->id))->setOrderBy("name")->setLimit(-1)) as $category2 ) : ?>
                                 <option value="<?= $category2->id ?>"><?= $category2->name ?></option>
                             <?php endforeach; ?>
