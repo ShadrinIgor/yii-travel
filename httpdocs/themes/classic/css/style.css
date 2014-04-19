@@ -2710,3 +2710,98 @@ tr.isHot
     /* Proposed W3C Markup */
     background-image: linear-gradient(top,#FFFFFF 0%, #BABEBA 100%);
 }
+
+.TILeft
+{
+    /* IE10 */
+    background-image: -ms-linear-gradient(left, #E4FFE1 0%, #FFFFFF 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(left, #E4FFE1 0%, #FFFFFF 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(left, #E4FFE1 0%, #FFFFFF 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(left, #E4FFE1 0%, #FFFFFF 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(left,#E4FFE1 0%, #FFFFFF 100%);
+    box-shadow: -7px 0px 6px -3px rgba( 0,0,0, 0.6 );
+    margin-left: 30px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+.TILeft .TLIn{ background: url( ../images/text_items_bg.png ) no-repeat  144px 0px;height: 354px;}
+
+
+.TIRight{
+    /* IE10 */
+    background-image: -ms-linear-gradient(top right, #F0E1E1 0%, #FFFFFF 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top right, #F0E1E1 0%, #FFFFFF 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top right, #F0E1E1 0%, #FFFFFF 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #00A3EF));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top right, #F0E1E1 0%, #FFFFFF 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(top right,#F0E1E1 0%, #FFFFFF 100%);
+    box-shadow: 7px 0px 6px -3px rgba( 0,0,0, 0.6 );
+    margin-right: 30px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.TIRight .TLIn{ background: url( ../images/text_items_bg.png ) no-repeat  310px -354px;height: 354px; }
+.TILeft.TISmall .TLIn, .TIRight.TISmall .TLIn{background: none;height: 190px;}
+
+.TILeft .floatLeft, .TIRight .floatRight
+{
+    width: 178px;
+    height: 250px;
+    font-size: 220px;
+    margin-right: 20px;
+    text-align: center;
+    margin-top: 30px;
+    color: #afafaf;
+}
+.TIRight .floatRight
+{
+    margin-right: 0px;
+    margin-left: 20px;
+}
+
+.TILeft.TISmall .floatLeft, .TIRight.TISmall .floatRight
+{
+    font-size: 150px;
+    margin-top: 4px;
+    height: 180px;
+    border-left: 1px solid rgba(0,0,0,0.2);
+}
+.TILeft.TISmall .floatLeft{ border-right: 1px solid rgba(0,0,0,0.2); }
+
+
+#FCCentr .textItems h2{text-align: left;margin: 0px;}
+#FCCentr .textItems .TIRight  h3, #FCCentr .textItems .TIRight  h2{text-align: right;}
+#FCCentr .textItems h3{text-align: left;margin: 10px 0px 0px 0px;}
+#Center .textItems a, #Center .textItems span{font-weight: bold;font-size: 14px;color: #0070FF;text-decoration: underline;}
+#Center .textItems span{text-decoration: none;}
+.TIRight .overflowHidden{padding-left: 20px;}
+.TILeft .overflowHidden{padding-right: 20px;}
+.sovetBlock
+{
+    margin-top: 2px;
+    background: #fff5b5 url(../images/sovet.png ) no-repeat left center;
+    float: right;
+    padding-left: 32px;
+    height: 24px;
+    border-radius: 12px;
+    padding-top: 8px;
+    border: 1px solid #fdd033;
+    padding-right: 10px;
+}
+
+.sovetBlock:hover
+{
+    background: #fdd033 url(../images/sovet.png ) no-repeat left center;
+}

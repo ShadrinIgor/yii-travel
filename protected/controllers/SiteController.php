@@ -112,6 +112,10 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model, "content"=>$pageInfo));
 	}
 
+    public function actionAddFirm()
+    {
+        $this->render("addFirm");
+    }
 
     public function actionSubscribeOpen()
     {

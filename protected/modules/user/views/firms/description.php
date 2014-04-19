@@ -18,7 +18,8 @@ $tab = Yii::app()->request->getParam("tab", "description");
 $tabArray = array("description" ,"ptours" ,"items" ,"service" ,"reclame" ,"pcomments" ,"counter");
 if( !in_array( $tab, $tabArray ) )$tab = "description";
 ?>
-<h1>Описание туристической фирмы <?= $item->id >0 ? " - ". $item->name : "" ?></h1>
+<div class="sovetBlock"><a href="<?= SiteHelper::createUrl("/site/addFirm") ?>" title="Как правильно добавить фирму?">Как правильно добавить фирму?</a></div>
+<h1><font>Описание туристического агенства</font> <?= $item->id >0 ? " - ". $item->name : "" ?></h1>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages">Описание и галлерея</a>
         <?php if( $item->id >0 ) : ?>

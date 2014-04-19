@@ -53,6 +53,6 @@
         </tr>
     <?php endif; ?>
     <tr>
-        <td colspan="6" class="textAlignCenter emptyList"><br/><a href="<?= SiteHelper::createUrl("/user/firmItems/description", array("fid"=>$item->id)) ?>">[ добавить новую акцию/скиду тур ]</a><br/></td>
+        <td colspan="6" class="textAlignCenter emptyList"><br/><a href="<?= SiteHelper::createUrl("/user/firmItems/description", array("fid"=>$item->id)) ?>">[ добавить новую акцию/скиду ]</a><br/></td>
     </tr>
 </table>
