@@ -125,6 +125,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
     <br/>
 
     <form action="" method="post" enctype="multipart/form-data">
+        <?php $item->getMessage() ?>
     <table class="tableForm">
         <?=
             CCModelHelper::addForm( $item )
