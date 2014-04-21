@@ -10,7 +10,6 @@ if( $this->beginCache( "firstPage", array('duration'=>3600) ) ) :
         <?php $this->widget("topButtonWidget", array( "type"=>"add_first" )) ?>
         <?php $this->widget("topButtonWidget", array( "type"=>"confirm_first" )) ?>
     </div>
-
     <div class="hr">&nbsp;</div>
 
     <div id="FCountryList">

@@ -22,6 +22,7 @@
         <?= property_exists( $catalogClass, "category_id" ) ? "<th>Category</th>" : "" ?>
         <?= property_exists( $catalogClass, "key_word" ) ? "<th>Key word</th>" : "" ?>
         <?= property_exists( $catalogClass, "slug" ) ? "<th>Slug</th>" : "" ?>
+        <?= property_exists( $catalogClass, "active" ) ? "<th>Статус</th>" : "" ?>
         <th>Actions</th>
     </tr>
 <?php foreach( $list as $item ) : ?>
@@ -36,6 +37,9 @@
         <?php endif; ?>
         <?php if( property_exists( $catalogClass, "slug" ) ) :?>
             <td><?= $item->slug ?></td>
+        <?php endif; ?>
+        <?php if( property_exists( $catalogClass, "active" ) ) :?>
+            <td><?= $item->active == 1 ? "опубликован" : "не опубликован" ?></td>
         <?php endif; ?>
         <td class="fieldActions">
             <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$item->id )).$controller->params ?>">Редактировать</a>

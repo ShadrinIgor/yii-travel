@@ -75,7 +75,7 @@ class pageWidget extends CWidget
             $findText = "";
 
             // Поиск
-            $SQL = " 1=1 ";
+            $SQL = " active=1 ";
 
             $category = Yii::app()->request->getParam("category", "");
             if( !empty( $category ) )
@@ -158,7 +158,7 @@ class pageWidget extends CWidget
             $items = $this->render( $this->template,
                 array(
                         'url'=> $this->url,
-                        "items" => $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $SQL )->setOrderBy( $SQLsort )->setPage( $page )->setLimit( $this->offset ) ),
+                        "items" => $catalog::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $SQL )->setOrderBy( $SQLsort )->setCache(0)->setPage( $page )->setLimit( $this->offset ) ),
                         'findText' => $findText
                 ),
                 true );
