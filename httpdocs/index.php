@@ -1,8 +1,8 @@
 <?php
 
 header("cache-control: private, max-age = 86400");
-/*
-error_reporting(0);
+
+/*error_reporting(0);
 ini_set('display_errors', 0);*/
 
 // change the following paths if necessary

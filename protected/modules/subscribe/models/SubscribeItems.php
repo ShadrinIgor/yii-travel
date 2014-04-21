@@ -52,7 +52,7 @@ class SubscribeItems extends CCModel
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('count_send, date, date_start, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe'),
+			array('count_send, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe'),
             array('id, name, group_id, subject, description, pos, del, status_id, date, date_start, users, users_list', 'safe', 'on'=>'search'),
 		);
 	}
