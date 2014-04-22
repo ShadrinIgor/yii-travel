@@ -54,7 +54,7 @@ class ExBanner extends CCModel
 		return array(
 			array('category, type_id', 'required'),
 			array('default, del, width, height, count_show, inner_page, finish_count_show, pos', 'numerical', 'integerOnly'=>true),
-			array('name, image, href, email', 'length', 'max'=>50),
+			array('name, image, email', 'length', 'max'=>50),
             array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1024 * 1024 * 5,
                 'tooLarge' => 'Размер файл не должен превышать 5mb',
                 'wrongType' => "Неправельный тип загружаемого файл допускается - jpg, gif, png"), // Ограничение по размеру 5mb

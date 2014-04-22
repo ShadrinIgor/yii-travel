@@ -260,6 +260,8 @@ class UserController extends Controller
                     $item->setAttributesFromArray( $_POST[ $addClass ] );
                     //$item->is_resume = 0;
                     if( !$item->date )$item->date = time();
+                    if( property_exists( $item, "edit_date" ) )$item->edit_date = time();
+
                     $item->user_id = Yii::app()->user->getId();
                     if( $item->save() )
                     {

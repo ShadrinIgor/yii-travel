@@ -51,7 +51,7 @@ class CatalogFirmsBanners extends CCModel
 			array('link, file', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, link, type_id, file, date, firm_id, user_id, active, pos, position_id, col, del', 'safe'),
+			array('file, name, link, type_id, file, date, firm_id, user_id, active, pos, position_id, col, del', 'safe'),
             array('id, name, link, type_id, file, date, firm_id, user_id, active, position_id, pos, col, del', 'safe', 'on'=>'search'),
 		);
 	}
@@ -99,6 +99,7 @@ class CatalogFirmsBanners extends CCModel
 			'type_id' => 'Тип баннера',
             'position_id' => 'Позиция баннера',
 			'file' => 'Файл',
+            'firm_id' => 'Фирма',
 			'active' => 'Опубликовать',
 		);
 	}

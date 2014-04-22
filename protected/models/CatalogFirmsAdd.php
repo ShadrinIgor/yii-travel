@@ -19,7 +19,7 @@ class CatalogFirmsAdd extends CatalogFirms
 			array('image', 'length', 'max'=>100),
 			array('email, www, tel, fax', 'length', 'max'=>50),
             array('name', 'duplicate'),
-            array('name, user_id, description, pos, country_id, city_id, image, email, www, tel, fax, address, slug', 'safe'),
+            array('edit_date, name, user_id, description, pos, country_id, city_id, image, email, www, tel, fax, address, slug', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug', 'safe', 'on'=>'search'),

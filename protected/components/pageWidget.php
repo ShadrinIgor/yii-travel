@@ -57,7 +57,6 @@ class pageWidget extends CWidget
 
             // Сортировка
             $SQLsort = $this->order;
-
             if( !empty( $sortField ) && property_exists( $catalog, $sortField ) )
             {
                 if( $by == "desc" )$SQLsort = $sortField." DESC";
@@ -66,6 +65,7 @@ class pageWidget extends CWidget
                 // Сохряняем параметры сортировки для сессии
                 $pageParams["sort"] = array( "field"=>$sortField, "by"=>$by );
             }
+
 
             $catalogModel = new $catalog();
             $SearchAttributes = $catalogModel->getSearchAttributes();

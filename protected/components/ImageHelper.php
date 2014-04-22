@@ -187,7 +187,7 @@ class ImageHelper
         return $str;
     }
 
-    private function optimization( $fileUrl, $img_type="", $upload_type, $dopUrl="")
+    private function optimization( $fileUrl, $img_type="", $upload_type, $dopUrl="", $catalog = "")
     {
         $fileName = basename( $fileUrl );
         $dirPath = $dopUrl.dirname( $fileUrl )."/";
@@ -279,7 +279,7 @@ class ImageHelper
                     $cout ="<p class=\"err\">Произошла ошибка обработки файла (".$new_file_name.")</p>";
 
                 #Наложение логотипа на картинки
-                if( SiteHelper::getConfig( "watermark" ) )$this->addLogoOnImage( $dopUrl.$fileUrl, $upload_type, $dopUrl.SiteHelper::getConfig( "watermark" ) );
+                if( SiteHelper::getConfig( "watermark" ) )$this->addLogoOnImage( $dopUrl.$fileUrl, $upload_type, $dopUrl.SiteHelper::getConfig( "watermark" ), $catalog );
             }
         }
         return $cout;
@@ -354,9 +354,9 @@ class ImageHelper
             if( $is_image==1 && !$error && $img_type && $_FILES[ $catalog ]['tmp_name'][ $field ] )
             {
                 $fileType = $_FILES[ $catalog ]['type'][ $field ];
-                if( mb_stripos( $fileType, "jpg" ) !== false || mb_stripos( $fileType, "jpeg" ) !== false )
+                if( $catalog != "ExBanner" && ( mb_stripos( $fileType, "jpg" ) !== false || mb_stripos( $fileType, "jpeg" ) !== false ) )
                 {
-                    $this->optimization( $fileUrl, $img_type, $fileType );
+                    $this->optimization( $fileUrl, $img_type, $fileType, "", $catalog );
                 }
             }
         }
@@ -405,8 +405,10 @@ class ImageHelper
     /*
      * Накладываем водяной знак
      */
-    function addLogoOnImage( $tempImage, $imgType, $logo )
+    function addLogoOnImage( $tempImage, $imgType, $logo, $catalog = "" )
     {
+        if( $catalog == "ExBanner" )return;
+
         switch( $imgType )
         {
             case "jpeg":$srcImage = ImageCreateFromJPEG($tempImage);break;

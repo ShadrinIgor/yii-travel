@@ -154,6 +154,16 @@ class CatalogController extends ConsoleController
             if(isset($_POST[ $catalog ]))
             {
                 $model->setAttributesFromArray( $_POST[ $catalog ] );
+                if( !empty( $_FILES[ $catalog ] ) )
+                {
+
+                    foreach(  $_FILES[ $catalog ]["name"] as $key=>$field )
+                    {
+                        if( property_exists( $model, $key ) )
+                            $model->$key = $field;
+                    }
+                }
+
                 if($model->saveWithRelation())
                 {
                     $message = "Данные успешно сохраненны";

@@ -23,6 +23,7 @@
         <?= property_exists( $catalogClass, "key_word" ) ? "<th>Key word</th>" : "" ?>
         <?= property_exists( $catalogClass, "slug" ) ? "<th>Slug</th>" : "" ?>
         <?= property_exists( $catalogClass, "active" ) ? "<th>Статус</th>" : "" ?>
+        <?= property_exists( $catalogClass, "firm_id" ) ? "<th>Фирма</th>" : "" ?>
         <th>Actions</th>
     </tr>
 <?php foreach( $list as $item ) : ?>
@@ -40,6 +41,9 @@
         <?php endif; ?>
         <?php if( property_exists( $catalogClass, "active" ) ) :?>
             <td><?= $item->active == 1 ? "опубликован" : "не опубликован" ?></td>
+        <?php endif; ?>
+        <?php if( property_exists( $catalogClass, "firm_id" ) ) :?>
+            <td><?= $item->firm_id->id." ".$item->firm_id->name ?></td>
         <?php endif; ?>
         <td class="fieldActions">
             <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$item->id )).$controller->params ?>">Редактировать</a>

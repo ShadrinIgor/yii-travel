@@ -16,9 +16,10 @@
      else
         $height = "";
 ?>
-<a href="<?= $banner->href ?>" title="">
+<?php if( $banner->href ) : ?><a href="<?= $banner->href ?>" title=""> <?php endif; ?>
     <object align="center" <?= $width ?> <?= $height ?> classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
        <param value="<?= $banner->image ?>" name="movie"/>
        <embed  <?= $width ?> <?= $height ?> src="<?= $banner->file ?>" type="application/x-shockwave-flash"/>
-    </object></a>
+    </object>
+<?php if( $banner->href ) : ?></a><?php endif; ?>
 <?php endif; ?>
