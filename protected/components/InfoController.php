@@ -78,12 +78,14 @@ class InfoController extends Controller
 
             if( $item->id >0 )
             {
+                $images = ImageHelper::getImages( $item );
                 $other = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(24) );
                 Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(
                         "item" => $item,
                         "other" => $other ,
+                        "images" => $images,
                         "hotelCount" => $class::count( DBQueryParamsClass::CreateParams()->setConditions( "category_id=:category_id" )->setParams( array( ":category_id"=>$item->category_id->id ) ) ),
                     ));
 

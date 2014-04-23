@@ -214,8 +214,8 @@
 }
 #lblock_text .innerForm  .closeForm a:hover{ background:#DC5800;color:#fff;border:1px solid #fff; }
 
-#setions { margin-left: 11px;height:195px;margin-bottom: 11px;}
-.SItems { float: left;height:201px;position:relative;margin-left: -252px; }
+#setions { margin-left: 11px;height:195px;margin-bottom: 11px;text-align: center;}
+.SItems { display:inline-block;height:201px;position:relative;margin-left: -252px; vertical-align: top;}
 #SI01 { margin-left:0px;z-index:80; }
 #SI02 { z-index:70; }
 #SI03 { z-index:60; }

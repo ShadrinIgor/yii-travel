@@ -21,8 +21,7 @@ class SiteController extends Controller
 		);
 	}
 
-
-	/**
+    /**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
@@ -37,6 +36,11 @@ class SiteController extends Controller
         header("cache-control: private, max-age = 86400");
         $this->render('index', array( "controller"=>$this, "content"=>$content, "items"=>array() ));
 	}
+
+    public function actionReloadBanner()
+    {
+        echo Yii::app()->banners->getBannerByCategory( "top" );
+    }
 
     public function actionPage( $slug = "" )
     {

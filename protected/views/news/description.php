@@ -11,7 +11,7 @@ $this->widget('addressLineWidget', array(
 <div id="InnerText">
     <h1><?= $item->name ?></h1>
     <?php
-    SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
+        SiteHelper::renderDinamicPartial( "pageDescriptionTop" );
     ?>
     <div id="ITText">
         <?php if( sizeof($images) >0 || $item->image ) : ?>

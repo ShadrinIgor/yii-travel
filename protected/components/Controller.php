@@ -120,10 +120,23 @@ class Controller extends CController
     {
         if($this->beforeRender($view))
         {
+            if( !Yii::app()->user->isGuest )
+            {
+                $userModel = CatalogUsers::fetch( Yii::app()->user->getId() );
+                if( $userModel->id > 0 )$USER = $userModel;
+                    else 
+                {
+                    Yii::app()->user->logout();
+                    $this->redirect( SiteHelper::createUrl("/") );
+                }
+            }
+                else $USER = new CatalogUsers();
+
             $data = array_merge( $data,
                 array(
                     "Theme"     => Yii::app()->getTheme(),
                     "controller" => $this,
+                    "USER"       => $USER,
                 )
             );
 

@@ -2805,3 +2805,6 @@ tr.isHot
 {
     background: #fdd033 url(../images/sovet.png ) no-repeat left center;
 }
+
+.BannerBlock{text-align: center;}
+.BannerBlock img{width: 100%;max-width: 815px;}

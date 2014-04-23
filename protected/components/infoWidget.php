@@ -25,7 +25,7 @@ class infoWidget extends CWidget
                         'title'   => $this->title,
                         'link'    => SiteHelper::createUrl( $this->link."/description" ),
                         'linkAll' => SiteHelper::createUrl( $this->link ),
-                        'list' => $className::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>''".$dopCondition)->setOrderBy("pos DESC")->setLimit( 9 ) )
+                        'list' => $className::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>''".$dopCondition)->setOrderBy("id DESC")->setLimit( 9 ) )
                 ));
             $this->endCache();
         endif;

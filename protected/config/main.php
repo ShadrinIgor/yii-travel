@@ -325,6 +325,7 @@ return array(
             array( "title"=>"Данные",
                 "items"=>array
                 (
+                    array( "title"=>"Страницы", "controller"=>"catalog", "params"=>"catalog=CatalogPages" ),
                     array( "title"=>"Категории фирм", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsCategory" ),
                     array( "title"=>"Категории ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
                     array( "title"=>"Категории информации", "controller"=>"catalog", "params"=>"catalog=CatalogInfoCategory" ),
