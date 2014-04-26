@@ -1046,7 +1046,7 @@ width:100%;
 	text-align:center;
 	margin-top:16px;
 	margin-bottom:15px;
-	line-height:19px;
+	line-height:18px;
 	background:#efefef;
 }
 
@@ -1110,11 +1110,12 @@ width:100%;
 
 }
 
-#keywords  a{ text-decoration:none; }
+#keywords a{ text-decoration:none; }
+#keywords a:hover{text-decoration: underline;}
 
 #keywords .key01
 {
-	font-size:11px;
+	font-size:10px;
 	text-transform:lowercase;
 	color:#fca167;
 }
@@ -1128,7 +1129,7 @@ width:100%;
 
 #keywords .key03
 {
-	font-size:12px;
+	font-size:18px;
 	text-transform:uppercase;
 	color:#fc8754;
 	font-style:italic;
@@ -1136,7 +1137,7 @@ width:100%;
 
 #keywords .key04
 {
-	font-size:15px;
+	font-size:11px;
 	text-transform:lowercase;
 	color:#fcb190;
 	font-weight:bold;
@@ -1144,7 +1145,7 @@ width:100%;
 
 #keywords .key05
 {
-	font-size:11px;
+	font-size:12px;
 	text-transform:lowercase;
 	color:#64C6FF;
 	font-style:italic;

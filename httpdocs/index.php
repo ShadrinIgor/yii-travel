@@ -25,3 +25,7 @@ Yii::setPathOfAlias('configPath', dirname(__DIR__)."/protected".DIRECTORY_SEPARA
 
 Yii::createWebApplication($config)->run();
 
+if( strpos( $_SERVER["HTTP_USER_AGENT"], "Android" ) !== false )
+{
+   // print_r( $_SERVER );
+}

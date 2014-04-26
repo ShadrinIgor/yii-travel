@@ -7,9 +7,11 @@ class CatalogPages extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $tags; // string
-    protected $del; // string
-    protected $pos; // string
+    protected $tags; // string 
+    protected $del; // integer 
+    protected $pos; // integer 
+    protected $slug; // string
+    protected $title; // string
 
 /*
 * Поля - связи
@@ -37,12 +39,14 @@ class CatalogPages extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, tags', 'required'),
+			array('title, name, tags, slug', 'required'),
+			array('del, pos', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
+			array('slug', 'length', 'max'=>50),
+            array('title, name, tags, del, pos, slug', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('del, pos, name, tags', 'safe' ),
-            array('id, name, tags', 'safe', 'on'=>'search'),
+			array('id, name, tags, del, pos, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,11 +61,6 @@ class CatalogPages extends CCModel
 		);
 	}
 
-    public function fieldType()
-    {
-        return array_merge( parent::fieldType(), array( "tags" => "visual_textarea" ) );
-    }
-
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -71,6 +70,9 @@ class CatalogPages extends CCModel
 			'id' => 'ID',
 			'name' => 'Name',
 			'tags' => 'Tags',
+			'del' => 'Del',
+			'pos' => 'Pos',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -88,6 +90,9 @@ class CatalogPages extends CCModel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('tags',$this->tags,true);
+		$criteria->compare('del',$this->del);
+		$criteria->compare('pos',$this->pos);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

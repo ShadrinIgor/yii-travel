@@ -248,7 +248,92 @@ return array(
         ),
 
         'page'=>array(
-            'class'     => 'ext.page.PageInit'
+            'class'     => 'ext.page.PageInit',
+            'tag_params' =>
+                array(
+                    "first_page" =>
+                        array
+                        (
+                            "catalog_country"=>array( "/Country/description", 5 ),
+                            "catalog_tours"=>array( "/tours/description", 5, "active=1" ),
+                            "catalog_tours_category"=>array( "/tours/category", 5, "owner>0" ),
+//                            "catalog_hotels"=>array( "/hotels/description", 5 ),
+                            "catalog_kurorts"=>array( "/resorts/description", 5, "active=1" ),
+                            "catalog_kurorts_category"=>array( "/resorts/category", 5, "owner>0" ),
+                            "catalog_info"=>array( "/touristInfo/description", 5 ),
+                            "catalog_info_category"=>array( "/touristInfo/category", 5, "owner>0" ),
+                            "catalog_content"=>array( "/news/description", 5, "category_id=2" ),
+                            "catalog_firms"=>array( "/travelAgency/description", 5 ),
+                            "catalog_items_category"=>array( "/adsUsers", 5 ),
+                        ),
+
+                    "country" =>
+                        array
+                        (
+                            "catalog_country"=>array( "/Country/description", 15 ),
+                            "catalog_tours"=>array( "/tours/description", 15, "active=1" ),
+                            "catalog_tours_category"=>array( "/tours/category", 15, "owner>0" ),
+                            "catalog_kurorts_category"=>array( "/resorts/category", 5, "owner>0" ),
+                            "catalog_info_category"=>array( "/touristInfo/category", 5, "owner>0" ),
+                        ),
+
+                    "tours" =>
+                        array
+                        (
+                            "catalog_country"=>array( "/Country/description", 15 ),
+                            "catalog_tours"=>array( "/tours/description", 25, "active=1" ),
+                            "catalog_tours_category"=>array( "/tours/category", 35, "owner>0" ),
+                        ),
+
+
+                    "hotels" =>
+                        array
+                        (
+                            "catalog_country"=>array( "/Country/description", 25 ),
+                            "catalog_hotels"=>array( "/hotels/description", 65 ),
+                        ),
+
+                    "resorts" =>
+                        array
+                        (
+                            "catalog_country"=>array( "/Country/description", 25 ),
+                            "catalog_kurorts"=>array( "/resorts/description", 25, "active=1" ),
+                            "catalog_kurorts_category"=>array( "/resorts/category", 55, "owner>0" ),
+                        ),
+
+                    "touristInfo" =>
+                        array
+                        (
+                            "catalog_info"=>array( "/touristInfo/description", 25 ),
+                            "catalog_info_category"=>array( "/touristInfo/category", 35, "owner>0" ),
+                        ),
+
+                    "news" =>
+                        array
+                        (
+                            "catalog_content"=>array( "/news/description", 45, "category_id=2" ),
+                        ),
+
+                    "travelAgency" =>
+                        array
+                        (
+                            "catalog_firms"=>array( "/travelAgency/description", 55 ),
+                        ),
+
+                    "adsUsers" =>
+                        array
+                        (
+                            "catalog_items"=>array( "/adsUsers/description", 25 ),
+                            "catalog_items_category"=>array( "/adsUsers", 35 ),
+                        ),
+
+                    "work" =>
+                        array
+                        (
+                            "catalog_work"=>array( "/work/description", 25 ),
+                            "catalog_work_category"=>array( "/work", 35 ),
+                        ),
+                )
         ),
 
         'textAnalysis'=>array(
@@ -298,6 +383,7 @@ return array(
                 "items"=>array
                 (
                     array( "title"=>"Фирмы", "controller"=>"catalog", "params"=>"catalog=CatalogFirms" ),
+                    array( "title"=>"Работа", "controller"=>"catalog", "params"=>"catalog=CatalogWork" ),
                     array( "title"=>"ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
                     array( "title"=>"Информация", "controller"=>"catalog", "params"=>"catalog=CatalogInfo" ),
                     array( "title"=>"Курорты", "controller"=>"catalog", "params"=>"catalog=CatalogKurorts" ),
@@ -305,15 +391,15 @@ return array(
                     array( "title"=>"Группы", "controller"=>"catalog", "params"=>"catalog=CatalogSections" ),
                 ),
             ),
-            array( "title"=>"частные объявления",
+
+            array( "title"=>"Баннеры",
                 "items"=>array
                 (
-                    array( "title"=>"Объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
-                    array( "title"=>"Категории", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
-                    array( "title"=>"Срок публикации", "controller"=>"catalog", "params"=>"catalog=CatalogItemsTime" ),
-                    array( "title"=>"Статус", "controller"=>"catalog", "params"=>"catalog=CatalogItemsStatus" ),
+                    array( "title"=>"Баннеры", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsBanners" ),
+                    array( "title"=>"Запросы на баннер", "controller"=>"catalog", "params"=>"catalog=CatalogBannerRequest" ),
                 ),
             ),
+            array( "title"=>"Заявки на баннер", "controller"=>"catalog", "params"=>"catalog=CatalogBannerRequest" ),
             array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
             array( "title"=>"Текст. информация", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),

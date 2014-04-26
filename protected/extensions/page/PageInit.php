@@ -9,14 +9,59 @@
 class PageInit extends CApplicationComponent
 {
     private $page;
+    var $tag_params;
+    var $slug;
     /*
      * Инициализация
      */
     public function init( )
     {
         Yii::import("ext.page.models.*");
+        $this->page = new CatalogPages();
+    }
 
-        $this->page = new page();
+    public function renderTags( $slug )
+    {
+        if( Yii::app()->controller->beginCache( $slug."-page", array('duration'=>3600*24*3) ) )
+        {
+            $params = $this->tag_params;
+            if( !empty( $params[$slug] ) )$paramArray = $params[$slug];
+                elseif( !empty( $params["default"] ) )$paramArray = $params["default"];
+
+            $listClass = array( "key01", "key02", "key03", "key04", "key05", "key06" );
+
+            if( !empty( $paramArray ) )
+            {
+                $listTags = array();
+                foreach( $paramArray as $key=>$value )
+                {
+                    $modelClass = SiteHelper::getCamelCase( $key );
+                    $sql = "del=0";
+                    if( !empty( $value[2] ) )$sql .= " AND ".$value[2];
+
+                    $link = SiteHelper::createUrl( $value[0] );
+                    $listItems = $modelClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $sql )->setLimit( $value[1] )->setOrderBy( "id DESC" ) );
+                    foreach( $listItems as $item )
+                    {
+                        if( $item->slug )
+                        {
+                            $randClass = array_rand( $listClass, 1 );
+                            $item->name = SiteHelper::getSubTextOnWorld( $item->name, 60 );
+                            $listTags[] = '<a href="'.$link."/".$item->slug.'.html" title="'.SiteHelper::getStringForTitle( $item->name ).'" class="'.$listClass[ $randClass ].'">'.$item->name.'</a>';
+                        }
+                    }
+                }
+
+                shuffle( $listTags );
+                shuffle( $listTags );
+                foreach( $listTags as $key=>$item )
+                {
+                    echo $item." ";
+                }
+            }
+
+            Yii::app()->controller->endCache();
+        }
     }
 
     public function getInfo( $key )

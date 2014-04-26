@@ -19,6 +19,6 @@
     <?php $this->widget("infoWidget", array( "title"=>"Курорты", "class"=>"CatalogKurorts", "link"=>"/resorts" )); ?>
 
     <div id="keywords">
-        <?php Yii::app()->page->renderTags( "first_page" ) ?>
+        <?php Yii::app()->page->renderTags( "adsUsers" ) ?>
     </div>
 </div>
