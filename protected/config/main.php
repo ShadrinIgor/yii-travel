@@ -370,6 +370,7 @@ return array(
         'adminEmail'=>'info@world-travel.uz',
         'supportEmail'=>'support@world-travel.uz',
         'baseUrl' => 'http://yii-travel.loc/',
+        'wap-baseUrl' => 'http://yii-travel.loc/',
         'images' => array(
             "default" => array(
                 "1" => array( "width"=>1300, "height"=>1300 ),

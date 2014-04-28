@@ -28,6 +28,9 @@
 
     $cs->registerCssFile($baseUrl.'/css/style.css');
     $cs->registerCssFile($baseUrl.'/css/style2.css');
+    if( defined("YII_SUBDOMAIN") && YII_SUBDOMAIN == "wap-" )
+        $cs->registerCssFile($baseUrl.'/css/wap-style.css');
+
     $cs->registerCssFile($baseUrl.'/css/animation.css');
 
     $cs->registerCssFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.css');

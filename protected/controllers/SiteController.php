@@ -34,7 +34,7 @@ class SiteController extends Controller
         //$items = CatalogItems::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("status_id=1 AND is_hot=:hot AND `date`>=:date")->setParams(array(":hot"=>1, ":date"=>$finishDate ) )->setLimit(20)->setCache(0) );
 
         header("cache-control: private, max-age = 86400");
-        $this->render('index', array( "controller"=>$this, "content"=>$content, "items"=>array() ));
+        $this->render(YII_SUBDOMAIN.'index', array( "controller"=>$this, "content"=>$content, "items"=>array() ));
 	}
 
     public function actionReloadBanner()

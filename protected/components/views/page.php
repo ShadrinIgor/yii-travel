@@ -1,5 +1,6 @@
 <br/>
 <?php
+
     SiteHelper::renderDinamicPartial( "pageTop" );
 ?>
 <h1><?= $title ?></h1>

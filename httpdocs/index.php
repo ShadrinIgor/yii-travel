@@ -17,6 +17,10 @@ date_default_timezone_set('Europe/Moscow');
 /*define('YII_ENABLE_ERROR_HANDLER', false);
 define('YII_ENABLE_EXCEPTION_HANDLER', false);*/
 
+//if( $_SERVER["HTTP_HOST"] == "wap.world-travel.uz" )
+    define('YII_SUBDOMAIN', "wap-");
+//                                               else define('YII_SUBDOMAIN', "");
+
 require_once($yii);
 
 Yii::setPathOfAlias('viewsLayouts', dirname(__DIR__)."/protected".DIRECTORY_SEPARATOR."views".DIRECTORY_SEPARATOR."layouts");

@@ -1,0 +1,84 @@
+body{background: #fff;}
+
+#Center div.WIItem
+{
+    border-left: 3px solid #fb3f00;
+    border-right: 3px solid #fb3f00;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 6px 0px #000;
+    margin-bottom: 20px;
+
+    /* IE10 */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #fec3ac 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #fec3ac 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #fec3ac 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #FFFFFF), color-stop(1, #fec3ac));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #fec3ac 100%);
+    /* Proposed W3C Markup */
+    background-image: linear-gradient(top,#FFFFFF 0%, #fec3ac 100%);
+}
+
+#Center div.WIItem a
+{
+    display: block;
+    padding: 35px 25px;
+    font-size: 20px;
+    background: url( ../images/wmitem_bg.png ) no-repeat right center;
+}
+
+#Main{min-width: 0px;background-size: 100% auto;}
+
+#BRight{float: none; text-align: center;width: 100%;}
+#BRTitle{width: auto;float: none;margin-top: 30px}
+#BH1{float: none;margin:0px;}
+#BH1 h1
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
+    color: #BB2F00;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+}
+
+#ALLinks{float: none;width: auto;text-align: center;}
+#Center div#ALLinks a{font-size: 18px;}
+#about_link {padding-left: 10px;width: 100%;}
+#counters{font-size: 16px;width: 98%;}
+
+.pageList b, #FCCentr .pageList a
+{
+    display: inline-block;
+    font-size: 20px;
+    padding: 5px 15px;
+    background: #efefef;
+    margin-right: 10px;
+}
+
+body{font-size: 16px;}
+#CCInfo div a, #Center div a, #bLinks a
+{
+    font-size: 16px;
+    background: #efefef;
+    padding: 5px 15px;
+    line-height: 35px;
+}
+
+#FCCentr .LParams a
+{
+    font-size: 14px;
+}
+
+#Buttons .B01, #Buttons .B02{overflow: hidden;}
+
+#Buttons .B01 a, #Buttons .B02 a
+{
+    background: transparent;
+    line-height: 55px;
+}

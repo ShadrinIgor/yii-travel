@@ -307,7 +307,10 @@ class SiteHelper
             if($route[0]!=='/' && ($module=Yii::app()->controller->module)!==null)
                 $route=$module->getId().'/'.$route;
 
-            $url = Yii::app()->params["baseUrl"].Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
+            if( defined("YII_SUBDOMAIN") )$paramName = YII_SUBDOMAIN."baseUrl";
+                                     else $paramName = "baseUrl";
+
+            $url = Yii::app()->params[ $paramName ].Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
             $url = str_replace("//","/", $url);
             $url = str_replace(":/","://", $url);
 

@@ -5,9 +5,17 @@
  */
 class Controller extends CController
 {
+    /**
+     * @var string the default layout for the controller view. Defaults to '//layouts/column1',
+     * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
+     */
+    public $layout='//layouts/main';
+
     public function init()
     {
         parent::init();
+
+        if( defined( "YII_SUBDOMAIN" ) )$this->layout='//layouts/'.YII_SUBDOMAIN.'main';
 
         if ( !empty($_GET['language'] ))
             Yii::app()->language = $_GET['language'];
@@ -96,11 +104,7 @@ class Controller extends CController
         );
     }
 
-	/**
-	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
-	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
-	 */
-	public $layout='//layouts/main';
+
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */

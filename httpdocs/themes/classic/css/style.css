@@ -1918,7 +1918,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 .overflowHidden{overflow: hidden}
 .CIH{display: inline-block;margin-top: 1px;}
-#catalogItems a.CIH{color:#DC5800;background: rgba(255,255,255,0.6);padding: 1px 5px;}
+#catalogItems a.CIH{color:#DC5800;padding: 1px 5px;}
 
 #catalogItems a.CIHActive{border: 1px solid;
     padding-bottom: 2px;
