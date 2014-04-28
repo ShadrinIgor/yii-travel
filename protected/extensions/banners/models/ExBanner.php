@@ -24,7 +24,8 @@ class ExBanner extends CCModel
     protected $finish_date; // string 
     protected $finish_count_show; // integer 
     protected $pos; // integer 
-    protected $status_id; // integer 
+    protected $status_id; // integer
+    protected $last_date;
 
 /*
 * Поля - связи
@@ -53,7 +54,7 @@ class ExBanner extends CCModel
 		// will receive user inputs.
 		return array(
 			array('category, type_id', 'required'),
-			array('default, del, width, height, count_show, inner_page, finish_count_show, pos', 'numerical', 'integerOnly'=>true),
+			array('last_date, default, del, width, height, count_show, inner_page, finish_count_show, pos', 'numerical', 'integerOnly'=>true),
 			array('name, image, email', 'length', 'max'=>50),
             array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1024 * 1024 * 5,
                 'tooLarge' => 'Размер файл не должен превышать 5mb',
@@ -67,7 +68,7 @@ class ExBanner extends CCModel
 			array('start_date, finish_date', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, image, file, href, category, default, del, type_id, width, height, through, count_show, inner_page, email, start_date, finish_date, finish_count_show, status_id', 'safe'),
+            array('last_date, name, image, file, href, category, default, del, type_id, width, height, through, count_show, inner_page, email, start_date, finish_date, finish_count_show, status_id', 'safe'),
 			array('id, name, image, href, category, default, type_id, del, width, height, through, count_show, inner_page, email, start_date, finish_date, finish_count_show, pos, status_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -109,8 +110,8 @@ class ExBanner extends CCModel
 			'email' => 'Email<br/>для уведомления о окончании',
 			'start_date' => 'Дата<br/>начала показа банера',
 			'finish_date' => 'Дата окончания<br/>показа банера',
-
 			'pos' => 'Pos',
+            'last_date' => 'Последняя дата просмотра',
             'default' => 'По умолчанию',
             'del' => 'Не активный',
 		);

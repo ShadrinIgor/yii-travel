@@ -31,7 +31,7 @@ class BannerInit extends CApplicationComponent
                 $DBParams = DBQueryParamsClass::CreateParams()
                                 ->setConditions( "category=:category AND status_id=2" )
                                 ->setParams( array( ":category"=>$categoryModel->id ))
-                                ->setOrderBy( "count_show ASC" )
+                                ->setOrderBy( "last_date ASC" )
                                 ->setCache(0)
                                 ->setLimit( 1 );
 
@@ -57,7 +57,7 @@ class BannerInit extends CApplicationComponent
 
                     if( $banner->id >0 ) // У величиваем счетчик просмотра
                     {
-                        $banner->update( array( "count_show"=>$banner->count_show+1 ) );
+                        $banner->update( array( "count_show"=>$banner->count_show+1, "last_date"=>time() ) );
 
                         // Если выставлено ограничение показов
                         if( $banner->finish_count_show >0 && $banner->count_show>=$banner->finish_count_show )
