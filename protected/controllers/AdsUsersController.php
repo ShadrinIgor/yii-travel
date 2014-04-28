@@ -99,6 +99,7 @@ class AdsUsersController extends InfoController
                     array
                     (
                         "items" => $items,
+                        "categoryModel" => new CatalogItemsCategory(),
                         "addModel" => $addModel
                     )
                 );

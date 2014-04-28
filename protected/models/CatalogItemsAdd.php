@@ -13,7 +13,7 @@ class CatalogItemsAdd extends CatalogItems
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, description, user_id, category_id, type_id, time_id, slug', 'required'),
+            array('name, description, user_id, category_id, type_id, time_id', 'required'),
             array('user_id, category_id, type_id, time_id, del, price, is_hot, date, pos, col', 'numerical', 'integerOnly'=>true),
             array('name, image', 'length', 'max'=>255),
             array('slug', 'length', 'max'=>150),

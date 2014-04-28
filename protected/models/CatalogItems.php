@@ -49,7 +49,7 @@ class CatalogItems extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, user_id, type_id, slug', 'required'),
+			array('name, description, user_id, type_id', 'required'),
 			array('del, price, is_hot, date, pos, col', 'numerical', 'integerOnly'=>true),
 			array('name, image', 'length', 'max'=>255),
 			array('slug', 'length', 'max'=>150),
