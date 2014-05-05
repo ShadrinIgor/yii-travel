@@ -13,9 +13,11 @@ class infoOneWidget extends CWidget
 
     public function run()
     {
+        $images = ImageHelper::getImages( $this->item, 1 );
         $this->render( "info", array(
-                    'link' => $this->link,
-                    'item' => $this->item,
+                    'link'   => $this->link,
+                    'images' => $images,
+                    'item'   => $this->item,
             ));
     }
 }

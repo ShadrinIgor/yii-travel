@@ -61,7 +61,7 @@ body{background: #fff;}
     margin-right: 10px;
 }
 
-body{font-size: 16px;}
+div, body{font-size: 16px;}
 #CCInfo div a, #Center div a, #bLinks a
 {
     font-size: 16px;
@@ -82,3 +82,18 @@ body{font-size: 16px;}
     background: transparent;
     line-height: 55px;
 }
+#FCCentr .listItemsImages a
+{
+    padding: 0px;
+}
+
+.LII_1{max-height: 150px;}
+#CIHeader div{font-size: 20px;line-height: 40px;}
+#CIFind input[type="text"], #CIFind select{font-size: 18px;height: 30px;}
+#CIFind input[type="submit"]
+{
+    font-size: 18px;
+    padding: 5px 15px;
+}
+
+#about_link #trioLogo a{background: transparent;}

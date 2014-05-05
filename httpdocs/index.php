@@ -1,5 +1,10 @@
 <?php
 
+if( checkMobile() == true )
+{
+   if( $_SERVER["HTTP_HOST"] != "wap.world-travel.uz" )Header("Location: http://wap.world-travel.uz".$_SERVER["REQUEST_URI"]);
+}
+
 header("cache-control: private, max-age = 86400");
 
 /*error_reporting(0);
@@ -17,9 +22,8 @@ date_default_timezone_set('Europe/Moscow');
 /*define('YII_ENABLE_ERROR_HANDLER', false);
 define('YII_ENABLE_EXCEPTION_HANDLER', false);*/
 
-//if( $_SERVER["HTTP_HOST"] == "wap.world-travel.uz" )
-    define('YII_SUBDOMAIN', "wap-");
-//                                               else define('YII_SUBDOMAIN', "");
+if( $_SERVER["HTTP_HOST"] == "wap.world-travel.uz" )define('YII_SUBDOMAIN', "wap-");
+                                               else define('YII_SUBDOMAIN', "");
 
 require_once($yii);
 
@@ -29,7 +33,25 @@ Yii::setPathOfAlias('configPath', dirname(__DIR__)."/protected".DIRECTORY_SEPARA
 
 Yii::createWebApplication($config)->run();
 
-if( strpos( $_SERVER["HTTP_USER_AGENT"], "Android" ) !== false )
+
+function checkMobile()
 {
-   // print_r( $_SERVER );
+	$user_agent = $_SERVER['HTTP_USER_AGENT'];
+	$ipod = strpos($user_agent,"iPod");
+    $iphone = strpos($user_agent,"iPhone");
+    $android = strpos($user_agent,"Android");
+    $winphone = strpos($user_agent,"WindowsPhone");
+    $operam = strpos($user_agent,"Opera M");
+    $palm = strpos($user_agent,"webOS");
+    $berry = strpos($user_agent,"BlackBerry");
+    $mobile = strpos($user_agent,"Mobile");
+	
+	if ($ipod || $iphone || $android || $winphone || $operam || $palm || $berry || $mobile ) 
+    {
+        return true; 
+    } 
+    else
+    {
+        return false; 
+    }
 }

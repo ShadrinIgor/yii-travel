@@ -2390,7 +2390,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 #c3{ background:url( ../images/menu.jpg ) no-repeat;background-position: -156px 0px; }
 #c4{ background:url( ../images/menu.jpg ) no-repeat;background-position: -234px 0px; }
 #c5{ background:url( ../images/menu.jpg ) no-repeat;background-position: -312px 0px; }
-#c6{ background:url( ../images/menu.jpg ) no-repeat;background-position: -390px 0px; }
+#c6{ background:url( ../images/menu.jpg ) no-repeat;background-position: -707px 0px; }
 #c7{ background:url( ../images/menu.jpg ) no-repeat;background-position: -469px 0px; }
 #c8{ background:url( ../images/menu.jpg ) no-repeat;background-position: -548px 0px; }
 #c9{ background:url( ../images/menu.jpg ) no-repeat;background-position: -627px 0px; }
@@ -2446,7 +2446,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     vertical-align: top;
     text-align: left;
     margin: 3px 0px;
-    width: 373px;
+    width: 46%;
     display: inline-block;
     text-indent: 0px;
     border: 2px solid #fff;

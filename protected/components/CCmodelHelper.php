@@ -5,7 +5,7 @@ class CCModelHelper
     static function colCounter( CCModel $model )
     {
         $model->col = $model->col>0 ? $model->col + 1 : 1;
-        if( !$model->save() )print_r( $model->getErrors() );
+        $model->save();// )print_r( $model->getErrors() );
     }
 
     static function getLimitText( $text, $limit )

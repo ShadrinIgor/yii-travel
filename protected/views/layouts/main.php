@@ -43,6 +43,18 @@
     <div id="Menu1">
         <div id="Menu">
         <div class="CItem MFirst">
+            <a href="<?= SiteHelper::createUrl( "/sales" ) ?>" title="туристические акции, скидки, горячие предложения" class="MenuJsClass" id="c6"></a>
+            <div class="CHint" id="bh8">
+                <div class="CHText">
+                    <div>Новости</div>
+
+                    <br/>
+                    Туристические компании, разделенные странам.
+
+                </div>
+            </div>
+        </div>
+        <div class="CItem">
             <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="c1"></a>
             <div class="CHint" id="bh2">
                 <div class="CHText">
@@ -93,18 +105,7 @@
                 </div>
             </div>
         </div>
-        <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/news" ) ?>" title="туристические новости" class="MenuJsClass" id="c6"></a>
-            <div class="CHint" id="bh8">
-                <div class="CHText">
-                    <div>Новости</div>
 
-                    <br/>
-                    Туристические компании, разделенные странам.
-
-                </div>
-            </div>
-        </div>
         <div class="CItem">
             <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="туистические агентсва, тур фирмы" class="MenuJsClass" id="c7"></a>
             <div class="CHint" id="bh8">

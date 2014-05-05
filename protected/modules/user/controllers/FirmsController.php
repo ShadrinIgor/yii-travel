@@ -101,6 +101,7 @@ class FirmsController extends UserController
 
         if( $id >0 && !empty( $catalog ) )
         {
+
             $modelClass = SiteHelper::getCamelCase( $catalog::tableName() );
             $model = $modelClass::fetch( $id );
             $listImages = CatGallery::findByAttributes( array("catalog"=>$catalog::tableName(), "item_id"=>$id) );
@@ -114,11 +115,10 @@ class FirmsController extends UserController
                 $error = false;
                 $commentModel = $catalog::fetch( $id );
                 if( ( $catalog == "CatalogFirmsBannersAdd" || $catalog == "CatalogFirmsBanners" ) && !$commentModel->file )$error = true;
-                if( $commentModel->user_id->id != Yii::app()->user->getId() )$error = true;
+                if( $commentModel->user_id->id != Yii::app()->user->getId() && $commentModel->firm_id->user_id->id != Yii::app()->user->getId() )$error = true;
 
                 if( !$error )
                 {
-
                     if( $commentModel->user_id && $commentModel->user_id->id >0 )$id = $commentModel->user_id->id;
                                                                             else $id = $commentModel->firm_id->user_id->id;
 
@@ -129,7 +129,7 @@ class FirmsController extends UserController
 
                         SiteHelper::setLog( $catalog::tableName(), $action, $commentModel->user_id->id, Yii::app()->user->getId() );
                         $commentModel->save();
-                        echo true;
+                        echo 1;
                         return;
                     }
                 }
@@ -141,7 +141,7 @@ class FirmsController extends UserController
             }
         }
 
-        echo false;
+        echo 0;
         return;
     }
 }
