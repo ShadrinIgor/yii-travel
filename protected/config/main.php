@@ -401,6 +401,13 @@ return array(
                 ),
             ),
             array( "title"=>"Заявки на баннер", "controller"=>"catalog", "params"=>"catalog=CatalogBannerRequest" ),
+            array( "title"=>"Сотрудничество",
+                "items"=>array
+                (
+                    array( "title"=>"Предложение", "controller"=>"catalog", "params"=>"catalog=CatalogCooperation" ),
+                    array( "title"=>"Категории", "controller"=>"catalog", "params"=>"catalog=CatalogCooperationCategory" ),
+                ),
+            ),
             array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
             array( "title"=>"Текст. информация", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),

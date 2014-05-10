@@ -1,5 +1,6 @@
 <div id="userCabinet">
     <ul>
+        <li><a href="<?= SiteHelper::createUrl("/user/sales" ) ?>" title="">Мои АКЦИИ/СКИДКИ</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/firms" ) ?>" title="">Моя фирма</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/hotels" ) ?>" title="">Мои отели</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/resort" ) ?>" title="">Мои зоны отдыха</a></li>
@@ -11,7 +12,6 @@
         <!--li><a href="<?= SiteHelper::createUrl("/user/favorites" ) ?>" title="">Выбранное на заметку</a></li-->
         <li><a href="<?= SiteHelper::createUrl("/user/desktop" ) ?>" title="">Выбрать стить сайта</a></li>
         <!-- a href="<?= SiteHelper::createUrl("/user/fprofile" ) ?>" title="">Финансов1ый профиль</a-->
-        <li></li>
     </ul>
     <div id="logOut">
         <a href="<?= SiteHelper::createUrl("/user/default/logout" ) ?>" title="">Выйти</a>

@@ -45,7 +45,7 @@ class SectionsController extends Controller
                 }
 
                 $curortsCategory = "";
-                foreach( $item->info as $itemC )
+                foreach( $item->curorts as $itemC )
                 {
                     if( !empty( $curortsCategory ) )$curortsCategory .= " OR ";
                     $curortsCategory .= " category_id='".$itemC->id."' ";

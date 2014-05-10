@@ -14,8 +14,8 @@ $this->widget('addressLineWidget', array(
     </p>
     <div id="dopMenu">
         <?php if( $tourCount>0 ) : ?><a href="#" id="s_tours" class="<?= $activeTab == "s_tours" ? "activeDM " : "" ?>dopMenuPages">Туры (<?= $tourCount ?>)</a><?php endif; ?>
+        <?php if( $curortsCount>0 ) : ?><a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages">Зоны отдыха/Детские лагеря (<?= $curortsCount ?>)</a><?php endif; ?>
         <?php if( $infoCount>0 ) : ?><a href="#" id="s_info" class="<?= $activeTab == "s_info" ? "activeDM " : "" ?>dopMenuPages">Информация (<?= $infoCount ?>)</a><?php endif; ?>
-        <?php if( $curortsCount>0 ) : ?><a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages">Курорты/зоны отдыха (<?= $curortsCount ?>)</a><?php endif; ?>
     </div>
     <div id="s_tours_page" class="pageTab<?= $activeTab == "s_tours" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "tours", array( "item"=>$item, "tours"=>$tours, "tourCount"=>$tourCount, "offset"=>$offset, "page"=>$t_page ) ) ?>

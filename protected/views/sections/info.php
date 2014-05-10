@@ -9,24 +9,7 @@
         ?>
         <tr <?= $firmItem->hot==1 ? 'class="isHot"' : "" ?>>
             <td>
-                <div class="listItemsImages">
-                    <?php
-                    if( !$firmItem->image )$countImages = 5;
-                    else $countImages = 4;
-
-                    $listImages = ImageHelper::getImages( $firmItem, $countImages );
-                    if( sizeof( $listImages ) >0 || $firmItem->image ) : ?>
-
-                        <?php if( $firmItem->image ) : ?><div class="LII_1"><img src="<?= ImageHelper::getImage( $firmItem->image, 3 ) ?>" alt="" /></div><?php endif; ?>
-                        <?php
-                        if( $firmItem->image )$i=2;
-                        else $i=1;
-                        foreach( $listImages as $LItem ) : ?>
-                            <div class="LII_<?= $i ?>"><img src="<?= ImageHelper::getImage( $LItem->image, 3 ) ?>" alt="" /></div>
-                            <?php $i++;endforeach; ?>
-
-                    <?php endif;?>
-                </div>
+                <?= ImageHelper::getAnimateImageBlock( $firmItem, SiteHelper::createUrl("/touristInfo/description" )."/".$firmItem->slug.".html") ?>
             </td>
             <td class="textAlignJustify">
                 <a href="<?= SiteHelper::createUrl("/touristInfo/description")."/".$firmItem->slug ?>.html" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>

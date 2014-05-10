@@ -1,24 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "catalog_firms_items".
+ * This is the model class for table "catalog_cooperation_category".
    */
-class CatalogFirmsItems extends CCModel
+class CatalogCooperationCategory extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $description; // string 
-    protected $date; // integer 
-    protected $firm_id; // integer 
-    protected $user_id; // integer 
-    protected $active; // integer 
     protected $pos; // integer 
-    protected $del; // integer
-    protected $slug;
+    protected $del; // integer 
+    protected $description; // string 
+    protected $slug; // string 
 
 /*
 * Поля - связи
 */
+    protected $catalogCooperations; //  CatalogCooperation
 
 
     public function attributeNames()
@@ -31,7 +28,7 @@ class CatalogFirmsItems extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_firms_items';
+		return 'catalog_cooperation_category';
 	}
 
 	/**
@@ -42,13 +39,14 @@ class CatalogFirmsItems extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date, user_id', 'required'),
-			array('date, active, pos, del', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>150),
-            array('slug, name, description, date, firm_id, user_id, active, pos, del', 'safe'),
+			array('name', 'required'),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
+			array('name, slug', 'length', 'max'=>150),
+			array('name, description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, date, firm_id, user_id, active, pos, del', 'safe', 'on'=>'search'),
+			array('name, pos, del, description, slug', 'safe'),
+            array('id, name, pos, del, description, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +58,7 @@ class CatalogFirmsItems extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'firm' => array(self::BELONGS_TO, 'CatalogFirms', 'firm_id'),
-			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
+			'catalogCooperations' => array(self::HAS_MANY, 'CatalogCooperation', 'category_id'),
 		);
 	}
 
@@ -74,12 +71,7 @@ class CatalogFirmsItems extends CCModel
 			'id' => 'ID',
 			'name' => 'Name',
 			'description' => 'Description',
-			'date' => 'Date',
-			'firm_id' => 'Firm',
-			'user_id' => 'User',
-			'active' => 'Active',
-			'pos' => 'Pos',
-			'del' => 'Del',
+			'slug' => 'Slug',
 		);
 	}
 
@@ -96,13 +88,10 @@ class CatalogFirmsItems extends CCModel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('date',$this->date);
-		$criteria->compare('firm_id',$this->firm_id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('del',$this->del);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('slug',$this->slug,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

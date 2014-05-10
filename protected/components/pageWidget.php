@@ -176,6 +176,7 @@ class pageWidget extends CWidget
                 case "catalog_firms" : $addUrl =  SiteHelper::createUrl( "/user/firms/description/" );$linkName="Добавить тиристическое агенство";break;
                 case "catalog_hotels" : $addUrl =  SiteHelper::createUrl( "/user/hotels/description/" );$linkName="Добавить отель/гостиницу";break;
                 case "catalog_kurorts" : $addUrl =  SiteHelper::createUrl( "/user/resort/description/" );$linkName="Добавить зону отдыха / курорт /дет. лагерь";break;
+                case "catalog_firms_items" : $addUrl =  SiteHelper::createUrl( "/user/sales/description/" );$linkName="Добавить АКЦИЮ / СКИДКУ";break;
                 //case "catalog_tours" : $addUrl =  SiteHelper::createUrl( "/user/tours/description/" );$linkName="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Добавить тур&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";break;
             }
 

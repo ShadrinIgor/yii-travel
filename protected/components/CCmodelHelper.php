@@ -5,7 +5,7 @@ class CCModelHelper
     static function colCounter( CCModel $model )
     {
         $model->col = $model->col>0 ? $model->col + 1 : 1;
-        $model->save();// )print_r( $model->getErrors() );
+        if( !$model->save() )print_r( $model->getErrors() );
     }
 
     static function getLimitText( $text, $limit )
@@ -81,6 +81,9 @@ class CCModelHelper
                             case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                             case "visual_textarea" :
                                 $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
+                                break;
+                            case "textarea" :
+                                $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"mceNoEditor", "placeholder"=>$fieldPlaceholder ) );
                                 break;
                             case "image"           :
 
@@ -176,10 +179,10 @@ class CCModelHelper
         {
             $cout .=
                 '<tr>
-                    <th width="150">'.Yii::t("system", "Verification code").': <font class="redColor">*</font></th>
+                    <th width="150"> Проверочный код: <font class="redColor">*</font></th>
                     <td id="captchaTD">';
 
-            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '['.Yii::t("system", "new code").']'), true);
+            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '[ обновить ]'), true);
             $cout .= CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' ));
 
             $cout .='

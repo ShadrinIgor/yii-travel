@@ -66,6 +66,7 @@ if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "
                 mode : "textareas",
                 theme : "simple",
                 plugins : "paste",
+                editor_deselector : "mceNoEditor",
 
                 // Theme options
                 width: "100%",

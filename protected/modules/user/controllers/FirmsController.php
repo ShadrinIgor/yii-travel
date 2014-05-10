@@ -128,8 +128,8 @@ class FirmsController extends UserController
                                                    else {$commentModel->active = 0;$action="nopublish";}
 
                         SiteHelper::setLog( $catalog::tableName(), $action, $commentModel->user_id->id, Yii::app()->user->getId() );
-                        $commentModel->save();
-                        echo 1;
+                        if( $commentModel->save() )echo 1;
+                        else print_r( $commentModel->getErrors() );
                         return;
                     }
                 }

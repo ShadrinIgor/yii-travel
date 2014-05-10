@@ -2264,7 +2264,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .colorRad, .redColor{color:#ff0000;}
 #dopMenu{overflow: hidden;margin: 0px auto 10px auto;text-align: center;}
 #dopMenu span{display: inline-block;padding: 2px 5px;margin-top: 2px;}
-#dopMenu a{display: inline-block;width: 180px;vertical-align: top;padding: 2px 5px;text-align:center;border-right: 1px solid #bfbfbf;margin-top: 2px;}
+#dopMenu a{display: inline-block;width: 190px;vertical-align: top;padding: 2px 5px;text-align:center;border-right: 1px solid #bfbfbf;margin-top: 2px;}
 #dopMenu.tourPage a{width: auto;}
 .emptyList{padding: 10px 0px;}
 #dopMenu .activeDM{background: #cfcfff;}
@@ -2305,7 +2305,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     background: -ms-linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* IE10 */
     background: linear-gradient(top, #fff, rgba(255, 102, 0, 0.3)); /* CSS3 */
 }
-.banerBlock{width: 800px;height: 90px;overflow: hidden;margin: 5px 0px;}
+.banerBlock{width: 800px;height: 90px;overflow: hidden;margin: 5px 0px;text-align: center;}
 .banerBlock img{max-width: 800px}
 
 /* Notifications */
@@ -2399,7 +2399,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 {
     background: url( ../images/user_cabinet.jpg ) no-repeat;
     width: 243px;
-    height: 281px;
+    height: 341px;
 }
 
 #userCabinet ul
@@ -2417,6 +2417,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     color:#ffffff;
     display: block;
     padding: 0px 0px 0px 5px;
+    border-bottom:1px dotted rgba( 255,255,255, 0.3 );
 }
 
 #userCabinet ul a:hover
@@ -2428,7 +2429,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 {
     font-size: 11px;
     line-height: 10px;
-    margin: 18px 0px 0px 33px;
+    margin: 45px 0px 0px 33px;
     color:#6f6f6f;
 }
 
@@ -2808,4 +2809,4 @@ tr.isHot
 }
 
 .BannerBlock{text-align: center;}
-.BannerBlock img{width: 100%;max-width: 815px;}
+.BannerBlock img{width: auto;max-width: 815px;}
