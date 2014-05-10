@@ -45,30 +45,56 @@ class SectionsController extends Controller
                 }
 
                 $curortsCategory = "";
-                foreach( $item->curorts as $itemC )
+                if( sizeof( $item->curorts ) >0 )
                 {
-                    if( !empty( $curortsCategory ) )$curortsCategory .= " OR ";
-                    $curortsCategory .= " category_id='".$itemC->id."' ";
-                }
+                    foreach( $item->curorts as $itemC )
+                    {
+                        if( !empty( $curortsCategory ) )$curortsCategory .= " OR ";
+                        $curortsCategory .= " category_id='".$itemC->id."' ";
+                    }
 
-                $toursCategory = "";
+                    $cororts = CatalogKurorts::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory )->setOrderBy("col DESC")->setPage( $c_page )->setLimit( 15 ));
+                    $curortsCount = CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory ) );
+                }
+                    else
+                    {
+                        $cororts = array();
+                        $curortsCount = 0;
+                    }
+
+                $toursCategory = " 1=1 AND ";
+                if( $item->country_id->id > 0 )
+                    $toursCategory .= " country_id = '".$item->country_id->id."'";
+
+                if( sizeof( $item->tours ) >0 )$toursCategory .= " ( ";
+                $i=0;
                 foreach( $item->tours as $itemC )
                 {
-                    if( !empty( $toursCategory ) )$toursCategory .= " OR ";
+                    if( $i >0 )$toursCategory .= " OR ";
                     $toursCategory .= " category_id='".$itemC->id."' ";
+                    $i++;
                 }
+                if( sizeof( $item->tours ) >0 )$toursCategory .= " ) ";
+
+                // Одно исключение для детских лагерей
+                if( $item->id == 7 )
+                {
+                    $detCount = CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory ));
+                }
+                    else $detCount = 0;
 
                 Yii::app()->page->title = $item->name;
                 $this->render('index',
                     array(
                         "activeTab" =>$activeTab,
                         "item" => $item,
-                        "info" => CatalogInfo::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )->setOrderBy("col DESC")->setPage( $t_page )->setLimit( 15 )),
+                        "info" => CatalogInfo::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )->setOrderBy("col DESC")->setPage( $i_page )->setLimit( 15 )),
                         "infoCount" => CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )),
                         "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )->setOrderBy("col DESC")->setPage( $t_page )->setLimit( 15 )),
                         "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )),
-                        "curorts" => CatalogKurorts::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory )->setOrderBy("col DESC")->setPage( $t_page )->setLimit( 15 )),
-                        "curortsCount" => CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory )),
+                        "curorts" => $cororts,
+                        "curortsCount" => $curortsCount,
+                        "detCount" => $detCount,
                         "t_page" => $t_page,
                         "i_page" => $i_page,
                         "c_page" => $c_page,

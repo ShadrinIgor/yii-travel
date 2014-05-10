@@ -1,6 +1,5 @@
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
-        <th class="TLFId">№</th>
         <th class="">Фото</th>
         <th class="TLFAction">Краткое описание</th>
     </tr>
@@ -9,7 +8,6 @@
     foreach( $tours as $firmItem ):
         ?>
         <tr <?= $firmItem->hot==1 ? 'class="isHot"' : "" ?>>
-            <td><?= $firmItem->id ?></td>
             <td>
                 <?= ImageHelper::getAnimateImageBlock( $firmItem, SiteHelper::createUrl("/tours/description" )."/".$firmItem->slug.".html") ?>
             </td>
@@ -17,6 +15,7 @@
                 <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>.html" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 300 ) ?>
                 <div class="itemAction textAlignRight">
+                    <?php if( $firmItem->country_id->id > 0 ) : ?><a href="<?= SiteHelper::createUrl("/tours/country")."/".$firmItem->country_id->slug ?>.html"><?= $firmItem->country_id->name ?></a><br/><?php endif; ?>
                     <a href="<?= SiteHelper::createUrl("/tours/category")."/".$firmItem->category_id->slug ?>.html"><?= $firmItem->category_id->name ?></a><br/>
                     <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>.html">Описание</a><br/>
                 </div>

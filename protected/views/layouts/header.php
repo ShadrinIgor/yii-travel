@@ -55,10 +55,9 @@
     .RBTrio{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/trio.uz.jpg) no-repeat; }
 </style>
 
-<?php
-
-if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "default" ) :?>
-    <script type="text/javascript">
+<script type="text/javascript">
+    var baseHref = '<?= SiteHelper::createUrl("/") ?>';
+    <?php if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "default" ) :?>
         if( $("#ConsoleMain").length == 0 )
         {
             tinyMCE.init({
@@ -76,5 +75,6 @@ if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "
                 paste_strip_class_attributes: 'all'
             });
         }
-    </script>
-<?php endif; ?>
+    <?php endif; ?>
+</script>
+

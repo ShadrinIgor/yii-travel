@@ -19,8 +19,8 @@ class ImageHelper
 
         $titleValue = !empty( $title ) ? $title : $item->name;
         $listImages = ImageHelper::getImages( $item, $countImages );
+        echo '<div class="listItemsImages">';
         if( sizeof( $listImages ) >0 || $item->image ) : ?>
-            <div class="listItemsImages">
                 <?php if( $item->image ) : ?><div class="LII_1"><a href="<?= $link ?>" title="<?= $titleValue ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $titleValue ?>" /></a></div><?php endif; ?>
                 <?php
                     if( $item->image )$i=2;
@@ -39,8 +39,8 @@ class ImageHelper
                         $i++;
                     endforeach;
                 ?>
-            </div>
         <?php endif;
+        echo '</div>';
     }
 
     /*
