@@ -15,6 +15,8 @@ class SectionsController extends Controller
     {
         $page = (int)Yii::app()->request->getParam( "p", 1 );
         $action = Yii::app()->request->getParam( "action", "t" );
+        $country = Yii::app()->request->getParam( "country", "" );
+        $category = Yii::app()->request->getParam( "category", "" );
 
         $activeTab = "";
         $t_page = 1;
@@ -62,19 +64,43 @@ class SectionsController extends Controller
                         $curortsCount = 0;
                     }
 
-                $toursCategory = " 1=1 AND ";
+                $toursCategory = " 1=1 ";
+                $toursSQL = " 1=1 ";
                 if( $item->country_id->id > 0 )
-                    $toursCategory .= " country_id = '".$item->country_id->id."'";
+                {
+                    $toursCategory .= " AND country_id = '".$item->country_id->id."'";
+                    $toursSQL .= " AND country_id = '".$item->country_id->id."'";
+                }
 
-                if( sizeof( $item->tours ) >0 )$toursCategory .= " ( ";
+                if( !empty( $country ) )
+                    $toursCategory .= " AND country_id = ( SELECT id FROM catalog_country WHERE slug='".$country."' )";
+
+                if( !empty( $category ) )
+                    $toursCategory .= " AND category_id = ( SELECT id FROM catalog_tours_category WHERE slug='".$category."' )";
+
+                if( sizeof( $item->tours ) >0 )
+                {
+                    $toursCategory .= " AND ( ";
+                    $toursSQL .=  " AND ( ";
+                }
                 $i=0;
                 foreach( $item->tours as $itemC )
                 {
-                    if( $i >0 )$toursCategory .= " OR ";
+                    if( $i >0 )
+                    {
+                        $toursCategory .= " OR ";
+                        $toursSQL .= " OR ";
+                    }
                     $toursCategory .= " category_id='".$itemC->id."' ";
+                    $toursSQL .= " category_id='".$itemC->id."' ";
                     $i++;
                 }
-                if( sizeof( $item->tours ) >0 )$toursCategory .= " ) ";
+
+                if( sizeof( $item->tours ) >0 )
+                {
+                    $toursCategory .= " ) ";
+                    $toursSQL .=  " ) ";
+                }
 
                 // Одно исключение для детских лагерей
                 if( $item->id == 7 )
@@ -86,10 +112,13 @@ class SectionsController extends Controller
                 Yii::app()->page->title = $item->name;
                 $this->render('index',
                     array(
+                        "category" =>$category,
+                        "country" =>$country,
                         "activeTab" =>$activeTab,
                         "item" => $item,
                         "info" => CatalogInfo::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )->setOrderBy("col DESC")->setPage( $i_page )->setLimit( 15 )),
                         "infoCount" => CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )),
+                        "toursSQL" =>$toursSQL,
                         "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )->setOrderBy("col DESC")->setPage( $t_page )->setLimit( 15 )),
                         "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )),
                         "curorts" => $cororts,

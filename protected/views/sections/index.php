@@ -19,7 +19,7 @@ $this->widget('addressLineWidget', array(
         <?php if( $infoCount>0 ) : ?><a href="#" id="s_info" class="<?= $activeTab == "s_info" ? "activeDM " : "" ?>dopMenuPages">Информация (<?= $infoCount ?>)</a><?php endif; ?>
     </div>
     <div id="s_tours_page" class="pageTab<?= $activeTab == "s_tours" ? " activePage " : " displayNone" ?>">
-        <?php $this->renderPartial( "tours", array( "item"=>$item, "tours"=>$tours, "tourCount"=>$tourCount, "offset"=>$offset, "page"=>$t_page ) ) ?>
+        <?php $this->renderPartial( "tours", array( "item"=>$item, "country"=>$country, "category"=>$category, "toursSQL" =>$toursSQL, "tours"=>$tours, "tourCount"=>$tourCount, "offset"=>$offset, "page"=>$t_page ) ) ?>
     </div>
     <div id="s_info_page" class="pageTab<?= $activeTab == "s_info" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "info", array( "item"=>$item, "items"=>$info, "infoCount"=>$infoCount, "offset"=>$offset, "page"=>$i_page ) ) ?>
