@@ -1,3 +1,55 @@
+<?php if( $this->beginCache( "sectionsCurorts-".$item->id, array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
+    <div id="CIHeader" class="overflowHidden">
+        <?php
+        // Категории
+        $listCategory = CatalogKurortsCategory::sql( "SELECT id, owner FROM `catalog_kurorts_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_kurorts WHERE ".$kurortsSQL." AND del=0  AND active=1 )" );
+        $reCategory = array();
+        $reCategory2 = array();
+
+        // Раскладываем по OWNER-у
+        foreach( $listCategory as $category )
+        {
+            $reCategory[ $category["owner"] ][] =  $category["id"];
+        }
+
+        // Подменяем ID на обект и подсчитываем количество
+        foreach( $reCategory as $category=>$value )
+        {
+            $ownerCategoryModel = CatalogKurortsCategory::fetch( $category );
+            $array = array();
+            foreach( $value as $cid )
+            {
+                if( $cid>0 )
+                {
+                    $obj = CatalogKurortsCategory::fetch($cid);
+                    $array[] = $obj;
+                }
+            }
+            $reCategory2[ $ownerCategoryModel->name ] = $array;
+        }
+
+        ?>
+
+        <div class="CICategory">
+            <div class="CICLabel">Категории</div>
+            <div class="CICategoryScrool">
+                <ul>
+                    <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
+                        <li>
+                            <b><?= $cItem ?></b>
+                            <ul>
+                                <?php foreach( $values as $cKey=>$cValue ) : ?>
+                                    <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?ccategory=<?= $cValue->slug ?>&tab=curorts" title="категория зон отдыха - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php $this->endCache();endif; ?>
+
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
         <th class="">Фото</th>
@@ -23,7 +75,7 @@
     <tr>
         <td colspan="2" align="center">
             <?php
-            $this->widget( "paginatorWidget", array( "count"=>$curortsCount, "page"=>$page, "offset"=>$offset, "url"=>"&action=c" ) );
+            $this->widget( "paginatorWidget", array( "count"=>$curortsCount, "page"=>$page, "offset"=>$offset, "url"=>"&action=c".( !empty( $category ) ? "&ccategory=".$category : "" ) ) );
 
             ?>
             <br/>

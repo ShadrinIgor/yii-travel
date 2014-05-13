@@ -13,10 +13,13 @@ class SectionsController extends Controller
 
     public function actionIndex()
     {
+        $tab = Yii::app()->request->getParam( "tab", "" );
         $page = (int)Yii::app()->request->getParam( "p", 1 );
         $action = Yii::app()->request->getParam( "action", "t" );
         $country = Yii::app()->request->getParam( "country", "" );
         $category = Yii::app()->request->getParam( "category", "" );
+        $ccategory = Yii::app()->request->getParam( "ccategory", "" );
+        $icategory = Yii::app()->request->getParam( "icategory", "" );
 
         $activeTab = "";
         $t_page = 1;
@@ -24,8 +27,8 @@ class SectionsController extends Controller
         $c_page = 1;
 
         if( $action == "t" ){$t_page = $page;$activeTab="s_tours";}
-        if( $action == "i" ){$i_page = $page;$activeTab="s_info";}
-        if( $action == "c" ){$c_page = $page;$activeTab="s_curorts";}
+        if( $action == "i" || $tab == "info"){$i_page = $page;$activeTab="s_info";}
+        if( $action == "c" || $tab == "curorts" ){$c_page = $page;$activeTab="s_curorts";}
 
         foreach( $_GET as $key=>$item )
         {
@@ -39,21 +42,57 @@ class SectionsController extends Controller
             Yii::app()->page->setInfo( array( "description"=>$item->name.",".$this->description, "keyWord"=>$item->name.",".$this->keyWord ) );
             if( !empty( $item ) && $item->id >0 )
             {
-                $infoCategory = "";
-                foreach( $item->info as $itemC )
+                $infoCategory = " 1=1 ";
+                $infoSQL = " 1=1 ";
+
+                if( !empty( $icategory ) )
+                    $infoCategory .= " AND category_id = ( SELECT id FROM catalog_info_category WHERE slug='".$icategory."' )";
+
+                $i=0;
+                if( sizeof( $item->info ) >0 )
                 {
-                    if( !empty( $infoCategory ) )$infoCategory .= " OR ";
-                    $infoCategory .= " category_id='".$itemC->id."' ";
+                    $infoCategory .= " AND ( ";
+                    $infoSQL .= " AND ( ";
+                    foreach( $item->info as $itemC )
+                    {
+                        if( $i>0 )
+                        {
+                            $infoCategory .= " OR ";
+                            $infoSQL .= " OR ";
+                        }
+                        $infoCategory .= " category_id='".$itemC->id."' ";
+                        $infoSQL .= " category_id='".$itemC->id."' ";
+                        $i++;
+                    }
+                    $infoCategory .= " ) ";
+                    $infoSQL .= " ) ";
                 }
 
-                $curortsCategory = "";
+                $curortsCategory = " 1=1 ";
+                $kurortsSQL = " 1=1 ";
+
+                if( !empty( $ccategory ) )
+                    $curortsCategory .= " AND category_id = ( SELECT id FROM catalog_kurorts_category WHERE slug='".$ccategory."' )";
+
                 if( sizeof( $item->curorts ) >0 )
                 {
+                    $curortsCategory .= " AND ( ";
+                    $kurortsSQL .= " AND ( ";
+
+                    $i=0;
                     foreach( $item->curorts as $itemC )
                     {
-                        if( !empty( $curortsCategory ) )$curortsCategory .= " OR ";
+                        if( $i > 0 )
+                        {
+                            $curortsCategory .= " OR ";
+                            $kurortsSQL.=" OR ";
+                        }
                         $curortsCategory .= " category_id='".$itemC->id."' ";
+                        $kurortsSQL .= " category_id='".$itemC->id."' ";
+                        $i++;
                     }
+                    $curortsCategory .= " ) ";
+                    $kurortsSQL .= " ) ";
 
                     $cororts = CatalogKurorts::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory )->setOrderBy("col DESC")->setPage( $c_page )->setLimit( 15 ));
                     $curortsCount = CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions( $curortsCategory ) );
@@ -112,15 +151,19 @@ class SectionsController extends Controller
                 Yii::app()->page->title = $item->name;
                 $this->render('index',
                     array(
+                        "icategory" =>$icategory,
+                        "ccategory" =>$ccategory,
                         "category" =>$category,
                         "country" =>$country,
                         "activeTab" =>$activeTab,
                         "item" => $item,
+                        "infoSQL" => $infoSQL,
                         "info" => CatalogInfo::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )->setOrderBy("col DESC")->setPage( $i_page )->setLimit( 15 )),
                         "infoCount" => CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions( $infoCategory )),
                         "toursSQL" =>$toursSQL,
                         "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )->setOrderBy("col DESC")->setPage( $t_page )->setLimit( 15 )),
                         "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( $toursCategory )),
+                        "kurortsSQL" => $kurortsSQL,
                         "curorts" => $cororts,
                         "curortsCount" => $curortsCount,
                         "detCount" => $detCount,

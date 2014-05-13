@@ -22,10 +22,10 @@ $this->widget('addressLineWidget', array(
         <?php $this->renderPartial( "tours", array( "item"=>$item, "country"=>$country, "category"=>$category, "toursSQL" =>$toursSQL, "tours"=>$tours, "tourCount"=>$tourCount, "offset"=>$offset, "page"=>$t_page ) ) ?>
     </div>
     <div id="s_info_page" class="pageTab<?= $activeTab == "s_info" ? " activePage " : " displayNone" ?>">
-        <?php $this->renderPartial( "info", array( "item"=>$item, "items"=>$info, "infoCount"=>$infoCount, "offset"=>$offset, "page"=>$i_page ) ) ?>
+        <?php $this->renderPartial( "info", array( "item"=>$item, "infoSQL"=>$infoSQL, "category"=>$icategory,  "items"=>$info, "infoCount"=>$infoCount, "offset"=>$offset, "page"=>$i_page ) ) ?>
     </div>
     <div id="s_curorts_page" class="pageTab<?= $activeTab == "s_curorts" ? " activePage " : " displayNone" ?>">
-        <?php $this->renderPartial( "curorts", array( "item"=>$item, "items"=>$curorts, "curortsCount"=>$curortsCount, "offset"=>$offset, "page"=>$c_page ) ) ?>
+        <?php $this->renderPartial( "curorts", array( "item"=>$item, "kurortsSQL"=>$kurortsSQL, "category"=>$ccategory,  "items"=>$curorts, "curortsCount"=>$curortsCount, "offset"=>$offset, "page"=>$c_page ) ) ?>
     </div>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
 </div>

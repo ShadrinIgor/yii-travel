@@ -1,3 +1,56 @@
+<?php if( $this->beginCache( "sectionsInfo-".$item->id, array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
+    <div id="CIHeader" class="overflowHidden">
+        <?php
+        // Категории
+        $listCategory = CatalogInfoCategory::sql( "SELECT id, owner FROM `catalog_info_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_info WHERE ".$infoSQL." AND del=0  AND active=1 )" );
+        $reCategory = array();
+        $reCategory2 = array();
+
+        // Раскладываем по OWNER-у
+        foreach( $listCategory as $category )
+        {
+            $reCategory[ $category["owner"] ][] =  $category["id"];
+        }
+
+        // Подменяем ID на обект и подсчитываем количество
+        foreach( $reCategory as $category=>$value )
+        {
+            $ownerCategoryModel = CatalogInfoCategory::fetch( $category );
+            $array = array();
+            foreach( $value as $cid )
+            {
+                if( $cid>0 )
+                {
+                    $obj = CatalogInfoCategory::fetch($cid);
+                    $array[] = $obj;
+                }
+            }
+            $reCategory2[ $ownerCategoryModel->name ] = $array;
+        }
+
+        ?>
+
+        <div class="CICategory">
+            <div class="CICLabel">Категории</div>
+            <div class="CICategoryScrool">
+                <ul>
+                    <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
+                        <li>
+                            <b><?= $cItem ?></b>
+                            <ul>
+                                <?php foreach( $values as $cKey=>$cValue ) : ?>
+                                    <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?icategory=<?= $cValue->slug ?>&tab=info" title="категория информации - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php $this->endCache();endif; ?>
+
+
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
         <th class="">Фото</th>

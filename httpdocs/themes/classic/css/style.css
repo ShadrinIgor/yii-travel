@@ -1910,7 +1910,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 
 #CIHeader
 {
-    text-align: right;
+    text-align: center;
     /*background: url(../images/params_bg.jpg ) no-repeat;*/
     margin-bottom: 10px;
 }
