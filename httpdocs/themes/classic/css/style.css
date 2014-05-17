@@ -2817,7 +2817,7 @@ tr.isHot
     position: absolute;
     width: 100%;
     left: 0;
-    top:300px;
+    top:250px;
     text-align: center;
     box-shadow: 0px 0px 6px 3px rgba(15, 68, 117, 0.6);
     z-index: 9999;

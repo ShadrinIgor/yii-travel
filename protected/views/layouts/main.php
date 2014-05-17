@@ -22,7 +22,6 @@
 
 <body>
 <div id="Main" <?= !empty( $mainClass ) ? ' class="'.$mainClass.'"' : '' ?>>
-
 <div id="BannerBlock">
     <div class="BottomLink">
         <h3>детский лагерь</h3> <h4>отдых</h4> <b>туры</b> <u>туроператоры</u> <i>турфирмы</i> <i>горный лагерь</i> <font>турагентство</font> <u>зоны отдыха</u> <u>туристические агентства</u> <h3>тур фирмы</h3> <h4>туристические компании</h4> <b>поиск тура</b> <u>туроператоры</u> <h2>отдых в горах</h2> <b>тур фирмы</b>
@@ -148,12 +147,12 @@
 
 <div id="Center">
 
-
 <div id="Left">
     <?= SiteHelper::renderDinamicPartial("leftColumn") ?>
 </div>
 <?= SiteHelper::renderDinamicPartial("rightColumn") ?>
 <div id="FCCentr">
+    <?php TrainingsHelper::show(); ?>
     <?= Yii::app()->banners->getBannerByCategory( "top" ) ?>
     <?= Yii::app()->notifications->getList() ?>
     <?= SiteHelper::renderDinamicPartial("topSection") ?>

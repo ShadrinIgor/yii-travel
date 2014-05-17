@@ -14,6 +14,7 @@ class TrainingsController extends Controller
         if( !empty( $action ) )
         {
             if( $action == "close" )TrainingsHelper::sessionClose();
+            if( $action == "finish" )TrainingsHelper::sessionFinish();
         }
     }
 

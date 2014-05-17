@@ -12,30 +12,39 @@ class TrainingsHelper
             //      надо сделать так чтобы при добавлении отеля тур фирмы курорта пользователю выставлялось занчение поля trainings = 1 ( т.е. не выдавать ему заново выберите тип )
 
             // Проверяем небыла ли открыта ссесия ранее
-            $checkModel = CatalogTrainingSession::findByAttributes( array( "user_id"=> Yii::app()->user->getId() ) );
+            $checkModel = CatalogTrainingSession::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "user_id=:user_id AND ( status_id=:status1 OR status_id=:status2 )" )->setParams( array( ":user_id"=>Yii::app()->user->getId(), ":status1"=>1, ":status2"=>2 ) )->setCache(-1) );
             if( sizeof( $checkModel ) == 0 )
             {
-                //// Определеяем на каком шагу находится пользователь
-                // Если у него шаг 0, тогда определяем ему самый первый шаг
-                if( $userModel->trainings == 0 )
-                {
-                    $trainingModel = CatalogTraining::findByAttributes( array( "step"=>1 ) );
-                }
 
-                // Если нет то открываем её
-                $newSession = new CatalogTrainingSession();
-                $newSession->user_id = Yii::app()->user->getId();
-                $newSession->training_id = $trainingModel[0]->id;
-                $newSession->date = time();
-                if( !$newSession->save() )
-                    print_r( $newSession->getErrors() );
+                //// Определеяем на каком шагу находится пользователь
+                $chechSession = CatalogTraining::sql( "SELECT * FROM catalog_training WHERE `group` NOT IN ( SELECT `group` FROM catalog_training_session WHERE user_id='".Yii::app()->user->getId()."' ) ORDER BY `group` LIMIT 1 " );
+                if( sizeof( $chechSession ) >0 )
+                {
+                    if( $chechSession[0]["condition"] )
+                    {
+                        $chechSession[0]["condition"] = str_replace( ":userId", Yii::app()->user->getId(), $chechSession[0]["condition"] );
+                        $checkCondition = CatalogUsers::sql( $chechSession[0]["condition"] );
+                        if( sizeof( $checkCondition ) == 0 )return;
+                    }
+
+                    // Если нет то открываем её
+                    $newSession = new CatalogTrainingSession();
+                    $newSession->user_id = Yii::app()->user->getId();
+                    $newSession->training_id = $chechSession[0]["id"];
+                    $newSession->group = $chechSession[0]["group"];
+                    $newSession->status_id = 1;
+                    $newSession->date = time();
+
+                    if( !$newSession->save() )
+                        print_r( $newSession->getErrors() );
+                }
             }
                 else
             {
                 $checkModel[0]->status_id = 1;
                 $checkModel[0]->save();
             }
-}
+        }
     }
 
     public static function show()
@@ -86,6 +95,17 @@ class TrainingsHelper
         if( $session[0]->id >0 )
         {
             $session[0]->status_id = 2;
+            $session[0]->save();
+            echo "close";
+        }
+    }
+
+    public static function sessionFinish()
+    {
+        $session = CatalogTrainingSession::findByAttributes( array( "user_id"=>Yii::app()->user->getId() ) );
+        if( $session[0]->id >0 )
+        {
+            $session[0]->status_id = 3;
             $session[0]->save();
             echo "close";
         }

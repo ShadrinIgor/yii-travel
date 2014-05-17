@@ -12,7 +12,8 @@ class CatalogTrainingSession extends CCModel
     protected $date; // integer 
     protected $pos; // integer 
     protected $del; // integer 
-    protected $status_id; // integer 
+    protected $status_id; // integer
+    protected $group; // integer
 
 /*
 * Поля - связи
@@ -45,7 +46,8 @@ class CatalogTrainingSession extends CCModel
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, user_id, training_id, date, pos, del, status_id', 'safe', 'on'=>'search'),
+			array('name, user_id, training_id, date, pos, del, status_id, group', 'safe'),
+            array('id, name, user_id, training_id, date, pos, del, status_id', 'safe', 'on'=>'search'),
 		);
 	}
 
