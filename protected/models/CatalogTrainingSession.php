@@ -12,7 +12,7 @@ class CatalogTrainingSession extends CCModel
     protected $date; // integer 
     protected $pos; // integer 
     protected $del; // integer 
-    protected $close; // integer 
+    protected $status_id; // integer 
 
 /*
 * Поля - связи
@@ -40,13 +40,12 @@ class CatalogTrainingSession extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, training_id, date', 'required'),
-			array('user_id, training_id, date, pos, del, close', 'numerical', 'integerOnly'=>true),
+			array('user_id, training_id, date, status_id', 'required'),
+			array('user_id, date, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, user_id, training_id, date, pos, del, close', 'safe' ),
-            array('id, name, user_id, training_id, date, pos, del, close', 'safe', 'on'=>'search'),
+			array('id, name, user_id, training_id, date, pos, del, status_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,6 +57,8 @@ class CatalogTrainingSession extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'training' => array(self::BELONGS_TO, 'CatalogTraining', 'training_id'),
+			'status' => array(self::BELONGS_TO, 'CatalogTrainingStatus', 'status_id'),
 		);
 	}
 
@@ -74,7 +75,7 @@ class CatalogTrainingSession extends CCModel
 			'date' => 'Date',
 			'pos' => 'Pos',
 			'del' => 'Del',
-			'close' => 'Close',
+			'status_id' => 'Status',
 		);
 	}
 
@@ -96,7 +97,7 @@ class CatalogTrainingSession extends CCModel
 		$criteria->compare('date',$this->date);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('del',$this->del);
-		$criteria->compare('close',$this->close);
+		$criteria->compare('status_id',$this->status_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

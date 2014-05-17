@@ -1,6 +1,7 @@
 <?php
 
-class UserNotifier {
+class UserNotifier
+{
     static function registration( $eventArray )
     {
         $event = $eventArray["event"];
@@ -65,6 +66,9 @@ class UserNotifier {
 
     static function updateDateVisit( $event )
     {
+        // Работа с обущающими сесиями
+        TrainingsHelper::run();
+
         $user = $event->sender;
         $user->last_visit = time();
 

@@ -52,6 +52,7 @@ class SiteHelper
             }
 
             if( get_class( $item ) == "CatalogWork" || get_class( $item ) == "CatalogWorkAdd" || get_class( $item ) == "CatalogWorkResumeAdd"
+                || get_class( $item ) == "CatalogInfo"
                 || get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
                 || get_class( $item ) == "CatalogItems" || get_class( $item ) == "CatalogItemsAdd"
                 || get_class( $item ) == "CatalogFirmsItems" || get_class( $item ) == "CatalogFirmsItemsAdd"

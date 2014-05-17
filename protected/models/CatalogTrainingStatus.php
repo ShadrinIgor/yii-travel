@@ -1,18 +1,14 @@
 <?php
 
 /**
- * This is the model class for table "catalog_training".
+ * This is the model class for table "catalog_training_status".
    */
-class CatalogTraining extends CCModel
+class CatalogTrainingStatus extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $step; // integer 
-    protected $user_type; // integer 
     protected $del; // integer 
     protected $pos; // integer 
-    protected $method; // string
-    protected $group;
 
 /*
 * Поля - связи
@@ -30,7 +26,7 @@ class CatalogTraining extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_training';
+		return 'catalog_training_status';
 	}
 
 	/**
@@ -41,13 +37,12 @@ class CatalogTraining extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, method', 'required'),
-			array('step, user_type, del, pos', 'numerical', 'integerOnly'=>true),
-			array('name, method', 'length', 'max'=>150),
+			array('name', 'required'),
+			array('del, pos', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array(' name, step, user_type, del, pos, method', 'safe' ),
-            array('id, name, step, user_type, del, pos, method', 'safe', 'on'=>'search'),
+			array('id, name, del, pos', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +54,7 @@ class CatalogTraining extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'userType' => array(self::BELONGS_TO, 'CatalogUsersType', 'user_type'),
-			'catalogTrainingSessions' => array(self::HAS_MANY, 'CatalogTrainingSession', 'training_id'),
+			'catalogTrainingSessions' => array(self::HAS_MANY, 'CatalogTrainingSession', 'status_id'),
 		);
 	}
 
@@ -72,12 +66,8 @@ class CatalogTraining extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'step' => 'Step',
-			'user_type' => 'User Type',
 			'del' => 'Del',
 			'pos' => 'Pos',
-			'method' => 'Method',
-            'group' => 'group'
 		);
 	}
 
@@ -94,11 +84,8 @@ class CatalogTraining extends CCModel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('step',$this->step);
-		$criteria->compare('user_type',$this->user_type);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('pos',$this->pos);
-		$criteria->compare('method',$this->method,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

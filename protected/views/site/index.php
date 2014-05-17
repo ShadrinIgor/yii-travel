@@ -3,7 +3,7 @@
 
 $this->pageTitle=Yii::app()->name;
 
-TrainingsHelper::run();
+TrainingsHelper::show();
 if( $this->beginCache( "firstPage", array('duration'=>3600) ) ) :
 ?>
     <?= SiteHelper::getAnimateText( "tekstovka-dlya-glavnoi-stranicy", SiteHelper::createUrl("/site/page/about") ) ?>
