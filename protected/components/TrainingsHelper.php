@@ -15,7 +15,6 @@ class TrainingsHelper
             $checkModel = CatalogTrainingSession::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "user_id=:user_id AND ( status_id=:status1 OR status_id=:status2 )" )->setParams( array( ":user_id"=>Yii::app()->user->getId(), ":status1"=>1, ":status2"=>2 ) )->setCache(-1) );
             if( sizeof( $checkModel ) == 0 )
             {
-
                 //// Определеяем на каком шагу находится пользователь
                 $chechSession = CatalogTraining::sql( "SELECT * FROM catalog_training WHERE `group` NOT IN ( SELECT `group` FROM catalog_training_session WHERE user_id='".Yii::app()->user->getId()."' ) ORDER BY `group` LIMIT 1 " );
                 if( sizeof( $chechSession ) >0 )
@@ -24,7 +23,19 @@ class TrainingsHelper
                     {
                         $chechSession[0]["condition"] = str_replace( ":userId", Yii::app()->user->getId(), $chechSession[0]["condition"] );
                         $checkCondition = CatalogUsers::sql( $chechSession[0]["condition"] );
-                        if( sizeof( $checkCondition ) == 0 )return;
+                        if( sizeof( $checkCondition ) == 0 )
+                        {
+                            // Если пользователь не отвечает требованию пользователю, то чтобы не проверять каждый раз, добавляем запись
+                            $newSession = new CatalogTrainingSession();
+                            $newSession->user_id = Yii::app()->user->getId();
+                            $newSession->training_id = $chechSession[0]["id"];
+                            $newSession->group = $chechSession[0]["group"];
+                            $newSession->status_id = 4;
+                            $newSession->date = time();
+                            $newSession->save();
+
+                            return;
+                        }
                     }
 
                     // Если нет то открываем её
