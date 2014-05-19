@@ -79,6 +79,15 @@ class Controller extends CController
     public function actions()
     {
         return array(
+            'captcha'=>array(
+                'class' => 'application.extensions.kcaptcha.KCaptchaAction',
+                'maxLength' => 6,
+                'minLength' => 5,
+                'foreColor' => array(mt_rand(0, 100), mt_rand(0, 100),mt_rand(0, 100)),
+                'backColor' => array(mt_rand(200, 210), mt_rand(210, 220),mt_rand(220, 230))
+            )
+        );
+/*        return array(
             //  captcha action renders the CAPTCHA image displayed on the contact page
             'captcha'=>array(
                 'class'=>'CCaptchaAction',
@@ -89,7 +98,7 @@ class Controller extends CController
             'page'=>array(
                 'class'=>'CViewAction',
             ),
-        );
+        );*/
     }
 
     public function filters()
