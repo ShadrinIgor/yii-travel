@@ -16,16 +16,14 @@ class ResortsController extends InfoController
         Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
         $id =0;
         $class = $this->classModel;
-        foreach( $_GET as $key=>$item )
+        if( !empty( $_GET[ "slug" ] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
-            $model = $class::fetchBySlug( $key );
+            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
             if( $model->id >0 )
             {
                 $_GET["id"]=$model->id;
                 $id = $model->id;
             }
-            break;
         }
 
         if( $id > 0 )

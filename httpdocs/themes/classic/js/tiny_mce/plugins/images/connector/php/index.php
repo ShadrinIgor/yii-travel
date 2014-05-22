@@ -703,7 +703,9 @@ class TinyImageManager {
 		
 		if ($isfile)
 		{
-			$server_url = rtrim(dirname(__FILE__), '/').'/../../';
+            $host =$_SERVER["HTTP_HOST"];
+			//if( strpos( $server_url, $host ) )
+            $server_url = $host."/";
 			$server_url = realpath($server_url);
 			$server_url = rtrim($server_url, '/').'/img/fileicons/';
 			$url = '/'.ltrim(substr($server_url, strlen(DIR_ROOT)), '/');

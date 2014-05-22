@@ -9,6 +9,34 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+        //SiteHelper::mailto( "Привет Чулик", "info@world-travel.uz", "shadrin.igor@gmail.com", "Тут будет текст сообщения. Тут будет текст сообщения. " );
+/*
+        $url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?' .
+            'key=ce1590bf92736d0a.67102eeed7aa4dddb3e58fd511568d4ad8e8e49b' .
+            'text=My name is Igor&' .
+            'lang=en-ru&' .
+            'format=plain&' .
+            'options=1';
+
+        $curlObject = curl_init();
+
+        curl_setopt($curlObject, CURLOPT_URL, $url);
+
+        curl_setopt($curlObject, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curlObject, CURLOPT_SSL_VERIFYHOST, false);
+
+        curl_setopt($curlObject, CURLOPT_RETURNTRANSFER, true);
+
+        $responseData = curl_exec($curlObject);
+
+        curl_close($curlObject);
+
+        if ($responseData === false) {
+            throw new Exception('Response false');
+        }
+
+        var_dump(json_decode($responseData, true));*/
+        //die;
         Yii::app()->page->title = "Туристический портал Узбекистана, отдых, туры, туроператоры, путешествия, турция, анталия, узбекистан";
         $content = CatalogContent::fetchBySlug( "about_us" );
 

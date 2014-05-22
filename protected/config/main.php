@@ -79,14 +79,21 @@ return array(
             'showScriptName' => false,
             'rules'=>array(
                 ''=>'site/index',
+                '<lang:(en)>'=>'site/index',
 
+                '<lang:(en)>/<controller:\w+>'=>'<controller>',
+                '<lang:(en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<lang:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
+
+                '<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',
 //                '<controller:(tag)>/<action:(list)>.html'=> '<controller><action>', // /<action:(Tags)>
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 
-                '<slug:\w+>-<country:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
+/*                '<slug:\w+>-<country:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
                 '<slug:\w+>-<country:\w+>_<controller:(category)>.html'=> '<controller>',
                 '<slug:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
                 '<slug:\w+>_<controller:(category)>.html'=> '<controller>',
@@ -101,9 +108,8 @@ return array(
 
                 '<controller:(people)>-<category:\w+>_<page:\d+>.html'=> '<controller>',
                 '<controller:(people)>-<category:\w+>.html'=> '<controller>',
-                '<slug:\w+>_<controller:(people)>_<action:(desc)>.html'=> '<controller>/desc',
+                '<slug:\w+>_<controller:(people)>_<action:(desc)>.html'=> '<controller>/desc',*/
 
-                '<controller:(gardens)>_<action:(place)>_<id:\d+>.html' => 'gardens/place',
                 'gardens.html' => '/gardens',
 
                 'registration.html'=> 'user/default/Registration',
@@ -371,6 +377,10 @@ return array(
         'supportEmail'=>'support@world-travel.uz',
         'baseUrl' => 'http://yii-travel.loc/',
         'wap-baseUrl' => 'http://yii-travel.loc/',
+        'mail-server' => 'world-travel.uz',
+        'mail-host' => 'world-travel.uz',
+        'mail-log' => 'info@world-travel.uz',
+        'mail-pass' => '15e2oYUn',
         'images' => array(
             "default" => array(
                 "1" => array( "width"=>1300, "height"=>1300 ),

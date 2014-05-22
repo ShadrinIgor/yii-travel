@@ -13,16 +13,14 @@ class HotelsController extends InfoController
 
     public function actionCity()
     {
-        foreach( $_GET as $key=>$item )
+        if( !empty( $_GET[ "slug" ] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
-            $model = CatalogCity::fetchBySlug( $key );
+            $model = CatalogCity::fetchBySlug( trim(  $_GET[ "slug" ] ) );
             if( $model->id >0 )
             {
-                unset( $_GET[$key] );
+                unset( $_GET["slug"] );
                 $_GET["city_id"] = $model->id;
             }
-            break;
         }
 
         $this->actionIndex();
@@ -33,16 +31,15 @@ class HotelsController extends InfoController
         Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
         $id =0;
         $class = $this->classModel;
-        foreach( $_GET as $key=>$item )
+
+        if( !empty( $_GET[ "slug" ] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
-            $model = $class::fetchBySlug( $key );
+            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
             if( $model->id >0 )
             {
                 $_GET["id"]=$model->id;
                 $id = $model->id;
             }
-            break;
         }
 
         if( $id > 0 )

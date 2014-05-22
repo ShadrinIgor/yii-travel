@@ -47,5 +47,9 @@ return array(
         'images_quality'=>70, // Работает только для JPG
         "catalogList"=>array(),
         "titleName"=>"Туристический портал",
+        'mail-server' => 'world-travel.uz',
+        'mail-host' => 'world-travel.uz',
+        'mail-log' => 'info@world-travel.uz',
+        'mail-pass' => '15e2oYUn',
     ),
 );

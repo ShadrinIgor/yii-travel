@@ -16,19 +16,16 @@ class InfoController extends Controller
 
     public function actionCountry()
     {
-
-        foreach( $_GET as $key=>$item )
+        if( !empty( $_GET["slug"] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
             $class = $this->classCountry;
-            $model = $class::fetchBySlug( $key );
+            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
+
             if( $model->id >0 )
             {
-                unset( $_GET[$key] );
-
+                unset( $_GET["slug"] );
                 $_GET["country_id"] = $model->id;
             }
-            break;
         }
 
         $this->actionIndex();
@@ -36,20 +33,17 @@ class InfoController extends Controller
 
     public function actionCategory()
     {
-        foreach( $_GET as $key=>$item )
+        if( !empty( $_GET["slug"] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
             $class = $this->classCategory;
-            $model = $class::fetchBySlug( $key );
+            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
 
             if( $model->id >0 )
             {
-                unset( $_GET[$key] );
+                unset( $_GET["slug"] );
                 $_GET["category_id"] = $model->id;
             }
-            break;
         }
-
         $this->actionIndex();
     }
 
@@ -58,17 +52,14 @@ class InfoController extends Controller
         Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
         $id =0;
         $class = $this->classModel;
-        foreach( $_GET as $key=>$item )
+        if( !empty( $_GET[ "slug" ] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
-
-            $model = $class::fetchBySlug( $key );
+            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
             if( $model->id >0 )
             {
                 $_GET["id"]=$model->id;
                 $id = $model->id;
             }
-            break;
         }
 
         if( $id > 0 )

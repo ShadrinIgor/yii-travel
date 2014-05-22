@@ -18,11 +18,9 @@ class CountryController extends Controller
 
     public function actionDescription()
     {
-        foreach( $_GET as $key=>$item )
+        if( !empty( $_GET["slug"] ) )
         {
-            if( !empty( $_GET[$key] ) )continue;
-            $model = CatalogCountry::fetchBySlug( $key );
-            if( $model->id >0 )break;
+            $model = CatalogCountry::fetchBySlug( trim( $_GET["slug"] ) );
         }
 
         if( $model && $model->id >0)

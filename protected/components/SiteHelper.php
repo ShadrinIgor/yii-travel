@@ -70,7 +70,117 @@ class SiteHelper
 
         return $item->slug;
     }
+	
+    static function mailto($subject, $from = "", $to, $msg, $copy='', $template='', $replaceArray = array(), $toName="", $fromName = "" )
+    {
+        if( empty( $template ) )$template = 'main.tpl';
+        if( empty( $from ) )$from = Yii::app()->params['adminEmail'];
+        if( empty( $from ) )$from = "info@world-travel.uz";
+        if( empty( $fromName ) )$fromName = "World-Travel.uz";
+        if( empty( $toName ) )
+        {
+            $toName = substr( $to, 0, strpos( $to, "@" ) );
+        }
 
+        $header="Date: ".date("D, j M Y G:i:s")." +0500\r\n";
+        $header.="From: =?UTF-8?B?".base64_encode( $fromName )."?= <".$from.">\r\n";
+        $header.="X-Mailer: The Bat! (v3.99.3) Professional\r\n";
+        $header.="Reply-To: =?UTF-8?B?".base64_encode( $fromName )."?= <".$from.">\r\n";
+        $header.="X-Priority: 3 (Normal)\r\n";
+        $header.="Message-ID: <172562218.".date("YmjHis")."@".Yii::app()->params["mail-host"].">\r\n";
+        $header.="To: =?UTF-8?B?".base64_encode( $toName )."?= <".$to.">\r\n";
+        $header.="Subject: =?UTF-8?B?".base64_encode( $subject )."?=\r\n";
+        $header.="MIME-Version: 1.0\r\n";
+        $header.="Content-Type: text/html; charset=UTF-8\r\n";
+        $header.="Content-Transfer-Encoding: base64\r\n";
+
+        if( $template && file_exists( "f/mails_template/".$template) )
+        {
+            $fullUrl = "f/mails_template/".$template;
+            $file = fopen( $fullUrl, "r+" );
+            $templateText = fread( $file, filesize( $fullUrl ) );
+            fclose( $file );
+            $msg = str_replace( "@cotent_text@", $msg, $templateText );
+        }
+
+        $replaceArray[ "src='f/" ] = Yii::app()->params["baseUrl"]."f/";
+        if( sizeof($replaceArray)>0 )
+        {
+            foreach( $replaceArray as $key=>$value )
+            {
+                $msg = str_replace( $key, $value, $msg );
+            }
+        }
+
+        $text=base64_encode( $msg );
+
+
+        $smtp_conn = fsockopen("62.109.20.253", 25,$errno, $errstr, 10);
+        $data = SiteHelper::get_data($smtp_conn);
+        $log = $data." | ";
+
+//        echo "EHLO ".Yii::app()->params["mail-host"]."\r\n";
+        fputs($smtp_conn,"EHLO ".Yii::app()->params["mail-host"]."\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+//        echo "AUTH LOGIN\r\n";
+        fputs($smtp_conn,"AUTH LOGIN\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+//        echo base64_encode( Yii::app()->params["mail-log"] )."\r\n";
+        fputs($smtp_conn,base64_encode( Yii::app()->params["mail-log"] )."\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+//        echo base64_encode( Yii::app()->params["mail-pass"] )."\r\n";
+        fputs($smtp_conn,base64_encode( Yii::app()->params["mail-pass"] )."\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+        fputs($smtp_conn,"MAIL FROM:".$from."\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+        fputs($smtp_conn,"RCPT TO:".$to."\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+        fputs($smtp_conn,"DATA\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+        fputs($smtp_conn,$header."\r\n".$text."\r\n.\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+        fputs($smtp_conn,"QUIT\r\n");
+        $data = SiteHelper::get_data($smtp_conn);
+        $log .= $data." | ";
+
+        $newLog = new CatLog();
+        $newLog->email = $to;
+        $newLog->del = 1;
+        $newLog->date2 = Date( "d.m.Y H:i" );
+        $newLog->description = $log;
+        $newLog->action = "subscribe";
+        if( !$newLog->save() )
+            print_r( $newLog->getErrors() );
+    }
+
+    function get_data($smtp_conn)
+    {
+        $data="";
+        while($str = fgets($smtp_conn,515))
+        {
+            $data .= $str;
+            if(substr($str,3,1) == " ") { break; }
+        }
+        return $data;
+    }
+
+/*
     static function mailto($subject, $from = "", $to, $msg, $copy='', $template='', $replaceArray = array())
     {
         if( empty( $template ) )$template = 'main.tpl';
@@ -112,7 +222,7 @@ class SiteHelper
         if($res===false)$error="Произошла ошибка отправки сообщения на E-mail (<b>".$to."</b>). Проверте коректность вводимого E-mail и попробуйте снова.";
 
         return $error;
-    }
+    }*/
 
     public static function getConfig( $key )
     {
