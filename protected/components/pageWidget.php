@@ -66,6 +66,11 @@ class pageWidget extends CWidget
                 $pageParams["sort"] = array( "field"=>$sortField, "by"=>$by );
             }
 
+            if( !empty( $_GET["lang"] ) )
+            {
+                if( @class_exists( $catalog.$_GET["lang"]  ) )
+                    $catalog .= SiteHelper::getCamelCase( $_GET["lang"] );
+            }
 
             $catalogModel = new $catalog();
             $SearchAttributes = $catalogModel->getSearchAttributes();
@@ -181,22 +186,22 @@ class pageWidget extends CWidget
             }
 
             $this->render( "page", array(
-                'linkName'  => $linkName,
-                'addUrl'    => $addUrl,
-                'items'     => $items,
-                'page'      => $page,
-                'sectionTextSlug' => $this->sectionTextSlug,
-                'catalog'   => $catalog,
-                'sort'      => $this->sort,
-                'sortField' => $sortField,
-                'by'        => $by,
-                'offset'    => $this->offset,
+                'linkName'       => $linkName,
+                'addUrl'         => $addUrl,
+                'items'          => $items,
+                'page'           => $page,
+                'sectionTextSlug'=> $this->sectionTextSlug,
+                'catalog'        => $catalog,
+                'sort'           => $this->sort,
+                'sortField'      => $sortField,
+                'by'             => $by,
+                'offset'         => $this->offset,
                 'arrSearchFields'=> $SearchAttributes,
                 'attributeLabels'=> $catalogModel->attributeLabels(),
-                'tableModel' => $catalogModel,
-                'SQLParams'=> $SQL,
-                'url'=> $this->url,
-                'title'=> $dopTitle ? $dopTitle."<font>".$this->title."</font>" : $this->title,
+                'tableModel'     => $catalogModel,
+                'SQLParams'      => $SQL,
+                'url'            => $this->url,
+                'title'          => $dopTitle ? $dopTitle."<font>".$this->title."</font>" : $this->title,
             ));
 
         //    if( empty( $sortField ) && empty( $params ) && $page == 1 )$this->endCache();

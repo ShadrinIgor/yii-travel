@@ -406,9 +406,12 @@ class SiteHelper
         }
     }
 
-    static function createUrl($route,$params=array(),$ampersand='&')
+    static function createUrl($route,$params=array(),$ampersand='&', $needLang = true )
     {
-        if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"];
+        if( !empty( $_GET["lang"] ) && $needLang )$lang = strtolower( trim( $_GET["lang"] )."/" );
+                                else $lang = "";
+
+        if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"].$lang;
             else
         {
             if($route==='')
@@ -421,7 +424,7 @@ class SiteHelper
             if( defined("YII_SUBDOMAIN") )$paramName = YII_SUBDOMAIN."baseUrl";
                                      else $paramName = "baseUrl";
 
-            $url = Yii::app()->params[ $paramName ].Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
+            $url = Yii::app()->params[ $paramName ].$lang.Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
             $url = str_replace("//","/", $url);
             $url = str_replace(":/","://", $url);
 
