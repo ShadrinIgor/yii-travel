@@ -7,14 +7,14 @@ class I18n extends CCModel
 {
     protected $id; // integer 
     protected $category; // string 
-    protected $message; // string
-    protected $del; // integer
-    protected $pos; // integer
-    protected $name; // integer
+    protected $name; // string 
+    protected $pos; // integer 
+    protected $del; // integer 
 
 /*
 * Поля - связи
 */
+    protected $i18nTranslates; //  I18nTranslate
 
 
     public function attributeNames()
@@ -38,15 +38,14 @@ class I18n extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('category, message','required'),
+			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('category', 'length', 'max'=>32),
-			array('message, category, del, pos', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, category, message', 'safe', 'on'=>'search'),
+			array('category, name, pos, del', 'safe'),
+            array('id, category, name, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
-
 
 	/**
 	 * @return array relational rules.
@@ -56,6 +55,7 @@ class I18n extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'i18nTranslates' => array(self::HAS_MANY, 'I18nTranslate', 'i18n_id'),
 		);
 	}
 
@@ -67,7 +67,9 @@ class I18n extends CCModel
 		return array(
 			'id' => 'ID',
 			'category' => 'Category',
-			'message' => 'Message',
+			'name' => 'Name',
+			'pos' => 'Pos',
+			'del' => 'Del',
 		);
 	}
 
@@ -84,7 +86,9 @@ class I18n extends CCModel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('category',$this->category,true);
-		$criteria->compare('message',$this->message,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('pos',$this->pos);
+		$criteria->compare('del',$this->del);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
