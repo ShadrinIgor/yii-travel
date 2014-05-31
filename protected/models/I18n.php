@@ -9,7 +9,8 @@ class I18n extends CCModel
     protected $category; // string 
     protected $name; // string 
     protected $pos; // integer 
-    protected $del; // integer 
+    protected $del; // integer
+    protected $message;
 
 /*
 * Поля - связи
@@ -42,7 +43,7 @@ class I18n extends CCModel
 			array('category', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('category, name, pos, del', 'safe'),
+			array('message, category, name, pos, del', 'safe'),
             array('id, category, name, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
@@ -67,7 +68,7 @@ class I18n extends CCModel
 		return array(
 			'id' => 'ID',
 			'category' => 'Category',
-			'name' => 'Name',
+			'message' => 'Message',
 			'pos' => 'Pos',
 			'del' => 'Del',
 		);

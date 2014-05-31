@@ -31,7 +31,7 @@ class LangController extends ConsoleController
             for( $n=0;$n<sizeof( $lang );$n++ )
             {
                 $trans = $_POST["trans"][ $n ];
-                if( $trans["id"] >0 || $trans["name"] )
+                if( $trans["id"] >0 || $trans["translation"] )
                 {
                     if( $trans["id"] >0 )
                     {
@@ -71,23 +71,26 @@ class LangController extends ConsoleController
      */
     public function actionUpdate()
     {
-        if( !empty( $_POST["ExBanner"] ) )
+        print_r( $_POST["I18n"] );
+        if( !empty( $_POST["I18n"] ) )
         {
             if( $this->id>0 )
             {
-                $model = ExBanner::fetch( $this->id );
+                $model = i18n::fetch( $this->id );
             }
                 else
             {
-                $model = new ExBanner();
+                $model = new i18n();
             }
 
             $message = "";
             // Сохрание полей
-            $model->setAttributesFromArray( $_POST["ExBanner"] );
+            $model->setAttributesFromArray( $_POST["I18n"] );
+            print_r( $model );
             if($model->save())
             {
                 $message = "Данные успешно сохраненны";
+                $this->redirect( SiteHelper::createUrl("/console/lang/edit", array( "id"=>$model->id )) );
             }
                 else print_r( $model->getErrors() );
 
@@ -108,7 +111,7 @@ class LangController extends ConsoleController
     {
         if( $this->id >0  )
         {
-            $item = ExBanner::fetch($this->id);
+            $item = i18n::fetch($this->id);
             if( $item->id >0 )
             {
                 $item->delete();

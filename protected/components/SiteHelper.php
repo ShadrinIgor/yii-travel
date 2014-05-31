@@ -478,9 +478,9 @@ class SiteHelper
      * @param text $text обрезаемый текст
      * @param int $count необходимое количество символов
      */
-    static function getSubTextOnWorld( $text, $count )
+    static function getSubTextOnWorld( $text, $count, $tripTags = true )
     {
-        $text = strip_tags( $text);
+        if( $tripTags )$text = strip_tags( $text);
         if( strlen( $text )>$count )
         {
             $cout = substr( $text, 0, $count );

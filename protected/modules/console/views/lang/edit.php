@@ -1,5 +1,5 @@
 <h1>Редактирование - <?= $form->name ?></h1>
-<form action="<?= SiteHelper::createUrl("/console/banners/update", array( "id"=>$form->id))?>" method="post" onsubmit="submitForm()"  enctype="multipart/form-data">
+<form action="<?= SiteHelper::createUrl("/console/lang/update", array( "id"=>$form->id))?>" method="post" onsubmit="submitForm()"  enctype="multipart/form-data">
 <?php
     echo CHtml::errorSummary($form);
     if( !empty( $message ) ):?><div class="messageSummary"><?= $message ?></div><?php endif;?>
@@ -31,7 +31,7 @@
         <tr>
             <td><?= $item->id ?></td>
             <td>
-                <textarea rows="2" cols="80" name="trans[<?= $i ?>][name]" class="mceNoEditor"><?= $item->name ?></textarea>
+                <textarea rows="2" cols="80" name="trans[<?= $i ?>][translation]" class="mceNoEditor"><?= $item->translation ?></textarea>
                 <input type="hidden" name="trans[<?= $i ?>][id]" value="<?= $item->id ?>" />
             </td>
             <td align="center">
@@ -48,7 +48,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <textarea rows="2" cols="80" name="trans[<?= $i ?>][name]" class="mceNoEditor"></textarea>
+                    <textarea rows="2" cols="80" name="trans[<?= $i ?>][translation]" class="mceNoEditor"></textarea>
                     <input type="hidden" name="trans[<?= $i ?>][id]" value="" />
                 </td>
                 <td align="center">

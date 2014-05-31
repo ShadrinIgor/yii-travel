@@ -79,15 +79,15 @@ return array(
             'showScriptName' => false,
             'rules'=>array(
                 ''=>'site/index',
-                '<lang:(en)>'=>'site/index',
+                '<language:(en)>'=>'site/index',
 
-                '<lang:(en)>/<controller:\w+>'=>'<controller>',
-                '<lang:(en)>/<controller:\w+>/sort/<sort:\w+>/by/<by:\w+>'=>'<controller>',
+                '<language:(en)>/<controller:\w+>'=>'<controller>',
+                '<language:(en)>/<controller:\w+>/sort/<sort:\w+>/by/<by:\w+>'=>'<controller>',
 
-                '<lang:(en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                '<lang:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
-                '<lang:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/'=>'<controller>/<action>',
-                '<lang:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
+                '<language:(en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<language:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
+                '<language:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/'=>'<controller>/<action>',
+                '<language:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
 
                 '<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',

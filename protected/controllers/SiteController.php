@@ -7,8 +7,53 @@ class SiteController extends Controller
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
+    static function getSubTextOnWorld2( $text, $count, $from = 0 )
+    {
+        $cout = "";
+        for( $i=0;$i<$count;$i++ ) //  strlen( $text )>$count )
+        {
+            if( $i+$from>= strlen( $text ) ) break;
+            $cout .= $text[$i+$from];
+        }
+
+        return $cout;
+    }
+
+    public function translate()
+    {
+        $model = CatalogFirms::fetch( 17 );
+        echo $model->description."<hr/><br/>";
+
+        $step = 0;
+        $cout = "";
+        for( $n=0;$n<strlen( $model->description );$n+=800 )
+        {
+            $text = $this->getSubTextOnWorld2( $model->description, 800, $n );
+            $text = str_replace( array( "\n", "\r" ), "" , $text );
+            // echo $text."<hr/>";
+
+
+            $file = file_get_contents( "http://translate.google.ru/translate_a/t?client=x&text=".urlencode( $text )."&hl=ru&sl=ru&tl=en&ie=UTF-8&oe=UTF-8" );
+
+            $res = json_decode( $file );
+            if( json_last_error() >0 )
+                echo "Error: ".json_last_error()."<br/>";
+
+            $text = "";
+            for( $i=0;$i<sizeof( $res->sentences );$i++ )
+                $text .= $res->sentences[$i]->trans;
+
+            $text = str_replace( "< /", "</", $text );
+            $text = str_replace( "</ ", "</", $text );
+            $cout .= $text;
+        }
+        echo "<hr/>".$cout."*";
+    }
+
 	public function actionIndex()
 	{
+        //$this->translate();
+
         //SiteHelper::mailto( "Привет Чулик", "info@world-travel.uz", "shadrin.igor@gmail.com", "Тут будет текст сообщения. Тут будет текст сообщения. " );
 /*
         $url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?' .

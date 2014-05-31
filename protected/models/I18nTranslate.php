@@ -10,7 +10,8 @@ class I18nTranslate extends CCModel
     protected $name; // string 
     protected $del; // integer 
     protected $pos; // integer 
-    protected $i18n_id; // integer 
+    protected $i18n_id; // integer
+    protected $translation;
 
 /*
 * Поля - связи
@@ -43,7 +44,7 @@ class I18nTranslate extends CCModel
 			array('language', 'length', 'max'=>16),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('language, name, del, pos, i18n_id', 'safe'),
+			array('translation, language, name, del, pos, i18n_id', 'safe'),
             array('id, language, name, del, pos, i18n_id', 'safe', 'on'=>'search'),
 		);
 	}
@@ -68,7 +69,7 @@ class I18nTranslate extends CCModel
 		return array(
 			'id' => 'ID',
 			'language' => 'Language',
-			'name' => 'Name',
+			'translation' => 'Перевод',
 			'del' => 'Del',
 			'pos' => 'Pos',
 			'i18n_id' => 'I18n',
