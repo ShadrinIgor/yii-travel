@@ -40,7 +40,7 @@ class CatalogWorkAdd extends CatalogWork
         return array(
             'name' => 'Название вакансии',
             'category_id' => 'Кактегория вакансии',
-            'country_id' => 'Страна',
+            'country_id' => Yii::t("page", "Страна"),
             'city_id' => 'Город',
             'image' => 'Фото',
             'graf' => 'График',

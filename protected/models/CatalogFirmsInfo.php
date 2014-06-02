@@ -13,7 +13,7 @@ class CatalogFirmsInfo extends CatalogFirms
 	{
 		return array(
 			'name' => 'Название фирмы',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'Город',
 			'email' => 'Email',
 			'www' => 'Www',

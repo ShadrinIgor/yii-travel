@@ -1,6 +1,6 @@
 <div id="<?= $id ?>" class="SC">
     <div>
-    <font>Поделитесь находкой:</font>
+    <font><?= Yii::t("page", "Поделитесь находкой") ?>:</font>
     <noindex>
         <ul>
             <li id="CB_01"><a onclick="return new_window('http://vkontakte.ru/share.php?url=<?= $url ?>',600,400);" href="#"></a></li>

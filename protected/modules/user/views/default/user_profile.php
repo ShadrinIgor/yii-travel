@@ -26,7 +26,7 @@ $this->widget('addressLineWidget', array(
         </tr>
         <?php if( !empty( $user->country)|| !empty( $user->country_other ) ) : ?>
             <tr>
-                <td align="right"><i>Страна:</i>&nbsp;</td>
+                <td align="right"><i><?= Yii::t("page", "Страна"); ?>:</i>&nbsp;</td>
                 <td><?= ( !empty( $user->country )  ) ? $user->country->name : $user->country_other ?></td>
             </tr>
         <?php endif; ?>

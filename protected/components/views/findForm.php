@@ -1,17 +1,17 @@
 <div id="findTour">
     <div id="FTHeader">
-        <a href="#" id="FTForm" class="FTActive" title="">Найти тур</a>
+        <a href="#" id="FTForm" class="FTActive" title=""><?= Yii::t("page", "Найти тур"); ?></a>
         <font class="FTFormSepar"></font>
-        <a href="#" id="FTHotels" title="">Найти отель</a>
+        <a href="#" id="FTHotels" title=""><?= Yii::t("page", "Найти отель"); ?></a>
     </div>
     <div id="FTFormTab" class="FTFActive FTFormTab">
         <form action="<?= SiteHelper::createUrl("/tours") ?>" method="post">
             <p>
-                От куда: <select name="countryFrom"><option value="">Узбекистан</option></select>
+                <?= Yii::t("page", "От куда"); ?>: <select name="countryFrom"><option value=""><?= Yii::t("page", "Узбекистан"); ?></option></select>
             </p>
             <p>
-                Куда: <select name="CatalogTours[country_id]">
-                    <option value=""> - выберите страну тура - </option>
+                <?= Yii::t("page", "Куда"); ?>: <select name="CatalogTours[country_id]">
+                    <option value=""> - <?= Yii::t("page", "выберите страну тура"); ?> - </option>
                     <?php foreach( CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("name")->setLimit(-1)) as $country ) : ?>
                         <option value="<?= $country->id ?>"><?= $country->name ?></option>
                     <?php endforeach; ?>
@@ -19,7 +19,7 @@
             </p>
             <p>
                 Категория: <select name="CatalogTours[category_id]">
-                    <option value=""> - выберите категорию - </option>
+                    <option value=""> - <?= Yii::t("page", "выберите категорию"); ?> - </option>
                     <?php foreach( CatalogToursCategory::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=0")->setOrderBy("name")->setLimit(-1)) as $category ) : ?>
                         <optgroup label="<?= $category->name ?>">
                             <?php foreach( CatalogToursCategory::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=:owner")->setParams(array(":owner"=>$category->id))->setOrderBy("name")->setLimit(-1)) as $category2 ) : ?>
@@ -31,29 +31,29 @@
             </p>
             <div class="FTBottom" id="FTBF">
                 <div class="floatRight">
-                    <input type="submit" name="find" value="Подобрать" />
+                    <input type="submit" name="find" value="<?= Yii::t("page", "Подобрать"); ?>" />
                 </div>
-                Форма подбора тура по стране и категории
+                <?= Yii::t("page", "Форма подбора тура по стране и категории"); ?>
             </div>
         </form>
     </div>
     <div id="FTHotelsTab" class="FTFormTab">
         <form action="<?= SiteHelper::createUrl("/hotels") ?>" method="post">
             <p>
-                Страна:
+                <?= Yii::t("page", "Страна"); ?>:
                 <select name="CatalogHotels[country_id]" class="field_country_id">
-                    <option value=""> - выберите страну - </option>
+                    <option value=""> - <?= Yii::t("page", "выберите страну"); ?> - </option>
                     <?php foreach( CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("name")->setLimit(-1)) as $country ) : ?>
                         <option value="<?= $country->id ?>"><?= $country->name ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
             <p>
-                Город: <select name="CatalogHotels[city_id]" class="field_city_id"><option value="">выберите страну</option></select>
+                <?= Yii::t("page", "Город"); ?>: <select name="CatalogHotels[city_id]" class="field_city_id"><option value=""><?= Yii::t("page", "выберите страну"); ?></option></select>
             </p>
             <p>
-                Звезд: <select name="CatalogHotels[level]">
-                    <option value=""> - уровень отеля - </option>
+                <?= Yii::t("page", "Звезд"); ?>: <select name="CatalogHotels[level]">
+                    <option value=""> - <?= Yii::t("page", "уровень отеля"); ?> - </option>
                     <option value="5"> 5 </option>
                     <option value="4"> 4 </option>
                     <option value="3"> 3 </option>
@@ -63,9 +63,9 @@
             </p>
             <div class="FTBottom" id="FTBF">
                 <div class="floatRight">
-                    <input type="submit" name="find" value="Подобрать" />
+                    <input type="submit" name="find" value="<?= Yii::t("page", "Подобрать"); ?>" />
                 </div>
-                Форма подбора отелея по стране и уровню
+                <?= Yii::t("page", "Форма подбора отелея по стране и уровню"); ?>
             </div>
         </form>
     </div>

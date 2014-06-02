@@ -100,7 +100,7 @@ class CatalogHotels extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Название',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'Город',
 			'address' => 'Адресс',
 			'level' => 'Кол. звезд',

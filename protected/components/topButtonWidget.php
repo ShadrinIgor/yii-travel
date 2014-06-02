@@ -10,7 +10,10 @@ class topButtonWidget extends CWidget
     var $type;
     public function run()
     {
-        $this->render( "topButton", array(
+        $template = "topButton";
+        if( Yii::app()->getLanguage() == 'en' )$template .= "_en";
+
+        $this->render( $template, array(
                     'type'      =>  $this->type
             ));
     }

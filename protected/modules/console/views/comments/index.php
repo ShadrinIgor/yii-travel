@@ -5,7 +5,7 @@
         <th>Заголовок</th>
         <th>Дата</th>
         <th>Запись</th>
-        <th>Статус</th>
+        <th><?= Yii::t("page", "статус"); ?></th>
         <th>Действия</th>
     </tr>
 <?php foreach( $comments as $item ) :?>

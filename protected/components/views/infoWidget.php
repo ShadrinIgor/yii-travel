@@ -19,5 +19,5 @@
             <?= $step==3 ? SiteHelper::getSubTextOnWorld( $item->description, 100 ) : "" ?>
         </div>
     <?php endforeach; ?>
-    <a title="смотреть все <?= $title ?>" class="mLinks" href="<?= $linkAll ?>">остальные ...</a>
+    <a title="смотреть все <?= $title ?>" class="mLinks" href="<?= $linkAll ?>"><?= Yii::t("page", "остальные"); ?> ...</a>
 </div>

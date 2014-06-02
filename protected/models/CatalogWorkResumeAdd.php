@@ -22,7 +22,7 @@ class CatalogWorkResumeAdd extends CatalogWorkAdd
         return array(
             'name' => 'Должность резюме',
             'category_id' => 'Кактегория резюме',
-            'country_id' => 'Страна',
+            'country_id' => Yii::t("page", "Страна"),
             'city_id' => 'Город',
             'image' => 'Фото',
             'graf' => 'График',

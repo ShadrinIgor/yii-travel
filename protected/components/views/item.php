@@ -15,9 +15,9 @@
     <?php endif; ?>
     <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров") ?>: <b><?= $item->col ?></b></div><?php endif; ?>
     <a href="<?= SiteHelper::createUrl("/".$link."/description")."/".$item->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name.",".$item->name ) ?>"><?= SiteHelper::getSubTextOnWorld( $item->name, 100 ) ?></a><br/>
-    <?php if( $item->price >0 ) : ?><p>цена:<b><?= $item->price ?></b>у.е.</p><?php endif; ?>
+    <?php if( $item->price >0 ) : ?><p><?= Yii::t("page", "цена"); ?>:<b><?= $item->price ?></b>у.е.</p><?php endif; ?>
     <?= SiteHelper::getSubTextOnWorld( $item->description, 150 ) ?>
     <div class="LParams">
-        <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="туристическая фирма <?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a>
+        <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= Yii::t("page", "туристическая фирма"); ?> <?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a>
     </div>
 </div>

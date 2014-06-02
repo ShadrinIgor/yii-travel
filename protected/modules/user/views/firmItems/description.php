@@ -14,7 +14,7 @@
         <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ) ?>">вернуться к описанию фирмы</a>
         <a href="<?= SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"items" ) ) ?>">вернуться к списку акций</a>
         <?php if( $item->id >0 ) : ?>
-            <br/><span>статус: <b class="publishStatus"><?= $item->active == 0 ? " не опубликован " : " опубликован " ?></b></span>
+            <br/><span><?= Yii::t("page", "статус"); ?>: <b class="publishStatus"><?= $item->active == 0 ? " не опубликован " : " опубликован " ?></b></span>
             <a href="#" class="publishLink linkButton" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl( "/user/firms/setPublish", array( "id"=>$item->id, "catalog"=>SiteHelper::getCamelCase( $item->tableName() ) ) ) ?>', '' );">
             <?php if( $item->active == 0 ) : ?>Опубликовать на сайте ?<?php endif; ?><?php if( $item->active == 1 ) : ?>Снять с публикации ?<?php endif; ?></a>
         <?php endif; ?>

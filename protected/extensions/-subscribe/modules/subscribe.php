@@ -23,7 +23,7 @@ class subscribe
                         <th>ID</th>
                         <th>Тема</th>
                         <th>Дата</th>
-                        <th>Статус</th>
+                        <th><?= Yii::t("page", "статус"); ?></th>
                         <th>От</th>
                         <th>Отправленно</th>
                         <th>Действия</th>

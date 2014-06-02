@@ -6,7 +6,7 @@
         <th class="TLFId">№</th>
         <th sytle="width:400px" class="TLFName">Краткое описание</th>
         <th>Дата</th>
-        <th sytle="width:140px">Статус</th>
+        <th sytle="width:140px"><?= Yii::t("page", "статус"); ?></th>
         <th style="width: 130px;" class="TLFAction">Действия</th>
     </tr>
     <?php

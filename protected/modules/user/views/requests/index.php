@@ -14,7 +14,7 @@
         <th>Дата</th>
         <th class="TLFName">Сад</th>
         <th>Стоимость</th>
-        <th class="TLFAction">Статус</th>
+        <th class="TLFAction"><?= Yii::t("page", "статус"); ?></th>
         <th></th>
     </tr>
 <?php foreach( $trees as $tree ) : ?>

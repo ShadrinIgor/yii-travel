@@ -100,7 +100,7 @@ class CatalogFirms extends CCModel
 			'name' => 'Название фирмы',
 			'description' => 'Описание',
 			'pos' => 'Pos',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'Город',
 			'image' => 'Логотип',
 			'email' => 'Email',

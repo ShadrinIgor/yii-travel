@@ -2,7 +2,7 @@
 if( sizeof( $images ) >0 ) : ?>
 <div id="gallery" class="listAll">
     <ul id="lightBox">
-    <?php if( sizeof($images)>0 ) : ?><h2>Фотографии</h2><?php endif; ?>
+    <?php if( sizeof($images)>0 ) : ?><h2><?= Yii::t("page", "Фотографии" ) ?></h2><?php endif; ?>
     <?php
     $n=0;
     foreach( $images as $foto ) :

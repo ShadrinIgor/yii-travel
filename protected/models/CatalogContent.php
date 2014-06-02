@@ -80,7 +80,7 @@ class CatalogContent extends CCModel
 			'name' => 'Название',
 			'description' => 'Текст записи',
             'category_id' => 'Категории',
-            'country_id' => 'Страна',
+            'country_id' => Yii::t("page", "Страна"),
 			'date' => 'Дата',
 			'image' => 'Картинка',
 			'file' => 'Файл, приложение для записи',

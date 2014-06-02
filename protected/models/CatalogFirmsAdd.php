@@ -34,7 +34,7 @@ class CatalogFirmsAdd extends CatalogFirms
         return array(
             'name' => 'Название фирмы',
             'image' => 'Логотип',
-            'country_id' => 'Страна',
+            'country_id' => Yii::t("page", "Страна"),
             'city_id' => 'Город',
             'www' => 'Www',
             'email' => 'Email',

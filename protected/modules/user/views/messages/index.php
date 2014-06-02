@@ -13,7 +13,7 @@
         <th class="TLFId">№</th>
         <th class="TLFName">Заголовок</th>
         <th class="TLFName">Дата</th>
-        <th class="TLFName">Статус</th>
+        <th class="TLFName"><?= Yii::t("page", "статус"); ?></th>
         <th class="TLFAction">Действия</th>
     </tr>
 <?php foreach( $items as $item ):

@@ -34,7 +34,7 @@ class FirmBannersController extends UserController
 
         if( !Yii::app()->user->isGuest )
         {
-            Yii::app()->page->title = "Описание";
+            Yii::app()->page->title =  Yii::t("page", "Описание");
 
             $id = (int)Yii::app()->request->getParam("id", 0);
             $status = Yii::app()->request->getParam("status", "");

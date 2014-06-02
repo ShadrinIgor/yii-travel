@@ -84,7 +84,7 @@ class CatalogInfo extends CCModel
 			'pos' => 'Pos',
 			'metaData' => 'Meta Data',
 			'del' => 'Del',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'Город',
 			'image' => 'Image',
 			'category_id' => 'Категория',

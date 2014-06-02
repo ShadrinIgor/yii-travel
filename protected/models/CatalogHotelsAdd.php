@@ -33,7 +33,7 @@ class CatalogHotelsAdd extends CatalogHotels
 	{
 		return array(
 			'name' => 'Название',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'Город',
 			'address' => 'Адресс',
 			'level' => 'Кол. звезд',

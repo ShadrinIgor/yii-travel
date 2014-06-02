@@ -19,7 +19,7 @@ class CatalogUsersProfile extends CatalogUsers
 //            'surname' => 'Фамилия',
 //            'fatchname' => 'Отчество',
             'email' => 'Email',
-            'country_id' => 'Страна',
+            'country_id' => Yii::t("page", "Страна"),
             'city_id' => 'Город',
 //            'image' => 'Фото пользователя',
 //            'country_other' => 'Другая страна',

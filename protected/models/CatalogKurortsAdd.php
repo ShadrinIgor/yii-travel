@@ -35,7 +35,7 @@ class CatalogKurortsAdd extends CatalogKurorts
         return array(
             'name' => 'Название',
             'category_id' => 'Категория',
-            'country_id' => 'Страна',
+            'country_id' => Yii::t("page", "Страна"),
             'city_id' => 'Город',
             'location' => 'Адресс',
             'www' => 'Сайт',

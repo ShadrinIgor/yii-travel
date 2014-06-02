@@ -14,7 +14,7 @@
         <th class="TLFImage">Фото</th>
         <th class="TLFName">Заголовок</th>
         <th class="TLFType">Категория</th>
-        <th>Статус</th>
+        <th><?= Yii::t("page", "статус"); ?></th>
         <th class="TLFAction">Действия</th>
     </tr>
 <?php foreach( $items as $item ):

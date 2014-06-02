@@ -27,20 +27,20 @@
             </form>
         </div>
         <div class="ParamsClear textAlignRight">
-            <a href="<?= SiteHelper::createUrl($url."/index", array("params"=>"empty")) ?>" class="cMore" title="Сбросить критерии">[ Сбросить критерии ]</a>
+            <a href="<?= SiteHelper::createUrl($url."/index", array("params"=>"empty")) ?>" class="cMore" title="<?= Yii::t("page", "Сбросить критерии"); ?>">[ <?= Yii::t("page", "Сбросить критерии"); ?> ]</a>
         </div>
     <?php endif; ?>
     <?php if( !empty( $sort ) && sizeof( $sort )>0 ) : ?>
         <div id="CISort">
             <br/>
-            <div class="displayInlainBlock">Сортировка:&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="displayInlainBlock"><?= Yii::t("page", "Сортировка"); ?>:&nbsp;&nbsp;&nbsp;&nbsp;</div>
             <div class="displayInlainBlock">
                 <?php
                 $n=0;
                 foreach( $sort as $item ) :
                     $n++;
                     ?>
-                    <a class="CIH CIH<?= $by ?><?= $sortField == $item[0] ? " CIHActive" : "" ?>" href="<?= ( $sortField == $item[0] && $by == "desc" ) ? SiteHelper::createUrl($url."/", array("sort"=>$item[0], "by"=>"asc")) : SiteHelper::createUrl($url."/", array("sort"=>$item[0], "by"=>"desc")) ?>" title="отсортировать по <?= $item[1] ?>">по <?= $item[1] ?></a>&nbsp;
+                    <a class="CIH CIH<?= $by ?><?= $sortField == $item[0] ? " CIHActive" : "" ?>" href="<?= ( $sortField == $item[0] && $by == "desc" ) ? SiteHelper::createUrl($url."/", array("sort"=>$item[0], "by"=>"asc")) : SiteHelper::createUrl($url."/", array("sort"=>$item[0], "by"=>"desc")) ?>" title="<?= Yii::t("page", "отсортировать по"); ?> <?= $item[1] ?>"><?= Yii::t("page", "по"); ?> <?= $item[1] ?></a>&nbsp;
                 <?php endforeach; ?>
             </div>
         </div>

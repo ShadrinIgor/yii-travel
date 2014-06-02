@@ -22,7 +22,7 @@
         <?= property_exists( $catalogClass, "category_id" ) ? "<th>Category</th>" : "" ?>
         <?= property_exists( $catalogClass, "key_word" ) ? "<th>Key word</th>" : "" ?>
         <?= property_exists( $catalogClass, "slug" ) ? "<th>Slug</th>" : "" ?>
-        <?= property_exists( $catalogClass, "active" ) ? "<th>Статус</th>" : "" ?>
+        <?= property_exists( $catalogClass, "active" ) ? "<th><?= Yii::t("page", "статус"); ?></th>" : "" ?>
         <?= property_exists( $catalogClass, "firm_id" ) ? "<th>Фирма</th>" : "" ?>
         <th>Actions</th>
     </tr>

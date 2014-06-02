@@ -15,8 +15,8 @@
         <th class="TLFId">№</th>
         <th class="">Фото</th>
         <th class="TLFName">Заголовок</th>
-        <th class="TLFType">Страна</th>
-        <th>Статус</th>
+        <th class="TLFType"><?= Yii::t("page", "Страна"); ?></th>
+        <th><?= Yii::t("page", "статус"); ?></th>
         <th class="TLFAction">Действия</th>
     </tr>
 <?php foreach( $items as $item ):

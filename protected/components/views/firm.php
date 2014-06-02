@@ -6,6 +6,6 @@
     <!--php if( $tour->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><= $tour->col ></b></div><php endif; -->
     <br/><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$tour->slug ?>.html" title="<?= $tour->name ?>"><?= $tour->name ?></a><br/>
     <div class="LParams">
-        Туров: <b><?= $tourCounts ?></b>
+        <?= Yii::t("page", "Туров"); ?>: <b><?= $tourCounts ?></b>
     </div>
 </div>

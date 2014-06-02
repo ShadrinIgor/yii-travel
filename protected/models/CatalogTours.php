@@ -113,7 +113,7 @@ class CatalogTours extends CCModel
 			'del' => 'Del',
 			'srok' => 'Srok',
 			'image' => 'Image',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'City',
 			'price' => 'Цена',
 			'ltext' => 'Ltext',

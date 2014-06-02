@@ -34,6 +34,6 @@ if($count>$offset)
         $c_cout.=$elem;
     }
 
-    $cout = "Страницы: ".$c_cout;
+    $cout = Yii::t("page", "Страницы").": ".$c_cout;
     echo "<div class=\"pageList\">".$cout."  Всего : ".$count."</div>";
 }

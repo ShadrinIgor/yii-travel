@@ -1,6 +1,6 @@
 <div class="greeBorder">
     <p>
-        <b>Нашли ошибку? Произошла непонятная ошибка?</b><br>
-        Пишите нам на емаил <a href="mailto:<?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, и мы обязательно все исправим.
+        <b><?= Yii::t("page", "Нашли ошибку? Произошла непонятная ошибка?"); ?></b><br>
+        <?= Yii::t("page", "Пишите нам на емаил <a href='mailto:support@world-travel.uz'>support@world-travel.uz</a>, и мы обязательно все исправим."); ?>
     </p>
 </div>

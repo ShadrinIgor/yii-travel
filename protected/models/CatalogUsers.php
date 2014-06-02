@@ -210,7 +210,7 @@ class CatalogUsers extends CCModel
 			'surname' => 'Фамилия',
 			'fatchname' => 'Отчество',
 			'email' => 'Email',
-			'country_id' => 'Страна',
+			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => 'Город',
 			'type_id' => 'Тип',
 			'image' => 'Фото',

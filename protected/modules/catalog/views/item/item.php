@@ -33,7 +33,7 @@ $this->widget('addressLineWidget', array(
                     <div class="UParams">Email: <b><a href="#" onclick="$(this).load('<?= SiteHelper::createUrl("/catalog/default/getUserInfo") ?>', { id :<?=$item->user_id->id ?>, field : 'email' }); return false;">показать Email</a></b></div>
                     <?php if( $item->user_id->phone ) : ?><div class="UParams">Телефон: <b><a href="#" onclick="$(this).load('<?= SiteHelper::createUrl("/catalog/default/getUserInfo") ?>', { id :<?=$item->user_id->id ?>, field : 'phone' }); return false;">показать телефон</a></b></div><?php endif; ?>
                     <?php if( $item->user_id->site ) : ?><div class="UParams">Сайт: <b><?= $item->user_id->site ?></b></div><?php endif; ?>
-                    <?php if( $item->user_id->country && $item->user_id->country->id >0 ) : ?><div class="UParams">Страна: <b><?= $item->user_id->country->name ?></b></div><?php endif; ?>
+                    <?php if( $item->user_id->country && $item->user_id->country->id >0 ) : ?><div class="UParams"><?= Yii::t("page", "Страна"); ?>: <b><?= $item->user_id->country->name ?></b></div><?php endif; ?>
                     <?php if( $item->user_id->city && $item->user_id->city->id >0 ) : ?><div class="UParams">Город: <b><?= $item->user_id->city->name ?></b></div><?php endif; ?>
                 </div>
             </div>
