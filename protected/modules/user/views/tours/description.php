@@ -34,7 +34,7 @@
             <div class="listGallery">
                 <?php if( !empty( $error ) ) : ?><div class="errorSummary">Произошла ошибка закачки фотографий<br/>Повторите заново учитывая указанные ниже правила добавления фотографий</div>
                 <?php endif; ?>
-                <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Yii::t("page", "Список пуст") );</div><?php endif; ?>
+                <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter"><?= Yii::t("page", "Список пуст"); ?></div><?php endif; ?>
                 <?php foreach( $listGallery as $gall ) : ?>
                     <div class="LGItem">
                         <div>

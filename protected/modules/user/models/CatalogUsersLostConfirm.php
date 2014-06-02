@@ -34,9 +34,9 @@ class CatalogUsersLostConfirm extends CatalogUsers
             if( !empty($confirm) && sizeof( $confirm )==1 )
             {
                 $userModel = CatalogUsers::fetch( $confirm[0]->user_id->id );
-                if( $userModel->active == 0 )$error = "Ваш аккаунт не активировн";
+                if( $userModel->active == 0 )$error = Yii::t("models", "Ваш аккаунт не активирован");
             }
-                else $error = "Указан не верный ключ";
+                else $error = Yii::t("models", "Указан не верный ключ");
 
             if( !empty( $error ) )
             {

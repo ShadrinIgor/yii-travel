@@ -1,10 +1,10 @@
 <div id="innerPage">
 <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( "Рабочий стол" ),
+        'links'=>array( Yii::t("user", "Рабочий стол" ) ),
     ));
 ?>
-<h1>Рабочий стол</h1>
+<h1><?= Yii::t("user", "Рабочий стол"); ?></h1>
 <form action="" method="post">
     <?= $userModel->getMessage();  ?>
     <div class="overflowHidden textAlignCenter">
@@ -15,6 +15,6 @@
             </div>
         <?php endforeach; ?>
     </div>
-    <div class="textAlignCenter"><input type="submit" name="desktop_save" value="Сохранить" /></div>
+    <div class="textAlignCenter"><input type="submit" name="desktop_save" value="<?= Yii::t("user", "Сохранить"); ?>" /></div>
 </form>
 </div>

@@ -14,11 +14,11 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
 <div id="PageText">
     <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( "персональная информация" ),
+        'links'=>array( Yii::t("user", "Персональная информация" ) ),
     ));
     ?>
     <?php echo CHtml::form('','post',array('enctype'=>'multipart/form-data', 'id'=>'validateForm')); ?>
-    <h1>Персональная информация</h1>
+    <h1><?= Yii::t("user", "Персональная информация" ) ?></h1>
     <?= CHtml::errorSummary($form); ?><br/>
     <?= $form->getMessage() ?>
     <?php $this->widget( "formNoteWidget", array( "type"=>"profileNote" ) ) ?>
@@ -26,7 +26,7 @@ $cs->registerCssFile($baseUrl.'/js/chosen/chosen.css');
        <?= CCModelHelper::addForm( $form ) ?>
         <tr class="trNoBorder">
             <td></td>
-            <td><?php echo CHtml::submitButton('Сохранить', array("name"=>"save_profile")); ?></td>
+            <td><?php echo CHtml::submitButton( Yii::t("user", 'Сохранить'), array("name"=>"save_profile")); ?></td>
         </tr>
     </table>
     <?php echo CHtml::endForm(); ?>

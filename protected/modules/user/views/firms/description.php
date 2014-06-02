@@ -78,7 +78,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         <form action="" method="post">
             <?php echo CHtml::errorSummary($addImage); ?><br>
             <div class="listGallery">
-                <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter">Yii::t("page", "Список пуст") );</div><?php endif; ?>
+                <?php if( sizeof( $listGallery ) == 0 ) : ?><div class="textAlignCenter"><?= Yii::t("page", "Список пуст"); ?></div><?php endif; ?>
                 <?php foreach( $listGallery as $gall ) : ?>
                     <div class="LGItem">
                         <div>

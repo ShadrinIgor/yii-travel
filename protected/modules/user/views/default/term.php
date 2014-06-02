@@ -1,7 +1,7 @@
 <?php
 $this->widget('addressLineWidget', array(
-    'links'=>array( "Правила работы с сайтом" ),
+    'links'=>array( Yii::t("user", "Правила работы с сайтом" ) ),
 ));
 ?>
-<h1>Правила работы с сайтом</h1>
+<h1><?= Yii::t("user", "Правила работы с сайтом" ) ?></h1>
 <?= $text->description ?>

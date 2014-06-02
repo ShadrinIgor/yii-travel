@@ -17,7 +17,7 @@
             </div>
         <?php endforeach; ?>
         <?php if( sizeof( $items ) == 0 ) : ?>
-            <div class="textAlignCenter">Yii::t("page", "Список пуст") );</div>
+            <div class="textAlignCenter"><?= Yii::t("page", "Список пуст"); ?></div>
         <?php endif; ?>
     </div>
 </div>

@@ -11,24 +11,24 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
 <div id="PageText">
     <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( "Смена пароля" ),
+        'links'=>array( Yii::t("user", "Смена пароля" ) ),
     ));
     ?>
     <!--php Yii::app()->banners->getBannerByCategory( 1 ); ?-->
     <?php echo CHtml::form( SiteHelper::createUrl("default/LostConfirm/", array("key"=>Yii::app()->request->getParam("key", ""))), 'post',array( 'id'=>'validateForm')); ?>
-    <h1>Смена пароля</h1>
+    <h1><?= Yii::t("user", "Смена пароля") ?></h1>
     <?php echo CHtml::errorSummary($form); ?><br>
     <?php if( $error ) : ?>
         <div class="errorSummary">
             <p>
-                <b>Ошибка</b>
-                <ul><li>Вы перешли по не рабочей ссылке.</li></ul>
+                <b><?= Yii::t("user", "Ошибка" ) ?></b>
+                <ul><li><?= Yii::t("user", "Вы перешли по не рабочей ссылке." ) ?></li></ul>
             </p>
         </div>
     <?php elseif( $okMessage ) : ?>
         <div class="messageSummary">
             <p>
-                <b>Поздравляем</b>
+                <b><?= Yii::t("user", "Поздравляем" ) ?></b>
                 <?= $okMessage ?>
             </p>
         </div>
@@ -47,7 +47,7 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
                 <td></td>
                 <td align="center">
                     <?php
-                        echo CHtml::submitButton('Сохранить');
+                        echo CHtml::submitButton( Yii::t("user", "Сохранить" ));
                     ?>
                 </td>
             </tr>

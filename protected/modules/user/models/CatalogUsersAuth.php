@@ -29,7 +29,7 @@ class CatalogUsersAuth extends CatalogUsers
     {
         return array(
             'email' => 'email',
-            'password' => 'Пароль',
+            'password' => Yii::t("models", "Пароль" ),
         );
     }
 
@@ -49,16 +49,16 @@ class CatalogUsersAuth extends CatalogUsers
             {
                 if( $errorCode == 100 )
                 {
-                    $textError = "Вы не подтвердили Свой Email:".$this->email."<br/>";
-                    $textError .= "Вам по почте должно было прийти письмо для подверждения регистрации.
-                                                   <br/><br/><b>Письмо не пришло?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">отправить заново письмо для подтверждения регистрации на ".$this->email."</a>
-                                                   <br/><br/><b>Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста";
+                    $textError = Yii::t("models", "Вы не подтвердили Свой Email").":".$this->email."<br/>";
+                    $textError .= Yii::t("models", "Вам по почте должно было прийти письмо для подверждения регистрации.").
+                                                   "<br/><br/><b>". Yii::t("models", "Письмо не пришло?" )."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">". Yii::t("models", "отправить заново письмо для подтверждения регистрации на")." ".$this->email."</a>
+                                                   <br/><br/><b>". Yii::t("models", "Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>". Yii::t("models", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
                     $this->addErrors( array(  "0"=>$textError ) );
                 }
                     else
                 {
                     $textError = "Вы ввели не верный Email или ПАРОЛЬ<br/>";
-                    $textError .= "<br/><b>Забыли пароль?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">востановить пароль</a>";
+                    $textError .= "<br/><b>". Yii::t("models", "Забыли пароль?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">". Yii::t("models", "востановить пароль")."</a>";
                     $this->addErrors( array(  "0"=>$textError ) );
                 }
             }

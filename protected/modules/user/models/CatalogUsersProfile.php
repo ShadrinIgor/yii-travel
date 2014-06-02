@@ -13,17 +13,17 @@ class CatalogUsersProfile extends CatalogUsers
     {
         return array(
             'id' => 'ID',
-            'name' => 'Имя',
-            'password' => 'Пароль',
-            'password2' => 'Подтверждение пароля',
+            'name' => Yii::t("models", "Имя" ),
+            'password' => Yii::t("models", "Пароль" ),
+            'password2' => Yii::t("models", "Подтверждение пароля" ),
 //            'surname' => 'Фамилия',
 //            'fatchname' => 'Отчество',
             'email' => 'Email',
             'country_id' => Yii::t("page", "Страна"),
-            'city_id' => 'Город',
+            'city_id' => Yii::t("models", "Город" ),
 //            'image' => 'Фото пользователя',
 //            'country_other' => 'Другая страна',
-            'phone' => 'Сотовый',
+            'phone' => Yii::t("models", "Сотовый" ),
 //            'site' => 'Сайт',
         );
     }

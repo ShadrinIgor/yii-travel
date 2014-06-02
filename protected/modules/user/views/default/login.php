@@ -8,7 +8,7 @@ $this->listCssFiles[] = $baseUrl.'/css/jquery/validationEngine.jquery.css';
 <div id="PageText">
     <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( "Авторизация" ),
+        'links'=>array( Yii::t("user", "Авторизация" ) ),
     ));
     ?>
     <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>

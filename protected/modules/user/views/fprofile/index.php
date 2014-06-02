@@ -64,6 +64,6 @@ $this->widget('addressLineWidget', array(
     </table>
 <?php
 if( sizeof( $orders ) ==0 )
-    echo '<div class="textAlignCenter">Yii::t("page", "Список пуст") );</div>';
+    echo '<div class="textAlignCenter"><?= Yii::t("page", "Список пуст"); ?></div>';
 ?>
 </div>

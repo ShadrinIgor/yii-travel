@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <td></td>
-        <td><?php echo CHtml::submitButton('Войти'); ?></td>
+        <td><?php echo CHtml::submitButton( Yii::t("user", 'Войти')); ?></td>
     </tr>
 </table>
 <?php echo CHtml::endForm(); ?>

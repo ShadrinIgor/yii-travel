@@ -17,7 +17,7 @@ $this->widget('addressLineWidget', array(
             </tr>
         <?php endif; ?>
         <tr>
-            <td align="right"><i>Имя:</i>&nbsp;</td>
+            <td align="right"><i><?= Yii::t("user", "Имя"); ?>:</i>&nbsp;</td>
             <td><?= $user->name ?></td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@ $this->widget('addressLineWidget', array(
         <?php endif; ?>
         <?php if( !empty( $user->city)  ) : ?>
         <tr>
-            <td align="right"><i>Город:</i>&nbsp;</td>
+            <td align="right"><i><?= Yii::t("user", "Город"); ?>:</i>&nbsp;</td>
             <td><?= $user->city->name ?></td>
         </tr>
         <?php endif; ?>
@@ -41,7 +41,7 @@ $this->widget('addressLineWidget', array(
 
 <?php if( sizeof( $user_tree ) >0 ) : ?>
 
-<h2>Посаженные деревья</h2>
+<h2><?= Yii::t("user", "Посаженные деревья"); ?></h2>
 <div class="gallery">
     <?php
     $n=0;

@@ -14,7 +14,7 @@
 <div id="PageText">
     <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( "Регистрация" ),
+        'links'=>array( Yii::t("user", "Регистрация" ) ),
     ));
 ?>
 <?php echo CHtml::form('user/default/registration/','post',array('enctype'=>'multipart/form-data', 'id'=>'validateForm')); ?>
@@ -38,8 +38,8 @@
             <td></td>
             <td>
                 <?php echo CHtml::activeCheckBox($form, 'term'); ?>&nbsp;
-                <?php echo CHtml::activeLabel($form, 'С'); ?>&nbsp;<?php echo CHtml::link('правилами', SiteHelper::createUrl("/user/default/term"), array("target"=>"_blank")); ?>&nbsp;<?php echo CHtml::activeLabel($form, ' согласен'); ?>
-                <?php echo CHtml::submitButton('Зарегистрироваться'); ?></td>
+                <?php echo CHtml::activeLabel($form, Yii::t("user", 'С' ) ); ?>&nbsp;<?php echo CHtml::link( Yii::t("user", 'правилами' ), SiteHelper::createUrl("/user/default/term"), array("target"=>"_blank")); ?>&nbsp;<?php echo CHtml::activeLabel($form, ' '.Yii::t("user", 'согласен') ); ?>
+                <?php echo CHtml::submitButton( Yii::t("user", 'Зарегистрироваться') ); ?></td>
         </tr>
     </table>
 <?php endif; ?>
