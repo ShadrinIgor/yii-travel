@@ -2,7 +2,7 @@
     <div class="IBIImage">
         <a href="<?= SiteHelper::createUrl("/hotels")."/".$item->slug ?>.html" title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage($item->image, 2) ?>" alt="<?= $item->name ?>" /></a>
     </div>
-    <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><= $item->col ></b></div><?php endif; ?>
+    <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров") ?>: <b><= $item->col ></b></div><?php endif; ?>
     <br/><a href="<?= SiteHelper::createUrl("/hotels")."/".$item->slug ?>.html" title="<?= $item->name ?>"><?= $item->name ?></a><br/>
     <div class="LParams">
         <?php if( $item->level >0 ) : ?><img width="65" src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" title="отель <?= $item->level ?>*" /><br/><?php endif; ?>

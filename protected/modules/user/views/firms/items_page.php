@@ -7,7 +7,7 @@
         <th class="">Фото</th>
         <th class="TLFName">Заголовок</th>
         <th>Статус</th>
-        <th>Просмотров</th>
+        <th><?= Yii::t("page", "просмотров") ?></th>
         <th class="TLFAction">Действия</th>
     </tr>
     <?php
@@ -49,7 +49,7 @@
     <?php endforeach; ?>
     <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
-            <td colspan="6" class="textAlignCenter emptyList">Список пуст</td>
+            <td colspan="6" class="textAlignCenter emptyList">Yii::t("page", "Список пуст") );</td>
         </tr>
     <?php endif; ?>
     <tr>

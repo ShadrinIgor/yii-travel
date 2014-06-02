@@ -7,8 +7,8 @@ class ItemsController extends InfoController
         parent::init();
         $this->classModel = "CatalogFirmsItems";
         $this->classCategory = "";
-        $this->description = "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры.";
-        $this->keyWord = "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры";
+        $this->description = Yii::t("items", "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры.");
+        $this->keyWord = Yii::t("items", "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры");
     }
 
     public function actionDescription()
@@ -26,7 +26,7 @@ class ItemsController extends InfoController
             }
         }
 
-        $error = "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы";
+        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы");
         if( $id > 0 )
         {
             $item = CatalogFirmsItems::fetch( $id );
@@ -35,7 +35,7 @@ class ItemsController extends InfoController
                 CCModelHelper::colCounter( $item );
                 // Картинки тура
                 $images = ImageHelper::getImages( $item );
-                Yii::app()->page->title = $item->name." - акция скидка от компании";
+                Yii::app()->page->title = $item->name." - ".Yii::t("page", "акция скидка от компании");
                 $this->render('description',
                     array(
                         "item" => $item,

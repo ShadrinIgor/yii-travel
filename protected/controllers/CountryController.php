@@ -7,8 +7,8 @@ class CountryController extends Controller
     public function init()
     {
         parent::init();
-        $this->description = Yii::t("page", "Туристический страны мира, описание, туристические достопримечательности" );
-        $this->keyWord = Yii::t("page", "туристические страны мира, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд" );
+        $this->description = Yii::t("country", "Туристический страны мира, описание, туристические достопримечательности" );
+        $this->keyWord = Yii::t("country", "туристические страны мира, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд" );
     }
 
     public function actionIndex()

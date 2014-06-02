@@ -4,7 +4,7 @@
         <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/resorts/description")."/".$item->slug.".html", $item->name." - курорты ". $item->category_id->name2 ) ?>
         <div class="LHeader">
             <a title="<?= SiteHelper::getStringForTitle( $item->name ) ?>" href="<?= SiteHelper::createUrl( "/resorts/description")."/".$item->slug ?>.html" href="<?= SiteHelper::createUrl( "/resorts/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
-            <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>
+            <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров") ?>: <b><?= $item->col ?></b></div><?php endif; ?>
         </div>
         <div class="LParams">
             <?php if( $item->price > 0 ) : ?>цена: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
@@ -18,5 +18,5 @@
 <?php
 endforeach;
 if( !is_array( $items ) || sizeof( $items ) == 0 ) : ?>
-    <center>--- Список пуст ---</center>
+    <center>--- Yii::t("page", "Список пуст") ); ---</center>
 <?php endif; ?>

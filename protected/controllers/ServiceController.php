@@ -7,8 +7,8 @@ class ServiceController extends InfoController
         parent::init();
         $this->classModel = "CatalogFirmsService";
         $this->classCategory = "";
-        $this->description = "Дополнительные услуги компании.";
-        $this->keyWord = "Дополнительные услуги компании";
+        $this->description = Yii::t("page", "Дополнительные услуги компании").".";
+        $this->keyWord = Yii::t("page", "Дополнительные услуги компании").".";
     }
 
     public function actionDescription()
@@ -26,7 +26,7 @@ class ServiceController extends InfoController
             }
         }
 
-        $error = "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы";
+        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы");
         if( $id > 0 )
         {
             $item = CatalogFirmsService::fetch( $id );
@@ -35,7 +35,7 @@ class ServiceController extends InfoController
                 CCModelHelper::colCounter( $item );
                 // Картинки тура
                 $images = ImageHelper::getImages( $item );
-                Yii::app()->page->title = $item->name." - услуги от компании";
+                Yii::app()->page->title = $item->name." - ".Yii::t("page", "услуги от компании");
                 $this->render('description',
                     array(
                         "item" => $item,

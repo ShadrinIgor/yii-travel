@@ -83,7 +83,7 @@
     </tr>
     <?php if( sizeof( $items ) == 0 ) : ?>
 
-                            <?= Yii::t("page", "Список пуст"); ?></td>
+                            <?= Yii::t("page", "Yii::t("page", "Список пуст") );"); ?></td>
         </tr>
     <?php endif; ?>
 </table>

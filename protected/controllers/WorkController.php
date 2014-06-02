@@ -7,29 +7,13 @@ class WorkController extends InfoController
         parent::init();
         $this->classModel = "CatalogWorkAdd";
         $this->classCategory = "";
-        $this->description = "Предложение по работе в туристической отрасли, работа в туризме";
-        $this->keyWord = "Предложение по работе в туристической отрасли, работа в туризме";
-    }
-
-    public function actions(){
-
-//        Yii::import('application.extensions.kcaptcha.KCaptchaAction');
-//        Yii::app()->session->remove(KCaptchaAction::SESSION_KEY);
-
-        return array(
-            'captcha'=>array(
-                'class' => 'application.extensions.kcaptcha.KCaptchaAction',
-                'maxLength' => 6,
-                'minLength' => 5,
-                'foreColor' => array(mt_rand(0, 100), mt_rand(0, 100),mt_rand(0, 100)),
-                'backColor' => array(mt_rand(200, 210), mt_rand(210, 220),mt_rand(220, 230))
-            )
-        );
+        $this->description = Yii::t("work", "Предложение по работе в туристической отрасли, работа в туризме");
+        $this->keyWord = Yii::t("work", "Предложение по работе в туристической отрасли, работа в туризме");
     }
 
     public function actionIndex()
     {
-        Yii::app()->page->title = "Объявления о работе в туристической сфере";
+        Yii::app()->page->title = Yii::t("page", "Объявления о работе в туристической сфере");
         $p = (int)Yii::app()->request->getParam( "p", 1 );
         $saved = (int)Yii::app()->request->getParam( "saved", 0 );
         $categoryId = "";
@@ -50,7 +34,7 @@ class WorkController extends InfoController
 
         if( !empty( $saved ) )
         {
-            $addModel->formMessage = "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">ссылке</a>";
+            $addModel->formMessage = Yii::t("work", "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по ссыдке")." <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) )."</a>";
         }
 
         $condition = "active=1";

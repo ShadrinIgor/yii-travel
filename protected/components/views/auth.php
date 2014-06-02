@@ -15,8 +15,8 @@
         <tr>
             <td></td>
             <td align="right">
-                <?php echo CHtml::link("Регистрация", SiteHelper::createUrl( "/user/default/Registration" ) ); ?><br/>
-                <?php echo CHtml::link("Забыли пароль", SiteHelper::createUrl( "/user/default/lost" )  ); ?>
+                <?php echo CHtml::link( Yii::t("page", "Регистрация"), SiteHelper::createUrl( "/user/default/Registration" ) ); ?><br/>
+                <?php echo CHtml::link( Yii::t("page", "Забыли пароль"), SiteHelper::createUrl( "/user/default/lost" )  ); ?>
             </td>
         </tr>
     </table>

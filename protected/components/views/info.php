@@ -10,7 +10,7 @@
             </a>
         </div>
     <?php endif; ?>
-    <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><?= $item->col ?></b></div><?php endif; ?>
+    <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров") ?>: <b><?= $item->col ?></b></div><?php endif; ?>
     <a href="<?= SiteHelper::createUrl("/".$link."/description")."/".$item->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->name ) ?>"><?= SiteHelper::getSubTextOnWorld( $item->name, 100 ) ?></a><br/>
     <?php if( !$item->image ) : ?>
         <div class="textAlignJustify">

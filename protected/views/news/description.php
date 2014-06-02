@@ -35,7 +35,7 @@ $this->widget('addressLineWidget', array(
                     <div class="IBIImage">
                         <a href="<?= SiteHelper::createUrl("/news/description")."/".$o_item->slug ?>.html" title="<?= $o_item->name ?>"><img src="<?= ImageHelper::getImage($o_item->image, 2) ?>" alt="<?= $o_item->name ?>" /></a>
                     </div>
-                    <?php if( $o_item->col>0 ) : ?><div class="floatRight rightInfo">просмотров: <b><= $o_item->col ></b></div><?php endif; ?>
+                    <?php if( $o_item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров") ?>: <b><= $o_item->col ></b></div><?php endif; ?>
                     <br/><a href="<?= SiteHelper::createUrl("/news/description")."/".$o_item->slug ?>.html" title="<?= $o_item->name ?>"><?= $o_item->name ?></a><br/>
                 </div>
             <?php endforeach; ?>

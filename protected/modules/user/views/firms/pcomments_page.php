@@ -48,7 +48,7 @@
     <?php endforeach; ?>
     <?php if( sizeof( $items ) == 0 ) : ?>
         <tr>
-            <td colspan="5" class="textAlignCenter emptyList">Список пуст</td>
+            <td colspan="5" class="textAlignCenter emptyList">Yii::t("page", "Список пуст") );</td>
         </tr>
     <?php endif; ?>
 </table>

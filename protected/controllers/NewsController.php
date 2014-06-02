@@ -7,8 +7,8 @@ class NewsController extends InfoController
         parent::init();
         $this->classModel = "CatalogContent";
         $this->classCategory = "";
-        $this->description = "Самые популярные отели мира, отсортированные по рейтингу. Возможноть просмотра подробного описания";
-        $this->keyWord = "Мировые новости,новости туризма";
+        $this->description = Yii::t("page", "Самые популярные отели мира, отсортированные по рейтингу. Возможноть просмотра подробного описания");
+        $this->keyWord = Yii::t("page", "Мировые новости,новости туризма");
     }
 
 }

@@ -68,7 +68,7 @@
     </tr>
 <?php endforeach; ?>
 </table>
-    <?php if( sizeof( $items ) == 0 ) : ?><div class="textAlignCenter">Список пуст</div><?php endif; ?>
+    <?php if( sizeof( $items ) == 0 ) : ?><div class="textAlignCenter">Yii::t("page", "Список пуст") );</div><?php endif; ?>
     <br/>
     <br/>
     <center>

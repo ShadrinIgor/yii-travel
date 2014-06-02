@@ -27,7 +27,7 @@ class SiteController extends Controller
 
         //SiteHelper::mailto( "Привет Чулик", "info@world-travel.uz", "shadrin.igor@gmail.com", "Тут будет текст сообщения. Тут будет текст сообщения. " );
 
-        Yii::app()->page->title = "Туристический портал Узбекистана, отдых, туры, туроператоры, путешествия, турция, анталия, узбекистан";
+        Yii::app()->page->title = Yii::t("page", "Туристический портал Узбекистана, отдых, туры, туроператоры, путешествия, турция, анталия, узбекистан");
         $content = CatalogContent::fetchBySlug( "about_us" );
 
         //$finishDate = time() - 60*60*24*30;
@@ -161,7 +161,7 @@ class SiteController extends Controller
             }
             $this->render( "unSubscribe" );
         }
-            else throw new CHttpException("Ошибка","Неправельный адресс, проверьте адррес.");
+            else throw new CHttpException("Ошибка", Yii::t("page", "Неправельный адресс, проверьте адррес").".");
     }
 
 /*

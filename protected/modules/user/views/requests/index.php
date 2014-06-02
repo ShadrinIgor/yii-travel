@@ -41,5 +41,5 @@
 </table>
 <?php
     if( sizeof( $trees ) ==0 )
-        echo '<div class="textAlignCenter">Список пуст</div>';
+        echo '<div class="textAlignCenter">Yii::t("page", "Список пуст") );</div>';
 ?>

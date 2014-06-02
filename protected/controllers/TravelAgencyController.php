@@ -7,8 +7,8 @@ class TravelAgencyController extends InfoController
         parent::init();
         $this->classModel = "CatalogFirms";
         $this->classCategory = "";
-        $this->description = "туристические агентства узбекистана, вы можете посмотреть иг туристические предложения, акции скидки";
-        $this->keyWord = "туристические фирмы, туристическая фирма тур, Туристические агентства узбекистана, туристические компании, ооо туристическая фирма, сайты туристических фирм, туристические фирмы Узбекистана, туристические фирмы Ташкент";
+        $this->description = Yii::t("tours", "туристические агентства узбекистана, вы можете посмотреть иг туристические предложения, акции скидки");
+        $this->keyWord = Yii::t("tours", "туристические фирмы, туристическая фирма тур, Туристические агентства узбекистана, туристические компании, ооо туристическая фирма, сайты туристических фирм, туристические фирмы Узбекистана, туристические фирмы Ташкент");
     }
 
     public function actionDescription()
@@ -33,7 +33,7 @@ class TravelAgencyController extends InfoController
         if( !in_array( $tab, $tabArray ) )$tab = "";
 
         // Ошибка при не правельно ID
-        $error = "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы";
+        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы");
 
         if( $id > 0 )
         {
@@ -56,11 +56,11 @@ class TravelAgencyController extends InfoController
                     {
                         $item->onFirmNewComment( new CEvent( $commentModel ), array( "subject"=>$commentModel->name, "firm_name"=>$item->name, "date"=>date("d.m.Y H:i"), "user_name"=>$commentModel->fio, "description"=>$commentModel->message, "link"=>SiteHelper::createUrl( "/user/firms/description", array("id"=>$item->id, "tab"=>"pcomments") ) ) );
                         $commentModel = new CatalogFirmsCommentsAdd();
-                        $commentModel->formMessage = "Сообщение отправленно, после модерации оно будет опубликованно.";
+                        $commentModel->formMessage = Yii::t("tours", "Сообщение отправленно, после модерации оно будет опубликованно.");
                     }
                 }
 
-                Yii::app()->page->title = $item->name." - туристическое агенство ".$item->country_id->name_2 ." ".$item->city_id->name;
+                Yii::app()->page->title = $item->name." - ".Yii::t("page", "туристическое агенство")." ".$item->country_id->name_2 ." ".$item->city_id->name;
 
                 // Поля про поиско по турам
                 $tourClass = new CatalogToursFirms();
