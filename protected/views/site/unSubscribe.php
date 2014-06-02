@@ -1,13 +1,13 @@
 <?php
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        'отписка от рассылки'
+        Yii::t("page", "Отписка от рассылки")
     )
 ));
 ?>
 
-<h1>Отписка от рассылки</h1>
+<h1><?= Yii::t("page", "Отписка от рассылки"); ?></h1>
 <center>
-    Ваш Email успешно отключен от рассылки.
+    <?= Yii::t("page", "Ваш Email успешно отключен от рассылки."); ?>
 </center>
 <?php $this->widget( "formNoteWidget", array( "type"=>"infoErrorNote" ) ); ?>

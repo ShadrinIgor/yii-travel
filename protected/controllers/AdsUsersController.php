@@ -7,29 +7,13 @@ class AdsUsersController extends InfoController
         parent::init();
         $this->classModel = "CatalogItemsAdd";
         $this->classCategory = "";
-        $this->description = "Самые популярные отели мира, отсортированные по рейтингу. Возможность просмотра подробного описания";
-        $this->keyWord = "Полезная информация для туристов, архитектура, базары Узбекистана, банки Ташкента, великие люди, великий шелковый путь, автобусные путешествия, виза в Узбекистана, дети, культура / искусства, разновидности туризма, экстримальный туризм , рыбалка/охота, религия / духовные центры, кладбища";
-    }
-
-    public function actions(){
-
-//        Yii::import('application.extensions.kcaptcha.KCaptchaAction');
-//        Yii::app()->session->remove(KCaptchaAction::SESSION_KEY);
-
-        return array(
-            'captcha'=>array(
-                'class' => 'application.extensions.kcaptcha.KCaptchaAction',
-                'maxLength' => 6,
-                'minLength' => 5,
-                'foreColor' => array(mt_rand(0, 100), mt_rand(0, 100),mt_rand(0, 100)),
-                'backColor' => array(mt_rand(200, 210), mt_rand(210, 220),mt_rand(220, 230))
-            )
-        );
+        $this->description = Yii::t("addsuser", "Самые популярные отели мира, отсортированные по рейтингу. Возможность просмотра подробного описания");
+        $this->keyWord = Yii::t("addsuser", "Полезная информация для туристов, архитектура, базары Узбекистана, банки Ташкента, великие люди, великий шелковый путь, автобусные путешествия, виза в Узбекистана, дети, культура / искусства, разновидности туризма, экстримальный туризм , рыбалка/охота, религия / духовные центры, кладбища" );
     }
 
     public function actionIndex()
     {
-        Yii::app()->page->title = "Частные объявления в туристической сфере";
+        Yii::app()->page->title = Yii::t("page", "Частные туристические объявления");
         $p = (int)Yii::app()->request->getParam( "p", 1 );
         $saved = (int)Yii::app()->request->getParam( "saved", 0 );
         $categoryId = "status_id = 1";
@@ -50,7 +34,7 @@ class AdsUsersController extends InfoController
 
         if( !empty( $saved ) )
         {
-            $addModel->formMessage = "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования пройдите по <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">ссылке</a>";
+            $addModel->formMessage = Yii::t("addsuser", "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования пройдите по ссылке")." <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">". SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."</a>";
         }
 
         $condition = "";
@@ -137,8 +121,8 @@ class AdsUsersController extends InfoController
                     ));
 
             }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+            else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
         }
-        else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+        else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
     }
 }

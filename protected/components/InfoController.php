@@ -81,9 +81,9 @@ class InfoController extends Controller
                     ));
 
             }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+            else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
         }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+            else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
 
     }
 }

@@ -28,7 +28,7 @@
     </div>
         <div id="BBLeft">
             <?php if( !Yii::app()->session["otherStyle"] ) : ?>
-                <img src="<?= $Theme->getBaseUrl() ?>/images/logo.jpg" alt="мировой отдых для вас, туристический портал" />
+                <img src="<?= $Theme->getBaseUrl() ?>/images/logo.jpg" alt="<?= Yii::t( "page", "мировой отдых для вас, туристический портал") ?>" />
             <?php endif; ?>
         </div>
     <Div id="BRight">
@@ -36,110 +36,43 @@
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>
         <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"></div><div id="TrioMedal"></div></div><?php endif; ?>
         <div id="BH1">
-            <h1>Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, узбекистан</h1>
+            <h1><?= Yii::t( "page", "Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, узбекистан") ?></h1>
         </div>
     </Div>
     <div id="Menu1">
         <div id="Menu">
         <div class="CItem MFirst">
-            <a href="<?= SiteHelper::createUrl( "/sales" ) ?>" title="туристические акции, скидки, горячие предложения" class="MenuJsClass" id="c6"></a>
+            <a href="<?= SiteHelper::createUrl( "/sales" ) ?>" title="<?= Yii::t( "page", "туристические акции, скидки, горячие предложения") ?>" class="MenuJsClass" id="c6"></a>
             <div class="CHint" id="bh8">
                 <div class="CHText">
-                    <div>Новости</div>
-
-                    <br/>
-                    Туристические компании, разделенные странам.
-
+                    <div><?= Yii::t( "page", "Новости") ?></div>
                 </div>
             </div>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="Туристические странны" class="MenuJsClass" id="c1"></a>
-            <div class="CHint" id="bh2">
-                <div class="CHText">
-                    <div>Странны</div>
-                    Список стран, с описанием страны - туры страны, курорты страны, отели страны, тур. фирмы страны, частные объявления, о туризме в стране, туристические акции, галлерея .
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/Country/" ) ?>" title="<?= Yii::t( "page", "Туристические странны") ?>" class="MenuJsClass" id="c1"></a>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/tours/" ) ?>" title="Туры" class="MenuJsClass" id="c2"></a>
-            <div class="CHint" id="bh10">
-                <div class="CHText">
-                    <div>Туры</div>
-                    <br/>
-                    Список туров от различных компаний, разделенных по категориям и странам.
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/tours/" ) ?>" title="<?= Yii::t( "page", "Туры") ?>" class="MenuJsClass" id="c2"></a>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/hotels/" ) ?>" title="Отели" class="MenuJsClass" id="c3"></a>
-            <div class="CHint" id="bh9">
-                <div class="CHText">
-                    <div>Отели</div>
-                    <br/>
-                    Список отелей различных стран, разделенных по рейтингу и странам.
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/hotels/" ) ?>" title="<?= Yii::t( "page", "Отели") ?>" class="MenuJsClass" id="c3"></a>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/resorts/" ) ?>" title="Курорты зоны отдыха, детские лагеря" class="MenuJsClass" id="c4"></a>
-            <div class="CHint" id="bh3">
-                <div class="CHText">
-                    <div>Курорты</div>
-                    <br/>
-                    Список курортов различных стран, разделенных по категориям и странам.
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/resorts/" ) ?>" title="<?= Yii::t( "page", "Курорты зоны отдыха, детские лагеря") ?>" class="MenuJsClass" id="c4"></a>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/touristInfo" ) ?>" title="информация для туристов" class="MenuJsClass" id="c5"></a>
-            <div class="CHint" id="bh4">
-                <div class="CHText">
-                    <div>О туризме</div>
-
-                    <br/>
-                    Информация о туризме, статьи о городах, особенности туризма.
-
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/touristInfo" ) ?>" title="<?= Yii::t( "page", "информация для туристов") ?>" class="MenuJsClass" id="c5"></a>
         </div>
 
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="туистические агентсва, тур фирмы" class="MenuJsClass" id="c7"></a>
-            <div class="CHint" id="bh8">
-                <div class="CHText">
-                    <div>Фирмы</div>
-
-                    <br/>
-                    Туристические компании, разделенные странам.
-
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="<?= Yii::t( "page", "туристические агентсва, тур фирмы") ?>" class="MenuJsClass" id="c7"></a>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="туристические частные объявления" class="MenuJsClass" id="c9"></a>
-            <div class="CHint" id="bh8">
-                <div class="CHText">
-                    <div>Частные объявления</div>
-
-                    <br/>
-                    Туристические компании, разделенные странам.
-
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="<?= Yii::t( "page", "туристические частные объявления") ?>" class="MenuJsClass" id="c9"></a>
         </div>
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/work" ) ?>" title="Работа" class="MenuJsClass" id="c8"></a>
-            <div class="CHint" id="bh8">
-                <div class="CHText">
-                    <div>Работы</div>
-
-                    <br/>
-                    Туристические компании, разделенные странам.
-
-                </div>
-            </div>
+            <a href="<?= SiteHelper::createUrl( "/work" ) ?>" title="<?= Yii::t( "page", "Работа") ?>" class="MenuJsClass" id="c8"></a>
         </div>
     </div>
     </div>
@@ -166,15 +99,16 @@
 
 <div id="about_link">
     <div id="ALLinks">
-        <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="О проекте">О проекте</a> |
-        <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="Правила">Правила</a> |
-        <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="Контакты">Контакты</a> |
+        <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="<?= Yii::t( "page", "О проекте") ?>"><?= Yii::t( "page", "О проекте") ?></a> |
+        <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="<?= Yii::t( "page", "Правила") ?>"><?= Yii::t( "page", "Правила") ?></a> |
+        <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="<?= Yii::t( "page", "Контакты") ?>"><?= Yii::t( "page", "Контакты") ?></a> |
         <!--a href="" title="Реклама на сайте">Реклама на сайте</a> | -->
-        <a href="<?= SiteHelper::createUrl("/site/page")."/besplatniy-reklamnyi-banner" ?>" title="Размещение бесплатного баннера">Бесплатный баннер</a><!-- |
+        <a href="<?= SiteHelper::createUrl("/site/page")."/besplatniy-reklamnyi-banner" ?>" title="<?= Yii::t( "page", "Размещение бесплатного баннера") ?>"><?= Yii::t( "page", "Бесплатный баннер") ?></a>
+        <!-- |
     <a href="" title="Карта сайта">Карта ссылок</a>-->
     </div>
     <div id="counters">
-        Возникла ошибка или есть вопросы, обращайтесь в нашу службу поддержки - <a href="mailto: <?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, мы обязательно Вам поможем.
+        <?= Yii::t( "page", "Возникла ошибка или есть вопросы, обращайтесь в нашу службу поддержки") ?> - <a href="mailto: <?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, <?= Yii::t( "page", "мы обязательно Вам поможем.") ?>
         <br/><br/>
     </div>
     <div id="trioLogo">

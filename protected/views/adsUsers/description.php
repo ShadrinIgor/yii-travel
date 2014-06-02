@@ -2,7 +2,7 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        "частные объявления"=>SiteHelper::createUrl("/adsUsers"),
+        Yii::t("addsuser", "частные объявления")=>SiteHelper::createUrl("/adsUsers"),
         $item->category_id->name=>SiteHelper::createUrl("/adsUsers" )."/".$item->category_id->slug.".html",
         $item->name
     )
@@ -17,10 +17,10 @@ $images = ImageHelper::getImages( $item );
     <div id="ITText">
         <div class="LParams">
             <br/>
-            дата: <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><br/>
+            <?= Yii::t("addsuser", "дата"); ?>: <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><br/>
             <a href="<?= SiteHelper::createUrl("/adsUsers" )."/".$item->category_id->slug ?>.html"><?= $item->category_id->name ?></a><br/>
-            <?php if( $item->price > 0 ) : ?>цена: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
-            <?php if( $item->user_id->id == Yii::app()->user->getId() ) : ?><a href="<?= SiteHelper::createUrl("/user/items/description", array( "id"=>$item->id )) ?>">Редактировать</a><br/><?php endif; ?>
+            <?php if( $item->price > 0 ) : ?><?= Yii::t("addsuser", "цена"); ?>: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
+            <?php if( $item->user_id->id == Yii::app()->user->getId() ) : ?><a href="<?= SiteHelper::createUrl("/user/items/description", array( "id"=>$item->id )) ?>"><?= Yii::t("addsuser", "Редактировать"); ?></a><br/><?php endif; ?>
             <br/>
         </div>
         <?php if( sizeof($images) >0 || $item->image ) : ?>
@@ -40,7 +40,7 @@ $images = ImageHelper::getImages( $item );
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($usersOther)>0 ) : ?>
-        <h2>Другие объяления пользователя</h2>
+        <h2><?= Yii::t("addsuser", "Другие объяления пользователя"); ?></h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $usersOther as $hotel ) : ?>
                 <?php $this->widget("infoOneWidget", array( "item"=>$hotel, "link"=>"/adsUsers" )) ?>
@@ -49,7 +49,7 @@ $images = ImageHelper::getImages( $item );
     <?php endif; ?>
 
     <?php if( sizeof($otherHotels)>0 ) : ?>
-        <h2>Другие объяления категории</h2>
+        <h2><?= Yii::t("addsuser", "Другие объяления категории"); ?></h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $otherHotels as $hotel ) : ?>
                 <?php $this->widget("infoOneWidget", array( "item"=>$hotel, "link"=>"/adsUsers" )) ?>

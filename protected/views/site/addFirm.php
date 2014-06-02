@@ -9,7 +9,7 @@ $this->pageTitle=Yii::app()->name;
     </div>
 
     <div class="hr">&nbsp;</div>
-<h1>Как правильно добавить фирму</h1>
+<h1><?= Yii::t("page", "Как правильно добавить фирму") ?></h1>
 <br/>
 <div class="textItems">
     <div class="TILeft">

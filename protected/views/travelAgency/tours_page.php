@@ -45,7 +45,7 @@
             ?>
 
             <div class="CICategory">
-                <div class="CICLabel">Категории туров</div>
+                <div class="CICLabel"><?= Yii::t("page", "Категории туров"); ?></div>
                 <div class="CICategoryScrool">
                 <ul>
                     <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
@@ -53,7 +53,7 @@
                             <b><?= $cItem ?></b>
                             <ul>
                                 <?php foreach( $values as $cKey=>$cValue ) : ?>
-                                    <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="категория туров - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                    <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="<?= Yii::t("page", "категория туров"); ?> - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </li>
@@ -62,11 +62,11 @@
                 </div>
             </div>
             <div class="CICategory">
-                <div class="CICLabel CLRight">Туры по странам</div>
+                <div class="CICLabel CLRight"><?= Yii::t("page", "Туры по странам"); ?></div>
                 <div class="CICategoryScrool">
                 <ul>
                     <?php foreach( $reCountry2 as $cItem=>$values ) : ?>
-                        <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="туры <?= $values->name_2 ?>"><?= $values->name ?></a></li>
+                        <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="<?= Yii::t("page", "туры"); ?> <?= $values->name_2 ?>"><?= $values->name ?></a></li>
                     <?php endforeach; ?>
                 </ul>
                 </div>
@@ -85,9 +85,9 @@
     <table id="tableListItems" cellpadding="0" cellspacing="0">
         <tr>
             <th class="TLFId">№</th>
-            <th class="">Фото</th>
-            <th class="TLFName" style="width: 150px;">Заголовок</th>
-            <th class="TLFAction">Краткое описание</th>
+            <th class=""><?= Yii::t("page", "Фото"); ?></th>
+            <th class="TLFName" style="width: 150px;"><?= Yii::t("page", "Заголовок"); ?></th>
+            <th class="TLFAction"><?= Yii::t("page", "Краткое описание"); ?></th>
         </tr>
         <?php
 
@@ -95,23 +95,23 @@
             <tr <?= $tour->hot==1 ? 'class="isHot"' : "" ?>>
                 <td><?= $tour->id ?></td>
                 <td>
-                    <?= ImageHelper::getAnimateImageBlock( $tour, SiteHelper::createUrl("/tours/description")."/".$tour->slug.".html", "описание тура ". $tour->name ) ?>
+                    <?= ImageHelper::getAnimateImageBlock( $tour, SiteHelper::createUrl("/tours/description")."/".$tour->slug.".html", Yii::t("page", "описание тура")." ". $tour->name ) ?>
                 </td>
                 <td>
-                    <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html" title="описание тура <?= $tour->name ?>"><?= $tour->name ?></a><br/>
+                    <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html" title="<?= Yii::t("page", "описание тура"); ?> <?= $tour->name ?>"><?= $tour->name ?></a><br/>
                     <?= $tour->country_id->name." ".$tour->city_id->name ?>
                 </td>
                 <td class="textAlignJustify">
                     <?= SiteHelper::getSubTextOnWorld( $tour->description, 400 ) ?>
                     <div class="itemAction textAlignRight">
-                        <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html">подробнее...</a><br/>
+                        <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html"><?= Yii::t("page", "подробнее"); ?>...</a><br/>
                     </div>
                 </td>
             </tr>
         <?php endforeach; ?>
         <?php if( sizeof( $items ) == 0 ) : ?>
             <tr>
-                <td colspan="6" class="textAlignCenter emptyList">Список пуст</td>
+                <td colspan="6" class="textAlignCenter emptyList"><?= Yii::t("page", "Список пуст"); ?></td>
             </tr>
         <?php endif; ?>
     </table>

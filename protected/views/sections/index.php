@@ -13,10 +13,10 @@ $this->widget('addressLineWidget', array(
         <?= $item->description ?>
     </p>
     <div id="dopMenu">
-        <?php if( $tourCount>0 ) : ?><a href="#" id="s_tours" class="<?= $activeTab == "s_tours" ? "activeDM " : "" ?>dopMenuPages">Туры (<?= $tourCount ?>)</a><?php endif; ?>
-        <?php if( $detCount ==0 && $curortsCount>0 ) : ?><a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages">Зоны отдыха/Курорты (<?= $curortsCount ?>)</a><?php endif; ?>
-        <?php if( $detCount>0 ) : ?><a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages">Детские лагеря (<?= $detCount ?>)</a><?php endif; ?>
-        <?php if( $infoCount>0 ) : ?><a href="#" id="s_info" class="<?= $activeTab == "s_info" ? "activeDM " : "" ?>dopMenuPages">Информация (<?= $infoCount ?>)</a><?php endif; ?>
+        <?php if( $tourCount>0 ) : ?><a href="#" id="s_tours" class="<?= $activeTab == "s_tours" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Туры"); ?> (<?= $tourCount ?>)</a><?php endif; ?>
+        <?php if( $detCount ==0 && $curortsCount>0 ) : ?><a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Зоны отдыха/Курорты"); ?> (<?= $curortsCount ?>)</a><?php endif; ?>
+        <?php if( $detCount>0 ) : ?><a href="#" id="s_curorts" class="<?= $activeTab == "s_curorts" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Детские лагеря"); ?> (<?= $detCount ?>)</a><?php endif; ?>
+        <?php if( $infoCount>0 ) : ?><a href="#" id="s_info" class="<?= $activeTab == "s_info" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Информация"); ?> (<?= $infoCount ?>)</a><?php endif; ?>
     </div>
     <div id="s_tours_page" class="pageTab<?= $activeTab == "s_tours" ? " activePage " : " displayNone" ?>">
         <?php $this->renderPartial( "tours", array( "item"=>$item, "country"=>$country, "category"=>$category, "toursSQL" =>$toursSQL, "tours"=>$tours, "tourCount"=>$tourCount, "offset"=>$offset, "page"=>$t_page ) ) ?>

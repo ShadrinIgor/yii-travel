@@ -59,7 +59,7 @@ class CatalogToursEn extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, firm_id', 'required'),
+			array('name, description', 'required'),
 			array('active, pos, del, hot, city_count, hotel_id, hotels_count, col, from_country_id', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>150),
 			array('srok, price', 'length', 'max'=>25),

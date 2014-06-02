@@ -1,14 +1,14 @@
 <div id="Cleft">
     <?php $this->widget("authWidget"); ?>
     <div class="LeftMenu">
-        <h3>Категории</h3>
+        <h3><?= Yii::t("page", "Категории"); ?></h3>
         <?php if( $this->beginCache( "info_category", array('duration'=>3600) ) ) : ?>
         <ul>
             <?php
             foreach( CatalogInfoCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1)->setConditions("owner=0") ) as $item_ ) :
             $count = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category")->setParams(array(":category"=>$item_->id))->setLimit(-1) );
             ?>
-            <li><a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item_->slug)) ?>.html" title="<?= $item_->name ?> информация для туристов"><?= $item_->name ?> ( <?= $count ?> )</a>
+            <li><a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item_->slug)) ?>.html" title="<?= $item_->name ?> <?= Yii::t("page", "информация для туристов"); ?>"><?= $item_->name ?> ( <?= $count ?> )</a>
                 <ul>
                 <?php
                 foreach( CatalogInfoCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setConditions("owner=:owner")->setParams(array(":owner"=>$item_->id))->setLimit(-1) ) as $item ) :
@@ -25,7 +25,7 @@
     </div>
 
     <div class="LeftMenu">
-        <h3>Информация по странам</h3>
+        <h3><?= Yii::t("page", "Информация по странам"); ?></h3>
         <?php if( $this->beginCache( "info_country", array('duration'=>3600) ) ) : ?>
             <ul>
                 <?php
@@ -33,7 +33,7 @@
                     $count = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country")->setParams(array(":country"=>$item->id))->setLimit(-1) );
                     if( $count > 0 ) :
                     ?>
-                    <li><a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->slug)) ?>.html" title="тур. информация <?= $item->name_2 ?>"><?= $item->name ?> ( <?= $count ?> )</a></li>
+                    <li><a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->slug)) ?>.html" title="<?= Yii::t("page", "тур. информация"); ?> <?= $item->name_2 ?>"><?= $item->name ?> ( <?= $count ?> )</a></li>
                 <?php
                     endif;
                 endforeach; ?>

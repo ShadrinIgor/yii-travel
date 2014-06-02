@@ -1,8 +1,8 @@
 <div id="LMenu">
-    <div class="MNHeader">Разделы</div>
+    <div class="MNHeader"><?= Yii::t("page", "Разделы"); ?></div>
     <?php foreach( CatalogSections::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1) ) as $item ) : ?>
         <div class="LMItem">
-            <a href="<?= SiteHelper::createUrl( "/sections" )."/".$item->slug ?>.html" title="<?= $item->name ?> - категория частных объявлений"><?= $item->name ?></a>
+            <a href="<?= SiteHelper::createUrl( "/sections" )."/".$item->slug ?>.html" title="<?= $item->name ?> - <?= Yii::t("page", "категория частных объявлений"); ?>"><?= $item->name ?></a>
         </div>
     <?php endforeach; ?>
 </div>

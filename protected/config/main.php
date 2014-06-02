@@ -86,7 +86,9 @@ return array(
 
                 '<language:(en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                 '<language:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
-                '<language:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/'=>'<controller>/<action>',
+                '<language:(en)>/<controller:\w+>/<slug:[\w-]+>'=>'<controller>',
+                '<language:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>'=>'<controller>/<action>',
+                '<language:(en)>/<module:\w+>/<controller:\w+>/<action:[\w-]+>/'=>'<controller>/<action>',
                 '<language:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
 
                 '<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
@@ -122,10 +124,6 @@ return array(
 
                 '<slug:\w+>.html'=> 'page',
             ),
-        ),
-
-        'loid' => array(
-            'class' => 'ext.lightopenid.loid',
         ),
 
         'eauth' => array(
@@ -244,14 +242,29 @@ return array(
             */
         ),
 
+        'sitemapGenerator' => array(
+            'class'         => 'ext.sitemap.SitemapGenerator',
+            'path'          => dirname(dirname(dirname(__FILE__))).'/httpdocs/sitemap.xml',
+            'sitemapUrl'    => 'http://flatora.ru/sitemap.xml',
+            'pingGoogle'    => 'http://google.com/webmasters/sitemaps/ping?sitemap=',
+            'pingYandex'    => 'http://webmaster.yandex.ru/wmconsole/sitemap_list.xml?host=',
+            'pingYahoo'     => 'http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap=',
+            'pingBing'      => 'http://www.bing.com/webmaster/ping.aspx?siteMap=',
+            'pingAsk'       => 'http://submissions.ask.com/ping?sitemap='
+        ),
+
         'assetManager'=>array(
             'basePath'=>realpath(dirname(dirname(dirname(__FILE__))).'/httpdocs/assets'),
         ),
+        /*
+         'messages'=>array(
+             'class'            => 'PhpMessageSource',
+         ),
 
-        'messages'=>array(
-            'class'            => 'DBCMessageSource',
-            'forceTranslation' => true,
-        ),
+         'messages'=>array(
+             'class'            => 'DBCMessageSource',
+             'forceTranslation' => true,
+         ),*/
 
         'banners'=>array(
             'class'     => 'ext.banners.BannerInit'

@@ -1,8 +1,8 @@
 <div id="LMenu">
-    <div class="MNHeader">Категории объявлений</div>
+    <div class="MNHeader"><?= Yii::t("page", "Категории объявлений"); ?></div>
     <?php foreach( CatalogWorkCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "pos, name" ) ) as $item ) : ?>
         <div class="LMItem">
-            <a href="<?= SiteHelper::createUrl( "/work" )."/".$item->slug ?>.html" title="<?= $item->name ?> - категория частных объявлений"><?= $item->name ?></a>
+            <a href="<?= SiteHelper::createUrl( "/work" )."/".$item->slug ?>.html" title="<?= $item->name ?> - <?= Yii::t("page", "категория частных объявлений"); ?>"><?= $item->name ?></a>
         </div>
     <?php endforeach; ?>
 </div>

@@ -1,14 +1,14 @@
 <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            'Туры'
+               Yii::t("page", "Туры")
             )
     ));
 
 ?>
 <div id="catalogItems">
 <?php $this->widget( "pageWidget", array( "catalog"=>"catalog_tours", "template"=>"catalog_tours",
-    "title"=>"Туры",
+    "title"=>Yii::t("page", "Туры"),
     "description" => $this->description,
     "keyWord" => $this->keyWord,
     "sectionTextSlug" => "tekstovka-dlya-stranicy-tury",

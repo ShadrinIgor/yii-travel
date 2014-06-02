@@ -7,8 +7,8 @@ class CountryController extends Controller
     public function init()
     {
         parent::init();
-        $this->description = "Туристический страны мира, описание, туристические достопримечательности";
-        $this->keyWord = "туристические страны мира, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд";
+        $this->description = Yii::t("page", "Туристический страны мира, описание, туристические достопримечательности" );
+        $this->keyWord = Yii::t("page", "туристические страны мира, Турция, Египет, Болгария, Малайзия, ОАЭ, Таиланд" );
     }
 
     public function actionIndex()
@@ -41,9 +41,9 @@ class CountryController extends Controller
                         "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->id ) ) ),
                     ));
             }
-                else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+                else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
         }
-            else throw new CHttpException("Ошибка","Ошибка перехода на страницу");
+            else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
 
     }
 }

@@ -31,7 +31,7 @@
         ?>
 
         <div class="CICategory">
-            <div class="CICLabel">Категории</div>
+            <div class="CICLabel"><?= Yii::t("page", "Категории"); ?></div>
             <div class="CICategoryScrool">
                 <ul>
                     <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
@@ -39,7 +39,7 @@
                             <b><?= $cItem ?></b>
                             <ul>
                                 <?php foreach( $values as $cKey=>$cValue ) : ?>
-                                    <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?ccategory=<?= $cValue->slug ?>&tab=curorts" title="категория зон отдыха - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                    <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?ccategory=<?= $cValue->slug ?>&tab=curorts" title="<?= Yii::t("page", "категория зон отдыха"); ?> - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </li>
@@ -52,8 +52,8 @@
 
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
-        <th class="">Фото</th>
-        <th class="TLFAction">Краткое описание</th>
+        <th class=""><?= Yii::t("page", "Фото"); ?></th>
+        <th class="TLFAction"><?= Yii::t("page", "Краткое описание"); ?></th>
     </tr>
     <?php
 
@@ -63,11 +63,11 @@
             <td>
                 <?= ImageHelper::getAnimateImageBlock( $firmItem, SiteHelper::createUrl("/resorts/description" )."/".$firmItem->slug.".html") ?>
             </td>            <td class="textAlignJustify">
-                <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>.html" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
+                <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>.html" title="<?= Yii::t("page", "описание туристического предложения"); ?>"><?= $firmItem->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 300 ) ?>
                 <div class="itemAction textAlignRight">
                     <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$firmItem->category_id->slug ?>.html"><?= $firmItem->category_id->name ?></a><br/>
-                    <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>.html">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/resorts/description")."/".$firmItem->slug ?>.html"><?= Yii::t("page", "Описание"); ?></a><br/>
                 </div>
             </td>
         </tr>
@@ -82,8 +82,8 @@
         </td>
     </tr>
     <?php if( sizeof( $items ) == 0 ) : ?>
-        <tr>
-            <td colspan="2" class="textAlignCenter emptyList">Список пуст</td>
+
+                            <?= Yii::t("page", "Список пуст"); ?></td>
         </tr>
     <?php endif; ?>
 </table>

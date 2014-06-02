@@ -44,7 +44,7 @@
         ?>
 
         <div class="CICategory">
-            <div class="CICLabel">Категории туров</div>
+            <div class="CICLabel"><?= Yii::t("page", "Категории туров"); ?></div>
             <div class="CICategoryScrool">
                 <ul>
                     <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
@@ -52,7 +52,7 @@
                             <b><?= $cItem ?></b>
                             <ul>
                                 <?php foreach( $values as $cKey=>$cValue ) : ?>
-                                    <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="категория туров - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                    <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="<?= Yii::t("page", "категория туров"); ?> - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </li>
@@ -61,11 +61,11 @@
             </div>
         </div>
         <div class="CICategory">
-            <div class="CICLabel CLRight">Туры по странам</div>
+            <div class="CICLabel CLRight"><?= Yii::t("page", "Туры по странам"); ?></div>
             <div class="CICategoryScrool">
                 <ul>
                     <?php foreach( $reCountry2 as $cItem=>$values ) : ?>
-                        <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="туры <?= $values->name_2 ?>"><?= $values->name ?></a></li>
+                        <li><a href="<?= SiteHelper::createUrl("/sections")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="<?= Yii::t("page", "туры"); ?> <?= $values->name_2 ?>"><?= $values->name ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -75,8 +75,8 @@
 
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
-        <th class="">Фото</th>
-        <th class="TLFAction">Краткое описание</th>
+        <th class=""><?= Yii::t("page", "Фото"); ?></th>
+        <th class="TLFAction"><?= Yii::t("page", "Краткое описание"); ?></th>
     </tr>
     <?php
 
@@ -87,12 +87,12 @@
                 <?= ImageHelper::getAnimateImageBlock( $firmItem, SiteHelper::createUrl("/tours/description" )."/".$firmItem->slug.".html") ?>
             </td>
             <td class="textAlignJustify">
-                <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>.html" title="описание туристического предложения"><?= $firmItem->name ?></a><br/>
+                <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>.html" title="<?= Yii::t("page", "описание туристического предложения"); ?>"><?= $firmItem->name ?></a><br/>
                 <?= SiteHelper::getSubTextOnWorld( $firmItem->description, 300 ) ?>
                 <div class="itemAction textAlignRight">
                     <?php if( $firmItem->country_id->id > 0 ) : ?><a href="<?= SiteHelper::createUrl("/tours/country")."/".$firmItem->country_id->slug ?>.html"><?= $firmItem->country_id->name ?></a><br/><?php endif; ?>
                     <a href="<?= SiteHelper::createUrl("/tours/category")."/".$firmItem->category_id->slug ?>.html"><?= $firmItem->category_id->name ?></a><br/>
-                    <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>.html">Описание</a><br/>
+                    <a href="<?= SiteHelper::createUrl("/tours/description")."/".$firmItem->slug ?>.html"><?= Yii::t("page", "Описание"); ?></a><br/>
                 </div>
             </td>
         </tr>
@@ -108,7 +108,7 @@
     </tr>
     <?php if( sizeof( $tours ) == 0 ) : ?>
         <tr>
-            <td colspan="3" class="textAlignCenter emptyList">Список пуст</td>
+            <td colspan="3" class="textAlignCenter emptyList"><?= Yii::t("page", "Список пуст"); ?></td>
         </tr>
     <?php endif; ?>
 </table>

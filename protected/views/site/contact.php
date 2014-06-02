@@ -5,5 +5,5 @@ $this->widget('addressLineWidget', array(
     )
 ));
 ?>
-<h1>Контакты</h1>
+<h1><?= Yii::t("page", "Контакты") ?></h1>
 <?= $content->description ?>
