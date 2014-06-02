@@ -51,14 +51,14 @@ class CatalogToursAdd extends CatalogTours
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Название',
-            'category_id' => 'Категория',
+			'name' => Yii::t("models", "Название"),
+            'category_id' => Yii::t("models", "Категория" ),
 			//'active' => 'Активный тур<br/><i>( поставте галочку если необходимо опубликавать тур на сайте )</i>',
-            'hot' => 'Горячий тур',
-			'country_id' => 'Страна тура',
-			'city_id' => 'Город',
-			'price' => 'Цена',
-            'description' => 'Описание тура',
+            'hot' => Yii::t("page", 'Горячий тур'),
+			'country_id' => Yii::t("page", 'Страна тура'),
+			'city_id' => Yii::t("page", "Город"),
+			'price' => Yii::t("models", "Цена" ),
+            'description' => Yii::t("page", 'Описание тура'),
 		);
 	}
 

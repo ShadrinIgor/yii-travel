@@ -31,11 +31,11 @@ class CatalogFirmsBannersAdd extends CatalogFirmsBanners
     public function attributeLabels()
     {
         return array(
-            'name' => 'Название',
-            'link' => 'Ссылка',
-            'type_id' => 'Тип баннера',
-            'position_id' => 'Позиция баннера',
-            'file' => 'Файл',
+            'name' => Yii::t("models", "Название"),
+            'link' => Yii::t("models", 'Ссылка'),
+            'type_id' => Yii::t("models", 'Тип баннера'),
+            'position_id' => Yii::t("models", 'Позиция баннера'),
+            'file' => Yii::t("models", 'Файл'),
         );
     }
 }

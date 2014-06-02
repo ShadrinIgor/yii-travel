@@ -29,18 +29,18 @@ class CatalogItemsAdd extends CatalogItems
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Загоовк',
-			'image' => 'Фотография',
-			'price' => 'Стоимость',
-			'type_id' => 'Тип объявления',
-            'category_id' => 'Категория',
-            'time_id' => 'Время публикации',
-            'telephon' => 'Телефоны',
+			'name' => Yii::t("models", 'Заголовок'),
+			'image' => Yii::t("models", "Фотография" ),
+			'price' => Yii::t("models", "Стоимость" ),
+			'type_id' => Yii::t("models", "Тип объявления" ),
+            'category_id' => Yii::t("models", "Категория" ),
+            'time_id' => Yii::t("models", "Время публикации" ),
+            'telephon' => Yii::t("models", 'Телефон'),
             'email' => 'Email',
             'isq' => 'ICQ',
             'skype' => 'Skype',
-            'www' => 'Сайт',
-            'description' => 'Описание',
+            'www' => Yii::t("models", "Сайт" ),
+            'description' => Yii::t("page", "Описание"),
 		);
 	}
 

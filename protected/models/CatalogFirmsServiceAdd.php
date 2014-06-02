@@ -29,8 +29,8 @@ class CatalogFirmsServiceAdd extends CatalogFirmsService
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Название',
-			'description' => 'Описание услуги',
+			'name' => Yii::t("models", "Название"),
+			'description' => Yii::t("models", 'Описание услуги'),
 		);
 	}
 }

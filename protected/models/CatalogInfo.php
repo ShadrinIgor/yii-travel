@@ -79,15 +79,15 @@ class CatalogInfo extends CCModel
 		return array(
 			'id' => 'ID',
 			'col' => 'Col',
-			'name' => 'Название',
+			'name' => Yii::t("models", "Название"),
 			'description' => 'Description',
 			'pos' => 'Pos',
 			'metaData' => 'Meta Data',
 			'del' => 'Del',
 			'country_id' => Yii::t("page", "Страна"),
-			'city_id' => 'Город',
+			'city_id' => Yii::t("page", "Город"),
 			'image' => 'Image',
-			'category_id' => 'Категория',
+			'category_id' => Yii::t("models", "Категория" ),
 			'list_key' => 'List Key',
 			'slug' => 'Slug',
 		);

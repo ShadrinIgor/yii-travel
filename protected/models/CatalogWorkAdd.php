@@ -38,15 +38,15 @@ class CatalogWorkAdd extends CatalogWork
     public function attributeLabels()
     {
         return array(
-            'name' => 'Название вакансии',
-            'category_id' => 'Кактегория вакансии',
+            'name' => Yii::t("models", 'Название вакансии'),
+            'category_id' => Yii::t("models", 'Категория вакансии'),
             'country_id' => Yii::t("page", "Страна"),
-            'city_id' => 'Город',
-            'image' => 'Фото',
-            'graf' => 'График',
-            'price' => 'Заработная плата',
-            'contacts' => 'Контакты',
-            'description' => 'Описание вакансии',
+            'city_id' => Yii::t("page", "Город"),
+            'image' => Yii::t("models", "Фото" ),
+            'graf' => Yii::t("models", 'График'),
+            'price' => Yii::t("models", 'Заработная плата'),
+            'contacts' => Yii::t("models", "Контакты" ),
+            'description' => Yii::t("models", 'Описание вакансии'),
         );
     }
 }

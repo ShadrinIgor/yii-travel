@@ -123,12 +123,12 @@ class CatalogUsers extends CCModel
             $exists = CatalogUsers::fetchAll( $dbCriterii );
             if( sizeof( $exists )>0 )
             {
-                $textError = "Email:".$this->email.", уже зарегистрирован в системе<br/>";
-                if( $exists[0]->active == 0 )$textError .= "Вам по почте должно было прийти письмо для подверждения регистрации.
-                                                           <br/><br/><b>Письмо не пришло?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">отправить заново письмо для подтверждения регистрации на ".$this->email."</a>
-                                                           <br/><br/><b>Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста";
+                $textError = "Email:".$this->email.", ".Yii::t("models", "уже зарегистрирован в системе")."<br/>";
+                if( $exists[0]->active == 0 )$textError .= Yii::t("models", "Вам по почте должно было прийти письмо для подверждения регистрации.").
+                                                           "<br/><br/><b>".Yii::t("models", "Письмо не пришло?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">".Yii::t("models", "отправить заново письмо для подтверждения регистрации на")." ".$this->email."</a>
+                                                           <br/><br/><b>".Yii::t("models", "Все равно не пришло?" )."</b><br/>".Yii::t("models", "Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>".Yii::t("models", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
                     else
-                        $textError .= "<br/><b>Забыли пароль?</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">востановить пароль</a>";
+                        $textError .= "<br/><b>".Yii::t("models", "Забыли пароль?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">".Yii::t("models", "востановить пароль")."</a>";
 
                 $this->addErrors( array(  "0"=>$textError ) );
             }
@@ -204,20 +204,20 @@ class CatalogUsers extends CCModel
 		return array(
 			'id' => 'ID',
 			'del' => 'Del',
-			'name' => 'Имя',
+			'name' => Yii::t("models", "Имя" ),
 			'active' => 'Active',
-			'password' => 'Пароль',
-			'surname' => 'Фамилия',
-			'fatchname' => 'Отчество',
+			'password' => Yii::t("models", "Пароль" ),
+			'surname' => Yii::t("models", "Фамилия" ),
+			'fatchname' => Yii::t("models", "Отчество" ),
 			'email' => 'Email',
 			'country_id' => Yii::t("page", "Страна"),
-			'city_id' => 'Город',
-			'type_id' => 'Тип',
-			'image' => 'Фото',
+			'city_id' => Yii::t("page", "Город"),
+			'type_id' => Yii::t("models", "Тип" ),
+			'image' => Yii::t("models", "Фото" ),
 			'country_other' => 'Другая страна',
 			'last_visit' => 'Last Visit',
-			'phone' => 'Телефон',
-			'site' => 'Сайт',
+			'phone' => Yii::t("models", "Телефон"),
+			'site' => Yii::t("models", "Сайт" ),
 			'quote' => 'Quote',
 			'desktop' => 'Desktop',
 			'amount' => 'Amount',

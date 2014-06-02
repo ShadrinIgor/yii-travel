@@ -20,15 +20,15 @@ class CatalogWorkResumeAdd extends CatalogWorkAdd
     public function attributeLabels()
     {
         return array(
-            'name' => 'Должность резюме',
-            'category_id' => 'Кактегория резюме',
+            'name' => Yii::t("models", 'Должность резюме'),
+            'category_id' => Yii::t("models", 'Категория резюме'),
             'country_id' => Yii::t("page", "Страна"),
-            'city_id' => 'Город',
-            'image' => 'Фото',
-            'graf' => 'График',
-            'price' => 'Заработная плата',
-            'contacts' => 'Контакты',
-            'description' => 'Описание резюме',
+            'city_id' => Yii::t("page", "Город"),
+            'image' => Yii::t("models", "Фото" ),
+            'graf' => Yii::t("models", 'График'),
+            'price' => Yii::t("models", 'Заработная плата' ),
+            'contacts' => Yii::t("models", "Контакты" ),
+            'description' => Yii::t("models", 'Описание резюме'),
         );
     }
 }

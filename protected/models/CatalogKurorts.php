@@ -101,7 +101,7 @@ class CatalogKurorts extends CCModel
 			'price' => 'Price',
 			'firms_count' => 'Firms Count',
 			'col' => 'Col',
-			'category_id' => 'Категория',
+			'category_id' => Yii::t("models", "Категория" ),
 			'slug' => 'Slug',
 			'user_id' => 'User',
             'active' => 'active'

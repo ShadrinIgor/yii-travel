@@ -32,16 +32,16 @@ class CatalogFirmsAdd extends CatalogFirms
     public function attributeLabels()
     {
         return array(
-            'name' => 'Название фирмы',
-            'image' => 'Логотип',
+            'name' => Yii::t("models", 'Название фирмы'),
+            'image' => Yii::t("models", "Логотип"),
             'country_id' => Yii::t("page", "Страна"),
-            'city_id' => 'Город',
+            'city_id' => Yii::t("page", "Город"),
             'www' => 'Www',
             'email' => 'Email',
-            'tel' => 'Телефон',
-            'fax' => 'Факс',
-            'address' => 'Адрес',
-            'description' => 'Описание',
+            'tel' => Yii::t("models", "Телефон"),
+            'fax' => Yii::t("models", "Факс" ),
+            'address' => Yii::t("models", "Адрес" ),
+            'description' => Yii::t("page", "Описание"),
         );
     }
 }

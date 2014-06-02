@@ -53,8 +53,8 @@ class CatRelations extends CCModel
     {
         if( !$this->hasErrors() )
         {
-            if( !class_exists( $this->leftClass ) )$this->addError("Ошибка сохранения связей", "Неверное указанно значение Left Class");
-            if( !$this->hasErrors() && !class_exists( $this->rightClass ) )$this->addError("Ошибка сохранения связей", "Неверное указанно значение Right Class");
+            if( !class_exists( $this->leftClass ) )$this->addError( Yii::t("models", "Ошибка сохранения связей"), Yii::t("models", "Неверное указанно значение Left Class" ) );
+            if( !$this->hasErrors() && !class_exists( $this->rightClass ) )$this->addError( Yii::t("models", "Ошибка сохранения связей"), Yii::t("models", "Неверное указанно значение Right Class") );
             if( !$this->hasErrors() )
             {
                 $leftClassName = $this->leftClass;
@@ -67,11 +67,11 @@ class CatRelations extends CCModel
                     if( $rightModel->id >0 )
                     {
                         $catRelation = CatRelations::findByAttributes( array( "leftId"=>$this->leftId, "rightId"=>$this->rightId, "leftClass"=>$this->leftClass, "rightClass"=>$this->rightClass ) );
-                        if( sizeof( $catRelation )>0 )$this->addError("Ошибка сохранения связей", "Запись с указанными параметрами уже зарегистрирована в базе");
+                        if( sizeof( $catRelation )>0 )$this->addError( Yii::t("models", "Ошибка сохранения связей" ), Yii::t("models", "Запись с указанными параметрами уже зарегистрирована в базе" ) );
                     }
-                        else $this->addError("Ошибка сохранения связей", "Неверное указанно значение Right ID");
+                        else $this->addError( Yii::t("models", "Ошибка сохранения связей"), Yii::t("models", "Неверное указанно значение Right ID" ) );
                 }
-                    else $this->addError("Ошибка сохранения связей", "Неверное указанно значение Left ID");
+                    else $this->addError( Yii::t("models", "Ошибка сохранения связей" ), Yii::t("models", "Неверное указанно значение Left ID" ) );
             }
         }
     }

@@ -9,8 +9,8 @@ class CatalogWorkVacansyAdd extends CatalogWorkAdd
     {
         return array_merge( parent::attributePlaceholder(),
             array(
-                'name' => 'срочно тебуются сотрудники в фирму',
-                'description' => 'без вредных привычек, стаж не менее года, необходиммые навыки'
+                'name' => Yii::t("models", 'срочно тебуются сотрудники в фирму'),
+                'description' => Yii::t("models", 'без вредных привычек, стаж не менее года, необходиммые навыки')
             ));
     }
 }

@@ -29,9 +29,9 @@ class CatalogFirmsItemsAdd extends CatalogFirmsItems
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Название',
-			'date' => 'Дата',
-            'description' => 'Описание',
+			'name' => Yii::t("models", "Название"),
+			'date' => Yii::t("models", "Дата"),
+            'description' => Yii::t("page", "Описание"),
 		);
 	}
 }

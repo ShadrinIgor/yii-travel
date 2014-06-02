@@ -33,16 +33,16 @@ class CatalogKurortsAdd extends CatalogKurorts
     public function attributeLabels()
     {
         return array(
-            'name' => 'Название',
-            'category_id' => 'Категория',
+            'name' => Yii::t("models", "Название"),
+            'category_id' => Yii::t("models", "Категория" ),
             'country_id' => Yii::t("page", "Страна"),
-            'city_id' => 'Город',
-            'location' => 'Адресс',
-            'www' => 'Сайт',
+            'city_id' => Yii::t("page", "Город"),
+            'location' => Yii::t("models", "Адресс" ),
+            'www' => Yii::t("models", "Сайт" ),
             'email' => 'Email',
-            'telefon' => 'Телефон',
-            'price' => 'Цена',
-            'description' => 'Описание',
+            'telefon' => Yii::t("models", "Телефон"),
+            'price' => Yii::t("models", "Цена" ),
+            'description' => Yii::t("page", "Описание"),
         );
     }
 }

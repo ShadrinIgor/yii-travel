@@ -12,14 +12,14 @@ class CatalogFirmsInfo extends CatalogFirms
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Название фирмы',
+			'name' => Yii::t("models", "Название фирмы" ),
 			'country_id' => Yii::t("page", "Страна"),
-			'city_id' => 'Город',
+			'city_id' => Yii::t("page", "Город"),
 			'email' => 'Email',
 			'www' => 'Www',
-			'tel' => 'Телефон',
-			'fax' => 'Факс',
-			'address' => 'Адрес',
+			'tel' => Yii::t("models", "Телефон"),
+			'fax' => Yii::t("models", "Факс" ),
+			'address' => Yii::t("models", "Адрес" ),
 			'category_id' => 'Category',
 		);
 	}

@@ -32,16 +32,16 @@ class CatalogHotelsAdd extends CatalogHotels
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Название',
+			'name' => Yii::t("models", "Название"),
 			'country_id' => Yii::t("page", "Страна"),
-			'city_id' => 'Город',
-			'address' => 'Адресс',
-			'level' => 'Кол. звезд',
+			'city_id' => Yii::t("page", "Город"),
+			'address' => Yii::t("models", "Адресс" ),
+			'level' => Yii::t("models", "Кол. звезд" ),
 			'email' => 'Email',
-			'www' => 'Сайт',
-			'fax' => 'Факс',
-			'tel' => 'Телефон',
-            'description' => 'Описание',
+			'www' => Yii::t("models", "Сайт" ),
+			'fax' => Yii::t("models", "Факс" ),
+			'tel' => Yii::t("models", "Телефон"),
+            'description' => Yii::t("page", "Описание"),
 		);
 	}
 }

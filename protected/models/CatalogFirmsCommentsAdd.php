@@ -29,9 +29,9 @@ class CatalogFirmsCommentsAdd extends CatalogFirmsComments
 	public function attributeLabels()
 	{
 		return array(
-            'fio' => 'Имя',
-			'name' => 'Заголовок',
-			'description' => 'Текст',
+            'fio' => Yii::t("models", "Имя" ),
+			'name' => Yii::t("models", "Заголовок" ),
+			'description' => Yii::t("models", "Текст" ),
 		);
 	}
 

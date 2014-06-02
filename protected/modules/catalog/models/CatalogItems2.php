@@ -87,7 +87,7 @@ class CatalogItems2 extends CatalogCCModel
 			'description' => 'Дополнительное описание',
 			'del' => 'Del',
 			'price' => 'Цена',
-			'user_id' => 'Пользователь',
+			'user_id' => Yii::t("models", "Пользователь" ),
 			'category_id' => 'Категория',
 			'type_id' => 'Тип',
 			'status_id' => 'Статус',

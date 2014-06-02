@@ -77,17 +77,17 @@ class CatalogContent extends CCModel
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Название',
+			'name' => Yii::t("models", "Название"),
 			'description' => 'Текст записи',
-            'category_id' => 'Категории',
+            'category_id' => Yii::t("models", "Категории"),
             'country_id' => Yii::t("page", "Страна"),
-			'date' => 'Дата',
-			'image' => 'Картинка',
-			'file' => 'Файл, приложение для записи',
-            'active' => 'Активность',
-            'del' => 'Удаленная запись',
-			'slug' => 'Название для ссылки',
-            'pos' => 'Позиция',
+			'date' => Yii::t("models", "Дата"),
+			'image' => Yii::t("models", "Картинка"),
+			'file' => Yii::t("models", "Файл, приложение для записи"),
+            'active' => Yii::t("models", "Активность"),
+            'del' => Yii::t("models", "Удаленная запись"),
+			'slug' => Yii::t("models", "Название для ссылки"),
+            'pos' => Yii::t("models", "Позиция"),
 		);
 	}
 

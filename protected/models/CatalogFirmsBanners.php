@@ -94,13 +94,13 @@ class CatalogFirmsBanners extends CCModel
 	public function attributeLabels()
 	{
 		return array(
-			'name' => 'Название',
-			'link' => 'Ссылка',
-			'type_id' => 'Тип баннера',
-            'position_id' => 'Позиция баннера',
-			'file' => 'Файл',
-            'firm_id' => 'Фирма',
-			'active' => 'Опубликовать',
+			'name' => Yii::t("models", "Название"),
+			'link' => Yii::t("models", 'Ссылка'),
+			'type_id' => Yii::t("models", 'Тип баннера'),
+            'position_id' => Yii::t("models", 'Позиция баннера'),
+			'file' => Yii::t("models", 'Файл'),
+            'firm_id' => Yii::t("models", "Фирма" ),
+			'active' => Yii::t("models", "Опубликовать" ),
 		);
 	}
 

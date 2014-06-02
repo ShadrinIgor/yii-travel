@@ -68,7 +68,7 @@ class CatalogServices extends CCModel
 			'id' => 'ID',
 			'name' => 'Name',
 			'price' => 'Price',
-            'description' => 'Описание',
+            'description' => Yii::t("page", "Описание"),
 			'key_word' => 'Key Word',
             'del' => 'Del',
 		);
