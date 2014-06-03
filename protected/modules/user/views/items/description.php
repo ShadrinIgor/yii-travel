@@ -1,7 +1,7 @@
 <?php
 $this->widget( "userPagesWidget", array(
-    "adressTitle" => "Описание объявления",
-    "h1Titile" => "Описание объявления",
+    "adressTitle" => Yii::t("user", "Описание объявления"),
+    "h1Titile" => Yii::t("user", "Описание объявления"),
     "item" => $item,
     "message" => $message,
     "gallMessage" => $gallMessage,

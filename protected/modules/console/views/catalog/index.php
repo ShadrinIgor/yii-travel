@@ -47,7 +47,7 @@
         <?php endif; ?>
         <td class="fieldActions">
             <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$item->id )).$controller->params ?>">Редактировать</a>
-            <a href="<?= SiteHelper::createUrl("/console/catalog/delete", array( "id"=>$item->id )).$controller->params ?>">Удалить</a>
+            <a href="<?= SiteHelper::createUrl("/console/catalog/delete", array( "id"=>$item->id )).$controller->params ?>"><?= Yii::t("user", "Удалить") ?></a>
         </td>
     </tr>
 <?php endforeach; ?>

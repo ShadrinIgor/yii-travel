@@ -11,7 +11,7 @@
 <table id="tableListItems">
     <tr>
         <th class="TLFId">№</th>
-        <th>Дата</th>
+        <th><?= Yii::t("user", "Дата") ?></th>
         <th class="TLFName">Сад</th>
         <th>Стоимость</th>
         <th class="TLFAction"><?= Yii::t("page", "статус"); ?></th>
@@ -34,7 +34,7 @@
         </td>
         <td>
             <a href="<?= SiteHelper::createUrl("/merchant/index", array( "id"=>$tree->id )) ?>">оплатить</a><br/>
-            <a href="<?= SiteHelper::createUrl("/user/requests/orderdel", array( "id"=>$tree->id )) ?>">удалить</a>
+            <a href="<?= SiteHelper::createUrl("/user/requests/orderdel", array( "id"=>$tree->id )) ?>"><?= Yii::t("user", "Удалить") ?></a>
         </td>
     </tr>
 <?php endforeach; ?>

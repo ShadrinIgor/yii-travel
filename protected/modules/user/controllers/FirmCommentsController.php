@@ -9,7 +9,7 @@ class FirmCommentsController extends UserController
         parent::init();
         $this->addModel = "CatalogFirmsComments";
         $this->tableName = "catalog_firms_comments";
-        $this->name = "коментарии";
+        $this->name = Yii::t("user", "Коментарии");
 
         $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
         $id = (int) Yii::app()->request->getParam("id", 0);

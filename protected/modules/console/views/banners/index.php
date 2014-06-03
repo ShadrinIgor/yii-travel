@@ -27,7 +27,7 @@
         <td><?= $item->start_date ?></td>
         <td class="fieldActions">
             <a href="<?= SiteHelper::createUrl("/console/banners/edit", array( "id"=>$item->id ))?>">Редактировать</a>
-            <a href="<?= SiteHelper::createUrl("/console/banners/delete", array( "id"=>$item->id ))?>">Удалить</a>
+            <a href="<?= SiteHelper::createUrl("/console/banners/delete", array( "id"=>$item->id ))?>"><?= Yii::t("user", "Удалить") ?></a>
         </td>
     </tr>
 <?php endforeach; ?>

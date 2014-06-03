@@ -27,7 +27,7 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
         <tr>
             <td></td>
             <td align="center">
-                <?php echo CHtml::button('Отмена', array("id"=>"lost_cansel", "onclick"=>"document.location.assign('".SiteHelper::createUrl("/user")."')")); ?>&nbsp;
+                <?php echo CHtml::button('<?= Yii::t("user", "Отмена") ?> ', array("id"=>"lost_cansel", "onclick"=>"document.location.assign('".SiteHelper::createUrl("/user")."')")); ?>&nbsp;
                 <?php echo CHtml::submitButton('Отправить запрос'); ?>
             </td>
         </tr>

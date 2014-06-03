@@ -9,7 +9,7 @@ class FirmServiceController extends UserController
         parent::init();
         $this->addModel = "CatalogFirmsServiceAdd";
         $this->tableName = "catalog_firms_service";
-        $this->name = "акции/скидки";
+        $this->name = Yii::t("user", "Услуги компании");
 
         $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
         $id = (int) Yii::app()->request->getParam("id", 0);

@@ -7,7 +7,7 @@ class FavoritesController extends Controller
         if( !Yii::app()->user->isGuest )
         {
             $message = "";
-            Yii::app()->page->title = "Избранное";
+            Yii::app()->page->title = Yii::t("user", "Избранное" );
 
             $userModel = CatalogUsers::fetch( Yii::app()->user->id );
             $del = (int)Yii::app()->request->getParam("del", 0);

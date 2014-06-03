@@ -11,7 +11,7 @@
         <td></td>
         <td>
             <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/console/banners") ?>';" value="Отмена" />&nbsp;
-            <input type="submit" name="submit_update" value="Сохранить" />
+            <input type="submit" name="submit_update" value="<?= Yii::t("user", "Сохранить") ?>" />
         </td>
     </tr>
 </table>

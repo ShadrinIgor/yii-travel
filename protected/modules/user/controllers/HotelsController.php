@@ -7,6 +7,6 @@ class HotelsController extends UserController
         parent::init();
         $this->addModel = "CatalogHotelsAdd";
         $this->tableName = "catalog_hotels";
-        $this->name = "отели";
+        $this->name = Yii::t("user", "отели");
     }
 }

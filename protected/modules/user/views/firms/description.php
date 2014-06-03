@@ -2,8 +2,8 @@
 <?php
 $this->widget('addressLineWidget', array(
     'links'=>array(
-                    "Мои фирмы"=>SiteHelper::createUrl( "/user/firms" ),
-                    "Описание"
+                    Yii::t("user", "мои фирмы")=>SiteHelper::createUrl( "/user/firms" ),
+                    Yii::t("page", "Описание")
                   ),
 ));
 
@@ -18,22 +18,22 @@ $tab = Yii::app()->request->getParam("tab", "description");
 $tabArray = array("description" ,"ptours" ,"items" ,"service" ,"reclame" ,"pcomments" ,"counter");
 if( !in_array( $tab, $tabArray ) )$tab = "description";
 ?>
-<div class="sovetBlock"><a href="<?= SiteHelper::createUrl("/site/addFirm") ?>" title="Как правильно добавить фирму?">Как правильно добавить фирму?</a></div>
-<h1><font>Описание туристического агенства</font> <?= $item->id >0 ? " - ". $item->name : "" ?></h1>
+<div class="sovetBlock"><a href="<?= SiteHelper::createUrl("/site/addFirm") ?>" title="<?= Yii::t("user_firm", "Как правильно добавить фирму?") ?>"><?= Yii::t("user_firm", "Как правильно добавить фирму?") ?></a></div>
+<h1><font><?= Yii::t("user_firm", "Описание туристического агенства"); ?></font> <?= $item->id >0 ? " - ". $item->name : "" ?></h1>
     <div id="dopMenu">
-        <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages">Описание и галлерея</a>
+        <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Описание и галлерея"); ?></a>
         <?php if( $item->id >0 ) : ?>
-            <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages">Туры компаниии( <?= sizeof($listTours) ?> )</a>
-            <a href="#" id="items" class="<?= $tab== "items" ? "items " : "" ?>dopMenuPages">Акции и скидки( <?= sizeof($listItems) ?> )</a>
-            <a href="#" id="service" class="<?= $tab== "service" ? "service " : "" ?>dopMenuPages">Дополнительные услуги( <?= sizeof($listService) ?> )</a>
-            <a href="#" id="reclame" class="<?= $tab== "reclame" ? "reclame " : "" ?>dopMenuPages">Рекламный баннер( <?= sizeof($listBanners) ?> )</a>
-            <a href="#" id="pcomments" class="<?= $tab== "pcomments" ? "pcomments " : "" ?>dopMenuPages">Отзывы/Сообщения( <?= sizeof($listComments) ?> )</a>
-            <a href="#" id="counter" class="<?= $tab== "counter" ? "counter " : "" ?>dopMenuPages">Статистика посещаемости</a>
-            <a href="<?= SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug ?>.html" title="Посмотреть как будет выглядеть персональная страница фирмы">Просмотреть страницу фирмы</a>
+            <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Туры компаниии"); ?>( <?= sizeof($listTours) ?> )</a>
+            <a href="#" id="items" class="<?= $tab== "items" ? "items " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Акции и скидки"); ?>( <?= sizeof($listItems) ?> )</a>
+            <a href="#" id="service" class="<?= $tab== "service" ? "service " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Дополнительные услуги"); ?>( <?= sizeof($listService) ?> )</a>
+            <a href="#" id="reclame" class="<?= $tab== "reclame" ? "reclame " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Рекламный баннер"); ?>( <?= sizeof($listBanners) ?> )</a>
+            <a href="#" id="pcomments" class="<?= $tab== "pcomments" ? "pcomments " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Отзывы/Сообщения"); ?>( <?= sizeof($listComments) ?> )</a>
+            <a href="#" id="counter" class="<?= $tab== "counter" ? "counter " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Статистика посещаемости"); ?></a>
+            <a href="<?= SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug ?>.html" title="<?= Yii::t("user_firm", "Посмотреть как будет выглядеть персональная страница фирмы"); ?>"><?= Yii::t("user_firm", "Просмотреть страницу фирмы"); ?></a>
             <br/>
-            <span><?= Yii::t("page", "статус"); ?>: <b class="publishStatus"><?= $item->active == 0 ? " не опубликован " : " опубликован " ?></b></span>
+            <span><?= Yii::t("page", "статус"); ?>: <b class="publishStatus"><?= $item->active == 0 ? " ".Yii::t("user", "не опубликован")." " : " ".Yii::t("user", "опубликован")." " ?></b></span>
             <a href="#" class="publishLink linkButton" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl( "/user/firms/setPublish", array( "id"=>$item->id, "catalog"=>SiteHelper::getCamelCase( $item->tableName() ) ) ) ?>', '' );">
-                <?php if( $item->active == 0 ) : ?>Опубликовать на сайте ?<?php endif; ?><?php if( $item->active == 1 ) : ?>Снять с публикации ?<?php endif; ?></a>
+                <?php if( $item->active == 0 ) : ?><?= Yii::t("user", "Опубликовать на сайте ?") ?><?php endif; ?><?php if( $item->active == 1 ) : ?><?= Yii::t("user", "Снять с публикации ?") ?><?php endif; ?></a>
         <?php endif; ?>
     </div>
 <?php echo CHtml::errorSummary($item); ?>
@@ -42,9 +42,9 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
 <?php endif; ?>
 <?php if( $item->id > 0 ) : ?>
     <div class="textAlignCenter">
-        <a href="<?= SiteHelper::createUrl("/user/tours/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ Добавить тур для Вашей компания">+ Добавить тур</a>
-        <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ Добавить акцию или скидку для Вашей компания">+ Добавить акцию</a>
-        <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ Добавить БЕСПЛАТНЫЙ баннер">+ Добавить БЕСПЛАТНЫЙ баннер</a>
+        <a href="<?= SiteHelper::createUrl("/user/tours/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ <?= Yii::t("user_firm", "Добавить тур для Вашей компания"); ?>">+ <?= Yii::t("user_firm", "Добавить тур"); ?></a>
+        <a href="<?= SiteHelper::createUrl("/user/firmItems/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ <?= Yii::t("user_firm", "Добавить акцию или скидку для Вашей компания"); ?>">+ <?= Yii::t("user_firm", "Добавить акцию"); ?></a>
+        <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array( "fid"=>$item->id) ) ?>" class="addButton" title="+ <?= Yii::t("user_firm", "Добавить БЕСПЛАТНЫЙ баннер"); ?>">+ <?= Yii::t("user_firm", "Добавить БЕСПЛАТНЫЙ баннер"); ?></a>
     </div>
 <?php endif; ?>
 <div id="counter_page" class="pageTab<?= $tab == "counter" ? " activePage" : " displayNone" ?>">
@@ -73,7 +73,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         <h2>Галлерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
         <?php if( $item->id==0 ) : ?>
-            <div class="messageSummary">После сохранения вы сможете добавить фотографии.</div>
+            <div class="messageSummary"><?= Yii::t("user", "После сохранения вы сможете добавить фотографии.") ?></div>
         <?php else : ?>
         <form action="" method="post">
             <?php echo CHtml::errorSummary($addImage); ?><br>
@@ -84,20 +84,20 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
                         <div>
                             <a href="<?= $gall->image ?>" data-lightbox="roadtrip"><img src="<?= ImageHelper::getImage( $gall->image, 3 ) ?>" /></a>
                         </div>
-                        <input type="text" name="ITitle[<?= $gall->id ?>]" value="<?= $gall->name ?>" placeholder="описание фото" /><br/>
-                        <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "gall_id"=>$gall->id, "action"=>"delGallery")) ?>">Удалить</a>&nbsp;
+                        <input type="text" name="ITitle[<?= $gall->id ?>]" value="<?= $gall->name ?>" placeholder="<?= Yii::t("page", "описание фото") ?>" /><br/>
+                        <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "gall_id"=>$gall->id, "action"=>"delGallery")) ?>"><?= Yii::t("user", "Удалить") ?></a>&nbsp;
                     </div>
                 <?php endforeach; ?>
 
             </div>
             <?php if( sizeof( $listGallery )>0 ) : ?>
                 <div class="textAlignCenter">
-                    <input type="submit" name="saveTitle" value="Сохранить описание" />&nbsp;
+                    <input type="submit" name="saveTitle" value="<?= Yii::t("user", "Сохранить описание") ?>" />&nbsp;
                 </div>
             <?php endif; ?>
         </form>
         <div class="textAlignCenter">
-            <input type="button" class="openDisplayNone" value="Добавить фото" />
+            <input type="button" class="openDisplayNone" value="<?= Yii::t("user", "Добавить фото") ?>" />
         </div>
         <div class="<?php if( empty( $_POST["sendGallery"] ) || $addImage->formMessage ) :?>displayNone <?php endif; ?>addForm">
             <?= CHtml::form("","post", array("enctype"=>"multipart/form-data")) ?>
@@ -107,14 +107,14 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
                 </tr>
                 <tr>
                     <td>
-                        <b>Внимание!</b><br/>
-                        Вы можете добавлять несколько фотографий одновременно.<br/>
-                        <i>( Для этого необходимо нажать кнопку [ ctrl ] и выбрать поочередно необходимые фотографии )</i>
+                        <b><?= Yii::t("page", "Внимание!"); ?></b><br/>
+                        <?= Yii::t("page", "Вы можете добавлять несколько фотографий одновременно."); ?><br/>
+                        <i><?= Yii::t("page", "( Для этого необходимо нажать кнопку [ ctrl ] и выбрать поочередно необходимые фотографии )"); ?></i>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" class="textAlignCenter">
-                        <?= CHtml::submitButton( "Добавить", array("name"=>"sendGallery") ) ?>
+                        <?= CHtml::submitButton( Yii::t("user", "Добавить"), array("name"=>"sendGallery") ) ?>
                     </td>
                 </tr>
             </table>
@@ -134,8 +134,8 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         <tr>
             <td></td>
             <td>
-                <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()) ?>';" name="update" value="Отмена" />&nbsp;
-                <input type="submit" name="update" value="Сохранить" />
+                <input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()) ?>';" name="update" value="<?= Yii::t("page", "Отмена") ?>" />&nbsp;
+                <input type="submit" name="update" value="<?= Yii::t("user", "Сохранить") ?>" />
             </td>
         </tr>
     </table>

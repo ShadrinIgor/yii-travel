@@ -9,7 +9,7 @@ class MessagesController extends UserController
         parent::init();
         $this->addModel = "Notifications";
         $this->tableName = "Notifications";
-        $this->name = "Сообщения";
+        $this->name = Yii::t("user", "Сообщения");
 
         $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
         $id = (int) Yii::app()->request->getParam("id", 0);

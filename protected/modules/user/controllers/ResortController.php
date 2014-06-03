@@ -7,6 +7,6 @@ class ResortController extends UserController
         parent::init();
         $this->addModel = "CatalogKurortsAdd";
         $this->tableName = "catalog_kurorts";
-        $this->name = "зоны отдыха/дачи";
+        $this->name = Yii::t("user", "зоны отдыха/дачи" );
     }
 }

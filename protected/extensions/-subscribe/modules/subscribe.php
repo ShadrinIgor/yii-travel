@@ -17,16 +17,16 @@ class subscribe
         $cout = '<h1>Список рассылок</h1>';
         if( !empty( $message )  )$cout .= functions::getMessage( $message );
 
-        $cout .= functions::getDopMenu( array( array( "title"=>"Добавить", "href"=>"index.php?mofule=subscribe&action=edit" ) ) );
+        $cout .= functions::getDopMenu( array( array( "title"=>Yii::t("user", "Добавить"), "href"=>"index.php?mofule=subscribe&action=edit" ) ) );
         $cout .= '<table id="centerTable">
                     <tr>
                         <th>ID</th>
                         <th>Тема</th>
-                        <th>Дата</th>
+                        <th><?= Yii::t("user", "Дата") ?></th>
                         <th><?= Yii::t("page", "статус"); ?></th>
                         <th>От</th>
                         <th>Отправленно</th>
-                        <th>Действия</th>
+                        <th><?= Yii::t("page", "Действия") ?></th>
                     </tr>';
 
         $i = 1;
@@ -59,7 +59,7 @@ class subscribe
                         <td class=\"alignCenter\">".$countSend."</td>
                         <td class=\"alignCenter\">
                             <a href=\"index.php?module=subscribe&action=edit&id=".$line->id."\">Редактировать</a>,
-                            <a href=\"index.php?module=subscribe&action=delete&id=".$line->id."\">Удалить</a>
+                            <a href=\"index.php?module=subscribe&action=delete&id=".$line->id."\"><?= Yii::t("user", "Удалить") ?></a>
                             ".( $line->status != 2 ? "<a href=\"index.php?module=subscribe&action=start&id=".$line->id."\">Запустить</a>" : "<a href=\"index.php?module=subscribe&action=stop&id=".$line->id."\">Остановить</a>" )."
                         </td>
                       </tr>";

@@ -12,7 +12,7 @@
 <table id="tableListItems">
     <tr>
         <th>ID</th>
-        <th>Название</th>
+        <th><?= Yii::t("user", "Название") ?></th>
         <th>Отправлено</th>
         <th>Состояние</th>
         <th></th>
@@ -25,7 +25,7 @@
         <td><?= $item->status_id->name ?></td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/console/subscribe/edit", array( "id"=>$item->id ) ) ?>">Редактировать</a>&nbsp;
-            <a href="<?= SiteHelper::createUrl( "/console/subscribe", array( "id"=>$item->id ) ) ?>">Удалить</a>
+            <a href="<?= SiteHelper::createUrl( "/console/subscribe", array( "id"=>$item->id ) ) ?>"><?= Yii::t("user", "Удалить") ?></a>
         </td>
     </tr>
 <?php endforeach; ?>

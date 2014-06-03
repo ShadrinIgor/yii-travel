@@ -5,8 +5,8 @@
         <th>Каталог</th>
         <th>Действие</th>
         <th>ID записи</th>
-        <th>Дата</th>
-        <th>Пользователь</th>
+        <th><?= Yii::t("user", "Дата") ?></th>
+        <th><?= Yii::t("user", "Пользователь") ?></th>
     </tr>
 <?php foreach( $list as $item ) :?>
     <tr>

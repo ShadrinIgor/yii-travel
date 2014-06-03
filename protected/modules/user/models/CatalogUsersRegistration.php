@@ -48,7 +48,7 @@ class CatalogUsersRegistration extends CatalogUsers
     {
         if( !$this->hasErrors() && empty( $this->term ) )
         {
-            $this->addErrors( array(  "0"=>"Вы не согласились с правилами" ) );
+            $this->addErrors( array(  "0"=> Yii::t("models", "Вы не согласились с правилами") ) );
         }
     }
 

@@ -7,12 +7,12 @@ class FirmsController extends UserController
         parent::init();
         $this->addModel = "CatalogFirmsAdd";
         $this->tableName = "catalog_firms";
-        $this->name = "фирмы";
+        $this->name = Yii::t("user", "фирмы");
     }
 
     public function actionDelete()
     {
-        Yii::app()->page->title = "Запись удалена";
+        Yii::app()->page->title = Yii::t("user", "Запись удалена");
         $message = "";
 
         $id = (int)Yii::app()->request->getParam("id", 0);

@@ -1,7 +1,7 @@
 <?php
 $this->widget( "userPagesWidget", array(
-    "adressTitle" => "Мои зоны отдыха",
-    "h1Titile" => "Описание зоны отдыха, курорта",
+    "adressTitle" => Yii::t("user", "Мои зоны отдыха"),
+    "h1Titile" => Yii::t("user", "Описание зоны отдыха, курорта"),
     "item" => $item,
     "message" => $message,
     "gallMessage" => $gallMessage,
@@ -9,6 +9,6 @@ $this->widget( "userPagesWidget", array(
     "listComments" => $listComments,
     "addImage" => $addImage,
     "comMessage" => $comMessage,
-    "sitePage" => '<a href="'.SiteHelper::createUrl( "/resorts/description" ).'/'.$item->slug.'.html" title="">просмотреть страницу зоны отдыха</a>'
+    "sitePage" => '<a href="'.SiteHelper::createUrl( "/resorts/description" ).'/'.$item->slug.'.html" title="'.Yii::t("user", "просмотреть страницу зоны отдыха" ).'">'.Yii::t("user", "просмотреть страницу зоны отдыха" ).'</a>'
 ) );
 ?>

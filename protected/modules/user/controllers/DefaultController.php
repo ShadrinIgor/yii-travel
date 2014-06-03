@@ -2,21 +2,6 @@
 
 class DefaultController extends Controller
 {
-    public function actions(){
-
-//        Yii::import('application.extensions.kcaptcha.KCaptchaAction');
-//        Yii::app()->session->remove(KCaptchaAction::SESSION_KEY);
-
-        return array(
-            'captcha'=>array(
-                'class' => 'application.extensions.kcaptcha.KCaptchaAction',
-                'maxLength' => 6,
-                'minLength' => 5,
-                'foreColor' => array(mt_rand(0, 100), mt_rand(0, 100),mt_rand(0, 100)),
-                'backColor' => array(mt_rand(200, 210), mt_rand(210, 220),mt_rand(220, 230))
-            )
-        );
-    }
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -26,7 +11,7 @@ class DefaultController extends Controller
         if( Yii::app()->user->isGuest )
         {
             $this->actionLogin();
-            Yii::app()->page->title = "Страница авторизации";
+            Yii::app()->page->title = Yii::t("user", "Страница авторизации" );
         }
             else
         {
@@ -70,7 +55,7 @@ class DefaultController extends Controller
             $user = CatalogUsers::fetch( $user_id );
             if( $user->id>0 )
             {
-                Yii::app()->page->title = "Профиль";
+                Yii::app()->page->title = Yii::t("user", "Профиль");
                 $user_tree = CatalogGardensTree::findByAttributes( array( "user_id"=>$user->id ) );
                 $this->render('user_profile', array( "user"=>$user, "user_tree"=>$user_tree ));
             }
@@ -83,7 +68,7 @@ class DefaultController extends Controller
     {
         if( !Yii::app()->user->isGuest )
         {
-            Yii::app()->page->title = "Профиль";
+            Yii::app()->page->title = Yii::t("user", "Профиль");
             $arrayCountry = array();
             $user = CatalogUsersProfile::fetch( Yii::app()->user->id );
 
@@ -92,7 +77,7 @@ class DefaultController extends Controller
                 $user->setAttributesFromArray( $_POST["CatalogUsersProfile"] );
                 if( $user->save() )
                 {
-                    $user->formMessage = "Профиль пользователя успешно сохранен";
+                    $user->formMessage = Yii::t("user", "Профиль пользователя успешно сохранен" );
                 }
             }
 
@@ -115,7 +100,7 @@ class DefaultController extends Controller
         $successfully = SiteHelper::checkedVaribal( Yii::app()->request->getParam("successfully", "" ), "string" );
 
         $user =  new CatalogUsersRegistration();
-        Yii::app()->page->title = "Регистрация";
+        Yii::app()->page->title = Yii::t("user", "Регистрация" );
 
         if( !empty( $_POST["CatalogUsersRegistration"] ) )
         {
@@ -136,9 +121,9 @@ class DefaultController extends Controller
                             $errorMessage = $content->description;
                             $errorMessage = str_replace("{link}", SiteHelper::createUrl("/user/default/resend", array("email"=>$user->email)),$errorMessage );
                         }
-                            else $errorMessage = "Вы уже зарегистрировались ранее";
+                            else $errorMessage = Yii::t("user", "Вы уже зарегистрировались ранее");
 
-                        $user->addError( "Ошибка регистрации", $errorMessage );
+                        $user->addError( Yii::t("user", "Ошибка регистрации"), $errorMessage );
                     }
                 }
             }
@@ -157,9 +142,9 @@ class DefaultController extends Controller
 
         $title = "Регистрация";
 
-        if( !empty( $successfully ) )$okMessage = "<b>Регистрация сохранена.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email
-                                                    <br/><br/><b>Письмо не пришло?</b><br/> <a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$successfully ) ) ."\">отправить заново письмо для подтверждения на ".$successfully."</a>
-                                                    <br/><br/><b>Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста";
+        if( !empty( $successfully ) )$okMessage = "<b>".Yii::t("user", "Регистрация сохранена.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email").
+                                                    "<br/><br/><b>".Yii::t("user", "Письмо не пришло?")."</b><br/> <a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$successfully ) ) ."\">".Yii::t("user", "отправить заново письмо для подтверждения на ").$successfully."</a>
+                                                    <br/><br/><b>".Yii::t("user", "Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>".Yii::t("user", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
                                        else $okMessage=null;
 
         $this->render( "registration", array( "form"=>$user, "arrayCountry"=>$arrayCountry, "title"=>$title, "okMessage"=>$okMessage ) );
@@ -193,7 +178,7 @@ class DefaultController extends Controller
         $user =  new CatalogUsersAuth();
         if( !empty( $_POST["CatalogUsersAuth"] ) )
         {
-            Yii::app()->page->title = "Авторизация";
+            Yii::app()->page->title = Yii::t("user", "Авторизация");
             $user->setAttributes( $_POST["CatalogUsersAuth"] );
 
             if( $user->validate() )
@@ -230,7 +215,7 @@ class DefaultController extends Controller
 
         if( !empty( $_POST["CatalogUsersLost"] ) )
         {
-            Yii::app()->page->title = "Забыли пароль";
+            Yii::app()->page->title = Yii::t("user", "Забыли пароль");
             $user->setAttributes( $_POST["CatalogUsersLost"] );
             if( $user->validate() )
             {
@@ -240,7 +225,7 @@ class DefaultController extends Controller
             }
         }
 
-        if( isset( $_GET["successfully"] ) )$okMessage = "<b>Запрос на востановление пароля сохранен.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения запроса";
+        if( isset( $_GET["successfully"] ) )$okMessage = "<b>".Yii::t("user", "Запрос на востановление пароля сохранен.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения запроса" )."</b>";
                                        else $okMessage=null;
 
         $this->render('lost',array('form'=>$user, "okMessage"=>$okMessage ));

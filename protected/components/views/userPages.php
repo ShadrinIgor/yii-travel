@@ -134,7 +134,7 @@
                         <td>
                             <?= SiteHelper::getDateOnFormat( $comm->date, "d.m.Y" ) ?>
                         </td>
-                        <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? Yii::t("page", "нет") : Yii::t("page", "да") ?></td>
+                        <td class="textAlignCenter"><?= ( $comm->is_valid == 0 ) ? Yii::t("page", "нет") : Yii::t("page", Yii::t("page", "да")) ?></td>
                         <td>
                             <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"delComment")) ?>"><?= Yii::t("page", "Удалить"); ?></a>&nbsp;
                             <a href="<?= SiteHelper::createUrl("/user/".Yii::app()->controller->getId()."/description", array("id"=>$item->id, "comm_id"=>$comm->id, "action"=>"validComment")) ?>"><?= Yii::t("page", "Отобразить на сайте"); ?></a>

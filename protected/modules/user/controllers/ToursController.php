@@ -33,7 +33,7 @@ class ToursController extends UserController
         parent::init();
         $this->addModel = "CatalogToursAdd";
         $this->tableName = "catalog_tours";
-        $this->name = "туры";
+        $this->name = Yii::t("user", "туры" );
     }
 
     public function actionDescription( $gallError = "" )

@@ -2,14 +2,14 @@
     <?php
     $this->widget('addressLineWidget', array(
         'links'=>array(
-            "Мои сообщения" => SiteHelper::createUrl( "/user/messages" ),
+            Yii::t("user", "Мои сообщения") => SiteHelper::createUrl( "/user/messages" ),
             $item->subject
         ),
     ));
     ?>
     <h1><?= $item->subject ?></h1>
     <p>
-        Дата: <b><?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y H:i" ) ?></b>
+        <?= Yii::t("user", "Дата") ?> : <b><?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y H:i" ) ?></b>
     </p>
     <?= $item->message ?>
 </div>

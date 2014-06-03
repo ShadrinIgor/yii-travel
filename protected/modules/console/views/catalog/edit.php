@@ -62,7 +62,7 @@
                 <input type="text" name="image[<?= $image->id ?>][name]" value="<?= $image->name ?>" style="width:125px" />
                 <input type="text" name="image[<?= $image->id ?>][pos]" value="<?= $image->pos ?>" style="width:20px" />
                 <input type="hidden" name="image[<?= $image->id ?>][id]" value="<?= $image->id ?>" />
-                <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$form->id, "action"=>"gal_del", "img_id"=>$image->id )).$controller->params ?>">удалить</a>
+                <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$form->id, "action"=>"gal_del", "img_id"=>$image->id )).$controller->params ?>"><?= Yii::t("user", "Удалить") ?></a>
             </div>
         <?php endforeach; ?>
         </div>
@@ -73,7 +73,7 @@
         <div class="formAdd displayNone">
             <table>
                 <tr>
-                    <th>Название</th>
+                    <th><?= Yii::t("user", "Название") ?></th>
                     <td><?= CHtml::activeTextField( $addGallery, "name", array( "placeholder"=>"Подпись для картинки" ) ) ?></td>
                 </tr>
                 <tr>

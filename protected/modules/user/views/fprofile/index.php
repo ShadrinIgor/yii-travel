@@ -18,7 +18,7 @@ $this->widget('addressLineWidget', array(
     <table id="tableListItems">
         <tr>
             <th class="TLFId">№</th>
-            <th>Дата</th>
+            <th><?= Yii::t("user", "Дата") ?></th>
             <th>Описание заказа</th>
             <th class="TLFAction"><?= Yii::t("page", "статус"); ?></th>
             <th>Сумма</th>

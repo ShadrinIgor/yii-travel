@@ -9,7 +9,7 @@ class FirmBannersController extends UserController
         parent::init();
         $this->addModel = "CatalogFirmsBannersAdd";
         $this->tableName = "catalog_firms_banners";
-        $this->name = "акции/скидки";
+        $this->name = Yii::t("user", "Баннер фирмы");
 
         $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
         $id = (int) Yii::app()->request->getParam("id", 0);
@@ -62,7 +62,7 @@ class FirmBannersController extends UserController
                     $firm = CatalogFirms::fetch( $fid );
                 }
 
-                $message = ( !empty( $status ) && $status == 'saved' ) ? "Сохраненно" : "";
+                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохраненно") : "";
 
                 // Описание объявления
                 if( !empty( $_POST["update"] ) )

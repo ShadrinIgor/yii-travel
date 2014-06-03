@@ -18,7 +18,7 @@ $this->widget('addressLineWidget', array(
         </tr>
         <tr>
             <td></td>
-            <td><input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/fprofile" ) ?>'" name="cansel" value="Отмена" />&nbsp;
+            <td><input type="button" onclick="window.location = '<?= SiteHelper::createUrl("/user/fprofile" ) ?>'" name="cansel" value="<?= Yii::t("page", "Отмена") ?>" />&nbsp;
                 <input type="submit" name="recharge_submit" value="Отправить" /></td>
         </tr>
     </table>

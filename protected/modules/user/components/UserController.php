@@ -249,7 +249,7 @@ class UserController extends Controller
                     $firm = CatalogFirms::fetch( $fid );
                 }
 
-                $message = ( !empty( $status ) && $status == 'saved' ) ? "Сохраненно" : "";
+                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохраненно") : "";
 
                 // Описание объявления
                 if( !empty( $_POST["update"] ) )
@@ -291,7 +291,7 @@ class UserController extends Controller
                         if( $action == "delGallery" )
                         {
                             $comModel->delete();
-                            $gallMessage = "Картинка удалена";
+                            $gallMessage = Yii::t("user", "Картинка удалена");
                         }
                     }
                 }
@@ -305,20 +305,20 @@ class UserController extends Controller
                         if( $action == "delComment" )
                         {
                             $comModel->delete();
-                            $comMessage = "Коментарий удален";
+                            $comMessage = Yii::t("user", "Коментарий удален");
                         }
 
                         if( $action == "validComment" )
                         {
                             $comModel->is_valid = 1;
                             $comModel->save();
-                            $comMessage = "Коментарий успешно опубликован";
+                            $comMessage = Yii::t("user", "Коментарий успешно опубликован");
                         }
                     }
                 }
 
                 $addImage = new CatGalleryAdd();
-                if( $error == "gallError" )$addImage->addError( "error upload", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке ( Email : ".Yii::app()->params["supportEmail"]." ) " );
+                if( $error == "gallError" )$addImage->addError( "error upload", Yii::t("user", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке")." ( Email : ".Yii::app()->params["supportEmail"]." ) " );
                 if( !empty( $_POST["sendGallery"] ) )
                 {
                     if( $id>0 )$this->uploadImages( (int) $id, get_class( $item ) );

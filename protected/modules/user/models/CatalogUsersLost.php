@@ -34,9 +34,9 @@ class CatalogUsersLost extends CatalogUsers
                 $existConfirm = CatalogUsersConfirm::findByAttributes( array( "user_id"=>$userList[0]->id, "type"=>"lostpassword" ) );
                 if( sizeof( $existConfirm )>0 )$existConfirm[0]->delete();
 
-                if( $userList[0]->active == 0 )$error = "Ваш аккаунт не активировн";
+                if( $userList[0]->active == 0 )$error = Yii::t("models", "Ваш аккаунт не активировн");
             }
-                else $error = "Вы ввели не существующий EMAIL";
+                else $error = Yii::t("models", "Вы ввели не существующий EMAIL" );
 
             if( !empty( $error ) )
             {

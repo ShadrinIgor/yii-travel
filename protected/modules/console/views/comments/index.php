@@ -2,11 +2,11 @@
 <table id="tableListItems">
     <tr>
         <th>ID</th>
-        <th>Заголовок</th>
-        <th>Дата</th>
+        <th><?= Yii::t("user", "Заголовок") ?></th>
+        <th><?= Yii::t("user", "Дата") ?></th>
         <th>Запись</th>
         <th><?= Yii::t("page", "статус"); ?></th>
-        <th>Действия</th>
+        <th><?= Yii::t("page", "Действия") ?></th>
     </tr>
 <?php foreach( $comments as $item ) :?>
     <tr>
@@ -30,7 +30,7 @@
         <td><?= $status ?></td>
         <td class="fieldActions">
             <a href="<?= SiteHelper::createUrl("/console/comments/edit", array( "id"=>$item->id ))?>">Редактировать</a>
-            <a href="<?= SiteHelper::createUrl("/console/comments/delete", array( "id"=>$item->id ))?>">Удалить</a>
+            <a href="<?= SiteHelper::createUrl("/console/comments/delete", array( "id"=>$item->id ))?>"><?= Yii::t("user", "Удалить") ?></a>
         </td>
     </tr>
 <?php endforeach; ?>

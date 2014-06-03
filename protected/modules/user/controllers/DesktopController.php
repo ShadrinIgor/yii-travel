@@ -7,7 +7,7 @@ class DesktopController extends Controller
         if( !Yii::app()->user->isGuest )
         {
             $message = "";
-            Yii::app()->page->title = "Рабочий стол";
+            Yii::app()->page->title = Yii::t("user", "Рабочий стол" );
 
             $userModel = CatalogUsers::fetch( Yii::app()->user->id );
             if( !empty( $_POST["desktop_save"] ) )
@@ -15,7 +15,7 @@ class DesktopController extends Controller
                 $desktopID = (int)Yii::app()->request->getParam("desktopID", 0);
                 $userModel->desktop = $desktopID;
                 $userModel->save();
-                $userModel->formMessage = "Рабочий стол успешно сохранен";
+                $userModel->formMessage = Yii::t("user", "Рабочий стол успешно сохранен" );
             }
 
             $items = CatalogDesktops::fetchAll( DBQueryParamsClass::CreateParams()->setCache(0) );

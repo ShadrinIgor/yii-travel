@@ -13,7 +13,7 @@
 <table id="tableListItems">
     <tr>
         <th>ID</th>
-        <th>Название</th>
+        <th><?= Yii::t("user", "Название") ?></th>
         <th>Email</th>
         <th>Состояние</th>
         <th></th>
@@ -26,7 +26,7 @@
         <td><?= $item->del ==0 ? "активен" : "не активен" ?></td>
         <td>
             <a href="<?= SiteHelper::createUrl( "/console/subscribe/userEdit", array( "id"=>$item->id ) ) ?>">Редактировать</a>&nbsp;
-            <a href="<?= SiteHelper::createUrl( "/console/subscribe/userDelete", array( "id"=>$item->id ) ) ?>">Удалить</a>
+            <a href="<?= SiteHelper::createUrl( "/console/subscribe/userDelete", array( "id"=>$item->id ) ) ?>"><?= Yii::t("user", "Удалить") ?></a>
         </td>
     </tr>
 <?php endforeach; ?>

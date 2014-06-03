@@ -17,7 +17,7 @@ $this->widget('addressLineWidget', array(
             <div class="overflowHidden">
                 <div class="overflowHidden">
                     <div class="floatRight ItemPrice"><?php if( $item->price>0 ) : ?>Цена: <b><?= $item->price ?></b> <font>тг.</font><?php endif; ?></div>
-                    <div class="floatRight ItemDate"><?php if( $item->date>0 ) : ?>Дата: <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><?php endif; ?></div>
+                    <div class="floatRight ItemDate"><?php if( $item->date>0 ) : ?><?= Yii::t("user", "Дата") ?> : <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><?php endif; ?></div>
                     <?php if( !Yii::app()->user->isGuest ) : ?>
                         <div class="floatRight ItemFavorites">
                             <?php if( !Yii::app()->favorites->checkExists( $item->id, "catalog_items" ) ) : ?>
@@ -79,7 +79,7 @@ $this->widget('addressLineWidget', array(
         </div>
     </div>
     <div id="coments">
-        <h3>Коментарии</h3>
+        <h3><?= Yii::t("user", "Коментарии") ?></h3>
         <?php foreach( $listComments as $item ) : ?>
             <div class="CItems">
                 <div class="CIHeader">

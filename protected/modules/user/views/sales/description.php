@@ -1,7 +1,7 @@
 <?php
    $this->widget( "userPagesWidget", array(
-       "adressTitle" => "Описание акции",
-       "h1Titile" => "Описание акции",
+       "adressTitle" => Yii::t("user", "Описание акции"),
+       "h1Titile" => Yii::t("user", "Описание акции"),
        "item" => $item,
        "message" => $message,
        "gallMessage" => $gallMessage,
@@ -9,7 +9,7 @@
        "addImage" => $addImage,
        "comMessage" => $comMessage,
        "listGallery" => $listGallery,
-       "sitePage" => '<a href="'.SiteHelper::createUrl( "/sales/description" ).'/'.$item->slug.'.html" title="">просмотреть страницу акции на сайте</a>'
+       "sitePage" => '<a href="'.SiteHelper::createUrl( "/sales/description" ).'/'.$item->slug.'.html" title="'.Yii::t("user", "просмотреть страницу акции на сайте").'">'.Yii::t("user", "просмотреть страницу акции на сайте").'</a>'
    ) );
 ?>
 <?php $this->widget( "formNoteWidget" ) ?>

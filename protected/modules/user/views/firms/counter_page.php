@@ -7,28 +7,28 @@
 
     $listBanners = CatalogFirmsBanners::findByAttributes( array( "firm_id"=>$item->id ) );
 ?>
-<h2>Статистика посещаемости</h2>
+<h2><?= Yii::t("counter_page", "Статистика посещаемости"); ?></h2>
 <?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-statistika" ) ?>
 <table align="center">
     <tr>
-        <th>Количесво просмотров страниц о компании: </th>
+        <th><?= Yii::t("counter_page", "Количесво просмотров страниц о компании"); ?>: </th>
         <td><?= $item->col ?></td>
     </tr>
     <tr>
-        <th>Общее количество просмотров туров компании:</th>
+        <th><?= Yii::t("counter_page", "Общее количество просмотров туров компании"); ?>:</th>
         <td><?=  $countTour ?></td>
     </tr>
     <tr>
-        <th>Общее количество просмотров баннеров:</th>
+        <th><?= Yii::t("counter_page", "Общее количество просмотров баннеров"); ?>:</th>
         <td><?=  $countBanners ?></td>
     </tr>
 </table>
 <?php if( $listBanners>0 ) : ?>
-    <h3 align="center">Статистика по баннерам:</h3>
+    <h3 align="center"><?= Yii::t("counter_page", "Статистика по баннерам"); ?>:</h3>
     <table align="center">
         <tr>
-            <th>Название баннера</th>
-            <th>Количество просмотров</th>
+            <th><?= Yii::t("counter_page", "Название баннера"); ?></th>
+            <th><?= Yii::t("counter_page", "Количество просмотров"); ?></th>
         </tr>
         <?php foreach( $listBanners as $banner ) : ?>
             <tr>

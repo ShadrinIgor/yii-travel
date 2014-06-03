@@ -9,7 +9,7 @@ class ItemsController extends UserController
         parent::init();
         $this->addModel = "CatalogItemsAdd";
         $this->tableName = "catalog_items";
-        $this->name = "Частные объявления";
+        $this->name = Yii::t("user", "Частные объявления");
 
         $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
         $id = (int) Yii::app()->request->getParam("id", 0);
@@ -39,7 +39,7 @@ class ItemsController extends UserController
 
             if( !$item->id || $item->user_id->id == Yii::app()->user->getId()  )
             {
-                $message = ( !empty( $status ) && $status == 'saved' ) ? "Сохраненно" : "";
+                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохраненно") : "";
 
                 // Описание объявления
                 if( !empty( $_POST["update"] ) )
@@ -81,7 +81,7 @@ class ItemsController extends UserController
                         if( $action == "delGallery" )
                         {
                             $comModel->delete();
-                            $gallMessage = "Картинка удалена";
+                            $gallMessage = Yii::t("user", "Картинка удалена");
                         }
                     }
                 }
@@ -95,20 +95,20 @@ class ItemsController extends UserController
                         if( $action == "delComment" )
                         {
                             $comModel->delete();
-                            $comMessage = "Коментарий удален";
+                            $comMessage = Yii::t("user", "Коментарий удален");
                         }
 
                         if( $action == "validComment" )
                         {
                             $comModel->is_valid = 1;
                             $comModel->save();
-                            $comMessage = "Коментарий успешно опубликован";
+                            $comMessage = Yii::t("user", "Коментарий успешно опубликован");
                         }
                     }
                 }
 
                 $addImage = new CatGalleryAdd();
-                if( $error == "gallError" )$addImage->addError( "error upload", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке ( Email : ".Yii::app()->params["supportEmail"]." ) " );
+                if( $error == "gallError" )$addImage->addError( "error upload", Yii::t("user", "Произошла ошибка добавления фото, попробуте заново или обратитеcь к тех. потдержке")." ( Email : ".Yii::app()->params["supportEmail"]." ) " );
                 if( !empty( $_POST["sendGallery"] ) )
                 {
                     if( $id>0 )$this->uploadImages( (int) $id, get_class( $item ) );

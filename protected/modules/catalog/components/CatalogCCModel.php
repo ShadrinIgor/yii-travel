@@ -113,7 +113,7 @@ class CatalogCCModel extends CCModel
                     {
                         switch( $fieldTypes[ $key ] )
                         {
-                            case "checkbox" : $list[ $value ] = $param->$key ? "до" : "нет";break;
+                            case "checkbox" : $list[ $value ] = $param->$key ? "до" : Yii::t("page", "нет");break;
                             default : $list[ $value ] = $param->$key;break;
                         }
                     }

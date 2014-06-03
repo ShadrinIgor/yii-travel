@@ -53,7 +53,7 @@ src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
 alt="PayPal - The safer, easier way to pay online">
 </form>
 -->
-                <input type="button" name="cansel" onclick="window.location='<?= SiteHelper::createUrl("/user/fprofile") ?>';" value="Отмена" />&nbsp;
+                <input type="button" name="cansel" onclick="window.location='<?= SiteHelper::createUrl("/user/fprofile") ?>';" value="<?= Yii::t("page", "Отмена") ?>" />&nbsp;
                 <input style="margin: :0px;" type="submit" value="Далее" name="register_submit_button">
             </td>
         </tr>

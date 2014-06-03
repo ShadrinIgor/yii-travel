@@ -6,7 +6,7 @@ class RequestsController extends Controller
     {
         if( !Yii::app()->user->isGuest )
         {
-            Yii::app()->page->title = "Мои заказы";
+            Yii::app()->page->title = Yii::t("user", "Мои заказы");
             $trees = PlantRequest::findByAttributes( array( "user_id"=>Yii::app()->user->id ) );
             $this->render( "index", array( "trees"=>$trees ) );
         }
@@ -25,11 +25,11 @@ class RequestsController extends Controller
                 $order = PlantRequest::fetch( $order_id );
                 if( $order->id >0 && $order->user_id->id == Yii::app()->user->id && $order->del == 0 )
                 {
-                    if( $order->inBasket() )$messageOk = "Заказ успешно удален";
+                    if( $order->inBasket() )$messageOk =Yii::t("user",  "Заказ успешно удален");
                 }
             }
 
-            if( empty( $messageOk ) )$messageEr = "Произошла ошибка удаления заказа, попробуйдет позже";
+            if( empty( $messageOk ) )$messageEr = Yii::t("user", "Произошла ошибка удаления заказа, попробуйдет позже");
 
             $listOrders = PlantRequest::findByAttributes( array( "user_id"=>Yii::app()->user->id ) );
             $this->render( "index", array( "trees"=>$listOrders, "messageOk"=>$messageOk , "messageEr"=>$messageEr ) );

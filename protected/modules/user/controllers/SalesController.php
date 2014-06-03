@@ -7,6 +7,6 @@ class SalesController extends UserController
         parent::init();
         $this->addModel = "CatalogFirmsItemsAdd2";
         $this->tableName = "catalog_firms_items";
-        $this->name = "скидки и акции";
+        $this->name = Yii::t("user", "скидки и акции");
     }
 }

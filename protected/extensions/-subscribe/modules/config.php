@@ -17,7 +17,7 @@ class config
         $cout = '<h1>Настройки</h1>';
         if( !empty( $message )  )$cout .= functions::getMessage( $message );
 
-        $cout .= functions::getDopMenu( array( array( "title"=>"Добавить", "href"=>"index.php?mofule=config&action=edit" ) ) );
+        $cout .= functions::getDopMenu( array( array( "title"=>Yii::t("user", "Добавить"), "href"=>"index.php?mofule=config&action=edit" ) ) );
         $cout .= '<table id="centerTable">
                     <tr>
                         <th>Ключ</th>
@@ -36,7 +36,7 @@ class config
                         <td>".$line->value."</td>
                         <td class=\"alignCenter\">
                             <a href=\"index.php?module=config&action=edit&id=".$line->id."\">Редактировать</a>,
-                            <a href=\"index.php?module=config&action=delete&id=".$line->id."\">Удалить</a>
+                            <a href=\"index.php?module=config&action=delete&id=".$line->id."\"><?= Yii::t("user", "Удалить") ?></a>
                         </td>
                       </tr>";
         }
