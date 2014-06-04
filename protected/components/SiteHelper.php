@@ -53,7 +53,7 @@ class SiteHelper
 
             if( get_class( $item ) == "CatalogWork" || get_class( $item ) == "CatalogWorkAdd" || get_class( $item ) == "CatalogWorkResumeAdd"
                 || get_class( $item ) == "CatalogInfo"
-                || get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
+                || get_class( $item ) == "CatalogToursEn" || get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
                 || get_class( $item ) == "CatalogItems" || get_class( $item ) == "CatalogItemsAdd"
                 || get_class( $item ) == "CatalogFirmsItems" || get_class( $item ) == "CatalogFirmsItemsAdd"
                     )$dopSlug = $item->id;
@@ -406,12 +406,9 @@ class SiteHelper
         }
     }
 
-    static function createUrl($route,$params=array(),$ampersand='&', $needLang = true )
+    static function createUrl($route,$params=array(),$ampersand='&')
     {
-        if( !empty( $_GET["lang"] ) && $needLang )$lang = strtolower( trim( $_GET["lang"] )."/" );
-                                else $lang = "";
-
-        if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"].$lang;
+        if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"];
             else
         {
             if($route==='')
@@ -424,7 +421,7 @@ class SiteHelper
             if( defined("YII_SUBDOMAIN") )$paramName = YII_SUBDOMAIN."baseUrl";
                                      else $paramName = "baseUrl";
 
-            $url = Yii::app()->params[ $paramName ].$lang.Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
+            $url = Yii::app()->params[ $paramName ].Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
             $url = str_replace("//","/", $url);
             $url = str_replace(":/","://", $url);
 
@@ -478,9 +475,9 @@ class SiteHelper
      * @param text $text обрезаемый текст
      * @param int $count необходимое количество символов
      */
-    static function getSubTextOnWorld( $text, $count, $tripTags = true )
+    static function getSubTextOnWorld( $text, $count )
     {
-        if( $tripTags )$text = strip_tags( $text);
+        $text = strip_tags( $text);
         if( strlen( $text )>$count )
         {
             $cout = substr( $text, 0, $count );

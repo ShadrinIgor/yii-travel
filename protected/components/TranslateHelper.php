@@ -32,7 +32,9 @@ class TranslateHelper
     static public function setTranslate( $model, $transModel )
     {
         $name = TranslateHelper::translate( $model->name );
-        $text = TranslateHelper::translate( $model->description );
+        if( property_exists( $model, "description" ) )
+            if( $model->description )$text = TranslateHelper::translate( $model->description );
+                                else $text = "";
 
         $requiredFields = $model->getSafeAtributes();
         for( $i=0;$i<sizeof( $requiredFields );$i++ )
@@ -43,7 +45,7 @@ class TranslateHelper
 
         $transModel->id = $model->id;
         $transModel->name = $name;
-        $transModel->description = $text;
+        if( property_exists( $model, "description" ) )$transModel->description = $text;
         if( !$transModel->save() )
                 print_r( $transModel->getErrors() );
             else

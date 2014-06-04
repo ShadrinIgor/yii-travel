@@ -14,7 +14,8 @@ class TranslateCommand extends CConsoleCommand
             }
 
             $model->translate = 1;
-            $model->save();
+            if( !$model->save() )
+                print_r( $model->getErrors() );
         }
     }
 }
