@@ -8,5 +8,5 @@ return array(
     "Статистика по баннерам" => "Statistics on banners",
     "Название баннера" => "Name banner",
     "Количество просмотров" => "Number of views",
-    "" => "",
+
 );

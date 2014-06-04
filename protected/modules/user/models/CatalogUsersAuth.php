@@ -50,9 +50,9 @@ class CatalogUsersAuth extends CatalogUsers
                 if( $errorCode == 100 )
                 {
                     $textError = Yii::t("models", "Вы не подтвердили Свой Email").":".$this->email."<br/>";
-                    $textError .= Yii::t("models", "Вам по почте должно было прийти письмо для подверждения регистрации.").
+                    $textError .= Yii::t("models", "Вам по почте должно было прийти письмо для подтверждения регистрации.").
                                                    "<br/><br/><b>". Yii::t("models", "Письмо не пришло?" )."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">". Yii::t("models", "отправить заново письмо для подтверждения регистрации на")." ".$this->email."</a>
-                                                   <br/><br/><b>". Yii::t("models", "Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>". Yii::t("models", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
+                                                   <br/><br/><b>". Yii::t("models", "Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. поддержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>". Yii::t("models", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
                     $this->addErrors( array(  "0"=>$textError ) );
                 }
                     else

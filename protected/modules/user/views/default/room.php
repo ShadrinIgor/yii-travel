@@ -1,7 +1,7 @@
 <div id="PageText">
     <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( Yii::t("user", "Персональный кибинет") ),
+        'links'=>array( Yii::t("user", "Персональный кабинет") ),
     ));
     ?>
     <h1><?= Yii::t("user", "Персональный кабинет") ?></h1>

@@ -144,7 +144,7 @@ class DefaultController extends Controller
 
         if( !empty( $successfully ) )$okMessage = "<b>".Yii::t("user", "Регистрация сохранена.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения Email").
                                                     "<br/><br/><b>".Yii::t("user", "Письмо не пришло?")."</b><br/> <a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$successfully ) ) ."\">".Yii::t("user", "отправить заново письмо для подтверждения на ").$successfully."</a>
-                                                    <br/><br/><b>".Yii::t("user", "Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. потдержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>".Yii::t("user", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
+                                                    <br/><br/><b>".Yii::t("user", "Все равно не пришло?</b><br/>Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. поддержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>".Yii::t("user", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
                                        else $okMessage=null;
 
         $this->render( "registration", array( "form"=>$user, "arrayCountry"=>$arrayCountry, "title"=>$title, "okMessage"=>$okMessage ) );

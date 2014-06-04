@@ -4,7 +4,7 @@
         'links'=>array(
             Yii::t("user", "мои фирмы") => SiteHelper::createUrl( "/user/firms" ),
             $firm->name=>SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "slug"=>$firm->slug ) ),
-            Yii::t("user", "дом. услуги компании") => SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"service" ) ),
+            Yii::t("user", "доп. услуги компании") => SiteHelper::createUrl( "/user/firms/description/", array( "id"=>$firm->id, "tab"=>"service" ) ),
             $firm->id > 0 ? $firm->name : Yii::t("user", "Описание услуги")
         ),
     ));

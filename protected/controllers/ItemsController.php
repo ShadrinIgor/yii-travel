@@ -7,8 +7,8 @@ class ItemsController extends InfoController
         parent::init();
         $this->classModel = "CatalogFirmsItems";
         $this->classCategory = "";
-        $this->description = Yii::t("items", "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры.");
-        $this->keyWord = Yii::t("items", "акции, скидки, распродажа туров, самые выгодные предложениея, горячие туры");
+        $this->description = Yii::t("items", "акции, скидки, распродажа туров, самые выгодные предложения, горящие туры.");
+        $this->keyWord = Yii::t("items", "акции, скидки, распродажа туров, самые выгодные предложения, горящие туры");
     }
 
     public function actionDescription()

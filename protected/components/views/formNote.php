@@ -3,7 +3,7 @@
         <a href="#" class="openDisplayNone"><?= Yii::t("form", "Вам кажется что не хватает информации?"); ?></a>
         <div class="displayNone">
             <?= Yii::t("form", "Если Вам кажется что не хватает каких то полей, либо поля формы не содержат необходимых значенией"); ?>.<br/>
-            <?= Yii::t("form", "Напишите свое предложение на email потдержки"); ?> - <a href="mailto:<?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, <?= Yii::t("form", "и распишите свое предложение, мы обязательно его рассмотрим"); ?>.
+            <?= Yii::t("form", "Напишите свое предложение на email поддержки"); ?> - <a href="mailto:<?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>, <?= Yii::t("form", "и распишите свое предложение, мы обязательно его рассмотрим"); ?>.
         </div>
     </div>
 </div>
