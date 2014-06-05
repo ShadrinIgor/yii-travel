@@ -3,13 +3,13 @@
 if( $categoryModel->id == 0 )
             $this->widget('addressLineWidget', array(
             'links'=>array(
-                Yii::t("page", "Работа в туристичестической сфере")
+                Yii::t("page", "Работа в туристической сфере")
             )
         ));
     else
         $this->widget('addressLineWidget', array(
             'links'=>array(
-                Yii::t("page", "Работа в туристичестической сфере") => SiteHelper::createUrl( "/work" ),
+                Yii::t("page", "Работа в туристической сфере") => SiteHelper::createUrl( "/work" ),
                 $categoryModel->name
             )
         ));
@@ -17,9 +17,9 @@ if( $categoryModel->id == 0 )
 
 <div id="InnerText">
     <?php if( $categoryModel->id == 0 ) : ?>
-        <h1><?= Yii::t("page", "Работа в туристичестической сфере"); ?></h1>
+        <h1><?= Yii::t("page", "Работа в туристической сфере"); ?></h1>
     <?php else : ?>
-        <h1><?= $categoryModel->name ?><font>, <?= Yii::t("page", "Работа в туристичестической сфере"); ?></font></h1>
+        <h1><?= $categoryModel->name ?><font>, <?= Yii::t("page", "Работа в туристической сфере"); ?></font></h1>
     <?php endif; ?>
     <h2><?= Yii::t("page", "Вакансии"); ?></h2>
     <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/work/description" ) ?>" class="addButton" title="<?= Yii::t("page", "добавить бесплатно вакансию в  туристической сфере"); ?>">+ <?= Yii::t("page", "добавить вакансию"); ?></a></div>

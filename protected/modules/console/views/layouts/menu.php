@@ -28,6 +28,7 @@
                         <ul>
                             <li><a href="<?= SiteHelper::createUrl("/console/stat") ?>">Логи</a></li>
                             <li><a href="<?= SiteHelper::createUrl("/console/lang") ?>">Языковые переменные</a></li>
+                            <li><a href="<?= SiteHelper::createUrl("/console/translate") ?>">Перевод файлов</a></li>
                             <li><a href="<?= SiteHelper::createUrl("/console/subscribe") ?>">Рассылка</a></li>
                             <li><a href="<?= SiteHelper::createUrl("/console/banners") ?>">Банеры</a></li>
                             <li><a href="<?= SiteHelper::createUrl("/console/catalog", array( "catalog"=>"ConsoleConfigOptions" ) ) ?>">Настройки</a></li>

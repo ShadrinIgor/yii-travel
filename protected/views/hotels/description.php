@@ -34,7 +34,7 @@ $images = ImageHelper::getImages( $item );
 
         <?= $item->description ?>
         <div class="LParams">
-            <p><b><?= Yii::t("page", "Контактая информация"); ?>:</b><br/><br/>
+            <p><b><?= Yii::t("page", "Контактная информация"); ?>:</b><br/><br/>
                 <?php if( $item->tel ) : ?><?= Yii::t("page", "Телефон"); ?>: <?= $item->tel ?><br/><?php endif; ?>
                 <?php if( $item->fax ) : ?><?= Yii::t("page", "Факс"); ?>: <?= $item->fax ?><br/><?php endif; ?>
                 <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogHotels", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ <?= Yii::t("page", "Показать Email"); ?> ]</a></span><br/><?php endif; ?>

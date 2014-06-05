@@ -161,7 +161,7 @@ class SiteController extends Controller
             }
             $this->render( "unSubscribe" );
         }
-            else throw new CHttpException("Ошибка", Yii::t("page", "Неправельный адресс, проверьте адррес").".");
+            else throw new CHttpException("Ошибка", Yii::t("page", "Неправильный адрес, проверьте адрес").".");
     }
 
 /*

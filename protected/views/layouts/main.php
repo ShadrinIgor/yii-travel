@@ -66,7 +66,7 @@
         </div>
 
         <div class="CItem">
-            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="<?= Yii::t( "page", "туристические агентсва, тур фирмы") ?>" class="MenuJsClass" id="c7"></a>
+            <a href="<?= SiteHelper::createUrl( "/travelAgency" ) ?>" title="<?= Yii::t( "page", "туристические агенства, тур фирмы") ?>" class="MenuJsClass" id="c7"></a>
         </div>
         <div class="CItem">
             <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="<?= Yii::t( "page", "туристические частные объявления") ?>" class="MenuJsClass" id="c9"></a>

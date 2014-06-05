@@ -41,7 +41,7 @@ return array(
     "опубликован" => "published ",
     "Коментарии" => "Comments",
     "Вы действительно хотите удалить запись?" => "Do you really want to delete the record ?",
-    "Опубликованно" => "Publish",
+    "Опубликовано" => "Publish",
     "Дата" => "Date",
     "Пользователь" => "User",
     "Заголовок" => "Title",
@@ -145,13 +145,4 @@ return array(
     "зоны отдыха/дачи" => "recreation area / house",
     "скидки и акции" => "discounts and promotions",
     "туры" => "tours",
-    "" => "",
-    "" => "",
-    "" => "",
-    "" => "",
-    "" => "",
-    "" => "",
-    "" => "",
-    "" => "",
-
 );

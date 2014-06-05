@@ -77,7 +77,7 @@
                     <th><?= Yii::t("page", "Описание") ?></th>
                     <th><?= Yii::t("user", "Пользователь") ?></th>
                     <th><?= Yii::t("user", "Дата") ?></th>
-                    <th><?= Yii::t("user", "Опубликованно") ?></th>
+                    <th><?= Yii::t("user", "Опубликовано") ?></th>
                     <th><?= Yii::t("page", "Действия") ?></th>
                 </tr>
                 <?php foreach( $listComments as $comm ) : ?>

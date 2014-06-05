@@ -42,5 +42,5 @@ return array(
     "Мечети" => "Mosque",
     "Великие люди" => "Great people",
     "Синагоги" => "Synagogue",
-    "" => "",
+
 );

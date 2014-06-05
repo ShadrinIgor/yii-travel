@@ -19,7 +19,7 @@
                 <br/><br/>
             </td>
             <td class="textAlignCenter"><?= SiteHelper::getDateOnFormat( $service->date, "d.m.Y H:i" ) ?></td>
-            <td class="textAlignCenter"><?= ( $service->is_new == 1 ) ? "<div class=\"readNew\">новое<br/></div>" : "" ?><div class="publishStatus"><?= ( $service->active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не опубликованно") ?></div></td>
+            <td class="textAlignCenter"><?= ( $service->is_new == 1 ) ? "<div class=\"readNew\">новое<br/></div>" : "" ?><div class="publishStatus"><?= ( $service->active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не Опубликовано") ?></div></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>
                 <div class="itemAction textAlignCenter">

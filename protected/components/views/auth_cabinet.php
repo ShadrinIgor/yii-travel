@@ -10,7 +10,7 @@
         <li><a href="<?= SiteHelper::createUrl("/user/messages" ) ?>" title=""><?= Yii::t("page", "Сообщения"); ?></a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/default/Profile" ) ?>" title=""><?= Yii::t("page", "Мой профиль"); ?></a></li>
         <!--li><a href="<?= SiteHelper::createUrl("/user/favorites" ) ?>" title="">Выбранное на заметку</a></li-->
-        <li><a href="<?= SiteHelper::createUrl("/user/desktop" ) ?>" title=""><?= Yii::t("page", "Выбрать стить сайта"); ?></a></li>
+        <li><a href="<?= SiteHelper::createUrl("/user/desktop" ) ?>" title=""><?= Yii::t("page", "Выбрать стиль сайта"); ?></a></li>
         <!-- a href="<?= SiteHelper::createUrl("/user/fprofile" ) ?>" title="">Финансов1ый профиль</a-->
     </ul>
     <div id="logOut">

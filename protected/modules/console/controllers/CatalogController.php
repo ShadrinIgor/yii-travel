@@ -188,7 +188,7 @@ class CatalogController extends ConsoleController
                         }
                     }
                 }
-                $message = "Галлерея успешно сохраненна";
+                $message = "Галерея успешно сохраненна";
             }
 
             // Добвление картинки

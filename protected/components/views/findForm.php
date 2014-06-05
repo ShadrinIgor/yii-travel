@@ -65,7 +65,7 @@
                 <div class="floatRight">
                     <input type="submit" name="find" value="<?= Yii::t("page", "Подобрать"); ?>" />
                 </div>
-                <?= Yii::t("page", "Форма подбора отелея по стране и уровню"); ?>
+                <?= Yii::t("page", "Форма подбора отеля по стране и уровню"); ?>
             </div>
         </form>
     </div>

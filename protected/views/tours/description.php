@@ -56,7 +56,7 @@ $this->widget('addressLineWidget', array(
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($otherTours)>0 ) : ?>
-        <h2><?= Yii::t("page", "Похошие туры"); ?> <?= $item->country_id->name_2 ?></h2>
+        <h2><?= Yii::t("page", "Похожие туры"); ?> <?= $item->country_id->name_2 ?></h2>
         <div class="ITBlock">
             <?php foreach( $otherTours as $tour ) : ?>
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>

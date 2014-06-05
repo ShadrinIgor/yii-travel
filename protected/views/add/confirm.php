@@ -20,7 +20,7 @@ $this->widget('addressLineWidget', array(
     <div class="greeBorder">
         <p>
             <b><?= Yii::t("add", "Возникли вопросы?"); ?></b><br/>
-            <?= Yii::t("add", "Пишите нам на емаил support@world-travel.uz, мы будем рады на них ответить."); ?>
+            <?= Yii::t("add", "Пишите нам на Email support@world-travel.uz, мы будем рады на них ответить."); ?>
         </p>
         <p>
             <b><?= Yii::t("add", "Вы работает в туристической фирме? Хотите разместить рекламу БЕСПЛАТНО?"); ?></b><br/>

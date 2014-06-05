@@ -58,11 +58,11 @@ class ExBanner extends CCModel
 			array('name, image, email', 'length', 'max'=>50),
             array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1024 * 1024 * 5,
                 'tooLarge' => 'Размер файл не должен превышать 5mb',
-                'wrongType' => "Неправельный тип загружаемого файл допускается - jpg, gif, png"), // Ограничение по размеру 5mb
+                'wrongType' => "Неправильный тип загружаемого файл допускается - jpg, gif, png"), // Ограничение по размеру 5mb
 
             array('file', 'file', 'types'=>'swf', 'allowEmpty'=>true, 'maxSize' => 1024 * 1024 * 5,
                 'tooLarge' => 'Размер файл не должен превышать 5mb',
-                'wrongType' => "Неправельный тип загружаемого файл допускается - swf"),
+                'wrongType' => "Неправильный тип загружаемого файл допускается - swf"),
 
 			array('through', 'length', 'max'=>25),
 			array('start_date, finish_date', 'length', 'max'=>10),

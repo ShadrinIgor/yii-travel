@@ -23,7 +23,7 @@ class CatalogUsersRegistration extends CatalogUsers
 
 			array('name, password, password2, email, captcha, type_id', 'required'),
             array('password', 'compare', 'compareAttribute'=>'password2'),
-            array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1048576, 'wrongType'=>'Неправельный тип загружаемого файла', 'tooLarge'=>'Ограничение размера загрузки файла 2mb'),
+            array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1048576, 'wrongType'=>'Неправильный тип загружаемого файла', 'tooLarge'=>'Ограничение размера загрузки файла 2mb'),
             array( 'captcha', 'captcha' ),
             /*
              *   авторизованным пользователям код можно не вводить

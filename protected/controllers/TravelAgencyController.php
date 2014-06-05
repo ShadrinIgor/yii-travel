@@ -33,7 +33,7 @@ class TravelAgencyController extends InfoController
         if( !in_array( $tab, $tabArray ) )$tab = "";
 
         // Ошибка при не правельно ID
-        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы");
+        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адреса страницы");
 
         if( $id > 0 )
         {
@@ -56,7 +56,7 @@ class TravelAgencyController extends InfoController
                     {
                         $item->onFirmNewComment( new CEvent( $commentModel ), array( "subject"=>$commentModel->name, "firm_name"=>$item->name, "date"=>date("d.m.Y H:i"), "user_name"=>$commentModel->fio, "description"=>$commentModel->message, "link"=>SiteHelper::createUrl( "/user/firms/description", array("id"=>$item->id, "tab"=>"pcomments") ) ) );
                         $commentModel = new CatalogFirmsCommentsAdd();
-                        $commentModel->formMessage = Yii::t("tours", "Сообщение отправленно, после модерации оно будет опубликованно.");
+                        $commentModel->formMessage = Yii::t("tours", "Сообщение отправленно, после модерации оно будет Опубликовано.");
                     }
                 }
 

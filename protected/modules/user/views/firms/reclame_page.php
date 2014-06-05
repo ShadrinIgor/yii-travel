@@ -36,7 +36,7 @@
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmBanners/description", array("id"=>$banner->id, "fid"=>$item->id)) ?>" title="<?= Yii::t("user", "описание акции/скидки"); ?>"><?= $banner->name ?></a>
             </td>
-            <td class="textAlignCenter publishStatus"><?= ( $banner->active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не опубликованно") ?></td>
+            <td class="textAlignCenter publishStatus"><?= ( $banner->active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не Опубликовано") ?></td>
             <td class="textAlignCenter"><?= $banner->col ?></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>

@@ -24,7 +24,7 @@
     <?php endif; ?>
 
     <div id="gallery">
-        <h2><?= Yii::t("page", "Галлерея"); ?></h2>
+        <h2><?= Yii::t("page", "Галерея"); ?></h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
         <?php if( $item->id==0 ) : ?>
             <div class="messageSummary"><?= Yii::t("page", "После сохранения вы сможете добавить фотографии"); ?>.</div>
@@ -68,7 +68,7 @@
                         <b><?= Yii::t("page", "Правила добавление фотографий"); ?></b><br/>
                         <ul>
                             <li><?= Yii::t("page", "Количество файлов не должно превышать 8 штук"); ?></li>
-                            <li><?= Yii::t("page", "Размер одной фотографии не должен первышать 5mb"); ?></li>
+                            <li><?= Yii::t("page", "Размер одной фотографии не должен превышать 5mb"); ?></li>
                             <li><?= Yii::t("page", "Для загрузки допускаются файлы следующих типов jpg|jpeg"); ?></li>
                         </ul>
 
@@ -116,7 +116,7 @@
                     <th><?= Yii::t("page", "Описание"); ?></th>
                     <th><?= Yii::t("page", "Пользователь"); ?></th>
                     <th><?= Yii::t("page", "Дата"); ?></th>
-                    <th><?= Yii::t("page", "Опубликованно"); ?></th>
+                    <th><?= Yii::t("page", "Опубликовано"); ?></th>
                     <th><?= Yii::t("page", "Действия"); ?></th>
                 </tr>
                 <?php foreach( $listComments as $comm ) : ?>

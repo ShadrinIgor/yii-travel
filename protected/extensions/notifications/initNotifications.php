@@ -59,7 +59,7 @@ class initNotifications extends CApplicationComponent
                         {
                             $toUserModel = CatalogUsers::findByAttributes( array("email"=>$notificationMessage[$i]->to_user) );
                             if( $toUserModel[0]->id >0 )$NItem->user_id = $toUserModel[0]->id;
-                                else $this->errors[] = array( "Ошибка обработки действвий", "Событие: #".$notification[$i].", Действие: #".$notificationMessage[$i]." - емаил указыыный в поле TO_USER не зарегестрирован в базе" );
+                                else $this->errors[] = array( "Ошибка обработки действвий", "Событие: #".$notification[$i].", Действие: #".$notificationMessage[$i]." - Email указыыный в поле TO_USER не зарегестрирован в базе" );
                         }
 
                         $NItem->date = time();
@@ -77,7 +77,7 @@ class initNotifications extends CApplicationComponent
                         {
                             $toUserModel = CatalogUsers::findByAttributes( array("email"=>$notificationMessage[$i]->to_user) );
                             if( $toUserModel[0]->id >0 )$userTo= $toUserModel[0];
-                                    else $this->errors[] = array( "Ошибка обработки действвий", "Событие: #".$notification[$i].", Действие: #".$notificationMessage[$i]." - емаил указыыный в поле TO_USER не зарегестрирован в базе" );
+                                    else $this->errors[] = array( "Ошибка обработки действвий", "Событие: #".$notification[$i].", Действие: #".$notificationMessage[$i]." - Email указыыный в поле TO_USER не зарегестрирован в базе" );
                         }
 
                         if( !empty( $userTo) && $userTo->id >0 )

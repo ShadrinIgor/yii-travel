@@ -29,7 +29,7 @@
             <a href="<?= SiteHelper::createUrl( "/user/tours/description", array("id"=>$item->id) ) ?>" title="<?= Yii::t("page", "Описание") ?>"><?= $item->name ?></a>
         </td>
         <td><?= $item->country_id->name.", ".$item->city_id->name ?></td>
-        <td class="textAlignCenter"><?= ( $item->is_active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не опубликованно") ?></td>
+        <td class="textAlignCenter"><?= ( $item->is_active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не Опубликовано") ?></td>
         <td class="textAlignCenter">
             <a href="#" class="aAction"></a>
             <div class="itemAction textAlignCenter">

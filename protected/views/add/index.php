@@ -75,7 +75,7 @@ $this->widget('addressLineWidget', array(
         </p>
         <p>
             <b><?= Yii::t("add", "Возникли вопросы?"); ?></b><br/>
-            <?= Yii::t("add", "Пишите нам на емаил <a href='mailto:support@world-travel.uz'>support@world-travel.uz</a>, мы будем рады на них ответить."); ?>
+            <?= Yii::t("add", "Пишите нам на Email <a href='mailto:support@world-travel.uz'>support@world-travel.uz</a>, мы будем рады на них ответить."); ?>
         </p>
         <p>
             <b><?= Yii::t("add", "Ваша информация, фирма, отель или прочая информация уже размещене на сайте?"); ?> </b><br/>

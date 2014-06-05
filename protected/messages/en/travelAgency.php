@@ -13,5 +13,4 @@ return array(
     "Заголовок" => "Title",
     "Описание акции/скидки" => "Description promotions / discounts",
     "акции/скидки от компании" => "offers / discounts from the company",
-
 );

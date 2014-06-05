@@ -37,7 +37,7 @@ class CatalogKurortsAdd extends CatalogKurorts
             'category_id' => Yii::t("models", "Категория" ),
             'country_id' => Yii::t("page", "Страна"),
             'city_id' => Yii::t("page", "Город"),
-            'location' => Yii::t("models", "Адресс" ),
+            'location' => Yii::t("models", "адрес" ),
             'www' => Yii::t("models", "Сайт" ),
             'email' => 'Email',
             'telefon' => Yii::t("models", "Телефон"),

@@ -1,4 +1,4 @@
-<h1>Галлерея</h1>
+<h1>Галерея</h1>
 
 <div id="galleryCountry">
 <?php foreach( $list_country as $country ):
@@ -17,7 +17,7 @@
                                 $countTree = CatalogGardensTree::count( DBQueryParamsClass::CreateParams()->setConditions("place_id=:place_id")->setParams(array(":place_id"=>$place->id)));
                                 $countImages = CatGallery::count( DBQueryParamsClass::CreateParams()->setConditions("catalog=:catalog AND item_id=:item_id")->setParams(array(":catalog"=>"catalog_gardens_places", ":item_id"=>$place->id)));
                                 ?>
-                                <div clas="GPItems<?php if( $id>0 && $id == $place->id ) : ?> GPSel<?php endif; ?>"><a href="<?= SiteHelper::createUrl("/gallery/index", array("id"=>$place->id)) ?>" title="<?= $country->name ?>, <?= $garden->name ?>, <?= $place->name ?> галлерея"><?= $place->name ?> ( <?= $countTree."/".$countImages ?> )</a></div>
+                                <div clas="GPItems<?php if( $id>0 && $id == $place->id ) : ?> GPSel<?php endif; ?>"><a href="<?= SiteHelper::createUrl("/gallery/index", array("id"=>$place->id)) ?>" title="<?= $country->name ?>, <?= $garden->name ?>, <?= $place->name ?> Галерея"><?= $place->name ?> ( <?= $countTree."/".$countImages ?> )</a></div>
                             <?php endforeach; ?>
                     </div>
             <?php endforeach; ?>

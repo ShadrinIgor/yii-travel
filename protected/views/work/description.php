@@ -40,7 +40,7 @@ $images = ImageHelper::getImages( $item );
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($usersOther)>0 ) : ?>
-        <h2><?= Yii::t("page", "Другие объяления пользователя"); ?></h2>
+        <h2><?= Yii::t("page", "Другие объявления пользователя"); ?></h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $usersOther as $hotel ) : ?>
                 <?php $this->widget("infoOneWidget", array( "item"=>$hotel, "link"=>"/work" )) ?>
@@ -49,7 +49,7 @@ $images = ImageHelper::getImages( $item );
     <?php endif; ?>
 
     <?php if( sizeof($otherHotels)>0 ) : ?>
-        <h2><?= Yii::t("page", "Другие объяления категории"); ?></h2>
+        <h2><?= Yii::t("page", "Другие объявления категории"); ?></h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $otherHotels as $hotel ) : ?>
                 <?php $this->widget("infoOneWidget", array( "item"=>$hotel, "link"=>"/work" )) ?>

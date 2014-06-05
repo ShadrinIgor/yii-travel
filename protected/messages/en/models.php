@@ -26,7 +26,7 @@ return array(
     "Заголовок" => "Title",
     "Текст" => "Text",
     "Описание услуги" => "Service Description",
-    "Адресс" => "Address",
+    "адрес" => "Address",
     "Кол. звезд" => "Max . Stars",
     "Сайт" => "Site",
     "Категория" => "Category",
@@ -82,5 +82,4 @@ return array(
     "Город" => "City",
     "С" => "From",
     "Вы не согласились с правилами" => "You do not agree with the rules",
-
 );

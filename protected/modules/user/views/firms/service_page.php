@@ -21,7 +21,7 @@
             <td>
                 <a href="<?= SiteHelper::createUrl("/user/firmService/description", array("id"=>$service->id, "fid"=>$item->id)) ?>" title="<?= Yii::t("user", "описание услуги"); ?>"><?= $service->name ?></a>
             </td>
-            <td class="textAlignCenter publishStatus"><?= ( $service->active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не опубликованно") ?></td>
+            <td class="textAlignCenter publishStatus"><?= ( $service->active == 1 ) ? Yii::t("user", "опубликовано") : Yii::t("user", "не Опубликовано") ?></td>
             <td class="textAlignCenter"><?= $service->col ?></td>
             <td class="textAlignCenter">
                 <a href="#" class="aAction"></a>

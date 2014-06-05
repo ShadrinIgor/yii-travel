@@ -51,7 +51,7 @@
 
 </form>
 <br/>
-<h2>Галлерея</h2>
+<h2>Галерея</h2>
 <form action="<?= SiteHelper::createUrl("/console/catalog/update", array( "id"=>$form->id)).$controller->params ?>" method="post" enctype="multipart/form-data">
     <?php echo CHtml::errorSummary( $addGallery ); ?>
     <div id="gallery">

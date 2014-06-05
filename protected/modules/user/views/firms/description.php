@@ -21,7 +21,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
 <div class="sovetBlock"><a href="<?= SiteHelper::createUrl("/site/addFirm") ?>" title="<?= Yii::t("user_firm", "Как правильно добавить фирму?") ?>"><?= Yii::t("user_firm", "Как правильно добавить фирму?") ?></a></div>
 <h1><font><?= Yii::t("user_firm", "Описание туристического агенства"); ?></font> <?= $item->id >0 ? " - ". $item->name : "" ?></h1>
     <div id="dopMenu">
-        <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Описание и галлерея"); ?></a>
+        <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Описание и Галерея"); ?></a>
         <?php if( $item->id >0 ) : ?>
             <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Туры компаниии"); ?>( <?= sizeof($listTours) ?> )</a>
             <a href="#" id="items" class="<?= $tab== "items" ? "items " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Акции и скидки"); ?>( <?= sizeof($listItems) ?> )</a>
@@ -70,7 +70,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
         <?= SiteHelper::getAnimateText( "tekst-dlya-stranica-dobavlenie-fimy" ) ?>
     <?php endif; ?>
     <div id="gallery">
-        <h2>Галлерея</h2>
+        <h2>Галерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
         <?php if( $item->id==0 ) : ?>
             <div class="messageSummary"><?= Yii::t("user", "После сохранения вы сможете добавить фотографии.") ?></div>

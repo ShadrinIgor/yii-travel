@@ -34,7 +34,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
     <?= FirmsHelper::getBannerByCategory( "1", $item->id  ) ?>
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Описание"); ?></a>
-        <?php if( sizeof($listGallery) >0 ) : ?><a href="#" id="gallery2" class="<?= $activeTab == "gallery" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Галлерея"); ?> (<?= sizeof( $listGallery ) ?>)</a><?php endif; ?>
+        <?php if( sizeof($listGallery) >0 ) : ?><a href="#" id="gallery2" class="<?= $activeTab == "gallery" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Галерея"); ?> (<?= sizeof( $listGallery ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listTours) >0 ) : ?><a href="#" id="tours" class="<?= $activeTab == "tours" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Туры компаниии"); ?> (<?= sizeof( $listTours ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listItems) >0 ) : ?><a href="#" id="items" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Акции и скидки"); ?> (<?= sizeof( $listItems ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listService) >0 ) : ?><a href="#" id="service" class="<?= $activeTab == "service" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Дополнительные услуги"); ?> (<?= sizeof( $listService ) ?>)</a><?php endif; ?>
@@ -55,7 +55,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
     </div>
     <div id="gallery2_page" class="pageTab<?= $activeTab == "gallery" ? " activePage " : " displayNone" ?>">
         <div id="gallery">
-            <h2><?= Yii::t("page", "Галлерея"); ?></h2>
+            <h2><?= Yii::t("page", "Галерея"); ?></h2>
             <div class="listGallery">
                 <?php foreach( $listGallery as $gall ) : ?>
                     <div class="LGItem">
@@ -71,7 +71,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
     </div>
     <div id="description_page" class="pageTab<?= $activeTab == "description" ? " activePage " : " displayNone" ?>">
         <div id="ITText">
-            <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="<?= Yii::t("page", "Туристическия страна"); ?> <?= $item->name ?>" /></div><?php endif; ?>
+            <?php if( $item->image ) : ?><div id="ITImage"><img src="<?= $item->image ?>" width="250" alt="<?= Yii::t("page", "Туристическая страна"); ?> <?= $item->name ?>" /></div><?php endif; ?>
             <div class="LParams">
                 <br/>
                 <?= Yii::t("page", "страна"); ?>: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="<?= Yii::t("page", "туристическая страна"); ?> <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
@@ -86,7 +86,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
             </table>
 
             <div id="orderInfo" class="displayNone">
-                <b><?= Yii::t("page", "Туристическое агентсво"); ?> - <?= $item->name ?></b><br/>
+                <b><?= Yii::t("page", "Туристическое агенство"); ?> - <?= $item->name ?></b><br/>
                 <p><?= Yii::t("page", "Для бронирования или уточнения информации по турам необходимо связаться с менеджером компании"); ?> <?= $item->name ?>.</p>
                 <p>
                     <b><?= Yii::t("page", "контакты компании"); ?>:</b><br/>
@@ -94,7 +94,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                     <?php if( $item->fax ) : ?><?= Yii::t("page", "Факс"); ?>: <?= $item->fax ?><br/><?php endif; ?>
                     <?php if( $item->email ) : ?>E-mail: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"CatalogFirms", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ <?= Yii::t("page", "Показать Email"); ?> ]</a></span><br/><?php endif; ?>
                     <?php if( $item->www ) : ?><?= Yii::t("page", "Сайт"); ?>: <a href="<?= $item->www ?>" target="_blank"><?= $item->www ?></a><br/><?php endif; ?>
-                    <?php if( $item->address ) : ?><b><?= Yii::t("page", "Адресс"); ?>:</b> <?= $item->address ?><?php endif; ?>
+                    <?php if( $item->address ) : ?><b><?= Yii::t("page", "адрес"); ?>:</b> <?= $item->address ?><?php endif; ?>
                 <div class="cMore">
                     <a href="#" class="orderClose"><?= Yii::t("page", "закрыть"); ?></a>
                 </div>

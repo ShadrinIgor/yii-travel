@@ -26,7 +26,7 @@ class ToursController extends InfoController
             }
         }
 
-        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адресса страницы");
+        $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адреса страницы");
         if( $id > 0 )
         {
             $item = CatalogTours::fetch( $id );

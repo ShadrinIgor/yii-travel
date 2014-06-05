@@ -54,7 +54,7 @@ class CatalogUsersProfile extends CatalogUsers
 
 			array('name, password, password2', 'required'),
             array('password', 'compare', 'compareAttribute'=>'password2'),
-            array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1048576, 'wrongType'=>'Неправельный тип загружаемого файла', 'tooLarge'=>'Ограничение размера загрузки файла 2mb'),
+            array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1048576, 'wrongType'=>'Неправильный тип загружаемого файла', 'tooLarge'=>'Ограничение размера загрузки файла 2mb'),
             /*
              *   авторизованным пользователям код можно не вводить
                 'allowEmpty'=>!Yii::app()->user->isGuest || !CCaptcha::checkRequirements(),

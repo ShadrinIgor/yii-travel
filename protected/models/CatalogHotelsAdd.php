@@ -35,7 +35,7 @@ class CatalogHotelsAdd extends CatalogHotels
 			'name' => Yii::t("models", "Название"),
 			'country_id' => Yii::t("page", "Страна"),
 			'city_id' => Yii::t("page", "Город"),
-			'address' => Yii::t("models", "Адресс" ),
+			'address' => Yii::t("models", "адрес" ),
 			'level' => Yii::t("models", "Кол. звезд" ),
 			'email' => 'Email',
 			'www' => Yii::t("models", "Сайт" ),
