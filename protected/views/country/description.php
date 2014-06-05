@@ -8,7 +8,7 @@ $this->widget('addressLineWidget', array(
 ));
 ?>
 
-<?php if( $this->beginCache( "country_".$item->id, array('duration'=>3600) ) ) : ?>
+<?php if( $this->beginCache( "country_".$item->id."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
 <div id="InnerText">
     <h1><?= $item->name ?></h1>
     <div id="ITText" class="ITSmallText">

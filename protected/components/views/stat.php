@@ -1,5 +1,5 @@
 
-<?php if( $this->beginCache( "site_counts", array('duration'=>3600*24) ) ) : ?>
+<?php if( $this->beginCache( "site_counts"."_".Yii::app()->getLanguage(), array('duration'=>3600*24) ) ) : ?>
     <div id="RStatistic">
         <ul>
             <li><b><?= Yii::t("page", "На сайте"); ?>:</b></li>

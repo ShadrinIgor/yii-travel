@@ -3,7 +3,7 @@
 
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Разделение по городам"); ?></h3>
-        <?php if( $this->beginCache( "hotels_city", array('duration'=>3600) ) ) : ?>
+        <?php if( $this->beginCache( "hotels_city"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
             <ul>
                 <?php
                 foreach( CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1) ) as $citem ) :

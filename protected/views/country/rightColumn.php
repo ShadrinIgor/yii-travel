@@ -1,7 +1,7 @@
 <div id="Cleft">
     <?php $this->widget("authWidget"); ?>
     <div class="BIBlock LeftMenu">
-        <?php if( $this->beginCache( "umor", array('duration'=>3600) ) ) : ?>
+        <?php if( $this->beginCache( "umor"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
         <div class="BITItems">
             <?php
                 $umor = CatalogUmor::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("rand()")->setLimit(3) );

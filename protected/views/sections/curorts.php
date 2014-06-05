@@ -1,4 +1,4 @@
-<?php if( $this->beginCache( "sectionsCurorts-".$item->id, array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
+<?php if( $this->beginCache( "sectionsCurorts-".$item->id."_".Yii::app()->getLanguage(), array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
     <div id="CIHeader" class="overflowHidden">
         <?php
         // Категории
@@ -83,7 +83,7 @@
     </tr>
     <?php if( sizeof( $items ) == 0 ) : ?>
 
-                            <?= Yii::t("page", "Yii::t("page", "Список пуст") );"); ?></td>
+                            <?= Yii::t("page", Yii::t("page", "Список пуст") ); ?></td>
         </tr>
     <?php endif; ?>
 </table>

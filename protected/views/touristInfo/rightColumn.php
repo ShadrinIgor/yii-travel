@@ -2,7 +2,7 @@
     <?php $this->widget("authWidget"); ?>
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Категории"); ?></h3>
-        <?php if( $this->beginCache( "info_category", array('duration'=>3600) ) ) : ?>
+        <?php if( $this->beginCache( "info_category"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
         <ul>
             <?php
             foreach( CatalogInfoCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1)->setConditions("owner=0") ) as $item_ ) :

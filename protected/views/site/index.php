@@ -3,7 +3,7 @@
 
 $this->pageTitle=Yii::app()->name;
 
-if( $this->beginCache( "firstPage", array('duration'=>3600) ) ) :
+if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) :
 ?>
     <?= SiteHelper::getAnimateText( "tekstovka-dlya-glavnoi-stranicy", SiteHelper::createUrl("/site/page/about") ) ?>
     <div id="Buttons">

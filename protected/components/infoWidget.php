@@ -15,7 +15,7 @@ class infoWidget extends CWidget
 
     public function run()
     {
-        if( $this->beginCache( 'widgetInfo_'.$this->class.$this->category_id, array('duration'=>3600) ) ) :
+        if( $this->beginCache( 'widgetInfo_'.$this->class.$this->category_id."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) :
             $className = $this->class;
 
             if( $this->category_id>0 )$dopCondition = " AND category_id='".(int)$this->category_id."'";

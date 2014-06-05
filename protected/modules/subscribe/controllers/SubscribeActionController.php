@@ -33,7 +33,7 @@ class SubscribeActionController extends Controller
             $subscribeModel = SubscribeItems::fetch( $id );
             if( $subscribeModel->id >0 )
             {
-                if( $this->beginCache("SubscribeStat".$id, array('duration'=>1200) ) ) :
+                if( $this->beginCache("SubscribeStat".$id."_".Yii::app()->getLanguage(), array('duration'=>1200) ) ) :
                     $needSend = 0;
 
                     if( $subscribeModel->user == 1 || $subscribeModel->user == 2 )

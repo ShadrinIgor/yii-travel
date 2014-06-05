@@ -3,7 +3,7 @@
 
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Категории туров"); ?></h3>
-        <?php if( $this->beginCache( "tours_category", array('duration'=>3600) ) ) : ?>
+        <?php if( $this->beginCache( "tours_category"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
         <ul>
             <?php
             foreach( CatalogToursCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1)->setConditions("owner=0") ) as $item_ ) :

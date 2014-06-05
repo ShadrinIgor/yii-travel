@@ -40,7 +40,7 @@ class Widget extends CWidget {
 
         if(($viewFile=$this->getViewFile($view))!==false)
         {
-            if( $this->beginCache($widgetName, array('duration'=>3600) ) )
+            if( $this->beginCache($widgetName."_".Yii::app()->getLanguage(), array('duration'=>3600) ) )
             {
                 $this->renderFile( $viewFile, $data, $return );
                 $this->endCache();

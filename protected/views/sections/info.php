@@ -1,4 +1,4 @@
-<?php if( $this->beginCache( "sectionsInfo-".$item->id, array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
+<?php if( $this->beginCache( "sectionsInfo-".$item->id."_".Yii::app()->getLanguage(), array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
     <div id="CIHeader" class="overflowHidden">
         <?php
         // Категории
