@@ -24,7 +24,7 @@ class SiteHelper
     {
         $textModel = CatalogContent::fetchBySlug( $slug );
         $cout = '<div class="sectionText">'.$textModel->description;
-        if( !empty( $link ) )$cout .= "<div class='textAlignRight'><a href='".$link."' title='подробнее о туристическом портале Узбекистана'>подробнее...</div>";
+        if( !empty( $link ) )$cout .= "<div class='textAlignRight'><a href='".$link."' title='".Yii::t( "page", "подробнее о туристическом портале Узбекистана")."'>".Yii::t( "page", "подробнее" )."...</div>";
         $cout .='</div>';
         return $cout;
     }
@@ -408,7 +408,10 @@ class SiteHelper
 
     static function createUrl($route,$params=array(),$ampersand='&')
     {
-        if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"];
+        if( Yii::app()->getLanguage() != "ru" )$urlLang = Yii::app()->getLanguage()."/";
+                                          else $urlLang = "";
+
+        if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"].$urlLang;
             else
         {
             if($route==='')
@@ -421,7 +424,8 @@ class SiteHelper
             if( defined("YII_SUBDOMAIN") )$paramName = YII_SUBDOMAIN."baseUrl";
                                      else $paramName = "baseUrl";
 
-            $url = Yii::app()->params[ $paramName ].Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
+
+            $url = Yii::app()->params[ $paramName ].$urlLang.Yii::app()->createUrl(trim($route,'/'),$params,$ampersand);
             $url = str_replace("//","/", $url);
             $url = str_replace(":/","://", $url);
 

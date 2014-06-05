@@ -74,7 +74,7 @@
         </div>
     <?php $this->endCache();endif; ?>
 
-    <h2>Туры компании
+    <h2><?= Yii::t("user_firm", "Туры компаниии"); ?>
         <?php if( !empty( $categoryModel ) && $categoryModel->id >0 ) : ?>
             , в категории <?= $categoryModel->name ?>
         <?php endif; ?>

@@ -57,6 +57,7 @@
 
 <script type="text/javascript">
     var baseHref = '<?= SiteHelper::createUrl("/") ?>';
+    var language = '<?= Yii::app()->getLanguage() ?>';
     <?php if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "default" ) :?>
         if( $("#ConsoleMain").length == 0 )
         {

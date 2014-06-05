@@ -2395,6 +2395,16 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 #c8{ background:url( ../images/menu.jpg ) no-repeat;background-position: -548px 0px; }
 #c9{ background:url( ../images/menu.jpg ) no-repeat;background-position: -627px 0px; }
 
+.lang_en #c1{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: 0px 0px; }
+.lang_en #c2{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -78px 0px; }
+.lang_en #c3{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -156px 0px; }
+.lang_en #c4{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -234px 0px; }
+.lang_en #c5{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -312px 0px; }
+.lang_en #c6{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -707px 0px; }
+.lang_en #c7{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -469px 0px; }
+.lang_en #c8{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -548px 0px; }
+.lang_en #c9{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -627px 0px; }
+
 #userCabinet
 {
     background: url( ../images/user_cabinet.jpg ) no-repeat;

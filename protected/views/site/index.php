@@ -13,7 +13,7 @@ if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duratio
     <div class="hr">&nbsp;</div>
 
     <div id="FCountryList">
-        <?php  if( $this->beginCache( "firstPage_big_country", array('duration'=>1800) ) ) : ?>
+        <?php  if( $this->beginCache( "firstPage_big_country_".Yii::app()->getLanguage(), array('duration'=>1800) ) ) : ?>
         <?php
             $countryLIst = CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "baner>''" )->setOrderBy("rand()")->setLimit(4) );
             foreach( $countryLIst as $item ) :
@@ -35,9 +35,9 @@ if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duratio
                     </li>
                     <?php endforeach; ?>
                 </ul>
-                <p><a href="<?= SiteHelper::createUrl( "/tours/country" )."/".$item->slug ?>.html"><?= Yii::t("page", "смотреть все туры"); ?> <?= $item->name_2 ?></a></p>
-                <p><a href="<?= SiteHelper::createUrl( "/hotels/country" )."/".$item->slug ?>.html"><?= Yii::t("page", "отели"); ?> <?= $item->name_2 ?></a></p>
-                <p><a href="<?= SiteHelper::createUrl( "/touristInfo/country" )."/".$item->slug ?>.html"><?= Yii::t("page", "туристическая информаци"); ?> <?= $item->name_2 ?></a></p>
+                <p><a href="<?= SiteHelper::createUrl( "/tours/country" )."/".$item->slug ?>.html" title="<?= Yii::t("page", "Смотреть все туры"); ?> <?= $item->name_2 ?>"><?= Yii::t("page", "Смотреть все туры"); ?> <?= $item->name_2 ?></a></p>
+                <p><a href="<?= SiteHelper::createUrl( "/hotels/country" )."/".$item->slug ?>.html" title="<?= Yii::t("page", "отели"); ?> <?= $item->name_2 ?>"><?= Yii::t("page", "отели"); ?> <?= $item->name_2 ?></a></p>
+                <p><a href="<?= SiteHelper::createUrl( "/touristInfo/country" )."/".$item->slug ?>.html" title="<?= Yii::t("page", "Туристическая информация"); ?> <?= $item->name_2 ?>"><?= Yii::t("page", "Туристическая информация"); ?> <?= $item->name_2 ?></a></p>
 
             </div>
         </div>
@@ -49,7 +49,7 @@ if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duratio
         <div id="fc_other_01">
             <div id="fc_other_02">
                 <h3><?= Yii::t("page", "Все туристические страны"); ?>:</h3>
-                <?php  if( $this->beginCache( "firstPage_country", array('duration'=>3600) ) ) : ?>
+                <?php  if( $this->beginCache( "firstPage_country_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
                     <ul>
                         <?php foreach( CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1) ) as $item ) :
                             $tour = CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id" )->setParams( array( "country_id"=>$item->id ) ) );
@@ -57,7 +57,7 @@ if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duratio
                             $info = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id" )->setParams( array( "country_id"=>$item->id ) ) );
                             ?>
                             <li>
-                                <a href="<?= SiteHelper::createUrl( "/tours/country" )."/".$item->slug ?>.html" title="Туры <?= $item->name_2 ?>" onmouseover="displayOrNone('fcp_lt_<?= $item->id ?>')" onmouseout="displayOrNone('fcp_lt_<?= $item->id ?>')"><img src="<?= $item->flag ?>" alt="<?= $item->name ?>" /><br/><?= $item->name ?></a>
+                                <a href="<?= SiteHelper::createUrl( "/tours/country" )."/".$item->slug ?>.html" title="<?= Yii::t("page", "Туры") ?> <?= $item->name_2 ?>" onmouseover="displayOrNone('fcp_lt_<?= $item->id ?>')" onmouseout="displayOrNone('fcp_lt_<?= $item->id ?>')"><img src="<?= $item->flag ?>" alt="<?= $item->name ?>" /><br/><?= $item->name ?></a>
                                 <div class="display_none fc_popup fc_popup_lt" id="fcp_lt_<?= $item->id ?>" >
                                     <?php if( $tour>0 ) : ?><?= Yii::t("page", "Туров"); ?>: <b><?= $tour ?></b><br/><?php endif; ?>
                                     <?php if( $hotels>0 ) : ?><?= Yii::t("page", "Отелей"); ?>: <b><?= $hotels ?></b><br/><?php endif; ?>

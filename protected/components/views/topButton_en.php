@@ -1,110 +1,110 @@
 <?php if( $type == "add_first" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>" title="Добавить бесплатно тур. информацию зону отдыха, детский лагерь, информацию на сайт">
-            <b>Добавить информацию</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>" title="Add a free tour. information recreation area, children's camp, information on the site">
+            <b>Add information</b>
             <br/>
-            свои туры, тур. фирму, зону отдыха,<br/>
-            курортную зону, частные объявление или прочее...
+            their tours, the tour company, a relaxation area, <br/>
+             resort area, private or other ad ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "confirm_first" ) : ?>
     <div class="B02">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Подтвердить информацию">
-            <b>Подтвердить информацию</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="confirm the information">
+            <b>Confirm the information</b>
             <br/>
-            Информация о Вашей компании уже размещена на сайте?<br/>
-            Вы можете вносить изминения, добавлять информацию
+            Information about your company is already posted on the site? <br/>
+            You can contribute traits, enhance information
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_resorts_big" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Добавить бесплатно зону отдыха, детский лагерь">
-            <b>Вы работаете в Зоне отдыха или Курорте? Разместить рекламу БЕСПЛАТНО?</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Add a free relaxation area, children's camp">
+            <b>You work in a recreation area or resort? Advertise FREE?</b>
             <br/>
-            вы можете БЕСПЛАТНО добавить инфомацию о Вашей зоне отдыха или курорте, цены, фотографии, дополнительные услуги<br/>
-            Например: Ваши услуги, рекламный баннер, спец предложения, акции, скидки...
+            you may add your information of their recreation area or resort, prices, photos, extras <br/>
+            For example: your services, banner advertising, special offers, promotions, discounts ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_resorts_small" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Добавить бесплатно зону отдыха, детский лагерь">
-            <b>Хотите добавить Вашу зону отдыха?</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/curorts" title="Add a free relaxation area, children's camp">
+            <b>Want to add your recreational area?</b>
             <br/>
-            вы можете БЕСПЛАТНО добавить инфомацию о курорте<br/>
-            Ваши услуги, рекламный баннер, акции...
+            FREE you can add information about your resort <br/>
+            services, banner advertising, promotions ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_resorts_confirm" ) : ?>
     <div class="B02">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Подтвердить информацию и вносить изменения бесплатно">
-            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Работаете в этой зоне отдыха?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Confirm the information and make changes for free">
+            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Working in this recreation area?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
             <br/>
-            Хотите изменить/добавить информацию о зоне отдыха?<br/>
-            Вы можете БЕСПЛАТНО вносить изминения
+            Want to change / add information about recreation? <br/>
+            You can make FREE mutations both
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_hotel_big" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/hotels" title="Добавить отель гостинуцу бесплатно">
-            <b>Вы работаете в Отеле? Хотите разместить рекламу БЕСПЛАТНО?</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/hotels" title="Add hotel hotel free">
+            <b>You work in a hotel? Want to advertise for FREE?</b>
             <br/>
-            вы можете БЕСПЛАТНО добавить инфомацию о Вашем отеле, цены, фотографии, дополнительные услуги<br/>
-            Например: Ваши услуги, рекламный баннер, спец предложениея, акции, скидки...
+            FREE you can add information about your hotel, prices, photos, extras <br/>
+            For example: your services, banner advertising, special offers, promotions, discounts ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_hotel_small" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/hotels" title="Добавить отель гостинуцу бесплатно">
-            <b>Хотите добавить Ваш отель?</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/hotels" title="Add hotel hotel free">
+            <b>Want to add your hotel?</b>
             <br/>
-            вы можете БЕСПЛАТНО добавить инфомацию о отеле<br/>
-            Ваши услуги, рекламный баннер, акции...
+            FREE you can add information about the hotel <br/>
+            Your services, banner advertising, promotions ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_hotel_confirm" ) : ?>
     <div class="B02">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Подтвердить информацию о отеле гостинуце бесплатно">
-            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вы работаете в этом отеле?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/confirm" title="Confirm the information at the hotel for free">
+            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do you work at this hotel?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
             <br/>
-            Хотите изменить/добавить информацию о отеле?<br/>
-            Вы можете БЕСПЛАТНО вносить изминения
+            Want to change / add information about the hotel? <br/>
+            You can make FREE mutations both
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_firm_dig" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/travel-agency" title="Добавить туристическую фиру, бесплатная реклама ">
-            <b>Вы работает в туристической фирме? Хотите разместить рекламу БЕСПЛАТНО ?</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/travel-agency" title="Add a travel agency, free advertising">
+            <b>You work in a travel agency? Want to advertise for FREE?</b>
             <br/>
-            вы можете БЕСПЛАТНО добавить инфомацию о Вашей туристической фирме, о вашем отеле, зоне отдыха <br/>
-            Например: Ваши услуги, рекламный баннер, туры, спец предложениея, акции...
+            you may add information about your travel company about your hotel, recreation area <br/>
+            For example: your services, banner advertising, tours, special offers, promotions ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "add_firm_small" ) : ?>
     <div class="B01">
-        <a href="<?= SiteHelper::createUrl("/add") ?>/travel-agency" title="Добавить туристическую фиру, бесплатная реклама ">
-            <b>Хотите добавить Вашу фирму?</b>
+        <a href="<?= SiteHelper::createUrl("/add") ?>/travel-agency" title="Add a travel agency, free advertising ">
+            <b>Want to add your company?</b>
             <br>
-            добавить БЕСПЛАТНО инфомацию о тур. фирме<br>
-            Ваши услуги, рекламный баннер, акции...
+            FREE add information about the tour company <br>
+            Your services, banner advertising, promotions ...
         </a>
     </div>
 <?php endif; ?>
 <?php if( $type == "confirm_firm_small" ) : ?>
     <div class="B02">
-        <a href="<?= SiteHelper::createUrl("/add/confirm") ?>" title="Подтвердить информацию">
-            <b>Вы работаете в этой тур. фирме?</b>
+        <a href="<?= SiteHelper::createUrl("/add/confirm") ?>" title="Confirm the information">
+            <b>You are running this tour company?</b>
             <br>
-            Хотите изменить/добавить информацию, туры<br>
-            Вы можете БЕСПЛАТНО вносить изминения
+            Want to change / add information, tours <br>
+            You can make FREE mutations both
         </a>
     </div>
 <?php endif; ?>

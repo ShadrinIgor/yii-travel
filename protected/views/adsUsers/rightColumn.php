@@ -16,7 +16,7 @@
     </div>
     <?php $this->widget("socialLinksWidget") ?>
     <?php $this->widget("statWidget") ?>
-    <?php $this->widget("infoWidget", array( "title"=>"Курорты", "class"=>"CatalogKurorts", "link"=>"/resorts" )); ?>
+    <?php $this->widget("infoWidget", array( "title"=>Yii::t("page", "Курорты"), "class"=>"CatalogKurorts", "link"=>"/resorts" )); ?>
 
     <div id="keywords">
         <?php Yii::app()->page->renderTags( "adsUsers" ) ?>

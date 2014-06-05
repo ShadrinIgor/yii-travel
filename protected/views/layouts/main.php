@@ -32,7 +32,7 @@
             <?php endif; ?>
         </div>
     <Div id="BRight">
-        <div id="BRTitle"><a href=""><img src="<?= $Theme->getBaseUrl() ?>/images/logo_title.png" /></a></div>
+        <div id="BRTitle"><a href=""><img src="<?= $Theme->getBaseUrl() ?>/images/logo_title_<?= Yii::app()->getLanguage() ?>.png" /></a></div>
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>
         <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"></div><div id="TrioMedal"></div></div><?php endif; ?>
         <div id="BH1">
@@ -40,7 +40,7 @@
         </div>
     </Div>
     <div id="Menu1">
-        <div id="Menu">
+        <div id="Menu" class="lang_<?= Yii::app()->getLanguage() ?>">
         <div class="CItem MFirst">
             <a href="<?= SiteHelper::createUrl( "/sales" ) ?>" title="<?= Yii::t( "page", "туристические акции, скидки, горячие предложения") ?>" class="MenuJsClass" id="c6"></a>
             <div class="CHint" id="bh8">
