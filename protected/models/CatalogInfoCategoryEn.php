@@ -1,23 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "catalog_info_category".
+ * This is the model class for table "catalog_info_category_en".
    */
-class CatalogInfoCategory extends CCModel
+class CatalogInfoCategoryEn extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
     protected $pos; // integer 
     protected $del; // integer 
     protected $owner; // integer 
-    protected $slug; // string
-    protected $description;
-    protected $translate;
+    protected $slug; // string 
+    protected $description; // string 
+    protected $section_id; // integer 
 
 /*
 * Поля - связи
 */
-    protected $catalogInfos; //  CatalogInfo
 
 
     public function attributeNames()
@@ -30,7 +29,7 @@ class CatalogInfoCategory extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_info_category';
+		return 'catalog_info_category_en';
 	}
 
 	/**
@@ -41,13 +40,14 @@ class CatalogInfoCategory extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('pos, del', 'numerical', 'integerOnly'=>true),
+			array('id, name', 'required'),
+			array('id, pos, del, section_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
 			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('translate, description, name, pos, del, owner, slug', 'safe'),
+            array('id, name, pos, del, owner, slug, description, section_id', 'safe'),
+			array('id, name, pos, del, owner, slug, description, section_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,9 +59,8 @@ class CatalogInfoCategory extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'catalogInfos' => array(self::HAS_MANY, 'CatalogInfo', 'category_id'),
-			'owner0' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'owner'),
-			'catalogInfoCategories' => array(self::HAS_MANY, 'CatalogInfoCategory', 'owner'),
+			'owner0' => array(self::BELONGS_TO, 'CatalogInfoCategoryEn', 'owner'),
+			'catalogInfoCategoryEns' => array(self::HAS_MANY, 'CatalogInfoCategoryEn', 'owner'),
 		);
 	}
 
@@ -77,7 +76,8 @@ class CatalogInfoCategory extends CCModel
 			'del' => 'Del',
 			'owner' => 'Owner',
 			'slug' => 'Slug',
-            'description' => 'description'
+			'description' => 'Description',
+			'section_id' => 'Section',
 		);
 	}
 
@@ -98,6 +98,8 @@ class CatalogInfoCategory extends CCModel
 		$criteria->compare('del',$this->del);
 		$criteria->compare('owner',$this->owner);
 		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('section_id',$this->section_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

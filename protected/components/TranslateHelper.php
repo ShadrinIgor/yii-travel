@@ -48,7 +48,7 @@ class TranslateHelper
         if( property_exists( $model, "description" ) )$transModel->description = $text;
         if( !$transModel->save() )
                 print_r( $transModel->getErrors() );
-            else
+            elseif( property_exists( $transModel, "slug" ) )
                 SiteHelper::getSlug( $transModel );
     }
 

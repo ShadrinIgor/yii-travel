@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "catalog_info".
+ * This is the model class for table "catalog_info_en".
    */
-class CatalogInfo extends CCModel
+class CatalogInfoEn extends CCModel
 {
     protected $id; // integer 
     protected $col; // integer 
@@ -17,8 +17,8 @@ class CatalogInfo extends CCModel
     protected $image; // string 
     protected $category_id; // integer 
     protected $list_key; // string 
-    protected $slug; // string
-    protected $translate;
+    protected $slug; // string 
+    protected $active; // integer 
 
 /*
 * Поля - связи
@@ -35,7 +35,7 @@ class CatalogInfo extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_info';
+		return 'catalog_info_en';
 	}
 
 	/**
@@ -46,15 +46,14 @@ class CatalogInfo extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, category_id', 'required'),
-			array('col, pos, del', 'numerical', 'integerOnly'=>true),
+			array('id, name, description, category_id', 'required'),
+			array('id, col, pos, del, active', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>100),
-            array('name, country_id, category_id', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('translate, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe'),
-            array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe', 'on'=>'search'),
+			array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug, active', 'safe'),
+            array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,9 +65,9 @@ class CatalogInfo extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
-			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
 		);
 	}
 
@@ -80,17 +79,18 @@ class CatalogInfo extends CCModel
 		return array(
 			'id' => 'ID',
 			'col' => 'Col',
-			'name' => Yii::t("models", "Название"),
+			'name' => 'Name',
 			'description' => 'Description',
 			'pos' => 'Pos',
 			'metaData' => 'Meta Data',
 			'del' => 'Del',
-			'country_id' => Yii::t("page", "Страна"),
-			'city_id' => Yii::t("page", "Город"),
+			'country_id' => 'Country',
+			'city_id' => 'City',
 			'image' => 'Image',
-			'category_id' => Yii::t("models", "Категория" ),
+			'category_id' => 'Category',
 			'list_key' => 'List Key',
 			'slug' => 'Slug',
+			'active' => 'Active',
 		);
 	}
 
@@ -118,6 +118,7 @@ class CatalogInfo extends CCModel
 		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('list_key',$this->list_key,true);
 		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

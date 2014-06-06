@@ -4,18 +4,30 @@ class TranslateCommand extends CConsoleCommand
 {
     public function run($args)
     {
-        $list = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("translate=0")->setLimit(10)->setCache(0) );
-        foreach( $list as $model )
+        $n=0;
+        // "CatalogTours",
+        $listCatalog = array(  "CatalogInfoCategory", "CatalogInfo", "catalog_city", "catalog_content_category", "catalog_content" );
+        for( $i=0;$i<sizeof( $listCatalog );$i++ )
         {
-            $transModel = TranslateHelper::getTranslateModel( "CatalogTours", $model->id, "en" );
-            if( !$transModel->id )
+            $class = $listCatalog[ $i ];
+            $list = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("translate=0")->setLimit(10)->setCache(0) );
+            echo $class." - ".$n."( ".sizeof($list)." )<br/>";
+            foreach( $list as $model )
             {
-                TranslateHelper::setTranslate( $model, $transModel );
+                echo $model->id."<br/>";
+                $n++;
+                $transModel = TranslateHelper::getTranslateModel( $class, $model->id, "en" );
+                if( !$transModel->id )
+                {
+                    TranslateHelper::setTranslate( $model, $transModel );
+                }
+
+                $model->translate = 1;
+                if( !$model->save() )
+                    print_r( $model->getErrors() );
             }
 
-            $model->translate = 1;
-            if( !$model->save() )
-                print_r( $model->getErrors() );
+            if( sizeof( $list ) == 10 || $n == 10 )break;
         }
     }
 }
