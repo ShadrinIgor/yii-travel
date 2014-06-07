@@ -406,9 +406,9 @@ class SiteHelper
         }
     }
 
-    static function createUrl($route,$params=array(),$ampersand='&')
+    static function createUrl($route,$params=array(),$ampersand='&', $isBase = false )
     {
-        if( Yii::app()->getLanguage() != "ru" )$urlLang = Yii::app()->getLanguage()."/";
+        if( Yii::app()->getLanguage() != "ru" && !$isBase )$urlLang = Yii::app()->getLanguage()."/";
                                           else $urlLang = "";
 
         if( $route == "/" && empty( $params ) )return Yii::app()->params["baseUrl"].$urlLang;

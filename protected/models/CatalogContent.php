@@ -18,6 +18,7 @@ class CatalogContent extends CCModel
     protected $category_id; // integer 
     protected $slug; // string
     protected $col; // string
+    protected $translate;
 
 /*
 * Поля - связи
@@ -50,7 +51,7 @@ class CatalogContent extends CCModel
 			array('name', 'length', 'max'=>255),
 			array('image', 'length', 'max'=>50),
 			array('file', 'length', 'max'=>100),
-            array('col, slug, name, active, pos, description, date, image, file, del, country_id, category_id', 'safe'),
+            array('translate, col, slug, name, active, pos, description, date, image, file, del, country_id, category_id', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, active, pos, description, date, image, file, del, country_id, category_id', 'safe', 'on'=>'search'),

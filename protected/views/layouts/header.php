@@ -9,7 +9,7 @@
 <link rel="icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" />
 
-<base href="<?= SiteHelper::createUrl("/", "", "&", false ) ?>" />
+<base href="<?= SiteHelper::createUrl("/", "", "&", true ) ?>" />
 
 <?php
 

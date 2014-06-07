@@ -11,7 +11,8 @@ class CatalogCity extends CCModel
     protected $country_id; // integer 
     protected $del; // integer 
     protected $description; // string 
-    protected $slug; // string 
+    protected $slug; // string
+    protected $translate; // string
 
 /*
 * Поля - связи
@@ -54,8 +55,8 @@ class CatalogCity extends CCModel
 			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('slug', 'safe'),
-            array('id, name, pos, country_id, del, description, slug', 'safe', 'on'=>'search'),
+            array('translate, id, name, pos, country_id, del, description, slug', 'safe'),
+            array('translate, id, name, pos, country_id, del, description, slug', 'safe', 'on'=>'search'),
 		);
 	}
 

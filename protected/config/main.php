@@ -116,6 +116,7 @@ return array(
                 '<controller:(people)>-<category:\w+>.html'=> '<controller>',
                 '<slug:\w+>_<controller:(people)>_<action:(desc)>.html'=> '<controller>/desc',*/
 
+                '<language:(en)>/registration.html'=> 'user/default/Registration',
                 'registration.html'=> 'user/default/Registration',
                 'lost.html'=> 'user/default/lost',
                 'logout.html'=> 'user/default/logout',
