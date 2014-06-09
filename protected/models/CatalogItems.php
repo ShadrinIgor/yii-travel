@@ -21,7 +21,8 @@ class CatalogItems extends CCModel
     protected $pos; // integer 
     protected $time_id; // integer 
     protected $slug; // string 
-    protected $col; // integer 
+    protected $col; // integer
+    protected $translate;
 
 /*
 * Поля - связи

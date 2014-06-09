@@ -16,9 +16,7 @@ $this->widget('addressLineWidget', array(
         <?= $item->description ?>
     </div>
     <div class="hr">&nbsp;</div>
-    <div class="textAlignRight">
-        <a href="#" class="cmore ITextHref" title=""><?= Yii::t("page", "подробнее..."); ?></a>
-    </div>
+    <br/>
     <?php if( sizeof($tours)>0 ) : ?>
         <h2><?= Yii::t("page", "Популярные туры"); ?> <?= $item->name_2 ?></h2>
         <div class="ITBlock">
@@ -51,9 +49,9 @@ $this->widget('addressLineWidget', array(
                 ?>
                 <div class="IBItem">
                     <div class="IBIImage">
-                        <a href="<?= SiteHelper::createUrl("/country/description")."/".$CItem->slug ?>.html" title="<?= $CItem->name ?> - <?= Yii::t("page", "Туристическая странна"); ?>"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?> - <?= Yii::t("page", "туризм"); ?> /></a>
+                        <a href="<?= SiteHelper::createUrl("/country/description")."/".$CItem->slug ?>.html" title="<?= $CItem->name ?> - <?= Yii::t("page", "Туристическая странна"); ?>"><img src="<?= ImageHelper::getImage($CItem->image, 2) ?>" alt="<?= $CItem->name ?> - <?= Yii::t("page", "туризм"); ?>" /></a>
                     </div>
-                    <?php if( $tour->price >0 ) : ?><p><?= $CItem->price ?></p><?php endif; ?>
+                    <?php if( $CItem->price >0 ) : ?><p><?= $CItem->price ?></p><?php endif; ?>
                     <br/><a href="<?= SiteHelper::createUrl("/country/description")."/".$CItem->slug ?>.html" title="<?= $CItem->name ?> - <?= Yii::t("page", "Туристическая странна"); ?>"><?= $CItem->name ?></a><br/>
                     <div class="LParams">
                         <?= Yii::t("page", "Просмотров"); ?>: <b><?= $CItem->col>0 ? $CItem->col : 0 ?></b><br/>

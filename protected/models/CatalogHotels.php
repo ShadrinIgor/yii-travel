@@ -22,7 +22,8 @@ class CatalogHotels extends CCModel
     protected $col; // integer 
     protected $slug; // string 
     protected $user_id; // integer 
-    protected $active; // integer 
+    protected $active; // integer
+    protected $translate;
 
 /*
 * Поля - связи

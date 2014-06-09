@@ -1843,7 +1843,7 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 #ITImage{float: left;padding: 3px;border: 1px solid #afafaf;margin: 0px 10px 10px 0px;overflow: hidden;text-indent: 0px;}
 #ITText{overflow: hidden;}
 #ITText,#ITText p{text-align: justify;margin: 8px 0px;}
-.ITSmallText{height: 265px;}
+#ITText.ITSmallText{overflow: auto;height: 400px;padding-right: 10px;}
 .ITBlock{overflow: hidden;text-align: center;}
 .IBItem{
     height: 100px;

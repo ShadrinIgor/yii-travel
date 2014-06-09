@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "catalog_work".
+ * This is the model class for table "catalog_work_en".
    */
-class CatalogWork extends CCModel
+class CatalogWorkEn extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
@@ -22,10 +22,9 @@ class CatalogWork extends CCModel
     protected $date; // integer 
     protected $country_id; // integer 
     protected $active; // integer 
-    protected $type_id; // integer
-    protected $slug;
-    protected $col;
-    protected $translate;
+    protected $type_id; // integer 
+    protected $slug; // string 
+    protected $col; // integer 
 
 /*
 * Поля - связи
@@ -42,7 +41,7 @@ class CatalogWork extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_work';
+		return 'catalog_work_en';
 	}
 
 	/**
@@ -53,14 +52,14 @@ class CatalogWork extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, category_id, user_id, type_id', 'required'),
-			array('price, del, pos, is_resume, date, active', 'numerical', 'integerOnly'=>true),
+			array('id, name, description, category_id, user_id, type_id, slug', 'required'),
+			array('id, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>255),
-			array('contacts, active', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id', 'safe', 'on'=>'search'),
+			array('id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id, slug, col', 'safe'),
+            array('id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id, slug, col', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,21 +71,12 @@ class CatalogWork extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'type' => array(self::BELONGS_TO, 'CatalogWorkType', 'type_id'),
-			'graf0' => array(self::BELONGS_TO, 'CatalogWorkGraf', 'graf'),
-			'category' => array(self::BELONGS_TO, 'CatalogWorkCategory', 'category_id'),
-			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
-			'firm' => array(self::BELONGS_TO, 'CatalogFirms', 'firm_id'),
-			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
-			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 		);
 	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
-
-
 	public function attributeLabels()
 	{
 		return array(
@@ -106,8 +96,10 @@ class CatalogWork extends CCModel
 			'firm_id' => 'Firm',
 			'date' => 'Date',
 			'country_id' => 'Country',
-			'active' => 'Is Active',
+			'active' => 'Active',
 			'type_id' => 'Type',
+			'slug' => 'Slug',
+			'col' => 'Col',
 		);
 	}
 
@@ -140,6 +132,8 @@ class CatalogWork extends CCModel
 		$criteria->compare('country_id',$this->country_id);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('type_id',$this->type_id);
+		$criteria->compare('slug',$this->slug,true);
+		$criteria->compare('col',$this->col);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

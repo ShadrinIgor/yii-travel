@@ -44,9 +44,8 @@ class CatalogFirmsItemsEn extends CCModel
 		// will receive user inputs.
 		return array(
 			array('id, name, date, user_id, slug', 'required'),
-			array('id, date, firm_id, user_id, active, pos, del, col', 'numerical', 'integerOnly'=>true),
+			array('id, date, user_id, active, pos, del, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
-			array('slug', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, date, firm_id, user_id, active, pos, del, slug, col', 'safe'),

@@ -12,8 +12,8 @@ foreach( $items as $item ) :
             $tours = CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array( ":country_id"=>$item->id )) );
             $firms = CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array( ":country_id"=>$item->id )) );
         ?>
-            <?php if( $tours>0 ) : ?>Туров: <b><?= $tours ?></b><br/><?php endif; ?>
-            <?php if( $firms>0 ) : ?>Фирмы: <b><?= $firms ?></b><br/><?php endif; ?>
+            <?php if( $tours>0 ) : ?><?= Yii::t("page", "Туров") ?>: <b><?= $tours ?></b><br/><?php endif; ?>
+            <?php if( $firms>0 ) : ?><?= Yii::t("page", "Фирмы") ?>: <b><?= $firms ?></b><br/><?php endif; ?>
         </div>
         <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
     </div>

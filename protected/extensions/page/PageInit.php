@@ -86,7 +86,7 @@ class PageInit extends CApplicationComponent
 
     public function getTitle( )
     {
-        return $this->getInfo( "title" )." :: ".Yii::app()->params["titleName"];
+        return $this->getInfo( "title" )." :: ".Yii::t( "models", "Туристический портал Узбекистана");
     }
     // ---- end of Title
 

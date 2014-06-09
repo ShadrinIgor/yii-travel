@@ -44,7 +44,6 @@ class CatalogFirmsServiceEn extends CCModel
 			array('id, name, firm_id, user_id, description', 'required'),
 			array('id, active, pos, del, firm_id, user_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>100),
-			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, active, pos, del, firm_id, user_id, description, slug', 'safe'),

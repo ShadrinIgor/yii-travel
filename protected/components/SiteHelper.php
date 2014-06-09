@@ -40,10 +40,11 @@ class SiteHelper
         if( empty( $item->slug ) || !$item->slug)
         {
             $nameTranstlit = SiteHelper::getTranslateForUrl( $item->name );
-            if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->owner->name );
-                                              else $dopSlug = "";
+            $dopSlug = $item->id."-";
+            if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug .= SiteHelper::getTranslateForUrl( $item->owner->name );
+                                              else $dopSlug .= "";
 
-            if( property_exists( $item, "category_id" ) && !empty( $item->category_id ) && $item->category_id->id >0 )$dopSlug = SiteHelper::getTranslateForUrl( $item->category_id->name );
+            if( property_exists( $item, "category_id" ) && !empty( $item->category_id ) && $item->category_id->id >0 )$dopSlug .= SiteHelper::getTranslateForUrl( $item->category_id->name );
 
             if( get_class( $item ) == "CatalogHotels" )
             {
@@ -51,15 +52,9 @@ class SiteHelper
                 if( $item->city_id->id >0 )$dopSlug .= "-".SiteHelper::getTranslateForUrl( $item->city_id->name );
             }
 
-            if( get_class( $item ) == "CatalogWork" || get_class( $item ) == "CatalogWorkAdd" || get_class( $item ) == "CatalogWorkResumeAdd"
-                || get_class( $item ) == "CatalogInfo"
-                || get_class( $item ) == "CatalogToursEn" || get_class( $item ) == "CatalogTours" || get_class( $item ) == "CatalogToursAdd"
-                || get_class( $item ) == "CatalogItems" || get_class( $item ) == "CatalogItemsAdd"
-                || get_class( $item ) == "CatalogFirmsItems" || get_class( $item ) == "CatalogFirmsItemsAdd"
-                    )$dopSlug = $item->id;
 
             // Проверяем чтобы название категории не содержалось в названии чтобы не было такого: banki-banki-tashkenta
-            if( !empty( $dopSlug ) && strpos( $nameTranstlit, $dopSlug ) !== false  )$dopSlug = "";
+            if( !empty( $dopSlug ) && strpos( $nameTranstlit, $dopSlug ) !== false  )$dopSlug .= "";
 
             if( !empty( $dopSlug ) )$item->slug = $dopSlug ."-". $nameTranstlit;
                                else $item->slug = $nameTranstlit;

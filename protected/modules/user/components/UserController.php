@@ -14,6 +14,9 @@ class UserController extends Controller
         {
             Yii::app()->session['redirect'] = $_SERVER["REQUEST_URI"];
             Yii::app()->user->logout();
+
+            //if( Yii::app()->getLanguage() != "ru" )$lang = Yii::app()->getLanguage();
+
             $this->redirect( SiteHelper::createUrl( "/user" ) );
         }
     }

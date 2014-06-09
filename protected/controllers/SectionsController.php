@@ -37,6 +37,11 @@ class SectionsController extends Controller
             if( $item->id >0 )break;
         }
 
+        if( empty( $key ) )
+        {
+            $item = CatalogSections::fetchBySlug( "otdyh-v-gorah" );
+        }
+
         if( $item && $item->id >0)
         {
             Yii::app()->page->setInfo( array( "description"=>$item->name.",".$this->description, "keyWord"=>$item->name.",".$this->keyWord ) );

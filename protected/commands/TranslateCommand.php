@@ -4,13 +4,14 @@ class TranslateCommand extends CConsoleCommand
 {
     public function run($args)
     {
+        $col = 25;
         $n=0;
-        // "CatalogTours", "CatalogInfoCategory", "CatalogInfo", "CatalogCity",
-        $listCatalog = array( "CatalogFirms", "CatalogContent", "CatalogFirmsItems", "CatalogFirmsService", "CatalogHotels", "CatalogItems", "CatalogKurorts", "CatalogUmor", "CatalogWork"  );
+        // "CatalogTours", "CatalogInfoCategory", "CatalogInfo", "CatalogCity", "CatalogFirms",
+        $listCatalog = array( "CatalogFirmsService", "CatalogHotels", "CatalogItems", "CatalogKurorts", "CatalogUmor", "CatalogWork", "CatalogContent", "CatalogFirmsItems" );
         for( $i=0;$i<sizeof( $listCatalog );$i++ )
         {
             $class = $listCatalog[ $i ];
-            $list = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("translate=0")->setLimit(10)->setCache(0) );
+            $list = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("translate=0")->setLimit( $col )->setCache(0) );
             echo $class." - ".$n."( ".sizeof($list)." )<br/>";
             foreach( $list as $model )
             {
@@ -27,7 +28,7 @@ class TranslateCommand extends CConsoleCommand
                     print_r( $model->getErrors() );
             }
 
-            if( sizeof( $list ) == 10 || $n == 10 )break;
+            if( sizeof( $list ) == $col || $n >= $col )break;
         }
     }
 }

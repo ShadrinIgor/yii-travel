@@ -66,10 +66,10 @@ class pageWidget extends CWidget
                 $pageParams["sort"] = array( "field"=>$sortField, "by"=>$by );
             }
 
-            if( !empty( $_GET["lang"] ) )
+        if( Yii::app()->getLanguage() != "ru" )
             {
-                if( @class_exists( $catalog.$_GET["lang"]  ) )
-                    $catalog .= SiteHelper::getCamelCase( $_GET["lang"] );
+                if( @class_exists( $catalog.Yii::app()->getLanguage()  ) )
+                    $catalog .= SiteHelper::getCamelCase( Yii::app()->getLanguage() );
             }
 
             $catalogModel = new $catalog();
@@ -178,10 +178,14 @@ class pageWidget extends CWidget
             $linkName = "";
             switch( $catalogModel->tableName() )
             {
-                case "catalog_firms" : $addUrl =  SiteHelper::createUrl( "/user/firms/description/" );$linkName="Добавить тиристическое агенство";break;
-                case "catalog_hotels" : $addUrl =  SiteHelper::createUrl( "/user/hotels/description/" );$linkName="Добавить отель/гостиницу";break;
-                case "catalog_kurorts" : $addUrl =  SiteHelper::createUrl( "/user/resort/description/" );$linkName="Добавить зону отдыха / курорт /дет. лагерь";break;
-                case "catalog_firms_items" : $addUrl =  SiteHelper::createUrl( "/user/sales/description/" );$linkName="Добавить АКЦИЮ / СКИДКУ";break;
+                case "catalog_firms" :
+                case "catalog_firms_en" :$addUrl =  SiteHelper::createUrl( "/user/firms/description/" );$linkName= Yii::t( "page", "Добавить тиристическое агенство");break;
+                case "catalog_hotels" :
+                case "catalog_hotels_en" :$addUrl =  SiteHelper::createUrl( "/user/hotels/description/" );$linkName=Yii::t( "page","Добавить отель/гостиницу");break;
+                case "catalog_kurorts" :
+                case "catalog_kurorts_en" : $addUrl =  SiteHelper::createUrl( "/user/resort/description/" );$linkName=Yii::t( "page","Добавить зону отдыха / курорт /дет. лагерь");break;
+                case "catalog_firms_items" :
+                case "catalog_firms_items_en" :$addUrl =  SiteHelper::createUrl( "/user/sales/description/" );$linkName=Yii::t( "page","Добавить АКЦИЮ / СКИДКУ");break;
                 //case "catalog_tours" : $addUrl =  SiteHelper::createUrl( "/user/tours/description/" );$linkName="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Добавить тур&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";break;
             }
 

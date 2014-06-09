@@ -1,12 +1,23 @@
 <?php
 
 return array(
+    "Добавить туристическое агентство" => "Add a travel agency",
+    "Добавить отель/гостиницу" => "Add a hotel/inn",
+    "Добавить зону отдыха / курорт /дет. лагерь" => "Add a recreation area / resort / children. Camp",
+    "Добавить АКЦИЮ / СКИДКУ" => "Add SHARE / DISCOUNT",
+
+    "Фирмы" => "Firms",
+    "Авторизация" => "Authorization",
+    "Авторизоваться" => "log in",
+    "Проверочный код" => "Verification code",
+    "обновить" => "update",
+
     "<h3>детский лагерь</h3> <h4>отдых</h4> <b>туры</b> <u>туроператоры</u> <i>турфирмы</i> <i>горный лагерь</i> <font>турагентство</font> <u>зоны отдыха</u> <u>туристические агентства</u> <h3>тур фирмы</h3> <h4>туристические компании</h4> <b>поиск тура</b> <u>туроператоры</u> <h2>отдых в горах</h2> <b>тур фирмы</b>" => "<h3> kids camp </h3> <h4> vacation </h4> <b> tours </b> <u> tour operators </u> <i> firms </i> <i> Mining Camp </i > <font> tour agency </font> <u> recreation area </u> <u> travel agencies </u> <h3> tour company </h3> <h4> travel company </h4> <b> search Tour </b> <u> tour operators </u> <h2> mountain vacation </h2> <b> tour company </b>",
     "мировой отдых для вас, туристический портал" => "World vacation for you, travel guide",
     "Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, узбекистан" => "Travel Reservations, accomodation, tour operators, travel, Turkey, Uzbekistan",
     "туристические акции, скидки, горячие предложения" => "travel promotions, discounts, hot deals",
     "Новости" => "News",
-    "Туристические странны" => "Tourist Country",
+    "Туристические странны" => "Travel the country",
     "Туры" => "Tours",
     "туры" => "tours",
     "Отели" => "Hotels",
@@ -47,6 +58,7 @@ return array(
     "Отправить" => "Send",
     "Для добавления необходимо авторизоваться" => "To add authorization is needed",
     "просмотров" => "views",
+    "Просмотров" => "Views",
     "дата" => "date",
     "цена" => "price",
     "Список пока пуст, Ваше объявление может стать <u>первым</u> в данном разделе" => "Nobody yet, your ad can be <u> first </u> in this section",
@@ -207,6 +219,7 @@ return array(
     "нажмите чтобы<br/>выйти из кабинета" => "click to leave the office <br/>",
     "туристическая информация, фирмы, туры, достопримечательности" => "tourist information, company tours, attractions",
     "курорты" => "Resorts",
+    "Курорты" => "Resorts",
     "остальные" => "other",
     "Найти тур" => "Find a tour",
     "Найти отель" => "Find a hotel",

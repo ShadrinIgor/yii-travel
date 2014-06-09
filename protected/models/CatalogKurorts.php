@@ -24,6 +24,7 @@ class CatalogKurorts extends CCModel
     protected $slug; // string 
     protected $user_id; // integer
     protected $active;
+    protected $translate;
 
 /*
 * Поля - связи

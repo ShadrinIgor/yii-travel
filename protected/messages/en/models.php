@@ -1,6 +1,14 @@
 <?php
 
 return array(
+    "Туристический портал Узбекистана" => "Tourist Portal of Uzbekistan",
+    "например" => "example",
+    "ул. Амира Тимура, дом 39, офис 55" => "Str. Amir Timur, 39, Office 55",
+    "введите пароль" => "Enter Password",
+    "введите подтверждение пароля" => "enter password confirmation",
+    "определяет позицию в общем списке" => "defines the position in the list",
+    "системный идентификатор, писать английскими буквами" => "System ID, write English letters",
+
     "Название" => "Name",
     "Категории" => "Categories",
     "Дата" => "Date",

@@ -179,10 +179,10 @@ class CCModelHelper
         {
             $cout .=
                 '<tr>
-                    <th width="150"> Проверочный код: <font class="redColor">*</font></th>
+                    <th width="150"> '.Yii::t( "page", "Проверочный код").' <font class="redColor">*</font></th>
                     <td id="captchaTD">';
 
-            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '[ обновить ]'), true);
+            $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '[ '.Yii::t( "page", "обновить").' ]'), true);
             $cout .= CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' ));
 
             $cout .='

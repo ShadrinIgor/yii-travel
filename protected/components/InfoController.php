@@ -62,6 +62,17 @@ class InfoController extends Controller
             }
         }
 
+        // Проверяем по ID
+        if( $id == 0 )
+        {
+            $ar = explode( "-", $_GET[ "slug" ] );
+            if( (int)$ar[0] > 0 )
+            {
+                $model = $class::fetch( (int)$ar[0] );
+                $id = $model->id;
+            }
+        }
+
         if( $id > 0 )
         {
             if( $model->id >0 )$item = $model;

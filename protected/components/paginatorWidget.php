@@ -15,7 +15,7 @@ class paginatorWidget extends CWidget
     public $defaultUrl;
     public function run()
     {
-        $this->defaultUrl = SiteHelper::createUrl("/").Yii::app()->request->pathInfo;
+        $this->defaultUrl = SiteHelper::createUrl("/", array(), "&", true).Yii::app()->request->pathInfo;
         $this->render("paginator", array(
                     'count'      => $this->count,
                     'offset'     => $this->offset,

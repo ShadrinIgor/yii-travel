@@ -15,6 +15,7 @@ class CatalogFirmsItems extends CCModel
     protected $pos; // integer 
     protected $del; // integer
     protected $slug;
+    protected $translate;
 
 /*
 * Поля - связи

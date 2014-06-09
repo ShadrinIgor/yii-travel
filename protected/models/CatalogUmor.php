@@ -10,7 +10,8 @@ class CatalogUmor extends CCModel
     protected $description; // string 
     protected $active; // integer 
     protected $pos; // integer 
-    protected $del; // integer 
+    protected $del; // integer
+    protected $translate;
 
 /*
 * Поля - связи
