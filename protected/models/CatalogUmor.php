@@ -44,7 +44,8 @@ class CatalogUmor extends CCModel
 			array('name', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, active, pos, del', 'safe', 'on'=>'search'),
+			array('translate, id, name, description, active, pos, del', 'safe'),
+            array('translate, id, name, description, active, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
 

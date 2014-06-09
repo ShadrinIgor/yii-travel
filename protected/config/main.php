@@ -290,24 +290,6 @@ return array(
             'class'     => 'ext.notifications.initNotifications'
         ),
 
-        'payment' => array(
-            'class' => 'ext.activemerchant.ActiveMerchant',
-            'mode' => 'test', //live
-            'gateways' => array(
-                'PaypalExpress' => array(
-                    'login'     => 'blabla',
-                    'password'  => 'password',
-                    'signature' => '....',
-                    'currency'  => 'USD'
-                ),
-                'Paypal' => array(
-                    'login'     => 'blabla2',
-                    'password'  => 'password2',
-                    'signature' => '.....',
-                    'currency'  => 'USD'
-                ),
-            ),
-        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

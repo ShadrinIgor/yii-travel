@@ -56,7 +56,8 @@ class CatalogItems extends CCModel
 			array('slug', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos, time_id, slug, col', 'safe', 'on'=>'search'),
+			array('translate, id, name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos, time_id, slug, col', 'safe'),
+            array('id, name, image, description, del, price, user_id, category_id, type_id, status_id, is_hot, date, city_id, pos, time_id, slug, col', 'safe', 'on'=>'search'),
 		);
 	}
 

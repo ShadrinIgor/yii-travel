@@ -4,10 +4,10 @@ class TranslateCommand extends CConsoleCommand
 {
     public function run($args)
     {
-        $col = 25;
+        $col = 40;
         $n=0;
-        // "CatalogTours", "CatalogInfoCategory", "CatalogInfo", "CatalogCity", "CatalogFirms",
-        $listCatalog = array( "CatalogFirmsService", "CatalogHotels", "CatalogItems", "CatalogKurorts", "CatalogUmor", "CatalogWork", "CatalogContent", "CatalogFirmsItems" );
+        // "CatalogTours", "CatalogInfoCategory", "CatalogInfo", "CatalogCity", "CatalogFirms", "CatalogHotels", "CatalogItems", "CatalogKurorts", "CatalogUmor",
+        $listCatalog = array( "CatalogCountry", "CatalogWork", "CatalogContent", "CatalogFirmsItems", "CatalogFirmsService" );
         for( $i=0;$i<sizeof( $listCatalog );$i++ )
         {
             $class = $listCatalog[ $i ];

@@ -60,7 +60,8 @@ class CatalogWork extends CCModel
 			array('contacts, active', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id', 'safe', 'on'=>'search'),
+			array('translate, id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id', 'safe'),
+            array('translate, id, name, image, description, contacts, price, graf, city_id, del, pos, category_id, is_resume, user_id, firm_id, date, country_id, active, type_id', 'safe', 'on'=>'search'),
 		);
 	}
 

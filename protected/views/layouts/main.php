@@ -112,10 +112,10 @@
         <br/><br/>
     </div>
     <div id="trioLogo">
-        <?php /* if( $this->beginCache( "counters_block", array('duration'=>3600) ) ) : ?>
+        <?php /*if( $this->beginCache( "counters_block", array('duration'=>3600) ) ) :*/ ?>
         <?php SiteHelper::renderDinamicPartial( "counters" ) ?>
         <?php
-              $this->endCache();
+              /*$this->endCache();
               endif;*/
         ?>
         <!--a href="http://www.trio.uz" title="Студия нового TRIO.uz!!!"><img src="<?= $Theme->getBaseUrl() ?>/images/trio.png" title="Студия нового TRIO.uz!!!"/></a-->

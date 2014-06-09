@@ -59,7 +59,7 @@ class CatalogHotels extends CCModel
             array('country_id, city_id, level', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('user_id, active, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe'),
+            array('translate, user_id, active, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug', 'safe'),
 			array('id, name, description, pos, country_id, city_id, address, del, image, level, email, www, fax, tel, col, slug, user_id, active', 'safe', 'on'=>'search'),
 		);
 	}

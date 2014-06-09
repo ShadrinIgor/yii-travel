@@ -15,7 +15,8 @@ class CatalogCountry extends CCModel
     protected $name_2; // string 
     protected $baner; // string 
     protected $slug; // string 
-    protected $col; // integer 
+    protected $col; // integer
+    protected $translate; // integer
 
 /*
 * Поля - связи
@@ -61,10 +62,11 @@ class CatalogCountry extends CCModel
 			array('flag, image', 'length', 'max'=>100),
 			array('name_2, slug', 'length', 'max'=>50),
 			array('baner', 'length', 'max'=>255),
-			array('slug, col', 'safe'),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe', 'on'=>'search'),
+			array('translate, id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe'),
+            array('translate, id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe', 'on'=>'search'),
 		);
 	}
 
