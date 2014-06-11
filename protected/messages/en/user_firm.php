@@ -4,7 +4,7 @@ return array(
     "Как правильно добавить фирму?" => "How to add a company ?",
     "Описание туристического агенства" => "Description of the tourist agency",
     "Описание и Галерея" => "Description and Gallery",
-    "Туры компаниии" => "Air Company",
+    "Туры компании" => "Air Company",
     "Акции и скидки" => "Promotions",
     "Дополнительные услуги" => "Additional Services",
     "Рекламный баннер" => "The banner",

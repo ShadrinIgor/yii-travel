@@ -79,17 +79,17 @@ return array(
             'showScriptName' => false,
             'rules'=>array(
                 ''=>'site/index',
-                '<language:(en)>'=>'site/index',
+                '<language:(en|ja|ch)>'=>'site/index',
 
-                '<language:(en)>/<controller:\w+>'=>'<controller>',
-                '<language:(en)>/<controller:\w+>/sort/<sort:\w+>/by/<by:\w+>'=>'<controller>',
+                '<language:(en|ja|ch)>/<controller:\w+>'=>'<controller>',
+                '<language:(en|ja|ch)>/<controller:\w+>/sort/<sort:\w+>/by/<by:\w+>'=>'<controller>',
 
-                '<language:(en)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                '<language:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
-                '<language:(en)>/<controller:\w+>/<slug:[\w-]+>'=>'<controller>',
-                '<language:(en)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>'=>'<controller>/<action>',
-                '<language:(en)>/<module:\w+>/<controller:\w+>/<action:[\w-]+>/'=>'<controller>/<action>',
-                '<language:(en)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
+                '<language:(en|ja|ch)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<language:(en|ja|ch)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
+                '<language:(en|ja|ch)>/<controller:\w+>/<slug:[\w-]+>'=>'<controller>',
+                '<language:(en|ja|ch)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>'=>'<controller>/<action>',
+                '<language:(en|ja|ch)>/<module:\w+>/<controller:\w+>/<action:[\w-]+>/'=>'<controller>/<action>',
+                '<language:(en|ja|ch)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
 
                 '<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',
@@ -116,7 +116,7 @@ return array(
                 '<controller:(people)>-<category:\w+>.html'=> '<controller>',
                 '<slug:\w+>_<controller:(people)>_<action:(desc)>.html'=> '<controller>/desc',*/
 
-                '<language:(en)>/registration.html'=> 'user/default/Registration',
+                '<language:(en|ja|ch)>/registration.html'=> 'user/default/Registration',
                 'registration.html'=> 'user/default/Registration',
                 'lost.html'=> 'user/default/lost',
                 'logout.html'=> 'user/default/logout',

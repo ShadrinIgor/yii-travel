@@ -11,12 +11,12 @@ $cs->registerCssFile($baseUrl.'/css/jquery/validationEngine.jquery.css');
 <div id="PageText">
     <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( Yii::t("user", "Востановление пароля" ) ),
+        'links'=>array( Yii::t("user", "Восстановление пароля" ) ),
     ));
     ?>
 
     <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>
-    <h1><?= Yii::t("user", "Востановление пароля" ) ?></h1>
+    <h1><?= Yii::t("user", "Восстановление пароля" ) ?></h1>
     <?php echo CHtml::errorSummary($form); ?><br/>
     <?php if(!empty($okMessage) ) : ?><div class="messageSummary"><p><?= $okMessage ?></p></div><?php endif;?>
     <table id="loginForm" align="center">

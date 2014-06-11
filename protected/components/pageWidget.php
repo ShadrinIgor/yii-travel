@@ -41,7 +41,7 @@ class pageWidget extends CWidget
             // Если указан параметр черезе GET и это не сортировка и не страницы, от очищаем параметры
             if( $params == "empty" || ( !empty( $_GET ) && empty($_GET["sort"]) && empty($_GET["p"]) ) )Yii::app()->session[ "page_".$catalog ] = null;
 
-            // Сдесь будем хранить параметры сортировки и посика, для сохранения  в сессию
+            // Здесь будем хранить параметры сортировки и посика, для сохранения  в сессию
             $pageParams = array();
 
             if( empty( $sortField ) )

@@ -91,7 +91,7 @@ class UserNotifier
 
         if( $confim->hasErrors() && sizeof( $confim )>0 )
         {
-            $errors = "Ошибка сохранение подтвержджения востановление пароля: ";
+            $errors = "Ошибка сохранение подтвержджения восстановление пароля: ";
             foreach( $confim->getErrors() as $data )
                 foreach( $data as $key=>$value )$errors .= $value.", ";
 

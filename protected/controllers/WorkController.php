@@ -34,7 +34,7 @@ class WorkController extends InfoController
 
         if( !empty( $saved ) )
         {
-            $addModel->formMessage = Yii::t("work", "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по ссыдке")." <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) )."</a>";
+            $addModel->formMessage = Yii::t("work", "Ваше объявление успешно опубликовано.<br/>Для добавления большого количества картинок для объявления или его редактирования перейдите по ссылке")." <a href=\"".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) ) ."\">".SiteHelper::createUrl("/user/items/description", array( "id"=>$saved ) )."</a>";
         }
 
         $condition = "active=1";

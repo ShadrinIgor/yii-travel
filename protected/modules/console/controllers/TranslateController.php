@@ -14,6 +14,7 @@ class TranslateController extends ConsoleController
         if( !empty( $_POST["text"] ) )
         {
             $text = trim( $_POST["text"] );
+            $lang = trim( $_POST["lang"] );
             $arr = explode( "\n", $text );
             for( $i=0;$i<sizeof( $arr );$i++ )
             {
@@ -22,7 +23,7 @@ class TranslateController extends ConsoleController
                 $value = trim( str_replace( '"', "", $arr2[ 1 ] ) );
                 if( !empty( $value ) )
                 {
-                    $value2 = TranslateHelper::translate( $value );
+                    $value2 = TranslateHelper::translate( $value, $lang );
                     //echo $value."<br/>";
                     $text = str_replace( '"'.$value.'",', '"'.$value2.'",', $text );
                 }

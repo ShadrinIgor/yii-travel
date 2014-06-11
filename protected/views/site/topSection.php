@@ -15,12 +15,12 @@
     </pre>
     </div>
     <div class="SItems" id="SI03">
-        <a href="<?= SiteHelper::createUrl( "/sections" )."/ektrimalnyi-turizm" ?>" title="<?= Yii::t("section", "Экстримальный туризм"); ?>"><img alt="<?= Yii::t("section", "Экстримальный туризм"); ?>" src="<?= $Theme->getBaseUrl() ?>/images/menu01.jpg" /></a>
+        <a href="<?= SiteHelper::createUrl( "/sections" )."/ektrimalnyi-turizm" ?>" title="<?= Yii::t("section", "Экстремальный туризм"); ?>"><img alt="<?= Yii::t("section", "Экстремальный туризм"); ?>" src="<?= $Theme->getBaseUrl() ?>/images/menu01.jpg" /></a>
     <pre>
       <ul>
           <li><?= Yii::t("section", "Горнолыжный/Сноуборд"); ?></li>
           <li><?= Yii::t("section", "Рафтинг+экскурсии"); ?></li>
-          <li><?= Yii::t("section", "Треккинг"); ?></li>
+          <li><?= Yii::t("section", "Трекинг"); ?></li>
           <li><?= Yii::t("section", "Альпинизм"); ?></li>
           <li><?= Yii::t("section", "Спорт экстрим"); ?></li>
       </ul>
@@ -63,14 +63,14 @@
     </pre>
     </div>
      <div class="SItems" id="SI07">
-      <a href="<?= SiteHelper::createUrl( "/sections" )."/issledovatelskii-turizm" ?>" title="<?= Yii::t("section", "Туризм Иследование"); ?>"><img alt="<?= Yii::t("section", "Туризм Иследование"); ?>" src="<?= $Theme->getBaseUrl() ?>/images/menu05.jpg" /></a>
+      <a href="<?= SiteHelper::createUrl( "/sections" )."/issledovatelskii-turizm" ?>" title="<?= Yii::t("section", "Туризм Исследовательский"); ?>"><img alt="<?= Yii::t("section", "Туризм Исследовательский"); ?>" src="<?= $Theme->getBaseUrl() ?>/images/menu05.jpg" /></a>
         <pre>
           <ul>
             <li><?= Yii::t("section", "Исторические"); ?></li>
             <li><?= Yii::t("section", "Орнитология"); ?></li>
             <li><?= Yii::t("section", "Экспедиции"); ?></li>
             <li><?= Yii::t("section", "Археологический"); ?></li>
-            <li><?= Yii::t("section", "Узучение культуры"); ?></li>
+            <li><?= Yii::t("section", "Изучение культуры"); ?></li>
           </ul>
         </pre>
      </div>

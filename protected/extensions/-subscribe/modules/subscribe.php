@@ -108,11 +108,11 @@ class subscribe
                             <td colspan=\"2\"><hr/>Выберите получателей:</td>
                         </tr>
                         <tr>
-                            <th><input type=\"radio\" name=\"sender_type\" ".( $model->sender_type == 1 ? "checked" : "" )." value=\"1\" /> Общая отправка:<br/>( письма будут отправлены всем пользоватлеям )</th>
+                            <th><input type=\"radio\" name=\"sender_type\" ".( $model->sender_type == 1 ? "checked" : "" )." value=\"1\" /> Общая отправка:<br/>( письма будут отправлены всем пользователям )</th>
                             <td></td>
                         </tr>
                         <tr>
-                            <th><input type=\"radio\" name=\"sender_type\" ".( $model->sender_type == 2 ? "checked" : "" )." value=\"2\" /> Отправка по регионам:<br/>( письма будут отправленны пользоватлеям определенного регоина )</th>
+                            <th><input type=\"radio\" name=\"sender_type\" ".( $model->sender_type == 2 ? "checked" : "" )." value=\"2\" /> Отправка по регионам:<br/>( письма будут отправленны пользователям определенного регоина )</th>
                             <td>
                                 <textarea rows=\"6\" name=\"sender_region\" cols=\"50\">".$model->sender_region."</textarea
                             </td>

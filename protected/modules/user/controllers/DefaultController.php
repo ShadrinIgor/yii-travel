@@ -225,7 +225,7 @@ class DefaultController extends Controller
             }
         }
 
-        if( isset( $_GET["successfully"] ) )$okMessage = "<b>".Yii::t("user", "Запрос на востановление пароля сохранен.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения запроса" )."</b>";
+        if( isset( $_GET["successfully"] ) )$okMessage = "<b>".Yii::t("user", "Запрос на восстановление пароля сохранен.</b><br/>В течении нескольких минут к Вам на почту придет письмо для подтверждения запроса" )."</b>";
                                        else $okMessage=null;
 
         $this->render('lost',array('form'=>$user, "okMessage"=>$okMessage ));

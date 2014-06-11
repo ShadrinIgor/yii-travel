@@ -23,7 +23,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $tab== "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Описание и Галерея"); ?></a>
         <?php if( $item->id >0 ) : ?>
-            <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Туры компаниии"); ?>( <?= sizeof($listTours) ?> )</a>
+            <a href="#" id="ptours" class="<?= $tab== "ptours" ? "ptours " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Туры компании"); ?>( <?= sizeof($listTours) ?> )</a>
             <a href="#" id="items" class="<?= $tab== "items" ? "items " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Акции и скидки"); ?>( <?= sizeof($listItems) ?> )</a>
             <a href="#" id="service" class="<?= $tab== "service" ? "service " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Дополнительные услуги"); ?>( <?= sizeof($listService) ?> )</a>
             <a href="#" id="reclame" class="<?= $tab== "reclame" ? "reclame " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Рекламный баннер"); ?>( <?= sizeof($listBanners) ?> )</a>

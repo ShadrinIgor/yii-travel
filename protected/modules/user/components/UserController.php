@@ -252,7 +252,7 @@ class UserController extends Controller
                     $firm = CatalogFirms::fetch( $fid );
                 }
 
-                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохраненно") : "";
+                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохранено") : "";
 
                 // Описание объявления
                 if( !empty( $_POST["update"] ) )
@@ -308,14 +308,14 @@ class UserController extends Controller
                         if( $action == "delComment" )
                         {
                             $comModel->delete();
-                            $comMessage = Yii::t("user", "Коментарий удален");
+                            $comMessage = Yii::t("user", "Комментарий удален");
                         }
 
                         if( $action == "validComment" )
                         {
                             $comModel->is_valid = 1;
                             $comModel->save();
-                            $comMessage = Yii::t("user", "Коментарий успешно опубликован");
+                            $comMessage = Yii::t("user", "Комментарий успешно опубликован");
                         }
                     }
                 }

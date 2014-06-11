@@ -36,7 +36,7 @@ class ItemController extends Controller
 
                     if( $newComment->save() )
                     {
-                        $newComment->formMessage = "Коментарий успешно отправлен.";
+                        $newComment->formMessage = "Комментарий успешно отправлен.";
                         $newComment->onNewComment( new CModelEvent( $newComment ), array(
                                 "id"      => $item->id,
                                 "name"    => $item->name,

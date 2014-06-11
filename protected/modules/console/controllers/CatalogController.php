@@ -172,7 +172,7 @@ class CatalogController extends ConsoleController
                 }
             }
 
-            // Сохранение TITLE галлереи
+            // Сохранение TITLE галереи
             if( !empty( $_POST["image_submit"] )  && !empty( $_POST["image"] ) )
             {
                 foreach( $_POST["image"] as $value )

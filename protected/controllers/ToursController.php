@@ -8,7 +8,7 @@ class ToursController extends InfoController
         $this->classModel = "CatalogTours";
         $this->classCategory = "CatalogToursCategory";
         $this->description = Yii::t("tours", "Список самых популярных туристических предложений, туров.");
-        $this->keyWord = Yii::t("tours", "бизнес туры, деловой туризм, иследовательские, лечебные туры, развлектельные, vip отдых, детские лагеря, загородный отдых, конный тур, морские и речные круизы, рафтинг+экскурсии, сафари на верблюдах");
+        $this->keyWord = Yii::t("tours", "бизнес туры, деловой туризм, исследовательские, лечебные туры, развлекательные, vip отдых, детские лагеря, загородный отдых, конный тур, морские и речные круизы, рафтинг+экскурсии, сафари на верблюдах");
     }
 
     public function actionDescription()

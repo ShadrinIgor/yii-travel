@@ -36,7 +36,7 @@
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>
         <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"></div><div id="TrioMedal"></div></div><?php endif; ?>
         <div id="BH1">
-            <h1><?= Yii::t( "page", "Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, узбекистан") ?></h1>
+            <h1><?= Yii::t( "page", "Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, Узбекистан") ?></h1>
         </div>
     </Div>
     <div id="Menu1">

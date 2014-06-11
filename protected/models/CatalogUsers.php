@@ -128,7 +128,7 @@ class CatalogUsers extends CCModel
                                                            "<br/><br/><b>".Yii::t("models", "Письмо не пришло?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/resend", array( "email"=>$this->email ) ) ."\">".Yii::t("models", "отправить заново письмо для подтверждения регистрации на")." ".$this->email."</a>
                                                            <br/><br/><b>".Yii::t("models", "Все равно не пришло?" )."</b><br/>".Yii::t("models", "Это странно, тогда Вам необходимо будет написать, с Email который вы указали при регистрации, письмо в службу тех. поддержки")." <a href=\"mailto:".Yii::app()->params["supportEmail"]."\">".Yii::app()->params["supportEmail"]."</a><br/>".Yii::t("models", "Пример письма:<br/>Заголовок письма - У меня проблемы с регистрацией<br/>Текст сообщения - Разберитесь пожалуйста");
                     else
-                        $textError .= "<br/><b>".Yii::t("models", "Забыли пароль?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">".Yii::t("models", "востановить пароль")."</a>";
+                        $textError .= "<br/><b>".Yii::t("models", "Забыли пароль?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">".Yii::t("models", "восстановить пароль")."</a>";
 
                 $this->addErrors( array(  "0"=>$textError ) );
             }

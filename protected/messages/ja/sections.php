@@ -1,7 +1,6 @@
 <?php
 
 return array(
-    "Разновидности турестического отдыха такие как экстрим, охота и рыбалка, иследования, религия, детские лагеря, отдых в горах"=>"Varieties of Camping & Outdoor recreation such as extreme sports , hunting and fishing , isledovanija , religion, children's camps, vacation in the mountains",
-    "Эктримальный туризм, Охота и рыбалка, VIP отдых, Развлекательный туризм, Исследовательский туризм, Религиозный туризм, Детские лагеря, Отдых в горах" => "Ektrimalny tourism, hunting and fishing , VIP vacation, entertainment tourism, research tourism, Religious Tourism , Kids camp , Tourism in the Mountains"
-
+    "Разновидности туристического отдыха такие как экстрим, охота и рыбалка, исследование, религия, детские лагеря, отдых в горах"=>"このようなレジャー観光極端な狩猟や釣り、研究、宗教、子供たちのキャンプ、山の休暇などの品種",
+    "Экстремальный туризм, Охота и рыбалка, VIP отдых, Развлекательный туризм, Исследовательский туризм, Религиозный туризм, Детские лагеря, Отдых в горах" => "飲食、釣りや狩猟、VIPの休暇、娯楽、観光、研究、観光、宗教観光、キッズキャンプは、山の中でキャンプ"
 );

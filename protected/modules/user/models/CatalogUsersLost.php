@@ -30,7 +30,7 @@ class CatalogUsersLost extends CatalogUsers
 
             if( !empty($userList) && sizeof( $userList )==1 )
             {
-                // Если в базе уже сужествует запросы на востановление, до удаляем его
+                // Если в базе уже сужествует запросы на восстановление, до удаляем его
                 $existConfirm = CatalogUsersConfirm::findByAttributes( array( "user_id"=>$userList[0]->id, "type"=>"lostpassword" ) );
                 if( sizeof( $existConfirm )>0 )$existConfirm[0]->delete();
 

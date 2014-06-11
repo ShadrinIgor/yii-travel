@@ -2,7 +2,7 @@
 
 $this->widget('addressLineWidget', array(
     'links'=>array(
-        Yii::t("page", "зоны отдыха узбекистана" )=>SiteHelper::createUrl("/resorts"),
+        Yii::t("page", "зоны отдыха Узбекистана" )=>SiteHelper::createUrl("/resorts"),
         $item->category_id->name=>SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug.".html",
         $item->name
     )

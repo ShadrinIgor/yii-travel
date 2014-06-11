@@ -24,10 +24,10 @@ return array(
     "Прочая информация" => "Other information",
     "Email для запроса:" => "Email for:",
     "Внимание!!!" => "Attention !!!",
-    "При переходе Вам необходимо будет авторизоватся, либо зарегестрироваться если у вас нет логина. После этого Вы сможете вносить информацию." => " In the transition you will need to first login or to register if you do not have a login . Thereafter, you can contribute.",
+    "При переходе Вам необходимо будет авторизоваться, либо зарегистрироваться  если у вас нет логина. После этого Вы сможете вносить информацию." => " In the transition you will need to first login or to register if you do not have a login . Thereafter, you can contribute.",
     "Возникли вопросы?" => "Questions?",
     "Пишите нам на Email <a href='mailto:support@world-travel.uz'>support@world-travel.uz</a>, мы будем рады на них ответить." => "Contact us at email <a href='mailto:support@world-travel.uz'> support@world-travel.uz </a>, we will be happy to answer them.",
-    "Ваша информация, фирма, отель или прочая информация уже размещене на сайте?" => "Your information company, hotel or other information is posted on this site ?",
+    "Ваша информация, фирма, отель или прочая информация уже размещение на сайте?" => "Your information company, hotel or other information is posted on this site ?",
     "Если Вы хотите изменить её или удалить, Вам необходимо" => " If you want to change or delete it , you must",
     "подтвердить информацию" => "confirm information",
 
@@ -35,8 +35,8 @@ return array(
     "Возникли вопросы?" => "Questions?",
     "Пишите нам на Email support@world-travel.uz, мы будем рады на них ответить." => "Contact us on email support@world-travel.uz, we will be happy to answer them.",
     "Вы работает в туристической фирме? Хотите разместить рекламу БЕСПЛАТНО?" => "Are you working in a travel agency ? Want to advertise for FREE?",
-    "вы можете БЕСПЛАТНО добавить инфомацию о Вашей туристической фирме, о вашем отеле, зоне отдыха" => "you can add information of their FREE your travel company about your hotel , recreation area",
-    "Например: Ваши услуги, рекламный баннер, туры, спец предложениея, акции... " => "For example: your services, banner advertising , tours , special offers, promotions , shares ... ",
-    "Добавить туристическую информаци бесплатно" => "Add a free tourist information",
+    "вы можете БЕСПЛАТНО добавить информацию о Вашей туристической фирме, о вашем отеле, зоне отдыха" => "you can add information of their FREE your travel company about your hotel , recreation area",
+    "Например: Ваши услуги, рекламный баннер, туры, спец предложения, акции... " => "For example: your services, banner advertising , tours , special offers, promotions , shares ... ",
+    "Добавить туристическую информацию бесплатно" => "Add a free tourist information",
 
 );

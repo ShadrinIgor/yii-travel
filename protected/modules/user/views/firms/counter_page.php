@@ -11,7 +11,7 @@
 <?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-kabinet-statistika" ) ?>
 <table align="center">
     <tr>
-        <th><?= Yii::t("counter_page", "Количесво просмотров страниц о компании"); ?>: </th>
+        <th><?= Yii::t("counter_page", "Количество просмотров страниц о компании"); ?>: </th>
         <td><?= $item->col ?></td>
     </tr>
     <tr>

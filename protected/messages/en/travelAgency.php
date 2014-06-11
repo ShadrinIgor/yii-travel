@@ -3,7 +3,7 @@
 return array(
     "Туристические агентства" => "Travel Agencies",
     "туристическое агенство" => "travel agency",
-    "Туры компаниии" => "Air Company",
+    "Туры компании" => "Air Company",
     "Акции и скидки" => "Promotions",
     "Дополнительные услуги" => "Additional Services",
     "Комментарии и отзывы" => "Comments and reviews",

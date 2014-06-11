@@ -58,7 +58,7 @@ class CatalogUsersAuth extends CatalogUsers
                     else
                 {
                     $textError = "Вы ввели не верный Email или ПАРОЛЬ<br/>";
-                    $textError .= "<br/><b>". Yii::t("models", "Забыли пароль?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">". Yii::t("models", "востановить пароль")."</a>";
+                    $textError .= "<br/><b>". Yii::t("models", "Забыли пароль?")."</b><br/><a href=\"".SiteHelper::createUrl( "/user/default/lost" ) ."\">". Yii::t("models", "восстановить пароль")."</a>";
                     $this->addErrors( array(  "0"=>$textError ) );
                 }
             }

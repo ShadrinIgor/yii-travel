@@ -35,7 +35,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
     <div id="dopMenu">
         <a href="#" id="description" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Описание"); ?></a>
         <?php if( sizeof($listGallery) >0 ) : ?><a href="#" id="gallery2" class="<?= $activeTab == "gallery" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("page", "Галерея"); ?> (<?= sizeof( $listGallery ) ?>)</a><?php endif; ?>
-        <?php if( sizeof($listTours) >0 ) : ?><a href="#" id="tours" class="<?= $activeTab == "tours" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Туры компаниии"); ?> (<?= sizeof( $listTours ) ?>)</a><?php endif; ?>
+        <?php if( sizeof($listTours) >0 ) : ?><a href="#" id="tours" class="<?= $activeTab == "tours" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Туры компании"); ?> (<?= sizeof( $listTours ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listItems) >0 ) : ?><a href="#" id="items" class="<?= $activeTab == "description" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Акции и скидки"); ?> (<?= sizeof( $listItems ) ?>)</a><?php endif; ?>
         <?php if( sizeof($listService) >0 ) : ?><a href="#" id="service" class="<?= $activeTab == "service" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Дополнительные услуги"); ?> (<?= sizeof( $listService ) ?>)</a><?php endif; ?>
         <a href="#" id="pcomments" class="<?= $activeTab == "pcomments" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("travelAgency", "Комментарии и отзывы"); ?> (<?= sizeof( $listComments ) ?>)</a>

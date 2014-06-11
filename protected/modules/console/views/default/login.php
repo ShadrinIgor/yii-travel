@@ -18,7 +18,7 @@ $this->listCssFiles[] = $baseUrl.'/css/jquery/validationEngine.jquery.css';
                 <tr>
                     <td></td>
                     <td align="left">
-                        <?php echo CHtml::submitButton('Авторизоватся'); ?>
+                        <?php echo CHtml::submitButton('авторизоваться'); ?>
                     </td>
                 </tr>
                     <tr>

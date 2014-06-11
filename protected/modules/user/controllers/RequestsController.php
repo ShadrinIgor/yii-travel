@@ -29,7 +29,7 @@ class RequestsController extends Controller
                 }
             }
 
-            if( empty( $messageOk ) )$messageEr = Yii::t("user", "Произошла ошибка удаления заказа, попробуйдет позже");
+            if( empty( $messageOk ) )$messageEr = Yii::t("user", "Произошла ошибка удаления заказа, попробуйте позже");
 
             $listOrders = PlantRequest::findByAttributes( array( "user_id"=>Yii::app()->user->id ) );
             $this->render( "index", array( "trees"=>$listOrders, "messageOk"=>$messageOk , "messageEr"=>$messageEr ) );

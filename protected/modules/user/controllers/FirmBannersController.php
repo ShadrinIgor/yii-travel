@@ -62,7 +62,7 @@ class FirmBannersController extends UserController
                     $firm = CatalogFirms::fetch( $fid );
                 }
 
-                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохраненно") : "";
+                $message = ( !empty( $status ) && $status == 'saved' ) ? Yii::t("user", "Сохранено") : "";
 
                 // Описание объявления
                 if( !empty( $_POST["update"] ) )
