@@ -61,7 +61,7 @@ class TranslateHelper
             $text = TranslateHelper::getLimitText( $textIn, 600, $n );
             $text = str_replace( array( "\n", "\r" ), "" , $text );
 
-            $file = file_get_contents( "http://translate.google.ru/translate_a/t?client=x&text=".urlencode( $text )."&hl=ru&sl=ru&tl=en&ie=UTF-8&oe=UTF-8" );
+            $file = file_get_contents( "http://translate.google.ru/translate_a/t?client=x&text=".urlencode( $text )."&hl=ru&sl=ru&tl=ja&ie=UTF-8&oe=UTF-8" );
 
             $res = json_decode( $file );
             if( json_last_error() >0 )
