@@ -29,12 +29,15 @@ class TranslateHelper
         return $cout;
     }
 
-    static public function setTranslate( $model, $transModel )
+    static public function setTranslate( $model, $transModel, $lang = "en" )
     {
-        $name = TranslateHelper::translate( $model->name );
+        $name = TranslateHelper::translate( $model->name, $lang );
+
         if( property_exists( $model, "description" ) )
-            if( $model->description )$text = TranslateHelper::translate( $model->description );
+            if( $model->description )$text = TranslateHelper::translate( $model->description, $lang );
                                 else $text = "";
+
+        $text = str_replace( array( "< p", "< div" ), array( "<p", "<div"), $text );
 
         $requiredFields = $model->getSafeAtributes();
         for( $i=0;$i<sizeof( $requiredFields );$i++ )
@@ -45,6 +48,12 @@ class TranslateHelper
 
         $transModel->id = $model->id;
         $transModel->name = $name;
+        if( property_exists( $transModel, "location" ) )
+            if( $model->location )$transModel->location = TranslateHelper::translate( $model->location, $lang );
+
+        if( property_exists( $transModel, "address" ) )
+            if( $model->address )$transModel->address = TranslateHelper::translate( $model->address, $lang );
+
         if( property_exists( $model, "description" ) )$transModel->description = $text;
         if( !$transModel->save() )
                 print_r( $transModel->getErrors() );

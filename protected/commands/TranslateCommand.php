@@ -4,10 +4,10 @@ class TranslateCommand extends CConsoleCommand
 {
     public function run($args)
     {
-        $col = 40;
+        $col = 50;
         $n=0;
         //
-        $listCatalog = array( "CatalogTours", "CatalogInfoCategory", "CatalogInfo", "CatalogCity", "CatalogFirms", "CatalogHotels", "CatalogItems", "CatalogKurorts", "CatalogUmor", "CatalogCountry", "CatalogWork", "CatalogContent", "CatalogFirmsItems", "CatalogFirmsService" );
+        $listCatalog = array( "CatalogTours", "CatalogInfoCategory", "CatalogToursCategory", "CatalogInfo", "CatalogCity", "CatalogFirms", "CatalogHotels", "CatalogKurorts", "CatalogUmor", "CatalogCountry", "CatalogItems", "CatalogItemsCategory", "CatalogContent", "CatalogFirmsItems", "CatalogFirmsService", "CatalogWork" );
         for( $i=0;$i<sizeof( $listCatalog );$i++ )
         {
             $class = $listCatalog[ $i ];
@@ -21,10 +21,10 @@ class TranslateCommand extends CConsoleCommand
                 {
                     echo $model->id."<br/>";
                     $n++;
-                    $transModel = TranslateHelper::getTranslateModel( $class, $model->id, "ja" );
+                    $transModel = TranslateHelper::getTranslateModel( $class, $model->id, "zh-TW" );
                     if( !$transModel->id )
                     {
-                        @TranslateHelper::setTranslate( $model, $transModel );
+                        @TranslateHelper::setTranslate( $model, $transModel, "zh-TW" );
                     }
                 }
             }

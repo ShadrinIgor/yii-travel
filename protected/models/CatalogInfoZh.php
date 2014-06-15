@@ -1,23 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "catalog_contJat_Ja".
+ * This is the model class for table "catalog_info_en".
    */
-class CatalogContentJa extends CCModel
+class CatalogInfoZh extends CCModel
 {
     protected $id; // integer 
+    protected $col; // integer 
     protected $name; // string 
-    protected $active; // integer 
-    protected $pos; // integer 
     protected $description; // string 
-    protected $date; // string 
-    protected $image; // string 
-    protected $file; // string 
+    protected $pos; // integer 
+    protected $metaData; // string 
     protected $del; // integer 
     protected $country_id; // integer 
+    protected $city_id; // integer 
+    protected $image; // string 
     protected $category_id; // integer 
+    protected $list_key; // string 
     protected $slug; // string 
-    protected $col; // integer 
+    protected $active; // integer 
 
 /*
 * Поля - связи
@@ -34,7 +35,7 @@ class CatalogContentJa extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_content_ja';
+		return 'catalog_info_zh';
 	}
 
 	/**
@@ -45,17 +46,14 @@ class CatalogContentJa extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, name, category_id', 'required'),
-			array('id, active, pos, del, col', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
-			array('image', 'length', 'max'=>50),
-			array('file', 'length', 'max'=>100),
-			array('slug', 'length', 'max'=>150),
-
+			array('id, name, description, category_id', 'required'),
+			array('id, col, pos, del, active', 'numerical', 'integerOnly'=>true),
+			array('name, slug', 'length', 'max'=>150),
+			array('image', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, active, pos, description, date, image, file, del, country_id, category_id, slug, col', 'safe'),
-            array('id, name, active, pos, description, date, image, file, del, country_id, category_id, slug, col', 'safe', 'on'=>'search'),
+			array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug, active', 'safe'),
+            array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,10 +63,11 @@ class CatalogContentJa extends CCModel
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically gJaerated below.
+		// class name for the relations automatically generated below.
 		return array(
-			'category' => array(self::BELONGS_TO, 'CatalogContentCategory', 'category_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
+			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 		);
 	}
 
@@ -79,23 +78,24 @@ class CatalogContentJa extends CCModel
 	{
 		return array(
 			'id' => 'ID',
+			'col' => 'Col',
 			'name' => 'Name',
-			'active' => 'Active',
-			'pos' => 'Pos',
 			'description' => 'Description',
-			'date' => 'Date',
-			'image' => 'Image',
-			'file' => 'File',
+			'pos' => 'Pos',
+			'metaData' => 'Meta Data',
 			'del' => 'Del',
 			'country_id' => 'Country',
+			'city_id' => 'City',
+			'image' => 'Image',
 			'category_id' => 'Category',
+			'list_key' => 'List Key',
 			'slug' => 'Slug',
-			'col' => 'Col',
+			'active' => 'Active',
 		);
 	}
 
 	/**
-	 * Retrieves a list of models based on the currJat search/filter conditions.
+	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
 	public function search()
@@ -106,18 +106,19 @@ class CatalogContentJa extends CCModel
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('col',$this->col);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('active',$this->active);
-		$criteria->compare('pos',$this->pos);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('date',$this->date,true);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('file',$this->file,true);
+		$criteria->compare('pos',$this->pos);
+		$criteria->compare('metaData',$this->metaData,true);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('country_id',$this->country_id);
+		$criteria->compare('city_id',$this->city_id);
+		$criteria->compare('image',$this->image,true);
 		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('list_key',$this->list_key,true);
 		$criteria->compare('slug',$this->slug,true);
-		$criteria->compare('col',$this->col);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

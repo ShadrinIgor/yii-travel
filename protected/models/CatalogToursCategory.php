@@ -11,7 +11,8 @@ class CatalogToursCategory extends CCModel
     protected $pos; // integer 
     protected $del; // integer 
     protected $owner; // integer 
-    protected $slug; // integer 
+    protected $slug; // integer
+    protected $translate;
 
 /*
 * Поля - связи
@@ -43,10 +44,11 @@ class CatalogToursCategory extends CCModel
 			array('name', 'required'),
 			array('pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
-			array('slug', 'safe'),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, pos, del, owner, slug', 'safe', 'on'=>'search'),
+			array('translate, id, name, description, pos, del, owner, slug', 'safe'),
+            array('translate, id, name, description, pos, del, owner, slug', 'safe', 'on'=>'search'),
 		);
 	}
 

@@ -12,7 +12,7 @@ class socialLinksWidget extends CWidget
     var $url = "";
     public function run()
     {
-        if(  $this->beginCache( "socialLink_block", array('duration'=>3600) ) )
+        if(  $this->beginCache( "socialLink_block_".Yii::app()->getLanguage(), array('duration'=>3600) ) )
         {
             if( !$this->url )$this->url = SiteHelper::createUrl("").$_SERVER["REQUEST_URI"];
             $this->render( "socialLink", array( "id"=>$this->id, "url"=>$this->url ) );

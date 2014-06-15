@@ -43,7 +43,8 @@ h1{color: #DC5800;font-size: 12px;text-align: center;}
 .MInnerPage #BBLeft img{height: 260px;}
 #BRight {float: right;width: 835px;}
 .MInnerPage #BRight{float: left;}
-#BRTitle{font-family:Myriad Pro;float: left;width: 641px;height: 87px;margin:90px 0px 0px 0px; }
+#BRTitle{font-family:Myriad Pro;float: left;width: 641px;height: 87px;margin:0px 0px 0px 0px; }
+#HLangs{float: left;width: 641px;margin:50px 0px 0px 0px;text-align: right; }
 .MInnerPage #BRTitle img{height: 75px;}
 .MInnerPage #BRTitle{ margin:30px 0px 0px 10px; }
 #BRHref{float: right;background: url(../images/logo_href.jpg) no-repeat;width: 49px;height: 204px;}
@@ -2404,6 +2405,27 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 .lang_en #c7{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -469px 0px; }
 .lang_en #c8{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -548px 0px; }
 .lang_en #c9{ background:url( ../images/menu_en.jpg ) no-repeat;background-position: -627px 0px; }
+
+.lang_ja #c1{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: 0px 0px; }
+.lang_ja #c2{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -78px 0px; }
+.lang_ja #c3{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -156px 0px; }
+.lang_ja #c4{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -234px 0px; }
+.lang_ja #c5{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -312px 0px; }
+.lang_ja #c6{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -707px 0px; }
+.lang_ja #c7{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -469px 0px; }
+.lang_ja #c8{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -548px 0px; }
+.lang_ja #c9{ background:url( ../images/menu_ja.jpg ) no-repeat;background-position: -627px 0px; }
+
+.lang_zh #c1{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: 0px 0px; }
+.lang_zh #c2{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -78px 0px; }
+.lang_zh #c3{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -156px 0px; }
+.lang_zh #c4{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -234px 0px; }
+.lang_zh #c5{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -312px 0px; }
+.lang_zh #c6{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -707px 0px; }
+.lang_zh #c7{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -469px 0px; }
+.lang_zh #c8{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -548px 0px; }
+.lang_zh #c9{ background:url( ../images/menu_zh.jpg ) no-repeat;background-position: -627px 0px; }
+
 
 #userCabinet
 {

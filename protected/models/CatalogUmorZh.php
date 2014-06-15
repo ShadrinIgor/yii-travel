@@ -1,23 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "catalog_work_category".
+ * This is the model class for table "catalog_umor_en".
    */
-class CatalogWorkCategory extends CCModel
+class CatalogUmorZh extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $image; // string 
     protected $description; // string 
+    protected $active; // integer 
+    protected $pos; // integer 
     protected $del; // integer 
-    protected $pos; // integer
-    protected $slug;
-    protected $translate;
 
 /*
 * Поля - связи
 */
-    protected $catalogWorks; //  CatalogWork
 
 
     public function attributeNames()
@@ -30,7 +27,7 @@ class CatalogWorkCategory extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_work_category';
+		return 'catalog_umor_zh';
 	}
 
 	/**
@@ -41,13 +38,13 @@ class CatalogWorkCategory extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('del, pos', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>150),
-			array('image', 'length', 'max'=>255),
+			array('id, description', 'required'),
+			array('id, active, pos, del', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('translate, slug, name, image, description, del, pos', 'safe'),
+			array('id, name, description, active, pos, del', 'safe'),
+            array('id, name, description, active, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +56,6 @@ class CatalogWorkCategory extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'catalogWorks' => array(self::HAS_MANY, 'CatalogWork', 'category_id'),
 		);
 	}
 
@@ -71,11 +67,10 @@ class CatalogWorkCategory extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'image' => 'Image',
 			'description' => 'Description',
-			'del' => 'Del',
+			'active' => 'Active',
 			'pos' => 'Pos',
-            'slug' => 'slug'
+			'del' => 'Del',
 		);
 	}
 
@@ -92,10 +87,10 @@ class CatalogWorkCategory extends CCModel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('image',$this->image,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('del',$this->del);
+		$criteria->compare('active',$this->active);
 		$criteria->compare('pos',$this->pos);
+		$criteria->compare('del',$this->del);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

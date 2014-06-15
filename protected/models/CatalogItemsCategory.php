@@ -13,6 +13,7 @@ class CatalogItemsCategory extends CCModel
     protected $table_name; // string
     protected $pos; // integer 
     protected $slug; // integer
+    protected $translate; // integer
 /*
 * Поля - связи
 */
@@ -47,7 +48,7 @@ class CatalogItemsCategory extends CCModel
 			array('table_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, image, description, del, table_name, pos, slug', 'safe'),
+			array('translate, name, image, description, del, table_name, pos, slug', 'safe'),
 		);
 	}
 

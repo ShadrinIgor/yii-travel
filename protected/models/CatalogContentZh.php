@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "catalog_contJat_Ja".
+ * This is the model class for table "catalog_contJat_zh".
    */
-class CatalogContentJa extends CCModel
+class CatalogContentZh extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
@@ -34,7 +34,7 @@ class CatalogContentJa extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'catalog_content_ja';
+		return 'catalog_content_zh';
 	}
 
 	/**

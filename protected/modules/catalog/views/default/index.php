@@ -15,7 +15,7 @@ $this->widget('addressLineWidget', array(
         <div class="floatRight ItemPrice"><?php if( $item->price>0 ) : ?><b><?= $item->price ?></b> <font>тг.</font><?php endif; ?></div>
         <div class="floatRight ItemDate"><?php if( $item->date>0 ) : ?><?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><?php endif; ?></div>
         <a href="<?= SiteHelper::createUrl("/catalog/item/index", array("id"=>$item->id)) ?>" title="<?= $item->name ?>"><?= $item->name ?></a><br/>
-        <i>категория: <?= $item->category_id->name ?></i><br/>
+        <i><?= Yii::t("page", "Категория"); ?>: <?= $item->category_id->name ?></i><br/>
         <?= SiteHelper::getSubTextOnWorld( $item->description, 500 ) ?>
         <div class="textAlignRight">
             <a href="<?= SiteHelper::createUrl("/catalog/item/index", array("id"=>$item->id)) ?>" titile="">подробнее...</a>

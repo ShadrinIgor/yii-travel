@@ -21,7 +21,7 @@ if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duratio
         <div class="FCountry" style="background:url( <?= $item->baner ?> ) -15px -7px no-repeat;">
             <div class="FCItems">
                 <ul>
-                    <?php foreach( CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array(":country"=>$item->id) )->setLimit(6) ) as $item2  ) : ?>
+                    <?php foreach( CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array(":country"=>$item->id) )->setLimit(6)->setCache(0) ) as $item2  ) : ?>
                     <li>
                         <a href="<?= SiteHelper::createUrl( "/tours/description" )."/".$item2->slug ?>.html" title="<?= $item2->name ?>"><?= $item2->name ?><b><?= $item2->price>0 ? " - ".$item2->price."$" : "" ?></b></a>
                         <div class="display_none fc_popup">
@@ -51,7 +51,7 @@ if( $this->beginCache( "firstPage"."_".Yii::app()->getLanguage(), array('duratio
                 <h3><?= Yii::t("page", "Все туристические страны"); ?>:</h3>
                 <?php  if( $this->beginCache( "firstPage_country_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
                     <ul>
-                        <?php foreach( CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1) ) as $item ) :
+                        <?php foreach( CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1)->setCache(0) ) as $item ) :
                             $tour = CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id" )->setParams( array( "country_id"=>$item->id ) ) );
                             $hotels = CatalogHotels::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id" )->setParams( array( "country_id"=>$item->id ) ) );
                             $info = CatalogInfo::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id" )->setParams( array( "country_id"=>$item->id ) ) );

@@ -1,6 +1,8 @@
 <?php
 
 return array(
+    "Все туристические страны" => "Travel the country",
+    "Категория" => "Category",
     "Добавить туристическое агентство" => "Add a travel agency",
     "Добавить отель/гостиницу" => "Add a hotel/inn",
     "Добавить зону отдыха / курорт /дет. лагерь" => "Add a recreation area / resort / children. Camp",

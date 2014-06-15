@@ -12,6 +12,7 @@ class CatalogKurortsCategory extends CCModel
     protected $del; // integer 
     protected $owner; // integer
     protected $slug; // integer
+    protected $translate; // integer
 
 /*
 * Поля - связи
@@ -44,7 +45,7 @@ class CatalogKurortsCategory extends CCModel
 			array('name', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('slug, name, active, pos, del, owner, slug', 'safe'),
+            array('translate, slug, name, active, pos, del, owner, slug', 'safe'),
 		);
 	}
 
