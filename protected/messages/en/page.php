@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    "Авторизоваться" => "log in",
     "Все туристические страны" => "Travel the country",
     "Категория" => "Category",
     "Добавить туристическое агентство" => "Add a travel agency",
@@ -10,7 +11,7 @@ return array(
 
     "Фирмы" => "Firms",
     "Авторизация" => "Authorization",
-    "Авторизоваться" => "log in",
+    "авторизоваться" => "log in",
     "Проверочный код" => "Verification code",
     "обновить" => "update",
 

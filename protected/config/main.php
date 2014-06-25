@@ -27,6 +27,7 @@ return array(
         'application.components.CCApplicationComponent',
         'ext.favorites.models.*',
         'ext.banners.models.*',
+        'ext.winding.models.*',
         'application.modules.subscribe.models.*',
 //        'ext.eoauth.*',
 //        'ext.eoauth.lib.*',
@@ -66,6 +67,11 @@ return array(
         // Banners
         'banners'=>array(
             'class'=>'BannerInit',
+        ),
+
+        // Для накрутки счетчиков
+        'winding'=>array(
+            'class' => 'ext.winding.WindingInit'
         ),
 
         'user'=>array(

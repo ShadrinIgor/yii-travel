@@ -10,6 +10,10 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
+        Yii::app()->winding->userVisit();
+        // Yii::app()->banners->getBannerByCategory( "1" );
+        die;
+
 //        echo Yii::app()->getLanguage()."*";
 /*        $model = CatalogTours::fetch( 7 );
         // echo $model->description."<hr/><br/>";

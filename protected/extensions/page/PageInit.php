@@ -22,7 +22,7 @@ class PageInit extends CApplicationComponent
 
     public function renderTags( $slug )
     {
-        if( Yii::app()->controller->beginCache( $slug."-page", array('duration'=>3600*24*3) ) )
+        if( Yii::app()->controller->beginCache( $slug."-page-".Yii::app()->getLanguage(), array('duration'=>3600*24*3) ) )
         {
             $params = $this->tag_params;
             if( !empty( $params[$slug] ) )$paramArray = $params[$slug];

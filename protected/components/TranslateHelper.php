@@ -10,6 +10,8 @@ class TranslateHelper
 {
     static public function getTranslateModel( $catalog, $id, $language )
     {
+        $lA = explode( "-", $language );
+        $language = $lA[0];
         $class = SiteHelper::getCamelCase( $catalog."_".$language );
         if( class_exists( $class ) )
         {
@@ -31,6 +33,9 @@ class TranslateHelper
 
     static public function setTranslate( $model, $transModel, $lang = "en" )
     {
+        $lA = explode( "-", $lang );
+        $lang = $lA[0];
+
         $name = TranslateHelper::translate( $model->name, $lang );
 
         if( property_exists( $model, "description" ) )

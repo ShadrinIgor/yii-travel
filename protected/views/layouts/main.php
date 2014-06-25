@@ -33,8 +33,10 @@
         </div>
     <Div id="BRight">
         <div id="HLangs">
-            <a href="<?= SiteHelper::createUrl("", array(), "&", true) ?>" title="Русская версия"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_ru.png" alt="Русская версия" /></a>
-            <a href="<?= SiteHelper::createUrl("", array(), "&", true) ?>en/" title="English version"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_en.png" alt="English version" /></a>
+            <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>" title="Русская версия"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_ru.png" alt="Русская версия" /></a>
+            <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>en/" title="English version"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_en.png" alt="English version" /></a>
+            <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>ja/" title="サイトの日本語版"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_ja.png" alt="サイトの日本語版" /></a>
+            <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>zh/" title="中國version"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_zh.png" alt="中國version" /></a>
         </div>
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>
         <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"></div><div id="TrioMedal"></div></div><?php endif; ?>
