@@ -1,19 +1,17 @@
 <?php
 
 /**
- * This is the model class for table "ex_winding_session".
+ * This is the model class for table "ex_winding_cache".
    */
-class ExWindingSession extends CCModel
+class ExWindingCache extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
-    protected $winding_id; // integer 
-    protected $useragents_id; // integer
-    protected $need_count;
-    protected $referal;
+    protected $description; // string 
+    protected $nexttime; // integer 
+    protected $pos; // integer 
     protected $del; // integer
-    protected $pos; // integer
-    protected $proxi;
+    protected $slug;
 
 /*
 * Поля - связи
@@ -30,7 +28,7 @@ class ExWindingSession extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'ex_winding_session';
+		return 'ex_winding_cache';
 	}
 
 	/**
@@ -41,13 +39,12 @@ class ExWindingSession extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('winding_id, useragents_id', 'required'),
-			array('need_count, del, pos', 'numerical', 'integerOnly'=>true),
+			array('nexttime, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
+			array('slug, description, nexttime, name', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('proxi, referal, need_count, name, winding_id, useragents_id, del, pos', 'safe'),
-            array('id, name, winding_id, useragents_id, del, pos', 'safe', 'on'=>'search'),
+			array('id, name, description, nexttime, pos, del', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,8 +56,6 @@ class ExWindingSession extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'winding' => array(self::BELONGS_TO, 'ExWinding', 'winding_id'),
-			'useragents' => array(self::BELONGS_TO, 'ExWindingUseragents', 'useragents_id'),
 		);
 	}
 
@@ -72,10 +67,10 @@ class ExWindingSession extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'winding_id' => 'Winding',
-			'useragents_id' => 'Useragents',
-			'del' => 'Del',
+			'description' => 'Description',
+			'nexttime' => 'Nexttime',
 			'pos' => 'Pos',
+			'del' => 'Del',
 		);
 	}
 
@@ -92,10 +87,10 @@ class ExWindingSession extends CCModel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('winding_id',$this->winding_id);
-		$criteria->compare('useragents_id',$this->useragents_id);
-		$criteria->compare('del',$this->del);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('nexttime',$this->nexttime);
 		$criteria->compare('pos',$this->pos);
+		$criteria->compare('del',$this->del);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

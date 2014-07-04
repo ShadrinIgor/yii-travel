@@ -23,7 +23,7 @@
         </ul>
         <?php $this->endCache(); endif;?>
     </div>
-
+    <div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "right" ) ?></div>
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Информация по странам"); ?></h3>
         <?php if( $this->beginCache( "info_country", array('duration'=>3600) ) ) : ?>

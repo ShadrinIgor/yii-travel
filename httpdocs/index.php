@@ -35,7 +35,6 @@ Yii::setPathOfAlias('configPath', dirname(__DIR__)."/protected".DIRECTORY_SEPARA
 
 Yii::createWebApplication($config)->run();
 
-
 function checkMobile()
 {
 	$user_agent = $_SERVER['HTTP_USER_AGENT'];

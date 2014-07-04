@@ -6,6 +6,7 @@
         </div>
     <?php endforeach; ?>
 </div>
+<div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "left" ) ?></div>
 <br/>
 <?php $this->widget("findFormWidget") ?>
 <div id="LeftBG">

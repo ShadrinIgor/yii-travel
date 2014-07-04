@@ -1,6 +1,5 @@
 <div id="Cleft">
     <?php $this->widget("authWidget"); ?>
-
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Разделение по городам"); ?></h3>
         <?php if( $this->beginCache( "hotels_city"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
@@ -27,7 +26,7 @@
             </ul>
             <?php $this->endCache(); endif;?>
     </div>
-
+    <div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "right" ) ?></div>
     <div id="keywords">
         <?php Yii::app()->page->renderTags( "hotels" ) ?>
     </div>

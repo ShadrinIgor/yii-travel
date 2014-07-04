@@ -8,12 +8,23 @@ class SiteController extends Controller
 	 * when an action is not explicitly requested by users.
 	 */
 
-	public function actionIndex()
-	{
-        Yii::app()->winding->userVisit();
-        // Yii::app()->banners->getBannerByCategory( "1" );
-        die;
+    public function actionSession()
+    {
+        Yii::app()->winding->checkSession();
+    }
 
+    public function actionSession1()
+    {
+        Yii::app()->winding->userVisit();
+    }
+
+    public function actionUpdateProxi()
+    {
+        Yii::app()->winding->updateListProxi();
+    }
+
+    public function actionIndex()
+	{
 //        echo Yii::app()->getLanguage()."*";
 /*        $model = CatalogTours::fetch( 7 );
         // echo $model->description."<hr/><br/>";

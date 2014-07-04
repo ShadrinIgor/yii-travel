@@ -14,6 +14,7 @@
         <!--a href="fany/" class="mLinks" title="весь юмор">весь юмор...</a-->
         <br/>
     </div>
+    <div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "right" ) ?></div>
     <?php $this->widget("socialLinksWidget") ?>
     <?php $this->widget("statWidget") ?>
     <?php $this->widget("infoWidget", array( "title"=>Yii::t("page", "Курорты"), "class"=>"CatalogKurorts", "link"=>"/resorts" )); ?>

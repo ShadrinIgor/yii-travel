@@ -24,34 +24,33 @@
 <!-- /Yandex.Metrika counter -->
 
 
-
-
-
-<!-- START WWW.UZ TOP-RATING --><SCRIPT language="javascript" type="text/javascript">
-    <!--
-    top_js="1.0";top_r="id=24367&r="+escape(document.referrer)+"&pg="+escape(window.location.href);document.cookie="smart_top=1; path=/"; top_r+="&c="+(document.cookie?"Y":"N")
-    //-->
-</SCRIPT>
-<SCRIPT language="javascript1.1" type="text/javascript">
-    <!--
-    top_js="1.1";top_r+="&j="+(navigator.javaEnabled()?"Y":"N")
-    //-->
-</SCRIPT>
-<SCRIPT language="javascript1.2" type="text/javascript">
-    <!--
-    top_js="1.2";top_r+="&wh="+screen.width+'x'+screen.height+"&px="+
-        (((navigator.appName.substring(0,3)=="Mic"))?screen.colorDepth:screen.pixelDepth)
-    //-->
-</SCRIPT>
-<SCRIPT language="javascript1.3" type="text/javascript">
-    <!--
-    top_js="1.3";
-    //-->
-</SCRIPT>
-<SCRIPT language="JavaScript" type="text/javascript">
-    <!--
-    top_rat="&col=F49918&t=ffffff&p=008ACC";top_r+="&js="+top_js+"";document.write('<a href="http://www.uz/rus/toprating/cmd/stat/id/24367" target=_top><img src="http://www.uz/plugins/top_rating/count/cnt.png?'+top_r+top_rat+'" width=88 height=31 border=0 alt="Топ рейтинг www.uz"><\/a>')//-->
-</SCRIPT><NOSCRIPT><A href="http://www.uz/rus/toprating/cmd/stat/id/24367" target=_top><IMG height=31 src="http://www.uz/plugins/top_rating/count/nojs_cnt.png?id=24367&col=F49918&t=ffffff&p=008ACC" width=88 border=0 alt="Топ рейтинг www.uz"></A></NOSCRIPT><!-- END WWW.UZ TOP-RATING -->
+<?php if(1==2) : ?>
+    <!-- START WWW.UZ TOP-RATING --><SCRIPT language="javascript" type="text/javascript">
+        <!--
+        top_js="1.0";top_r="id=24367&r="+escape(document.referrer)+"&pg="+escape(window.location.href);document.cookie="smart_top=1; path=/"; top_r+="&c="+(document.cookie?"Y":"N")
+        //-->
+    </SCRIPT>
+    <SCRIPT language="javascript1.1" type="text/javascript">
+        <!--
+        top_js="1.1";top_r+="&j="+(navigator.javaEnabled()?"Y":"N")
+        //-->
+    </SCRIPT>
+    <SCRIPT language="javascript1.2" type="text/javascript">
+        <!--
+        top_js="1.2";top_r+="&wh="+screen.width+'x'+screen.height+"&px="+
+            (((navigator.appName.substring(0,3)=="Mic"))?screen.colorDepth:screen.pixelDepth)
+        //-->
+    </SCRIPT>
+    <SCRIPT language="javascript1.3" type="text/javascript">
+        <!--
+        top_js="1.3";
+        //-->
+    </SCRIPT>
+    <SCRIPT language="JavaScript" type="text/javascript">
+        <!--
+        top_rat="&col=F49918&t=ffffff&p=008ACC";top_r+="&js="+top_js+"";document.write('<a href="http://www.uz/rus/toprating/cmd/stat/id/24367" target=_top><img src="http://www.uz/plugins/top_rating/count/cnt.png?'+top_r+top_rat+'" width=88 height=31 border=0 alt="Топ рейтинг www.uz"><\/a>')//-->
+    </SCRIPT><NOSCRIPT><A href="http://www.uz/rus/toprating/cmd/stat/id/24367" target=_top><IMG height=31 src="http://www.uz/plugins/top_rating/count/nojs_cnt.png?id=24367&col=F49918&t=ffffff&p=008ACC" width=88 border=0 alt="Топ рейтинг www.uz"></A></NOSCRIPT><!-- END WWW.UZ TOP-RATING -->
+<?php endif; ?>
 
 <a href="http://www.activeclub.com.ua"><img src="http://www.activeclub.com.ua/top/images/null.png" alt="Активный отдых. Пассажирские перевозки, байдарки, поход Крым, сплав на байдарках" border="0" width="" height=""></a><a href="http://www.activeclub.com.ua/top/"><img src="http://www.activeclub.com.ua/top/button.php?u=igor" alt="ACTIVE-рейтинг туристических сайтов. Туризм и отдых" border="0" /></a>
 <!-- begin of Top100 code -->
@@ -89,26 +88,6 @@ netlog_js="1.1";netlog_r+="&j="+(navigator.javaEnabled()?"Y":"N")</script>
             src="http://click.topturizm.ru/count.php?s=10860&im=103" border=0
             width="88" height="31" alt="TopTurizm"></a></noscript>
 <!-- /NetLog -->
-
-<!--yandeg.ru-->
-<!-- Top YandeG for: `world-travel.uz` id: `229699` -->
-<a href="http://yandeg.ru/" target="_blank"
-   title="Статистика сайта. Показано: просмотров страниц за неделю, просмотров страниц сегодня, посетителей сегодня."
-   style="text-decoration:none; font-size: 8px;">
-    <script type="text/javascript">
-        <!--
-        document.write('<img '+
-            'src="http://count.yandeg.ru/cnt.php?id=229699&img=2&h='+escape(document.URL)+
-            '&ref='+escape(document.referrer)+((typeof(screen)=='undefined')?'':
-            '&s='+screen.width+'*'+screen.height+
-                '*'+(screen.colorDepth?screen.colorDepth:screen.pixelDepth))+
-            '&rand='+Math.random()+
-            '" width="88" height="31" border="0"'+
-            ' alt="Рейтинг Сайтов YandeG" />')
-        //--></script></a><div
-    style="position:absolute;left:-2350px;"><a
-        href="http://wallfon.com/">wallfon.com</a></div><!-- /Top YandeG -->
-<!--/yandeg.ru-->
 
 <!--www.liveinternet.ru--><!--LiveInternet counter--><script type="text/javascript"><!--
     document.write("<a href='http://www.liveinternet.ru/click' "+

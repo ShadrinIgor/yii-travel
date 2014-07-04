@@ -4,12 +4,11 @@
         <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/resorts/description")."/".$item->slug.".html", $item->name." - ".Yii::t("page", "курорты")." ". $item->category_id->name2 ) ?>
         <div class="LHeader">
             <a title="<?= SiteHelper::getStringForTitle( $item->name ) ?>" href="<?= SiteHelper::createUrl( "/resorts/description")."/".$item->slug ?>.html" href="<?= SiteHelper::createUrl( "/resorts/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
-            <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров") ?>: <b><?= $item->col ?></b></div><?php endif; ?>
         </div>
         <div class="LParams">
             <?php if( $item->price > 0 ) : ?><?= Yii::t("page", "цена"); ?>: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
             <?php if( $item->level > 0 ) : ?><div class="levelStar"><img src="<?= SiteHelper::getStarsLevel( $item->level ) ?>" alt="" /></div><?php endif;  ?>
-            <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug ?>.html" title="<?= Yii::t("page", "курорты") ?> "><b><?= $item->category_id->name2 ?>"><b><?= $item->category_id->name ?></b></a><br/>
+            <a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item->category_id->slug ?>.html" title="<?= Yii::t("page", "курорты") ?> - <?= $item->category_id->name ?> Узбекистана"><b><?= $item->category_id->name ?></b></a><br/>
             <?= Yii::t("page", "Страна"); ?>: <b><?= $item->country_id->name ?></b><br/>
             <?php if( $item->city_id->id>0 ) : ?><?= Yii::t("page", "Город"); ?>: <b><?= $item->city_id->name ?></b><br/><?php endif; ?>
         </div>

@@ -108,9 +108,8 @@
         <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="<?= Yii::t( "page", "О проекте") ?>"><?= Yii::t( "page", "О проекте") ?></a> |
         <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="<?= Yii::t( "page", "Правила") ?>"><?= Yii::t( "page", "Правила") ?></a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="<?= Yii::t( "page", "Контакты") ?>"><?= Yii::t( "page", "Контакты") ?></a> |
-        <!--a href="" title="Реклама на сайте">Реклама на сайте</a> | -->
-        <a href="<?= SiteHelper::createUrl("/site/page")."/besplatniy-reklamnyi-banner" ?>" title="<?= Yii::t( "page", "Размещение бесплатного баннера") ?>"><?= Yii::t( "page", "Бесплатный баннер") ?></a>
-        <!-- |
+        <a href="<?= SiteHelper::createUrl("/site/page") ?>/ad.html" title="Реклама на сайте">Реклама на сайте</a>
+        <!--
     <a href="" title="Карта сайта">Карта ссылок</a>-->
     </div>
     <div id="counters">

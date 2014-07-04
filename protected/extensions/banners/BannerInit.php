@@ -29,7 +29,7 @@ class BannerInit extends CApplicationComponent
             if( !$categoryModel || $categoryModel->id >0 )
             {
                 $DBParams = DBQueryParamsClass::CreateParams()
-                                ->setConditions( "category=:category AND status_id=2 AND " )
+                                ->setConditions( "category=:category AND status_id=2 " )
                                 ->setParams( array( ":category"=>$categoryModel->id ))
                                 ->setOrderBy( "last_date ASC" )
                                 ->setCache(0)

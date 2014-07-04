@@ -24,7 +24,7 @@
         </ul>
         <?php $this->endCache(); endif;?>
     </div>
-
+    <div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "right" ) ?></div>
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Туры по странам"); ?></h3>
         <?php if( $this->beginCache( "tours_country_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>

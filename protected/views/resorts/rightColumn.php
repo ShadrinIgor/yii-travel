@@ -1,6 +1,5 @@
 <div id="Cleft">
     <?php $this->widget("authWidget"); ?>
-
     <div class="LeftMenu">
         <h3><?= Yii::t("page", "Категории" ) ?></h3>
         <?php if( $this->beginCache( "resorts_category"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>
@@ -9,7 +8,7 @@
             foreach( CatalogKurortsCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setLimit(-1)->setConditions("owner=0") ) as $item_ ) :
             $count = CatalogKurorts::count( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category")->setParams(array(":category"=>$item_->id))->setLimit(-1) );
             ?>
-            <li><a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item_->slug ?>.html" title="<?= $item_->name ?> <?= Yii::t("page", "зоны отдыха" ); ?>><?= $item_->name ?> ( <?= $count ?> )</a>
+            <li><a href="<?= SiteHelper::createUrl("/resorts/category")."/".$item_->slug ?>.html" title="<?= $item_->name ?> <?= Yii::t("page", "зоны отдыха" ); ?>"><?= $item_->name ?> ( <?= $count ?> )</a>
                 <ul>
                 <?php
                 foreach( CatalogKurortsCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "name" )->setConditions("owner=:owner")->setParams(array(":owner"=>$item_->id))->setLimit(-1) ) as $item ) :
@@ -24,7 +23,7 @@
         </ul>
         <?php $this->endCache(); endif;?>
     </div>
-
+    <div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "right" ) ?></div>
     <?php $this->widget("infoWidget", array( "title"=>Yii::t("page", "Отели" ), "class"=>"CatalogHotels", "link"=>"/hotels" )); ?>
 
     <div id="keywords">

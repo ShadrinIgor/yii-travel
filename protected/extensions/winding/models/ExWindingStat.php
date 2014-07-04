@@ -9,9 +9,11 @@ class ExWindingStat extends CCModel
     protected $name; // string 
     protected $winding_id; // integer 
     protected $date; // string 
-    protected $time; // string 
+    protected $timetable_id; // string
     protected $del; // integer 
-    protected $pos; // integer 
+    protected $pos; // integer
+    protected $count_items;
+    protected $count_items_inner;
 
 /*
 * Поля - связи
@@ -39,14 +41,14 @@ class ExWindingStat extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, winding_id, date, time', 'required'),
-			array('del, pos', 'numerical', 'integerOnly'=>true),
+			array('name, winding_id, date', 'required'),
+			array('count_items_inner, count_items, del, pos', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
-			array('date, time', 'length', 'max'=>10),
+			array('date', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name, winding_id, date, time, del, pos', 'safe'),
-            array('id, name, winding_id, date, time, del, pos', 'safe', 'on'=>'search'),
+			array('count_items_inner, count_items, name, winding_id, timetable_id, date, del, pos', 'safe'),
+            array('count_items_inner, count_items, id, name, winding_id, date, del, pos', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +63,11 @@ class ExWindingStat extends CCModel
 			'winding' => array(self::BELONGS_TO, 'ExWinding', 'winding_id'),
 		);
 	}
+
+    public function fieldType()
+    {
+        return array_merge( parent::fieldType(), array( "date"=>"varchar" ) );
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
