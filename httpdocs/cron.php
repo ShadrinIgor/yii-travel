@@ -6,8 +6,8 @@ $root = dirname( __FILE__ ).'/';
 $common = $root . '/../framework';
 $config = require($root.'/../protected/config/cron.php');
 
-defined('YII_DEBUG') or define('YII_DEBUG',true);
-defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+defined('YII_DEBUG') or define('YII_DEBUG',false);
+defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',0);
 require_once($common.'/yii.php');
 
 /*
