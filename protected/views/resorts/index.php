@@ -10,7 +10,12 @@
                 "title"=>Yii::t("page", "Курорты, зоны отдыха, дет. лагеря"),
                 "description" => $this->description,
                 "keyWord" => $this->keyWord,
-                "sectionTextSlug" => "tekstovka-dlya-stranicy-kurorty",
+                "sectionTextSlug" => array(
+                                        "ru"=>"tekstovka-dlya-stranicy-kurorty",
+                                        "ja"=>"8522-リゾートへtekstovkaページ",
+                                        "zh"=>"8522-tekstovka页面度假酒店",
+                                        "en"=>"8522-tekstovka-page-to-resorts",
+                                    ),
                 "sort"=>
                     array(
                         array( "col", Yii::t("page", "просмотрам" ) ),

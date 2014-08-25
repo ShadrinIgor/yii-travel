@@ -5,7 +5,7 @@ class AdsUsersController extends InfoController
     public function init()
     {
         parent::init();
-        $this->classModel = "CatalogItemsAdd";
+        $this->classModel = "CatalogItems";
         $this->classCategory = "";
         $this->description = Yii::t("addsuser", "Самые популярные отели мира, отсортированные по рейтингу. Возможность просмотра подробного описания");
         $this->keyWord = Yii::t("addsuser", "Полезная информация для туристов, архитектура, базары Узбекистана, банки Ташкента, великие люди, великий шелковый путь, автобусные путешествия, виза в Узбекистана, дети, культура / искусства, разновидности туризма, экстремальный туризм , рыбалка/охота, религия / духовные центры, кладбища" );
@@ -98,6 +98,7 @@ class AdsUsersController extends InfoController
         $class = $this->classModel;
         if( !empty( $_GET[ "slug" ] ) )
         {
+//            echo $class."|".$_GET[ "slug" ]."-";
             $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
             if( $model->id >0 )
             {
@@ -105,7 +106,7 @@ class AdsUsersController extends InfoController
                 $id = $model->id;
             }
         }
-
+//die;
         if( $id > 0 )
         {
             $item = CatalogItems::fetch( $id );
@@ -123,6 +124,6 @@ class AdsUsersController extends InfoController
             }
             else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
         }
-        else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
+            else throw new CHttpException("Ошибка", Yii::t("page", "Ошибка перехода на страницу") );
     }
 }

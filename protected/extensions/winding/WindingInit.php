@@ -19,7 +19,7 @@ class WindingInit extends CApplicationComponent
     public function updateListProxi()
     {
         $arr = array();
-        $file = fopen( "http://proxyhub.ru/proxies/txt/?type%5B%5D=HTTP&type%5B%5D=HTTPS&type%5B%5D=SOCKS4&type%5B%5D=SOCKS5&anon%5B%5D=HIA&anon%5B%5D=ANM&anon%5B%5D=NOA&ports=&sort_by=speed&sort_order=desc&per_page=50&uniq_ip=on&code=4d641bf99b4d23b708b2ba5d3b73d3a7", "r" );
+        $file = fopen( "http://proxyhub.ru/proxies/txt/?type%5B%5D=HTTP&type%5B%5D=HTTPS&type%5B%5D=SOCKS4&type%5B%5D=SOCKS5&anon%5B%5D=HIA&anon%5B%5D=ANM&anon%5B%5D=NOA&ports=&sort_by=trust&sort_order=desc&per_page=50&uniq_ip=on&code=4d641bf99b4d23b708b2ba5d3b73d3a7", "r" );
         while( $line = fgets( $file ) )
         {
             $arr[]= $line;
@@ -49,39 +49,75 @@ class WindingInit extends CApplicationComponent
             print_r( $cache->getErrors() );
     }
 
-    public function get_web_page( $url, $uagent, $proxy, $returnTransfer = 1, $referer = "" )
+    public function get_web_page( $url, $uagent, $proxy, $id, $returnTransfer = 1, $referer = "" )
     {
-        $ch = curl_init( );
-        curl_setopt($ch, CURLOPT_URL,$url);
-        //Пользователь
-        $user="VasilevPS";
+        // Проверяем файл куков
+        $baseUrl = dirname(dirname(dirname(dirname(__FILE__))))."/httpdocs";
+        $cookie = $baseUrl."/curl_cookie/curl_cookie_".$id.".txt";
 
-        //Пароль прокси
-        $pass="mypass";
+        $PHPSESSID = "";
+        if( !file_exists( $cookie ) )
+        {
+            fclose(fopen($cookie,'x'));
+            chmod( $cookie, 0777 );
+        }
+            /*else
+        {
+            $ftext = file_get_contents( $cookie );
+//            echo "\nftext: ".$ftext."\n";
+            if( !empty( $ftext ) )
+            {
+                $farr = explode( "PHPSESSID", $ftext );
+//                print_r( $farr );
+//                echo "==".trim( $farr[1] )."==";
+                $PHPSESSID = trim( $farr[1] );
+            }
+        }*/
 
         //устанавливаем прокси
-        if( !empty( $proxy ) )curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        $ch = curl_init( );
+//        $dopUrl = "";
+//        if( !empty( $proxy ) )curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        if( !empty( $proxy ) )
+        {
+            if( strpos($proxy, ":")!== false )$ip = substr( $proxy, 0, strpos($proxy, ":") );
+                                         else $ip = $proxy;
+
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+            if( !empty( $ip ) )$dopUrl = "?ip=".$ip;
+        }
+            else $dopUrl = "";
         //curl_setopt($ch, CURLOPT_PROXYUSERPWD, $user.":".$pass);
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true );   // возвращает веб-страницу
-        curl_setopt($ch, CURLOPT_HEADER, 0);           // не возвращает заголовки
-        curl_setopt($ch, CURLOPT_NOBODY, $returnTransfer == 1 ? 0 : 1);           // Установите эту опцию в ненулевое значение, если вы не хотите, чтобы тело/body включалось в вывод.
+        echo "Load page: ".$url.$dopUrl."<br/>";
+
+        curl_setopt($ch, CURLOPT_URL,$url.$dopUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, false );   // возвращает веб-страницу
+        curl_setopt($ch, CURLOPT_HEADER, true );           // не возвращает заголовки
+        curl_setopt($ch, CURLOPT_NOBODY, true);           // Установите эту опцию в ненулевое значение, если вы не хотите, чтобы тело/body включалось в вывод.
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);   // переходит по редиректам
         curl_setopt($ch, CURLOPT_ENCODING, "");        // обрабатывает все кодировки
-        curl_setopt($ch, CURLOPT_USERAGENT, $uagent);  // useragent
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300); // таймаут соединения
-        curl_setopt($ch, CURLOPT_COOKIEJAR, "curl_cookie.txt");
-        curl_setopt($ch, CURLOPT_COOKIEFILE, "curl_cookie2.txt");
-        if( !empty( $referer ) )curl_setopt($ch, CURLOPT_REFERER, $referer );
-        curl_setopt($ch, CURLOPT_TIMEOUT, 300);        // таймаут ответа
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);         // таймаут ответа
         curl_setopt($ch, CURLOPT_MAXREDIRS, 10);       // останавливаться после 10-ого редиректа
 
+        curl_setopt($ch, CURLOPT_USERAGENT, $uagent);  // useragent
+        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie );
+        //if( !empty( $PHPSESSID ) )curl_setopt($ch, CURLOPT_COOKIE, "PHPSESSID=".$PHPSESSID );
+        curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie );
+        if( !empty( $referer ) )curl_setopt($ch, CURLOPT_REFERER, $referer );
+
         $content = curl_exec( $ch );
+
+        //print_r(curl_getinfo($ch, CURLINFO_HEADER_OUT));
+        //echo "<hr/><br/>";
 
         $err     = curl_errno( $ch );
         $errmsg  = curl_error( $ch );
         $header  = curl_getinfo( $ch );
+
         curl_close( $ch );
+        //echo "content :".$content;
 
         $header['errno']   = $err;
         $header['errmsg']  = $errmsg;
@@ -101,7 +137,7 @@ class WindingInit extends CApplicationComponent
                              else $hourModelID = 0;
 
         $check = ExWindingStat::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "date=:date AND timetable_id=:timetable_id" )->setParams( array( ":date"=>date("Y-m-d"), ":timetable_id"=>$hourModelID ) )->setCache(0) );
-        echo sizeof( $check );
+        ## echo sizeof( $check );
         if( sizeof( $check ) >0 )
         {
             if( !$isInner )$check[0]->count_items++;
@@ -126,19 +162,21 @@ class WindingInit extends CApplicationComponent
     {
         $windingModel = ExWinding::fetch( 1 );
         $pageListLinks = array();
-        $listSession = ExWindingSession::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1)->setCache(0) );
+        $listSession = ExWindingSession::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(3)->setCache(0) );
         foreach( $listSession as $session )
         {
             $needReturn = sizeof( $pageListLinks ) == 0 ? 1 : 0;
-            echo "Start from ".$session->name." | userPageCount = ".$session->need_count." | userAgent = ".$session->useragents_id->name."<br/>";
-            $result = $this->get_web_page( $session->name, $session->useragents_id->name, $session->proxi, $needReturn, $session->referal );
-            if (($result['errno'] != 0 )||($result['http_code'] != 200))
+            // echo "Start from ".$session->name." | userPageCount = ".$session->need_count." | userAgent = ".$session->useragents_id->name." | proxy = ".$session->proxi."<br/>";
+            $result = $this->get_web_page( trim( $session->name ), $session->useragents_id->name, $session->proxi, $session->visit_id, $needReturn, $session->referal );
+//          $result = $this->get_web_page( $pageUrl.$pageVisit, $listAgents[ $userAgent ]->name, $userProxiName, $visitID, $needUpdateCache == true ? 1 : 0, $pageReferal );
+            if (($result['errno'] != 0 ))//||($result['http_code'] != 200)
             {
-                print_r( $result );
+                //print_r( $result );
                 echo "Error: ".$result['errmsg']."<hr/>";
             }
                 else
             {
+                echo "ok ( ".$result['errmsg']." )<br/>";
                 $this->addStat( true );
                 if( sizeof( $pageListLinks ) == 0 )
                 {
@@ -151,9 +189,22 @@ class WindingInit extends CApplicationComponent
                 // Создаем сессию для имитации брожения по сайту через какой-то промежуток времени
                 if( $session->need_count >1 )
                 {
-                    $newLinkNum = rand( 0, sizeof( $pageListLinks )-1 );
-                    $newPageVisit = $windingModel->url.$pageListLinks[ $newLinkNum ];
-                    $this->createSession( $windingModel, $session->useragents_id->id, $session->need_count-1, $session->name, $newPageVisit, $windingModel->url, $session->proxi );
+                    if( sizeof( $pageListLinks )>0 )
+                    {
+                        $newLinkNum = rand( 0, sizeof( $pageListLinks )-1 );
+                        $newPageVisit = trim( $windingModel->url ).trim( $pageListLinks[ $newLinkNum ] );
+                    }
+                        else $newPageVisit = trim( $windingModel->url );
+
+                    $this->createSession( $windingModel, $session->useragents_id->id, $session->need_count-1, $session->name, $newPageVisit, $windingModel->url, $session->proxi, $session->visit_id );
+                }
+                    else
+                {
+                    // Удаляем куки для этого визита
+                    $id = $session->visit_id;
+                    $cookie = "curl_cookie/curl_cookie_".$id.".txt";
+//                    echo "delete file: ".$cookie."<br/>";
+                    unlink( $cookie );
                 }
 
                 // Удаялем старую сессию
@@ -190,7 +241,7 @@ class WindingInit extends CApplicationComponent
         /* ----  Входящий параметры  ---- */
         $pageCountMin = 1;
         $pageCountMax = $windingModel->pageCountMax;
-        $pageUrl = $windingModel->url;
+        $pageUrl = trim( $windingModel->url );
         $listStartPage = explode( ";", $windingModel->listStartPage );
         $listAgents = ExWindingUseragents::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1) );
         $listProxi = ExWindingProxi::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1) );
@@ -209,44 +260,53 @@ class WindingInit extends CApplicationComponent
         $cacheModel = ExWindingCache::fetchBySlug( "list_links" );
         $needUpdateCache = false;
         $listStartPage = array_merge( $listStartPage, explode( ";", $cacheModel->description ) );
-        if( !$cacheModel->description || $cacheModel->nexttime<time() ) // Если кеш ссылок пуст или устарел обновляем его
-            $needUpdateCache = true;
+//        if( !$cacheModel->description || $cacheModel->nexttime<time() ) // Если кеш ссылок пуст или устарел обновляем его
+//            $needUpdateCache = true;
 
         $pageListLinks = array();
 
         /* ---- Определеяем параметры для пользователя ---- */
         $userStartPageNum = rand( 0, sizeof( $listStartPage ) - 1 );
-        $pageVisit = $listStartPage[ $userStartPageNum ];
+//        print_r( $listStartPage );
+        $pageVisit = trim( $listStartPage[ $userStartPageNum ] );
 
         //$stepCountItem=1;
         for( $i=0;$i<$stepCountItem;$i++ )
         {
+            // Устанавливаем ID сесси
+            $visitID = rand(100, 9999).time();
+
             // Определяем наугад агент пользователя
             $userAgent = rand( 0, sizeof( $listAgents )-1 );
 
             // Определяем наугад прокси сервер
             $userProxi = rand( 0, sizeof( $listProxi )-1 );
+            if( !empty( $userProxi ) )$userProxiName = $listProxi[ $userProxi ]->name;
+                                 else $userProxiName = "";
 
             // Определяем количество переходм для пользователя
-            $userPageCount = rand( $pageCountMin, $pageCountMax );
-            echo "Start from ".$pageUrl.$pageVisit." | userPageCount = ".$userPageCount." | userAgent = ".$listAgents[ $userAgent ]->name."  | proxi = ".$listProxi[ $userProxi ]->name." | referal = ".$pageReferal." | needUpdateCache = ".$needUpdateCache."<br/>";
-            $result = $this->get_web_page( $pageUrl.$pageVisit, $listAgents[ $userAgent ]->name, $listProxi[ $userProxi ]->name, $needUpdateCache == true ? 1 : 0, $pageReferal );
+            $userPageCount = rand( $pageCountMin, $pageCountMax ); // ".$listAgents[ $userAgent ]->name."
+//            echo "Start from ".$pageUrl.$pageVisit." userPageCount = ".$userPageCount." | userAgent =  ".$listAgents[ $userAgent ]->name." | proxi = ".$userProxiName." | referal = ".$pageReferal." | needUpdateCache = ".$needUpdateCache."<br/>";
+            $result = $this->get_web_page( $pageUrl.$pageVisit, $listAgents[ $userAgent ]->name, $userProxiName, $visitID, $needUpdateCache == true ? 1 : 0, $pageReferal );
             if (($result['errno'] != 0 ))//||($result['http_code'] != 200)
             {
                 echo "Error: #".$result['errno']." ".$result['errmsg']."<hr/>";
                 //print_r( $result );
+                $cookie = "curl_cookie/curl_cookie_".$visitID.".txt";
+##                echo "delete file: ".$cookie."<br/>";
+                unlink( $cookie );
             }
                 else
             {
-                echo "ok<br/>";
+                echo "ok ( ".$result['errno']." ".$result['errmsg']." )<br/>";
                 $this->addStat();
-                //echo $result['content'];
+                //## echo $result['content'];
                 if( $needUpdateCache )
                 {
                     preg_match_all( "|<a href=\"".$pageUrl."([^\"]*)\"|", $result['content'], $forLink, PREG_PATTERN_ORDER );
                     $pageListLinks = $forLink[1];
                     $listPageLinks = implode( ";", $pageListLinks );
-                    if( sizeof( $listPageLinks ) >0 )
+                    if( sizeof( $pageListLinks ) >0 )
                     {
                         $cacheModel->description = $listPageLinks;
                         $cacheModel->nexttime = time() + 60*60;
@@ -257,12 +317,20 @@ class WindingInit extends CApplicationComponent
                     }
                 }
 
+
                 // Создаем сессию для имитации брожения по сайту через какой-то промежуток времени
                 if( $userPageCount >1 )
                 {
                     $newLinkNum = rand( 0, sizeof( $listStartPage )-1 );
-                    $newPageVisit = $pageUrl.$listStartPage[ $newLinkNum ];
-                    $this->createSession( $windingModel, $listAgents[ $userAgent ]->id, $userPageCount-1, $pageVisit, $newPageVisit, $pageUrl, $listProxi[ $userProxi ]->name );
+                    $newPageVisit = $pageUrl.trim( $listStartPage[ $newLinkNum ] );
+                    $this->createSession( $windingModel, $listAgents[ $userAgent ]->id, $userPageCount-1, $pageUrl.$pageVisit, trim( $newPageVisit ), trim( $pageUrl ), $userProxiName, $visitID );
+                }
+                    else
+                {
+                   // Удаляем куки для этого визита
+                    $cookie = "curl_cookie/curl_cookie_".$visitID.".txt";
+//                    echo "delete file: ".$cookie."<br/>";
+                    unlink( $cookie );
                 }
             }
 
@@ -298,7 +366,7 @@ class WindingInit extends CApplicationComponent
         return $referal;
     }
 
-    private function createSession( $windingModel, $useragents_id, $userPageCount, $referal, $newPageVisit, $pageUrl, $proxy )
+    private function createSession( $windingModel, $useragents_id, $userPageCount, $referal, $newPageVisit, $pageUrl, $proxy, $visitId )
     {
         $newSession = new ExWindingSession();
         $newSession->winding_id = $windingModel->id;
@@ -309,6 +377,7 @@ class WindingInit extends CApplicationComponent
         $newSession->date_next = $windingModel->id;
         $newSession->need_count = $userPageCount;
         $newSession->referal = $referal;
+        $newSession->visit_id = $visitId;
         if( !$newSession->save() )
             print_r( $newSession->getErrors() );
     }

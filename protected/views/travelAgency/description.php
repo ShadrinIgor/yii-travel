@@ -60,7 +60,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                 <?php foreach( $listGallery as $gall ) : ?>
                     <div class="LGItem">
                         <div>
-                            <a href="<?= $gall->image ?>" data-lightbox="roadtrip"><img src="<?= ImageHelper::getImage( $gall->image, 2 ) ?>" /></a>
+                            <a href="<?= $gall->image ?>" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $gall->image, 2 ) ?>" /></a>
                         </div>
                         <?= $gall->name ?><br/>
                     </div>

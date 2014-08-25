@@ -68,12 +68,12 @@ class CatalogItemsEn extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'category' => array(self::BELONGS_TO, 'CatalogItemsEnCategory', 'category_id'),
-			'status' => array(self::BELONGS_TO, 'CatalogItemsEnStatus', 'status_id'),
-			'type' => array(self::BELONGS_TO, 'CatalogItemsEnType', 'type_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogItemsCategory', 'category_id'),
+			'status' => array(self::BELONGS_TO, 'CatalogItemsStatus', 'status_id'),
+			'type' => array(self::BELONGS_TO, 'CatalogItemsType', 'type_id'),
 			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
-			'time' => array(self::BELONGS_TO, 'CatalogItemsEnTime', 'time_id'),
+			'time' => array(self::BELONGS_TO, 'CatalogItemsTime', 'time_id'),
 		);
 	}
 

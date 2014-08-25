@@ -15,6 +15,7 @@ class SiteController extends Controller
 
     public function actionSession1()
     {
+//        print_r( $_SERVER );
         Yii::app()->winding->userVisit();
     }
 

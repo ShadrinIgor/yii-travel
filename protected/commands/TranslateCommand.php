@@ -7,7 +7,7 @@ class TranslateCommand extends CConsoleCommand
         $col = 50;
         $n=0;
         //
-        $listCatalog = array( "CatalogTours", "CatalogInfoCategory", "CatalogToursCategory", "CatalogInfo", "CatalogCity", "CatalogFirms", "CatalogHotels", "CatalogKurorts", "CatalogUmor", "CatalogCountry", "CatalogItems", "CatalogItemsCategory", "CatalogContent", "CatalogFirmsItems", "CatalogFirmsService", "CatalogWork" );
+        $listCatalog = array( "CatalogContent" );//"CatalogTours", "CatalogInfoCategory", "CatalogToursCategory", "CatalogInfo", "CatalogCity", "CatalogFirms", "CatalogHotels", "CatalogKurorts", "CatalogUmor", "CatalogCountry", "CatalogItems", "CatalogItemsCategory", "CatalogContent", "CatalogFirmsItems", "CatalogFirmsService", "CatalogWork" );
         for( $i=0;$i<sizeof( $listCatalog );$i++ )
         {
             $class = $listCatalog[ $i ];
@@ -21,10 +21,10 @@ class TranslateCommand extends CConsoleCommand
                 {
                     echo $model->id."<br/>";
                     $n++;
-                    $transModel = TranslateHelper::getTranslateModel( $class, $model->id, "zh-TW" );
+                    $transModel = TranslateHelper::getTranslateModel( $class, $model->id, "en" ); // ja en
                     if( !$transModel->id )
                     {
-                        @TranslateHelper::setTranslate( $model, $transModel, "zh-TW" );
+                        @TranslateHelper::setTranslate( $model, $transModel, "en" );
                     }
                 }
             }

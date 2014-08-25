@@ -10,7 +10,12 @@
                 "title"=> Yii::t("page", "Отели"),
                 "description" => $this->description,
                 "keyWord" => $this->keyWord,
-                "sectionTextSlug" => "tekstovka-dlya-stranicy-oteli",
+                "sectionTextSlug" => array(
+                                        "ru"=>"tekstovka-dlya-stranicy-oteli",
+                                        "ja"=>"8521-ページのホテルの宿泊tekstovka",
+                                        "zh"=>"8521-tekstovka的页酒店",
+                                        "en"=>"8521-tekstovka-for-page-hotels",
+                                    ),
                 "sort"=>
                     array(
                         array( "col", Yii::t("page", "просмотрам") ),

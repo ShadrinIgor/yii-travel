@@ -136,7 +136,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=yii_travel',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '1',
+            'password' => 'mysql',
             'charset' => 'utf8',
         ),
 

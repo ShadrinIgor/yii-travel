@@ -1,6 +1,9 @@
 <?php
 
 return array(
+    "Найти" => "Find",
+    "Всего" => "Total",
+    "Реклама на сайте" => "Advertising",
     "Авторизоваться" => "log in",
     "Все туристические страны" => "Travel the country",
     "Категория" => "Category",
@@ -105,6 +108,7 @@ return array(
     "Разделение по городам" => "Separation by city",
     "акция/скидки от" => "action / discounts from",
     "фирма" => "firm",
+    "Фирма" => "Firm",
     "Связаться с компанией" => "Contact now",
     "Тур предоставлен фирмой" => "Tour provided by",
     "Для бронирования или уточнения информации необходимо связаться с менеджером компании." => "For reservations, or clarify information should contact the manager of the company.",

@@ -60,8 +60,8 @@ class CatalogToursCategoryEn extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'owner0' => array(self::BELONGS_TO, 'CatalogToursCategory', 'owner'),
-			'section' => array(self::BELONGS_TO, 'CatalogSections', 'section_id'),
+			'owner0' => array(self::BELONGS_TO, 'CatalogToursCategoryEn', 'owner'),
+			'section' => array(self::BELONGS_TO, 'CatalogSectionsEn', 'section_id'),
 		);
 	}
 

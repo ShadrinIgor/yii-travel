@@ -13,6 +13,13 @@ if( $categoryModel->id == 0 )
                 $categoryModel->name
             )
         ));
+
+$sectionText = array(
+    "ru"=>"tekstovka-dlya-stranicy-chastnye-obyavleniya",
+    "en"=>"8525-tekstovka-page-for-personal-ads",
+    "zh"=>"8525-tekstovka页面的个人广告",
+    "ja"=>"8525-個人広告用tekstovkaページ",
+);
 ?>
 
 <div id="InnerText">
@@ -21,7 +28,7 @@ if( $categoryModel->id == 0 )
     <?php else : ?>
         <h1><?= $categoryModel->name ?><font>, <?= Yii::t("page", "туристические объявления"); ?></font></h1>
     <?php endif; ?>
-    <?= SiteHelper::getAnimateText( "tekstovka-dlya-stranicy-chastnye-obyavleniya" ) ?>
+    <?= SiteHelper::getAnimateText( $sectionText[ Yii::app()->getLanguage() ] ) ?>
     <?= $addModel->getMessage() ?>
     <div class="textAlignCenter">
         <a href="#" class="openDisplayNone addButton" title="<?= Yii::t("page", "добавить бесплатно туристическое объявление"); ?>">+ <?= Yii::t("page", "добавить объявление"); ?></a>

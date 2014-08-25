@@ -14,6 +14,7 @@ class ExWindingSession extends CCModel
     protected $del; // integer
     protected $pos; // integer
     protected $proxi;
+    protected $visit_id;
 
 /*
 * Поля - связи
@@ -46,7 +47,7 @@ class ExWindingSession extends CCModel
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('proxi, referal, need_count, name, winding_id, useragents_id, del, pos', 'safe'),
+			array('visit_id, proxi, referal, need_count, name, winding_id, useragents_id, del, pos', 'safe'),
             array('id, name, winding_id, useragents_id, del, pos', 'safe', 'on'=>'search'),
 		);
 	}

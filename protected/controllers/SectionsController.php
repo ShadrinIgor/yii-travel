@@ -20,6 +20,7 @@ class SectionsController extends Controller
         $category = Yii::app()->request->getParam( "category", "" );
         $ccategory = Yii::app()->request->getParam( "ccategory", "" );
         $icategory = Yii::app()->request->getParam( "icategory", "" );
+        $slug = Yii::app()->request->getParam( "slug", "" );
 
         $activeTab = "";
         $t_page = 1;
@@ -30,17 +31,16 @@ class SectionsController extends Controller
         if( $action == "i" || $tab == "info"){$i_page = $page;$activeTab="s_info";}
         if( $action == "c" || $tab == "curorts" ){$c_page = $page;$activeTab="s_curorts";}
 
-        foreach( $_GET as $key=>$item )
+/*        foreach( $_GET as $key=>$item )
         {
-            if( !empty( $_GET[$key] ) && $_GET[$key]!="null" )continue;
+            echo "#";
+            if( empty( $_GET[$key] ) || $_GET[$key]=="null" )continue;
+            echo $key."*";
             $item = CatalogSections::fetchBySlug( $key );
             if( $item->id >0 )break;
-        }
-
-        if( empty( $key ) )
-        {
-            $item = CatalogSections::fetchBySlug( "otdyh-v-gorah" );
-        }
+        }*/
+        if( !empty( $slug ) )$item = CatalogSections::fetchBySlug( $slug );
+                        else $item = CatalogSections::fetchBySlug( "otdyh-v-gorah" );
 
         if( $item && $item->id >0)
         {

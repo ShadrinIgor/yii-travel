@@ -22,7 +22,7 @@
                     </div>
                     <?php endforeach; ?>
                 <div class="displayInlainBlock">
-                    <input type="submit" name="find" value="Найти" />
+                    <input type="submit" name="find" value="<?= Yii::t("page", "Найти" ) ?>" />
                 </div>
             </form>
         </div>

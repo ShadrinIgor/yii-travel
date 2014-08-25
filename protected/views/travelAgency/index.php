@@ -8,7 +8,12 @@
 <div id="catalogItems">
 <?php $this->widget( "pageWidget", array( "catalog"=>"catalog_firms", "template"=>"catalog_firms", "url"=>"travelAgency",
     "title" => Yii::t("travelAgency", "Туристические агентства"),
-    "sectionTextSlug" => "tekstovka-dlya-stranicy-firmy",
+    "sectionTextSlug" => array(
+                            "ru"=>"tekstovka-dlya-stranicy-firmy",
+                            "en"=>"8524-tekstovka-page-for-firms",
+                            "zh"=>"8524-tekstovka页面换行",
+                            "ja"=>"8524-企業のtekstovkaページ",
+                        ),
     "order" => "edit_date DESC, id DESC",
     "sort"=>
     array(

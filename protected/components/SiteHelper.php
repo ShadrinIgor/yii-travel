@@ -22,11 +22,21 @@ class SiteHelper
 
     public static function getAnimateText( $slug, $link = "" )
     {
-        $textModel = CatalogContent::fetchBySlug( $slug );
-        $cout = '<div class="sectionText">'.$textModel->description;
-        if( !empty( $link ) )$cout .= "<div class='textAlignRight'><a href='".$link."' title='".Yii::t( "page", "подробнее о туристическом портале Узбекистана")."'>".Yii::t( "page", "подробнее" )."...</div>";
-        $cout .='</div>';
-        return $cout;
+        if( is_array( $slug ) )
+        {
+            if( !empty( $slug[ Yii::app()->getLanguage() ] ) )$slug = $slug[ Yii::app()->getLanguage() ];
+                                    else $slug = "";
+
+        }
+
+        if( !empty( $slug ) )
+        {
+            $textModel = CatalogContent::fetchBySlug( $slug );
+            $cout = '<div class="sectionText">'.$textModel->description;
+            if( !empty( $link ) )$cout .= "<div class='textAlignRight'><a href='".$link."' title='".Yii::t( "page", "подробнее о туристическом портале Узбекистана")."'>".Yii::t( "page", "подробнее" )."...</div>";
+            $cout .='</div>';
+            return $cout;
+        }
     }
 
     public static function checkWWW( $www )

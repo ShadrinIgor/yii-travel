@@ -41,7 +41,7 @@ class Controller extends CController
                 {
                     $arr = explode( "=", $urlArrayDop[$i] );
                     $key = $arr[ 0 ];
-                    if( !empty( $arr[ 1 ] ) )$_GET[$key] =$arr[ 1 ];
+                    if( !empty( $arr[ 1 ] ) )$_GET[$key] = $arr[ 1 ];
                                         else $_GET[$key] = "null";
                 }
             }
@@ -58,6 +58,7 @@ class Controller extends CController
 
             $action=$this->createAction($actionID);
         }
+
 
         if($action!==null)
         {
@@ -87,18 +88,6 @@ class Controller extends CController
                 'backColor' => array(mt_rand(200, 210), mt_rand(210, 220),mt_rand(220, 230))
             )
         );
-/*        return array(
-            //  captcha action renders the CAPTCHA image displayed on the contact page
-            'captcha'=>array(
-                'class'=>'CCaptchaAction',
-                'backColor'=>0xFFFFFF,
-            ),
-            // page action renders "static" pages stored under 'protected/views/site/pages'
-            // They can be accessed via: index.php?r=site/page&view=FileName
-            'page'=>array(
-                'class'=>'CViewAction',
-            ),
-        );*/
     }
 
     public function filters()

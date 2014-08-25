@@ -25,10 +25,10 @@ $images = ImageHelper::getImages( $item );
         </div>
         <?php if( sizeof($images) >0 || $item->image ) : ?>
             <div class="floatLeft leftImages">
-                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" title="<?= $item->name ?>" rel="lightbox"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" title="<?= $item->name ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
+                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" title="<?= $item->name ?>" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" title="<?= $item->name ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
                 <?php if( sizeof($images) >0 ) : ?>
                     <?php foreach( $images as $image ) : ?>
-                        <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
+                        <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>

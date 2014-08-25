@@ -67,6 +67,7 @@ class CatalogToursEn extends CCModel
 			array('vip', 'length', 'max'=>1),
 			array('order_link, firm_site_link', 'length', 'max'=>255),
 			array('tour_per', 'length', 'max'=>50),
+            array('firm_id, category_id, country_id, price', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col, slug, user_id, from_country_id', 'safe'),

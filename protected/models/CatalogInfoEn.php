@@ -65,7 +65,7 @@ class CatalogInfoEn extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogInfoCategoryEn', 'category_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 		);

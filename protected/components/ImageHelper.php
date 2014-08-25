@@ -135,7 +135,15 @@ class ImageHelper
     {
         if( $itemObject->id >0 )
         {
+            // Так как у нас картинки сохраненны только для русской версии, то если язык другой то проверяем базовую таблицы ( без EN )
             $tableName = $itemObject->tableName();
+            if( Yii::app()->getLanguage() != "ru" )
+            {
+                $arr = explode( "_", $tableName );
+                unset( $arr[ sizeof( $arr )-1 ] );
+                $tableName= implode( "_",  $arr );
+            }
+
             $queryParams = DBQueryParamsClass::CreateParams()
                 ->setConditions( "catalog=:catalog AND item_id=:id" )
                 ->setParams( array( ":catalog"=>$tableName, ":id"=>$itemObject->id ) )

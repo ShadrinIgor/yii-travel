@@ -18,10 +18,19 @@ class pageWidget extends CWidget
     var $sectionTextSlug;
     var $url = 'tours';
     var $order = "id DESC";
-    var $sort = array(
-                    array( "col", "просмотрам" ),
-                    array( "name", "названию" ),
+    var $sort = array();
+
+    public function __construct()
+    {
+        if( sizeof( $this->sort ) ==0 )
+        {
+            $this->sort = array(
+                    array( "col",  Yii::t( "page", "просмотрам" ) ),
+                    array( "name", Yii::t( "page", "названию" ) )
                 );
+        }
+
+    }
 
     public function run()
     {
@@ -36,6 +45,12 @@ class pageWidget extends CWidget
 
             // Дополнение к TITLE
             $dopTitle = "";
+
+            if( Yii::app()->getLanguage() != "ru" )
+            {
+                if( @class_exists( $catalog.ucfirst( Yii::app()->getLanguage() ) ) )
+                    $catalog .= SiteHelper::getCamelCase( Yii::app()->getLanguage() );
+            }
 
             // Очищаем параметры сессии
             // Если указан параметр черезе GET и это не сортировка и не страницы, от очищаем параметры
@@ -66,12 +81,6 @@ class pageWidget extends CWidget
                 $pageParams["sort"] = array( "field"=>$sortField, "by"=>$by );
             }
 
-        if( Yii::app()->getLanguage() != "ru" )
-            {
-                if( @class_exists( $catalog.Yii::app()->getLanguage()  ) )
-                    $catalog .= SiteHelper::getCamelCase( Yii::app()->getLanguage() );
-            }
-
             $catalogModel = new $catalog();
             $SearchAttributes = $catalogModel->getSearchAttributes();
             $fieldsType = $catalogModel->fieldType();
@@ -90,6 +99,7 @@ class pageWidget extends CWidget
                 if( $categoryModel->id >0 )$SQL." AND category_id='".$categoryModel->id."'";
             }
             $country = Yii::app()->request->getParam("country", "");
+
 
             if( !empty( $SearchAttributes ) && is_array($SearchAttributes) && sizeof($SearchAttributes)>0)
             {
