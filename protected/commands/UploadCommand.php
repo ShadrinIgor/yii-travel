@@ -12,6 +12,13 @@ class UploadCommand extends CConsoleCommand
         //echo $arr[0]."###";
         //echo $arr[1];
         //die;
+        if( empty( $arr[1] ) )
+        {
+            echo "Oy";
+            echo $arr[0];
+            die;
+        }
+
         $arr = explode( "/ru/changeview", $arr[1] );
         $arr = explode( "</tr>", $arr[0] );
 
@@ -21,6 +28,9 @@ class UploadCommand extends CConsoleCommand
             $arr1 = explode( '"', $arr1[1] );
             $listPages[] = $link.$arr1[0];
         }
+
+        print_r( $listPages );
+        die;
 
         for( $i=0;$i<5;$i++ )
         {
@@ -38,7 +48,8 @@ class UploadCommand extends CConsoleCommand
                 $name = strip_tags( ">".$arrN[3] );
                 echo $email."-".$name;//."##";
             }
-                else echo "UPS";
+            else echo "UPS";
         }
+        //print_r( $listPages );
     }
 }
