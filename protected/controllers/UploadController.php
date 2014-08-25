@@ -29,7 +29,7 @@ class UploadController extends Controller
             $listPages[] = $link.$arr1[0];
         }
 
-        print_r( $listPages );
+        //print_r( $listPages );
 
         for( $i=0;$i<5;$i++ )
         {
