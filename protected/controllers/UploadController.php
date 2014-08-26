@@ -10,7 +10,10 @@ class UploadController extends Controller
         $newCache = CatalogCache::fetchBySlug( "torg_uz" );
         if( !$newCache->description )
         {
-            $text = file_get_contents( "http://www.torg.com/ru/all" );
+            $newCache1 = CatalogCache::fetchBySlug( "torg_uz_page" );
+            echo $newCache1->description."#";
+            if( $newCache1->description == 1 )$text = file_get_contents( "http://www.torg.com/ru/all" );
+                                         else $text = file_get_contents( "http://www.torg.com/ru/all/page/".$newCache1->description );
 
             $arr = explode( "offers blue offers", $text );
             //echo $arr[0]."###";
@@ -30,7 +33,7 @@ class UploadController extends Controller
             {
                 $arr1 = explode( 'href="', $arr[$i] );
                 $arr1 = explode( '"', $arr1[1] );
-                $listPages[] = $link.$arr1[0];
+                $listPages[] = trim( $link.$arr1[0] );
             }
 
             $newCache->description = serialize( $listPages );
@@ -40,36 +43,38 @@ class UploadController extends Controller
         }
             else $listPages = unserialize( $newCache->description );
 
+
         $countPage = 0;
         for( $i=0;$i<sizeof( $listPages );$i++ )
         {
-            $checkModel = CatalogUpload::findByAttributes( array( "name" => $listPages[$i] ), 0 );
+            $checkModel = CatalogUpload::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "name='".$listPages[$i]."'" )->setCache(0) );
             if( sizeof( $checkModel ) == 0  )
             {
                 $countPage++;
                 $text = file_get_contents( $listPages[$i] );
-                $arr = explode( "details", $text );
-                $arr = explode( "</table>", $arr[3] );
-
-                if( strpos( $arr[0], "mailto" ) !== false )
+                if( strpos( $text, "mailto" ) !== false )
                 {
+                    $arr = explode( "Имя:", $text );
+                    $arr = explode( "</table>", $arr[1] );
                     $arrE = explode( "mailto:", $arr[0] );
                     $arrE = explode( '"', $arrE[1] );
-                    $email = $arrE[0];
+                    $email = trim( $arrE[0] );
 
                     $arrN = explode( "</tr>", $arr[0] );
-                    $arrN = explode( "<td", $arrN[1] );
-                    $name = strip_tags( "<p".$arrN[2] );
-
-                    $chechEmail = CatalogUsersSubscribe::findByAttributes( array( "email"=>$email ) );
+                    $arrN = explode( "<td", $arrN[0] );
+                    $name = strip_tags( "<p".$arrN[1] );
+                    echo "##".$email."-".$name;//.;
+                    $chechEmail = CatalogUsersSubscribe::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "email='".$email."'" )->setCache(0) );
                     if( sizeof( $chechEmail ) == 0 )
                     {
-                        echo "##".$email."-".$name;//.;
+                        echo "N0";//.;
                         $newSubscribe = new CatalogUsersSubscribe();
                         $newSubscribe->name = trim( $name );
                         $newSubscribe->email = trim( $email );
-                        $newSubscribe->save();
+                        if( !$newSubscribe->save() )
+                            print_r( $newSubscribe->getErrors() );
                     }
+                    //break;
                 }
 
                 $newPage = new CatalogUpload();
@@ -79,8 +84,17 @@ class UploadController extends Controller
             }
         }
 
-        fgdfgdf
-        // Hfcfgf
+
+        // Если не нашол не одной новой стринцы то скидываем кеш, и устанавливаем текущей следующую страницу
         if( $countPage==0 )
+        {
+            $newCache = CatalogCache::fetchBySlug( "torg_uz" );
+            $newCache->description = "";
+            $newCache->save();
+
+            $newCache1 = CatalogCache::fetchBySlug( "torg_uz_page" );
+            $newCache1->description = (int)$newCache1->description + 1;
+            $newCache1->save();
+        }
     }
 }
