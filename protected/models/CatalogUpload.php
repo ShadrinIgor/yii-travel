@@ -9,7 +9,7 @@ class CatalogUpload extends CCModel
     protected $name; // string 
     protected $pos; // integer
     protected $del; // integer
-
+    protected $site; // integer
 
 /*
 * Поля - связи
@@ -40,7 +40,7 @@ class CatalogUpload extends CCModel
 			array('name', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('name', 'safe'),
+			array('name, site', 'safe'),
             array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
@@ -64,6 +64,7 @@ class CatalogUpload extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+            'site' => 'site'
 		);
 	}
 

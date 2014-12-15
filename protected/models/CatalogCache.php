@@ -40,7 +40,7 @@ class CatalogCache extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, slug, date', 'required'),
+			array('name, slug', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('name, description, slug, date', 'safe'),

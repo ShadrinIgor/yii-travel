@@ -1,39 +1,31 @@
 <?php
 
-class UploadCommand extends CConsoleCommand
+class UploadProAvtoCommand extends CConsoleCommand
 {
     public function run($args)
     {
-        $link = "http://torg.com";
+        $link = "http://proavto.uz";
         $listPages = array();
 
-        $newCache = CatalogCache::fetchBySlug( "torg_uz" );
+        $newCache = CatalogCache::fetchBySlug( "proavto.uz" );
         if( !$newCache->description )
         {
-            $newCache1 = CatalogCache::fetchBySlug( "torg_uz_page" );
-            if( $newCache1->description == 1 )$text = file_get_contents( "http://www.torg.com/ru/all" );
-                                         else $text = file_get_contents( "http://www.torg.com/ru/all/page/".$newCache1->description );
+            $newCache1 = CatalogCache::fetchBySlug( "proavto_uz_page" );
+            if( $newCache1->description == 1 )$text = file_get_contents( "http://proavto.uz/ru/ads/search?sortby=datenew&pageSize=10" );
+            else $text = file_get_contents( "http://proavto.uz/ru/ads/search?sortby=datenew&pageSize=10&page=".$newCache1->description );
 
-            $arr = explode( "offers blue offers", $text );
-            //echo $arr[0]."###";
-            //echo $arr[1];
-            //die;
-            if( empty( $arr[1] ) )
-            {
-                echo "Oy";
-                echo $arr[0];
-                die;
-            }
 
-            $arr = explode( "/ru/changeview", $arr[1] );
-            $arr = explode( "</tr>", $arr[0] );
+            $arr = explode( 'class="foot"', $text );
 
+            $arr = explode( 'class="adcell"', $arr[0] );
             for( $i=1;$i<sizeof( $arr )-1;$i++ )
             {
-                $arr1 = explode( 'href="', $arr[$i] );
+                $arr1 = explode( 'class="add_wish', $arr[$i] );
+                $arr1 = explode( 'href="', $arr1[0] );
                 $arr1 = explode( '"', $arr1[1] );
                 $listPages[] = trim( $link.$arr1[0] );
             }
+
 
             $newCache->description = serialize( $listPages );
             $newCache->date = time();
@@ -41,7 +33,6 @@ class UploadCommand extends CConsoleCommand
                 print_r( $newCache->getErrors() );
         }
         else $listPages = unserialize( $newCache->description );
-
 
         $countPage = 0;
         for( $i=0;$i<sizeof( $listPages );$i++ )
@@ -53,20 +44,17 @@ class UploadCommand extends CConsoleCommand
                 $text = file_get_contents( $listPages[$i] );
                 if( strpos( $text, "mailto" ) !== false )
                 {
-                    $arr = explode( "Имя:", $text );
-                    $arr = explode( "</table>", $arr[1] );
-                    $arrE = explode( "mailto:", $arr[0] );
+                    $arrE = explode( "mailto:", $text );
                     $arrE = explode( '"', $arrE[1] );
                     $email = trim( $arrE[0] );
 
-                    $arrN = explode( "</tr>", $arr[0] );
-                    $arrN = explode( "<td", $arrN[0] );
-                    $name = strip_tags( "<p".$arrN[1] );
+                    $arrE = explode( "@", $email );
+                    $name = $arrE[0];
+
                     echo "##".$email."-".$name;//.;
                     $chechEmail = CatalogUsersSubscribe::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "email='".$email."'" )->setCache(0) );
                     if( sizeof( $chechEmail ) == 0 )
                     {
-                        echo "N0";//.;
                         $newSubscribe = new CatalogUsersSubscribe();
                         $newSubscribe->name = trim( $name );
                         $newSubscribe->email = trim( $email );
@@ -78,6 +66,7 @@ class UploadCommand extends CConsoleCommand
 
                 $newPage = new CatalogUpload();
                 $newPage->name = $listPages[$i];
+                $newPage->site = "proavto.uz";
                 if( !$newPage->save() )
                     print_r( $newPage->getErrors() );
             }
@@ -87,13 +76,19 @@ class UploadCommand extends CConsoleCommand
         // Если не нашол не одной новой стринцы то скидываем кеш, и устанавливаем текущей следующую страницу
         if( $countPage==0 )
         {
-            $newCache = CatalogCache::fetchBySlug( "torg_uz" );
+            $newCache = CatalogCache::fetchBySlug( "proavto.uz" );
             $newCache->description = "";
+            $newCache->date = 0;
             $newCache->save();
 
-            $newCache1 = CatalogCache::fetchBySlug( "torg_uz_page" );
-            $newCache1->description = (int)$newCache1->description + 1;
-            $newCache1->save();
+            $newCache1 = CatalogCache::fetchBySlug( "proavto_uz_page" );
+            $newCache1->description = (int)$newCache1->description>0 ? (int)$newCache1->description + 1 : $newCache1->description=2;
+            $newCache1->date = 0;
+
+            if( !$newCache1->save() )
+                $newCache1->getErrors();
+
         }
+
     }
 }
