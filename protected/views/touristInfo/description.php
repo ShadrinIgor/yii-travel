@@ -36,7 +36,20 @@ $this->widget('addressLineWidget', array(
 
     <div class="hr">&nbsp;</div>
 
+    <?php if( sizeof($tours)>0 ) : ?>
+        <h2><?= Yii::t("page", "туры"); ?> <?= $item->country_id->name_2 ?></h2>
+        <div class="ITBlock">
+            <?php foreach( $tours as $tour ) : ?>
+                <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
+            <?php endforeach; ?>
+            <div class="textAlignRight">
+                <a href="<?= SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все туры"); ?> <?= $item->name_2 ?>"><?= Yii::t("page", "Смотреть все туры"); ?> <?= $item->country_id->name_2 ?> ( <?= $tourCount ?> <?= Yii::t("page", "тура(ов)"); ?> )...</a>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <?php if( sizeof($other)>0 ) : ?>
+        <div class="hr">&nbsp;</div>
         <h2><?= Yii::t("page", "Смотрите также"); ?></h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $other as $hotel ) : ?>
@@ -47,4 +60,5 @@ $this->widget('addressLineWidget', array(
             </div>
         </div>
     <?php endif; ?>
+
 </div>

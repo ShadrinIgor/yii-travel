@@ -150,30 +150,11 @@ class CatalogController extends ConsoleController
                         else $model = new $catalog();
 
             $message = "";
-
-            // Убираем корявость редактора
-            // А имеено вот такую фигню
-            // <p><strong>Дополнительная ночь</strong><strong>&nbsp;</strong></p>
-            // <strong><strong><span lang="EN-US"><span lang="EN-US"><strong><span lang="EN-US"><strong><strong>SHANGRI-LA TANJUNG ARU (MOUNTAIN VIEW ROOM)&nbsp;</strong></strong></span></strong></span></span></strong></strong>
-            $textareaFields = $model->getAttributesByFieldType( "visual_textarea" );
-            foreach( $textareaFields as $key=>$Afield )
-            {
-                for( $i=0;$i<5;$i++ )
-                {
-                    $model->$Afield = str_replace( array( "<strong><strong>", '<strong><span lang="EN-US">', '<strong><span>', '<span><strong>' ), "<strong>", $model->$Afield );
-                    $model->$Afield = str_replace( array( "</strong></strong>", '</span></strong>', '</span></strong>', '</strong></span>' ), "</strong>", $model->$Afield );
-
-                    $model->$Afield = str_replace( array( "<span><span>", '<span><span lang="EN-US">', '<span lang="EN-US"><span>', '<span lang="EN-US"><span lang="EN-US">' ), "<span>", $model->$Afield );
-                    $model->$Afield = str_replace( array( "</span></span>", '</span></span>', '</span></span>', '</span></span>' ), "</span>", $model->$Afield );
-
-                    $model->$Afield = str_replace( array( '<strong>&nbsp;</strong>', '<span>&nbsp;</span>',  '&nbsp;&nbsp;', "<strong> </strong>", "<strong></strong>", '<span> </span>', '<span></span>' ), "", $model->$Afield );
-                }
-            }
-
             // Сохрание полей
             if(isset($_POST[ $catalog ]))
             {
                 $model->setAttributesFromArray( $_POST[ $catalog ] );
+                if( $model->description )$model->description = str_replace( "../../../../", Yii::app()->params["baseUrl"], $model->description );
                 if( !empty( $_FILES[ $catalog ] ) )
                 {
 

@@ -81,13 +81,37 @@ class InfoController extends Controller
             if( $item->id >0 )
             {
                 $images = ImageHelper::getImages( $item );
-                $other = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(24) );
+                $other = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("id DESC")->setLimit(12) );
+
+                $tourCategory = $item->tour_category;
+
+                if( sizeof( $tourCategory ) >0 )
+                {
+                    $dopSQL = " AND ( ";
+                    $m=0;
+                    foreach( $tourCategory as $tCategory )
+                    {
+                        if( $m > 0 )$dopSQL .= " OR ";
+                        $dopSQL .= "category_id=".$tCategory->id;
+                        $m++;
+                    }
+                    $dopSQL .= ") ";
+
+                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id ".$dopSQL )->setParams(array(":country_id"=>$item->country_id->id))->setOrderBy("id DESC")->setLimit(9) );
+                }
+                    elseif( $item->country_id->id >0 )
+                {
+                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array(":country_id"=>$item->country_id->id))->setOrderBy("id DESC")->setLimit(10) );
+                }
+                    else $tours = array();
+
                 Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(
-                        "item" => $item,
-                        "other" => $other ,
+                        "item"   => $item,
+                        "other"  => $other ,
                         "images" => $images,
+                        "tours"  => $tours,
                         "hotelCount" => $class::count( DBQueryParamsClass::CreateParams()->setConditions( "category_id=:category_id" )->setParams( array( ":category_id"=>$item->category_id->id ) ) ),
                     ));
 

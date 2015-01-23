@@ -1819,7 +1819,7 @@ width:100%;
 
 
 .floatRight{float: right;}
-.rightInfo{font-size: 10px;background:#BEC1CC;color: #fff;padding:1px 3px; }
+.rightInfo{font-size: 10px;background:#66686F;color: #fff;padding:1px 3px; }
 #Address
 {
     margin: 0px 15px;
@@ -1871,6 +1871,23 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
     background-image: -webkit-linear-gradient(top, #faf1f1 0%, #FFFFFF 100%);
     /* Proposed W3C Markup */
     background-image: linear-gradient(top,#faf1f1 0%, #FFFFFF 100%);
+
+    -moz-transition: all 0.6s 0.1s ease;
+    -o-transition: all 0.6s 0.1s ease;
+    -webkit-transition: all 0.6s 0.1s ease;
+}
+
+.IBItem.IBTours
+{
+    width: 200px;
+    padding: 10px;
+    height: 250px;
+    margin:5px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
+
+    -moz-transition: all 0.6s 0.1s ease;
+    -o-transition: all 0.6s 0.1s ease;
+    -webkit-transition: all 0.6s 0.1s ease;
 }
 
 .ITBlock.ITBFirms .IBItem{width: 150px;text-align: center;height: 90px;vertical-align: top;}
@@ -1903,6 +1920,20 @@ background-image: -ms-linear-gradient(left, rgba( 255, 255, 255, 0.8 ) 0%, rgba(
 }
 
 .IBIImage{float: left;height: 100px;width: 120px;overflow: hidden;text-align: center;margin-right: 5px;}
+.IBItem.IBTours .IBIImage
+{
+    float: none;
+    height: 150px;
+    width: 200px;
+    text-align: center;
+}
+
+.IBItem.IBTours .IBIImage img
+{
+    max-height: none;
+    max-width: none;
+}
+
 .ITBlock.ITBFirms.ITBOthCountry .IBIImage{height: 100px;width: 150px;max-height: none;}
 .IBIImage img{max-height: 100px;max-width: 120px;}
 .ITBlock.ITBFirms.ITBOthCountry img{max-height: 120px;max-width: 150px;}
@@ -2887,3 +2918,13 @@ tr.isHot
 
 #TFInner h2{border: 0px;}
 #TFInner .textAlignLeft{margin-left: 50px;}
+
+.ITBlock .IBTours p
+{
+    margin: 0px;
+    text-align: left;
+    width: 50px;
+    float: left;
+}
+
+.IBTours .rightInfo {padding: 3px 5px;}

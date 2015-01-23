@@ -19,6 +19,7 @@ class CatalogInfo extends CCModel
     protected $list_key; // string 
     protected $slug; // string
     protected $translate;
+    protected $tour_category;
 
 /*
 * Поля - связи
@@ -53,7 +54,7 @@ class CatalogInfo extends CCModel
             array('name, country_id, category_id', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('translate, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe'),
+			array('tour_category, translate, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe'),
             array('id, col, name, description, pos, metaData, del, country_id, city_id, image, category_id, list_key, slug', 'safe', 'on'=>'search'),
 		);
 	}
@@ -66,6 +67,7 @@ class CatalogInfo extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'tours0' => array(self::MANY_MANY, 'CatalogToursCategory', 'tour_category'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogInfoCategory', 'category_id'),
@@ -89,6 +91,7 @@ class CatalogInfo extends CCModel
 			'city_id' => Yii::t("page", "Город"),
 			'image' => 'Image',
 			'category_id' => Yii::t("models", "Категория" ),
+            //'tour_category' => 'Категория туров',
 			'list_key' => 'List Key',
 			'slug' => 'Slug',
 		);

@@ -4,91 +4,154 @@ class UploadController extends Controller
 {
     public function actionIndex()
     {
-        $link = "http://proavto.uz";
-        $listPages = array();
 
-        $newCache = CatalogCache::fetchBySlug( "proavto.uz" );
-        if( !$newCache->description )
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+        //  Ташкент
+        $url = "http://pogoda.yandex.ru/tashkent/";
+        $countNewNews = $this->getCategoryNews( $url, 19, "http://news.mail.ru", "Ташкент", 1 );
+            /*print_r( $matches );
+            return;*/
+
+
+            return $countNewNews;
+    }
+
+    public function getCategoryNews( $url, $cid, $site, $city, $cityId )
+    {
+        $result = file_get_contents( $url );
+        //$result = str_replace( "'", "&#039;", $result );
+        $ar = explode( 'forecast-brief forecast-item', $result );
+        $ar = explode( 'tabs-panes__pane', $ar[1] );
+
+        $arrayDays = array( "пн", "вт", "ср", "чт", "пт", "сб", "вс" );
+        $activeDay = 0;
+        $matches = array();
+        $ar = explode( '<li', $ar[0] );
+
+        for( $i=1;$i<sizeof($ar);$i++ )
         {
-            $newCache1 = CatalogCache::fetchBySlug( "proavto_uz_page" );
-            if( $newCache1->description == 1 )$text = file_get_contents( "http://proavto.uz/ru/ads/search?sortby=datenew&pageSize=10" );
-            else $text = file_get_contents( "http://proavto.uz/ru/ads/search?sortby=datenew&pageSize=10&page=".$newCache1->description );
+            $newMatches = array();
+            $ar2 = explode( 'forecast-brief__item-dayname', $ar[$i] );
+            $ar2 = explode( 'forecast-brief__item-day', $ar2[1] );
+            $newMatches[0] = trim( strip_tags( '<span class="'.$ar2[0] ) );
 
+            $ar2 = explode( 'forecast-brief__item-description', $ar2[1] );
+            $newMatches[1] = trim( strip_tags( '<span class="'.$ar2[0] ) );
 
-            $arr = explode( 'class="foot"', $text );
+            $ar2 = explode( 'forecast-brief__item-temp-day', $ar2[1] );
+            $newMatches[2] = trim( strip_tags( '<span class="'.$ar2[0] ) );
 
-            $arr = explode( 'class="adcell"', $arr[0] );
-            for( $i=1;$i<sizeof( $arr )-1;$i++ )
-            {
-                $arr1 = explode( 'class="add_wish', $arr[$i] );
-                $arr1 = explode( 'href="', $arr1[0] );
-                $arr1 = explode( '"', $arr1[1] );
-                $listPages[] = trim( $link.$arr1[0] );
-            }
+            $ar2 = explode( 'forecast-brief__item-temp-night', $ar2[1] );
+            $newMatches[3] = trim( strip_tags( '<span class="'.$ar2[0] ) );
 
+            $newMatches[4] = trim( strip_tags( '<span class="'.$ar2[1] ) );
 
-            $newCache->description = serialize( $listPages );
-            $newCache->date = time();
-            if( !$newCache->save() )
-                print_r( $newCache->getErrors() );
-        }
-            else $listPages = unserialize( $newCache->description );
-
-        $countPage = 0;
-        for( $i=0;$i<sizeof( $listPages );$i++ )
-        {
-            $checkModel = CatalogUpload::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "name='".$listPages[$i]."'" )->setCache(0) );
-            if( sizeof( $checkModel ) == 0  )
-            {
-                $countPage++;
-                $text = file_get_contents( $listPages[$i] );
-                if( strpos( $text, "mailto" ) !== false )
-                {
-                    $arrE = explode( "mailto:", $text );
-                    $arrE = explode( '"', $arrE[1] );
-                    $email = trim( $arrE[0] );
-
-                    $arrE = explode( "@", $email );
-                    $name = $arrE[0];
-
-                    echo "##".$email."-".$name;//.;
-                    $chechEmail = CatalogUsersSubscribe::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "email='".$email."'" )->setCache(0) );
-                    if( sizeof( $chechEmail ) == 0 )
-                    {
-                        $newSubscribe = new CatalogUsersSubscribe();
-                        $newSubscribe->name = trim( $name );
-                        $newSubscribe->email = trim( $email );
-                        if( !$newSubscribe->save() )
-                            print_r( $newSubscribe->getErrors() );
-                    }
-                    //break;
-                }
-
-                $newPage = new CatalogUpload();
-                $newPage->name = $listPages[$i];
-                $newPage->site = "proavto.uz";
-                if( !$newPage->save() )
-                    print_r( $newPage->getErrors() );
-            }
+            $matches[] = $newMatches;
         }
 
+        print_r( $matches );
+        die;
 
-        // Если не нашол не одной новой стринцы то скидываем кеш, и устанавливаем текущей следующую страницу
-        if( $countPage==0 )
-        {
-            $newCache = CatalogCache::fetchBySlug( "proavto.uz" );
-            $newCache->description = "";
-            $newCache->date = 0;
-            $newCache->save();
+        /*
+       for( $i=1;$i<sizeof($ar);$i++ )
+       {
+           if( $i==1 ) // Даты
+           {
+               $ar2 = explode( "</span>", $ar[$i] );
+               for( $n=1;$n<sizeof( $ar2 )-1;$n++ )
+               {
+                   $ar3 = explode( '<span>', $ar2[$n] );
+                   $day_ = strip_tags( $ar3[0] );
+                   $ar3 = explode( '&nbsp;', $ar3[1] );
 
-            $newCache1 = CatalogCache::fetchBySlug( "proavto_uz_page" );
-            $newCache1->description = (int)$newCache1->description>0 ? (int)$newCache1->description + 1 : $newCache1->description=2;
-            $newCache1->date = 0;
+                   $m = date( "m" );
+                   $year = date( "Y" );
+                   $day = $ar3[0]*1;
+                   if( $day<$activeDay )
+                   {
+                       if( $m<12 )$m += 1;
+                           else
+                       {
+                           $m = 1;
+                           $year +=1;
+                       }
+                   }
 
-            if( !$newCache1->save() )
-                $newCache1->getErrors();
+                   $date = $year."-".$m."-".$day;
+                   if( $n==1 )$day_ .= $arrayDays[ date("w")-1 ];
+                   $matches[ 0 ][ $n-1 ] = array( $date, $day_ );
 
-        }
+                   $activeDay = $day;
+               }
+           }
 
+                       if( $i==2 ) // картинка
+                       {
+                           $ar2 = explode( '</td>', $ar[$i] );
+                           for( $n=0;$n<sizeof( $ar2 )-1;$n++ )
+                           {
+                               $ar3 = explode( '" /></i>', $ar2[$n] );
+                               $ar4 = explode( '/', $ar3[0] );
+                               $matches[ 1 ][ $n ][0] = trim( strip_tags( $ar3[ 1 ] ) );
+                               $matches[ 1 ][ $n ][1] = trim( strip_tags( $ar4[ sizeof( $ar4 )-1 ] ) );
+                           }
+                       }
+
+                       if( $i==3 ) // погода днем
+                       {
+                           $ar[$i] = "<td ".$ar[$i];
+                           $ar2 = explode( '</td>', $ar[$i] );
+                           for( $n=0;$n<sizeof( $ar2 )-1;$n++ )
+                           {
+                               $matches[ 2 ][ $n ] = trim( strip_tags( $ar2[ $n ] ) );
+                           }
+                       }
+
+                       if( $i==4 ) // погода ночью
+                       {
+                           $ar[$i] = "<td ".$ar[$i];
+                           $ar2 = explode( '</td>', $ar[$i] );
+                           for( $n=0;$n<sizeof( $ar2 )-1;$n++ )
+                           {
+                               $matches[ 3 ][ $n ] = trim( strip_tags( $ar2[ $n ] ) );
+                           }
+                       }
+                   }
+
+                   print_r( $matches );
+                   die;
+
+                   if( sizeof( $matches[0] )>0 && $cityId )
+                   {
+                       mysql_query( "DELETE FROM catalog_weather WHERE city='".$cityId."'" );
+                   }
+
+                   for( $i=0;$i<sizeof( $matches[0] );$i++ )  //sizeof( $matches )
+                   {
+                       if( $matches[0][$i][0] )
+                       {
+                           list( $exists ) = mysql_fetch_array( mysql_query( "SELECT id FROM catalog_weather WHERE `date`='".$matches[0][$i][0]."' AND name='".$city."' AND del=0" ) );
+                           if( !$exists  )
+                           {
+                               $query = "INSERT INTO catalog_weather( city, `date`, name, day_, image, w_day, w_nigth, w_status, cid, id_lang, path )
+                               VALUES( '".$cityId."', '".$matches[0][$i][0]."', '".$city."', '".$matches[0][$i][1]."', '".$matches[1][$i][1]."', '".$matches[2][$i]."', '".$matches[3][$i]."', '".$matches[1][$i][0]."', '231', 1, ':231:' )";
+                               echo $query."<br/>";
+                               $res = mysql_query( $query ) or die( mysql_error() );
+                               $newId = mysql_insert_id();
+
+                               $query2 = "UPDATE catalog_weather SET lang_group='".$newId."'".(  $matches[$i]["image"] ? ", image = '".$newImage."'" : "" )." WHERE id='".$newId."'";
+                               mysql_query( $query2 ) or die( mysql_error() );
+                           }
+                           else
+                           {
+                               $query = "UPDATE catalog_weather SET `city`='".$cityId."', `date`='".$matches[0][$i][0]."', name='".$city."', day_='".$matches[0][$i][1]."', image='".$matches[1][$i][1]."', w_day='".$matches[2][$i]."', w_nigth='".$matches[3][$i]."', w_status='".$matches[1][$i][0]."' WHERE id='".$exists. "'" ;
+                               echo $query."<br/>";
+                               $res = mysql_query( $query ) or die( mysql_error() );
+                           }
+                       }
+                   }
+           */
     }
 }
