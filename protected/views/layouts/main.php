@@ -105,10 +105,12 @@
 
 <div id="about_link">
     <div id="ALLinks">
+        <a href="<?= SiteHelper::createUrl("/weather") ?>" title="Погода в Узбекистане">Погода в Узбекистане</a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="<?= Yii::t( "page", "О проекте") ?>"><?= Yii::t( "page", "О проекте") ?></a> |
         <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="<?= Yii::t( "page", "Правила") ?>"><?= Yii::t( "page", "Правила") ?></a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="<?= Yii::t( "page", "Контакты") ?>"><?= Yii::t( "page", "Контакты") ?></a><br/>
-        <a href="<?= SiteHelper::createUrl("/site/page") ?>/ad.html" title="<?= Yii::t( "page", "Реклама на сайте") ?>"><?= Yii::t( "page", "Реклама на сайте") ?></a>
+        <a href="<?= SiteHelper::createUrl("/site/page") ?>/ad.html" title="<?= Yii::t( "page", "Реклама на сайте") ?>"><?= Yii::t( "page", "Реклама на сайте") ?></a><br/>
+        Мы в соцсетях: <a href="https://plus.google.com/u/1/100533081267963721341?rel=author">Я в Google+</a>
         <!--
     <a href="" title="Карта сайта">Карта ссылок</a>-->
     </div>
@@ -136,5 +138,12 @@
     <div class="TBan"><div class="RB RBWorldNews"><a href="http://www.world-news.uz" title="Мировые новости, политика, финансы, экономика, спорт"></a></div></div>
     <div class="TBan"><div class="RB RBTrio"><a href="http://www.trio.uz" title="Студия нового"></a></div></div>
 </div-->
+
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <script type='text/javascript'>
+        (function(){ var widget_id = 'FrS4Yvbmmg';
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();
+    <!-- {/literal} END JIVOSITE CODE -->
+    </script>
 </body>
 </html>

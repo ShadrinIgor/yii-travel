@@ -1,9 +1,13 @@
 <?php
 
-class UploadController extends Controller
+class WheterCommand extends CConsoleCommand
 {
-    public function actionIndex()
+    public function run($args)
     {
+/*        error_reporting( E_ALL );
+        ini_set('display_errors', 1);
+        echo "Начал делать";*/
+
         $catalog = new CatalogWheters();
         $catalog->deleteAll();
 
@@ -13,9 +17,9 @@ class UploadController extends Controller
 
         //  Самарканд
         $url = "https://pogoda.yandex.ru/samarkand";
-        $countNewNews = $this->getCategoryNews( $url, 3 );
 
         //  Бухара
+        $countNewNews = $this->getCategoryNews( $url, 3 );
         $url = "https://pogoda.yandex.ru/bukhara";
         $countNewNews = $this->getCategoryNews( $url, 2 );
 
@@ -39,13 +43,10 @@ class UploadController extends Controller
     public function getCategoryNews( $url, $cityId )
     {
         $result = file_get_contents( $url );
-        //$result = str_replace( "'", "&#039;", $result );
         $ar = explode( 'forecast-brief forecast-item', $result );
         $ar = explode( 'tabs-panes__pane', $ar[1] );
 
         $arrayDays = array( "вс", "пн", "вт", "ср", "чт", "пт", "сб" );
-        $activeDay = 0;
-        $matches = array();
         $ar = explode( '<li', $ar[0] );
 
         for( $i=1;$i<sizeof($ar);$i++ )
@@ -75,14 +76,16 @@ class UploadController extends Controller
                 case "переменная облачность" : $newMatches[5] = "6.png";break;
                 case "малооблачно" : $newMatches[5] = "5.png";break;
                 case "облачно, небольшой дождь" : $newMatches[5] = "11.png";break;
+                case "переменная облачность, небольшой дождь" : $newMatches[5] = "15.png";break;
+                case "облачно с прояснениями, небольшой дождь" : $newMatches[5] = "15.png";break;
                 case "облачно, небольшой дождь со снегом" : $newMatches[5] = "13.png";break;
                 case "облачно, снег" : $newMatches[5] = "13.png";break;
-
+                case "переменная облачность, небольшой снег" : $newMatches[5] = "12.png";break;
 
                 case "облачно, небольшой снег" : $newMatches[5] = "13.png";break;
                 case "облачно с прояснениями, небольшой снег" : $newMatches[5] = "12.png";break;
                 case "ясно" : $newMatches[5] = "7.png";break;
-                default : $newMatches[5] = $newMatches[2];
+                default : $newMatches[5] = "";
             }
 
             $new = new CatalogWheters();

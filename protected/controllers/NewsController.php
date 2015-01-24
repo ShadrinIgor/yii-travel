@@ -1,6 +1,6 @@
 <?php
 
-class NewsController extends InfoController
+class WeatherController extends InfoController
 {
     public function init()
     {
