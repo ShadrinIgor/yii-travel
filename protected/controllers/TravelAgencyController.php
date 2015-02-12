@@ -35,6 +35,12 @@ class TravelAgencyController extends InfoController
         // Ошибка при не правельно ID
         $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адреса страницы");
 
+        if( empty($id) && !empty( $_GET[ "slug" ] ) )
+        {
+            $ar = explode( "-",  $_GET[ "slug" ] );
+            $id = $ar[0];
+        }
+
         if( $id > 0 )
         {
             $item = CatalogFirmsInfo::fetch( $id );

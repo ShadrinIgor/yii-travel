@@ -117,10 +117,10 @@ class SectionsController extends Controller
                 }
 
                 if( !empty( $country ) )
-                    $toursCategory .= " AND country_id = ( SELECT id FROM catalog_country WHERE slug='".$country."' )";
+                    $toursCategory .= " AND country_id = ( SELECT id FROM catalog_country WHERE slug='".$country."' LIMIT 1 )";
 
                 if( !empty( $category ) )
-                    $toursCategory .= " AND category_id = ( SELECT id FROM catalog_tours_category WHERE slug='".$category."' )";
+                    $toursCategory .= " AND category_id = ( SELECT id FROM catalog_tours_category WHERE slug='".$category."' LIMIT 1 )";
 
                 if( sizeof( $item->tours ) >0 )
                 {

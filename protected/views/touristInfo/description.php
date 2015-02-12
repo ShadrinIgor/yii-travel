@@ -43,7 +43,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все туры"); ?> <?= $item->name_2 ?>"><?= Yii::t("page", "Смотреть все туры"); ?> <?= $item->country_id->name_2 ?> ( <?= $tourCount ?> <?= Yii::t("page", "тура(ов)"); ?> )...</a>
+                <a href="<?= SiteHelper::createUrl("/tours/country")."/".$item->country_id->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все туры"); ?> <?= $item->name_2 ?>"><?= Yii::t("page", "Смотреть все туры"); ?> <?= $item->country_id->name_2 ?> ( <?= !empty($tourCount) ? $tourCount : 0 ?> <?= Yii::t("page", "тура(ов)"); ?> )...</a>
             </div>
         </div>
     <?php endif; ?>

@@ -49,7 +49,8 @@ class SiteHelper
     {
         if( empty( $item->slug ) || !$item->slug)
         {
-            $nameTranstlit = SiteHelper::getTranslateForUrl( $item->name );
+            $nameForSlag = str_replace( array("\$"), "", $item->name );
+            $nameTranstlit = SiteHelper::getTranslateForUrl( $nameForSlag );
             $dopSlug = $item->id."-";
             if( property_exists( $item, "owner" ) && $item->owner->id >0 )$dopSlug .= SiteHelper::getTranslateForUrl( $item->owner->name );
                                               else $dopSlug .= "";
@@ -185,6 +186,50 @@ class SiteHelper
         return $data;
     }
 
+/*
+    static function mailto($subject, $from = "", $to, $msg, $copy='', $template='', $replaceArray = array())
+    {
+        if( empty( $template ) )$template = 'main.tpl';
+        if( empty( $from ) )$from = Yii::app()->params['adminEmail'];
+        if( empty( $from ) )$from = "info@world-travel.uz";
+        $error = null;
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=cp1251' . "\r\n";
+
+        $headers .= 'Date: '.date("r")."\r\n";
+        $headers .= 'To: '.$to." \r\n";
+        $headers .= 'From: '.$from. "\r\n";
+        if( !empty( $copy ) )$headers .= "Bcc: ".$copy."\r\n";
+
+        if( $template && file_exists( "f/mails_template/".$template) )
+        {
+            $fullUrl = "f/mails_template/".$template;
+            $file = fopen( $fullUrl, "r+" );
+            $templateText = fread( $file, filesize( $fullUrl ) );
+            fclose( $file );
+            $msg = str_replace( "@cotent_text@", $msg, $templateText );
+        }
+
+        $headers = iconv("UTF-8", "cp1251", $headers);
+        $msg = iconv("UTF-8", "cp1251", $msg);
+        $subject = iconv("UTF-8", "cp1251", $subject);
+
+        $replaceArray[ "@content_link@" ] = Yii::app()->params["baseUrl"]."site/unSubscribe/email/".$to."/hash/".( substr( md5( md5( $to ) ), 3, 8 ) );
+        if( sizeof($replaceArray)>0 )
+        {
+            foreach( $replaceArray as $key=>$value )
+            {
+                $msg = str_replace( $key, $value, $msg );
+            }
+        }
+
+        //echo $to.",".$subject.",".$msg.",".$headers;
+        $res=@mail($to,$subject,$msg,$headers);
+        if($res===false)$error="Произошла ошибка отправки сообщения на E-mail (<b>".$to."</b>). Проверте коректность вводимого E-mail и попробуйте снова.";
+
+        return $error;
+    }*/
+
     public static function getConfig( $key )
     {
         $configModel = ConfigOptions::fetchByKeyWord( $key );
@@ -248,7 +293,7 @@ class SiteHelper
     }
 
     public static function getEventsConfig() {
-        return require(dirname( dirname( __FILE__ )).DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'handlers.php');
+        return require(Yii::getPathOfAlias('configPath').DIRECTORY_SEPARATOR.'handlers.php');
     }
 
     /*
@@ -272,9 +317,9 @@ class SiteHelper
             "«"=>"","»"=>""," "=>"-",
 
             "\""=>"", "\."=>"", "–"=>"-", "\,"=>"", "\("=>"", "\)"=>"",
-            "\?"=>"", "\!"=>"", "\:"=>"", "\+"=>"",
+            "\?"=>"", "\!"=>"", "\:"=>"", "\+"=>"", "\$"=>"", '&039;'=>"", "&"=>"", "%"=>"",
 
-            '#' => '', '№' => '',' - '=>'-', '/'=>'-', '  '=>'-',
+            '#' => '', '№' => '',' - '=>'-', '/'=>'-', '  '=>'-', '\*'=>'', '“'=>"",
         );
 
         // Enforce the maximum component length

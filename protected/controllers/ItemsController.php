@@ -26,6 +26,12 @@ class ItemsController extends InfoController
             }
         }
 
+        if( empty( $id ) && !empty( $_GET[ "slug" ] ) )
+        {
+            $ar = explode("-", $_GET[ "slug" ] );
+            $id = $ar[0];
+        }
+
         $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адреса страницы");
         if( $id > 0 )
         {

@@ -13,7 +13,7 @@ $listImages = ImageHelper::getImages( $tour, 1 );
     <div class="IBIImage">
         <?php if( $tour->image ) : ?>
             <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $tour->name.",".$tour->category_id->name ) ?>"><img src="<?= ImageHelper::getImage($tour->image, 2) ?>" alt="<?= SiteHelper::getStringForTitle( $tour->name.",".$tour->category_id->name ) ?>" /></a>
-        <?php else : ?>
+        <?php elseif( sizeof($listImages)>0 ) : ?>
             <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $tour->name.",".$tour->category_id->name ) ?>"><img src="<?= ImageHelper::getImage($listImages[0]->image, 2) ?>" alt="<?= SiteHelper::getStringForTitle( $tour->name.",".$tour->category_id->name ) ?>" /></a>
         <?php endif; ?>
     </div>

@@ -36,12 +36,15 @@ class InfoController extends Controller
         if( !empty( $_GET["slug"] ) )
         {
             $class = $this->classCategory;
-            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
-
-            if( $model->id >0 )
+            if( !empty( $class ) )
             {
-                unset( $_GET["slug"] );
-                $_GET["category_id"] = $model->id;
+                $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
+
+                if( $model->id >0 )
+                {
+                    unset( $_GET["slug"] );
+                    $_GET["category_id"] = $model->id;
+                }
             }
         }
         $this->actionIndex();
@@ -52,9 +55,10 @@ class InfoController extends Controller
         Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );
         $id =0;
         $class = $this->classModel;
+        $slug = !empty( $_GET[ "slug" ] ) ? $_GET[ "slug" ] : "";
         if( !empty( $_GET[ "slug" ] ) )
         {
-            $model = $class::fetchBySlug( trim( $_GET[ "slug" ] ) );
+            $model = $class::fetchBySlug( trim( $slug ) );
             if( $model->id >0 )
             {
                 $_GET["id"]=$model->id;
@@ -65,7 +69,7 @@ class InfoController extends Controller
         // Проверяем по ID
         if( $id == 0 )
         {
-            $ar = explode( "-", $_GET[ "slug" ] );
+            $ar = explode( "-", $slug );
             if( (int)$ar[0] > 0 )
             {
                 $model = $class::fetch( (int)$ar[0] );
@@ -85,7 +89,7 @@ class InfoController extends Controller
 
                 $tourCategory = $item->tour_category;
 
-                if( sizeof( $tourCategory ) >0 )
+                if( !empty($tourCategory) && sizeof( $tourCategory ) >0 )
                 {
                     $dopSQL = " AND ( ";
                     $m=0;

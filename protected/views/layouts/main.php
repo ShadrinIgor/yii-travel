@@ -33,14 +33,17 @@
         </div>
     <Div id="BRight">
         <div id="HLangs">
+            &nbsp;
+            <!--
             <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>" title="Русская версия"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_ru.png" alt="Русская версия" /></a>
             <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>en/" title="English version"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_en.png" alt="English version" /></a>
             <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>ja/" title="サイトの日本語版"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_ja.png" alt="サイトの日本語版" /></a>
             <a href="<?= SiteHelper::createUrl("/", array(), "&", true) ?>zh/" title="中國version"><img src="<?= $Theme->getBaseUrl() ?>/images/flag_zh.png" alt="中國version" /></a>
+            -->
         </div>
         <?php if( Yii::app()->controller->getId() == "site" ) : ?><div id="BRHref"><a href=""><b>W</b>orld-<b>T</b>ravel.<font>uz</font></a></div><?php endif; ?>
         <?php if( Yii::app()->controller->getId() != "site" ) : ?><div id="BMedal"><div id="TMedal"></div><div id="TrioMedal"></div></div><?php endif; ?>
-        <div id="BRTitle"><a href=""><img src="<?= $Theme->getBaseUrl() ?>/images/logo_title_<?= Yii::app()->getLanguage() ?>.png" /></a></div>
+        <div id="BRTitle"><a href=""><img alt="Туристический портал Узбекистана, туры в узбекистан, " src="<?= $Theme->getBaseUrl() ?>/images/logo_title_<?= Yii::app()->getLanguage() ?>.png" /></a></div>
         <div id="BH1">
             <h1><?= Yii::t( "page", "Туристический портал, отдых, туры,  туроператоры, путешествия, турция, анталия, Узбекистан") ?></h1>
         </div>
@@ -105,7 +108,8 @@
 
 <div id="about_link">
     <div id="ALLinks">
-        <a href="<?= SiteHelper::createUrl("/weather") ?>" title="Погода в Узбекистане">Погода в Узбекистане</a> |
+        <a href="<?= SiteHelper::createUrl("/uzbekistanMaps") ?>" title="Картк Узбекистана, карта Ташкента, карта Самарканда">Карта Узбекистана</a> |
+        <a href="<?= SiteHelper::createUrl("/weatherUzbekistan") ?>" title="Погода в Узбекистане, погода в Ташкенте, погода в Самарканде">Погода в Узбекистане</a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="<?= Yii::t( "page", "О проекте") ?>"><?= Yii::t( "page", "О проекте") ?></a> |
         <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="<?= Yii::t( "page", "Правила") ?>"><?= Yii::t( "page", "Правила") ?></a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="<?= Yii::t( "page", "Контакты") ?>"><?= Yii::t( "page", "Контакты") ?></a><br/>

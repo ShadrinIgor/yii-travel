@@ -10,6 +10,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" />
 
 <base href="<?= SiteHelper::createUrl("/", "", "&", true ) ?>" />
+<link rel="canonical" href="http://www.examplesite.ru/blog"/>
 
 <?php
 

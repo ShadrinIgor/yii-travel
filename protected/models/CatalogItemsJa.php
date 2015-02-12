@@ -68,12 +68,12 @@ class CatalogItemsJa extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically gJaerated below.
 		return array(
-			'category' => array(self::BELONGS_TO, 'CatalogItemsJaCategory', 'category_id'),
-			'status' => array(self::BELONGS_TO, 'CatalogItemsJaStatus', 'status_id'),
-			'type' => array(self::BELONGS_TO, 'CatalogItemsJaType', 'type_id'),
+			'category' => array(self::BELONGS_TO, 'CatalogItemsCategoryJa', 'category_id'),
+			'status' => array(self::BELONGS_TO, 'CatalogItemsStatusJa', 'status_id'),
+			'type' => array(self::BELONGS_TO, 'CatalogItemsTypeJa', 'type_id'),
 			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
-			'time' => array(self::BELONGS_TO, 'CatalogItemsJaTime', 'time_id'),
+			'time' => array(self::BELONGS_TO, 'CatalogItemsTimeJa', 'time_id'),
 		);
 	}
 

@@ -1,5 +1,20 @@
 <?php
 
+if( !empty( $_GET["ip"] ) )
+{
+    if( strpos( $_GET["ip"], ":" ) !== false )$_GET["ip"] = substr( $_GET["ip"], 0, strpos( $_GET["ip"], ":" ) );
+    $_SERVER["REMOTE_ADDR"] = $_GET["ip"] ;
+    $_SERVER["HTTP_USER_AGENT"] = $_GET["agent"];
+    $_SERVER["QUERY_STRING"] = "";
+    $_SERVER["REQUEST_URI"] = substr( $_SERVER["REQUEST_URI"], 0, strpos( $_SERVER["REQUEST_URI"], "?" ) );
+
+    unset( $_SERVER["REDIRECT_QUERY_STRING"] );
+    unset( $_SERVER["HTTP_X_REAL_IP"] );
+    unset( $_SERVER["HTTP_X_FORWARDED_FOR"] );
+    unset( $_SERVER["HTTP_X_PROXY_ID"] );
+    unset( $_SERVER["HTTP_VIA"] );
+}
+
 if( checkMobile() == true )
 {
    if( $_SERVER["HTTP_HOST"] != "wap.world-travel.uz" )Header("Location: http://wap.world-travel.uz".$_SERVER["REQUEST_URI"]);
@@ -7,7 +22,7 @@ if( checkMobile() == true )
 
 header("cache-control: private, max-age = 86400");
 
-error_reporting(E_ALL);
+error_reporting(0);
 ini_set('display_errors', 0);
 
 // change the following paths if necessary
@@ -17,7 +32,7 @@ $yii=dirname(__FILE__).'/../framework/yii.php';
 $config=dirname(__FILE__).'/../protected/config/main.php';
 
 // remove the following lines when in production mode
-defined('YII_DEBUG') or define('YII_DEBUG',true);
+defined('YII_DEBUG') or define('YII_DEBUG',false);
 // specify how many levels of call stack should be shown in each log message
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',0);
 date_default_timezone_set('Europe/Moscow');
