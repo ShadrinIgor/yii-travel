@@ -3,7 +3,7 @@
 /**
  * This is the model class for table "catalog_attractions".
    */
-class CatalogAttractions extends CActiveRecord
+class CatalogAttractions extends CCModel
 {
     protected $id; // integer 
     protected $name; // string 
@@ -42,12 +42,11 @@ class CatalogAttractions extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, city_id, image, country_id', 'required'),
+			array('name, city_id, country_id', 'required'),
 			array('city_id, country_id, del, pos', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>15),
 			array('image', 'length', 'max'=>150),
 			array('slug', 'length', 'max'=>255),
-			array('description, tags', 'safe'),
+            array('id, name, description, tags, city_id, image, country_id, slug, del, pos', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, tags, city_id, image, country_id, slug, del, pos', 'safe', 'on'=>'search'),
@@ -62,6 +61,8 @@ class CatalogAttractions extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
+            'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 		);
 	}
 

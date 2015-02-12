@@ -86,6 +86,8 @@ return array(
             'rules'=>array(
                 ''=>'site/index',
                 '<language:(en|ja|zh)>'=>'site/index',
+                '<controller:(attractions)>/<slug:[\w-]+>.html'=> 'attractions/description',
+                'attractions-<slug:[\w-]+>.html'=> 'attractions/city',
 
                 '<language:(en|ja|zh)>/<controller:\w+>'=>'<controller>',
                 '<language:(en|ja|zh)>/<controller:\w+>/sort/<sort:\w+>/by/<by:\w+>'=>'<controller>',
@@ -97,30 +99,15 @@ return array(
                 '<language:(en|ja|zh)>/<module:\w+>/<controller:\w+>/<action:[\w-]+>/'=>'<controller>/<action>',
                 '<language:(en|ja|zh)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
 
+
                 '<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',
 //                '<controller:(tag)>/<action:(list)>.html'=> '<controller><action>', // /<action:(Tags)>
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-
-/*                '<slug:\w+>-<country:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
-                '<slug:\w+>-<country:\w+>_<controller:(category)>.html'=> '<controller>',
-                '<slug:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
-                '<slug:\w+>_<controller:(category)>.html'=> '<controller>',
-
-                '<slug:\w+>_<id:\d+><controller:(tag)>_<page:\d+>.html'=>'<controller>',
-                '<slug:\w+>_<id:\d+><controller:(tag)>.html'=> '<controller>',
-
-                '<country:\w+>-<controller:(people)>-<category:\w+>.html'=> '<controller>',
-
-                '<country:\w+>-<controller:(people)>_<page:\d+>.html'=> '<controller>',
-                '<country:\w+>-<controller:(people)>.html'=> '<controller>',
-
-                '<controller:(people)>-<category:\w+>_<page:\d+>.html'=> '<controller>',
-                '<controller:(people)>-<category:\w+>.html'=> '<controller>',
-                '<slug:\w+>_<controller:(people)>_<action:(desc)>.html'=> '<controller>/desc',*/
 
                 '<language:(en|ja|zh)>/registration.html'=> 'user/default/Registration',
                 'registration.html'=> 'user/default/Registration',
@@ -325,6 +312,7 @@ return array(
                     array( "title"=>"Работа", "controller"=>"catalog", "params"=>"catalog=CatalogWork" ),
                     array( "title"=>"ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
                     array( "title"=>"Информация", "controller"=>"catalog", "params"=>"catalog=CatalogInfo" ),
+                    array( "title"=>"Достопримечатель.", "controller"=>"catalog", "params"=>"catalog=CatalogAttractions" ),
                     array( "title"=>"Курорты", "controller"=>"catalog", "params"=>"catalog=CatalogKurorts" ),
                     array( "title"=>"Туры", "controller"=>"catalog", "params"=>"catalog=CatalogTours" ),
                     array( "title"=>"Группы", "controller"=>"catalog", "params"=>"catalog=CatalogSections" ),

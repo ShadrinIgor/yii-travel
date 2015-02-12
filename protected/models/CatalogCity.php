@@ -6,7 +6,8 @@
 class CatalogCity extends CCModel
 {
     protected $id; // integer 
-    protected $name; // string 
+    protected $name; // string
+    protected $name2; // string
     protected $pos; // integer 
     protected $country_id; // integer 
     protected $del; // integer 

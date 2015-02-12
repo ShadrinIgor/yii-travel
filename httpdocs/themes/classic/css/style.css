@@ -1675,7 +1675,7 @@ width:100%;
 }
 #FCCentr h1 font{font-size: 14px;color: rgba(220, 88, 0, 0.67);}
 
-#FCCentr h2{margin-top: 0px;text-align: center;font-size: 18px;color:#DC5800;border-bottom: 1px solid #ff9249; }
+#FCCentr h2{margin-top: 0px;text-align: center;font-size: 16px;color:#DC5800;border-bottom: 1px solid #ff9249; }
 #FCCentr h2 font{font-size: 11px;color: rgba(220, 88, 0, 0.67);}
 
 #counters
@@ -2928,3 +2928,81 @@ tr.isHot
 }
 
 .IBTours .rightInfo {padding: 3px 5px;}
+
+.WItems
+{
+	display: inline-block;
+	width: 200px;
+	margin: 10px;
+	height:142px;
+	box-shadow:0px 0px 3px rgba(100,100,100, 0.6);
+	padding:5px;
+	text-align:center;
+	vertical-align: top;
+	
+	-moz-transition: all 0.6s 0.1s ease;
+    -o-transition: all 0.6s 0.1s ease;
+    -webkit-transition: all 0.6s 0.1s ease;
+}
+
+.WItems.MIMaps
+{
+	height: 195px;
+}
+
+.MIMaps .WIImage{height: 156px;
+overflow: hidden;}
+
+.WItems:hover
+{
+	box-shadow:0px 0px 10px rgba(50,50,50, 0.9);
+	background: #D6D7EA;
+	
+	-moz-transition: all 0.6s 0.1s ease;
+    -o-transition: all 0.6s 0.1s ease;
+    -webkit-transition: all 0.6s 0.1s ease;
+}
+
+.WItems h2{margin-bottom: 5px;}
+.WIValue
+{
+background: #C7D4F5;
+padding: 2px 0px;
+margin: 0px 20px;
+}
+
+.WIValue2{background: #96AADF;}
+.WIImage{height:52px;}
+.WIT2 .WIImage{height:73px;}
+
+.WItems.WIT2
+{
+	margin: 10px 2px;
+	width: 105px;
+}
+
+.WItems.WIT2 span
+{
+	margin-bottom: 10px;
+	display: inline-block;
+	font-size: 14px;
+	background: #FDDF45;
+	width: 100%;
+	padding: 2px 0px;
+}
+
+.ATTtems{float:left;overflow: hidden;width: 447px;margin:0px 15px;}
+
+.WIImage{float: left;
+    margin: 0px 10px 10px 0px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 200px;}
+
+.WIImage img{max-width: 150px;}
+#Cleft.CLeft2{width: 100px;}
+.ATTtems .overflowHidden{text-align: justify;}
+.ATTRBlock .WIImage{margin: 10px auto;float: none;}
+.ATTRBlock a{line-height: 11px;}
+.ATTRBlock .WItems.MIMaps{height: 210px;}
