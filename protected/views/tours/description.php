@@ -23,13 +23,13 @@ $this->widget('addressLineWidget', array(
             <?= Yii::t("page", "категория"); ?>:<a href="<?= SiteHelper::createUrl("/tours")."/".$item->category_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->category_id->name ) ?>"><?= $item->category_id->name ?></a><br/>
             <?= Yii::t("page", "фирма"); ?>а: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
             <br/>
-            <a class="OrderRequest LPLink" href="#" title="<?= Yii::t("page", "Забронировать тур"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
+            <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'tours',<?= $item->id ?>, 'contact');yaCounter6154003.reachGoal('tour_show_contact');return true;" title="<?= Yii::t("page", "Забронировать тур"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
         </div>
         <?php if( sizeof($images) >0 || $item->image ) : ?>
             <div class="floatLeft leftImages">
-                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" rel="lightbox[roadtrip]" title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
+                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" onclick="ajaxLogTour( 'tours',<?= $item->id ?>, 'showimage');" rel="lightbox[roadtrip]" title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
                 <?php foreach( $images as $image ) : ?>
-                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
+                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" onclick="ajaxLogTour( 'tours',<?= $item->id ?>, 'showimage');" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
@@ -49,7 +49,7 @@ $this->widget('addressLineWidget', array(
         </div>
         <div class="LParams">
             <br/>
-            <a class="OrderRequest LPLink" href="#" title="<?= Yii::t("page", "Забронировать тур"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
+            <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'tours' ,<?= $item->id ?>, 'contact');yaCounter6154003.reachGoal('tour_show_contact');return true;" title="<?= Yii::t("page", "Забронировать тур"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
         </div>
     </div>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>

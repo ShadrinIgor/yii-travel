@@ -13,7 +13,9 @@ class CatalogMonuments extends CCModel
     protected $country_id; // integer 
     protected $city_id; // integer 
     protected $ltext; // string 
-    protected $image; // string 
+    protected $image; // string
+    protected $del; // string
+    protected $title; // string
 
 /*
 * Поля - связи
@@ -41,13 +43,14 @@ class CatalogMonuments extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, ltext, image', 'required'),
+			array('name, title, description', 'required'),
 			array('active, pos', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('image', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, description, active, pos, country_id, city_id, ltext, image', 'safe', 'on'=>'search'),
+			array('title, del, name, description, active, pos, country_id, city_id, ltext, image', 'safe'),
+            array('title, del, id, name, description, active, pos, country_id, city_id, ltext, image', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,13 +75,13 @@ class CatalogMonuments extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+            'title' => 'Title',
+            'image' => 'Image',
+            'country_id' => 'Country',
+            'city_id' => 'City',
 			'description' => 'Description',
 			'active' => 'Active',
 			'pos' => 'Pos',
-			'country_id' => 'Country',
-			'city_id' => 'City',
-			'ltext' => 'Ltext',
-			'image' => 'Image',
 		);
 	}
 

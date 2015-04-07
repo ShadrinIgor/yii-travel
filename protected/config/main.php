@@ -21,7 +21,7 @@ return array(
     'import'=>array(
         'application.models.*',
         'application.components.*',
-        'modules.catalog.models.*',
+//        'modules.catalog.models.*',
         'modules.catalog.components.*',
         'application.components.ImageHandler.CImageHandler',
         'application.components.CCApplicationComponent',

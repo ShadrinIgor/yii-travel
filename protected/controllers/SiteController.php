@@ -3,6 +3,13 @@
 class SiteController extends Controller
 {
 
+    public function actionLog( )
+    {
+        $type = Yii::app()->request->getParam("type", 0);
+        $id = (int)Yii::app()->request->getParam("id", 0);
+        $action = Yii::app()->request->getParam("action", 0);
+        LogHelper::save( $type, $id, $action );
+    }
     /**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -22,6 +29,93 @@ class SiteController extends Controller
     public function actionUpdateProxi()
     {
         Yii::app()->winding->updateListProxi();
+    }
+
+    public function actionTest()
+    {
+        // Расчет ретинга фирмы
+        /*
+                * описание
+                    * Сайт, Контакты, Адрес, большой текст с описанем
+                    * если не описания то - бал
+                * галлерея
+                    * + бал за каждую картинку
+                    * - бал если нет не одной каринки
+                * туры
+                    * + бал за каждый тур ( если есть рейтинг тура то вмест бала сумируем его если нет то просто 10 )
+                    * если нет не одного тура то выставляет бал 0
+                * акции
+                    * + бал за каждую акцию
+                * Коментарии и отзывы
+                    * + бал за каждый комментарий
+         */
+        $id = (int)Yii::app()->request->getParam("id", 0);
+
+        if( $id >0 )
+        {
+            $rating = 0;
+            $firmModel = CatalogFirms::fetch( $id );
+
+            // Проверяем описание
+            if( $firmModel->www )$rating += 10;
+            if( $firmModel->tel && $firmModel->email )$rating += 10;
+            if( $firmModel->description )
+            {
+                $rating += 10;
+                if( strlen( $firmModel->description ) > 500 )$rating += 20;
+            }
+                else $rating -= 10;
+
+            if( $firmModel->image )$rating += 10;
+                              else $rating -= 10;
+
+            // end ( Проверяем описание )
+
+            // Галлрея
+            $images = CatGallery::count( DBQueryParamsClass::CreateParams()->setConditions("catalog='catalog_firms' AND item_id=:id")->setParams( array( ":id"=>$id ) ) );
+            if( $images > 0 )
+            {
+                $rating += ( $images*5 );
+            }
+                else $rating -= 10;
+
+            // Туры
+            $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:id" )->setParams( array( ":id"=>$id ) )->setLimit(-1) );
+            foreach( $tours as $tour )
+            {
+                if( $tour->rating >0 )$rating += $tour->rating;
+                                 else $rating += 10;
+            }
+
+            if( sizeof( $tours ) == 0 )$rating = 0;
+
+
+            // Туры
+            $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:id" )->setParams( array( ":id"=>$id ) )->setLimit(-1) );
+            foreach( $tours as $tour )
+            {
+                if( $tour->rating >0 )$rating += $tour->rating;
+                                 else $rating += 10;
+            }
+
+            if( sizeof( $tours ) == 0 )$rating = 0;
+
+            // Акции
+            $sales = CatalogFirmsItems::count( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:id")->setParams( array( ":id"=>$id ) ) );
+            if( $sales > 0 )
+            {
+                $rating += ( $sales*5 );
+            }
+
+            // Коментарии
+            $comments = CatalogFirmsComments::count( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:id")->setParams( array( ":id"=>$id ) ) );
+            if( $comments > 0 )
+            {
+                $rating += ( $comments*5 );
+            }
+
+            echo $rating;
+        }
     }
 
     public function actionIndex()

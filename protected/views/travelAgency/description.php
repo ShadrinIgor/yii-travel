@@ -77,7 +77,7 @@ $listItems = CatalogFirmsItems::fetchAll( DBQueryParamsClass::CreateParams()->se
                 <?= Yii::t("page", "страна"); ?>: <a href="<?= SiteHelper::createUrl("country/", array("id"=>$item->country_id->id)) ?>" title="<?= Yii::t("page", "туристическая страна"); ?> <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
                 <?= Yii::t("page", "туров"); ?>: <b><?= sizeof( $listTours ) ?></b>
                 <br/><br/>
-                <a class="OrderRequest LPLink" href="#" title="<?= Yii::t("page", "связаться"); ?>"><?= Yii::t("page", "связаться забронировать"); ?></a><br/>
+                    <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'firms' ,<?= $item->id ?>, 'contact');" title="<?= Yii::t("page", "связаться"); ?>"><?= Yii::t("page", "связаться забронировать"); ?></a><br/>
             </div>
             <table class="tableForm">
                 <?=

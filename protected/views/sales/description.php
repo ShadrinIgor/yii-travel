@@ -19,7 +19,7 @@ $this->widget('addressLineWidget', array(
             <br/>
             <?= Yii::t("page", "фирма"); ?>: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
             <br/>
-            <a class="OrderRequest LPLink" href="#" title="<?= Yii::t("page", "Забронировать акцию"); ?> <?= SiteHelper::getStringForTitle( $item->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
+            <a class="OrderRequest LPLink" href="#" onclick="yaCounter6154003.reachGoal('sales_show_contact');return true;" title="<?= Yii::t("page", "Забронировать акцию"); ?> <?= SiteHelper::getStringForTitle( $item->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
         </div>
         <?php if( sizeof($images) >0 || $item->image ) : ?>
             <div class="floatLeft leftImages">

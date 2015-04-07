@@ -47,6 +47,7 @@ class HotelsController extends InfoController
             $item = CatalogHotels::fetch( $id );
             if( $item->id >0 )
             {
+                LogHelper::save("hotels", $item->id, "show");
                 Yii::app()->page->title = $item->name;
                 $this->render('description',
                     array(

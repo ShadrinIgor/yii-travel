@@ -1,26 +1,47 @@
-<!-- Yandex.Metrika informer -->
-<a href="http://metrika.yandex.ru/stat/?id=6154003&from=informer"
-   target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/6154003/3_0_FFE450FF_F4C430FF_0_pageviews"
-                                       style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a>
+<!-- Yandex.Metrika informer
+<a href="https://metrika.yandex.ru/stat/?id=6154003&amp;from=informer"
+   target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/6154003/3_0_F8C923FF_D8A903FF_0_pageviews"
+                                       style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:6154003,lang:'ru'});return false}catch(e){}"/></a>
 <!-- /Yandex.Metrika informer -->
 
 <!-- Yandex.Metrika counter -->
-<div style="display:none;"><script type="text/javascript">
-        (function(w, c) {
-            (w[c] = w[c] || []).push(function() {
-                try {
-                    w.yaCounter6154003 = new Ya.Metrika(6154003);
-                    yaCounter6154003.clickmap(true);
-                    yaCounter6154003.trackLinks(true);
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter6154003 = new Ya.Metrika({id:6154003,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true});
+            } catch(e) { }
+        });
 
-                } catch(e) { }
-            });
-        })(window, 'yandex_metrika_callbacks');
-    </script></div>
-<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
 <noscript><div><img src="//mc.yandex.ru/watch/6154003" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+    ga('create', 'UA-22357621-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<Div style="width: 0px;height: 0px;overflow: hidden;">
 <!-- START WWW.UZ TOP-RATING --><SCRIPT language="javascript" type="text/javascript">
     <!--
     top_js="1.0";top_r="id=24367&r="+escape(document.referrer)+"&pg="+escape(window.location.href);document.cookie="smart_top=1; path=/"; top_r+="&c="+(document.cookie?"Y":"N")
@@ -98,3 +119,4 @@ netlog_js="1.1";netlog_r+="&j="+(navigator.javaEnabled()?"Y":"N")</script>
         " посетителей за 24 часа' "+
         "border='0' width='88' height='31'><\/a>")
     //--></script><!--/LiveInternet--><!--/www.liveinternet.ru-->
+</Div>

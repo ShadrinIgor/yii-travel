@@ -108,8 +108,9 @@
 
 <div id="about_link">
     <div id="ALLinks">
+        <a href="<?= SiteHelper::createUrl("/monuments") ?>" title="Исорические достопримечательности Узбекистана">Достопримечательности</a> |
         <a href="<?= SiteHelper::createUrl("/uzbekistanMaps") ?>" title="Картк Узбекистана, карта Ташкента, карта Самарканда">Карта Узбекистана</a> |
-        <a href="<?= SiteHelper::createUrl("/weatherUzbekistan") ?>" title="Погода в Узбекистане, погода в Ташкенте, погода в Самарканде">Погода в Узбекистане</a> |
+        <a href="<?= SiteHelper::createUrl("/weatherUzbekistan") ?>" title="Погода в Узбекистане, погода в Ташкенте, погода в Самарканде">Погода в Узбекистане</a><br/>
         <a href="<?= SiteHelper::createUrl("/site/page")."/about" ?>" title="<?= Yii::t( "page", "О проекте") ?>"><?= Yii::t( "page", "О проекте") ?></a> |
         <a href="<?= SiteHelper::createUrl("/user/default/term")."/contact" ?>" title="<?= Yii::t( "page", "Правила") ?>"><?= Yii::t( "page", "Правила") ?></a> |
         <a href="<?= SiteHelper::createUrl("/site/page")."/contact" ?>" title="<?= Yii::t( "page", "Контакты") ?>"><?= Yii::t( "page", "Контакты") ?></a><br/>

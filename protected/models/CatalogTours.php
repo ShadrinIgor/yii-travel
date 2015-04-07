@@ -32,6 +32,7 @@ class CatalogTours extends CCModel
     protected $slug; // string 
     protected $user_id; // integer
     protected $translate; // integer
+    protected $rating; // integer
 
 /*
 * Поля - связи
@@ -71,7 +72,7 @@ class CatalogTours extends CCModel
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
 
-            array('translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+            array('rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
             array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
         );
     }

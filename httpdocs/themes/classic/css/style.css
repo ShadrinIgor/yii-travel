@@ -375,7 +375,7 @@ img
 {
     margin: 20px;
     font-weight: normal;
-    margin: 20px 0px 20px 10px;
+    margin: 38px 0px 20px 10px;
 }
 
 #findTour .FTBottom input[type=submit]
@@ -3006,3 +3006,4 @@ margin: 0px 20px;
 .ATTRBlock .WIImage{margin: 10px auto;float: none;}
 .ATTRBlock a{line-height: 11px;}
 .ATTRBlock .WItems.MIMaps{height: 210px;}
+#authForm{width: 250px;margin-top: 10px;}

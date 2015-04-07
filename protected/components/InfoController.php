@@ -42,6 +42,7 @@ class InfoController extends Controller
 
                 if( $model->id >0 )
                 {
+                    LogHelper::save( "tours_category", $model->id, "action_cid_show");
                     unset( $_GET["slug"] );
                     $_GET["category_id"] = $model->id;
                 }
@@ -84,6 +85,8 @@ class InfoController extends Controller
 
             if( $item->id >0 )
             {
+
+
                 $images = ImageHelper::getImages( $item );
                 $other = $class::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("category_id=:category_id AND id!=:id")->setParams(array(":category_id"=>$item->category_id->id, ":id"=>$item->id))->setOrderBy("id DESC")->setLimit(12) );
 

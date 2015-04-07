@@ -6,7 +6,7 @@ $this->widget('addressLineWidget', array(
 ));
 ?>
 <h1>Погода в Узбекистане</h1>
-<div class="textAlignCenter">
+<div class="textAlignCenter WeatherBlock">
 <?php foreach( $list as $item ) :
     $info = CatalogWheters::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "city_id=:id" )->setParams(array(":id"=>$item->city_id->id))->setLimit(1)->setOrderBy("id") );
 ?>

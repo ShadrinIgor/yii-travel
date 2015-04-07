@@ -49,6 +49,7 @@ class TravelAgencyController extends InfoController
 
             if( $item->id >0 )
             {
+                LogHelper::save("firms", $item->id, "show");
                 CCModelHelper::colCounter( $item );
                 $commentModel = new CatalogFirmsCommentsAdd();
                 if( !empty( $_POST["send_comment"] ) )

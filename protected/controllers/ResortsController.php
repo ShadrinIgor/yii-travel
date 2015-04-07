@@ -28,6 +28,7 @@ class ResortsController extends InfoController
 
         if( $id > 0 )
         {
+            LogHelper::save("resorts", $id, "show");
             $item = CatalogKurorts::fetch( $id );
             if( $item->id >0 )
             {

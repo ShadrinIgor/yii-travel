@@ -29,6 +29,7 @@ class CatalogFirms extends CCModel
     protected $active;
     protected $edit_date;
     protected $translate;
+    protected $rating; // integer
 
 /*
 * Поля - связи
@@ -67,7 +68,7 @@ class CatalogFirms extends CCModel
             array('name, country_id, price', 'search'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('translate, edit_date, active, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe'),
+            array('rating, translate, edit_date, active, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe'),
 			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug, user_id', 'safe', 'on'=>'search'),
 		);
 	}

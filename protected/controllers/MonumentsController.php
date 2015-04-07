@@ -1,14 +1,14 @@
 <?php
 
-class ToursController extends InfoController
+class MonumentsController extends InfoController
 {
     public function init()
     {
         parent::init();
-        $this->classModel = "CatalogTours";
-        $this->classCategory = "CatalogToursCategory";
-        $this->description = Yii::t("tours", "Список самых популярных туристических предложений, туров.");
-        $this->keyWord = Yii::t("tours", "бизнес туры, деловой туризм, исследовательские, лечебные туры, развлекательные, vip отдых, детские лагеря, загородный отдых, конный тур, морские и речные круизы, рафтинг+экскурсии, сафари на верблюдах");
+        $this->classModel = "CatalogMonuments";
+        $this->classCategory = "";
+        $this->description = "Исторические достопримечательности Узбекистана";
+        $this->keyWord = "";
     }
 
     public function actionDescription()
@@ -32,7 +32,6 @@ class ToursController extends InfoController
             $item = CatalogTours::fetch( $id );
             if( $item->id >0 )
             {
-                LogHelper::save( "tours", $item->id, "show");
                 CCModelHelper::colCounter( $item );
                 // Картинки тура
                 $images = ImageHelper::getImages( $item );
@@ -41,8 +40,8 @@ class ToursController extends InfoController
                     array(
                         "item" => $item,
                         "images" => $images,
-                        "otherTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:country_id AND id!=:id AND firm_id!=:firm_id")->setParams(array(":country_id"=>$item->country_id->id, ":id"=>$item->id, ":firm_id"=>$item->firm_id->id))->setOrderBy("col DESC")->setLimit(6) ),
-                        "firmsTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND firm_id=:firm_id AND id!=:id")->setParams(array(":firm_id"=>$item->firm_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(6) ),
+                        "otherTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:country_id AND id!=:id AND firm_id!=:firm_id")->setParams(array(":country_id"=>$item->country_id->id, ":id"=>$item->id, ":firm_id"=>$item->firm_id->id))->setOrderBy("col DESC")->setLimit(8) ),
+                        "firmsTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND firm_id=:firm_id AND id!=:id")->setParams(array(":firm_id"=>$item->firm_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(8) ),
                         "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->country_id->id ) ) ),
                         "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->country_id->id ) ) ),
                     ));

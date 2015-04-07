@@ -22,13 +22,13 @@ $images = ImageHelper::getImages( $item );
             <?= Yii::t("page", "страна"); ?>: <?= $item->country_id->name ?><br/>
             <?php if( $item->city_id->id >0 ) : ?>город:<?= $item->city_id->name ?><br/><?php endif; ?>
             <br/>
-            <a class="OrderRequest LPLink" href="#" title="<?= Yii::t("page", "Забронировать зону отдыха"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
+            <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'resorts', <?= $item->id ?>, 'contact');yaCounter6154003.reachGoal('resort_show_contact');return true;" title="<?= Yii::t("page", "Забронировать зону отдыха"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
         </div>
         <?php if( sizeof($images) >0 || $item->image ) : ?>
             <div class="floatLeft leftImages">
-                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" rel="lightbox[roadtrip]" title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
+                <?php if( $item->image ) : ?><a href="<?= $item->image ?>" onclick="ajaxLogTour( 'resorts', <?= $item->id ?>, 'showimage');" rel="lightbox[roadtrip]" ajaxLogTour( 'resorts', <?= $item->id ?>, 'showimage'); title="<?= $item->name ?>"><img src="<?= ImageHelper::getImage( $item->image, 2 ) ?>" alt="<?= $item->name ?>" /></a><?php endif; ?>
                 <?php foreach( $images as $image ) : ?>
-                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
+                    <a href="<?= $image->image ?>" title="<?= $item->name." ".$image->name ?>" onclick="ajaxLogTour( 'resorts', <?= $item->id ?>, 'showimage');" rel="lightbox[roadtrip]"><img src="<?= ImageHelper::getImage( $image->image, 2 ) ?>" title="<?= $item->name." ".$image->name ?>" alt="<?= $item->name." ".$image->name ?>" /></a>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
@@ -40,7 +40,7 @@ $images = ImageHelper::getImages( $item );
                 <?php if( $item->www ) : ?><?= Yii::t("page", "Сайт"); ?>: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
                 <br/><br/>
             </p>
-            <a class="OrderRequest LPLink" href="#" title="<?= Yii::t("page", "Забронировать зону отдыха"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a>
+            <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'resorts', <?= $item->id ?>, 'contact');yaCounter6154003.reachGoal('resort_show_contact');return true;" title="<?= Yii::t("page", "Забронировать зону отдыха"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a>
         </div>
         <div id="orderInfo" class="displayNone">
             <b><?= Yii::t("page", "Курортная зона отдыха"); ?> - <?= $item->name ?></b><br/>
