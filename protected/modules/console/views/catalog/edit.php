@@ -61,6 +61,7 @@
                 <img src="../<?= ImageHelper::getImage( $image->image, 2, $image )  ?>" width="200" /><br/>
                 <input type="text" name="image[<?= $image->id ?>][name]" value="<?= $image->name ?>" style="width:125px" />
                 <input type="text" name="image[<?= $image->id ?>][pos]" value="<?= $image->pos ?>" style="width:20px" />
+                <input type="text" name="image[<?= $image->id ?>][type]" value="<?= $image->type ?>" style="width:125px" />
                 <input type="hidden" name="image[<?= $image->id ?>][id]" value="<?= $image->id ?>" />
                 <a href="<?= SiteHelper::createUrl("/console/catalog/edit", array( "id"=>$form->id, "action"=>"gal_del", "img_id"=>$image->id )).$controller->params ?>"><?= Yii::t("user", "Удалить") ?></a>
             </div>
@@ -81,8 +82,16 @@
                     <td><?= CHtml::activeTextField( $addGallery, "pos", array( "value"=>"0", "placeholder"=>"Позиция при отображении" ) ) ?></td>
                 </tr>
                 <tr>
+                    <th>Тип</th>
+                    <td><?= CHtml::activeTextField( $addGallery, "type", array( "value"=>"", "placeholder"=>"Тип картинки" ) ) ?></td>
+                </tr>
+                <tr>
                     <th>Файл</th>
                     <td><?= CHtml::activeFileField( $addGallery, "image" ) ?></td>
+                </tr>
+                <tr>
+                    <th>Оптимизировать</th>
+                    <td><?= CHtml::checkBox("optimzation", "checked" ) ?></td>
                 </tr>
                 <tr>
                     <th></th>

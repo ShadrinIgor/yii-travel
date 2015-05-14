@@ -80,7 +80,7 @@ class CCModelHelper
                                 $input = CHtml::passwordField( $classTable."[".$field."]", '', array( "placeholder"=>$fieldPlaceholder ) ); break;
                             case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
                             case "visual_textarea" :
-                                $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
+                                $input = $fieldPlaceholder.CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
                                 break;
                             case "textarea" :
                                 $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"mceNoEditor", "placeholder"=>$fieldPlaceholder ) );
@@ -226,6 +226,7 @@ class CCModelHelper
                     {
                         case "url"             : $input = '<a href="'.$form->$field.'" target="_blank">'.$form->$field.'</a>'; break;
                         case "email"           : $input = '<div><a href="#" onclick="$(this.parentNode).load(\''.SiteHelper::createUrl("site/getInfo", array("catalog"=>"CatalogFirms", "id"=>$form->id, "field"=>"email")).'\' ); return false;"> [ показать email ]</a></div>'; break;
+                        case "email_open"      : $input = $form->$field; break;
                         case "date"            : $input = date( "Y-m-d", $form->$field );break;
                         case "checkbox"        : $input = "+"; break;
                         case "visual_textarea" : $input = $form->$field; break;

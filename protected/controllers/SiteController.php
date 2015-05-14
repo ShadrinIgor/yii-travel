@@ -33,89 +33,112 @@ class SiteController extends Controller
 
     public function actionTest()
     {
+
         // Расчет ретинга фирмы
         /*
-                * описание
-                    * Сайт, Контакты, Адрес, большой текст с описанем
-                    * если не описания то - бал
-                * галлерея
-                    * + бал за каждую картинку
-                    * - бал если нет не одной каринки
-                * туры
-                    * + бал за каждый тур ( если есть рейтинг тура то вмест бала сумируем его если нет то просто 10 )
-                    * если нет не одного тура то выставляет бал 0
-                * акции
-                    * + бал за каждую акцию
-                * Коментарии и отзывы
-                    * + бал за каждый комментарий
+                + Рейтинг фирмы
+                    если рейтинг = 0 то - 100
+
+                + Заполленность описания 40
+                    если не заполнено - 30
+
+                + Заполленность ПРОГРАММЫ 40
+                    если не заполнено - 30
+
+                + Заполленность ЦЕНЫ 40
+                    если не заполнено - 30
+
+                + Заполенность ЦЕНЫ И ВАЛЮТЫ 100
+                    - если не заполнена цена - 100
+                    не учитывать если не заполнено валюта
+
+                + Заполенность ВКЛЮЧННО 40
+                    если не заполнено - 30
+
+                + Заполенность НЕ ВКЛЮЧННО 20
+                + Заполенность ВНИМАНИЕ 20
+                + Заполенность ДЛИТЕЛЬНОСТЬ 40
+                    если не заполнено - 30
+
+                + Галлерея + 10 за каждую, но учитывать только 5
+                    Если нет не одной то -50
+                    Если меньше 3 то -20
+
          */
-        $id = (int)Yii::app()->request->getParam("id", 0);
 
-        if( $id >0 )
+        /*        $count = 20;
+                $lastFirm = CatCache::fetchBySlug("index_last_tours");
+                $list = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("id>:id")->setParams( array( ":id"=>$lastFirm->value ) )->setLimit( $count ) );
+                foreach( $list as $item )
+                {
+                    $id = $item->id;
+            */
+        $id = (int)$_GET["id"];
+        $item = CatalogTours::fetch( $id );
+        $rating = 0;
+
+        // Рейтинг фирмы
+        if( $item->firm_id->rating > 0 )$rating += $item->firm_id->rating;
+        elseif( $item->firm_id->rating == 0 )$rating -= 100;
+
+        // Проверяем описание
+        if( (int)$item->price >0 )
         {
-            $rating = 0;
-            $firmModel = CatalogFirms::fetch( $id );
-
-            // Проверяем описание
-            if( $firmModel->www )$rating += 10;
-            if( $firmModel->tel && $firmModel->email )$rating += 10;
-            if( $firmModel->description )
+            if ($item->currency_id->id > 0)
             {
-                $rating += 10;
-                if( strlen( $firmModel->description ) > 500 )$rating += 20;
+                $rating += 100;
             }
-                else $rating -= 10;
-
-            if( $firmModel->image )$rating += 10;
-                              else $rating -= 10;
-
-            // end ( Проверяем описание )
-
-            // Галлрея
-            $images = CatGallery::count( DBQueryParamsClass::CreateParams()->setConditions("catalog='catalog_firms' AND item_id=:id")->setParams( array( ":id"=>$id ) ) );
-            if( $images > 0 )
-            {
-                $rating += ( $images*5 );
-            }
-                else $rating -= 10;
-
-            // Туры
-            $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:id" )->setParams( array( ":id"=>$id ) )->setLimit(-1) );
-            foreach( $tours as $tour )
-            {
-                if( $tour->rating >0 )$rating += $tour->rating;
-                                 else $rating += 10;
-            }
-
-            if( sizeof( $tours ) == 0 )$rating = 0;
-
-
-            // Туры
-            $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "firm_id=:id" )->setParams( array( ":id"=>$id ) )->setLimit(-1) );
-            foreach( $tours as $tour )
-            {
-                if( $tour->rating >0 )$rating += $tour->rating;
-                                 else $rating += 10;
-            }
-
-            if( sizeof( $tours ) == 0 )$rating = 0;
-
-            // Акции
-            $sales = CatalogFirmsItems::count( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:id")->setParams( array( ":id"=>$id ) ) );
-            if( $sales > 0 )
-            {
-                $rating += ( $sales*5 );
-            }
-
-            // Коментарии
-            $comments = CatalogFirmsComments::count( DBQueryParamsClass::CreateParams()->setConditions("firm_id=:id")->setParams( array( ":id"=>$id ) ) );
-            if( $comments > 0 )
-            {
-                $rating += ( $comments*5 );
-            }
-
-            echo $rating;
         }
+        else $rating -=100;
+
+        if( $item->description )
+        {
+            if( strlen( trim( strip_tags( $item->description ) ) ) >200 )
+                $rating += 40;
+        }
+        else $rating -= 30;
+
+        if( $item->program )
+        {
+            if( strlen( trim( strip_tags( $item->program ) ) ) >200 )
+                $rating += 40;
+        }
+        else $rating -= 30;
+
+        if( $item->prices )
+        {
+            if( strlen( trim( strip_tags( $item->prices ) ) ) >100 )
+                $rating += 40;
+        }
+        else $rating -= 30;
+
+        if( $item->included )
+        {
+            if( strlen( trim( strip_tags( $item->included ) ) ) >100 )
+                $rating += 40;
+        }
+        else $rating -= 30;
+
+        if( $item->duration )$rating += 40;
+        else $rating -= 30;
+
+        if( $item->not_included )$rating += 20;
+
+        if( $item->attention )$rating += 20;
+
+        // Галлерея
+        $images = CatGallery::count( DBQueryParamsClass::CreateParams()->setConditions("catalog='catalog_tours' AND item_id=:id")->setParams( array( ":id"=>$id ) ) );
+        if( $images > 0 )
+        {
+            $rating += ( $images*5 );
+        }
+        else $rating -= 10;
+
+        $item->rating =  $rating;
+        if( !$item->save() )print_r( $item->getErrors() );
+
+        echo $item->id."-".$rating."<br/>";
+
     }
 
     public function actionIndex()

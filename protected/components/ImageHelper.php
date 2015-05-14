@@ -214,82 +214,115 @@ class ImageHelper
         {
             $width=$typeData[$i]['width'];
             $height=$typeData[$i]['height'];
-            if($i==1)
+
+            if( $width>0 || $height>0 )
             {
-                $new_file_name = $dirPath . $fileName;
-                if(!$width&&!$height)list($width,$height)=getimagesize($dopUrl.$fileUrl);
-            }
-            else
-            {
-                $new_file_name = $dirPath.$i."_".$fileName;
 
-                if( $width0 == $height )
-                {
-                    if( !$width && $height )$width=$height;
-                    if( $width && !$height )$height=$width;
-                }
-            }
+                if ($i == 1) {
+                    $new_file_name = $dirPath . $fileName;
+                    if (!$width && !$height) list($width, $height) = getimagesize($dopUrl . $fileUrl);
+                } else {
+                    $new_file_name = $dirPath . $i . "_" . $fileName;
 
-            // Если указынны оба параметра то высоту обнуляем меньший из параметров
-            if( $width>0 && $height>0 )
-            {
-                if( $width>=$height )$height=0;
-                if( $width<$height )$width=0;
-            }
-
-            // Если не указан один из параметров, то недостоющий расщитываем
-            if( !$width && $height )$width= ceil( ($height*$hprocent)/100 );
-            if( $width && !$height )$height= ceil( ($width*$wprocent)/100 );
-
-            // Проверяем чтобы указынне параметры небыли больше чем заданы для данного типа картинки
-            if( $width > $width0 )$width = $width0;
-            if( $height > $height0 )$height = $height0;
-
-            if( $width&&$height )
-            {
-                switch( $upload_type )
-                {
-                    case "jpg" :$image_o=imagecreatefromjpeg($dopUrl.$fileUrl);break;
-                    case "image/jpg" :$image_o=imagecreatefromjpeg($dopUrl.$fileUrl);break;
-
-                    case "jpeg":$image_o=imagecreatefromjpeg($dopUrl.$fileUrl);break;
-                    case "image/jpeg":$image_o=imagecreatefromjpeg($dopUrl.$fileUrl);break;
-                    case "image/pjpeg":$image_o=imagecreatefromjpeg($dopUrl.$fileUrl);break;
-
-                    case "gif" :$image_o=imagecreatefromgif($dopUrl.$fileUrl);break;
-                    case "image/gif" :$image_o=imagecreatefromgif($dopUrl.$fileUrl);break;
-
-                    case "png" :$image_o=imagecreatefrompng($dopUrl.$fileUrl);break;
-                    case "image/png" :$image_o=imagecreatefrompng($dopUrl.$fileUrl);break;
-                }
-
-                list($width_o,$height_o)=getimagesize($dopUrl.$fileUrl);
-
-                $new_file=imagecreatetruecolor($width,$height);
-
-                $res=imagecopyresampled($new_file,$image_o,0,0,0,0,$width,$height,$width_o,$height_o);
-
-                if($res===True)
-                    switch( $upload_type )
-                    {
-                        case "jpeg":ImageJPEG($new_file,$new_file_name, Yii::app()->params["images_quality"]);break;
-                        case "image/jpeg":ImageJPEG($new_file,$new_file_name, Yii::app()->params["images_quality"]);break;
-                        case "image/pjpeg":ImageJPEG($new_file,$new_file_name, Yii::app()->params["images_quality"]);break;
-
-                        case "jpg":ImageJPEG($new_file,$new_file_name, Yii::app()->params["images_quality"]);break;
-                        case "image/jpg":ImageJPEG($new_file,$new_file_name, Yii::app()->params["images_quality"]);break;
-
-                        case "gif":ImageGIF($new_file,$new_file_name);break;
-                        case "image/gif":ImageGIF($new_file,$new_file_name);break;
-
-                        case "png":ImagePNG($new_file,$new_file_name);break;
-                        case "image/png":ImagePNG($new_file,$new_file_name);break;
+                    if ($width0 == $height) {
+                        if (!$width && $height) $width = $height;
+                        if ($width && !$height) $height = $width;
                     }
-                else
-                    $cout ="<p class=\"err\">Произошла ошибка обработки файла (".$new_file_name.")</p>";
+                }
 
-                #Наложение логотипа на картинки
-                if( SiteHelper::getConfig( "watermark" ) )$this->addLogoOnImage( $dopUrl.$fileUrl, $upload_type, $dopUrl.SiteHelper::getConfig( "watermark" ), $catalog );
+                // Если указынны оба параметра то высоту обнуляем меньший из параметров
+                if ($width > 0 && $height > 0) {
+                    if ($width >= $height) $height = 0;
+                    if ($width < $height) $width = 0;
+                }
+
+                // Если не указан один из параметров, то недостоющий расщитываем
+                if (!$width && $height) $width = ceil(($height * $hprocent) / 100);
+                if ($width && !$height) $height = ceil(($width * $wprocent) / 100);
+
+                // Проверяем чтобы указынне параметры небыли больше чем заданы для данного типа картинки
+                if ($width > $width0) $width = $width0;
+                if ($height > $height0) $height = $height0;
+
+                if ($width && $height) {
+                    switch ($upload_type) {
+                        case "jpg" :
+                            $image_o = imagecreatefromjpeg($dopUrl . $fileUrl);
+                            break;
+                        case "image/jpg" :
+                            $image_o = imagecreatefromjpeg($dopUrl . $fileUrl);
+                            break;
+
+                        case "jpeg":
+                            $image_o = imagecreatefromjpeg($dopUrl . $fileUrl);
+                            break;
+                        case "image/jpeg":
+                            $image_o = imagecreatefromjpeg($dopUrl . $fileUrl);
+                            break;
+                        case "image/pjpeg":
+                            $image_o = imagecreatefromjpeg($dopUrl . $fileUrl);
+                            break;
+
+                        case "gif" :
+                            $image_o = imagecreatefromgif($dopUrl . $fileUrl);
+                            break;
+                        case "image/gif" :
+                            $image_o = imagecreatefromgif($dopUrl . $fileUrl);
+                            break;
+
+                        case "png" :
+                            $image_o = imagecreatefrompng($dopUrl . $fileUrl);
+                            break;
+                        case "image/png" :
+                            $image_o = imagecreatefrompng($dopUrl . $fileUrl);
+                            break;
+                    }
+
+                    list($width_o, $height_o) = getimagesize($dopUrl . $fileUrl);
+
+                    $new_file = imagecreatetruecolor($width, $height);
+
+                    $res = imagecopyresampled($new_file, $image_o, 0, 0, 0, 0, $width, $height, $width_o, $height_o);
+
+                    if ($res === True)
+                        switch ($upload_type) {
+                            case "jpeg":
+                                ImageJPEG($new_file, $new_file_name, Yii::app()->params["images_quality"]);
+                                break;
+                            case "image/jpeg":
+                                ImageJPEG($new_file, $new_file_name, Yii::app()->params["images_quality"]);
+                                break;
+                            case "image/pjpeg":
+                                ImageJPEG($new_file, $new_file_name, Yii::app()->params["images_quality"]);
+                                break;
+
+                            case "jpg":
+                                ImageJPEG($new_file, $new_file_name, Yii::app()->params["images_quality"]);
+                                break;
+                            case "image/jpg":
+                                ImageJPEG($new_file, $new_file_name, Yii::app()->params["images_quality"]);
+                                break;
+
+                            case "gif":
+                                ImageGIF($new_file, $new_file_name);
+                                break;
+                            case "image/gif":
+                                ImageGIF($new_file, $new_file_name);
+                                break;
+
+                            case "png":
+                                ImagePNG($new_file, $new_file_name);
+                                break;
+                            case "image/png":
+                                ImagePNG($new_file, $new_file_name);
+                                break;
+                        }
+                    else
+                        $cout = "<p class=\"err\">Произошла ошибка обработки файла (" . $new_file_name . ")</p>";
+
+                    #Наложение логотипа на картинки
+                    if (SiteHelper::getConfig("watermark")) $this->addLogoOnImage($dopUrl . $fileUrl, $upload_type, $dopUrl . SiteHelper::getConfig("watermark"), $catalog);
+                }
             }
         }
         return $cout;

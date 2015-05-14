@@ -34,6 +34,15 @@ class CatalogTours extends CCModel
     protected $translate; // integer
     protected $rating; // integer
 
+    protected $program; // integer
+    protected $prices; // integer
+    protected $included; // integer
+    protected $not_included; // integer
+    protected $attention; // integer
+    protected $cancellation; // integer
+    protected $duration;
+    protected $currency_id;
+
 /*
 * Поля - связи
 */
@@ -72,7 +81,7 @@ class CatalogTours extends CCModel
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
 
-            array('rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+            array('currency_id, duration, attention, cancellation, not_included, included, prices, program, rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
             array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
         );
     }
@@ -86,6 +95,7 @@ class CatalogTours extends CCModel
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'CatalogUsers', 'user_id'),
+            'currency' => array(self::BELONGS_TO, 'CatalogCurrency', 'currency_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogToursCategory', 'category_id'),
@@ -96,7 +106,13 @@ class CatalogTours extends CCModel
     public function attributePlaceholder()
     {
         return array(
-            "name"=> "Наименование тура"
+            "name"=> "Наименование тура",
+            "program"=>"Необходимо расписать всю программу тур. По дням",
+            "prices"=>"Необходимо расписать вариации цен в зависимости от количества людей или определенных дат",
+            "included"=>"Необходимо указать какие услуги входят в тур",
+            "not_included"=>"Необходимо указать какие услуги НЕ входят в тур",
+            "attention"=>"Необходимо указать моменты на который стоит обратить внимание",
+            "cancellation"=>"Необходимо указать какие условия ануляции заказа",
         );
     }
 
@@ -108,7 +124,16 @@ class CatalogTours extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'description' => 'Description',
+            'price' => 'Цена',
+            'currency_id' => 'Тип валюты',
+            'description' => 'Description',
+            'duration' => 'Длительноть тура',
+            'prices' => "Описание цен ( в зависимости от количество и людей и т.д. )",
+            'program' => 'Программа тура',
+            'included' => 'В тур включенно',
+            'not_included' => 'В тур НЕ включенно',
+            'attention' => 'Внимание',
+            'cancellation' => 'Условия ануляции',
 			'active' => 'Active',
 			'pos' => 'Pos',
 			'del' => 'Del',
@@ -116,7 +141,7 @@ class CatalogTours extends CCModel
 			'image' => 'Image',
 			'country_id' => 'Страна',
 			'city_id' => 'City',
-			'price' => 'Цена',
+
 			'ltext' => 'Ltext',
 			'hot' => 'Hot',
 			'firm_id' => 'тур. Фирма',
@@ -138,7 +163,14 @@ class CatalogTours extends CCModel
     public function fieldType()
     {
         return array_merge( parent::fieldType(),
-                                array("price"=>"integer")
+                                array("price"=>"integer",
+                                      "program"=>"visual_textarea",
+                                      "prices"=>"visual_textarea",
+                                      "included"=>"visual_textarea",
+                                      "not_included"=>"visual_textarea",
+                                    "attention"=>"visual_textarea",
+                                    "cancellation"=>"visual_textarea",
+                                )
                     );
     }
 

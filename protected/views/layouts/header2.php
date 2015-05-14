@@ -9,6 +9,7 @@
 <link rel="icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo $Theme->getBaseUrl() ?>/images/ico.ico" />
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <base href="<?= SiteHelper::createUrl("/", "", "&", true ) ?>" />
 
 <?php
@@ -23,39 +24,19 @@
     if( Yii::app()->controller->module != '' || Yii::app()->controller->getId() != "default" )
         $cs->registerScriptFile($baseUrl.'/js/tiny_mce/tiny_mce.js');
 
-    $cs->registerScriptFile($baseUrl.'/js/jquery/jquery.jcarousellite.min.js');
-    $cs->registerScriptFile($baseUrl.'/js/functions.js');
+    $cs->registerScriptFile($baseUrl.'/js/functions2.js');
     $cs->registerScriptFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.js');
 
-
-    $cs->registerCssFile($baseUrl.'/css/style.css');
-    $cs->registerCssFile($baseUrl.'/css/style2.css');
-    if( defined("YII_SUBDOMAIN") && YII_SUBDOMAIN == "wap-" )
-        $cs->registerCssFile($baseUrl.'/css/wap-style.css');
-
-    $cs->registerCssFile($baseUrl.'/css/animation.css');
-
+    $cs->registerCssFile($baseUrl.'/css/style_new.css');
+    $cs->registerCssFile($baseUrl.'/css/style_media.css');
     $cs->registerCssFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.css');
     $this->getJsFiles( $cs );
     $this->getCssFiles( $cs );
-
 ?>
 
 <?php
     //   $cs->registerCssFile($baseUrl.'/css/b_style.css');
 ?>
-<style type="text/css">
-    #TNet{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/t_bg.jpg ) no-repeat;width:958px;height:116px;margin:20px auto 10px;overflow:hidden; }
-    #TLogo{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/t_logo.png ) no-repeat;width:144px;height:97px;float:left;margin:9px 20px 0 12px; }
-    .TBan{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/baner_bg.png ) no-repeat;width:253px;height:112px;float:left;margin-top:1px }
-    .TBan a{display:block;width:227px;height:97px;}
-
-    .RB{margin: 0px 0 0 16px;  }
-    .RBSmiles{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/smiles.uz.jpg) no-repeat; }
-    .RBWorldTravel{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/world-travel.uz.jpg) no-repeat; }
-    .RBWorldNews{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/world-news.uz.jpg) no-repeat; }
-    .RBTrio{ background:url( <?=  $Theme->getBaseUrl() ?>/images/baners/trio.uz.jpg) no-repeat; }
-</style>
 
 <script type="text/javascript">
     var baseHref = '<?= SiteHelper::createUrl("/") ?>';

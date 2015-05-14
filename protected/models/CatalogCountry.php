@@ -13,10 +13,12 @@ class CatalogCountry extends CCModel
     protected $flag; // string 
     protected $image; // string 
     protected $name_2; // string 
-    protected $baner; // string 
+    protected $baner; // string
+    protected $banner2; // string
     protected $slug; // string 
     protected $col; // integer
     protected $translate; // integer
+    protected $title; // integer
 
 /*
 * Поля - связи
@@ -39,6 +41,11 @@ class CatalogCountry extends CCModel
     {
     }
 
+
+    public function fieldType()
+    {
+        return array_merge( parent::fieldType(), ["banner2"=>"file"] );
+    }
 
 	/**
 	 * @return string the associated database table name
@@ -65,7 +72,7 @@ class CatalogCountry extends CCModel
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('translate, id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe'),
+			array('title, banner2, translate, id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe'),
             array('translate, id, name, pos, del, description, flag, image, name_2, baner, slug, col', 'safe', 'on'=>'search'),
 		);
 	}
@@ -101,6 +108,7 @@ class CatalogCountry extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+            'title' => 'title',
 			'pos' => 'Pos',
 			'del' => 'Del',
 			'description' => 'Description',
@@ -108,6 +116,7 @@ class CatalogCountry extends CCModel
 			'image' => 'Image',
 			'name_2' => 'Name 2',
 			'baner' => 'Baner',
+            'banner2' => 'banner2',
 			'slug' => 'Slug',
 			'col' => 'Col',
 		);

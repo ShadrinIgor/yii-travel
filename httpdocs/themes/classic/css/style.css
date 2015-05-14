@@ -1814,8 +1814,21 @@ width:100%;
 .listItems .IImage{width: 200px;height: 120px;overflow: hidden;float: left;margin: 0px 10px 10px 0px;border-radius: 25px;}
 #FCCentr .listItems a{text-decoration: underline;font-weight: bold;font-size: 14px;text-transform: capitalize;}
 #FCCentr .listItems .LParams a{font-weight: normal;}
-.LParams{text-indent: 0px;float: right;text-align: left;border-left: 2px solid #DC5800;padding-left: 10px;margin-left: 4px;min-width: 100px;font-size: 10px;}
-#FCCentr .LParams a{font-size: 10px;}
+.LParams
+{
+    text-indent: 0px;
+    float: right;
+    text-align: left;
+    border-left: 2px solid #DC5800;
+    padding-left: 5px;
+    margin-left: 10px;
+    min-width: 100px;
+    font-size: 12px;
+}
+
+#ITText .LParams{border: 1px solid #DC5800;padding: 10px;}
+
+#FCCentr .LParams a{font-size: 12px;}
 
 
 .floatRight{float: right;}
@@ -3007,3 +3020,40 @@ margin: 0px 20px;
 .ATTRBlock a{line-height: 11px;}
 .ATTRBlock .WItems.MIMaps{height: 210px;}
 #authForm{width: 250px;margin-top: 10px;}
+
+.widget .mid{background: #efefef;text-align: center;max-height: 400px;overflow: hidden;}
+.widget .mid img{max-height: 400px;}
+.widget .carousel{background: #efefef;}
+.widget .carousel li{text-align: center;border:1px solid #fff;}
+.widget .carousel a{display: block;width: 150px;height: 100px;overflow: hidden;background: #efefef;}
+.widget .carousel img{max-height: 120px;max-width: 200px;}
+
+/*.next{background: url(../images/wmitem_bg.png)no-repeat center;width: 29px;height: 150px;}*/
+
+.tourPrice
+{
+    color: #FFFFFF;
+    background: #f00;
+    padding: 2px 0px;
+    text-align: center;
+}
+
+.tourPrice b
+{
+    font-size: 16px;
+}
+
+.tourPrice p
+{
+    line-height: 20px;
+}
+
+#tourFirmInfo
+{
+    margin-top: 20px;
+    padding: 10px;
+    background: #FFF3EA;
+}
+
+.carousel li{float: left;}
+.widget{overflow: hidden;}

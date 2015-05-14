@@ -94,7 +94,7 @@ class CatalogController extends ConsoleController
 
             $addGallery = new CatGallery();
 
-            if( $item->id >0 )$listImage = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "catalog=:catalog AND item_id=:item_id" )->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setOrderBy("pos, id") );
+            if( $item->id >0 )$listImage = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "catalog=:catalog AND item_id=:item_id" )->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setOrderBy("pos, id")->setCache(0) );
                          else $listImage=array();
 
             $this->arrayParams["catalog"] = $catalog;
@@ -185,6 +185,7 @@ class CatalogController extends ConsoleController
                         {
                             $imageModel->name = $value["name"];
                             $imageModel->pos = $value["pos"];
+                            $imageModel->type = $value["type"];
                             $imageModel->save();
                         }
                     }
@@ -200,7 +201,7 @@ class CatalogController extends ConsoleController
                 $addGallery->image = $_FILES["CatGallery"]["name"][ "image" ];
                 $addGallery->catalog = $model->tableName();
                 $addGallery->item_id = $id;
-                $addGallery->save();
+                $addGallery->save(  );// "", false
                 $addGallery = new CatGallery();
             }
 
