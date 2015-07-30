@@ -11,7 +11,12 @@ $this->listCssFiles[] = $baseUrl.'/css/jquery/validationEngine.jquery.css';
         'links'=>array( Yii::t("user", "Авторизация" ) ),
     ));
     ?>
-    <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>
-    <?php echo CHtml::errorSummary($form); ?><br>
-    <?php $controller->widget("authWidget") ?>
+    <div class="well">
+        <div class="panel panel-success well-margin-auto">
+            <?php echo CHtml::form('','post',array( 'id'=>'validateForm')); ?>
+            <?php echo CHtml::errorSummary($form); ?><br>
+            <?php $controller->widget("authWidget") ?>
+            <?php echo CHtml::endForm(); ?>
+        </div>
+    </div>
 </div>

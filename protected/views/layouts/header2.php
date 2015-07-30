@@ -25,10 +25,13 @@
         $cs->registerScriptFile($baseUrl.'/js/tiny_mce/tiny_mce.js');
 
     $cs->registerScriptFile($baseUrl.'/js/functions2.js');
+    $cs->registerScriptFile($baseUrl.'/js/bootstrap.min.js');
+    $cs->registerScriptFile($baseUrl.'/js/ekko-lightbox.min.js');
     $cs->registerScriptFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.js');
 
     $cs->registerCssFile($baseUrl.'/css/style_new.css');
-    $cs->registerCssFile($baseUrl.'/css/style_media.css');
+    $cs->registerCssFile($baseUrl.'/css/ekko-lightbox.min.css');
+    //$cs->registerCssFile($baseUrl.'/css/animation.css');
     $cs->registerCssFile($baseUrl.'/js/jquery/lightbox/jquery.lightbox.css');
     $this->getJsFiles( $cs );
     $this->getCssFiles( $cs );

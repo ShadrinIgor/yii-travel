@@ -94,7 +94,7 @@ class CatalogController extends ConsoleController
 
             $addGallery = new CatGallery();
 
-            if( $item->id >0 )$listImage = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "catalog=:catalog AND item_id=:item_id" )->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setOrderBy("pos, id")->setCache(0) );
+            if( $item->id >0 )$listImage = CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "catalog=:catalog AND item_id=:item_id" )->setParams( array( ":catalog"=>$item->tableName(), ":item_id"=>$item->id ) )->setOrderBy("pos, id")->setCache(0)->setLimit(-1) );
                          else $listImage=array();
 
             $this->arrayParams["catalog"] = $catalog;

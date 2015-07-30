@@ -1,6 +1,6 @@
 <div id="firmTours">
     <?php if( $this->beginCache( "firmDescriptionTours-".$item->id."_".Yii::app()->getLanguage(), array('duration'=> SiteHelper::getConfig( "firmDescriptionTours" ) ) ) ) : ?>
-        <div id="CIHeader" class="overflowHidden">
+        <div class="row">
             <?php
                 // Категории
                 $listCategory = CatalogToursCategory::sql( "SELECT id, owner FROM `catalog_tours_category` WHERE owner>0 AND id IN( SELECT category_id FROM catalog_tours WHERE firm_id=".$item->id." AND del=0  AND active=1 )" );
@@ -44,31 +44,35 @@
                 }
             ?>
 
-            <div class="CICategory">
-                <div class="CICLabel"><?= Yii::t("page", "Категории туров"); ?></div>
-                <div class="CICategoryScrool">
-                <ul>
-                    <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
-                        <li>
-                            <b><?= $cItem ?></b>
-                            <ul>
-                                <?php foreach( $values as $cKey=>$cValue ) : ?>
-                                    <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="<?= Yii::t("page", "категория туров"); ?> - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+            <div class="col-xs-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading"><?= Yii::t("page", "Категории туров"); ?></div>
+                    <div class="panel-body">
+                        <ul>
+                            <?php foreach( $reCategory2 as $cItem=>$values ) : ?>
+                                <li>
+                                    <b><?= $cItem ?></b>
+                                    <ul>
+                                        <?php foreach( $values as $cKey=>$cValue ) : ?>
+                                            <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?category=<?= $cValue->slug ?>&tab=tours" title="<?= Yii::t("page", "категория туров"); ?> - <?= $cValue->name ?> "><?= $cValue->name ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="CICategory">
-                <div class="CICLabel CLRight"><?= Yii::t("page", "Туры по странам"); ?></div>
-                <div class="CICategoryScrool">
-                <ul>
-                    <?php foreach( $reCountry2 as $cItem=>$values ) : ?>
-                        <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="<?= Yii::t("page", "туры"); ?> <?= $values->name_2 ?>"><?= $values->name ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
+            <div class="col-xs-6">
+                <div class="panel panel-warning">
+                    <div class="panel-heading"><?= Yii::t("page", "Туры по странам"); ?></div>
+                    <div class="panel-body">
+                        <ul>
+                            <?php foreach( $reCountry2 as $cItem=>$values ) : ?>
+                                <li><a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html?country=<?= $values->slug ?>&tab=tours" title="<?= Yii::t("page", "туры"); ?> <?= $values->name_2 ?>"><?= $values->name ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,37 +86,7 @@
            , по стране <?= $countryModel->name ?>
         <?php endif; ?>
     </h2>
-    <table id="tableListItems" cellpadding="0" cellspacing="0">
-        <tr>
-            <th class="TLFId">№</th>
-            <th class=""><?= Yii::t("page", "Фото"); ?></th>
-            <th class="TLFName" style="width: 150px;"><?= Yii::t("page", "Заголовок"); ?></th>
-            <th class="TLFAction"><?= Yii::t("page", "Краткое описание"); ?></th>
-        </tr>
-        <?php
-
-        foreach( $items as $tour ): ?>
-            <tr <?= $tour->hot==1 ? 'class="isHot"' : "" ?>>
-                <td><?= $tour->id ?></td>
-                <td>
-                    <?= ImageHelper::getAnimateImageBlock( $tour, SiteHelper::createUrl("/tours/description")."/".$tour->slug.".html", Yii::t("page", "описание тура")." ". $tour->name ) ?>
-                </td>
-                <td>
-                    <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html" title="<?= Yii::t("page", "описание тура"); ?> <?= $tour->name ?>"><?= $tour->name ?></a><br/>
-                    <?= $tour->country_id->name." ".$tour->city_id->name ?>
-                </td>
-                <td class="textAlignJustify">
-                    <?= SiteHelper::getSubTextOnWorld( $tour->description, 400 ) ?>
-                    <div class="itemAction textAlignRight">
-                        <a href="<?= SiteHelper::createUrl("/tours/description")."/".$tour->slug ?>.html"><?= Yii::t("page", "подробнее"); ?>...</a><br/>
-                    </div>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        <?php if( sizeof( $items ) == 0 ) : ?>
-            <tr>
-                <td colspan="6" class="textAlignCenter emptyList"><?= Yii::t("page", "Список пуст"); ?></td>
-            </tr>
-        <?php endif; ?>
-    </table>
+    <div id="catalogItems">
+        <?php $controller->widget("tour2Widget", array("items"=>$items, "url"=>"tours") ) ?>
+    </div>
 </div>

@@ -10,10 +10,10 @@ class ImageHelper
     public $error;
     public $newFileUrl;
 
-    static function getAnimateImageBlock( $item, $link, $title = "" )
+    static function getAnimateImageBlock( $item, $link, $title = "", $count = 3 )
     {
-        if( !$item->image )$countImages = 4;
-            else $countImages = 3;
+        if( !$item->image )$countImages = $count + 1;
+            else $countImages = $count;
 
         if( defined("YII_SUBDOMAIN") && YII_SUBDOMAIN == "wap-" )$countImages=1;
 

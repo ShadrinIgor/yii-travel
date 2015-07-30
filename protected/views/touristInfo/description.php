@@ -23,21 +23,24 @@ $this->widget('addressLineWidget', array(
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-        <div class="LParams">
+        <div class="blockquote blockquoteOrange floatRight width200">
             <br/>
             <?php if( $item->country_id->id >0 ) : ?><?= Yii::t("page", "страна"); ?>: <a href="<?= SiteHelper::createUrl("/touristInfo", array("country"=>$item->country_id->slug)) ?>.html" title="<?= $item->country_id->name ?>"><?= $item->country_id->name ?></a><br/><?php endif; ?>
             <?php if( $item->category_id->id >0 ) : ?><?= Yii::t("page", "категория"); ?>:<a href="<?= SiteHelper::createUrl("/touristInfo", array("category"=>$item->category_id->slug)) ?>.html" title="<?= $item->category_id->name ?> - <?= Yii::t("page", "категория туристической информации"); ?>"><?= $item->category_id->name ?></a><br/><?php endif; ?>
             <br/>
         </div>
-        <?= $item->description ?>
+        <div class="well textAlignJustify">
+            <?= $item->description ?>
+        </div>
     </div>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
+    <br/>
     <?php $this->widget( "formNoteWidget", array( "type"=>"infoErrorNote" ) ); ?>
 
     <div class="hr">&nbsp;</div>
 
     <?php if( sizeof($tours)>0 ) : ?>
-        <h2><?= Yii::t("page", "туры"); ?> <?= $item->country_id->name_2 ?></h2>
+        <h2>Лучшие туры <?= $item->country_id->name_2 ?></h2>
         <div class="ITBlock">
             <?php foreach( $tours as $tour ) : ?>
                 <?php $this->widget("tourWidget", array( "item"=>$tour )) ?>
@@ -49,7 +52,6 @@ $this->widget('addressLineWidget', array(
     <?php endif; ?>
 
     <?php if( sizeof($other)>0 ) : ?>
-        <div class="hr">&nbsp;</div>
         <h2><?= Yii::t("page", "Смотрите также"); ?></h2>
         <div class="ITBlock ITBFirms ITBOthCountry">
             <?php foreach( $other as $hotel ) : ?>

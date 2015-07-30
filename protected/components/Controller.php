@@ -41,7 +41,7 @@ class Controller extends CController
                 {
                     $arr = explode( "=", $urlArrayDop[$i] );
                     $key = $arr[ 0 ];
-                    if( !empty( $arr[ 1 ] ) )$_GET[$key] = $arr[ 1 ];
+                    if( !empty( $arr[ 1 ] ) )$_GET[$key] =$arr[ 1 ];
                                         else $_GET[$key] = "null";
                 }
             }

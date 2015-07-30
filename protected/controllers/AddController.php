@@ -2,6 +2,12 @@
 
 class AddController extends Controller
 {
+    public function init()
+    {
+        parent::init();
+        $this->layout = '//layouts/main2';
+    }
+
     public function actionIndex()
     {
         $arrayTab = array( "travel-agency", "curorts", "hotels", "vacancy-resume", "ads-items", "other-info" );

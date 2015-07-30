@@ -14,7 +14,7 @@
                             "zh"=>"8524-tekstovka页面换行",
                             "ja"=>"8524-企業のtekstovkaページ",
                         ),
-    "order" => "edit_date DESC, id DESC",
+    "order" => "rating DESC",
     "sort"=>
     array(
         array( "col", Yii::t("page", "просмотрам" ) ),

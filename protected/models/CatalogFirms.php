@@ -166,4 +166,10 @@ class CatalogFirms extends CCModel
         if($this->hasEventHandler('onFirmNewComment'))
             $this->raiseEvent('onFirmNewComment', array( "event"=>$event, "params"=>$params ));
     }
+
+    public function onAddFirm( $event )
+    {
+        if($this->hasEventHandler('onAddFirm'))
+            $this->raiseEvent('onAddFirm', $event);
+    }
 }

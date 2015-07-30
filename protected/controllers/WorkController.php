@@ -6,6 +6,7 @@ class WorkController extends InfoController
     {
         parent::init();
         $this->classModel = "CatalogWorkAdd";
+        $this->layout = '//layouts/main2';
         $this->classCategory = "";
         $this->description = Yii::t("work", "Предложение по работе в туристической отрасли, работа в туризме");
         $this->keyWord = Yii::t("work", "Предложение по работе в туристической отрасли, работа в туризме");

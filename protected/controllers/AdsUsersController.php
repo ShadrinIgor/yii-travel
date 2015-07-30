@@ -5,6 +5,7 @@ class AdsUsersController extends InfoController
     public function init()
     {
         parent::init();
+        $this->layout = '//layouts/main2';
         $this->classModel = "CatalogItems";
         $this->classCategory = "";
         $this->description = Yii::t("addsuser", "Самые популярные отели мира, отсортированные по рейтингу. Возможность просмотра подробного описания");

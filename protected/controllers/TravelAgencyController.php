@@ -7,6 +7,8 @@ class TravelAgencyController extends InfoController
         parent::init();
         $this->classModel = "CatalogFirms";
         $this->classCategory = "";
+        $this->layout = '//layouts/main2';
+        //$this->order = 'rating DESC';
         $this->description = Yii::t("tours", "туристические агентства Узбекистана, вы можете посмотреть туристические предложения, акции скидки");
         $this->keyWord = Yii::t("tours", "туристические фирмы, туристическая фирма тур, Туристические агентства Узбекистана, туристические компании, ооо туристическая фирма, сайты туристических фирм, туристические фирмы Узбекистана, туристические фирмы Ташкент");
     }

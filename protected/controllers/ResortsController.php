@@ -5,6 +5,7 @@ class ResortsController extends InfoController
     public function init()
     {
         parent::init();
+        $this->layout = '//layouts/main2';
         $this->classModel = "CatalogKurorts";
         $this->classCategory = "CatalogKurortsCategory";
         $this->description = Yii::t("resorts", "Самые популярные курорты, зоны отдыха, детские лагеря, отсортированные по рейтингу. возможность просмотра подробного описания, галереи, дополнительных услуг цен и возможность отправить заказ");

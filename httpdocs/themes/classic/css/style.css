@@ -3056,4 +3056,15 @@ margin: 0px 20px;
 }
 
 .carousel li{float: left;}
+#ITImage
+{
+    float: left;
+    margin: 0px 10px 10px 0px;
+}
+
+#description_page .well
+{
+    text-align: justify;
+}
+
 .widget{overflow: hidden;}

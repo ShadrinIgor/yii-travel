@@ -18,7 +18,7 @@
                 </select>
             </p>
             <p>
-                <?= Yii::t("page", "Категория"); ?>-: <select name="CatalogTours[category_id]">
+                <?= Yii::t("page", "Категория"); ?>: <select name="CatalogTours[category_id]">
                     <option value=""> - <?= Yii::t("page", "выберите категорию"); ?> - </option>
                     <?php foreach( CatalogToursCategory::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("owner=0")->setOrderBy("name")->setLimit(-1)) as $category ) : ?>
                         <optgroup label="<?= $category->name ?>">

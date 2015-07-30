@@ -17,12 +17,10 @@ if( $categoryModel->id == 0 )
 $sectionText = array(
     "ru"=>"tekstovka-dlya-stranicy-chastnye-obyavleniya",
     "en"=>"8525-tekstovka-page-for-personal-ads",
-    "zh"=>"8525-tekstovka页面的个人广告",
-    "ja"=>"8525-個人広告用tekstovkaページ",
 );
 ?>
-
-<div id="InnerText">
+<div id="catalogItems">
+<div id="InnerText"  class="row tourItems">
     <?php if( $categoryModel->id == 0 ) : ?>
         <h1><?= Yii::t("page", "Частные туристические объявления"); ?></h1>
     <?php else : ?>
@@ -59,26 +57,35 @@ $sectionText = array(
             <?php endif; ?>
         </div>
     </div>
-    <?php
-    foreach( $items as $item ) :
-        ?>
-        <div class="listItems">
-            <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/adsUsers/description")."/".$item->slug .".html" ) ?>
-            <div class="LHeader">
-                <a title="<?= SiteHelper::getStringForTitle( $item->name )?>" href="<?= SiteHelper::createUrl( "/adsUsers/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
-                <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров"); ?>: <b><?= $item->col ?></b></div><?php endif; ?>
+    <div class="row">
+        <?php
+        foreach( $items as $item ) :
+            ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a title="<?= SiteHelper::getStringForTitle( $item->name )?>" href="<?= SiteHelper::createUrl( "/adsUsers/description")."/".$item->slug ?>.html"><?= $item->name ?></a>
+                    <?php if( $item->col>0 ) : ?><div class="floatRight rightInfo"><?= Yii::t("page", "просмотров"); ?>: <b><?= $item->col ?></b></div><?php endif; ?>
+                </div>
+                <div class="panel-body">
+                    <div class="IImage img-rounded">
+                            <?= ImageHelper::getAnimateImageBlock( $item, SiteHelper::createUrl( "/adsUsers/description")."/".$item->slug .".html", "", 0 ) ?>
+                    </div>
+                    <div class="blockquote blockquoteOrange floatRight width200 height146">
+                        <?= Yii::t("page", "дата"); ?>: <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><br/>
+                        <a href="<?= SiteHelper::createUrl("/adsUsers" )."/".$item->category_id->slug ?>.html"><?= $item->category_id->name ?></a><br/>
+                        <?php if( $item->price > 0 ) : ?><?= Yii::t("page", "цена"); ?>: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
+                        <?php if( $item->user_id->id == Yii::app()->user->getId() ) : ?><a href="<?= SiteHelper::createUrl("/user/items/description", array( "id"=>$item->id )) ?>"><?= Yii::t("page", "Редактировать"); ?></a><br/><?php endif; ?>
+                    </div>
+                    <div class="well well-lg"><div class="limitText">
+                            <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
+                    </div></div>
+                </div>
             </div>
-            <div class="LParams">
-                <?= Yii::t("page", "дата"); ?>: <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><br/>
-                <a href="<?= SiteHelper::createUrl("/adsUsers" )."/".$item->category_id->slug ?>.html"><?= $item->category_id->name ?></a><br/>
-                <?php if( $item->price > 0 ) : ?><?= Yii::t("page", "цена"); ?>: <b class="radColor"><?= $item->price ?></b><br/><?php endif; ?>
-                <?php if( $item->user_id->id == Yii::app()->user->getId() ) : ?><a href="<?= SiteHelper::createUrl("/user/items/description", array( "id"=>$item->id )) ?>"><?= Yii::t("page", "Редактировать"); ?></a><br/><?php endif; ?>
-            </div>
-            <?= CCModelHelper::getLimitText( $item->description, "30" ) ?>
-        </div>
-    <?php
-    endforeach;
-    if( !is_array( $items ) || sizeof( $items ) == 0 ) : ?>
-        <center><br/><br/><b><?= Yii::t("page", "Список пока пуст, Ваше объявление может стать <u>первым</u> в данном разделе"); ?></b></center>
-    <?php endif; ?>
+        <?php
+        endforeach;
+        if( !is_array( $items ) || sizeof( $items ) == 0 ) : ?>
+            <center><br/><br/><b><?= Yii::t("page", "Список пока пуст, Ваше объявление может стать <u>первым</u> в данном разделе"); ?></b></center>
+        <?php endif; ?>
+    </div>
+</div>
 </div>

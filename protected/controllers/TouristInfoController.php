@@ -5,6 +5,7 @@ class TouristInfoController extends InfoController
 	public function init()
     {
         parent::init();
+        $this->layout = '//layouts/main2';
         $this->classModel = "CatalogInfo";
         $this->classCategory = "CatalogInfoCategory";
         $this->description = Yii::t("tourisInfo", "Полезная информация для туристов и людей любящих путешествия. Здесь представлена информация о мировой архитектуре, авиатранспорт, виза в Узбекистан, здоровье/питание и т.д.");

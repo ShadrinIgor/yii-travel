@@ -11,6 +11,11 @@ class ToursController extends InfoController
         $this->keyWord = Yii::t("tours", "бизнес туры, деловой туризм, исследовательские, лечебные туры, развлекательные, vip отдых, детские лагеря, загородный отдых, конный тур, морские и речные круизы, рафтинг+экскурсии, сафари на верблюдах");
     }
 
+    public function actionIndex()
+    {
+        $this->render( 'index' );
+    }
+
     public function actionDescription()
     {
         Yii::app()->page->setInfo( array( "description"=>$this->description, "keyWord"=>$this->keyWord ) );

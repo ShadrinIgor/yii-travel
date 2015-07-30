@@ -15,25 +15,24 @@ if($count>$offset)
 
         $elem="";
 
-        if($i==$page)$elem='<b id="list_activ">'.$i.'</b>';
+        if($i==$page)$elem='<li class="active"><a href="'.$defaultUrl."?p=".$i.'">'.$i.'</a></li>';
         else
         {
             if((($i>($page-5))&&($i<($page+5)))||($i==1)||($i==$finish))
             {
-                if( empty( $url ) )$elem.="<a href=\"".$defaultUrl."?p=".$i."\">".$i."</a>";
-                    elseif( is_array( $url ) ) $elem.="<a href=\"".SiteHelper::createUrl( $url[0], array_merge( $url[1], array( "p"=>$i ) ) ) ."\">".$i."</a>";
-                        else $elem.="<a href=\"".$defaultUrl."?p=".$i.$url."\">".$i."</a>";
+                if( empty( $url ) )$elem.="<li><a href=\"".$defaultUrl."?p=".$i."\">".$i."</a></li>";
+                    elseif( is_array( $url ) ) $elem.="<li><a href=\"".SiteHelper::createUrl( $url[0], array_merge( $url[1], array( "p"=>$i ) ) ) ."\">".$i."</a></li>";
+                        else $elem.="<li><a href=\"".$defaultUrl."?p=".$i.$url."\">".$i."</a></li>";
                 $space="";
             }
             else
             {
-                if(!$space){$elem.= "<font> ... </font>";$space=1;}
+                if(!$space){$elem.= '<li><span> ... </span></li>';$space=1;}
             }
         }
 
         $c_cout.=$elem;
     }
 
-    $cout = Yii::t("page", "Страницы").": ".$c_cout;
-    echo "<div class=\"pageList\">".$cout."  ".Yii::t("page", "Всего")." : ".$count."</div>";
+    echo '<div class="well textAlignCenter">Страницы:<br/><ul class="pagination">'.$c_cout."</ul></div>";
 }

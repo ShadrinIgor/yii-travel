@@ -14,6 +14,7 @@ class CountryPageController extends Controller
 
     public function actionIndex()
     {
+        $page = (int)Yii::app()->request->getParam("p", 1);
         $this->layout = '//layouts/main-landing';
         if( !empty( $_GET["country"] ) )
         {
@@ -31,9 +32,10 @@ class CountryPageController extends Controller
                 $this->render('index',
                     array(
                         "item" => $item,
+                        "page" => $page,
                         "tours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("rating DESC")->setLimit(12) ),
                         "gallerySlide" => CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog='catalog_country' AND type='slide-gallery' AND item_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("pos")->setLimit(-1) ),
-                        "gallery" => CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog='catalog_country' AND type='' AND item_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("pos")->setLimit(-1) ),
+                        "gallery" => CatGallery::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("catalog='catalog_country' AND type='' AND item_id=:id")->setParams(array(":id"=>$item->id))->setOrderBy("pos")->setLimit(9) ),
                         "info" => CatalogInfo::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "category_id=(SELECT id FROM catalog_info_category WHERE slug=:slug LIMIT 1)" )->setParams( array( ":slug"=>$item->slug ) ) ),
                         "monuments" => CatalogMonuments::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:id" )->setParams( array( ":id"=>$item->id ) ) ),
                     ));

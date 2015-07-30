@@ -19,6 +19,8 @@ class pageWidget extends CWidget
     var $url = 'tours';
     var $order = "id DESC";
     var $sort = array();
+    var $conditional = "";
+    var $showFindForm = true;
 
     public function __construct()
     {
@@ -90,6 +92,7 @@ class pageWidget extends CWidget
 
             // Поиск
             $SQL = " active=1 ";
+            if( $this->conditional )$SQL = " active=1 AND ".$this->conditional;
 
             $category = Yii::app()->request->getParam("category", "");
             if( !empty( $category ) )
@@ -107,6 +110,7 @@ class pageWidget extends CWidget
                 foreach( $SearchAttributes as $field ) :
 
                     $field = trim( $field );
+                    $fieldValue_2 = "";
                     $fieldValue = Yii::app()->request->getParam( $field, "" );
                     if( empty($fieldValue) && !empty( $_POST[$catalog] ) && !empty( $_POST[$catalog][ $field ] ) )$fieldValue = $_POST[$catalog][ $field ];
 
@@ -126,7 +130,7 @@ class pageWidget extends CWidget
                         if( !empty( Yii::app()->session[ "page_".$catalog ]["find"][$field."_2"] ) )$fieldValue_2 = Yii::app()->session[ "page_".$catalog ]["find"][$field."_2"];
                     }
 
-                    if( !empty( $fieldValue ) )
+                    if( !empty( $fieldValue ) || !empty( $fieldValue_2 ) )
                     {
                         if( !empty( $fieldsType[ $field ] ) && $fieldsType[ $field ] == "integer" )
                         {
@@ -170,6 +174,10 @@ class pageWidget extends CWidget
                 Yii::app()->session[ "page_".$catalog ] = $pageParams;
             }
 
+            echo "<!-- && ";
+            echo $SQL;
+            echo "-->";
+
             $items = $this->render( $this->template,
                 array(
                         'url'=> $this->url,
@@ -186,6 +194,7 @@ class pageWidget extends CWidget
 
             $addUrl = "";
             $linkName = "";
+            $findTitle = "Поиск";
             switch( $catalogModel->tableName() )
             {
                 case "catalog_firms" :
@@ -196,11 +205,13 @@ class pageWidget extends CWidget
                 case "catalog_kurorts_en" : $addUrl =  SiteHelper::createUrl( "/user/resort/description/" );$linkName=Yii::t( "page","Добавить зону отдыха / курорт /дет. лагерь");break;
                 case "catalog_firms_items" :
                 case "catalog_firms_items_en" :$addUrl =  SiteHelper::createUrl( "/user/sales/description/" );$linkName=Yii::t( "page","Добавить АКЦИЮ / СКИДКУ");break;
-                //case "catalog_tours" : $addUrl =  SiteHelper::createUrl( "/user/tours/description/" );$linkName="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Добавить тур&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";break;
+                case "catalog_tours" : $findTitle = "ПОДОБРАТЬ ТУР";break;
             }
 
             $this->render( "page", array(
                 'linkName'       => $linkName,
+                'findTitle'      => $findTitle,
+                'showFindForm'   => $this->showFindForm,
                 'addUrl'         => $addUrl,
                 'items'          => $items,
                 'page'           => $page,

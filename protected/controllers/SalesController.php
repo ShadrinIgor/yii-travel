@@ -5,6 +5,7 @@ class SalesController extends InfoController
     public function init()
     {
         parent::init();
+        $this->layout = '//layouts/main2';
         $this->classModel = "CatalogFirmsItems";
         $this->classCategory = "";
         $this->description = Yii::t("salse", "Список самых популярных туристических предложений, туров.");

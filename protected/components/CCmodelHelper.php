@@ -44,6 +44,7 @@ class CCModelHelper
         $saveFields = $form->getSafeAtributes();
 
         $cout = "";
+
         $classTable = get_class( $form );
 
         foreach( $fields as $field=>$key )
@@ -52,6 +53,10 @@ class CCModelHelper
             $paramValue = ( !empty( $_POST[ $classTable ][$field] ) ) ? $_POST[ $classTable ][$field] : "";
             if( !empty( $paramValue ) && !$form->$field )$form->$field = $paramValue;
             // end
+
+            // Обязаельное поле
+            if( self::find_in_array( $field, $requiredFields ) )$requiredAttr = "required";
+                else $requiredAttr = "";
 
             // Вытаскиваем тип поля
             $fieldTypeValue = ( !empty( $fieldType[ $field ] ) ) ? $fieldTypeValue = $fieldType[ $field ] : "";
@@ -71,19 +76,19 @@ class CCModelHelper
                     {
                         switch( $fieldType[ $field ] )
                         {
-                            case "url"             : $input = CHtml::activeUrlField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) )."<br/><font class='smallGrey'>формат: http://www.sitename.ru</font>"; break;
-                            case "email"           : $input = CHtml::activeEmailField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
+                            case "url"             : $input = CHtml::activeUrlField( $form, $field, array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>""  ) )."<br/><font class='smallGrey'>формат: http://www.sitename.ru</font>"; break;
+                            case "email"           : $input = CHtml::activeEmailField( $form, $field, array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) ); break;
                             case "date"            :
                                 if( (int)$form->$field >0 )$form->$field = date( "Y-m-d", (int)$form->$field );
-                                $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
+                                $input = CHtml::activeDateField( $form, $field, array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) ); break;
                             case "password"        :
-                                $input = CHtml::passwordField( $classTable."[".$field."]", '', array( "placeholder"=>$fieldPlaceholder ) ); break;
-                            case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder ) ); break;
+                                $input = CHtml::passwordField( $classTable."[".$field."]", '', array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) ); break;
+                            case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) ); break;
                             case "visual_textarea" :
-                                $input = $fieldPlaceholder.CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
+                                $input = $fieldPlaceholder.CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) );
                                 break;
                             case "textarea" :
-                                $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"mceNoEditor", "placeholder"=>$fieldPlaceholder ) );
+                                $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"mceNoEditor", "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) );
                                 break;
                             case "image"           :
 
@@ -94,7 +99,7 @@ class CCModelHelper
                                     if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[<?= Yii::t("user", "Удалить") ?>]</a><br/>';
                                     $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
                                 }
-                                $input .= CHtml::activeFileField( $form, $field );
+                                $input .= CHtml::activeFileField( $form, $field, array( $requiredAttr=>"" ) );
 
                                 break;
                             case "file"            :
@@ -105,12 +110,12 @@ class CCModelHelper
                                     if( Yii::app()->controller->module->id == "console" )$input .= '<a href="'.SiteHelper::createUrl( "/console/catalog/edit", array("id"=>$form->id) )."?catalog=".$catalog."&action=img_del&field=".$field.'">[<?= Yii::t("user", "Удалить") ?>]</a><br/>';
                                     $input .= CHtml::hiddenField( $catalog."[old_".$field."]", $form->$field );
                                 }
-                                $input .= CHtml::activeFileField( $form, $field ); break;
+                                $input .= CHtml::activeFileField( $form, $field, array( $requiredAttr=>"" ) ); break;
                             case "label"           : $input = $form->$field; break;
-                            default                : $input = CHtml::activeTextField( $form, $field, array( "placeholder"=>$fieldPlaceholder ) );
+                            default                : $input = CHtml::activeTextField( $form, $field, array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) );
                         }
                     }
-                        else $input = CHtml::activeTextField( $form, $field, array("placeholder"=>$fieldPlaceholder) );
+                        else $input = CHtml::activeTextField( $form, $field, array("placeholder"=>$fieldPlaceholder, $requiredAttr=>"") );
                 }
                     else $input = $form->$field;
             }
@@ -156,7 +161,7 @@ class CCModelHelper
                         if( !empty( $paramValue ) && !$form->$fieldName )$selectedID = $paramValue;
                             else $selectedID = "";
 
-                        $input .= '<select name="'.$classTable .'['.$fieldName.']" class="field_'.$fieldName.'">
+                        $input .= '<select name="'.$classTable .'['.$fieldName.']" class="field_'.$fieldName.'" '.$requiredAttr.'>
                                         <option value=""> --- --- --- </option>';
                         $input .= self::getRelationListOptions( $form, $fieldName, $relationItems, $selectedID );
                         $input .= '</select>';
@@ -183,7 +188,7 @@ class CCModelHelper
                     <td id="captchaTD">';
 
             $cout .= $controller->widget('CCaptcha', array('buttonLabel' => '[ '.Yii::t( "page", "обновить").' ]'), true);
-            $cout .= CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]' ));
+            $cout .= "<div id='CCaptchaInput'>". CHtml::activeTextField($form, 'captcha', array( 'class'=>'validate[required]', "required"=>"" ))."</div>";
 
             $cout .='
                     </td>

@@ -100,9 +100,9 @@ class FirmsRatingCommand extends CConsoleCommand
         {
             $lastFirm->value = $item->id;
             $lastFirm->date = date( "Y-m-d", mktime( date("h")+1,0,0,date("m"),date("d"), date("Y") ) );
-            echo $lastFirm->date."*".mktime( date("h")+1,0,0,date("m"),date("d"), date("Y") );
+            //echo $lastFirm->date."*".mktime( date("h")+1,0,0,date("m"),date("d"), date("Y") );
             if (!$lastFirm->save()) print_r($lastFirm->getErrors());
         }
-        echo "*";
+        //echo "*";
     }
 }

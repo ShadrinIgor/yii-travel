@@ -14,8 +14,8 @@ $images = ImageHelper::getImages( $item );
     <br/>
     <?php SiteHelper::renderDinamicPartial( "pageDescriptionTop" ); ?>
     <h1><?= $item->name ?></h1>
-    <div id="ITText">
-        <div class="LParams">
+    <div id="ITText" class="well">
+        <div class="blockquote blockquoteOrange floatRight width200">
             <br/>
             <?= Yii::t("addsuser", "дата"); ?>: <?= SiteHelper::getDateOnFormat( $item->date, "d.m.Y" ) ?><br/>
             <a href="<?= SiteHelper::createUrl("/adsUsers" )."/".$item->category_id->slug ?>.html"><?= $item->category_id->name ?></a><br/>
@@ -34,7 +34,9 @@ $images = ImageHelper::getImages( $item );
             </div>
         <?php endif; ?>
 
-        <?= $item->description ?>
+        <div class="well">
+            <?= $item->description ?>
+        </div>
     </div>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>
     <div class="hr">&nbsp;</div>

@@ -10,19 +10,17 @@ $this->widget('addressLineWidget', array(
 $images = ImageHelper::getImages( $item );
 ?>
 
-<div id="InnerText">
+<div id="InnerText" class="innerPage">
     <br/>
     <?php SiteHelper::renderDinamicPartial( "pageDescriptionTop" ); ?>
     <h1><?= $item->name ?> <font> - <?= $item->category_id->name." ".$item->country_id->name_2 ?></font></h1>
     <div id="ITText">
-        <div class="LParams">
+        <div class="blockquote blockquoteOrange floatRight width200">
             <br/>
             <?php if( $item->price >0 ) : ?><b><?= $item->price ?>$</b><?php endif; ?>
             <?php if( $item->level && $item->level>0 ) : ?><?= SiteHelper::getStarsLevel( $item->level ) ?><br/><?php endif; ?>
             <?= Yii::t("page", "страна"); ?>: <?= $item->country_id->name ?><br/>
             <?php if( $item->city_id->id >0 ) : ?>город:<?= $item->city_id->name ?><br/><?php endif; ?>
-            <br/>
-            <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'resorts', <?= $item->id ?>, 'contact');yaCounter6154003.reachGoal('resort_show_contact');return true;" title="<?= Yii::t("page", "Забронировать зону отдыха"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a><br/>
         </div>
         <?php if( sizeof($images) >0 || $item->image ) : ?>
             <div class="floatLeft leftImages">
@@ -32,27 +30,22 @@ $images = ImageHelper::getImages( $item );
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-        <?= $item->description ?>
-        <div class="LParams">
-            <p><b><?= Yii::t("page", "Контактная информация"); ?>:</b><br/><br/>
-                <?php if( $item->telefon ) : ?><?= Yii::t("page", "Телефон"); ?>: <?= $item->tel ?><br/><?php endif; ?>
-                <?php if( $item->email ) : ?>E-mail:<span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogKurorts", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ <?= Yii::t("page", "Показать Email"); ?> ]</a></span><br/><?php endif; ?>
-                <?php if( $item->www ) : ?><?= Yii::t("page", "Сайт"); ?>: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
-                <br/><br/>
-            </p>
-            <a class="OrderRequest LPLink" href="#" onclick="ajaxLogTour( 'resorts', <?= $item->id ?>, 'contact');yaCounter6154003.reachGoal('resort_show_contact');return true;" title="<?= Yii::t("page", "Забронировать зону отдыха"); ?> <?= SiteHelper::getStringForTitle( $item->country_id->name ) ?>"><?= Yii::t("page", "забронировать"); ?></a>
+        <div class="well">
+            <?= $item->description ?>
         </div>
-        <div id="orderInfo" class="displayNone">
-            <b><?= Yii::t("page", "Курортная зона отдыха"); ?> - <?= $item->name ?></b><br/>
-            <p><?= Yii::t("page", "Для бронирования или уточнения информации необходимо связаться с хозяином"); ?>.</p>
-            <p>
-                <?php if( $item->telefon ) : ?><?= Yii::t("page", "Телефон"); ?>: <?= $item->tel ?><br/><?php endif; ?>
-                <?php if( $item->email ) : ?>E-mail:<span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogKurorts", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ <?= Yii::t("page", "Показать Email"); ?> ]</a></span><br/><?php endif; ?>
-                <?php if( $item->www ) : ?><?= Yii::t("page", "Сайт"); ?>: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
-                <div class="cMore">
-                    <a href="#" class="orderClose"><?= Yii::t("page", "закрыть"); ?></a>
-                </div>
-            </p>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                Контакты
+            </div>
+            <div class="panel-body">
+                <b><?= Yii::t("page", "Курортная зона отдыха"); ?> - <?= $item->name ?></b><br/>
+                <p><?= Yii::t("page", "Для бронирования или уточнения информации необходимо связаться с хозяином"); ?>.</p>
+                <p>
+                    <?php if( $item->telefon ) : ?><?= Yii::t("page", "Телефон"); ?>: <?= $item->tel ?><br/><?php endif; ?>
+                    <?php if( $item->email ) : ?>E-mail:<span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"catalogKurorts", "id"=>$item->id, "field"=>"email" ) ) ?>' ); return false;">[ <?= Yii::t("page", "Показать Email"); ?> ]</a></span><br/><?php endif; ?>
+                    <?php if( $item->www ) : ?><?= Yii::t("page", "Сайт"); ?>: <a target="_blank" href="<?= $item->www ?>"><?= $item->www ?></a><br/><?php endif; ?>
+                </p>
+            </div>
         </div>
     </div>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>

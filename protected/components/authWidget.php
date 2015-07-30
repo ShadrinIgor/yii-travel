@@ -12,7 +12,7 @@ class authWidget extends CWidget
     {
         if( Yii::app()->user->isGuest )
         {
-            Yii::import('modules.user.models.*');
+//            Yii::import('modules.user.models.*');
             $form = new CatalogUsersAuth();
             $this->render( "auth", array( "form"=>$form ));
         }

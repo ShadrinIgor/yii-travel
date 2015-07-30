@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?= $Theme->baseUrl ?>/js/jquery/jquery.jcarousellite.min.js"></script>
 <?php
 
 $this->widget('addressLineWidget', array(
@@ -17,8 +18,12 @@ $this->widget('addressLineWidget', array(
     ?>
     <h1><?= $item->name ?><font>, тур <?= $item->category_id->name ?> <?= $item->country_id->name ?></font></h1>
     <?php if( sizeof($images) >0 || $item->image ) : ?>
-        <div class="widget">
-            <div class="mid"><img src="<?= $images[0]->image ?>"></div>
+        <div class="widget widget2 well">
+            <?php if( sizeof($images) >0 ) : ?>
+                <div class="mid"><img src="<?= $images[0]->image ?>"></div>
+            <?php else: ?>
+                <div class="mid"><img src="<?= $item->image ?>"></div>
+            <?php endif; ?>
             <div class="next"></div>
             <div class="prev"></div>
             <div class="carousel">
@@ -31,42 +36,56 @@ $this->widget('addressLineWidget', array(
         </div>
     <?php endif; ?>
     <div id="ITText">
-        <div class="LParams">
-            <?php if( $item->price ): ?><div class="tourPrice">от <b><?= $item->price ?> <?= $item->currency_id->title ?></b></div><?php endif; ?>
+        <div class="blockquote blockquoteOrange floatRight width200">
+            <?php if( $item->price ): ?><div class="overflowHidden"><span class="label label-info">цена от: <b class="radColor"><?= $item->price ?> <?= $item->currency_id->title ?></b></span></div><?php endif; ?>
             <br/>
             <?= Yii::t("page", "страна"); ?>: <a href="<?= SiteHelper::createUrl("/country")."/".$item->slug ?>.html" title="<?= Yii::t("page", "туристическая страна"); ?> <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
             <?= Yii::t("page", "категория"); ?>:<a href="<?= SiteHelper::createUrl("/tours")."/".$item->category_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->category_id->name ) ?>"><?= $item->category_id->name ?></a><br/>
             <?= Yii::t("page", "фирма"); ?>а: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
         </div>
 
-        <?= $item->description ?>
+        <div class="well textAlignJustify">
+            <?= $item->description ?>
+        </div>
 
         <?php if( $item->program ) : ?>
-            <h3>Программа тура:</h3>
-            <?= $item->program ?>
+            <div class="well">
+                <h3>Программа тура:</h3>
+                <?= $item->program ?>
+            </div>
         <?php endif; ?>
         <?php if( $item->prices ) : ?>
-            <h3>Описание цены:</h3>
-            <?= $item->prices ?>
+            <div class="well">
+                <h3>Описание цены:</h3>
+                <?= $item->prices ?>
+            </div>
         <?php endif; ?>
         <?php if( $item->included ) : ?>
-            <h3>В стоимость тура включенно:</h3>
-            <?= $item->included ?>
+            <div class="well">
+                <h3>В стоимость тура включенно:</h3>
+                <?= $item->included ?>
+            </div>
         <?php endif; ?>
         <?php if( $item->not_included ) : ?>
-            <h3>Не входид в стоимость тура:</h3>
-            <?= $item->not_included ?>
+            <div class="well">
+                <h3>Не входид в стоимость тура:</h3>
+                <?= $item->not_included ?>
+            </div>
         <?php endif; ?>
         <?php if( $item->attention ) : ?>
-            <h3>Внимание:</h3>
-            <?= $item->attention ?>
+            <div class="well">
+                <h3>Внимание:</h3>
+                <?= $item->attention ?>
+            </div>
         <?php endif; ?>
         <?php if( $item->cancellation ) : ?>
-            <h3>Условия анулирования:</h3>
-            <?= $item->cancellation ?>
+            <div class="well">
+                <h3>Условия анулирования:</h3>
+                <?= $item->cancellation ?>
+            </div>
         <?php endif; ?>
 
-        <div id="tourFirmInfo">
+        <div id="tourFirmInfo" class="well">
             <h2>Контакты для бронирования</h2>
             <b><?= Yii::t("page", "Тур предоставлен фирмой"); ?> <?= $item->firm_id->name ?></b><br/>
             <p><?= Yii::t("page", "Для бронирования или уточнения информации необходимо связаться с менеджером компании."); ?></p>
@@ -75,13 +94,11 @@ $this->widget('addressLineWidget', array(
                 <?php if( $item->firm_id->fax ) : ?><b><?= Yii::t("page", "Факс"); ?></b>: <?= $item->firm_id->fax ?><br/><?php endif; ?>
                 <?php if( $item->firm_id->email ) : ?><b>E-mail</b>: <span><a href="#" onclick="$( this.parentNode ).load( '<?= SiteHelper::createUrl( "/site/getInfo", array( "catalog"=>"CatalogFirms", "id"=>$item->firm_id->id, "field"=>"email" ) ) ?>' ); return false;">[ <?= Yii::t("page", "Показать Email"); ?> ]</a></span><br/><?php endif; ?>
                 <?php if( $item->firm_id->www ) : ?><b><?= Yii::t("page", "Сайт"); ?></b>: <a target="_blank" href="<?= SiteHelper::checkWWW( $item->firm_id->www ) ?>"><?= $item->firm_id->www ?></a><br/><?php endif; ?>
-            <div class="cMore">
-                <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html"><?= Yii::t("page", "подробнее о фирме"); ?>...</a>
+            <div class="textAlignRight">
+                <a class="label label-info" href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html"><?= Yii::t("page", "подробнее о фирме"); ?>...</a>
             </div>
             </p>
         </div>
-
-
     </div>
     <br/>
     <?php $this->widget("socialLinksWidget", array( "id"=>"socialLinks") ) ?>

@@ -104,11 +104,11 @@ class InfoController extends Controller
                     }
                     $dopSQL .= ") ";
 
-                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id ".$dopSQL )->setParams(array(":country_id"=>$item->country_id->id))->setOrderBy("id DESC")->setLimit(9) );
+                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country_id ".$dopSQL )->setParams(array(":country_id"=>$item->country_id->id))->setOrderBy("rating DESC")->setLimit(9) );
                 }
                     elseif( $item->country_id->id >0 )
                 {
-                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array(":country_id"=>$item->country_id->id))->setOrderBy("id DESC")->setLimit(10) );
+                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:country_id")->setParams(array(":country_id"=>$item->country_id->id))->setOrderBy("rating DESC")->setLimit(10) );
                 }
                     else $tours = array();
 

@@ -32,7 +32,7 @@ class SiteHelper
         if( !empty( $slug ) )
         {
             $textModel = CatalogContent::fetchBySlug( $slug );
-            $cout = '<div class="sectionText">'.$textModel->description;
+            $cout = '<div class="blockquote">'.$textModel->description;
             if( !empty( $link ) )$cout .= "<div class='textAlignRight'><a href='".$link."' title='".Yii::t( "page", "подробнее о туристическом портале Узбекистана")."'>".Yii::t( "page", "подробнее" )."...</div>";
             $cout .='</div>';
             return $cout;
@@ -88,7 +88,7 @@ class SiteHelper
             $toName = substr( $to, 0, strpos( $to, "@" ) );
         }
 
-        $header="Date: ".date("D, j M Y G:i:s")." +0500\r\n";
+/*        $header="Date: ".date("D, j M Y G:i:s")." +0500\r\n";
         $header.="From: =?UTF-8?B?".base64_encode( $fromName )."?= <".$from.">\r\n";
         $header.="X-Mailer: The Bat! (v3.99.3) Professional\r\n";
         $header.="Reply-To: =?UTF-8?B?".base64_encode( $fromName )."?= <".$from.">\r\n";
@@ -108,6 +108,7 @@ class SiteHelper
             fclose( $file );
             $msg = str_replace( "@cotent_text@", $msg, $templateText );
         }
+*/
 
         $replaceArray[ "src='f/" ] = Yii::app()->params["baseUrl"]."f/";
         if( sizeof($replaceArray)>0 )
@@ -118,10 +119,11 @@ class SiteHelper
             }
         }
 
-        $text=base64_encode( $msg );
 
 
-        $smtp_conn = fsockopen("62.109.20.253", 25,$errno, $errstr, 10);
+/*        $text=base64_encode( $msg );
+
+        $smtp_conn = fsockopen("92.63.109.197", 25,$errno, $errstr, 10);
         $data = SiteHelper::get_data($smtp_conn);
         $log = $data." | ";
 
@@ -173,9 +175,10 @@ class SiteHelper
         $newLog->action = "subscribe";
         if( !$newLog->save() )
             print_r( $newLog->getErrors() );
+*/
     }
 
-    function get_data($smtp_conn)
+    static function get_data($smtp_conn)
     {
         $data="";
         while($str = fgets($smtp_conn,515))
@@ -561,6 +564,40 @@ class SiteHelper
             $value = str_replace("'", "&#039;", $value);
         }
         return $value;
+    }
+
+    /*
+      * Сохранение связанных элементов таблицы, тип связи MANY_MANY
+      * @param CCModel $model
+      * @param Array $values
+      */
+    static function saveRelation( CCModel $model, $values )
+    {
+        foreach( $model->relations() as $value )
+        {
+            if( $value[0] == "CManyManyRelation" )
+            {
+                $leftClass = $value[1];
+                $rightClass = SiteHelper::getCamelCase( $model->tableName() );
+                CatRelations::sql("DELETE FROM cat_relations WHERE ( leftClass='".$leftClass."' AND rightClass='".$rightClass."') OR ( leftClass='".$rightClass."' AND rightClass='".$leftClass."') ");
+                foreach( $values as $value2 )
+                {
+                    $new =  new CatRelations();
+                    $new->leftClass = $leftClass;
+                    $new->rightClass = $rightClass;
+                    $new->leftId = $value2;
+                    $new->rightId = $model->id;
+                    $new->save();
+
+                    $new =  new CatRelations();
+                    $new->leftClass = $rightClass;
+                    $new->rightClass = $leftClass;
+                    $new->leftId = $model->id;
+                    $new->rightId = $value2;
+                    $new->save();
+                }
+            }
+        }
     }
 
     /*
