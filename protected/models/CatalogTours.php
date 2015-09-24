@@ -42,6 +42,8 @@ class CatalogTours extends CCModel
     protected $cancellation; // integer
     protected $duration;
     protected $currency_id;
+    protected $date_edit;
+    protected $date_edd;
 
 /*
 * Поля - связи
@@ -70,7 +72,7 @@ class CatalogTours extends CCModel
         // will receive user inputs.
         return array(
             array('name, category_id, country_id, description', 'required'),
-            array('translate, category_id, country_id, city_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
+            array('price, translate, category_id, country_id, city_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
             array('name', 'length', 'max'=>150),
             array('srok, price', 'length', 'max'=>25),
             array('image', 'length', 'max'=>100),
@@ -81,7 +83,7 @@ class CatalogTours extends CCModel
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
 
-            array('currency_id, duration, attention, cancellation, not_included, included, prices, program, rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+            array('date_edit, date_add, currency_id, duration, attention, cancellation, not_included, included, prices, program, rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
             array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
         );
     }
@@ -113,6 +115,8 @@ class CatalogTours extends CCModel
             "not_included"=>"Необходимо указать какие услуги НЕ входят в тур",
             "attention"=>"Необходимо указать моменты на который стоит обратить внимание",
             "cancellation"=>"Необходимо указать какие условия ануляции заказа",
+            "duration"=>"Например: 5 дней/4 ночи",
+            "price"=>"Необходимо указать минимальную стоимость на человека",
         );
     }
 
@@ -217,9 +221,9 @@ class CatalogTours extends CCModel
 		));
 	}
 
-    public function onAddTour( $event )
+    public function onAddTour( $event, $params = array() )
     {
-        if($this->hasEventHandler('onLostPasswordConfirm'))
-            $this->raiseEvent('onLostPasswordConfirm', $event);
+        if($this->hasEventHandler('onAddTour'))
+            $this->raiseEvent('onAddTour', array( "event"=>$event, "params"=>$params ) );
     }
 }

@@ -1,4 +1,5 @@
 <div class="leftBlock">
+    <?php $this->widget("authWidget"); ?>
     <div id="LeftBG">
         <h3><?= Yii::t("page", "Категории"); ?></h3>
         <?php if( $this->beginCache( "info_category"."_".Yii::app()->getLanguage(), array('duration'=>3600) ) ) : ?>

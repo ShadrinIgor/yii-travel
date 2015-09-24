@@ -19,7 +19,7 @@ class CatalogFirmsAdd extends CatalogFirms
 			array('image', 'length', 'max'=>100),
 			array('email, www, tel, fax', 'length', 'max'=>50),
             array('name', 'duplicate'),
-            array('edit_date, name, user_id, description, pos, country_id, city_id, image, email, www, tel, fax, address, slug', 'safe'),
+            array('date_edit, date_add, edit_date, name, user_id, description, pos, country_id, city_id, image, email, www, tel, fax, address, slug', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, pos, country_id, city_id, image, email, www, tel, del, tours_count, hotels_count, kurorts_count, service_count, fax, address, category_id, col, slug', 'safe', 'on'=>'search'),
@@ -33,10 +33,10 @@ class CatalogFirmsAdd extends CatalogFirms
     {
         return array(
             'name' => Yii::t("models", 'Название фирмы'),
-            'image' => Yii::t("models", "Логотип"),
+            'image' => "Логотип компании",
             'country_id' => Yii::t("page", "Страна"),
             'city_id' => Yii::t("page", "Город"),
-            'www' => 'Www',
+            'www' => 'Адресс сайта',
             'email' => 'Email',
             'tel' => Yii::t("models", "Телефон"),
             'fax' => Yii::t("models", "Факс" ),

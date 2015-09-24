@@ -1,4 +1,5 @@
 <div class="leftBlock">
+    <?php $this->widget("authWidget"); ?>
     <div id="LeftBG">
         <div class="LeftMenu">
             <h3><?= Yii::t("page", "Категории туров"); ?></h3>
@@ -24,7 +25,6 @@
                 <?php $this->endCache(); endif;?>
         </div>
     </div>
-    <?php $this->widget("authWidget"); ?>
 </div>
 
 

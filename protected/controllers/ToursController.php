@@ -29,6 +29,14 @@ class ToursController extends InfoController
                 $_GET["id"]=$model->id;
                 $id = $model->id;
             }
+                else
+            {
+                $arrId = explode( "-", $_GET["slug"] );
+                if( sizeof( $arrId ) >0 )
+                {
+                    $id = (int)$arrId[0];
+                }
+            }
         }
 
         $error = Yii::t("page", "Произошла ошибка перехода на страницу, проверьте правильно написания адреса страницы");
@@ -37,7 +45,7 @@ class ToursController extends InfoController
             $item = CatalogTours::fetch( $id );
             if( $item->id >0 )
             {
-                LogHelper::save( "tours", $item->id, "show");
+                LogHelper::saveCatLogTours( $item->id );
                 CCModelHelper::colCounter( $item );
                 // Картинки тура
                 $images = ImageHelper::getImages( $item );

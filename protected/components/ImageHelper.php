@@ -13,7 +13,9 @@ class ImageHelper
     static function getAnimateImageBlock( $item, $link, $title = "", $count = 3 )
     {
         if( !$item->image )$countImages = $count + 1;
-            else $countImages = $count;
+                      else $countImages = $count;
+
+        $count=0;
 
         if( defined("YII_SUBDOMAIN") && YII_SUBDOMAIN == "wap-" )$countImages=1;
 

@@ -8,7 +8,8 @@ class CatalogFirmsItems extends CCModel
     protected $id; // integer 
     protected $name; // string 
     protected $description; // string 
-    protected $date; // integer 
+    protected $date; // integer
+    protected $date2; // integer
     protected $firm_id; // integer 
     protected $user_id; // integer 
     protected $active; // integer 
@@ -16,6 +17,9 @@ class CatalogFirmsItems extends CCModel
     protected $del; // integer
     protected $slug;
     protected $translate;
+    protected $sale;
+    protected $date_add;
+    protected $date_edit;
 
 /*
 * Поля - связи
@@ -35,6 +39,17 @@ class CatalogFirmsItems extends CCModel
 		return 'catalog_firms_items';
 	}
 
+    public function attributePlaceholder()
+    {
+        return array_merge( parent::attributePlaceholder(),
+                array(
+                    "name" => "Название акции",
+                    "date" => "Дата начала акции",
+                    "date2" => "Дата окончания акции",
+                    "sale"  => "Процент скидки"
+                ) );
+    }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -43,10 +58,10 @@ class CatalogFirmsItems extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date, user_id', 'required'),
+			array('name, description, user_id', 'required'),
 			array('date, active, pos, del', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
-            array('slug, name, description, date, firm_id, user_id, active, pos, del', 'safe'),
+            array('date_edit, date_add, sale, date2, slug, name, description, date, firm_id, user_id, active, pos, del', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, description, date, firm_id, user_id, active, pos, del', 'safe', 'on'=>'search'),
@@ -66,6 +81,11 @@ class CatalogFirmsItems extends CCModel
 		);
 	}
 
+    public function fieldType()
+    {
+        return array_merge( parent::fieldType(), array( "date2"=>"date" ) );
+    }
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -76,7 +96,9 @@ class CatalogFirmsItems extends CCModel
 			'name' => 'Name',
 			'description' => 'Description',
 			'date' => 'Date',
-			'firm_id' => 'Firm',
+            'date2' => 'Date',
+			'sale' => 'sale',
+            'firm_id' => 'Firm',
 			'user_id' => 'User',
 			'active' => 'Active',
 			'pos' => 'Pos',
@@ -109,4 +131,10 @@ class CatalogFirmsItems extends CCModel
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function onAddFirmsItems( $event, $params = array()  )
+    {
+        if($this->hasEventHandler('onAddFirmsItems'))
+            $this->raiseEvent('onAddFirmsItems', array( "event"=>$event, "params"=>$params ) );
+    }
 }

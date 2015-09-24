@@ -1,4 +1,5 @@
 <div class="leftBlock">
+    <?php $this->widget("authWidget"); ?>
     <div id="LMenu">
         <div class="MNHeader"><?= Yii::t("page", "Категории объявлений"); ?></div>
         <?php foreach( CatalogItemsCategory::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy( "pos, name" ) ) as $item ) : ?>

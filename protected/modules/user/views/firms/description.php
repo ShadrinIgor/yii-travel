@@ -30,10 +30,8 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
             <a href="#" id="pcomments" class="<?= $tab== "pcomments" ? "pcomments " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Отзывы/Сообщения"); ?>( <?= sizeof($listComments) ?> )</a>
             <a href="#" id="counter" class="<?= $tab== "counter" ? "counter " : "" ?>dopMenuPages"><?= Yii::t("user_firm", "Статистика посещаемости"); ?></a>
             <a href="<?= SiteHelper::createUrl( "/travelAgency/description")."/".$item->slug ?>.html" title="<?= Yii::t("user_firm", "Посмотреть как будет выглядеть персональная страница фирмы"); ?>"><?= Yii::t("user_firm", "Просмотреть страницу фирмы"); ?></a>
-            <br/>
-            <span><?= Yii::t("page", "статус"); ?>: <b class="publishStatus"><?= $item->active == 0 ? " ".Yii::t("user", "не опубликован")." " : " ".Yii::t("user", "опубликован")." " ?></b></span>
-            <a href="#" class="publishLink linkButton" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl( "/user/firms/setPublish", array( "id"=>$item->id, "catalog"=>SiteHelper::getCamelCase( $item->tableName() ) ) ) ?>', '' );">
-                <?php if( $item->active == 0 ) : ?><?= Yii::t("user", "Опубликовать на сайте ?") ?><?php endif; ?><?php if( $item->active == 1 ) : ?><?= Yii::t("user", "Снять с публикации ?") ?><?php endif; ?></a>
+
+
         <?php endif; ?>
     </div>
 <?php echo CHtml::errorSummary($item); ?>
@@ -69,6 +67,16 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
     <?php if( $item->id == 0 ) : ?>
         <?= SiteHelper::getAnimateText( "tekst-dlya-stranica-dobavlenie-fimy" ) ?>
     <?php endif; ?>
+    <br/>
+    <div class="panel panel-success">
+        <div class="panel-heading textAlignCenter">ВНИМАНИЕ!!!</div>
+        <div class="panel-body textAlignCenter">
+            <span><?= Yii::t("page", "статус"); ?>: <b class="publishStatus"><?= $item->active == 0 ? " ".Yii::t("user", "не опубликован")." " : " ".Yii::t("user", "опубликован")." " ?></b></span>
+            <a href="#" class="displayInlineBlock linkButton" onclick="return ajaxAction( this, '<?= SiteHelper::createUrl( "/user/firms/setPublish", array( "id"=>$item->id, "catalog"=>SiteHelper::getCamelCase( $item->tableName() ) ) ) ?>', '' );">
+                <?php if( $item->active == 0 ) : ?><?= Yii::t("user", "Опубликовать на сайте ?") ?><?php endif; ?><?php if( $item->active == 1 ) : ?><?= Yii::t("user", "Снять с публикации ?") ?><?php endif; ?>
+            </a>
+        </div>
+    </div>
     <div id="gallery">
         <h2>Галерея</h2>
         <?= $gallMessage ? '<div class="messageSummary">'.$gallMessage.'</div>' : "" ?>
@@ -141,6 +149,7 @@ if( !in_array( $tab, $tabArray ) )$tab = "description";
     </table>
     <?php $this->widget( "formNoteWidget", array( "type"=>"requireFields" ) ) ?>
 </form>
+    <br/>
     <?php $this->widget( "formNoteWidget" ) ?>
 </div>
 

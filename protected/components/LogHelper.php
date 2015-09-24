@@ -48,4 +48,140 @@ class LogHelper
         }
 
     }
+
+    static function saveCatLogTours( $tourId )
+    {
+        // Сохронякем индивидуальный лог
+        $check = CatLogTours::findByAttributes( array( "tour_id"=>$tourId, "date2"=>date( "Y-m") ) );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count++;
+            $check[0]->save();
+        }
+            else
+        {
+            $check = new CatLogTours();
+            $check->count = 1;
+            $check->tour_id = $tourId;
+            $check->date2 = date( "Y-m");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+
+        // Сохронякем индивидуальный общий лог
+        $check = CatLogToursAll::findByAttributes( array( "date2"=>date( "Y-m-d") ) );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count++;
+            $check[0]->save();
+        }
+        else
+        {
+            $check = new CatLogToursAll();
+            $check->count = 1;
+            $check->date2 = date( "Y-m-d");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+    }
+
+    static function saveCatLogParams( $count_category = 0, $count_country = 0)
+    {
+        // Сохронякем индивидуальный просмотра категорий
+        $check = CatLogToursParams::findByAttributes( array( "date2"=>date( "Y-m-d") ) );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count_category += $count_category;
+            $check[0]->count_country += $count_country;
+            $check[0]->save();
+        }
+        else
+        {
+            $check = new CatLogToursParams();
+            $check->count_category += $count_category;
+            $check->count_country += $count_country;
+            $check->date2 = date( "Y-m-d");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+    }
+
+    static function saveCatLogCategory( $categoryId )
+    {
+        // Сохронякем индивидуальный лог по категриям
+        $check = CatLogToursCategory::findByAttributes( array( "category_id"=>$categoryId, "date2"=>date( "Y-m") ), 0 );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count++;
+            $check[0]->save();
+        }
+        else
+        {
+            $check = new CatLogToursCategory();
+            $check->count = 1;
+            $check->category_id = $categoryId;
+            $check->date2 = date( "Y-m");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+    }
+
+
+    static function saveCatLogCountry( $countryId )
+    {
+        // Сохронякем индивидуальный лог по странам
+        $check = CatLogToursCountry::findByAttributes( array( "country_id"=>$countryId, "date2"=>date( "Y-m") ), 0 );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count++;
+            $check[0]->save();
+        }
+        else
+        {
+            $check = new CatLogToursCountry();
+            $check->count = 1;
+            $check->country_id = $countryId;
+            $check->date2 = date( "Y-m");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+    }
+
+    static function saveCatLogEdit( $count_firm = 0, $count_tours = 0)
+    {
+        $check = CatLogEdit::findByAttributes( array( "date2"=>date( "Y-m-d") ), 0 );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count_firm += $count_firm;
+            $check[0]->count_tours += $count_tours;
+            $check[0]->save();
+        }
+        else
+        {
+            $check = new CatLogEdit();
+            $check->count_firm += $count_firm;
+            $check->count_tours += $count_tours;
+            $check->date2 = date( "Y-m-d");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+    }
+
+    static function saveCatLogSubscribe( )
+    {
+        $check = CatLogSubscribe::findByAttributes( array( "date2"=>date( "Y-m-d") ), 0 );
+        if( sizeof( $check ) >0 )
+        {
+            $check[0]->count ++;
+            $check[0]->save();
+        }
+        else
+        {
+            $check = new CatLogSubscribe();
+            $check->count ++;
+            $check->date2 = date( "Y-m-d");
+            if( !$check->save() )
+                print_r( $check->getErrors() );
+        }
+    }
 }

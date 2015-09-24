@@ -13,4 +13,16 @@ class RelationHelper {
         if( !empty($relationTable) )return $relationTable::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("name")->setLimit(-1)->setCache(0) );
                                else false;
     }
+
+    static public function getRelationLeftItems( CCModel $model, $classRelation )
+    {
+        $leftClass = get_class( $model );
+        $res = CatRelations::fetchAll( DBQueryParamsClass::CreateParams()->setConditions( "leftClass=:leftClass AND rightClass=:rightClass AND leftId=:id" )->setParams( array( ":leftClass"=>$leftClass, ":rightClass"=>$classRelation, ":id"=>$model->id ))->setLimit(-1)->setCache(0) );
+        $list = [];
+        foreach( $res as $items )
+        {
+            $list[] = $items->rightId;
+        }
+        return $list;
+    }
 }

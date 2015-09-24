@@ -22,7 +22,7 @@ class CatalogKurortsAdd extends CatalogKurorts
             array('name', 'duplicate'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('name, description, country_id, city_id, image, location, www, email, telefon, price, category_id, slug, user_id', 'safe'),
+            array('date_edit, date_add, name, description, country_id, city_id, image, location, www, email, telefon, price, category_id, slug, user_id', 'safe'),
             array('id, name, description, pos, country_id, city_id, image, del, location, www, email, telefon, price, firms_count, col, category_id, slug, user_id', 'safe', 'on'=>'search'),
         );
     }

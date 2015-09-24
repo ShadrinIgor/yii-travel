@@ -63,7 +63,7 @@ $this->widget('addressLineWidget', array(
                 <?php $this->widget("itemWidget", array( "link"=>"item", "item"=>$tour )) ?>
             <?php endforeach; ?>
             <div class="textAlignRight">
-                <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все акции/скидки"); ?> <?= $item->firm_id->name ?>"><?= Yii::t("page", "все акции/скидки"); ?> <?= $item->firm_id->name ?></a>
+                <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все акции/скидки"); ?> <?= $item->firm_id->name ?>"><?= Yii::t("page", "все акции/скидки"); ?> <?= $item->firm_id->name ?></a>
             </div>
         </div>
     <?php endif; ?>

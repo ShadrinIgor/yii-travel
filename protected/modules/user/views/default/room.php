@@ -7,7 +7,7 @@
     <h1><?= Yii::t("user", "Персональный кабинет") ?></h1>
     <p align="center">
         <?= Yii::t("user", "Вы успешно авторизовались. Теперь для Вас доступны все возможности персонального кабинета."); ?><br/>
-        <img src="<?= $Theme->getBaseUrl() ?>/images/strelkapng.jpg" />
+        <img id="strelkapng" src="<?= $Theme->getBaseUrl() ?>/images/strelkapng.jpg" />
     </p>
     <br/><br/>
     <h2><?= Yii::t("user", "МЫ РЕКОМЕНДУЕМ"); ?></h2>

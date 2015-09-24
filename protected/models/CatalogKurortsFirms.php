@@ -12,7 +12,9 @@ class CatalogKurortsFirms extends CCModel
     protected $del; // integer 
     protected $firms; // string 
     protected $curorts; // string 
-    protected $curorts_count; // integer 
+    protected $curorts_count; // integer
+    protected $date_add;
+    protected $date_edit;
 
 /*
 * Поля - связи

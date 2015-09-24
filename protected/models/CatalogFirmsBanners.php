@@ -17,7 +17,10 @@ class CatalogFirmsBanners extends CCModel
     protected $pos; // integer 
     protected $col; // integer 
     protected $del; // integer 
-    protected $position_id; // integer 
+    protected $position_id; // integer
+    protected $date_edit;
+    protected $date_add;
+
 
 /*
 * Поля - связи
@@ -51,7 +54,7 @@ class CatalogFirmsBanners extends CCModel
 			array('link, file', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('file, name, link, type_id, file, date, firm_id, user_id, active, pos, position_id, col, del', 'safe'),
+			array('date_edit, date_add, file, name, link, type_id, file, date, firm_id, user_id, active, pos, position_id, col, del', 'safe'),
             array('id, name, link, type_id, file, date, firm_id, user_id, active, position_id, pos, col, del', 'safe', 'on'=>'search'),
 		);
 	}

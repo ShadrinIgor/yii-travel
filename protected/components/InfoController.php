@@ -23,6 +23,14 @@ class InfoController extends Controller
 
             if( $model->id >0 )
             {
+
+                // Логируем просмотры стран и категорий для туров
+                if( Yii::app()->controller->getId() == "tours" )
+                {
+                    LogHelper::saveCatLogCountry( $model->id );
+                    LogHelper::saveCatLogParams( 0, 1 );
+                }
+
                 unset( $_GET["slug"] );
                 $_GET["country_id"] = $model->id;
             }
@@ -42,7 +50,13 @@ class InfoController extends Controller
 
                 if( $model->id >0 )
                 {
-                    LogHelper::save( "tours_category", $model->id, "action_cid_show");
+                    // Логируем просмотры стран и категорий для туров
+                    if( Yii::app()->controller->getId() == "tours" )
+                    {
+                        LogHelper::saveCatLogCategory( $model->id );
+                        LogHelper::saveCatLogParams( 1, 0 );
+                    }
+
                     unset( $_GET["slug"] );
                     $_GET["category_id"] = $model->id;
                 }

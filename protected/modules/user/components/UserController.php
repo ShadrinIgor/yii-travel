@@ -273,8 +273,29 @@ class UserController extends Controller
 
                         SiteHelper::setLog( $item->tableName(), $action, $item->id, Yii::app()->user->getId() );
 
+                        switch( Yii::app()->controller->getId() )
+                        {
+                            case "firms" : LogHelper::saveCatLogEdit(1,0);break;
+                            case "tours" : LogHelper::saveCatLogEdit(0,1);break;
+                        }
+
                         $arrayParam = array("id"=>$item->id, "status"=>"saved");
                         if( $firm->id > 0 )$arrayParam["fid"] = $firm->id;
+
+                        switch( $item->tableName() )
+                        {
+                            case "catalog_firms" : $item->onAddFirm( new CModelEvent( $item ), array( ) );break;
+                            case "catalog_tours" : $item->onAddTour( new CModelEvent( $item ), array( ) );break;
+                            case "catalog_firms_items" : $item->onAddFirmsItems( new CModelEvent( $item ), array( ) );break;
+                            case "catalog_firms_service" : $item->onAddFirmsService( new CModelEvent( $item ), array( ) );break;
+                            case "catalog_firms_banner" : $item->onAddFirmsBanners( new CModelEvent( $item ), array( ) );break;
+                        }
+
+                        // Добавляем в очередь на нотификацию
+                        // В течении 24 часов после добавления или сохранения пользователю приходят уведомления
+                        // О том что заполнил не полностью, не опубликовал, не добавил картинок и т.д.
+                        AutoNotifier::addInNotificationsQueue( $item->tableName(), $item->id );
+
                         $this->redirect( SiteHelper::createUrl( "/user/".Yii::app()->controller->getId()."/description/", $arrayParam ) );
                         die;
                     }

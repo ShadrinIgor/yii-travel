@@ -4,15 +4,15 @@ class UploadCommand extends CConsoleCommand
 {
     public function run($args)
     {
-        $link = "http://torg.com";
+        $link = "http://olx.uz";
         $listPages = array();
 
         $newCache = CatalogCache::fetchBySlug( "torg_uz" );
         if( !$newCache->description )
         {
             $newCache1 = CatalogCache::fetchBySlug( "torg_uz_page" );
-            if( $newCache1->description == 1 )$text = file_get_contents( "http://www.torg.com/ru/all" );
-                                         else $text = file_get_contents( "http://www.torg.com/ru/all/page/".$newCache1->description );
+            if( $newCache1->description == 1 )$text = file_get_contents( "http://www.olx.uz/ru/all" );
+                                         else $text = file_get_contents( "http://www.olx.uz/ru/all/page/".$newCache1->description );
 
             $arr = explode( "offers blue offers", $text );
             //echo $arr[0]."###";

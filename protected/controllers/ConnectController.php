@@ -10,7 +10,6 @@ class ConnectController extends InfoController
         parent::init();
         $this->securityKey = Yii::app()->params["connect"]["key"];
         $this->securityIP = Yii::app()->params["connect"]["ip"];
-
     }
 
     public function actionTest()

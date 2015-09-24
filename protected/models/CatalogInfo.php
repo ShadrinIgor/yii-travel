@@ -20,6 +20,8 @@ class CatalogInfo extends CCModel
     protected $slug; // string
     protected $translate;
     protected $tour_category;
+    protected $date_add;
+    protected $date_edit;
 
 /*
 * Поля - связи

@@ -1,4 +1,5 @@
 <div class="leftBlock">
+    <?php $this->widget("authWidget"); ?>
     <?php $this->widget("findFormWidget") ?>
     <div class="lBanner"><?= Yii::app()->banners->getBannerByCategory( "left" ) ?></div>
     <div id="LeftBG">

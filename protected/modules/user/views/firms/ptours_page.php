@@ -41,13 +41,11 @@
                                 <a href="#" class="publishLink"  onclick="return ajaxAction( this, '<?= SiteHelper::createUrl("/user/firms/setPublish", array("id"=>$tour->id, "catalog"=>"CatalogTours")) ?>', '' );"><?= Yii::t("user", "Опубликовать") ?></a><br/>
                             <?php endif; ?>
                         </div>
-
                         <div class="popup PMarginLeft">
-                            <br/>
                             <b><?= Yii::t("user", "Вы действительно хотите удалить запись?") ?></b>
                             <br/><br/>
                             <a href="#" class="PCancel"><?= Yii::t("user", "Отмена") ?> </a>&nbsp;|&nbsp;
-                            <a href="#"  onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$tour->id, "catalog"=>"CatalogTours")) ?>', '' );" class="deleteItem"><?= Yii::t("user", "Удалить") ?></a>
+                            <a href="#" onclick="return ajaxDeleteAction( this, '<?= SiteHelper::createUrl("/user/firms/delete", array("id"=>$tour->id, "catalog"=>"CatalogTours")) ?>', '' );" class="deleteItem"><?= Yii::t("user", "Удалить") ?></a>
                         </div>
                         <a href="#" class="PDel"><?= Yii::t("user", "Удалить") ?></a>
                     </div>

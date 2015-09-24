@@ -28,9 +28,12 @@ class UserNotifier
         }
             else
         {
-            $arrayParams = array_merge( $arrayParams, array( "link"=> SiteHelper::createUrl( "/user/default/confirm", array( "confirm_key"=>$confim->confirm_key )  )  ));
+            // Ставим его в очередь на проверку, если пользователь не подтвердил в течении одного дня, спрашиваем почему он этого не сделал
+            AutoNotifier::addInNotificationsQueue("catalog_users", $user->id, 0 );
+
+            $arrayParams = array_merge( $arrayParams, [ "link"=> SiteHelper::createUrl( "/user/default/confirm", [ "confirm_key"=>$confim->confirm_key ]  )  ]);
             // Отправляем письмо для подтверждения Email
-            Yii::app()->notifications->send( "registration_confirm", array( "mail" ), $user->id, $arrayParams );
+            Yii::app()->notifications->send( "registration_confirm", [ "mail" ], $user->id, $arrayParams );
         }
     }
 
@@ -57,8 +60,12 @@ class UserNotifier
                 // Удаляем запись в базе о необходимости подтверждения
                 if( $confirm->id>0 )$confirm->delete();
 
+                // Ставим его в очередь на проверку, если пользователь не подтвердил в течении одного дня, спрашиваем почему он этого не сделал
+                AutoNotifier::delInNotificationsQueue("catalog_users", $user->id);
+                AutoNotifier::addInNotificationsQueue("catalog_users_confirm", $user->id, 0 );
+
                 // Отправляем письмо для подтверждения Email
-                Yii::app()->notifications->send( "registration_successfully", array( "mail" ), $user->id );
+                Yii::app()->notifications->send( "registration_successfully", [ "mail" ], $user->id );
             }
         }
 
@@ -71,9 +78,12 @@ class UserNotifier
 
         $user = $event->sender;
         $user->last_visit = time();
+        $user->date_login = date("Y-m-d");
 
         if( !$user->save() )
-            throw new Exception( array("Error update last visit", "Error update last visit") );
+        {
+            throw new Exception(["Error update last visit", "Error update last visit"]);
+        }
     }
 
     static function lostPassword( $event )
@@ -99,9 +109,9 @@ class UserNotifier
         }
             else
         {
-            $arrayParams = array( "link"=> SiteHelper::createUrl( "/user/default/LostConfirm", array( "key"=>$confim->confirm_key ) ) );
+            $arrayParams = [ "link"=> SiteHelper::createUrl( "/user/default/LostConfirm", [ "key"=>$confim->confirm_key ] ) ];
             // Отправляем письмо для подтверждения Email
-            Yii::app()->notifications->send( "lostpassword_request", array( "mail" ), $user->id, $arrayParams );
+            Yii::app()->notifications->send( "lostpassword_request", [ "mail" ], $user->id, $arrayParams );
         }
     }
 
@@ -125,7 +135,7 @@ class UserNotifier
             else
         {
             // Отправляем письмо уведомления о смене пароля
-            Yii::app()->notifications->send( "lostpassword_save", array( "mail" ), $user->id );
+            Yii::app()->notifications->send( "lostpassword_save", [ "mail" ], $user->id );
         }
     }
 }

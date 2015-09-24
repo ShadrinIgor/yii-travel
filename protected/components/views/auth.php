@@ -1,4 +1,4 @@
-<?php if( Yii::app()->user->isGuest ) : ?>
+<?php if( Yii::app()->user->isGuest && Yii::app()->controller->module && Yii::app()->controller->module->id == "user" ) : ?>
 <div id="authForm">
     <?php echo CHtml::form('/user','post',array( 'id'=>'validateForm')); ?>
     <div style="text-align:center;"><b><?= Yii::t("page", "Авторизация") ?></b></div>
@@ -21,5 +21,5 @@
         </tr>
     </table>
     </form>
-<?php endif; ?>
 </div>
+<?php endif; ?>

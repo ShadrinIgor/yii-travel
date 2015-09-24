@@ -55,7 +55,7 @@ $this->widget('addressLineWidget', array(
             <?php endforeach; ?>
         </div>
         <div class="textAlignRight overflowHidden">
-            <a class="label" href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все акции"); ?> <?= $item->firm_id->name ?>"><?= Yii::t("page", "Смотреть все акции"); ?> <?= $item->firm_id->name ?> ( <?= $firmCount ?> <?= Yii::t("page", "акций"); ?>) )...</a>
+            <a class="label" href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" class="cmore" title="<?= Yii::t("page", "все акции"); ?> <?= $item->firm_id->name ?>"><?= Yii::t("page", "Смотреть все акции"); ?> <?= $item->firm_id->name ?> ( <?= $firmCount ?> <?= Yii::t("page", "акций"); ?>) )...</a>
         </div>
     <?php endif; ?>
     <?php if( sizeof($otherTours)>0 ) : ?>

@@ -40,7 +40,7 @@ class CatalogUsersRegistration extends CatalogUsers
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('name, password, surname, fatchname, email, country_id, city_id, image, country_other, type_id, active, last_visit', 'safe'),
+            array('date_add, date_edit, date_login, name, password, surname, fatchname, email, country_id, city_id, image, country_other, type_id, active, last_visit', 'safe'),
 		);
 	}
 

@@ -1,4 +1,5 @@
 <div class="leftBlock">
+    <?php $this->widget("authWidget"); ?>
     <?php $this->widget("findFormWidget") ?>
     <div id="LeftBG">
         <div class="LeftMenu">

@@ -6,16 +6,13 @@ class ToursRatingCommand extends CConsoleCommand
     {
         // Расчет ретинга фирмы
         /*
-                + Рейтинг фирмы
-                    если рейтинг = 0 то - 100
-
                 + Заполленность описания 40
                     если не заполнено - 30
 
                 + Заполленность ПРОГРАММЫ 40
                     если не заполнено - 30
 
-                + Заполленность ЦЕНЫ 40
+                + Заполленность ЦЕНЫ 80
                     если не заполнено - 30
 
                 + Заполенность ЦЕНЫ И ВАЛЮТЫ 100
@@ -49,24 +46,21 @@ class ToursRatingCommand extends CConsoleCommand
             $id = $item->id;
             $rating = 0;
 
-            // Рейтинг фирмы
-            if( $item->firm_id->rating > 0 )$rating += $item->firm_id->rating;
-                elseif( $item->firm_id->rating == 0 )$rating -= 100;
-
             // Проверяем описание
             if( (int)$item->price >0 )
             {
+                $rating += 100;
                 if ($item->currency_id->id > 0)
                 {
-                    $rating += 100;
+                    $rating += 50;
                 }
             }
-            else $rating -=100;
+                else $rating -=50;
 
             if( $item->description )
             {
                 if( strlen( trim( strip_tags( $item->description ) ) ) >200 )
-                    $rating += 40;
+                    $rating += 100;
             }
                 else $rating -= 30;
 
@@ -75,24 +69,23 @@ class ToursRatingCommand extends CConsoleCommand
                 if( strlen( trim( strip_tags( $item->program ) ) ) >200 )
                     $rating += 40;
             }
-            else $rating -= 30;
-
+            //else $rating -= 30;
             if( $item->prices )
             {
                 if( strlen( trim( strip_tags( $item->prices ) ) ) >100 )
                     $rating += 40;
             }
-            else $rating -= 30;
+            //else $rating -= 30;
 
             if( $item->included )
             {
                 if( strlen( trim( strip_tags( $item->included ) ) ) >100 )
                     $rating += 40;
             }
-            else $rating -= 30;
+            //else $rating -= 30;
 
             if( $item->duration )$rating += 40;
-            else $rating -= 30;
+            //else $rating -= 30;
 
             if( $item->not_included )$rating += 20;
 
@@ -109,8 +102,7 @@ class ToursRatingCommand extends CConsoleCommand
                 }
                     else $rating -= 30;
             }
-            else $rating -= 50;
-    
+
             $item->rating =  $rating;
             if( !$item->save() )print_r( $item->getErrors() );
 

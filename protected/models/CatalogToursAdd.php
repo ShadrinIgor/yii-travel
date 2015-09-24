@@ -13,8 +13,8 @@ class CatalogToursAdd extends CatalogTours
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, category_id, country_id, firm_id, duration , description, included, program', 'required'),
-			array('category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
+			array('name, category_id, country_id, firm_id, duration , description, included, program, price, currency_id', 'required'),
+			array('currency_id, price, category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('srok, price', 'length', 'max'=>25),
 			array('image', 'length', 'max'=>100),
@@ -25,7 +25,7 @@ class CatalogToursAdd extends CatalogTours
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 
-			array('duration, attention, cancellation, not_included, included, prices, program, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+			array('date_edit, date_add, currency_id, duration, attention, cancellation, not_included, included, prices, program, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
 			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
 		);
 	}
@@ -39,6 +39,7 @@ class CatalogToursAdd extends CatalogTours
 		// class name for the relations automatically generated below.
 		return array(
 			'firm' => array(self::BELONGS_TO, 'CatalogFirms', 'firm_id'),
+            'currency' => array(self::BELONGS_TO, 'CatalogCurrency', 'currency_id'),
 			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 			'city' => array(self::BELONGS_TO, 'CatalogCity', 'city_id'),
 			'category' => array(self::BELONGS_TO, 'CatalogToursCategory', 'category_id'),
@@ -60,12 +61,14 @@ class CatalogToursAdd extends CatalogTours
             'duration' => 'Длительноть тура',
             'price' => "Цена от",
             'prices' => "Описание цен ( в зависимости от количество и людей и т.д. )",
+            'currency_id' => "Укажите валюту",
+            'description' => Yii::t("page", 'Описание тура'),
             'program' => 'Программа тура',
             'included' => 'В тур включенно',
             'not_included' => 'В тур НЕ включенно',
             'attention' => 'Внимание',
             'cancellation' => 'Условия ануляции',
-            'description' => Yii::t("page", 'Описание тура'),
+
 		);
 	}
 

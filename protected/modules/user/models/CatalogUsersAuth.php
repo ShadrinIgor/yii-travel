@@ -21,7 +21,7 @@ class CatalogUsersAuth extends CatalogUsers
             array('email', 'check_exists_params'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('email, password, last_visit', 'safe'),
+            array('date_add, date_edit, date_login, email, password, last_visit', 'safe'),
 		);
 	}
 
@@ -33,7 +33,7 @@ class CatalogUsersAuth extends CatalogUsers
         );
     }
 
-    public function check_exists_email()
+    public function check_exists_email($attribute,$params)
     {}
 
     public function check_exists_params($attribute,$params)

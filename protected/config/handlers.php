@@ -1,6 +1,30 @@
 <?php
 
 return array(
+
+    // Добавление объявлений пользователем
+    'onAddFirm'=>array(
+        array('AutoNotifier', 'onAddFirm'),
+    ),
+
+    'onAddTour'=>array(
+        array('AutoNotifier', 'onAddTour'),
+    ),
+
+    'onAddFirmsItems'=>array(
+        array('AutoNotifier', 'onAddFirmsItems'),
+    ),
+
+    'onAddFirmsService'=>array(
+        array('AutoNotifier', 'onAddFirmsService'),
+    ),
+
+    'onAddFirmsBanners'=>array(
+        array('AutoNotifier', 'onAddFirmsBanners'),
+    ),
+
+    // end of (Добавление объявлений пользователем)
+
     'onRegistration'=>array(
         array('UserNotifier', 'registration'),
     ),
@@ -33,11 +57,11 @@ return array(
     'onAddItem'=>array(
         array('ItemsNotifier', 'onAddItem'),
     ),
-
+	
     'onBannerRequest'=>array(
         array('BannerRequestNotifier', 'onBannerRequest'),
     ),
-
+	
     /*
         // Публикация объявления
         'onItemPublish'=>array(

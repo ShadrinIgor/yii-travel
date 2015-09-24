@@ -7,14 +7,11 @@ class CatLogTours extends CCModel
 {
     protected $id; // integer 
     protected $tour_id; // integer 
-    protected $action_show; // integer 
-    protected $action_contact; // integer 
-    protected $action_showimage; // integer 
-    protected $name; // integer 
+    protected $count; // integer
+    protected $name; // integer
     protected $del; // integer 
     protected $pos; // integer 
-    protected $date_from; // integer 
-    protected $date_to; // integer 
+    protected $date2; // integer
 
 /*
 * Поля - связи
@@ -42,14 +39,14 @@ class CatLogTours extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tour_id, date_from', 'required'),
-			array('tour_id, action_show, action_contact, action_showimage, name, del, pos, date_from, date_to', 'numerical', 'integerOnly'=>true),
+			array('tour_id, date2, count', 'required'),
+			array('tour_id,  count, name, del, pos', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('tour_id, action_show, action_contact, action_showimage, name, del, pos, date_from, date_to', 'safe'),
-            array('id, tour_id, action_show, action_contact, action_showimage, name, del, pos, date_from, date_to', 'safe', 'on'=>'search'),
+			array('tour_id, count, name, del, pos, date2', 'safe'),
 		);
 	}
+
 
 	/**
 	 * @return array relational rules.
@@ -70,14 +67,11 @@ class CatLogTours extends CCModel
 		return array(
 			'id' => 'ID',
 			'tour_id' => 'Tour',
-			'action_show' => 'Action Show',
-			'action_contact' => 'Action Contact',
-			'action_showimage' => 'Action Showimage',
+			'count' => 'Action Show',
 			'name' => 'Name',
 			'del' => 'Del',
 			'pos' => 'Pos',
-			'date_from' => 'Date From',
-			'date_to' => 'Date To',
+			'date2' => 'date2',
 		);
 	}
 
@@ -94,14 +88,11 @@ class CatLogTours extends CCModel
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('tour_id',$this->tour_id);
-		$criteria->compare('action_show',$this->action_show);
-		$criteria->compare('action_contact',$this->action_contact);
-		$criteria->compare('action_showimage',$this->action_showimage);
+		$criteria->compare('count',$this->action_showimage);
 		$criteria->compare('name',$this->name);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('pos',$this->pos);
-		$criteria->compare('date_from',$this->date_from);
-		$criteria->compare('date_to',$this->date_to);
+		$criteria->compare('date2',$this->date2_from);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

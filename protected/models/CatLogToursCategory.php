@@ -6,14 +6,12 @@
 class CatLogToursCategory extends CCModel
 {
     protected $id; // integer 
-    protected $cid_id; // integer 
-    protected $action_cid_show; // integer 
-    protected $action_tor_show; // integer 
+    protected $category_id; // integer 
+    protected $count; // integer 
     protected $name; // integer 
     protected $del; // integer 
     protected $pos; // integer 
-    protected $date_from; // integer 
-    protected $date_to; // integer 
+    protected $date2; // integer 
 
 /*
 * Поля - связи
@@ -41,12 +39,12 @@ class CatLogToursCategory extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cid_id, date_from', 'required'),
-			array('cid_id, action_cid_show, action_tor_show, name, del, pos, date_from, date_to', 'numerical', 'integerOnly'=>true),
+			array('category_id, date2', 'required'),
+			array('category_id, count, name, del, pos', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, cid_id, action_cid_show, action_tor_show, name, del, pos, date_from, date_to', 'safe'),
-            array('id, cid_id, action_cid_show, action_tor_show, name, del, pos, date_from, date_to', 'safe', 'on'=>'search'),
+			array('id, category_id, count, name, del, pos, date2', 'safe'),
+            array('id, category_id, count, name, del, pos, date2', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,14 +66,12 @@ class CatLogToursCategory extends CCModel
 	{
 		return array(
 			'id' => 'ID',
-			'cid_id' => 'Cid',
-			'action_cid_show' => 'Action Cid Show',
-			'action_tor_show' => 'Action Tor Show',
+			'category_id' => 'Cid',
+			'count' => 'Action Cid Show',
 			'name' => 'Name',
 			'del' => 'Del',
 			'pos' => 'Pos',
-			'date_from' => 'Date From',
-			'date_to' => 'Date To',
+			'date2' => 'date2 From',
 		);
 	}
 
@@ -91,14 +87,12 @@ class CatLogToursCategory extends CCModel
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('cid_id',$this->cid_id);
-		$criteria->compare('action_cid_show',$this->action_cid_show);
-		$criteria->compare('action_tor_show',$this->action_tor_show);
+		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('count',$this->count);
 		$criteria->compare('name',$this->name);
 		$criteria->compare('del',$this->del);
 		$criteria->compare('pos',$this->pos);
-		$criteria->compare('date_from',$this->date_from);
-		$criteria->compare('date_to',$this->date_to);
+		$criteria->compare('date2',$this->date2);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

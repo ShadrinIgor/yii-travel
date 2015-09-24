@@ -4,16 +4,17 @@ class UploadProAvtoCommand extends CConsoleCommand
 {
     public function run($args)
     {
+        echo "*";
         $link = "http://proavto.uz";
         $listPages = array();
 
         $newCache = CatalogCache::fetchBySlug( "proavto.uz" );
         if( !$newCache->description )
         {
+            echo "*";
             $newCache1 = CatalogCache::fetchBySlug( "proavto_uz_page" );
             if( $newCache1->description == 1 )$text = file_get_contents( "http://proavto.uz/ru/ads/search?sortby=datenew&pageSize=10" );
             else $text = file_get_contents( "http://proavto.uz/ru/ads/search?sortby=datenew&pageSize=10&page=".$newCache1->description );
-
 
             $arr = explode( 'class="foot"', $text );
 
@@ -26,14 +27,15 @@ class UploadProAvtoCommand extends CConsoleCommand
                 $listPages[] = trim( $link.$arr1[0] );
             }
 
-
             $newCache->description = serialize( $listPages );
             $newCache->date = time();
             if( !$newCache->save() )
                 print_r( $newCache->getErrors() );
+
+            print_r( $listPages );
         }
         else $listPages = unserialize( $newCache->description );
-
+die("&");
         $countPage = 0;
         for( $i=0;$i<sizeof( $listPages );$i++ )
         {

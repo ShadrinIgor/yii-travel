@@ -30,6 +30,9 @@ class CatalogUsers extends CCModel
     protected $icq; // string 
     protected $skype; // string
     protected $trainings;
+    protected $date_edit;
+    protected $date_add;
+    protected $date_login;
 
 /*
 * Поля - связи
@@ -81,7 +84,7 @@ class CatalogUsers extends CCModel
             array('email', 'check_exists_email'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('trainings, subscribe, pass, pos, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
+			array('date_add, date_edit, date_login, trainings, subscribe, pass, pos, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount', 'safe'),
 			array('id, del, name, active, password, surname, fatchname, email, country_id, city_id, type_id, image, country_other, last_visit, phone, site, quote, desktop, amount, pos, pass, subscribe, icq, skype', 'safe', 'on'=>'search'),
 		);
 	}

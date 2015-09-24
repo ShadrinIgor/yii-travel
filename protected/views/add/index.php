@@ -21,12 +21,12 @@ $this->widget('addressLineWidget', array(
 <div id="InnerText" class="innerPage">
     <h1><?= Yii::t("add", "Бесплатное добавление туристической информации на сайт"); ?></h1>
     <div id="dopMenu">
-        <a href="#" id="travel-agency" class="<?= $activeTab == "travel-agency" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление фирмы"); ?><br/>&nbsp;</a>
+        <a href="#" id="travel-agency" class="<?= $activeTab == "travel-agency" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление фирмы"); ?></a>
         <a href="#" id="curorts" class="<?= $activeTab == "curorts" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление курортов/зон отдыха"); ?></a>
-        <a href="#" id="hotels" class="<?= $activeTab == "hotels" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление гостиницы"); ?><br/>&nbsp</a>
-        <a href="#" id="vacancy-resume" class="<?= $activeTab == "vacancy-resume" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление вакансий/резюме"); ?><br/>&nbsp</a>
-        <a href="#" id="ads-items" class=<?= $activeTab == "ads-items" ? "activeDM " : "" ?>"dopMenuPages"><?= Yii::t("add", "Добавление частных объявлений"); ?></a>
-        <a href="#" id="other-info" class=<?= $activeTab == "other-info" ? "activeDM " : "" ?>"dopMenuPages"><?= Yii::t("add", "Добавление прочей информация"); ?></a>
+        <a href="#" id="hotels" class="<?= $activeTab == "hotels" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление гостиницы"); ?></a>
+        <a href="#" id="vacancy-resume" class="<?= $activeTab == "vacancy-resume" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление вакансий/резюме"); ?></a>
+        <a href="#" id="ads-items" class="<?= $activeTab == "ads-items" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление частных объявлений"); ?></a>
+        <a href="#" id="other-info" class="<?= $activeTab == "other-info" ? "activeDM " : "" ?>dopMenuPages"><?= Yii::t("add", "Добавление прочей информация"); ?></a>
     </div>
     <br/>
     <div id="travel-agency_page" class="pageTab<?= $activeTab == "travel-agency" ? " activePage " : " displayNone" ?>">
@@ -36,13 +36,13 @@ $this->widget('addressLineWidget', array(
         <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/firms/description" ) ?>" class="addButton" title="<?= Yii::t("add", "добавить бесплатно туристическое агенство"); ?>"> <?= Yii::t("add", "добавить туристическое агенство БЕСПЛАТНО"); ?></a></div>
     </div>
     <div id="curorts_page" class="pageTab<?= $activeTab == "curorts" ? " activePage " : " displayNone" ?>">
-        <h2>><?= Yii::t("add", "Добавление курортов/зон отдыха"); ?></h2>
+        <h2><?= Yii::t("add", "Добавление курортов/зон отдыха"); ?></h2>
         <?= $kurorts->description; ?>
         <br/>
         <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/resort/description" ) ?>" class="addButton" title="<?= Yii::t("add", "Добавить зону отдыха/курорт бесплатно"); ?>"> <?= Yii::t("add", "добавить зону отдыха/курорт БЕСПЛАТНО"); ?></a></div>
     </div>
     <div id="hotels_page" class="pageTab<?= $activeTab == "hotels" ? " activePage " : " displayNone" ?>">
-        <h2>><?= Yii::t("add", "Добавление гостиницы"); ?></h2>
+        <h2><?= Yii::t("add", "Добавление гостиницы"); ?></h2>
         <?= $hotels->description; ?>
         <br/>
         <div class="textAlignCenter"><a href="<?= SiteHelper::createUrl( "/user/hotels/description" ) ?>" class="addButton" title="<?= Yii::t("add", "Добавить гостиницу бесплатно"); ?>"> <?= Yii::t("add", "Добавить гостиницу БЕСПЛАТНО"); ?></a></div>
@@ -68,18 +68,29 @@ $this->widget('addressLineWidget', array(
         <br/>
         <?= Yii::t("add", "Email для запроса:"); ?> <a href="mailto:<?= Yii::app()->params["supportEmail"] ?>"><?= Yii::app()->params["supportEmail"] ?></a>
     </div>
-    <div class="greeBorder">
-        <p>
-            <b><?= Yii::t("add", "Внимание!!!"); ?></b><br/>
-            <?= Yii::t("add", "При переходе Вам необходимо будет авторизоваться, либо зарегистрироваться  если у вас нет логина. После этого Вы сможете вносить информацию."); ?><br/>
-        </p>
-        <p>
-            <b><?= Yii::t("add", "Возникли вопросы?"); ?></b><br/>
+    <br/>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <?= Yii::t("add", "Внимание!!!"); ?>
+        </div>
+        <div class="panel-body">
+            <?= Yii::t("add", "При переходе Вам необходимо будет авторизоваться, либо зарегистрироваться  если у вас нет логина. После этого Вы сможете вносить информацию."); ?>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <?= Yii::t("add", "Возникли вопросы?"); ?>
+        </div>
+        <div class="panel-body">
             <?= Yii::t("add", "Пишите нам на Email <a href='mailto:support@world-travel.uz'>support@world-travel.uz</a>, мы будем рады на них ответить."); ?>
-        </p>
-        <p>
-            <b><?= Yii::t("add", "Ваша информация, фирма, отель или прочая информация уже размещение на сайте?"); ?> </b><br/>
+        </div>
+    </div>
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <?= Yii::t("add", "Ваша информация, фирма, отель или прочая информация уже размещение на сайте?"); ?>
+        </div>
+        <div class="panel-body">
             <?= Yii::t("add", "Если Вы хотите изменить её или удалить, Вам необходимо"); ?> <a href="<?= SiteHelper::checkedSlugName("/add/confirm") ?>" title="<?= Yii::t("add", "подтвердить информацию"); ?>"><?= Yii::t("add", "подтвердить информацию"); ?></a>.
-        </p>
+        </div>
     </div>
 </div>

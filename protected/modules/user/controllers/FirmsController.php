@@ -102,9 +102,10 @@ class FirmsController extends UserController
         if( $id >0 && !empty( $catalog ) )
         {
 
-            $modelClass = SiteHelper::getCamelCase( $catalog::tableName() );
+            $newCatalog = new $catalog();
+            $modelClass = SiteHelper::getCamelCase( $newCatalog->tableName() );
             $model = $modelClass::fetch( $id );
-            $listImages = CatGallery::findByAttributes( array("catalog"=>$catalog::tableName(), "item_id"=>$id) );
+            $listImages = CatGallery::findByAttributes( array("catalog"=>$newCatalog->tableName(), "item_id"=>$id) );
             $imagesMin = SiteHelper::getConfig( "publish_min_images" );
             $sizeofImages = sizeof( $listImages );
             if( $model->image )$sizeofImages ++;
@@ -127,7 +128,7 @@ class FirmsController extends UserController
                         if( $commentModel->active == 0 ){$commentModel->active = 1;$action="publish";}
                                                    else {$commentModel->active = 0;$action="nopublish";}
 
-                        SiteHelper::setLog( $catalog::tableName(), $action, $commentModel->user_id->id, Yii::app()->user->getId() );
+                        SiteHelper::setLog( $newCatalog->tableName(), $action, $commentModel->user_id->id, Yii::app()->user->getId() );
                         if( $commentModel->save() )echo 1;
                         else print_r( $commentModel->getErrors() );
                         return;

@@ -75,6 +75,8 @@ class TravelAgencyController extends InfoController
                 $tourClass = new CatalogToursFirms();
                 $arrSearchFieldsTours = $tourClass->getSearchAttributes();
 
+
+
                 $this->render('description',
                     array(
                         "item" => $item,
@@ -86,8 +88,11 @@ class TravelAgencyController extends InfoController
                     ));
 
             }
-            else throw new CHttpException("",$error);
+            else
+            {
+                throw new CHttpException("", "К сожалению описание данного тура не найденно в базе" );
+            }
         }
-        else throw new CHttpException("",$error);
+        else throw new CHttpException("", "К сожалению описание данного тура не найденно в базе" );
     }
 }

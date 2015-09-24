@@ -31,7 +31,8 @@
     <?php endif; ?>
 </table>
 <div class="textAlignCenter">
-    <p><a href="#" id="commentdAdd" class="openDisplay">[ <?= Yii::t("page", "отправить сообщение"); ?> ]</a></p>
+    <BR/>
+    <p><a href="#" id="commentdAdd" class="openDisplay btn btn-info">[ <?= Yii::t("page", "отправить сообщение"); ?> ]</a></p>
 </div>
 <div id="commentdAdd_display" class="displayNone">
     <form action="" method="post">

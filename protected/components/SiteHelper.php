@@ -107,8 +107,7 @@ class SiteHelper
             $templateText = fread( $file, filesize( $fullUrl ) );
             fclose( $file );
             $msg = str_replace( "@cotent_text@", $msg, $templateText );
-        }
-*/
+        }*/
 
         $replaceArray[ "src='f/" ] = Yii::app()->params["baseUrl"]."f/";
         if( sizeof($replaceArray)>0 )
@@ -119,9 +118,10 @@ class SiteHelper
             }
         }
 
+        SubscribesUzHelper::sendEmail($toName, $to, $subject, "<div style=\"background: #e4ddcd;padding: 0px 10px 10px 10px;overflow: hidden;\">".$msg."</div>", 2, 1);
 
+        /*$text=base64_encode( $msg );
 
-/*        $text=base64_encode( $msg );
 
         $smtp_conn = fsockopen("92.63.109.197", 25,$errno, $errstr, 10);
         $data = SiteHelper::get_data($smtp_conn);
@@ -174,8 +174,7 @@ class SiteHelper
         $newLog->description = $log;
         $newLog->action = "subscribe";
         if( !$newLog->save() )
-            print_r( $newLog->getErrors() );
-*/
+            print_r( $newLog->getErrors() );*/
     }
 
     static function get_data($smtp_conn)
@@ -316,7 +315,7 @@ class SiteHelper
             "Ф"=>"F","Ы"=>"Y","В"=>"V","А"=>"A","П"=>"P","Р"=>"R",
             "О"=>"O","Л"=>"L","Д"=>"D","Ж"=>"ZH","Э"=>"E","Ё"=>"E",
             "Я"=>"YA","Ч"=>"CH","С"=>"S","М"=>"M","И"=>"I","Т"=>"T",
-            "Ь"=>"","Б"=>"B","Ю"=>"YU",
+            "Ь"=>"","Б"=>"B","Ю"=>"YU", "”"=>"", "“"=>"",
             "«"=>"","»"=>""," "=>"-",
 
             "\""=>"", "\."=>"", "–"=>"-", "\,"=>"", "\("=>"", "\)"=>"",

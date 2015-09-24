@@ -85,7 +85,7 @@ class CCModelHelper
                                 $input = CHtml::passwordField( $classTable."[".$field."]", '', array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) ); break;
                             case "checkbox"        : $input = CHtml::activeCheckBox( $form, $field, array( "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) ); break;
                             case "visual_textarea" :
-                                $input = $fieldPlaceholder.CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) );
+                                $input = $fieldPlaceholder.CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"tinymce", "placeholder"=>$fieldPlaceholder ) );
                                 break;
                             case "textarea" :
                                 $input = CHtml::activeTextArea( $form, $field, array( "cols"=>50, "rows"=>10, "class"=>"mceNoEditor", "placeholder"=>$fieldPlaceholder, $requiredAttr=>"" ) );

@@ -6,7 +6,8 @@
 class CatalogToursCategory extends CCModel
 {
     protected $id; // integer 
-    protected $name; // string 
+    protected $name; // string
+    protected $name2; // string
     protected $description; // string 
     protected $pos; // integer 
     protected $del; // integer 
@@ -47,8 +48,8 @@ class CatalogToursCategory extends CCModel
 
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('translate, id, name, description, pos, del, owner, slug', 'safe'),
-            array('translate, id, name, description, pos, del, owner, slug', 'safe', 'on'=>'search'),
+			array('translate, id, name, name2, description, pos, del, owner, slug', 'safe'),
+            array('translate, id, name,  name2, description, pos, del, owner, slug', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +75,7 @@ class CatalogToursCategory extends CCModel
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+            'name2' => 'Name',
 			'description' => 'Description',
 			'pos' => 'Pos',
 			'del' => 'Del',

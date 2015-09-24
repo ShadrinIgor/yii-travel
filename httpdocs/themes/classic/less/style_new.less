@@ -9,6 +9,7 @@ body
   font-family: Georgia;
 }
 
+input[type=file]{display: inline-block;}
 .overflowHidden{overflow: hidden;}
 .floatLeft{float: left;}
 .floatRight{float: right;}
@@ -23,7 +24,7 @@ body
   text-overflow: ellipsis; /* Добавляем многоточие */
   display:block;
 }
-
+.displayInlineBlock{display: inline-block;}
 
 a{text-decoration: none;color: #ff4f00;}
 a:hover{text-decoration: underline;}
@@ -272,7 +273,10 @@ h1
   text-align: center;
   background: #677BA0;
   overflow: hidden;
+  height: 190px;
 }
+
+.LTImag.LTI2 img{margin-top: 10px;}
 
 .LTPrice
 {
@@ -299,6 +303,7 @@ h1
   display: block;
   font-size: 18px;
   color: #FFFFFF;
+  overflow: hidden;
 }
 
 .LTPrice span a
@@ -1245,6 +1250,12 @@ a.label
   background: #efefef;
 }
 
+.widget .carousel li
+{
+  width: 200px;
+  height: 100px;
+}
+
 .widget.widget2 .next,
 .widget.widget2 .prev
 {
@@ -1496,7 +1507,7 @@ a.label
 
 .tableForm
 {
-  width: 500px;
+  width: 600px;
   margin: 0px auto;
 }
 
@@ -1513,7 +1524,7 @@ a.label
 .tableForm td input[type=password],
 .tableForm td select
 {
-  width: 388px;
+  width: 413px;
   height: 26px;
 }
 
@@ -1546,6 +1557,7 @@ a.label
   border-left: 4px solid rgb(255, 79, 0);
   background: #F8F6F6;
   text-align: justify;
+  margin: 10px 0px;
 }
 
 .errorSummary
@@ -1566,4 +1578,146 @@ a.label
   font-weight: bold;
 }
 
+#gallery
+{
+  background-color: #F8F6F6;
+  padding: 10px;
+  margin: 10px 0px;
+  border: 1px solid #DED2D2;
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px 0px rgba(150, 150, 150, 0.3);
+  text-align: center;
+}
+
+#gallery h2
+{
+  margin-top: 0px;
+}
+
+#gallery .textAlignCenter
+{
+  display: none;
+}
+
+#gallery .displayNone.addForm
+{
+  display: block;
+  text-align: center;
+}
+
+#gallery td.textAlignCenter
+{
+  display: block;
+}
+
+#gallery .displayNone.addForm table.tableListItems
+{
+  margin: 0px auto;
+}
+
+.listGallery
+{
+  margin: 0px 0px 20px 0px;
+  border: 1px solid rgba(175, 175, 175, 0.78);
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #efefef;
+}
+
+#gallery .listGallery .textAlignCenter
+{
+  display: block;
+}
+
+.LGItem
+{
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #CEC4C4;
+  background-color: #ECEAEA;
+  border-radius: 6px;
+}
+
+#dopMenu a, a.linkButton
+{
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 6px;
+  border:1px solid #afafaf;
+  margin: 5px;
+
+  /* Анимация */
+  -webkit-transition: .1s linear;
+  -webkit-transition-delay: 0.1s;
+  -o-transition: .1s linear;
+  -o-transition-delay: 0.1s;
+  -moz-transition: .1s linear;
+  -moz-transition-delay: 0.1s;
+  transition: .1s linear;
+  transition-delay: 0.1s;
+}
+
+#dopMenu a.dopMenuPages
+{
+  background-color: #FAFFEF;
+}
+
+#dopMenu a.activeDM, #dopMenu a:hover
+{
+  background-color: #A4D931;
+  color: #fff;
+}
+
+.sovetBlock
+{
+  border-left: 3px solid #FF4F00;
+  padding: 10px;
+  background-color: #F9F6F6;
+  margin-top: 10px;
+}
+
+.pageTab
+{
+  text-align: justify;
+  margin: 0px 10px;
+  background: #fff;
+}
+
+.popup
+{
+  position: ABSOLUTE;
+  background-color: #F6F9F5;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #CCE0C3;
+  box-shadow: 0px 0px 5px 0px rgba(100,100,100,0.2);
+  margin-left: -400px;
+  width: 400px;
+  display: none;
+}
+
+.popup a{display: inline-block;}
+
+#tableListItems th{background: #efefef;padding: 10px}
+
+#tableListItems tr:nth-child(2n){background: rgba(239, 239, 239, 0.44);}
+
+#userCabinet
+{
+  margin-left: 10px;
+}
+
+#strelkapng
+{
+  -moz-transform: rotate(-169deg); /* Для Firefox */
+  -ms-transform: rotate(-169deg); /* Для IE */
+  -webkit-transform: rotate(-169deg); /* Для Safari, Chrome, iOS */
+  -o-transform: rotate(-169deg); /* Для Opera */
+  transform: rotate(-169deg);
+  margin-top: 12px;
+}
+
 @import url("style_media.less");
+

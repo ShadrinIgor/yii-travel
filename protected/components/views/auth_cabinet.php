@@ -1,4 +1,6 @@
-<div id="userCabinet">
+<div id="userCabinet" class="panel panel-danger">
+    <div class="panel-heading">Кабинет</div>
+    <div class="panel-body">
     <ul>
         <li><a href="<?= SiteHelper::createUrl("/user/sales" ) ?>" title=""><?= Yii::t("page", "Мои АКЦИИ/СКИДКИ"); ?></a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/firms" ) ?>" title=""><?= Yii::t("page", "Моя фирма"); ?></a></li>
@@ -13,8 +15,8 @@
         <li><a href="<?= SiteHelper::createUrl("/user/desktop" ) ?>" title=""><?= Yii::t("page", "Выбрать стиль сайта"); ?></a></li>
         <!-- a href="<?= SiteHelper::createUrl("/user/fprofile" ) ?>" title="">Финансов1ый профиль</a-->
     </ul>
-    <div id="logOut">
+    </div>
+    <div class="panel-footer textAlignCenter">
         <a href="<?= SiteHelper::createUrl("/user/default/logout" ) ?>" title=""><?= Yii::t("page", "Выйти"); ?></a>
-        <?= Yii::t("page", "нажмите чтобы<br/>выйти из кабинета"); ?>
     </div>
 </div>

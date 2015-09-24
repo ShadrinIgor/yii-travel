@@ -15,6 +15,8 @@ class CatalogFirmsService extends CCModel
     protected $description; // string
     protected $slug;
     protected $translate;
+    protected $date_add;
+    protected $date_edit;
 
 /*
 * Поля - связи
@@ -105,4 +107,10 @@ class CatalogFirmsService extends CCModel
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function onAddFirmsService( $event, $params = array() )
+    {
+        if($this->hasEventHandler('onAddFirmsService'))
+            $this->raiseEvent('onAddFirmsService', array( "event"=>$event, "params"=>$params ) );
+    }
 }

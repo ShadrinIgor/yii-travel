@@ -1,4 +1,5 @@
-﻿<div id="fb-root"></div>
+﻿<?php if( $this->beginCache( "main_".Yii::app()->getLanguage(), array('duration'=>3600*3) ) ) : ?>
+<div id="fb-root"></div>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -43,19 +44,17 @@
 <div class="ListTours">
     <h2>Популярные туристические страны</h2>
     <?php foreach( CatalogCountry::sql("SELECT c.id as id, c.name as name, c.title as title, c.description as description, c.banner2 as banner2, count(t.id) as tour_count, c.slug as slug, c.name_2 as name2 FROM `catalog_tours` t, catalog_country c WHERE c.id=t.country_id GROUP BY t.country_id ORDER BY count(t.id)  DESC LIMIT 10") as $line ) :
-            $minTour = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:id AND price>0")->setParams( [":id"=>$line["id"] ] )->setOrderBy("price DESC")->setLimit(1) );
+            $minTour = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:id AND price>0")->setParams( [":id"=>$line["id"] ] )->setOrderBy("price")->setLimit(1) );
             $currency = $minTour[0]->currency_id->id >0 ? $minTour[0]->currency_id->title : "$";
     ?>
         <div class="LTItem">
             <div class="LTImag"><a href="<?= SiteHelper::createUrl("/countryPage", array("country"=>$line["slug"] ) ) ?>" title="<?= $line["title"] ?>"><img src="<?= $line["banner2"] ?>" alt="<?= $line["title"] ?>" /></a></div>
             <div class="LTPrice">
                 <span><a href="<?= SiteHelper::createUrl("/countryPage", array("country"=>$line["slug"] ) ) ?>" title="Туристическая страна <?= $line["title"] ?>"><?= $line["name"] ?> от <b><?= $minTour[0]->price ?><?= $currency ?></b></a></span>
-                <?php /*
                 <div class="displayNone">
                     <div class="LTText"><a href="<?= SiteHelper::createUrl("/countryPage", array("country"=>$line["slug"] ) ) ?>" title="Туристическая страна - <?= $line["name"] ?>"><?= SiteHelper::getSubTextOnWorld( $line["description"], 600 ) ?></a></div>
                     <div class="textAlignRight"><a href="<?= SiteHelper::createUrl("/countryPage", array("country"=>$line["slug"] ) ) ?>" title="Смотреть туры <?= $line["name2"] ?>">смотреть все <?= $line["tour_count"] ?> тура(ов) >>></a></div>
                 </div>
-                */ ?>
             </div>
             <div class="overflowHidden">
                 <?= $line["tour_count"] ?> предложений
@@ -88,3 +87,6 @@
     <div class="fb-page" data-href="https://www.facebook.com/pages/World-Traveluz/280386002122600" data-width="2000px" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/pages/World-Traveluz/280386002122600"><a href="https://www.facebook.com/pages/World-Traveluz/280386002122600">World-Travel.uz</a></blockquote></div></div>
 </div>
 <br/><br/>
+
+<?php $this->endCache();
+endif; ?>
