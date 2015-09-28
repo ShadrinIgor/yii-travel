@@ -22,7 +22,13 @@
         <td><?= $item->category_id->name ?></td>
         <td>
             <a href="<?= SiteHelper::createUrl("/console/subscribeTable/edit", array( "id"=>$item->id ) ) ?>">[ edit ]</a>&nbsp;
-            <a href="<?= SiteHelper::createUrl("/console/subscribeTable/delete", array( "id"=>$item->id ) ) ?>">[ del ]</a>
+            <a href="<?= SiteHelper::createUrl("/console/subscribeTable/delete", array( "id"=>$item->id ) ) ?>">[ del ]</a><br/>
+            <?php if(  $item->country_id->id <= 1 ) : ?>
+                <a href="<?= SiteHelper::createUrl("/console/subscribeTable/show", array("id"=>$item->id)) ?>" target="_blank" >[ WORLD ]</a><br/>
+            <?php endif; ?>
+            <?php if( $item->country_id->id != 1 ) : ?>
+                <a href="<?= SiteHelper::createUrl("/console/subscribeTable/show", array("id"=>$item->id, "location"=> "uzb")) ?>" target="_blank" >[ UZB ]</a>
+            <?php endif; ?>
         </td>
     </tr>
 <?php endforeach; ?>
