@@ -52,131 +52,68 @@ class SiteController extends Controller
     public function actionTest2()
     {
         /*
-         График:
-             По странам ( сортировка по цене ) 31
-             По категориям ( сортировка по цене ) 30
-             По странам ( сортировка по просмотрам)
-             По категориям ( сортировка по просмотрам )
-
-            Определям кандидата по очереди сначала города потом категории
-                Выбираем по сортировке первую страну
-                Проверяем по очередньсти
-
-            Формируем письмо
-                Заголовок ( зависит от того по стране или категории + от сортировки )
-                указываем группу подписциков
-                указываем группу рассылоку
-
-            И полетели
+         нужно сделать сарипт на WT который будет отправлять рассылку в очередь основываясь на таблице
+            - Нужно делать 2 версии для узбекистана и остальные
+            - Если в рассылки меньше 4 предложений то не отправлять такое предложение
          */
 
-/*echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Cache-Control" content="public"/>
-<meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body>';*/
-
-        $logTable = SubscribeTable::fetchAll( DBQueryParamsClass::CreateParams()->setOrderBy("id DESC")->setLimit(1) );
-        if( sizeof( $logTable ) == 0 )
+        $logTable = SubscribeTable::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("date2=:date")->setParams( array( ":date"=>date("Y-m-d") ) )->setLimit(1)->setCache(0) );
+        if( sizeof( $logTable ) > 0 )
         {
-            $countryId = CatLogToursCountry::sql( "SELECT country_id FROM cat_log_tours_country GROUP BY country_id ORDER BY `count` DESC LIMIT 1" );
+            Yii::import("modules.console.components.*");
+            Yii::import("modules.console.controllers.*");
 
-            $log = new SubscribeTable();
-            $log->category_id = 0;
-            $log->country_id = $countryId;
-            $log->date2 = date("Y-m-d");
-            $log->sort = 1;
-            //if( $log->save() )
-            //{
-                $countryModel = CatalogCountry::fetch( $countryId );
-                if( $countryModel->id >0 )
+            $worldCount = 0;
+            $uzCount = 0;
+            $itemCount = 0;
+
+            $item = $logTable[0];
+
+            $sql = "SELECT count(id) as count_ FROM catalog_tours WHERE active=1";
+            if( $item->category_id->id > 0 )$sql .= " AND category_id='".$item->category_id->id."'";
+
+            $worldCountArr = CatalogTours::sql( $sql." AND country_id='1' ");
+            if( sizeof( $worldCountArr ) >0 )$worldCount = $worldCountArr[0]["count_"];
+
+            if( $item->country_id->id >1 )
+            {
+                $uzCountArr = CatalogTours::sql($sql . " AND country_id='" . $item->country_id->id . "'");
+                if( sizeof( $uzCountArr ) >0 )$uzCount = $uzCountArr[0]["count_"];
+            }
+            else
+            {
+                $uzCountArr = CatalogTours::sql( $sql." AND country_id!=1 " );
+                if( sizeof( $uzCountArr ) >0 )$uzCount = $uzCountArr[0]["count_"];
+            }
+
+            $class = new SubscribeTableController( rand(100, 999) );
+            echo $logTable[0]->id."*";
+
+            // отпраляем рассылку для мира
+            if( $worldCount > 4 )
+            {
+                $message = $class->actionShow( $logTable[0]->id, "", true );
+                $usersGroup = SubscribeTableUsers::sql( "SELECT id FROM subscribe_table_users WHERE id in( SELECT rightId FROM cat_relations WHERE leftClass='SubscribeTable' AND leftId='".$logTable[0]->id."' AND rightClass='SubscribeTableUsers' )" );
+                foreach( $usersGroup as $key=>$value )
+                    $usersGroupsList[] = $value["id"];
+
+                if( !empty( $usersGroupsList ) && sizeof( $usersGroupsList ) >0 )
                 {
-                    // If status value is 1 - Check ship tour in this country
-                    //$toursMinPrice = CatalogTours::sql( "SELECT id FROM catalog_tours WHERE country_id=\"".$countryModel->id."\" ORDER BY price DESC LIMIT 1" );
-                    $toursMinPrice = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND price>0")->setParams( [ ":cid"=>$countryModel->id])->setOrderBy("price")->setLimit(1)->setCache(0) );
-                    $tours = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND price>0 AND id !=:id")->setParams( [ ":cid"=>$countryModel->id, ":id"=>$toursMinPrice[0]->id ] )->setLimit( 7 )->setOrderBy("rating DESC, price") );
-                    $tours[]=$toursMinPrice[0];
-                    $info = CatalogInfo::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid")->setParams( [ ":cid"=>$countryModel->id ] )->setLimit( 4 )->setOrderBy("id DESC") );
-
-                    $subject = $countryModel->title.", от ".$tours[ sizeof($tours )-1 ]->price.( $tours[sizeof($tours )-1]->currency_id->id ? $tours[sizeof($tours )-1]->currency_id->title : "$" );
-                    $message = "Предлагаем Вашему вниманию интересную подборку с нашего портала <a href=\"http://www.world-travel.uz\">World-Travel.uz</a>.<br/><br/><h1>".$subject."</h1><br/><table>";
-                    $n=0;
-
-                    $reserveNum = 0;
-                    $reserveList = [];
-                    foreach( $tours as $tour )
-                    {
-                        $image = ImageHelper::getImages( $tour, 1 );
-
-                        // Если картинки для тура нету, то берем её из резерва catalog_image_reserve
-                        if( sizeof($image) == 0 )
-                        {
-                            if( sizeof( $reserveList ) == 0 )$reserveList = CatalogImageReserve::findByAttributes( [ "country_id"=>$countryModel->id ] );
-
-                            if( sizeof( $reserveList ) >0  )
-                            {
-                                $new = new CatGallery();
-                                $new->image = $reserveList[ $reserveNum ]->image;
-                                $image[] = $new;
-                                $reserveNum ++;
-                            }
-                        }
-                        if( $n==0 || $n==2 || $n==4 || $n==6 )$message .= "<tr>";
-
-                        $message .= "<td style=\"width:50%;text-align:center;vertical-align: top;background-color: #EEE9DD;padding: 10px;border: 1px solid #fff;\">
-                            <table width=\"100%\">
-                                <tr>
-                                    <td style=\"background:#E4DDCD;font-size:13px;text-align: right;padding-right: 5px;vertical-align: middle;\"><b>".$tour->name."</b></td>
-                                     <td style=\"background:#E4DDCD;vertical-align: top;line-height: 14px;text-align: center;\"><span style=\"font-size:10px;\">от</span><br/><b style=\"color:#ff4f00;font-size:24px;\"> ".$tour->price.( $tour->currency_id->id ? $tour->currency_id->title : "$" )."</b><br/>
-                                </tr>
-                            </table>";
-                        if( sizeof($image) >0 )$message .= "<div style=\"max-height: 134px;overflow: hidden;\"><img src=\"".( SiteHelper::createUrl("/").ImageHelper::getImage( $image[0]->image, 2 ) )."\" style=\"max-width:200px\"/></div>";
-                        //if( $tour->included )$message .= "<td>Включенно: ".$tour->included."</td></tr>";
-
-                        if( $tour->duration )$message .= $tour->duration."<br/>";
-                        if( $tour->category_id->id > 0 )$message .= "Тур - ".$tour->category_id->name2."<br/>";
-                        $message .= "<div><a style=\"margin-top: 11px;background:#ff4f00;color:#fff;font-weight: bold;display: inline-block;padding: 5px 10px;border-radius: 4px;\" href=\"".SiteHelper::createUrl("/tours/description")."/".$tour->slug.".html\">Заказать</a></div></td>"; //
-
-                        if( $n==1 || $n==3 || $n==5 || $n==7 )$message .= "</tr>";
-                        $n++;
-                    }
-
-                    $message .= '</table></div><br/><div style="background: #e4ddcd;padding: 0px 10px 10px 10px;overflow: hidden;"><table>';
-
-                    foreach( $info as $item )
-                    {
-                        $message .= "<tr><td colspan=\"2\"><h3 style=\"margin:10px 0px 5px 0px;\">".$item->name."</h3></td></tr>
-                                     <tr>
-                                        <td colspan=\"2\" style=\"border-bottom:1px solid #F4F1EA;padding-bottom:10px;\">
-                                            <table width=\"100%\">
-                                                <tr>
-                                                    <td><img src=\"".SiteHelper::createUrl("/").ImageHelper::getImage( $item->image, 2 )."\" style=\"padding-right: 10px;\" alt=\"".$item->name."\" /></td>
-                                                    <td style=\"text-align: justify;vertical-align:top\">".SiteHelper::getSubTextOnWorld( $item->description, 350 )."<br/><div align=\"right\"><a href=\"".SiteHelper::createUrl("/touristInfo/description" ).$item->slug.".html\">читайте подробнее >>></a></div></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                     </tr>";
-                        //
-                    }
-
-                    $message .= "</table></div>";
+                    if( SubscribesUzHelper::sendEmails( $usersGroupsList, $logTable[0]->name, $message, 3 ) )echo "Send in World";
+                                                                                                        else echo "Have the error, wen send in World";
+                }
+            }
+            echo "<hr/>";
+            if( $uzCount > 4 && $logTable[0]->country_id->id != 1 )echo $class->actionShow( $logTable[0]->id, "uzb", true );
 
 //                    echo $message."*";
                     //if( SubscribesUzHelper::sendEmails( array( 7, 35, 41 ), $subject, $message, 3 ) )echo "Ура отправил";
                     //                                                                        else echo "Что-то пошло не так";
-                }
-
-            //}
-        }
-            else
-        {
 
         }
+            else echo sizeof( $logTable )."*";
 
         //echo "</body></html>";
-
-        //$country
 
     }
 

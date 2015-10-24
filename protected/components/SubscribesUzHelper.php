@@ -71,7 +71,7 @@ class SubscribesUzHelper
                 $postFields = "message-user-groups=" . $listUserGroups . "&message-subject=" . $messageSubject . "&message-text=" . $messageText;
                 $postFields .= "&user-email=" . $SubscribesUzUserEmail . "&hash=" . $userHash . "&group=" . $subscribesUzGroup;
 
-                echo $postFields;
+                // echo $postFields;
 
                 $url = Yii::app()->params["SubscribesUz"]["url"]."addqueue";
                 //echo $url."<br/>";
@@ -90,6 +90,7 @@ class SubscribesUzHelper
                     echo "cURL Error: " . curl_error($ch);
                 else
                 {
+                    echo $result;
                     // Логируем
                     LogHelper::saveCatLogSubscribe();
                     return true;

@@ -44,6 +44,8 @@ class CatalogTours extends CCModel
     protected $currency_id;
     protected $date_edit;
     protected $date_edd;
+    protected $dates;
+    protected $is_newyear;
 
 /*
 * Поля - связи
@@ -72,7 +74,7 @@ class CatalogTours extends CCModel
         // will receive user inputs.
         return array(
             array('name, category_id, country_id, description', 'required'),
-            array('price, translate, category_id, country_id, city_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
+            array('is_newyear, price, translate, category_id, country_id, city_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
             array('name', 'length', 'max'=>150),
             array('srok, price', 'length', 'max'=>25),
             array('image', 'length', 'max'=>100),
@@ -83,7 +85,7 @@ class CatalogTours extends CCModel
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
 
-            array('date_edit, date_add, currency_id, duration, attention, cancellation, not_included, included, prices, program, rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+            array('dates, is_newyear, date_edit, date_add, currency_id, duration, attention, cancellation, not_included, included, prices, program, rating, translate, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
             array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
         );
     }
@@ -116,7 +118,8 @@ class CatalogTours extends CCModel
             "attention"=>"Необходимо указать моменты на который стоит обратить внимание",
             "cancellation"=>"Необходимо указать какие условия ануляции заказа",
             "duration"=>"Например: 5 дней/4 ночи",
-            "price"=>"Необходимо указать минимальную стоимость на человека",
+            "price" => "Необходимо указать минимальную стоимость на человека",
+            "dates" => "Например: 01.10.2015 - 01.02.2016"
         );
     }
 
@@ -145,6 +148,8 @@ class CatalogTours extends CCModel
 			'image' => 'Image',
 			'country_id' => 'Страна',
 			'city_id' => 'City',
+            'dates' => 'Dates',
+            'is_newyear' => 'New year',
 
 			'ltext' => 'Ltext',
 			'hot' => 'Hot',
@@ -174,6 +179,7 @@ class CatalogTours extends CCModel
                                       "not_included"=>"visual_textarea",
                                     "attention"=>"visual_textarea",
                                     "cancellation"=>"visual_textarea",
+                                    "dates" => "visual_textarea"
                                 )
                     );
     }

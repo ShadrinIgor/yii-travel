@@ -4,6 +4,7 @@
     <ul>
         <li><a href="<?= SiteHelper::createUrl("/user/sales" ) ?>" title=""><?= Yii::t("page", "Мои АКЦИИ/СКИДКИ"); ?></a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/firms" ) ?>" title=""><?= Yii::t("page", "Моя фирма"); ?></a></li>
+        <li><a href="<?= SiteHelper::createUrl("/user/tours" ) ?>" title="">Туры</a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/hotels" ) ?>" title=""><?= Yii::t("page", "Мои отели"); ?></a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/resort" ) ?>" title=""><?= Yii::t("page", "Мои зоны отдыха"); ?></a></li>
         <li><a href="<?= SiteHelper::createUrl("/user/items" ) ?>" title=""><?= Yii::t("page", "Частные объявления"); ?></a></li>

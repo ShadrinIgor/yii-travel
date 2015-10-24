@@ -10,6 +10,13 @@ class SubscribeTableController extends ConsoleController
 	{
         Yii::app()->page->title = "Таблица рассылки";
         $action = Yii::app()->request->getParam("action", "");
+        $del = (int)Yii::app()->request->getParam("del", 0);
+
+        if( $del >0 )
+        {
+            $item =SubscribeTable::fetch( $del );
+            $item->delete();
+        }
 
         if( $action == "recheck" )$this->recheck();
 
@@ -19,18 +26,18 @@ class SubscribeTableController extends ConsoleController
 
     public function recheck()
     {
-        $indexDay = date("m")+1;
+        $indexDay = date("w")+1;
         $countDay = 0;
-        $list = SubscribeTable::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1)->setConditions("active=1")->setOrderBy("date2") );
+        $list = SubscribeTable::fetchAll( DBQueryParamsClass::CreateParams()->setLimit(-1)->setConditions("active=1")->setOrderBy("id") );
         foreach( $list as $item )
         {
             // Определяем дату
-            if( $indexDay == 0 )
+            if( $countDay == 0 )
             {
                 if ($indexDay > 4)
                 {
-                    $makeTime = mktime(0, 0, 0, date("m"), date("d") + $countDay + 6 - date("w"), date("Y"));
-                    $countDay += 6 - date("w");
+                    $countDay += 8 - date("w");
+                    $makeTime = mktime(0, 0, 0, date("m"), date("d") + $countDay, date("Y"));
                 }
                 else
                 {
@@ -38,6 +45,7 @@ class SubscribeTableController extends ConsoleController
                     $countDay += 4 - date("w");
                 }
 
+                echo $indexDay."<br/>";
                 $date = date("Y-m-d", $makeTime );
                 $indexDay = date("w", $makeTime );
             }
@@ -151,10 +159,13 @@ class SubscribeTableController extends ConsoleController
         $this->render( "index", [ "list"=>$list ] );
     }
 
-    public function actionShow()
+    public function actionShow( $idIn = 0, $locatIn = "", $return = FALSE )
     {
         $id = (int)Yii::app()->request->getParam("id", 0);
+        if( $id == 0 && $idIn>0 )$id = $idIn;
+
         $locat = Yii::app()->request->getParam("location", "");
+        if( empty( $locat ) && !empty( $locatIn ) )$locat = $locatIn;
 
         /*
          График:
@@ -175,25 +186,29 @@ class SubscribeTableController extends ConsoleController
             И полетели
          */
 
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        $cout = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
             <meta http-equiv="Cache-Control" content="public"/>
-        <meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body>';
+            <meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        </head>
+        <body>';
 
         $logTable = SubscribeTable::fetch( $id );
         if( $logTable->id > 0 )
         {
+            if( $locat == "uzb" && $logTable->country_id->id == 1 )return "";
+
             $countryId = 0;
             $categoryId = 0;
-            if( $logTable->country_id >0 )
+            if( $logTable->country_id->id >0 )
             {
                 $countryId = $logTable->country_id->id;
                 $countryModel = CatalogCountry::fetch( $countryId );
             }
 
-            if( $logTable->category_id >0 )
+            if( $logTable->category_id->id >0 )
             {
                 $categoryId = $logTable->category_id->id;
                 $categoryModel = CatalogToursCategory::fetch( $categoryId );
@@ -201,20 +216,20 @@ class SubscribeTableController extends ConsoleController
 
             if( $countryId >0 || $categoryId>0 )
             {
+                $info = [];
                 if( $countryId >0 )
                 {
-                    $toursMinPrice = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND price>0")->setParams([":cid" => $countryModel->id])->setOrderBy("price")->setLimit(1)->setCache(0));
-                    $tours = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND price>0 AND id !=:id")->setParams([":cid" => $countryModel->id, ":id" => $toursMinPrice[0]->id])->setLimit(7)->setOrderBy("rating DESC, price"));
+                    $toursMinPrice = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND price>0 AND active=1")->setParams([":cid" => $countryModel->id])->setOrderBy("price")->setLimit(1)->setCache(0));
+                    $tours = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND id !=:id AND active=1")->setParams([":cid" => $countryModel->id, ":id" => $toursMinPrice[0]->id])->setLimit(7)->setOrderBy("rating DESC, price"));
                     $tours[] = $toursMinPrice[0];
                     $info = CatalogInfo::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid")->setParams([":cid" => $countryModel->id])->setLimit(4)->setOrderBy("id DESC"));
 
                     $subject = $countryModel->title . ", от " . $tours[ sizeof($tours) - 1 ]->price . ($tours[ sizeof($tours) - 1 ]->currency_id->id ? $tours[ sizeof($tours) - 1 ]->currency_id->title : "$");
-
                 }
                     else
                 {
                     $params = [":cid" => $categoryModel->id];
-                    $condition = "category_id=:cid AND price>0";
+                    $condition = "category_id=:cid";
                     if( $locat == "uzb" )
                     {
                         echo $locat."==uzb<br/>";
@@ -232,7 +247,8 @@ class SubscribeTableController extends ConsoleController
                     $tours = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions($condition." AND id !=:id")->setParams( array_merge( $params, [":id" => $toursMinPrice[0]->id] ) )->setLimit(7)->setOrderBy("rating DESC, price"));
                     $tours[] = $toursMinPrice[0];
                     //$info = CatalogInfo::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid")->setParams([":cid" => $categoryModel->id])->setLimit(4)->setOrderBy("id DESC"));
-                    $subject = "Тур - ".$categoryModel->name . ", от " . $tours[ sizeof($tours) - 1 ]->price . ($tours[ sizeof($tours) - 1 ]->currency_id->id ? $tours[ sizeof($tours) - 1 ]->currency_id->title : "$");
+                    if( $tours[ sizeof($tours) - 1 ]->price >0 )$subject = "Тур - ".$categoryModel->name . ", от " . $tours[ sizeof($tours) - 1 ]->price . ($tours[ sizeof($tours) - 1 ]->currency_id->id ? $tours[ sizeof($tours) - 1 ]->currency_id->title : "$");
+                                                else $subject = "Тур - ".$categoryModel->name;
                 }
 
                 $message = "Предлагаем Вашему вниманию интересную подборку с нашего портала <a href=\"http://www.world-travel.uz\">World-Travel.uz</a>.<br/><br/><h1>" . $subject . "</h1><br/><table>";
@@ -241,6 +257,8 @@ class SubscribeTableController extends ConsoleController
                 $reserveList = [];
                 foreach( $tours as $tour )
                 {
+                    if( $tour->id == 0 )continue;
+
                     $image = ImageHelper::getImages( $tour, 1 );
 
                     // Если картинки для тура нету, то берем её из резерва catalog_image_reserve
@@ -251,9 +269,15 @@ class SubscribeTableController extends ConsoleController
                         if( sizeof( $reserveList ) >0  )
                         {
                             $new = new CatGallery();
-                            $new->image = $reserveList[ $reserveNum ]->image;
+                            if( !empty( $reserveList[ $reserveNum ] ) )$new->image = $reserveList[ $reserveNum ]->image;
+                                else
+                            {
+                                if( $tour->country_id->banner )$new->image = $tour->country_id->banner;
+                                                          else $new->image = $tour->country_id->image;
+                            }
+
                             $image[] = $new;
-                            $reserveNum ++;
+                            $reserveNum++;
                         }
                     }
                     if( $n==0 || $n==2 || $n==4 || $n==6 )$message .= "<tr>";
@@ -261,9 +285,11 @@ class SubscribeTableController extends ConsoleController
                     $message .= "<td style=\"width:50%;text-align:center;vertical-align: top;background-color: #EEE9DD;padding: 10px;border: 1px solid #fff;\">
                             <table width=\"100%\">
                                 <tr>
-                                    <td style=\"background:#E4DDCD;font-size:13px;text-align: right;padding-right: 5px;vertical-align: middle;\"><b>".$tour->name."</b></td>
-                                     <td style=\"background:#E4DDCD;vertical-align: top;line-height: 14px;text-align: center;\"><span style=\"font-size:10px;\">от</span><br/><b style=\"color:#ff4f00;font-size:24px;\"> ".$tour->price.( $tour->currency_id->id ? $tour->currency_id->title : "$" )."</b><br/>
-                                </tr>
+                                    <td style=\"background:#E4DDCD;font-size:13px;text-align: right;padding-right: 5px;vertical-align: middle;\"><b>".$tour->name."</b></td>";
+
+                   if( $tour->price >0 )$message .= "<td style=\"background:#E4DDCD;vertical-align: top;line-height: 14px;text-align: center;\"><span style=\"font-size:10px;\">от</span><br/><b style=\"color:#ff4f00;font-size:24px;\"> ".$tour->price.( $tour->currency_id->id ? $tour->currency_id->title : "$" )."</b><br/></td>";
+
+                   $message .= "</tr>
                             </table>";
                     if( sizeof($image) >0 )$message .= "<div style=\"max-height: 134px;overflow: hidden;\"><img src=\"".( SiteHelper::createUrl("/").ImageHelper::getImage( $image[0]->image, 2 ) )."\" style=\"max-width:200px\"/></div>";
                     //if( $tour->included )$message .= "<td>Включенно: ".$tour->included."</td></tr>";
@@ -300,13 +326,14 @@ class SubscribeTableController extends ConsoleController
                     $message .= "</table></div>";
                 }
 
-                echo $message."</body></html>";
+                $cout .= $message."</body></html>";
                 //if( SubscribesUzHelper::sendEmails( array( 7, 35, 41 ), $subject, $message, 3 ) )echo "Ура отправил";
                 //                                                                        else echo "Что-то пошло не так";
             }
-
-            //}
         }
+
+        if( $return ) return $cout;
+                 else echo $cout;
     }
 
     public function actionEdit()

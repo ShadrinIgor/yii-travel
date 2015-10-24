@@ -1,3 +1,4 @@
+<div class="leftBlock">
 <?php $this->widget("findFormWidget") ?>
 <div class="LeftMenu">
     <h3><?= Yii::t("page", "Разделение по городам"); ?></h3>
@@ -27,3 +28,4 @@
 </div>
 <br/>
 <?php $this->widget("authWidget"); ?>
+</div>

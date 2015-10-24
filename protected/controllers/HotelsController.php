@@ -40,6 +40,14 @@ class HotelsController extends InfoController
                 $_GET["id"]=$model->id;
                 $id = $model->id;
             }
+                else
+            {
+                $arrId = explode( "-", $_GET["slug"] );
+                if( sizeof( $arrId ) >0 )
+                {
+                    $id = (int)$arrId[0];
+                }
+            }
         }
 
         if( $id > 0 )

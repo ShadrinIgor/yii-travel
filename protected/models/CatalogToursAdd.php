@@ -14,7 +14,7 @@ class CatalogToursAdd extends CatalogTours
 		// will receive user inputs.
 		return array(
 			array('name, category_id, country_id, firm_id, duration , description, included, program, price, currency_id', 'required'),
-			array('currency_id, price, category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
+			array('is_newyear, currency_id, price, category_id, country_id, city_id, firm_id, active, pos, del, city_count, hotel_id, hotels_count, col', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>150),
 			array('srok, price', 'length', 'max'=>25),
 			array('image', 'length', 'max'=>100),
@@ -25,7 +25,7 @@ class CatalogToursAdd extends CatalogTours
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 
-			array('date_edit, date_add, currency_id, duration, attention, cancellation, not_included, included, prices, program, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
+			array('dates, is_newyear, date_edit, date_add, currency_id, duration, attention, cancellation, not_included, included, prices, program, slug, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe'),
 			array('id, name, description, active, pos, del, srok, image, country_id, city_id, price, ltext, hot, firm_id, category_id, vip, list_key, order_link, city_count, firm_site_link, tour_per, hotel_id, hotels_count, col', 'safe', 'on'=>'search'),
 		);
 	}
@@ -53,6 +53,7 @@ class CatalogToursAdd extends CatalogTours
 	{
 		return array(
 			'name' => Yii::t("models", "Название"),
+			"is_newyear" => "Новогоднее предложение",
             'category_id' => Yii::t("models", "Категория" ),
 			//'active' => 'Активный тур<br/><i>( поставте галочку если необходимо опубликавать тур на сайте )</i>',
             'hot' => Yii::t("page", 'Горячий тур'),
@@ -63,6 +64,7 @@ class CatalogToursAdd extends CatalogTours
             'prices' => "Описание цен ( в зависимости от количество и людей и т.д. )",
             'currency_id' => "Укажите валюту",
             'description' => Yii::t("page", 'Описание тура'),
+			'dates' => 'Период действия предложения',
             'program' => 'Программа тура',
             'included' => 'В тур включенно',
             'not_included' => 'В тур НЕ включенно',
@@ -75,7 +77,7 @@ class CatalogToursAdd extends CatalogTours
     public function fieldType()
     {
         return array_merge( parent::fieldType(),
-                                array("price"=>"integer", "hot" => "checkbox")
+                                array("price"=>"integer", "hot" => "checkbox", "is_newyear" => "checkbox")
                     );
     }
 

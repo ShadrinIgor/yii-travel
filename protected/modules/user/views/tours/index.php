@@ -1,13 +1,10 @@
 <div id="innerPage">
 <?php
     $this->widget('addressLineWidget', array(
-        'links'=>array( Yii::t("user", "Мои фирмы") ),
+        'links'=>array( "Туры" ),
     ));
 ?>
-<h1><?= Yii::t("user", "Мои фирмы" ) ?></h1>
-<?php if( $message ) :?>
-    <div class="messageSummary"><?= $message ?></div>
-<?php endif; ?>
+<h1>Туры</h1>
 <table id="tableListItems" cellpadding="0" cellspacing="0">
     <tr>
         <th class="TLFId">№</th>

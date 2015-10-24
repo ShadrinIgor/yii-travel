@@ -21,31 +21,33 @@ return array(
     'import'=>array(
         'application.models.*',
         'application.components.*',
-//        'modules.catalog.models.*',
+        'modules.user.models.*',
+		'modules.catalog.models.*',
         'modules.catalog.components.*',
         'application.components.ImageHandler.CImageHandler',
         'application.components.CCApplicationComponent',
         'ext.favorites.models.*',
         'ext.banners.models.*',
-        'ext.winding.models.*',
-        'application.modules.subscribe.models.*',
+		'application.modules.subscribe.models.*',
 //        'ext.eoauth.*',
 //        'ext.eoauth.lib.*',
 //        'ext.lightopenid.*',
 //        'ext.eauth.services.*',
     ),
 
+
     'modules'=>array(
-        'user', 'console', 'catalog', 'find', 'subscribe',
+        'user', 'console', 'catalog', 'subscribe', 'find',
         // uncomment the following to enable the Gii tool
 
-
+		/*
         'gii'=>array(
             'class'=>'system.gii.GiiModule',
             'password'=>'6223772',
             // If removed, Gii defaults to localhost only. Edit carefully to taste.
             'ipFilters'=>array('127.0.0.1','::1'),
         ),
+		*/
 
     ),
 
@@ -69,11 +71,11 @@ return array(
             'class'=>'BannerInit',
         ),
 
-        // Для накрутки счетчиков
+		// Для накрутки счетчиков
         'winding'=>array(
             'class' => 'ext.winding.WindingInit'
         ),
-
+		
         'user'=>array(
             // enable cookie-based authentication
             'allowAutoLogin'=>true,
@@ -85,29 +87,41 @@ return array(
             'showScriptName' => false,
             'rules'=>array(
                 ''=>'site/index',
-                '<language:(en|ja|zh)>'=>'site/index',
-                '<controller:(attractions)>/<slug:[\w-]+>.html'=> 'attractions/description',
-                'attractions-<slug:[\w-]+>.html'=> 'attractions/city',
 
-                '<language:(en|ja|zh)>/<controller:\w+>'=>'<controller>',
-                '<language:(en|ja|zh)>/<controller:\w+>/sort/<sort:\w+>/by/<by:\w+>'=>'<controller>',
+                'new-year'=> 'newYear/index',
+                '<language:(en|ja|zh)>/'=> 'languages/',
+                '<language:(en|ja|zh)>/([\w/\-\?&=\.])+'=> 'languages/',
 
-                '<language:(en|ja|zh)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                '<language:(en|ja|zh)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
-                '<language:(en|ja|zh)>/<controller:\w+>/<slug:[\w-]+>'=>'<controller>',
-                '<language:(en|ja|zh)>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>'=>'<controller>/<action>',
-                '<language:(en|ja|zh)>/<module:\w+>/<controller:\w+>/<action:[\w-]+>/'=>'<controller>/<action>',
-                '<language:(en|ja|zh)>/<module:\w+>/<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
-
-
+                '<country:\w+>_country.html'=> 'countryPage',
+                '<controller:(country)>/description/<country:[\w-]+>.html'=>'countryPage',
+                '<controller:\w+>/<slug:[\w-]+>.html'=>'<controller>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<slug:[\w-]+>.html'=>'<controller>/<action>',
                 '<slug:[\w-]+>_<id:\d+>_<controller:(news)>.html'=> '<controller>',
+                'weather-<slug:[\w-]+>.html'=> 'weatherUzbekistan/description',
+                'map-<slug:[\w-]+>.html'=> 'uzbekistanMaps/description',
 //                '<controller:(tag)>/<action:(list)>.html'=> '<controller><action>', // /<action:(Tags)>
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
-
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+
+/*                '<slug:\w+>-<country:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
+                '<slug:\w+>-<country:\w+>_<controller:(category)>.html'=> '<controller>',
+                '<slug:\w+>_<controller:(category)>_<page:\d+>.html'=> '<controller>',
+                '<slug:\w+>_<controller:(category)>.html'=> '<controller>',
+
+                '<slug:\w+>_<id:\d+><controller:(tag)>_<page:\d+>.html'=>'<controller>',
+                '<slug:\w+>_<id:\d+><controller:(tag)>.html'=> '<controller>',
+
+                '<country:\w+>-<controller:(people)>-<category:\w+>.html'=> '<controller>',
+
+                '<country:\w+>-<controller:(people)>_<page:\d+>.html'=> '<controller>',
+                '<country:\w+>-<controller:(people)>.html'=> '<controller>',
+
+                '<controller:(people)>-<category:\w+>_<page:\d+>.html'=> '<controller>',
+                '<controller:(people)>-<category:\w+>.html'=> '<controller>',
+                '<slug:\w+>_<controller:(people)>_<action:(desc)>.html'=> '<controller>/desc',*/
 
                 '<language:(en|ja|zh)>/registration.html'=> 'user/default/Registration',
                 'registration.html'=> 'user/default/Registration',
@@ -118,12 +132,92 @@ return array(
             ),
         ),
 
+        'loid' => array(
+            'class' => 'ext.lightopenid.loid',
+        ),
+
+        'eauth' => array(
+            'class' => 'ext.eauth.EAuth',
+            'popup' => true, // Use the popup window instead of redirecting.
+            'services' => array( // You can change the providers and their classes.
+                'google' => array(
+                    'class' => 'GoogleOpenIDService',
+                ),
+                'yandex' => array(
+                    'class' => 'YandexOpenIDService',
+                ),
+                /*
+                                'twitter' => array(
+                                    // register your app here: https://dev.twitter.com/apps/new
+                                    'class' => 'TwitterOAuthService',
+                                    'key' => 'fZOlqQCLbHGmQ5I7Swt0w',
+                                    'secret' => 'FbxAxumTvWBXItYhR2K7wWQAdlaZyjeZn2svkp2PJW8',
+                                ),
+                                'google_oauth' => array(
+                                    // register your app here: https://code.google.com/apis/console/
+                                    'class' => 'GoogleOAuthService',
+                                    'client_id' => '...',
+                                    'client_secret' => '...',
+                                    'title' => 'Google (OAuth)',
+                                ),
+                */
+                'facebook' => array(
+                    // register your app here: https://developers.facebook.com/apps/
+                    'class' => 'FacebookOAuthService',
+                    'client_id' => '428081060609322',
+                    'client_secret' => '2a900f700e80f38e0a77b700c6134f5e',
+                ),
+                /*
+                                'linkedin' => array(
+                                    // register your app here: https://www.linkedin.com/secure/developer
+                                    'class' => 'LinkedinOAuthService',
+                                    'key' => '0ceu3iv6hcs3',
+                                    'secret' => 'dlSpylUztNZ5BvJm',
+                                ),
+                */
+                'github' => array(
+                    // register your app here: https://github.com/settings/applications
+                    'class' => 'GitHubOAuthService',
+                    'client_id' => '5aa1eb3c4e716ddf0731',
+                    'client_secret' => 'bb636f402cc8155223e7a15a266eb2efb0eefb49',
+                ),
+                'vkontakte' => array(
+                    // register your app here: http://vkontakte.ru/editapp?act=create&site=1
+                    'class' => 'VKontakteOAuthService',
+                    'client_id' => '3463515',
+                    'client_secret' => '9ibyCqnBBzqpMK8P41OU',
+                ),
+                'mailru' => array(
+                    // register your app here: http://api.mail.ru/sites/my/add
+                    'class' => 'MailruOAuthService',
+                    'client_id' => '700152',
+                    'client_secret' => 'a65b90c87b21cfd93eb8ecf9bb6f0496',
+                ),
+                /*
+                                'moikrug' => array(
+                                    // register your app here: https://oauth.yandex.ru/client/my
+                                    'class' => 'MoikrugOAuthService',
+                                    'client_id' => '813f1019ee444c10bcc8f355e74ef174',
+                                    'client_secret' => '6e34781039ad4731a943a201707f0659',
+                                ),
+                */
+                'odnoklassniki' => array(
+                    // register your app here: http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev
+                    'class' => 'OdnoklassnikiOAuthService',
+                    'client_id' => '163432192',
+                    'client_public' => 'CBAIMOLKABABABABA',
+                    'client_secret' => '5B642CA15C5B5F93AEE463E0',
+                    'title' => 'Odnokl.',
+                ),
+            ),
+        ),
+
         // uncomment the following to use a MySQL database
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=yii_travel',
+            'connectionString' => 'mysql:host=localhost;dbname=yii_travel_db',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => 'mysql',
+            'username' => 'world_news_admin',
+            'password' => '7TVzoANC',
             'charset' => 'utf8',
         ),
 
@@ -135,15 +229,19 @@ return array(
             'class'=>'CLogRouter',
             'routes'=>array(
                 array(
-                    'class'=>'CProfileLogRoute',
-                    'levels'=>'profile',
-                    'enabled'=>true,
+                    'class'=>'CEmailLogRoute',
+                    'levels'=>'error, warning',
+                    'emails'=>'support@world-travel.uz',
                 ),
-                // uncomment the following to show log messages on web pages
-
                 array(
-                    'class'=>'CWebLogRoute',
+                    'class'=>'CFileLogRoute',
+                    'levels'=>'trace, info',
+                    'categories'=>'system.*',
                 ),
+/*                array(
+                    'class'=>'CWebLogRoute',
+                ),*/
+                // uncomment the following to show log messages on web pages
             ),
         ),
         'clientScript' => array(
@@ -158,37 +256,22 @@ return array(
             */
         ),
 
-        'sitemapGenerator' => array(
-            'class'         => 'ext.sitemap.SitemapGenerator',
-            'path'          => dirname(dirname(dirname(__FILE__))).'/httpdocs/sitemap.xml',
-            'sitemapUrl'    => 'http://flatora.ru/sitemap.xml',
-            'pingGoogle'    => 'http://google.com/webmasters/sitemaps/ping?sitemap=',
-            'pingYandex'    => 'http://webmaster.yandex.ru/wmconsole/sitemap_list.xml?host=',
-            'pingYahoo'     => 'http://search.yahooapis.com/SiteExplorerService/V1/ping?sitemap=',
-            'pingBing'      => 'http://www.bing.com/webmaster/ping.aspx?siteMap=',
-            'pingAsk'       => 'http://submissions.ask.com/ping?sitemap='
-        ),
-
         'assetManager'=>array(
             'basePath'=>realpath(dirname(dirname(dirname(__FILE__))).'/httpdocs/assets'),
         ),
-        /*
-         'messages'=>array(
-             'class'            => 'PhpMessageSource',
-         ),
 
-         'messages'=>array(
-             'class'            => 'DBCMessageSource',
-             'forceTranslation' => true,
-         ),*/
-
+		/*
+        'messages'=>array(
+            'class'            => 'PhpMessageSource',
+        ),
+*/
         'banners'=>array(
             'class'     => 'ext.banners.BannerInit'
         ),
 
         'page'=>array(
             'class'     => 'ext.page.PageInit',
-            'tag_params' =>
+			'tag_params' =>
                 array(
                     "first_page" =>
                         array
@@ -204,6 +287,7 @@ return array(
                             "catalog_content"=>array( "/news/description", 5, "category_id=2" ),
                             "catalog_firms"=>array( "/travelAgency/description", 5 ),
                             "catalog_items_category"=>array( "/adsUsers", 5 ),
+							"catalog_work_category"=>array( "/work", 5 ),
                         ),
 
                     "country" =>
@@ -283,22 +367,53 @@ return array(
             'class'     => 'ext.notifications.initNotifications'
         ),
 
+        'payment' => array(
+            'class' => 'ext.activemerchant.ActiveMerchant',
+            'mode' => 'test', //live
+            'gateways' => array(
+                'PaypalExpress' => array(
+                    'login'     => 'blabla',
+                    'password'  => 'password',
+                    'signature' => '....',
+                    'currency'  => 'USD'
+                ),
+                'Paypal' => array(
+                    'login'     => 'blabla2',
+                    'password'  => 'password2',
+                    'signature' => '.....',
+                    'currency'  => 'USD'
+                ),
+            ),
+        ),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params'=>array(
+
+        'SubscribesUz' => array
+        (
+            'url'       => 'http://www.subscribes.uz/api/',
+            'userEmail' => 'shadrin.igor@gmail.com',
+            'hash'      => 'a5c0bfd0ca70d29',
+            'group'     => 2
+        ),
+
         // this is used in contact page
         'adminEmail'=>'info@world-travel.uz',
         'supportEmail'=>'support@world-travel.uz',
-        'baseUrl' => 'http://yii-travel.loc/',
-        'wap-baseUrl' => 'http://yii-travel.loc/',
-        'mail-server' => 'world-travel.uz',
-        'mail-host' => 'world-travel.uz',
+        'baseUrl' => 'http://world-travel.uz/',
+		'wap-baseUrl' => 'http://wap.world-travel.uz/',
+		'mail-server' => '62.109.20.253',
+		'mail-host' => 'world-travel.uz',
         'mail-log' => 'info@world-travel.uz',
         'mail-pass' => '15e2oYUn',
+        'connect' =>array(
+            "key" => "Y(_9kl-kv;=in,mnvlfp-8N,;-8j",
+            "ip" => array( "62.209.131.250" )
+        ),
         'images' => array(
             "default" => array(
-                "1" => array( "width"=>1300, "height"=>1300 ),
+                "1" => array( "width"=>0, "height"=>0 ),
                 "2" => array( "width"=>200, "height"=>200 ),
                 "3" => array( "width"=>100, "height"=>100 )
             )
@@ -308,33 +423,28 @@ return array(
             array( "title"=>"объявления",
                 "items"=>array
                 (
-                    array( "title"=>"Фирмы", "controller"=>"catalog", "params"=>"catalog=CatalogFirms" ),
-                    array( "title"=>"Работа", "controller"=>"catalog", "params"=>"catalog=CatalogWork" ),
+                    array( "title"=>"Фирмы", "controller"=>"catalog", "params"=>"catalog=CatalogFirms" ),                   
+					array( "title"=>"Работа", "controller"=>"catalog", "params"=>"catalog=CatalogWork" ),
                     array( "title"=>"ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItems" ),
                     array( "title"=>"Информация", "controller"=>"catalog", "params"=>"catalog=CatalogInfo" ),
-                    array( "title"=>"Достопримечатель.", "controller"=>"catalog", "params"=>"catalog=CatalogAttractions" ),
                     array( "title"=>"Курорты", "controller"=>"catalog", "params"=>"catalog=CatalogKurorts" ),
                     array( "title"=>"Туры", "controller"=>"catalog", "params"=>"catalog=CatalogTours" ),
                     array( "title"=>"Группы", "controller"=>"catalog", "params"=>"catalog=CatalogSections" ),
                 ),
             ),
 
-            array( "title"=>"Баннеры",
-                "items"=>array
-                (
-                    array( "title"=>"Баннеры", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsBanners" ),
-                    array( "title"=>"Запросы на баннер", "controller"=>"catalog", "params"=>"catalog=CatalogBannerRequest" ),
-                ),
-            ),
+			array( "title"=>"Баннеры",
+				"items"=>array
+                ( 
+					array( "title"=>"Баннеры", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsBanners" ),
+					array( "title"=>"Запросы на баннер", "controller"=>"catalog", "params"=>"catalog=CatalogBannerRequest" ),
+				),
+			),
+            array( "title"=>"Достопримечательности", "controller"=>"catalog", "params"=>"catalog=CatalogMonuments" ),
             array( "title"=>"Заявки на баннер", "controller"=>"catalog", "params"=>"catalog=CatalogBannerRequest" ),
-            array( "title"=>"Сотрудничество",
-                "items"=>array
-                (
-                    array( "title"=>"Предложение", "controller"=>"catalog", "params"=>"catalog=CatalogCooperation" ),
-                    array( "title"=>"Категории", "controller"=>"catalog", "params"=>"catalog=CatalogCooperationCategory" ),
-                ),
-            ),
-            array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
+            array( "title"=>"Страницы погоды", "controller"=>"catalog", "params"=>"catalog=CatalogWhetersPages" ),
+            array( "title"=>"Карты", "controller"=>"catalog", "params"=>"catalog=CatalogMaps" ),
+			array( "title"=>"Пользователи", "controller"=>"catalog", "params"=>"catalog=CatalogUsers" ),
             array( "title"=>"Текст. информация", "controller"=>"catalog", "params"=>"catalog=CatalogContent" ),
             array( "title"=>"Рабочие столы", "controller"=>"catalog", "params"=>"catalog=CatalogDesktops" ),
             array( "title"=>"Выставление Slug", "controller"=>"setSlug", "params"=>"" ),
@@ -345,16 +455,19 @@ return array(
             array( "title"=>"Данные",
                 "items"=>array
                 (
-                    array( "title"=>"Страницы", "controller"=>"catalog", "params"=>"catalog=CatalogPages" ),
-                    array( "title"=>"Категории фирм", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsCategory" ),
+                    array( "title"=>"Таблица рассылки", "controller"=>"subscribeTable", "params"=>"" ),
+                    array( "title"=>"Статистика", "controller"=>"log", "params"=>"" ),
+                    array( "title"=>"Странны", "controller"=>"catalog", "params"=>"catalog=CatalogCountry" ),
+					array( "title"=>"Категории фирм", "controller"=>"catalog", "params"=>"catalog=CatalogFirmsCategory" ),
                     array( "title"=>"Категории ч. объявления", "controller"=>"catalog", "params"=>"catalog=CatalogItemsCategory" ),
                     array( "title"=>"Категории информации", "controller"=>"catalog", "params"=>"catalog=CatalogInfoCategory" ),
+                    array( "title"=>"Категории контента", "controller"=>"catalog", "params"=>"catalog=CatalogContentCategory" ),
                     array( "title"=>"Категории курортов", "controller"=>"catalog", "params"=>"catalog=CatalogKurortsCategory" ),
                     array( "title"=>"Категории туров", "controller"=>"catalog", "params"=>"catalog=CatalogToursCategory" ),
                 )
             )
         ),
-        "titleName"=> Yii::t( "models", "Туристический портал Узбекистана"),
+        "titleName"=>"Туристический портал, курорты, зоны отдыха, отели, бесплатное размещение",
 
         /*
         * для кэширования виджетов, все что вам надо, это добавить массив с названием виджета, без прифекса _Widget
@@ -383,8 +496,6 @@ return array(
             ),
         ),
     ),
-
-
 
     'controllerMap'=>array(
         'min'=>array(
