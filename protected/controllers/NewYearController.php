@@ -4,7 +4,12 @@ class NewYearController extends Controller
 {
     public function actionIndex()
     {
-        $this->render( 'index', [ "country"=>CatalogCountry::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("id IN ( SELECT country_id FROM catalog_tours WHERE is_newyear=1 )")->setOrderBy( "rating DESC" ) ) ] );
+        if( $this->beginCache( "newyear_".Yii::app()->getLanguage(), array('duration'=>1800) ) )
+        {
+            Yii::app()->page->title = "Новогодние туры со всего Узбекистана, 2015 год";
+            $this->render('index', ["country" => CatalogCountry::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("id IN ( SELECT country_id FROM catalog_tours WHERE is_newyear=1 AND active=1 )")->setOrderBy("rating DESC"))]);
+            $this->endCache();
+        }
     }
 
     public function actionDescription()
@@ -39,16 +44,10 @@ class NewYearController extends Controller
                 LogHelper::saveCatLogTours( $item->id );
                 CCModelHelper::colCounter( $item );
                 // Картинки тура
-                $images = ImageHelper::getImages( $item );
                 Yii::app()->page->title = $item->name.", тур ". $item->category_id->name .", ". $item->country_id->name ;
                 $this->render('description',
                     array(
                         "item" => $item,
-                        "images" => $images,
-                        "otherTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND country_id=:country_id AND id!=:id AND firm_id!=:firm_id")->setParams(array(":country_id"=>$item->country_id->id, ":id"=>$item->id, ":firm_id"=>$item->firm_id->id))->setOrderBy("col DESC")->setLimit(6) ),
-                        "firmsTours" => CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("image>'' AND firm_id=:firm_id AND id!=:id")->setParams(array(":firm_id"=>$item->firm_id->id, ":id"=>$item->id))->setOrderBy("col DESC")->setLimit(6) ),
-                        "tourCount" => CatalogTours::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->country_id->id ) ) ),
-                        "firmCount" => CatalogFirms::count( DBQueryParamsClass::CreateParams()->setConditions( "country_id=:country" )->setParams( array( ":country"=>$item->country_id->id ) ) ),
                     ));
 
             }

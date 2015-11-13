@@ -219,8 +219,11 @@ class UserController extends Controller
             if( empty( $message ) && !empty( $inputMessage ) )$message = $inputMessage;
 
             $modelClass = SiteHelper::getCamelCase( $this->tableName );
-            $items = $modelClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id".$this->dopSQL)->setParams( array( ":user_id"=>Yii::app()->user->id ) )->setOrderBy("id DESC")->setLimit(-1)->setCache(0) );
-            $this->render( "index", array( "items"=>$items, "message"=>$message ) );
+            if( !empty( $modelClass ) )
+            {
+                $items = $modelClass::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("user_id=:user_id".$this->dopSQL)->setParams( array( ":user_id"=>Yii::app()->user->id ) )->setOrderBy("id DESC")->setLimit(-1)->setCache(0) );
+                $this->render( "index", array( "items"=>$items, "message"=>$message ) );
+            }
         }
     }
 

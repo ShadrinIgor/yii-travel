@@ -14,6 +14,7 @@ input[type=file]{display: inline-block;}
 .floatLeft{float: left;}
 .floatRight{float: right;}
 .displayNone{display: none;}
+.displayInline{display: inline-block;}
 .textAlignRight{text-align: right;}
 .textAlignCenter{text-align: center;}
 .textAlignJustify{text-align: justify;}
@@ -319,7 +320,7 @@ h1
 .ListTours2, .ListTours{overflow: hidden;}
 .ListTours2{text-align: center;}
 
-.LTHover2{background: #D8D7D7;padding: 0px 5px;height: 19px;overflow: hidden;}
+.LTHover2{background: #D8D7D7;padding: 0px 5px;height: 40px;overflow: hidden;}
 .LTHover2 a{color: #5C3221;}
 .LTItem2{margin-right: 3px;display: inline-block;width: 250px;height: 150px;overflow: hidden;font-size: 14px;}
 .LTItem2.displayNone{display: none;}
@@ -329,16 +330,19 @@ h1
 {
   width: 95px;
   position: relative;
-  height: 27px;
+  height: 28px;
   text-align: right;
   font-size: 12px;
   background: url(../images/price.png) left top no-repeat;
-  margin-top: -30px;
-  padding-top: 5px;
+  margin-top: -52px;
+  padding-top: 3px;
   color: #fff;
   float: right;
   padding-right: 10px;
 }
+
+.NYitems .LTItem2{    height: 180px;}
+.NYitems .LTHover2{line-height: 18px;}
 
 .LTPrice2 b{font-size: 14px;}
 .LTText{height: 148px;overflow: hidden;}
@@ -876,9 +880,9 @@ h1
 }
 
 #Buttons{margin: 0px 4px;padding:10px 0px;text-align: center;/*background: url(../images/buttom_bg_.png) no-repeat right top, url(../images/buttom_bg.png) no-repeat left top;*/}
-#Buttons.BBig{height: 62px;background-size: auto 62px;padding: 6px 0px;}
+#Buttons.BBig{background-size: auto 62px;padding: 6px 0px;}
 
-#Buttons .B01, #Buttons .B02 {line-height: 13px;display: inline-block;width: 48%;padding-top: 10px;}
+#Buttons .B01, #Buttons .B02 {line-height: 18px;display: inline-block;width: 48%;padding-top: 10px;}
 
 .B01 {
   font-size:14px;
@@ -912,6 +916,8 @@ h1
   width: 100%;
   padding-top: 2px;
 
+  height: auto;
+  padding-bottom: 10px;
 }
 #Buttons.BBig .B01 a{font-size: 12px;display: inline-block;width: 100%;}
 #Buttons.BBig .B01 a b{font-style: normal;margin: 10px 0px;display: inline-block;font-size: 16px;text-transform: uppercase;}
@@ -958,7 +964,7 @@ h1
   font-style: normal;
 }
 #Buttons .B02 a b{border-bottom: 1px solid #ffffff;padding: 0px 0px;text-align: center;}
-.B01, .B02{ width: 374px;height: 65px; text-align: center;}
+.B01, .B02{ width: 374px;height: 80px; text-align: center;}
 
 #findTour
 {
@@ -1719,5 +1725,87 @@ a.label
   margin-top: 12px;
 }
 
-@import url("style_media.less");
+.NYitems .panel-heading
+{
+  text-transform: uppercase;
 
+}
+
+.NYitems .panel-heading span
+{
+  font-size: 20px;
+}
+
+
+.NYitems .panel-heading .floatRight {
+  margin-top: 8px;
+  text-transform: lowercase;
+  font-size: 16px;
+  color: #D9534F;
+}
+
+.NYitems .panel-heading .label-danger
+{
+  color: #fff;
+  padding: 0px 20px 2px 20px;
+  margin-left: 5px;
+  text-transform: lowercase;
+  font-size: 12px;
+}
+
+.NYitems .panel-heading .label-danger b
+{
+  font-size: 18px;
+}
+
+.NYitems .panel-heading img{float: left;}
+
+.NYitems .panel-heading span
+{
+  margin-top: 4px;
+  display: inline-block;
+  margin-left: 10px;
+}
+.modal-header{background: rgba(215, 59, 50, 0.07);}
+
+.new-year #Main .Header
+{
+  background: url( ../images/new-year/new-year_hader.jpg) no-repeat center;
+  height: 240px;
+}
+
+.new-year
+{
+  background: url( ../images/new-year/bg.jpg ) repeat fixed;
+}
+
+.new-year #Main .Header #HTitle
+{
+  text-align: right;
+  background: rgba(255, 79, 0, 0.9);
+  float: right;
+  padding: 5px 30px;
+  margin-top: 56px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  margin-right: 0px;
+  color: #fff;
+}
+
+.new-year #Main .Header #HTitle h1
+{
+  margin: 0px;
+  color: #fff;
+  text-shadow: 2px 2px 7px rgba(100,100,100,0.6);
+  font-size: 30px;
+}
+
+.new-year #Main .Header #HLogo{display: none;}
+
+.new-year #Main .panel.panel-success{background: transparent;}
+.new-year #Main .panel.panel-success .panel-body{background: rgba(255,255,255,0.5);}
+
+@import url("style_media.less");
+.colorRad{color: #FF190B;
+  font-weight: bold;
+  font-size: 16px;}

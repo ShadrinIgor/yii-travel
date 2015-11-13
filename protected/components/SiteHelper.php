@@ -122,7 +122,6 @@ class SiteHelper
 
         /*$text=base64_encode( $msg );
 
-
         $smtp_conn = fsockopen("92.63.109.197", 25,$errno, $errstr, 10);
         $data = SiteHelper::get_data($smtp_conn);
         $log = $data." | ";

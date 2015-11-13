@@ -25,13 +25,13 @@ class BannerInit extends CApplicationComponent
         {
             $banner = false;
 
-            $categoryModel = ExBannerCategory::fetchByKeyWord( $categoryKeyWord );
+            $categoryModel = ExBannerPosition::fetchByKeyWord( $categoryKeyWord );
             if( !$categoryModel || $categoryModel->id >0 )
             {
                 $DBParams = DBQueryParamsClass::CreateParams()
-                                ->setConditions( "category=:category AND status_id=2 " )
+                                ->setConditions( "position_id=:category AND status_id=2 " )
                                 ->setParams( array( ":category"=>$categoryModel->id ))
-                                ->setOrderBy( "last_date ASC" )
+                                ->setOrderBy( "date_finish ASC" )
                                 ->setCache(0)
                                 ->setLimit( 1 );
 
@@ -45,7 +45,7 @@ class BannerInit extends CApplicationComponent
                     if( !$banner )
                     {
                         $DBParams = DBQueryParamsClass::CreateParams()
-                            ->setConditions( "category=:category AND `default`=1 AND status_id=2" )
+                            ->setConditions( "position_id=:category AND `default`=1 AND status_id=2" )
                             ->setParams( array( ":category"=>$categoryModel->id ))
                             ->setOrderBy( "count_show DESC" )
                             ->setCache(0)
@@ -57,7 +57,7 @@ class BannerInit extends CApplicationComponent
 
                     if( $banner->id >0 ) // У величиваем счетчик просмотра
                     {
-                        $banner->update( array( "count_show"=>$banner->count_show+1, "last_date"=>time() ) );
+                        $banner->update( array( "count_show"=>$banner->count_show+1, "date_finish"=>time() ) );
 
                         // Если выставлено ограничение показов
                         if( $banner->finish_count_show >0 && $banner->count_show>=$banner->finish_count_show )

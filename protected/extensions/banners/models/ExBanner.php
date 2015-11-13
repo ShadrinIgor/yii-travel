@@ -9,23 +9,16 @@ class ExBanner extends CCModel
     protected $name; // string 
     protected $image; // string
     protected $file; // string
-    protected $href; // string 
-    protected $category; // integer 
-    protected $default; // integer 
+    protected $link; // string
+	protected $url; // string	
+    protected $position_id; // integer 
     protected $type_id; // integer 
     protected $del; // integer 
-    protected $width; // integer 
-    protected $height; // integer 
-    protected $through; // string 
-    protected $count_show; // integer 
-    protected $inner_page; // integer 
-    protected $email; // string 
-    protected $start_date; // string 
-    protected $finish_date; // string 
-    protected $finish_count_show; // integer 
+    protected $date_add; // string 
+    protected $date_finish; // string 
     protected $pos; // integer 
-    protected $status_id; // integer
-    protected $last_date;
+    protected $status_id;// integer
+	protected $user_id;// integer
 
 /*
 * Поля - связи
@@ -53,9 +46,9 @@ class ExBanner extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category, type_id', 'required'),
-			array('last_date, default, del, width, height, count_show, inner_page, finish_count_show, pos', 'numerical', 'integerOnly'=>true),
-			array('name, image, email', 'length', 'max'=>50),
+			array('user_id, position_id, type_id, status_id', 'required'),
+			array('user_id, del, pos, position_id, type_id, status_id', 'numerical', 'integerOnly'=>true),
+			array('name, image', 'length', 'max'=>50),
             array('image', 'file', 'types'=>'jpg, gif, png', 'allowEmpty'=>true, 'maxSize' => 1024 * 1024 * 5,
                 'tooLarge' => 'Размер файл не должен превышать 5mb',
                 'wrongType' => "Неправильный тип загружаемого файл допускается - jpg, gif, png"), // Ограничение по размеру 5mb
@@ -64,12 +57,9 @@ class ExBanner extends CCModel
                 'tooLarge' => 'Размер файл не должен превышать 5mb',
                 'wrongType' => "Неправильный тип загружаемого файл допускается - swf"),
 
-			array('through', 'length', 'max'=>25),
-			array('start_date, finish_date', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('last_date, name, image, file, href, category, default, del, type_id, width, height, through, count_show, inner_page, email, start_date, finish_date, finish_count_show, status_id', 'safe'),
-			array('id, name, image, href, category, default, type_id, del, width, height, through, count_show, inner_page, email, start_date, finish_date, finish_count_show, pos, status_id', 'safe', 'on'=>'search'),
+            array('name, image, file, link, url, position_id, type_id, del, date_add, date_finish, status_id, user_id', 'safe'),
 		);
 	}
 
@@ -82,7 +72,7 @@ class ExBanner extends CCModel
 		// class name for the relations automatically generated below.
 		return array(
 			'status' => array(self::BELONGS_TO, 'ExBannerStatus', 'status_id'),
-			'category0' => array(self::BELONGS_TO, 'ExBannerCategory', 'category'),
+			'position_id0' => array(self::BELONGS_TO, 'ExBannerPosition', 'position_id'),
 			'type' => array(self::BELONGS_TO, 'ExBannerType', 'type_id'),
 		);
 	}
@@ -95,21 +85,21 @@ class ExBanner extends CCModel
 		return array(
 			'id' => 'ID',
             'type_id' => 'Тип',
-            'category' => 'Категория',
+            'position_id' => 'Категория',
             'status_id' => 'Status',
 			'name' => 'Название',
 			'image' => 'Картинка',
+			'url' => 'url',
             'file' => 'Файл',
-			'href' => 'Ссылка перехода с банера',
-			'width' => 'Ширина',
-			'height' => 'Высота',
+			'link' => 'Ссылка перехода с банера',
+			'user_id' => 'User id',
 //			'through' => 'Through', // !!!
 			'count_show' => 'Количество показов',
             'finish_count_show' => 'Ограничение по количеству показов', // !!!
 //			'inner_page' => 'Inner Page',  // !!!
 			'email' => 'Email<br/>для уведомления о окончании',
-			'start_date' => 'Дата<br/>начала показа банера',
-			'finish_date' => 'Дата окончания<br/>показа банера',
+			'date_add' => 'Дата<br/>начала показа банера',
+			'date_finish' => 'Дата окончания<br/>показа банера',
 			'pos' => 'Pos',
             'last_date' => 'Последняя дата просмотра',
             'default' => 'По умолчанию',
@@ -131,8 +121,8 @@ class ExBanner extends CCModel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('image',$this->image,true);
-		$criteria->compare('href',$this->href,true);
-		$criteria->compare('category',$this->category);
+		$criteria->compare('link',$this->link,true);
+		$criteria->compare('position_id',$this->position_id);
 		$criteria->compare('default',$this->default);
 		$criteria->compare('type_id',$this->type_id);
 		$criteria->compare('del',$this->del);
@@ -142,8 +132,8 @@ class ExBanner extends CCModel
 		$criteria->compare('count_show',$this->count_show);
 		$criteria->compare('inner_page',$this->inner_page);
 		$criteria->compare('email',$this->email,true);
-		$criteria->compare('start_date',$this->start_date,true);
-		$criteria->compare('finish_date',$this->finish_date,true);
+		$criteria->compare('date_add',$this->date_add,true);
+		$criteria->compare('date_finish',$this->date_finish,true);
 		$criteria->compare('finish_count_show',$this->finish_count_show);
 		$criteria->compare('pos',$this->pos);
 		$criteria->compare('status_id',$this->status_id);
@@ -158,9 +148,9 @@ class ExBanner extends CCModel
         return array_merge( parent::fieldType(),
                     array(
                          "default"=>"checkbox",
-                         "start_date"=>"date",
-                         "finish_date"=>"date",
-                         "href"=>"url"
+                         "date_add"=>"date",
+                         "date_finish"=>"date",
+                         "link"=>"url"
                     )
                 );
 	}

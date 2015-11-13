@@ -216,14 +216,21 @@ class SubscribeTableController extends ConsoleController
 
             if( $countryId >0 || $categoryId>0 )
             {
-                $info = [];
+                $infoParam = "1=1";
+                if( $locat == "uzb" )
+                {
+                    if ($countryId > 0) $infoParam .= " AND country_id='" . $countryId . "'";
+                }
+                    else $infoParam .= " AND country_id='1'";
+
+                if( $logTable->info_category_id->id >0 )$infoParam .= " AND category_id='".$logTable->info_category_id->id."'";
+                $info = CatalogInfo::fetchAll(DBQueryParamsClass::CreateParams()->setConditions( $infoParam )->setLimit(4)->setOrderBy("id DESC")->setCache(0));
+
                 if( $countryId >0 )
                 {
                     $toursMinPrice = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND price>0 AND active=1")->setParams([":cid" => $countryModel->id])->setOrderBy("price")->setLimit(1)->setCache(0));
                     $tours = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid AND id !=:id AND active=1")->setParams([":cid" => $countryModel->id, ":id" => $toursMinPrice[0]->id])->setLimit(7)->setOrderBy("rating DESC, price"));
                     $tours[] = $toursMinPrice[0];
-                    $info = CatalogInfo::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid")->setParams([":cid" => $countryModel->id])->setLimit(4)->setOrderBy("id DESC"));
-
                     $subject = $countryModel->title . ", от " . $tours[ sizeof($tours) - 1 ]->price . ($tours[ sizeof($tours) - 1 ]->currency_id->id ? $tours[ sizeof($tours) - 1 ]->currency_id->title : "$");
                 }
                     else
@@ -232,7 +239,6 @@ class SubscribeTableController extends ConsoleController
                     $condition = "category_id=:cid";
                     if( $locat == "uzb" )
                     {
-                        echo $locat."==uzb<br/>";
                         $params = array_merge( $params, [":country"=>1] );
                         $condition .= " AND country_id!=:country";
                     }
@@ -246,12 +252,27 @@ class SubscribeTableController extends ConsoleController
                     $toursMinPrice = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions( $condition )->setParams( $params )->setOrderBy("price")->setLimit(1)->setCache(0));
                     $tours = CatalogTours::fetchAll(DBQueryParamsClass::CreateParams()->setConditions($condition." AND id !=:id")->setParams( array_merge( $params, [":id" => $toursMinPrice[0]->id] ) )->setLimit(7)->setOrderBy("rating DESC, price"));
                     $tours[] = $toursMinPrice[0];
-                    //$info = CatalogInfo::fetchAll(DBQueryParamsClass::CreateParams()->setConditions("country_id=:cid")->setParams([":cid" => $categoryModel->id])->setLimit(4)->setOrderBy("id DESC"));
-                    if( $tours[ sizeof($tours) - 1 ]->price >0 )$subject = "Тур - ".$categoryModel->name . ", от " . $tours[ sizeof($tours) - 1 ]->price . ($tours[ sizeof($tours) - 1 ]->currency_id->id ? $tours[ sizeof($tours) - 1 ]->currency_id->title : "$");
-                                                else $subject = "Тур - ".$categoryModel->name;
+
+                    if( $locat == "uzb" && $logTable->name )$subject = $logTable->name;
+                    if( $locat != "uzb" && $logTable->name_uz )$subject = $logTable->name_uz;
+
+                    if( empty( $subject ) )
+                    {
+                        if ($tours[ sizeof($tours) - 1 ]->price > 0) $subject = "Тур - " . $categoryModel->name . ", от " . $tours[ sizeof($tours) - 1 ]->price . ($tours[ sizeof($tours) - 1 ]->currency_id->id ? $tours[ sizeof($tours) - 1 ]->currency_id->title : "$");
+                                else $subject = "Тур - " . $categoryModel->name;
+                    }
                 }
 
-                $message = "Предлагаем Вашему вниманию интересную подборку с нашего портала <a href=\"http://www.world-travel.uz\">World-Travel.uz</a>.<br/><br/><h1>" . $subject . "</h1><br/><table>";
+                $message = "";
+
+                $message .= "<h1>" . $subject . "</h1><br/>";
+                if( $locat == "uzb" && $logTable->image )$message.="<img src=\"".SiteHelper::createUrl("/").$logTable->image."\" style=\"width:599px\" alt=\"".$subject."\" /><br/><br/>";
+                if( $locat != "uzb" && $logTable->image_uz )$message.="<img src=\"".SiteHelper::createUrl("/").$logTable->image_uz."\" style=\"width:599px\" alt=\"".$subject."\" /><br/><br/>";
+
+
+
+                if( $logTable->description )$message.="<p>".$logTable->description."</p>";
+                $message .= "<h3>Предлагаем Вашему вниманию подборку туров с нашего портала <a href=\"http://www.world-travel.uz\">World-Travel.uz</a></h3><br/><table>";
                 $n = 0;
                 $reserveNum = 0;
                 $reserveList = [];
@@ -302,7 +323,7 @@ class SubscribeTableController extends ConsoleController
                     $n++;
                 }
 
-                $message .= '</table></div><br/>';
+                $message .= '</table><br/>';
 
                 if( sizeof($info) >0 )
                 {
@@ -314,26 +335,29 @@ class SubscribeTableController extends ConsoleController
                                         <td colspan=\"2\" style=\"border-bottom:1px solid #F4F1EA;padding-bottom:10px;\">
                                             <table width=\"100%\">
                                                 <tr>
-                                                    <td><img src=\"" . SiteHelper::createUrl("/") . ImageHelper::getImage($item->image, 2) . "\" style=\"padding-right: 10px;\" alt=\"" . $item->name . "\" /></td>
-                                                    <td style=\"text-align: justify;vertical-align:top\">" . SiteHelper::getSubTextOnWorld($item->description, 350) . "<br/><div align=\"right\"><a href=\"" . SiteHelper::createUrl("/touristInfo/description") . $item->slug . ".html\">читайте подробнее >>></a></div></td>
+                                                    <td>";
+
+                        if( $item->image )$message .= "<img src=\"" . SiteHelper::createUrl("/") . ImageHelper::getImage($item->image, 2) . "\" style=\"padding-right: 10px;\" alt=\"" . $item->name . "\" />";
+
+                        $message .= "                </td>
+                                                    <td style=\"text-align: justify;vertical-align:top\">" . SiteHelper::getSubTextOnWorld($item->description, 350) . "<br/><div align=\"right\"><a href=\"" . SiteHelper::createUrl("/touristInfo/description")."/". $item->slug . ".html\">читайте подробнее >>></a></div></td>
                                                 </tr>
                                             </table>
                                         </td>
                                      </tr>";
-                        //
                     }
 
                     $message .= "</table></div>";
                 }
 
                 $cout .= $message."</body></html>";
-                //if( SubscribesUzHelper::sendEmails( array( 7, 35, 41 ), $subject, $message, 3 ) )echo "Ура отправил";
-                //                                                                        else echo "Что-то пошло не так";
+                if( SubscribesUzHelper::sendEmails( array( 51 ), $subject, $message, 3 ) )echo "Ура отправил";
+                                                                                        else echo "Что-то пошло не так";
             }
         }
 
         if( $return ) return $cout;
-                 else echo $cout;
+                 else echo "<div style='width: 800px;margin: 0px auto'>".$cout."</div>";
     }
 
     public function actionEdit()

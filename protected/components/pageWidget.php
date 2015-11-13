@@ -41,6 +41,7 @@ class pageWidget extends CWidget
 
         $sortField = Yii::app()->request->getParam("sort", "");
         $by = Yii::app()->request->getParam("by", "");
+        $status = Yii::app()->request->getParam("status", "");
         $params = Yii::app()->request->getParam("params", "");
 
         //if( ( $page!=1 || !empty( $sortField ) || !empty( $params ) ) || ( $page==1 && $this->beginCache( 'pageWidget_'.$catalog.'_1', array('duration'=>3600) ) ) ) :
@@ -56,7 +57,7 @@ class pageWidget extends CWidget
 
             // Очищаем параметры сессии
             // Если указан параметр черезе GET и это не сортировка и не страницы, от очищаем параметры
-            if( $params == "empty" || ( !empty( $_GET ) && empty($_GET["sort"]) && empty($_GET["p"]) ) )Yii::app()->session[ "page_".$catalog ] = null;
+            if( $params == "empty" || ( !empty( $_GET ) && empty($_GET["sort"]) && empty($_GET["p"]) && empty($status) ) )Yii::app()->session[ "page_".$catalog ] = null;
 
             // Здесь будем хранить параметры сортировки и посика, для сохранения  в сессию
             $pageParams = array();
@@ -93,16 +94,20 @@ class pageWidget extends CWidget
             // Поиск
             $SQL = " active=1 ";
             if( $this->conditional )$SQL = " active=1 AND ".$this->conditional;
+            if( $status == "newYear" )
+            {
+                $SQL .= " AND is_newyear=1 ";
+                $this->title = "Новогодние ".strtolower( $this->title );
+            }
 
             $category = Yii::app()->request->getParam("category", "");
             if( !empty( $category ) )
             {
                 $categoryClass = SiteHelper::getCamelCase( $this->$catalog."_category" );
                 $categoryModel = $categoryClass::fetchByKeyWord( $category );
-                if( $categoryModel->id >0 )$SQL." AND category_id='".$categoryModel->id."'";
+                if( $categoryModel->id >0 )$SQL.=" AND category_id='".$categoryModel->id."'";
             }
             $country = Yii::app()->request->getParam("country", "");
-
 
             if( !empty( $SearchAttributes ) && is_array($SearchAttributes) && sizeof($SearchAttributes)>0)
             {
@@ -173,10 +178,6 @@ class pageWidget extends CWidget
                 // Сохраняем все в сессию
                 Yii::app()->session[ "page_".$catalog ] = $pageParams;
             }
-
-            echo "<!-- && ";
-            echo $SQL;
-            echo "-->";
 
             $items = $this->render( $this->template,
                 array(

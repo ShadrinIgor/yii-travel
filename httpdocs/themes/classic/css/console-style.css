@@ -22,6 +22,8 @@ h2{text-align: center;margin: 5px 0px 3px;font-size: 22px;}
     color: #fff; /* Цвет текста */
 }
 
+#tableListItems td input[type=text], #tableListItems td select{width: 90%;}
+
 .fieldID{width: 20px;text-align: center;}
 .fieldActions{width: 220px;text-align: center;}
 

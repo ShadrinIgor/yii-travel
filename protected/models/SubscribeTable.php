@@ -6,7 +6,8 @@
 class SubscribeTable extends CCModel
 {
     protected $id; // integer 
-    protected $name; // string 
+    protected $name; // string
+    protected $name_uz; // string //
     protected $del; // integer 
     protected $pos; // integer
     protected $category_id;
@@ -14,6 +15,8 @@ class SubscribeTable extends CCModel
     protected $date2;
     protected $sort;
     protected $active;
+    protected $image;
+    protected $image_uz;
     protected $description;
     protected $table_users_id;
     protected $info_category_id;
@@ -48,6 +51,11 @@ class SubscribeTable extends CCModel
             'SubscribeTableUsers' => array(self::HAS_MANY, 'SubscribeTableUsers', 'table_users_id'),
         );
     }
+
+    public function fieldType()
+    {
+        return array_merge( parent::fieldType(), [ "image_uz"=>"image" ] );
+    }
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -61,7 +69,7 @@ class SubscribeTable extends CCModel
 			array('name', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('active, info_category_id, table_users_id, description, name, del, pos, category_id, country_id, date2, sort', 'safe'),
+			array('name_uz, image_uz, image, active, info_category_id, table_users_id, description, name, del, pos, category_id, country_id, date2, sort', 'safe'),
 		);
 	}
 
@@ -72,8 +80,11 @@ class SubscribeTable extends CCModel
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Заголовок',
+			'name' => 'Заголовок по мира',
+            'name_uz' => "Заголовк по UZ",
             'date2' => 'Дата',
+            'image' => 'Баннер - по миру',
+            'image_uz' => 'Баннер - по UZ',
             'category_id' => 'Категория тура',
             'country_id' => 'Страна',
             'info_category_id' => 'Информация',

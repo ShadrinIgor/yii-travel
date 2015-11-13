@@ -53,7 +53,7 @@
     }
 
 ?>
-    <tr>
+    <tr <?= $item->active == 0 ? 'style="color: #afafaf;text-decoration: line-through;"' : '' ?>>
         <td class="fieldID"><?= $item->id ?></td>
         <td><?= $item->name ?></td>
         <td><?= $item->date2 ?></td>

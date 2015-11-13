@@ -8,7 +8,7 @@
 <div id="fb-root"></div>
 <!-- end of facebook like -->
 
-<div id="BMain">
+<div id="BMain" <?= !empty( $main_class ) ? "class=\"".$main_class."\"" : "" ?>>
     <div id="Main">
         <div id="Mcenter">
             <?php $this->renderPartial('//layouts/header_2'); ?>

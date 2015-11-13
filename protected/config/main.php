@@ -89,6 +89,7 @@ return array(
                 ''=>'site/index',
 
                 'new-year'=> 'newYear/index',
+                'new-year.html'=> 'newYear/index',
                 '<language:(en|ja|zh)>/'=> 'languages/',
                 '<language:(en|ja|zh)>/([\w/\-\?&=\.])+'=> 'languages/',
 
@@ -455,6 +456,7 @@ return array(
             array( "title"=>"Данные",
                 "items"=>array
                 (
+                    array( "title"=>"Оформление страниц", "controller"=>"catalog", "params"=>"catalog=CatalogTheme" ),
                     array( "title"=>"Таблица рассылки", "controller"=>"subscribeTable", "params"=>"" ),
                     array( "title"=>"Статистика", "controller"=>"log", "params"=>"" ),
                     array( "title"=>"Странны", "controller"=>"catalog", "params"=>"catalog=CatalogCountry" ),

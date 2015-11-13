@@ -1,6 +1,6 @@
 <h1><?= $model->name ?></h1>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <?= CHtml::errorSummary( $model ); ?>
     <?= $model->getMessage(); ?>
     <table id="tableListItems">

@@ -145,7 +145,23 @@ class Controller extends CController
             $output=$this->renderPartial($view,$data,true);
             if( ($layoutFile=$this->getLayoutFile($this->layout))!==false)
             {
-                $output=$this->renderFile($layoutFile, array_merge( $data, array( "content" => $output ) ),true);
+                $urlArr = explode( "/", Yii::app()->request->url );
+                $sql = "";
+                if( sizeof( $urlArr ) >1 )$sql .= "`url`='".$urlArr[1]."' OR";
+                $sql .= " `url`='".Yii::app()->request->url."'";
+                $bannerModel = CatalogTheme::fetchAll( $sql );
+
+                if( sizeof( $bannerModel ) >0 )
+                {
+                    $mainClass = $bannerModel[0]->main_class;
+                    $mainBanner = $bannerModel[0]->image;
+                }
+                    else
+                    {
+                        $mainClass = "";
+                        $mainBanner = "";
+                    }
+                $output=$this->renderFile($layoutFile, array_merge( $data, [ "content" => $output, "main_class"=>$mainClass, "main_banner"=>$mainBanner,  ] ),true);
             }
 
             $this->afterRender($view,$output);

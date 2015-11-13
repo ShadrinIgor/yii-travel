@@ -1,20 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "ex_banner_category".
+ * This is the model class for table "cat_log_firms".
    */
-class ExBannerCategory extends CCModel
+class ExBannerLog extends CCModel
 {
     protected $id; // integer 
-    protected $name; // string
-    protected $key_word; // string
-    protected $pos; // integer 
+    protected $banner_id; // integer 
+    protected $action_show; // integer 
+    protected $action_click; // integer 
+    protected $name; // integer 
     protected $del; // integer 
+    protected $pos; // integer 
+    protected $date; // integer 
 
 /*
 * Поля - связи
 */
-    protected $exBanners; //  ExBanner
 
 
     public function attributeNames()
@@ -27,7 +29,7 @@ class ExBannerCategory extends CCModel
 	 */
 	public function tableName()
 	{
-		return 'ex_banner_category';
+		return 'ex_banner_log';
 	}
 
 	/**
@@ -38,11 +40,12 @@ class ExBannerCategory extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('pos, del', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>50),
+			array('banner_id, date', 'required'),
+			array('banner_id, action_show, action_click, name, del, pos, date', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, pos, del', 'safe', 'on'=>'search'),
+            array('id, banner_id, action_show, action_click, name, del, pos, date', 'safe'),
+			array('id, banner_id, action_show, action_click, name, del, pos, date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +57,7 @@ class ExBannerCategory extends CCModel
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'exBanners' => array(self::HAS_MANY, 'ExBanner', 'category'),
+			'banner_id' => array(self::BELONGS_TO, 'ExBanner', 'banner_id'),
 		);
 	}
 
@@ -65,9 +68,13 @@ class ExBannerCategory extends CCModel
 	{
 		return array(
 			'id' => 'ID',
+			'banner_id' => 'Firm',
+			'action_show' => 'Action Show',
+			'action_click' => 'Action Contact',
 			'name' => 'Name',
-			'pos' => 'Pos',
 			'del' => 'Del',
+			'pos' => 'Pos',
+			'date' => 'Date From',
 		);
 	}
 
@@ -83,9 +90,13 @@ class ExBannerCategory extends CCModel
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('pos',$this->pos);
+		$criteria->compare('banner_id',$this->banner_id);
+		$criteria->compare('action_show',$this->action_show);
+		$criteria->compare('action_click',$this->action_click);
+		$criteria->compare('name',$this->name);
 		$criteria->compare('del',$this->del);
+		$criteria->compare('pos',$this->pos);
+		$criteria->compare('date',$this->date);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

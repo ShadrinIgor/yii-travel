@@ -6,21 +6,20 @@
 class CatalogContent extends CCModel
 {
     protected $id; // integer 
-    protected $date; // integer 
-    protected $del; // integer 
-    protected $image; // string 
-    protected $category_id; // integer 
-    protected $slug; // string 
     protected $name; // string 
+    protected $active; // integer 
+    protected $pos; // integer 
     protected $description; // string
-    protected $description2; // string
-    protected $description3; // string
-    protected $description_author;
-    protected $file; // string
+    protected $date; // string 
+    protected $image; // string 
+    protected $file; // string 
+    protected $del; // integer 
+    protected $country_id; // integer 
+    protected $category_id; // integer 
+    protected $slug; // string
+    protected $col; // string
+    protected $translate;
     protected $title;
-    protected $meta_keyword;
-    protected $expert_text;
-    protected $expert_name;
 
 /*
 * Поля - связи
@@ -48,15 +47,15 @@ class CatalogContent extends CCModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category_id, name, title, description', 'required'),
-			array('date, del', 'numerical', 'integerOnly'=>true),
-			array('image', 'length', 'max'=>255),
-			array('slug', 'length', 'max'=>255),
-			array('name', 'length', 'max'=>150),
+			array('name, category_id', 'required'),
+			array('country_id, category_id, active, pos, del', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>255),
+			array('image', 'length', 'max'=>50),
+			array('file', 'length', 'max'=>100),
+            array('title, translate, col, slug, name, active, pos, description, date, image, file, del, country_id, category_id', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('expert_name, expert_text, meta_keyword, description_author, title, file, date, del, image, category_id, slug, name, description, description2, description3', 'safe'),
-            array('id, date, del, image, category_id, slug, name, description', 'safe', 'on'=>'search'),
+			array('id, name, active, pos, description, date, image, file, del, country_id, category_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +68,7 @@ class CatalogContent extends CCModel
 		// class name for the relations automatically generated below.
 		return array(
 			'category' => array(self::BELONGS_TO, 'CatalogContentCategory', 'category_id'),
+			'country' => array(self::BELONGS_TO, 'CatalogCountry', 'country_id'),
 		);
 	}
 
@@ -79,28 +79,20 @@ class CatalogContent extends CCModel
 	{
 		return array(
 			'id' => 'ID',
-            'name' => 'Название',
+			'name' => Yii::t("models", "Название"),
             'title' => 'Title',
-            'slug' => 'Slug',
-			'date' => 'Дата',
-			'image' => 'Картинка',
-            'file' => 'Файл',
-			'category_id' => 'Категория',
-			'description' => 'Описание',
-            'description2' => 'Описание2',
-            'description3' => 'Описание3',
-            'description_author' => 'О авторе',
-            'meta_keyword' => 'meta_keyword',
-            'expert_name' => 'expert_name',
-            'expert_text' => 'expert_text',
-
+			'description' => 'Текст записи',
+            'category_id' => Yii::t("models", "Категории"),
+            'country_id' => Yii::t("page", "Страна"),
+			'date' => Yii::t("models", "Дата"),
+			'image' => Yii::t("models", "Картинка"),
+			'file' => Yii::t("models", "Файл, приложение для записи"),
+            'active' => Yii::t("models", "Активность"),
+            'del' => Yii::t("models", "Удаленная запись"),
+			'slug' => Yii::t("models", "Название для ссылки"),
+            'pos' => Yii::t("models", "Позиция"),
 		);
 	}
-
-    public function fieldType()
-    {
-        return array_merge( parent::fieldType(), array( "expert_name"=>"textarea", "expert_text"=>"textarea", "meta_keyword"=>"textarea", "description2"=>"visual_textarea", "description_author"=>"visual_textarea", "description3"=>"visual_textarea", ) );
-    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -114,13 +106,17 @@ class CatalogContent extends CCModel
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('date',$this->date);
-		$criteria->compare('del',$this->del);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('category_id',$this->category_id);
-		$criteria->compare('slug',$this->slug,true);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('active',$this->active);
+		$criteria->compare('pos',$this->pos);
 		$criteria->compare('description',$this->description,true);
+		$criteria->compare('date',$this->date,true);
+		$criteria->compare('image',$this->image,true);
+		$criteria->compare('file',$this->file,true);
+		$criteria->compare('del',$this->del);
+		$criteria->compare('country_id',$this->country_id);
+		$criteria->compare('category_id',$this->category_id);
+		$criteria->compare('key_word',$this->key_word,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -39,7 +39,7 @@ $this->widget('addressLineWidget', array(
         <div class="blockquote blockquoteOrange floatRight width200">
             <?php if( $item->price ): ?><div class="overflowHidden"><span class="label label-info">цена от: <b class="radColor"><?= $item->price ?> <?= $item->currency_id->title ?></b></span></div><?php endif; ?>
             <br/>
-            <?= Yii::t("page", "страна"); ?>: <a href="<?= SiteHelper::createUrl("/country")."/".$item->slug ?>.html" title="<?= Yii::t("page", "туристическая страна"); ?> <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
+            <?= Yii::t("page", "страна"); ?>: <a href="<?= $item->country_id->slug ?>_country.html" title="<?= Yii::t("page", "туристическая страна"); ?> <?= SiteHelper::getTranslateForUrl( $item->country_id->name ) ?>"><?= $item->country_id->name ?></a><br/>
             <?= Yii::t("page", "категория"); ?>:<a href="<?= SiteHelper::createUrl("/tours")."/".$item->category_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->category_id->name ) ?>"><?= $item->category_id->name ?></a><br/>
             <?= Yii::t("page", "фирма"); ?>а: <a href="<?= SiteHelper::createUrl("/travelAgency/description")."/".$item->firm_id->slug ?>.html" title="<?= SiteHelper::getStringForTitle( $item->firm_id->name ) ?>"><?= $item->firm_id->name ?></a><br/>
         </div>

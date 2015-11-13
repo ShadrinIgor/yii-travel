@@ -3,7 +3,7 @@
 <head>
     <?php $this->renderPartial('//layouts/header2'); ?>
 </head>
-<body>
+<body <?= !empty( $main_class ) ? "class=\"".$main_class."\"" : "" ?>>
 <div id="Main">
 <div>
     <div class="TMenuSmall displayNone"><a href="#" title="">Меню сайта</a></div>
@@ -16,7 +16,12 @@
         <a href="<?= SiteHelper::createUrl( "/resorts" ) ?>" title="Курорты">Курорты</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
         <a href="<?= SiteHelper::createUrl( "/work" ) ?>" title="<?= Yii::t( "page", "Работа") ?>">Вакансии</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
         <a href="<?= SiteHelper::createUrl( "/adsUsers " ) ?>" title="<?= Yii::t( "page", "туристические частные объявления") ?>">Частные объявления</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        <a href="<?= SiteHelper::createUrl( "/user" ) ?>" title="">Кабинет</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <?php if( !Yii::app()->user->isGuest ) : ?>
+            <a href="<?= SiteHelper::createUrl( "/user" ) ?>" title="">Ваш кабинет</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <?php else: ?>
+            <a href="http://world-travel.uz/registration.html" title="">Зарегистрироваться</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            <a href="<?= SiteHelper::createUrl( "/user" ) ?>" title="">Войти</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <?php endif; ?>
     </div>
 </div>
 <div class="Header">

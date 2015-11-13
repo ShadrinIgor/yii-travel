@@ -1,30 +1,15 @@
 <?php
 
-class FirmBannersController extends UserController
+class BannersController extends UserController
 {
     var $firmId;
 
     public function init()
     {
         parent::init();
-        $this->addModel = "CatalogFirmsBannersAdd";
-        $this->tableName = "catalog_firms_banners";
-        $this->name = Yii::t("user", "Баннер фирмы");
-
-        $this->firmId = (int) Yii::app()->request->getParam("fid", 0);
-        $id = (int) Yii::app()->request->getParam("id", 0);
-        $return = false;
-
-        // Если не указан ID фирмы, то берем ID из описания тура
-        if( $id>0 && $this->firmId == 0 )
-        {
-            $class = $this->addModel;
-            $tourModel = $class::fetch( $id );
-            if( $tourModel->id>0 && $tourModel->firm_id && $tourModel->firm_id->id >0 )$this->firmId  = $tourModel->firm_id->id;
-            else $return = true;
-        }
-
-        if( $return == true  )$this->redirect( SiteHelper::createUrl("/user/firms") );
+        $this->addModel = "ExBannerAdd";
+        $this->tableName = "ex_banner";
+        $this->name = Yii::t("user", "БЕСПЛАТНЫЕ баннеры");
     }
 
     public function actionDescription( $gallError = "" )

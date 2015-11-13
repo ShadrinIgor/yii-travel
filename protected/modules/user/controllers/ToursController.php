@@ -6,8 +6,12 @@ class ToursController extends UserController
 
     public function init()
     {
-        $items = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id in ( SELECT id FROM catalog_firms WHERE user_id='".Yii::app()->user->getId()."' )") );
-        $this->render("index", [ "items"=>$items ]);
+        parent::init();
+        $this->addModel = "CatalogToursAdd";
+        $this->tableName = "catalog_tours";
+        $this->name = Yii::t("user", "туры");
+/*        $items = CatalogTours::fetchAll( DBQueryParamsClass::CreateParams()->setConditions("firm_id in ( SELECT id FROM catalog_firms WHERE user_id='".Yii::app()->user->getId()."' )") );
+        $this->render("index", [ "items"=>$items ]);*/
     }
 
     public function actionDescription( $gallError = "" )
@@ -23,26 +27,32 @@ class ToursController extends UserController
                 $this->firmId  = $tourModel->firm_id->id;
         }
 
+        $firmModel = "";
+        if( !$firmModel || $firmModel->id == 0 )
+        {
+            $firmModelArray = CatalogFirms::fetchAll( "user_id=".Yii::app()->user->getId() );
+            if ( sizeof( $firmModelArray ) >0 )$firmModel = $firmModelArray[0];
+        }
+
+        # TODO надо сделать всплывающее окошко с уведомление, для добавления тура необходимо зарегить компанию
+        /*
         if( $this->firmId == 0  )
         {
-            die(  "id==0" );
             $this->redirect( SiteHelper::createUrl("/user/firms") );
         }
+        */
 
-        $firmModel = CatalogFirms::fetch( $this->firmId );
-        if( $firmModel->id == 0 )
+
+        if( $firmModel->id >0 )
         {
-            die(  "id==not correct" );
-            $this->redirect( SiteHelper::createUrl("/user/firms") );
+            parent::init();
+            $this->addModel = "CatalogToursAdd";
+            $this->tableName = "catalog_tours";
+            $this->name = Yii::t("user", "туры");
+
+            $_POST["CatalogToursAdd"]["firm_id"] = $firmModel->id;
+            $_POST["CatalogToursAdd"]["user_id"] = Yii::app()->user->getId();
+            parent::actionDescription();
         }
-
-        parent::init();
-        $this->addModel = "CatalogToursAdd";
-        $this->tableName = "catalog_tours";
-        $this->name = Yii::t("user", "туры" );
-
-        $_POST["CatalogToursAdd"]["firm_id"] = $this->firmId;
-        $_POST["CatalogToursAdd"]["user_id"] = Yii::app()->user->getId();
-        parent::actionDescription();
     }
 }
